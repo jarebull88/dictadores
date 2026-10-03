@@ -1,0 +1,76 @@
+<div id="app">
+
+  <section id="screen-start" class="screen pantalla-texto">
+    <h1 class="titulo">A la orden <span class="emoji" aria-hidden="true">🫡</span><br>mi comandante</h1>
+    <p class="sub">Acabas de tomar el poder, tu objetivo es mantenerte en él el mayor tiempo posible.</p>
+    <div class="acciones">
+      <button class="modo principal" id="btn-jugar" type="button"><b>Empezar partida</b></button>
+      <button class="modo" id="btn-archivo" type="button"><b>Archivo histórico</b><span id="cont-archivo"></span></button>
+    </div>
+    <p class="nota">Arrastra la carta a la izquierda o a la derecha. Antes de decidir verás qué fuerzas se ven afectadas y cuánto, pero no si suben o bajan. Si una llega a cero o al máximo, caes. Los cuatro emojis de arriba son las fuerzas que pueden derribarte: Ejército (🪖), Pueblo (👥), Élite (🎩) y Potencias (🌐). Tócalos para ver qué son. Si su barra se vacía o se llena hasta el rojo, estás cerca de caer. Los cuadrados de abajo guardan las consecuencias duraderas de tus decisiones: tócalos también. Este prototipo contiene las eras 1 y 2, con algunas cartas en borrador.</p>
+  </section>
+
+  <section id="screen-name" class="screen pantalla-texto hidden">
+    <h2 class="titulo">Tu nombre de dictador</h2>
+    <p class="sub">Elige un nombre de una sola palabra. Tus ministros te llamarán Comandante.</p>
+    <div class="campo">
+      <label for="input-nombre">Tu nombre</label>
+      <input id="input-nombre" type="text" maxlength="14" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Aureliano">
+      <p class="vista-nombre" id="vista-nombre">Comandante …</p>
+      <p class="error" id="nombre-error"></p>
+    </div>
+    <div class="acciones">
+      <button class="modo principal" id="btn-tomar-poder" type="button"><b>Tomar el poder</b></button>
+      <button class="modo" id="btn-nombre-volver" type="button"><b>Volver</b></button>
+    </div>
+  </section>
+
+  <section id="screen-game" class="screen hidden">
+    <div class="cabecera">
+      <div class="anio" id="anio">Año 1 - Año de la Gloriosa Revolución</div>
+      <button class="menu-btn" id="btn-menu" type="button" aria-label="Menú" aria-expanded="false"><svg class="ico" viewBox="0 -960 960 960" aria-hidden="true"><path d="M479.86-160Q460-160 446-174.14t-14-34Q432-228 446.14-242t34-14Q500-256 514-241.86t14 34Q528-188 513.86-174t-34 14Zm0-272Q460-432 446-446.14t-14-34Q432-500 446.14-514t34-14Q500-528 514-513.86t14 34Q528-460 513.86-446t-34 14Zm0-272Q460-704 446-718.14t-14-34Q432-772 446.14-786t34-14Q500-800 514-785.86t14 34Q528-732 513.86-718t-34 14Z"/></svg></button>
+    </div>
+    <div class="menu-juego hidden" id="menu-juego">
+      <button id="btn-salir" type="button">Abandonar partida</button>
+    </div>
+    <div class="barras" id="barras"></div>
+    <div class="mensaje" id="mensaje"></div>
+    <div class="escenario">
+      <div class="pila" aria-hidden="true"><div class="capa c2"></div><div class="capa c1"></div></div>
+      <div class="carta" id="carta" role="group" aria-label="Carta de decisión"></div>
+    </div>
+    <div class="pie-juego">
+      <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small><button class="aviso-archivo hidden" id="aviso-archivo" type="button"></button></div>
+      <div class="ranuras" id="ranuras"></div>
+    </div>
+    <div class="popup hidden" id="popup" role="dialog"></div>
+  </section>
+
+  <section id="screen-archive" class="screen hidden">
+    <div class="arch-cab">
+      <h2 class="titulo">Archivo histórico</h2>
+      <button class="arch-volver" id="btn-archivo-volver" type="button"></button>
+    </div>
+    <p class="nota" id="archivo-intro"></p>
+    <div class="arch-lista" id="archivo-lista"></div>
+    <div class="arch-detalle hidden" id="archivo-detalle"></div>
+  </section>
+
+  <section id="screen-end" class="screen pantalla-texto hidden">
+    <h1 class="titulo fin-principal" id="fin-principal"></h1>
+    <h2 class="titulo fin-causa" id="fin-titulo"></h2>
+    <div class="fin-fuerza hidden peligro" id="fin-fuerza"></div>
+    <p class="relato" id="fin-texto"></p>
+    <div class="cuadro" id="fin-cuadro"></div>
+    <ul class="lineas" id="fin-lineas"></ul>
+    <div id="fin-archivo"></div>
+    <div class="pendiente" id="fin-pendiente"></div>
+    <div class="acciones">
+      <button class="modo principal hidden" id="btn-continuar" type="button"><b>Seguir gobernando</b></button>
+      <button class="modo principal" id="btn-repetir" type="button"><b>Jugar de nuevo</b></button>
+      <button class="modo" id="btn-fin-archivo" type="button"><b>Archivo histórico</b></button>
+      <button class="enlace" id="btn-cambiar-nombre" type="button">Cambiar de nombre</button>
+    </div>
+  </section>
+
+</div>

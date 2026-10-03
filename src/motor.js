@@ -1,0 +1,987 @@
+/* =====================================================
+   UTILIDADES, ARCHIVO PERSISTENTE Y NOMBRE
+   ===================================================== */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const limitar = v => Math.max(0, Math.min(100, v));
+
+const CLAVE_ARCHIVO = "dictadores_archivo_v2";
+let desbloqueados = new Set();
+try {
+  const raw = localStorage.getItem(CLAVE_ARCHIVO);
+  if (raw) desbloqueados = new Set(JSON.parse(raw));
+} catch (e) { /* sin almacenamiento: queda en memoria */ }
+function desbloquear(id) {
+  desbloqueados.add(id);
+  try { localStorage.setItem(CLAVE_ARCHIVO, JSON.stringify([...desbloqueados])); } catch (e) {}
+}
+
+const CLAVE_NOMBRE = "dictadores_nombre_v2";
+let nombreDictador = "";
+try { nombreDictador = (localStorage.getItem(CLAVE_NOMBRE) || "").trim().split(/\s+/)[0] || ""; } catch (e) {}
+const nombreCompleto = () => "Comandante " + nombreDictador;
+function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch (e) {} }
+
+/* =====================================================
+   NOMBRES DE LOS AÑOS (al estilo de los años de la Revolución)
+   A partir del año 31 se numeran: "Año 31 de la Gloriosa Revolución".
+   ===================================================== */
+const NOMBRES_ANIO = [
+  "Año de la Gloriosa Revolución",
+  "Año de la Tierra Redimida",
+  "Año de la Luz y las Letras",
+  "Año del Plan Maestro",
+  "Año de la Unidad Indestructible",
+  "Año de la Defensa Soberana",
+  "Año de la Gran Cosecha",
+  "Año del Trabajo Voluntario",
+  "Año de la Vigilancia Revolucionaria",
+  "Año del Esfuerzo Supremo",
+  "Año de la Austeridad Victoriosa",
+  "Año de la Productividad Patriótica",
+  "Año de la Transparencia Informativa",
+  "Año de la Amistad entre los Pueblos",
+  "Año del Primer Congreso del Partido",
+  "Año de la Constitución Eterna",
+  "Año del Comandante y su Pueblo",
+  "Año de la Eficiencia Nacional",
+  "Año de la Emulación Nacional",
+  "Año del Vigésimo Aniversario de la Revolución",
+  "Año de la Reconstrucción",
+  "Año del Segundo Congreso del Partido",
+  "Año de la Corrección de Rumbo",
+  "Año de la Resistencia",
+  "Año del Cuarto de Siglo",
+  "Año de la Sobriedad Nacional",
+  "Año de la Patria Primero",
+  "Año de las Reservas Estratégicas",
+  "Año de la Continuidad",
+  "Año del Trigésimo Aniversario de la Revolución"
+];
+function tituloAnio(n) {
+  return n <= NOMBRES_ANIO.length ? `Año ${n} - ${NOMBRES_ANIO[n - 1]}` : `Año ${n} de la Gloriosa Revolución`;
+}
+
+/* =====================================================
+   ESTADOS DEL RÉGIMEN (las cuatro ranuras bajo la carta)
+   Un estado se activa cuando el jugador toma cierta decisión (bandera).
+   Solo caben 4: el más antiguo sale cuando entra uno nuevo.
+   - deriva / cada: cambia las barras solo, cada N años
+   - crisis: suma a la cuenta oculta, cada N años
+   - multCrisis: multiplica lo que suman las decisiones a la crisis
+   - pesos: cambia la probabilidad de ciertas cartas (0 = no salen)
+   - duracion: años que dura (null = hasta que lo desplace otro)
+   La descripción no da números: cuenta qué pasa, no cuánto.
+   ===================================================== */
+/* Iconos de interfaz (Material Symbols de Google) */
+const UI = {
+  mas: "M479.86-160Q460-160 446-174.14t-14-34Q432-228 446.14-242t34-14Q500-256 514-241.86t14 34Q528-188 513.86-174t-34 14Zm0-272Q460-432 446-446.14t-14-34Q432-500 446.14-514t34-14Q500-528 514-513.86t14 34Q528-460 513.86-446t-34 14Zm0-272Q460-704 446-718.14t-14-34Q432-772 446.14-786t34-14Q500-800 514-785.86t14 34Q528-732 513.86-718t-34 14Z",
+  atras: "m274-450 248 248-42 42-320-320 320-320 42 42-248 248h526v60H274Z"
+};
+const icoUI = n => `<svg class="ico" viewBox="0 -960 960 960" aria-hidden="true"><path d="${UI[n]}"/></svg>`;
+
+/* Los estados del régimen se muestran con emojis */
+const EMOJI_ESTADO = {
+  censura: "🤐", vigilancia: "👁️", culto: "🖼️", alineado: "🤝",
+  embargo: "🚫", frontera: "🧱", nacionalizado: "🏭", deuda: "💸"
+};
+const ESTADOS = {
+  censura: {
+    nombre: "Censura", bandera: "base.censura_previa", duracion: null,
+    descripcion: "Los rumores ocupan el lugar de las noticias, y la vigilancia de barrio se vuelve más probable.",
+    deriva: { pueblo: -1 }, cada: 1, pesos: { ojos_barrio: 2 }
+  },
+  vigilancia: {
+    nombre: "Vigilancia", bandera: "base.comites_vigilancia", duracion: null,
+    descripcion: "Cada vecino vigila al de al lado y el aparato de seguridad gana poder.",
+    deriva: { ejercito: 1, pueblo: -1 }, cada: 2
+  },
+  culto: {
+    nombre: "Culto", bandera: "base.culto_iniciado", duracion: null,
+    descripcion: "Retratos, estatuas y fiestas. La gente aplaude, pero alguien tiene que pagarlas.",
+    deriva: { pueblo: 1 }, cada: 2, crisis: 1
+  },
+  alineado: {
+    nombre: "Alineado", bandera: "base.alineado_bloque_oriental", duracion: null,
+    descripcion: "El aliado te sostiene y lleva la cuenta.",
+    deriva: { potencias: 1 }, cada: 2, crisis: 1
+  },
+  embargo: {
+    nombre: "Embargo", bandera: "base.embargo_en_marcha", duracion: 6,
+    descripcion: "Nadie te vende nada, y lo poco que llega cuesta más.",
+    deriva: { potencias: -1 }, cada: 2, multCrisis: 2
+  },
+  frontera: {
+    nombre: "Frontera cerrada", bandera: "base.frontera_cerrada", duracion: null,
+    descripcion: "Nadie entra ni sale, y el Ejército vigila la frontera.",
+    deriva: { ejercito: 1, potencias: -1 }, cada: 2, pesos: { marchan: 0 }
+  },
+  nacionalizado: {
+    nombre: "Nacionalizaciones", bandera: "base.nacionalizo_empresas", duracion: null,
+    descripcion: "Lo que era privado ahora es tuyo, y las cuentas también.",
+    deriva: { elite: -1 }, cada: 2, crisis: 1
+  },
+  deuda: {
+    nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,
+    descripcion: "El acreedor llama cada mes.",
+    deriva: { potencias: 1 }, cada: 2, crisis: 1
+  }
+};
+const RESUMEN = {
+  censura: "El Pueblo se enfría cada año.",
+  vigilancia: "El Ejército sube y el Pueblo baja.",
+  culto: "El Pueblo sube, pero la crisis crece.",
+  alineado: "Potencias sube, pero la dependencia (crisis) crece.",
+  embargo: "Potencias baja y las promesas cuestan el doble.",
+  frontera: "El Ejército sube, Potencias baja y nadie se marcha.",
+  nacionalizado: "La Élite baja y la crisis crece.",
+  deuda: "Potencias sube, pero la crisis crece."
+};
+/* DIFICULTAD
+   Los efectos de las cartas se escriben en una escala pequeña (±4 a ±12) y se multiplican al cargar.
+   Cada fuerza tiene su propio factor porque no se toca con la misma frecuencia (el Pueblo aparece en casi
+   todas las cartas y el Ejército en pocas). Con estos valores, jugando al azar se sobrevive a la era 1
+   alrededor del 28 % de las veces (jugar siempre hacia el mismo lado es lo mismo que jugar al azar, porque los
+   lados se mezclan), y las caídas se reparten entre las cuatro fuerzas, por arriba y por abajo. */
+const FACTOR_EFECTOS = { pueblo: 2.2, ejercito: 3.5, elite: 2.7, potencias: 2.5 };
+const FACTOR_DERIVA = 2;
+CARTAS.forEach(c => ["izq", "der"].forEach(l => {
+  const e = c[l].efectos;
+  const fe = ERAS[(c.era || 1) - 1].factor || 1;           // cada era puede ajustar su propia dureza
+  for (const k in e) if (k !== "crisis") e[k] = Math.round(e[k] * FACTOR_EFECTOS[k] * fe);
+}));
+for (const id in ESTADOS) {
+  const d = ESTADOS[id];
+  for (const k in (d.deriva || {})) d.deriva[k] = Math.round(d.deriva[k] * FACTOR_DERIVA);
+}
+const MAX_RANURAS = 4;
+
+/* =====================================================
+   PERSONAJES: dibujo base + ojos y boca que cambian según el lado al que arrastras
+   Posiciones en píxeles del lienzo de 1024; 'esc' es la escala de la pieza.
+   Los personajes con gafas de sol no llevan ojos: solo cambia la boca.
+   ===================================================== */
+const PERSONAJES = {
+  jefe:       { base: "pj_jefe",       grupo: "ejercito", ojos: null,
+                boca: { cx: 512, cy: 592, esc: 0.80 } },
+  secretario: { base: "pj_secretario", grupo: "elite",
+                ojos: { cx: 512, cy: 392, esc: 1.22 }, boca: { cx: 512, cy: 606, esc: 0.92 } }
+};
+/* Ilustraciones provisionales (hoja de personajes a lápiz y tinta). Se muestran fijas, sin ojos ni boca que cambien,
+   sobre un fondo con el tono de su grupo. Los personajes con dibujo propio (PERSONAJES) tienen prioridad. */
+const ILUSTRACION_FIJA = {
+  "Vicepresidente del Consejo de Ministros": "fija_vicepresidente",
+  "Ministro de Economía": "fija_economia",
+  "Ministro de Comercio": "fija_comercio",
+  "Ministro de Educación": "fija_educacion",
+  "Ministra de Cultura": "fija_cultura",
+  "Ministro de Agricultura": "fija_agricultura",              /* provisional: recorte de la hoja */
+  "Ministro de Trabajo": "fija_trabajo",                      /* provisional: recorte de la hoja */
+  "Ministro de las Fuerzas Armadas": "fija_general",          /* provisional: recorte de la hoja */
+  "Ministro del Interior": "fija_jefe",                       /* provisional: recorte de la hoja */
+  "Embajador del bloque oriental": "fija_embajador_oriental", /* provisional: recorte de la hoja */
+  "Embajador de la potencia del norte": "fija_embajador_norte" /* provisional: recorte de la hoja */
+};
+/* Ilustraciones en formato pegatina (dibujo recortado con borde blanco y transparencia), en alta resolución.
+   Se colocan centradas sobre un fondo con el color del grupo y con una sombra suave. Tienen prioridad sobre las fijas. */
+const ILUSTRACION_PEGATINA = {
+  /* vacío por ahora: se probaron las pegatinas del Secretario, Agricultura y el General y se volvió a los recortes de la hoja */
+};
+function tinteGrupo(hex, mezcla = 0.26) {            // el color del grupo, muy aclarado: el papel blanco del dibujo lo toma al multiplicar
+  const n = parseInt(hex.slice(1), 16), c = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return "#" + c.map(v => Math.round(255 - (255 - v) * mezcla).toString(16).padStart(2, "0")).join("");
+}
+/* Todos los personajes usan ya las ilustraciones a lápiz de cera (ILUSTRACION_FIJA).
+   El dibujo de papel recortado del antiguo Jefe de la Seguridad del Estado, con ojos y boca que cambian, se conserva en PERSONAJES
+   pero no está asignado a ningún personaje. */
+const PERSONAJE_DE = {};
+const COLOR_GRUPO = { ejercito: "#77756E", elite: "#C46686", pueblo: "#D97757", potencias: "#6A9BCC", palacio: "#B0AEA5" };
+/* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Varela solo son mencionados.
+   Grupo de cada personaje = fuerza a la que pertenece (y color de su fondo).
+   Élite: el gabinete civil. Ejército: Interior (policía y Seguridad del Estado) y Fuerzas Armadas. Potencias: el extranjero.
+   Pueblo no tiene portavoz: sus problemas llegan a través de los ministros. */
+const GRUPO_DE = {
+  "Ministro del Interior": "ejercito", "Ministro de las Fuerzas Armadas": "ejercito",
+  "Vicepresidente del Consejo de Ministros": "elite", "Ministro de Economía": "elite", "Ministro de Comercio": "elite",
+  "Ministro de Agricultura": "elite", "Ministro de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
+  "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias"
+};
+const EXPRESIONES = {
+  neutra:      { ojos: "ojos_neutros",           boca: "boca_cerrada" },
+  soberbia:    { ojos: "ojos_felices",           boca: "boca_sonrisa" },
+  carcajada:   { ojos: "ojos_felices",           boca: "boca_sonrisa" },
+  furiosa:     { ojos: "ojos_furiosos",          boca: "boca_dientes_apretados" },
+  desconfiada: { ojos: "ojos_desconfiados",      boca: "boca_cerrada", bocaSinOjos: "boca_torcida" },
+  sorprendida: { ojos: "ojos_sorprendidos",      boca: "boca_abierta_redonda" },
+  calculadora: { ojos: "ojos_desconfiados_ceja", boca: "boca_sonrisa_ladeada" },
+  aburrida:    { ojos: "ojos_aburridos",         boca: "boca_cerrada" },
+  preocupada:  { ojos: "ojos_preocupados",       boca: "boca_torcida" }
+};
+Object.values(IMG).forEach(p => { const i = new Image(); i.src = p.src; });
+
+/* =====================================================
+   LAS CUATRO FUERZAS: un emoji, una barra horizontal debajo y los puntos de pista bajo la barra
+   ===================================================== */
+const EMOJI_FUERZA = { pueblo: "👥", ejercito: "🪖", elite: "🎩", potencias: "🌐" };
+
+/* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
+const FUERZAS = {
+  pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Aplaude o protesta según cómo vive." },
+  ejercito:  { nombre: "Ejército",  quien: "Las fuerzas armadas, la policía y el aparato de seguridad." },
+  elite:     { nombre: "Élite",     quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido." },
+  potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos." }
+};
+
+/* =====================================================
+   MOTOR
+   ===================================================== */
+let E = null;
+let ocupado = false;
+let panelAbierto = false;
+
+/* Los lados se mezclan al azar en cada carta (como en Reigns), para que no se pueda aprender
+   que "la opción valiente siempre está a la derecha". Cada opción conserva sus efectos y su cara. */
+let mezclarLados = true;
+function barajarLados() {
+  const c = E && E.actual;
+  if (!c) return;
+  const inv = mezclarLados && Math.random() < 0.5;
+  E.lados = { id: c.id, izq: inv ? c.der : c.izq, der: inv ? c.izq : c.der };
+}
+function opcionDe(dir) {
+  const c = E.actual;
+  if (!E.lados || E.lados.id !== c.id) barajarLados();
+  return dir < 0 ? E.lados.izq : E.lados.der;
+}
+
+function nuevaPartida() {
+  E = {
+    barras: { pueblo: 50, ejercito: 50, elite: 50, potencias: 50 },
+    crisis: 0,
+    turno: 1,
+    N: ERA.min + Math.floor(Math.random() * (ERA.max - ERA.min + 1)),
+    era: 1,
+    inicioEra: 1,
+    ultima: {},
+    banderas: new Set(),
+    orden: [],
+    cola: [],
+    vistas: new Set(),
+    estados: [],
+    eventos: [],
+    derivaTurno: {},
+    archivoEntregado: false,
+    turnoArchivo: 0,
+    aviso: null,
+    pistaVista: false,
+    actual: null
+  };
+  // Un archivo histórico por partida (por era), en un momento aleatorio
+  E.turnoArchivo = 2 + Math.floor(Math.random() * (E.N - 1));
+}
+
+/* Una era dura entre 6 y 8 años. Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
+const anioEra = () => E.turno - E.inicioEra + 1;
+const finEra = () => E.inicioEra + E.N - 1;
+const deEra = c => (c.era || 1) === E.era;
+const libre = c => !E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= (c.descanso || 10));
+function iniciarEra(n) {
+  const def = ERAS[n - 1];
+  E.era = n;
+  E.inicioEra = E.turno;
+  E.N = def.min + Math.floor(Math.random() * (def.max - def.min + 1));
+  E.archivoEntregado = false;
+  E.turnoArchivo = E.inicioEra + 1 + Math.floor(Math.random() * (E.N - 1));
+}
+
+function cumple(c) {
+  const k = c.cond || {};
+  if (k.turnoMin && anioEra() < k.turnoMin) return false;
+  if (k.barraMax && Object.entries(k.barraMax).some(([b, v]) => E.barras[b] > v)) return false;
+  if (k.barraMin && Object.entries(k.barraMin).some(([b, v]) => E.barras[b] < v)) return false;
+  if (k.crisisMin && E.crisis < k.crisisMin) return false;
+  if (k.sin && k.sin.some(f => E.banderas.has(f))) return false;
+  if (k.alguna && !k.alguna.some(f => E.banderas.has(f))) return false;
+  if (k.requiere && !k.requiere.every(f => E.banderas.has(f))) return false;
+  return true;
+}
+
+function pesoEfectivo(c) {
+  return c.peso * E.estados.reduce((m, s) => {
+    const p = (ESTADOS[s.id].pesos || {})[c.id];
+    return m * (p === undefined ? 1 : p);
+  }, 1);
+}
+
+function sorteo() {
+  const cand = CARTAS.filter(c => c.tipo === "sorteo" && deEra(c) && libre(c) && cumple(c) && pesoEfectivo(c) > 0);
+  if (!cand.length) return null;
+  const total = cand.reduce((s, c) => s + pesoEfectivo(c), 0);
+  let r = Math.random() * total;
+  for (const c of cand) { r -= pesoEfectivo(c); if (r <= 0) return c; }
+  return cand[cand.length - 1];
+}
+
+/* Prioridades: cola, ancla en su último año, estados críticos,
+   ancla con probabilidad uniforme dentro de su ventana, sorteo ponderado. */
+function siguienteCarta() {
+  const i = E.cola.findIndex(q => q.turno <= E.turno);
+  if (i >= 0) return POR_ID[E.cola.splice(i, 1)[0].carta];
+
+  const fin = c => Math.min(c.ventana[1], E.N);
+  const anclas = CARTAS.filter(c => c.tipo === "ancla" && deEra(c) && libre(c) && cumple(c) && anioEra() >= c.ventana[0]);
+
+  const forzadas = anclas.filter(c => anioEra() >= fin(c));
+  if (forzadas.length) return forzadas[0];
+
+  const criticas = CARTAS.filter(c => (c.tipo === "crisis" || c.tipo === "coalicion") && libre(c) && c.disparo(E));
+  if (criticas.length) return criticas[0];
+
+  const probables = anclas.filter(c => Math.random() < 1 / (fin(c) - anioEra() + 1));
+  if (probables.length) return probables[Math.floor(Math.random() * probables.length)];
+
+  return sorteo();
+}
+
+function activarEstados(banderas) {
+  (banderas || []).forEach(b => {
+    for (const id in ESTADOS) {
+      if (ESTADOS[id].bandera === b && !E.estados.some(s => s.id === id)) {
+        E.estados.push({ id, edad: 0, nuevo: true });
+        E.eventos.push({ t: "entra", id });
+        if (E.estados.length > MAX_RANURAS) {
+          const fuera = E.estados.shift();
+          E.eventos.push({ t: "sale", id: fuera.id });
+        }
+      }
+    }
+  });
+}
+
+function avanzarEstados() {
+  E.estados = E.estados.filter(s => {
+    const d = ESTADOS[s.id];
+    s.edad++;
+    if (d.cada && s.edad % d.cada === 0) {
+      s.actuo = true;
+      for (const k in (d.deriva || {})) {
+        E.barras[k] = limitar(E.barras[k] + d.deriva[k]);
+        E.derivaTurno[k] = (E.derivaTurno[k] || 0) + d.deriva[k];
+      }
+      if (d.crisis) E.crisis = Math.max(0, E.crisis + d.crisis);
+    }
+    const termina = d.duracion && s.edad >= d.duracion;
+    if (termina) E.eventos.push({ t: "fin", id: s.id });
+    return !termina;
+  });
+}
+
+function aplicar(c, op) {
+  E.eventos = [];
+  E.derivaTurno = {};
+  const mult = E.estados.reduce((m, s) => m * (ESTADOS[s.id].multCrisis || 1), 1);
+  for (const k in op.efectos) {
+    if (k === "crisis") {
+      const dc = op.efectos[k] > 0 ? Math.round(op.efectos[k] * mult) : op.efectos[k];
+      E.crisis = Math.max(0, E.crisis + dc);
+    } else {
+      E.barras[k] = limitar(E.barras[k] + op.efectos[k]);
+    }
+  }
+  (op.banderas || []).forEach(b => { if (!E.banderas.has(b)) { E.banderas.add(b); E.orden.push(b); } });
+  activarEstados(op.banderas);
+  (op.encolar || []).forEach(q => {
+    const demora = q.min + Math.floor(Math.random() * (q.max - q.min + 1));
+    E.cola.push({ carta: q.carta, turno: E.turno + demora });
+  });
+  E.vistas.add(c.id);
+  E.ultima[c.id] = E.turno;
+  E.turno++;
+  avanzarEstados();
+}
+
+function comprobarCaida() {
+  for (const b of BARRAS) {
+    if (E.barras[b.id] <= 0) return b.id + "_0";
+    if (E.barras[b.id] >= 100) return b.id + "_100";
+  }
+  return null;
+}
+
+/* =====================================================
+   INTERFAZ
+   ===================================================== */
+const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-archive", "screen-end"];
+function mostrar(id) {
+  PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
+  ocultarInfo();
+  ocultarAvisoArchivo();
+  cerrarMenu();
+  if (id === "screen-start") $("cont-archivo").textContent = `${desbloqueados.size} de ${ARCHIVABLES.length}`;
+}
+
+function parBarra(id, esc = 1) {
+  return `<div class="par">
+      <div class="emoji" style="font-size:${Math.round(26 * esc)}px" aria-hidden="true">${EMOJI_FUERZA[id]}</div>
+      <div class="nivel" aria-hidden="true" style="max-width:${Math.round(72 * esc)}px"><i class="relleno"></i></div>
+    </div>`;
+}
+
+function construirBarras() {
+  $("barras").innerHTML = BARRAS.map(b => `
+    <div class="barra" role="button" tabindex="0" data-b="${b.id}" aria-label="${b.nombre}" title="${b.nombre}">
+      ${parBarra(b.id)}
+      <div class="punto-zona"><div class="punto"></div></div>
+    </div>`).join("");
+  $("barras").querySelectorAll(".barra").forEach(el => {
+    el.addEventListener("click", ev => { ev.stopPropagation(); mostrarFuerza(el.dataset.b, el); });
+    el.addEventListener("keydown", ev => {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); ev.stopPropagation(); mostrarFuerza(el.dataset.b, el); }
+    });
+  });
+}
+
+function pintarBarras() {
+  const previos = E.vistos || (E.vistos = {});
+  BARRAS.forEach(b => {
+    const v = E.barras[b.id];
+    const el = document.querySelector(`.barra[data-b="${b.id}"]`);
+    el.querySelector(".relleno").style.width = v + "%";
+    el.classList.toggle("peligro", v <= 15 || v >= 85);
+    if (previos[b.id] !== undefined && previos[b.id] !== v) {      // se llena o se vacía: destello breve
+      el.classList.remove("cambia"); void el.offsetWidth; el.classList.add("cambia");
+      setTimeout(() => el.classList.remove("cambia"), 850);
+    }
+    previos[b.id] = v;
+  });
+}
+
+function pintarCabecera() {
+  $("anio").textContent = tituloAnio(E.turno);
+  const n = anios();
+  $("anios-poder").textContent = n === 0 ? "Recién llegado al poder" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
+}
+
+function pintarRanuras() {
+  const cont = $("ranuras");
+  cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
+    const s = E.estados[i];
+    return s
+      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}"><span class="emoji" aria-hidden="true">${EMOJI_ESTADO[s.id]}</span></button>`
+      : `<div class="ranura"></div>`;
+  }).join("");
+  E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
+  cont.querySelectorAll("button.ranura").forEach(b =>
+    b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })
+  );
+  ocultarInfo();
+}
+
+let temporizadorPopup = null;
+function abrirPopup(clave, html, ancla, autocierre) {
+  const pop = $("popup");
+  if (!pop.classList.contains("hidden") && pop.dataset.clave === clave) { ocultarInfo(); return; }
+  clearTimeout(temporizadorPopup);
+  pop.innerHTML = html;
+  pop.dataset.clave = clave;
+  pop.classList.remove("hidden");
+  const cont = $("screen-game").getBoundingClientRect();
+  const a = ancla.getBoundingClientRect();
+  const ancho = Math.min(300, cont.width - 32);
+  pop.style.width = ancho + "px";
+  let izq = a.left - cont.left + a.width / 2 - ancho / 2;
+  izq = Math.max(16, Math.min(cont.width - 16 - ancho, izq));
+  pop.style.left = izq + "px";
+  if (a.top - cont.top < cont.height / 2) {            // ancla arriba: la ventana se abre debajo
+    pop.style.top = (a.bottom - cont.top + 8) + "px"; pop.style.bottom = "auto";
+  } else {                                              // ancla abajo: la ventana se abre encima
+    pop.style.bottom = (cont.bottom - a.top + 8) + "px"; pop.style.top = "auto";
+  }
+  if (autocierre) temporizadorPopup = setTimeout(ocultarInfo, autocierre);
+}
+function ocultarInfo() {
+  clearTimeout(temporizadorPopup);
+  const pop = $("popup");
+  pop.classList.add("hidden");
+  delete pop.dataset.clave;
+}
+function contenidoEstado(id, s, etiqueta) {
+  const d = ESTADOS[id];
+  const cadencia = d.cada === 1 ? "Actúa cada año." : `Actúa cada ${d.cada} años.`;
+  const tiempo = d.duracion
+    ? `${cadencia} Dura ${d.duracion} años${s ? " y lleva " + s.edad : ""}.`
+    : `${cadencia} Se queda hasta que otro estado lo desplace: solo caben ${MAX_RANURAS}.`;
+  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${EMOJI_ESTADO[id]} ${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
+}
+function mostrarInfo(i) {
+  const s = E.estados[i];
+  const el = $("ranuras").querySelectorAll("button.ranura")[0] && $("ranuras").children[i];
+  if (!s || !el) { ocultarInfo(); return; }
+  abrirPopup("estado-" + s.id, contenidoEstado(s.id, s), el);
+}
+function mostrarFuerza(id, el) {
+  const f = FUERZAS[id];
+  const bajo = FINALES[id + "_0"].titulo, alto = FINALES[id + "_100"].titulo;
+  abrirPopup("fuerza-" + id,
+    `<b>${EMOJI_FUERZA[id]} ${esc(f.nombre)}</b><span>${esc(f.quien)}</span>
+     <div class="extremos"><div>▼ Si se vacía: <strong>${esc(bajo)}</strong>.</div><div>▲ Si se llena: <strong>${esc(alto)}</strong>.</div></div>
+     <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
+}
+function cerrarMenu() {
+  $("menu-juego").classList.add("hidden");
+  $("btn-menu").setAttribute("aria-expanded", "false");
+}
+
+function pintarCarta(c) {
+  const pj = PERSONAJES[PERSONAJE_DE[c.personaje]];
+  const color = COLOR_GRUPO[GRUPO_DE[c.personaje] || "palacio"];
+  let ilus;
+  if (c.ilustracion) ilus = `<div class="ilustracion" style="background-image:url('${c.ilustracion}')"></div>`;
+  else if (pj) ilus = `<div class="ilustracion pj" style="--grupo:${color}"><img class="pj-base" id="pj-base" alt=""><img class="pj-ojos" id="pj-ojos" alt=""><img class="pj-boca" id="pj-boca" alt=""></div>`;
+  else if (ILUSTRACION_PEGATINA[c.personaje]) ilus = `<div class="ilustracion pegatina" style="--tinte:${tinteGrupo(color, 0.62)}"><img class="img-pegatina" src="${IMG[ILUSTRACION_PEGATINA[c.personaje]].src}" alt=""></div>`;
+  else if (ILUSTRACION_FIJA[c.personaje]) ilus = `<div class="ilustracion fija" style="--tinte:${tinteGrupo(color)}"><img class="img-fija" src="${IMG[ILUSTRACION_FIJA[c.personaje]].src}" alt=""></div>`;
+  else ilus = `<div class="ilustracion ph" style="--grupo:${color}"><div><b>Ilustración 1:1</b><br>900 × 900 px</div></div>`;
+  $("mensaje").textContent = c.texto;
+  $("carta").innerHTML = `${ilus}<div class="nombre${c.personaje.length > 30 ? " largo" : ""}">${esc(c.personaje)}</div><div class="respuesta" id="respuesta"></div>`;
+  if (pj) { $("pj-base").src = IMG[pj.base].src; ponerExpresion("neutra"); }
+}
+
+/* ojos y boca del personaje de la carta */
+function colocarPieza(img, cfg, anchoPieza) {
+  img.style.left = (cfg.cx / 1024 * 100) + "%";
+  img.style.top = (cfg.cy / 1024 * 100) + "%";
+  img.style.width = (anchoPieza * cfg.esc / 1024 * 100) + "%";
+}
+function ponerExpresion(nombre) {
+  const c = E && E.actual;
+  const pj = c && PERSONAJES[PERSONAJE_DE[c.personaje]];
+  const base = $("pj-base");
+  if (!pj || !base) return;
+  const ex = EXPRESIONES[nombre] || EXPRESIONES.neutra;
+  const ojos = $("pj-ojos"), boca = $("pj-boca");
+  if (pj.ojos) {
+    const o = IMG[ex.ojos];
+    ojos.src = o.src; colocarPieza(ojos, pj.ojos, o.w); ojos.style.display = "";
+  } else {
+    ojos.style.display = "none";
+  }
+  const b = IMG[pj.ojos ? ex.boca : (ex.bocaSinOjos || ex.boca)];
+  boca.src = b.src; colocarPieza(boca, pj.boca, b.w);
+}
+
+function pintarEleccion(dir) {
+  const c = E && E.actual;
+  const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
+  const r = $("respuesta");
+  if (r) {
+    if (op) { r.innerHTML = `<strong>${op.accion}</strong><span>${op.remate}</span>`; r.classList.add("visible"); }
+    else r.classList.remove("visible");
+  }
+  BARRAS.forEach(b => {
+    const p = document.querySelector(`.barra[data-b="${b.id}"] .punto`);
+    const e = op ? Math.abs(op.efectos[b.id] || 0) : 0;
+    const d = e === 0 ? 0 : e <= 14 ? 8 : e <= 20 ? 13 : 18;
+    p.style.width = p.style.height = d + "px";
+  });
+  ponerExpresion(op ? op.cara : "neutra");
+}
+
+function empezar() {
+  nuevaPartida();
+  construirBarras();
+  mostrar("screen-game");
+  $("nombre-dictador").textContent = nombreCompleto();
+  E.avisoPendiente = null;
+  E.archivoPendiente = null;
+  $("carta").classList.remove("hidden", "listo");
+  E.actual = siguienteCarta();
+  barajarLados();
+  pintarBarras();
+  pintarCabecera();
+  pintarRanuras();
+  pintarCarta(E.actual);
+  const carta = $("carta");
+  carta.style.transition = "none";
+  carta.style.transform = "";
+  carta.style.opacity = "1";
+  void carta.offsetWidth;
+  carta.style.transition = "";
+  panelAbierto = false;
+  ocupado = false;
+  pintarEleccion(0);
+}
+
+function decidir(dir) {
+  if (ocupado || panelAbierto) return;
+  ocupado = true;
+  ocultarInfo();
+  const carta = $("carta");
+  pintarEleccion(dir);
+  carta.classList.add("listo");
+  const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
+  carta.style.transition = "";
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`;
+  carta.style.opacity = "0";
+  setTimeout(() => resolver(dir), 240);
+}
+
+function resolver(dir) {
+  const c = E.actual;
+  const op = opcionDe(dir);
+  E.ultimaDecision = op.accion;
+  const turnoDecidido = E.turno;
+  aplicar(c, op);
+  pintarBarras();
+  pintarRanuras();
+  mostrarDerivas();
+  prepararAviso();
+  pintarEleccion(0);
+
+  const caida = comprobarCaida();
+  const eraCompleta = !caida && E.turno > finEra();
+  let despues;
+  if (caida) despues = () => terminar(caida);
+  else if (eraCompleta) despues = finDeEra;
+  else despues = siguiente;
+
+  // Un archivo histórico por partida, en un momento aleatorio: el de la carta que acabas de decidir.
+  // No detiene la partida: se avisa de forma discreta en la barra inferior.
+  const toca = !E.archivoEntregado && turnoDecidido >= E.turnoArchivo && !!c.archivo && !desbloqueados.has(c.id);
+  if (toca) { E.archivoEntregado = true; E.archivoPendiente = c.id; desbloquear(c.id); }
+  despues();
+}
+
+/* Las barras muestran una flecha cuando un estado las mueve solo */
+function mostrarDerivas() {
+  BARRAS.forEach(b => {
+    const v = E.derivaTurno[b.id];
+    if (!v) return;
+    const el = document.querySelector(`.barra[data-b="${b.id}"]`);
+    el.classList.remove("sube", "baja");
+    void el.offsetWidth;
+    el.classList.add(v > 0 ? "sube" : "baja");
+    setTimeout(() => el.classList.remove("sube", "baja"), 1900);
+  });
+}
+
+/* Aviso bajo la cabecera cuando un estado entra, sale o termina */
+let arrastrando = false;
+function prepararAviso() {
+  const ent = E.eventos.filter(e => e.t === "entra").map(e => e.id);
+  const sal = E.eventos.filter(e => e.t === "sale").map(e => e.id);
+  const fin = E.eventos.filter(e => e.t === "fin").map(e => e.id);
+  if (!ent.length && !sal.length && !fin.length) return;
+  const nom = ids => ids.map(id => ESTADOS[id].nombre).join(" y ");
+  if (ent.length) {
+    const idx = E.estados.findIndex(s => s.id === ent[ent.length - 1]);
+    let html = contenidoEstado(ent[ent.length - 1], E.estados[idx], "Nuevo estado");
+    if (sal.length) html += `<small>${esc(nom(sal))} desaparece para dejarle sitio.</small>`;
+    E.avisoPendiente = { clave: "nuevo-" + ent[ent.length - 1], html, indice: idx };
+  } else {
+    const fuerte = fin.length ? `${nom(fin)} termina` : `${nom(sal)} desaparece`;
+    const texto = fin.length ? "Su efecto desaparece." : "Se ha desplazado de las ranuras.";
+    E.avisoPendiente = { clave: "fin-" + (fin[0] || sal[0]), html: `<small class="etiqueta-pop">Estado</small><b>${esc(fuerte)}</b><span>${esc(texto)}</span>`, indice: -1 };
+  }
+}
+let temporizadorArchivo = null;
+function contenidoArchivo(c) {
+  return `<small class="etiqueta-pop">Archivo histórico desbloqueado</small><b>${esc(c.titulo)}</b><span>${esc(c.archivo)}</span><small>Datos pendientes de verificar.</small>`;
+}
+function mostrarAvisoArchivo() {
+  const id = E.archivoPendiente;
+  if (!id) return;
+  E.archivoPendiente = null;
+  const c = POR_ID[id], btn = $("aviso-archivo");
+  btn.innerHTML = "<span class=\"emoji\" aria-hidden=\"true\">📜</span>Archivo desbloqueado";
+  btn.setAttribute("aria-label", `Archivo desbloqueado: ${c.titulo}`);
+  btn.dataset.id = id;
+  btn.classList.remove("hidden");
+  $("anios-poder").classList.add("hidden");
+  clearTimeout(temporizadorArchivo);
+  temporizadorArchivo = setTimeout(ocultarAvisoArchivo, 9000);
+}
+function ocultarAvisoArchivo() {
+  clearTimeout(temporizadorArchivo);
+  $("aviso-archivo").classList.add("hidden");
+  $("anios-poder").classList.remove("hidden");
+}
+function mostrarAvisoPendiente() {
+  const a = E.avisoPendiente;
+  if (!a) return;
+  E.avisoPendiente = null;
+  const anclas = $("ranuras").children;
+  const ancla = a.indice >= 0 && anclas[a.indice] ? anclas[a.indice] : $("ranuras");
+  abrirPopup(a.clave, a.html, ancla, 6500);
+}
+
+function siguiente() {
+  pintarCabecera();
+  const nueva = siguienteCarta();
+  if (!nueva) return finDeEra();
+  E.actual = nueva;
+  barajarLados();
+  const carta = $("carta");
+  carta.classList.remove("hidden", "listo");
+  carta.style.transition = "none";
+  carta.style.transform = "translateY(10px) scale(.94)";
+  carta.style.opacity = "0";
+  pintarCarta(nueva);
+  pintarBarras();
+  void carta.offsetWidth;
+  carta.style.transition = "";
+  carta.style.transform = "";
+  carta.style.opacity = "1";
+  ocupado = false;
+  pintarEleccion(0);
+  mostrarAvisoPendiente();
+  mostrarAvisoArchivo();
+}
+
+function anios() { return Math.max(0, E.turno - 1); }
+
+const TEXTO_FIN_ERA = {
+  1: "Has sobrevivido a los primeros años. El país continúa. Tú también. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte."
+};
+const TEXTO_FIN_JUEGO = "El régimen se ha consolidado. Lo que decidiste en los primeros años ya forma parte de la rutina del país. La era 3 todavía no existe en este prototipo.";
+
+function finDeEra() {
+  if (E.era < ERAS.length) terminar(null, true);      // hay otra era: se puede seguir gobernando
+  else terminar(null);
+}
+function continuarEra() {
+  iniciarEra(E.era + 1);
+  E.avisoPendiente = null;
+  mostrar("screen-game");
+  siguiente();
+}
+
+function terminar(clave, transicion) {
+  panelAbierto = false;
+  ocupado = false;
+  const n = anios();
+  const pantalla = $("screen-end");
+  pantalla.classList.toggle("caida", !!clave);
+  const caja = $("fin-fuerza");
+  if (clave) {
+    const f = FINALES[clave];
+    const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
+    $("fin-principal").textContent = "Has caído";
+    $("fin-titulo").textContent = f.titulo;
+    $("fin-texto").textContent = f.texto;
+    caja.innerHTML = parBarra(idF, 1.6) +
+      `<p><strong>${esc(FUERZAS[idF].nombre)}</strong> llegó al ${extremo === 100 ? "máximo" : "mínimo"}.${E.ultimaDecision ? `<small>Tu última decisión: «${esc(E.ultimaDecision)}»</small>` : ""}</p>`;
+    caja.querySelector(".relleno").style.width = extremo + "%";
+    caja.classList.remove("hidden");
+  } else {
+    $("fin-principal").textContent = "Sigues en el poder";
+    $("fin-titulo").textContent = `Fin de la era ${E.era} · ${ERAS[E.era - 1].nombre}`;
+    $("fin-texto").textContent = transicion ? TEXTO_FIN_ERA[E.era] : TEXTO_FIN_JUEGO;
+    caja.classList.add("hidden");
+    caja.innerHTML = "";
+  }
+  $("btn-continuar").classList.toggle("hidden", !transicion);
+  $("btn-repetir").classList.toggle("hidden", !!transicion);
+  $("fin-cuadro").innerHTML =
+    `<div class="fila"><span>Dictador</span><span>${esc(nombreCompleto())}</span></div>` +
+    `<div class="fila"><span>Has gobernado</span><span>${n} ${n === 1 ? "año" : "años"}</span></div>` +
+    BARRAS.map(b => `<div class="fila"><span>${b.nombre}</span><span>${E.barras[b.id]}</span></div>`).join("");
+
+  const cajaArch = $("fin-archivo");
+  cajaArch.innerHTML = "";
+  let cFin = E.archivoPendiente ? POR_ID[E.archivoPendiente] : null;
+  if (!cFin && !E.archivoEntregado) {
+    const cand = [...E.vistas].map(id => POR_ID[id]).filter(c => c && c.archivo && !desbloqueados.has(c.id));
+    if (cand.length) { cFin = cand[Math.floor(Math.random() * cand.length)]; E.archivoEntregado = true; desbloquear(cFin.id); }
+  }
+  E.archivoPendiente = null;
+  if (cFin) {
+    cajaArch.innerHTML = `<div class="archivo"><h3>Archivo histórico desbloqueado</h3><h4>${esc(cFin.titulo)}</h4>
+      <div class="arch-texto hidden" id="fin-arch-texto"><p>${cFin.archivo}</p><small>Datos pendientes de verificar.</small></div>
+      <button class="enlace" id="btn-leer-archivo" type="button">Leer</button></div>`;
+    $("btn-leer-archivo").addEventListener("click", () => {
+      $("fin-arch-texto").classList.remove("hidden");
+      $("btn-leer-archivo").remove();
+    });
+  }
+
+  $("fin-lineas").innerHTML = clave ? "" : BARRAS.map(b => {
+    const v = E.barras[b.id];
+    const l = LINEAS_BARRA[b.id];
+    return v >= 60 ? `<li>${l.alto}</li>` : v <= 40 ? `<li>${l.bajo}</li>` : "";
+  }).join("");
+
+  const pend = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) > E.era).map(b => `<li>${FUTURO[b]}</li>`);
+  const colaTxt = E.cola.map(q => POR_ID[q.carta]).filter(Boolean).map(c => `<li>Te espera una carta: ${c.titulo}.</li>`);
+  const todo = transicion ? [] : colaTxt.concat(pend);
+  $("fin-pendiente").innerHTML = todo.length
+    ? `<h3>Lo que dejas pendiente para las siguientes eras</h3><ul>${todo.join("")}</ul>` : "";
+  mostrar("screen-end");
+}
+
+/* ---------- Archivo histórico ---------- */
+function pintarArchivo() {
+  $("archivo-intro").textContent = `Has descubierto ${desbloqueados.size} de ${ARCHIVABLES.length} referencias históricas. Toca una para leerla.`;
+  $("archivo-lista").innerHTML = ARCHIVABLES.map(c => desbloqueados.has(c.id)
+    ? `<button class="fila-archivo" type="button" data-id="${c.id}"><span class="ico-circulo emoji">📜</span><span class="textos"><b>${c.titulo}</b><span class="sub-fila">${c.personaje}</span></span></button>`
+    : `<div class="fila-archivo cerrada"><span class="ico-circulo emoji">🔒</span><span class="textos"><b>Sin descubrir</b></span></div>`
+  ).join("");
+  $("archivo-lista").querySelectorAll("button.fila-archivo").forEach(b =>
+    b.addEventListener("click", () => abrirDetalle(b.dataset.id))
+  );
+}
+
+let detalleAbierto = false;
+function abrirDetalle(id) {
+  const c = POR_ID[id];
+  detalleAbierto = true;
+  $("archivo-lista").classList.add("hidden");
+  $("archivo-intro").classList.add("hidden");
+  const det = $("archivo-detalle");
+  det.innerHTML = `<div class="archivo"><h3>Archivo histórico</h3><h4>${c.titulo}</h4><p>${c.archivo}</p><small>Datos pendientes de verificar.</small></div>`;
+  det.classList.remove("hidden");
+  det.scrollTop = 0;
+  $("btn-archivo-volver").innerHTML = icoUI("atras") + "Archivo";
+}
+function cerrarDetalle() {
+  detalleAbierto = false;
+  $("archivo-detalle").classList.add("hidden");
+  $("archivo-lista").classList.remove("hidden");
+  $("archivo-intro").classList.remove("hidden");
+  $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
+}
+let origenArchivo = "screen-start";
+function abrirArchivo(desde) {
+  origenArchivo = desde;
+  cerrarDetalle();
+  pintarArchivo();
+  mostrar("screen-archive");
+  $("archivo-lista").scrollTop = 0;
+}
+function atrasArchivo() {
+  if (detalleAbierto) cerrarDetalle();
+  else mostrar(origenArchivo);
+}
+
+/* ---------- Nombre del dictador ---------- */
+function actualizarVistaNombre() {
+  const v = $("input-nombre").value.trim();
+  const palabra = v.split(/\s+/)[0];
+  $("vista-nombre").textContent = "Comandante " + (palabra ? palabra.charAt(0).toUpperCase() + palabra.slice(1) : "…");
+  $("nombre-error").textContent = /\s/.test(v) ? "Una sola palabra: Aureliano, Anselmo, Esteban…" : "";
+}
+function irANombre() {
+  $("input-nombre").value = nombreDictador;
+  actualizarVistaNombre();
+  mostrar("screen-name");
+  setTimeout(() => $("input-nombre").focus(), 60);
+}
+function confirmarNombre() {
+  let v = $("input-nombre").value.trim();
+  if (!v) {
+    $("nombre-error").textContent = "Un dictador sin nombre no sale en los libros de historia.";
+    $("input-nombre").focus();
+    return;
+  }
+  if (/\s/.test(v)) {
+    $("nombre-error").textContent = "Una sola palabra: Aureliano, Anselmo, Esteban…";
+    $("input-nombre").focus();
+    return;
+  }
+  v = v.charAt(0).toUpperCase() + v.slice(1);
+  nombreDictador = v;
+  guardarNombre(v);
+  empezar();
+}
+
+/* ---------- Gestos ---------- */
+(function gestos() {
+  const carta = $("carta");
+  let drag = null;
+  const umbral = () => Math.max(64, carta.offsetWidth * 0.22);      // distancia a partir de la cual se decide
+  function marcarListo(listo) {
+    if (carta.classList.contains("listo") === listo) return;
+    carta.classList.toggle("listo", listo);
+    const r = $("respuesta"); if (r) r.classList.toggle("firme", listo);
+    if (listo) { try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {} }
+  }
+  function volver() {
+    marcarListo(false);
+    carta.style.transition = ""; carta.style.transform = "";
+    pintarEleccion(0);
+  }
+  carta.addEventListener("pointerdown", e => {
+    if (ocupado || panelAbierto) return;
+    drag = { x: e.clientX, dx: 0, dir: 0, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    arrastrando = true;
+    carta.setPointerCapture(e.pointerId);
+    carta.style.transition = "none";
+    ocultarInfo();
+  });
+  carta.addEventListener("pointermove", e => {
+    if (!drag) return;
+    drag.dx = e.clientX - drag.x;
+    drag.hist.push({ t: e.timeStamp, x: e.clientX });
+    if (drag.hist.length > 6) drag.hist.shift();
+    carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
+    const dir = Math.abs(drag.dx) > 24 ? Math.sign(drag.dx) : 0;
+    if (dir !== drag.dir) { drag.dir = dir; pintarEleccion(dir); }
+    marcarListo(Math.abs(drag.dx) > umbral());
+  });
+  function soltar() {
+    if (!drag) return;
+    const dx = drag.dx, h = drag.hist;
+    drag = null;
+    arrastrando = false;
+    const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
+    const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
+    if (Math.abs(dx) > umbral() || lanzada) decidir(Math.sign(dx));
+    else volver();
+  }
+  function cancelar() {
+    if (!drag) return;
+    drag = null; arrastrando = false; volver();
+  }
+  carta.addEventListener("pointerup", soltar);
+  carta.addEventListener("pointercancel", cancelar);
+})();
+
+/* ---------- Eventos ---------- */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    if (!$("screen-archive").classList.contains("hidden")) atrasArchivo();
+    else { ocultarInfo(); cerrarMenu(); }
+    return;
+  }
+  if ($("screen-game").classList.contains("hidden")) return;
+  if (e.key === "ArrowLeft") decidir(-1);
+  if (e.key === "ArrowRight") decidir(1);
+});
+document.addEventListener("click", e => {
+  if (!e.target.closest("#popup")) ocultarInfo();
+  if (!e.target.closest("#menu-juego") && !e.target.closest("#btn-menu")) cerrarMenu();
+});
+
+$("btn-menu").addEventListener("click", () => {
+  const abierto = $("menu-juego").classList.toggle("hidden") === false;
+  $("btn-menu").setAttribute("aria-expanded", String(abierto));
+});
+$("btn-salir").addEventListener("click", () => mostrar("screen-start"));
+$("btn-jugar").addEventListener("click", irANombre);
+$("btn-nombre-volver").addEventListener("click", () => mostrar("screen-start"));
+$("btn-tomar-poder").addEventListener("click", confirmarNombre);
+$("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") confirmarNombre(); });
+$("input-nombre").addEventListener("input", actualizarVistaNombre);
+$("aviso-archivo").addEventListener("click", ev => {
+  ev.stopPropagation();
+  const c = POR_ID[$("aviso-archivo").dataset.id];
+  if (c) abrirPopup("archivo-" + c.id, contenidoArchivo(c), $("aviso-archivo"));
+});
+$("btn-continuar").addEventListener("click", continuarEra);
+$("btn-repetir").addEventListener("click", empezar);
+$("btn-cambiar-nombre").addEventListener("click", irANombre);
+$("btn-archivo").addEventListener("click", () => abrirArchivo("screen-start"));
+$("btn-fin-archivo").addEventListener("click", () => abrirArchivo("screen-end"));
+$("btn-archivo-volver").addEventListener("click", atrasArchivo);
+
+$("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
+mostrar("screen-start");

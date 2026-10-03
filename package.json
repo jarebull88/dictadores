@@ -1,0 +1,16 @@
+{
+  "name": "a-la-orden-mi-comandante",
+  "version": "0.2.0",
+  "description": "Juego de cartas satírico tipo Reigns sobre un dictador del Caribe (ficticio). Un solo HTML autocontenido.",
+  "private": true,
+  "scripts": {
+    "build": "python3 tools/build.py",
+    "test": "python3 tools/build.py && node --test tests/*.test.js",
+    "docs": "node tools/exportar_docs.js",
+    "simular": "node tools/simular.js",
+    "calibrar": "node tools/calibrar.js"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

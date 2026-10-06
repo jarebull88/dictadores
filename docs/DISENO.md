@@ -5,13 +5,13 @@ Este documento explica **cómo funciona** el juego. Las cartas concretas, las ba
 ## Qué ve el jugador
 1. **Portada:** «A la orden 🫡 mi comandante», subtítulo, «Empezar partida» y «Archivo histórico (X de N)».
 2. **Nombre:** una sola palabra; se verá como «Comandante X».
-3. **Juego:** nombre del año (pequeño) · cuatro fuerzas · mensaje del personaje · carta cuadrada con su nombre debajo · barra con «Comandante X», años en el poder y cuatro ranuras de estado.
-4. **Decidir:** arrastrar la carta (o las flechas). La respuesta aparece sobre la carta; al entrar en la zona de decisión se resalta con borde naranja.
-5. **Fin de era / final:** «Sigues en el poder» con «Seguir gobernando», o «Has caído» con la causa.
+3. **Juego:** cuatro fuerzas y menú · mensaje del personaje · carta 3:4 con su nombre debajo · barra con «Comandante X», años en el poder y cuatro ranuras de estado.
+4. **Decidir:** arrastrar la carta (o las flechas). La respuesta aparece sobre la carta; al entrar en la zona de decisión se rodea de un contorno grueso y el nombre se invierte.
+5. **Fin de era / final:** «Sigues en el poder» con «Seguir gobernando», o «¡Has caído!» con la causa.
 6. **Archivo histórico:** colección persistente (localStorage) de referencias reales desbloqueadas, una por partida.
 
 ## Las cuatro fuerzas y la crisis oculta
-Pueblo 👥, Ejército 🪖, Élite 🎩 y Potencias 🌐, todas empiezan en 50. 0 o 100 = caída (cada extremo tiene su final en `finales.md`). La **crisis oculta** (la economía) no es una barra: sube con promesas imposibles y, al cruzar umbrales, dispara cartas de crisis. El jugador nunca ve su número.
+Pueblo ✊, Ejército 🪖, Élite 🎩 y Potencias 🌐, todas empiezan en 50. 0 o 100 = caída (cada extremo tiene su final en `finales.md`). La **crisis oculta** (la economía) no es una barra: sube con promesas imposibles y, al cruzar umbrales, dispara cartas de crisis. El jugador nunca ve su número.
 Los puntos de pista que aparecen al arrastrar avisan **de cuánto** se verá afectada cada fuerza, **no de si sube o baja**.
 
 ## Orden en que se roba una carta
@@ -25,7 +25,7 @@ Las cartas solo salen en su era y una vez por partida, salvo las `repetible` (de
 Máximo 4 ranuras: al entrar el quinto sale el más antiguo. Cada estado tiene deriva sobre las barras, cadencia, a veces duración, y cambia los pesos del sorteo. Lista en `estados.md`. Al entrar un estado nuevo se abre una ventana explicativa automática.
 
 ## Eras
-Cada era dura de 6 a 8 años. Ahora: **1 · Ascenso** y **2 · Consolidación** (factor de dureza 0.7). Las eras 3 a 7 aún no existen ni tienen nombre. Entre eras se conservan barras, estados, banderas y crisis; los años siguen contando; los nombres de año (Año 1 – Año de la Gloriosa Revolución…) llegan a 30 y luego se numeran.
+Cada era dura de 6 a 8 años. Ahora: **1 · Ascenso**, **2 · Consolidación** (factor de dureza 0.7) y **3 · Culto** (0.75; tratamiento «Excelencia»). Las eras 4 a 7 aún no existen ni tienen nombre. Entre eras se conservan barras, estados, banderas y crisis; los años siguen contando; los nombres de año (Año 1 – Año de la Gloriosa Revolución…) llegan a 30 y luego se numeran.
 En la era 2, cada bandera que la era 1 apuntaba hacia ella tiene su carta; algunas aceptan varias banderas (`alguna`) porque sus disparadores son raros.
 
 ## Dificultad
@@ -42,14 +42,14 @@ Objetivo: **jugando al azar se supera la era 1 en torno al 28 % de las veces**; 
 5. `npm test`, `npm run simular` (¿se ven todas las cartas? ¿supervivencia razonable?), ajusta `era.factor`, `npm run docs`, y apunta la decisión en el historial.
 
 ## Cómo se añade o cambia un personaje
-1. Prompt: ficha en `prompts/personajes_bn.json` → `python3 tools/generar_prompts.py`.
-2. Genera la imagen y prepárala: `python3 tools/preparar_retrato.py entrada.png assets/personajes/definitivos/clave.png`.
-3. Mapa: `data/ilustraciones.json` (clave → archivo) y, si el personaje es nuevo, `ILUSTRACION_FIJA` y `GRUPO_DE` en `src/motor.js`.
-4. Si cambia el nombre (p. ej. «Ministra de Educación»), cámbialo en `src/datos.js` (campo `personaje`) y en `motor.js`.
-5. `npm test` (comprueba que cada personaje tiene grupo e imagen) y `npm run docs`.
+1. Retrato: fotografía en blanco y negro 3:4 (la generada trae el nombre impreso debajo; no hace falta quitarlo, lo recorta el montaje). Guárdala en `assets/personajes/definitivos/`.
+2. Mapa: `data/ilustraciones.json` (clave → archivo) y, si el personaje es nuevo, `ILUSTRACION` y `GRUPO_DE` en `src/motor.js`.
+3. Si cambia el nombre, cámbialo en `src/datos.js` (campo `personaje`) y en `motor.js`.
+4. `npm test` (comprueba que cada personaje tiene grupo e imagen) y `npm run docs`.
+5. Prompts de imagen: fichas en `prompts/personajes_bn.json` → `python3 tools/generar_prompts.py`.
 
 ## Técnica
-- Un solo HTML: datos + motor + estilos + imágenes WebP (640 px) + fuente en base64. Ver `tools/build.py`.
+- Un solo HTML: datos + motor + estilos + retratos WebP (720 px de ancho, recortados) + fuentes en base64. Ver `tools/build.py`.
 - Persistencia: `localStorage` (archivo y nombre), con respaldo en memoria si no está disponible.
 - Las pruebas usan jsdom (sin navegador). Para ver el aspecto real, abre `dist/index.html` a 360–430 px de ancho.
-- Fecha de esta versión: 3 de octubre de 2026.
+- Fecha de esta versión: 6 de octubre de 2026.

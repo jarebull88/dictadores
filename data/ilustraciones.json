@@ -1,13 +1,13 @@
 {
-  "fija_economia": "personajes/definitivos/economia.png",
-  "fija_embajador_oriental": "personajes/provisionales/embajador_bloque_oriental.png",
-  "fija_embajador_norte": "personajes/provisionales/embajador_potencia_norte.png",
-  "fija_agricultura": "personajes/provisionales/agricultura.png",
-  "fija_general": "personajes/provisionales/fuerzas_armadas.png",
-  "fija_trabajo": "personajes/provisionales/trabajo.png",
-  "fija_jefe": "personajes/provisionales/interior.png",
-  "fija_vicepresidente": "personajes/definitivos/vicepresidente.png",
-  "fija_comercio": "personajes/definitivos/comercio.png",
-  "fija_educacion": "personajes/definitivos/educacion.png",
-  "fija_cultura": "personajes/definitivos/cultura.png"
+  "vicepresidente": "personajes/definitivos/vicepresidente.jpg",
+  "economia": "personajes/definitivos/economia.jpg",
+  "comercio": "personajes/definitivos/comercio.jpg",
+  "agricultura": "personajes/definitivos/agricultura.jpg",
+  "educacion": "personajes/definitivos/educacion.jpg",
+  "trabajo": "personajes/definitivos/trabajo.jpg",
+  "cultura": "personajes/definitivos/cultura.jpg",
+  "fuerzas_armadas": "personajes/definitivos/fuerzas_armadas.jpg",
+  "interior": "personajes/definitivos/interior.jpg",
+  "embajador_oriental": "personajes/definitivos/bloque_oriental.jpg",
+  "embajador_norte": "personajes/definitivos/bloque_occidental.jpg"
 }

@@ -19,48 +19,10 @@ function desbloquear(id) {
 const CLAVE_NOMBRE = "dictadores_nombre_v2";
 let nombreDictador = "";
 try { nombreDictador = (localStorage.getItem(CLAVE_NOMBRE) || "").trim().split(/\s+/)[0] || ""; } catch (e) {}
-const nombreCompleto = () => "Comandante " + nombreDictador;
+/* «Comandante» en las eras 1 y 2; «Excelencia» a partir de la era 3 (culto a la personalidad) */
+const tratamiento = () => (E && E.era >= 3 ? "Excelencia" : "Comandante");
+const nombreCompleto = () => tratamiento() + " " + nombreDictador;
 function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch (e) {} }
-
-/* =====================================================
-   NOMBRES DE LOS AÑOS (al estilo de los años de la Revolución)
-   A partir del año 31 se numeran: "Año 31 de la Gloriosa Revolución".
-   ===================================================== */
-const NOMBRES_ANIO = [
-  "Año de la Gloriosa Revolución",
-  "Año de la Tierra Redimida",
-  "Año de la Luz y las Letras",
-  "Año del Plan Maestro",
-  "Año de la Unidad Indestructible",
-  "Año de la Defensa Soberana",
-  "Año de la Gran Cosecha",
-  "Año del Trabajo Voluntario",
-  "Año de la Vigilancia Revolucionaria",
-  "Año del Esfuerzo Supremo",
-  "Año de la Austeridad Victoriosa",
-  "Año de la Productividad Patriótica",
-  "Año de la Transparencia Informativa",
-  "Año de la Amistad entre los Pueblos",
-  "Año del Primer Congreso del Partido",
-  "Año de la Constitución Eterna",
-  "Año del Comandante y su Pueblo",
-  "Año de la Eficiencia Nacional",
-  "Año de la Emulación Nacional",
-  "Año del Vigésimo Aniversario de la Revolución",
-  "Año de la Reconstrucción",
-  "Año del Segundo Congreso del Partido",
-  "Año de la Corrección de Rumbo",
-  "Año de la Resistencia",
-  "Año del Cuarto de Siglo",
-  "Año de la Sobriedad Nacional",
-  "Año de la Patria Primero",
-  "Año de las Reservas Estratégicas",
-  "Año de la Continuidad",
-  "Año del Trigésimo Aniversario de la Revolución"
-];
-function tituloAnio(n) {
-  return n <= NOMBRES_ANIO.length ? `Año ${n} - ${NOMBRES_ANIO[n - 1]}` : `Año ${n} de la Gloriosa Revolución`;
-}
 
 /* =====================================================
    ESTADOS DEL RÉGIMEN (las cuatro ranuras bajo la carta)
@@ -157,72 +119,38 @@ for (const id in ESTADOS) {
 const MAX_RANURAS = 4;
 
 /* =====================================================
-   PERSONAJES: dibujo base + ojos y boca que cambian según el lado al que arrastras
-   Posiciones en píxeles del lienzo de 1024; 'esc' es la escala de la pieza.
-   Los personajes con gafas de sol no llevan ojos: solo cambia la boca.
+   RETRATOS: fotografía de prensa en blanco y negro, en 3:4, con el nombre del personaje debajo.
+   Clave de cada personaje en data/ilustraciones.json (el montaje recorta el pie de foto impreso).
    ===================================================== */
-const PERSONAJES = {
-  jefe:       { base: "pj_jefe",       grupo: "ejercito", ojos: null,
-                boca: { cx: 512, cy: 592, esc: 0.80 } },
-  secretario: { base: "pj_secretario", grupo: "elite",
-                ojos: { cx: 512, cy: 392, esc: 1.22 }, boca: { cx: 512, cy: 606, esc: 0.92 } }
+const ILUSTRACION = {
+  "Vicepresidente del Consejo de Ministros": "vicepresidente",
+  "Ministro de Economía": "economia",
+  "Ministro de Comercio": "comercio",
+  "Ministro de Agricultura": "agricultura",
+  "Ministra de Educación": "educacion",
+  "Ministro de Trabajo": "trabajo",
+  "Ministra de Cultura": "cultura",
+  "Ministro de las Fuerzas Armadas": "fuerzas_armadas",
+  "Ministro del Interior": "interior",
+  "Embajador del bloque oriental": "embajador_oriental",
+  "Embajador de la potencia del norte": "embajador_norte"
 };
-/* Ilustraciones provisionales (hoja de personajes a lápiz y tinta). Se muestran fijas, sin ojos ni boca que cambien,
-   sobre un fondo con el tono de su grupo. Los personajes con dibujo propio (PERSONAJES) tienen prioridad. */
-const ILUSTRACION_FIJA = {
-  "Vicepresidente del Consejo de Ministros": "fija_vicepresidente",
-  "Ministro de Economía": "fija_economia",
-  "Ministro de Comercio": "fija_comercio",
-  "Ministro de Educación": "fija_educacion",
-  "Ministra de Cultura": "fija_cultura",
-  "Ministro de Agricultura": "fija_agricultura",              /* provisional: recorte de la hoja */
-  "Ministro de Trabajo": "fija_trabajo",                      /* provisional: recorte de la hoja */
-  "Ministro de las Fuerzas Armadas": "fija_general",          /* provisional: recorte de la hoja */
-  "Ministro del Interior": "fija_jefe",                       /* provisional: recorte de la hoja */
-  "Embajador del bloque oriental": "fija_embajador_oriental", /* provisional: recorte de la hoja */
-  "Embajador de la potencia del norte": "fija_embajador_norte" /* provisional: recorte de la hoja */
-};
-/* Ilustraciones en formato pegatina (dibujo recortado con borde blanco y transparencia), en alta resolución.
-   Se colocan centradas sobre un fondo con el color del grupo y con una sombra suave. Tienen prioridad sobre las fijas. */
-const ILUSTRACION_PEGATINA = {
-  /* vacío por ahora: se probaron las pegatinas del Secretario, Agricultura y el General y se volvió a los recortes de la hoja */
-};
-function tinteGrupo(hex, mezcla = 0.26) {            // el color del grupo, muy aclarado: el papel blanco del dibujo lo toma al multiplicar
-  const n = parseInt(hex.slice(1), 16), c = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  return "#" + c.map(v => Math.round(255 - (255 - v) * mezcla).toString(16).padStart(2, "0")).join("");
-}
-/* Todos los personajes usan ya las ilustraciones a lápiz de cera (ILUSTRACION_FIJA).
-   El dibujo de papel recortado del antiguo Jefe de la Seguridad del Estado, con ojos y boca que cambian, se conserva en PERSONAJES
-   pero no está asignado a ningún personaje. */
-const PERSONAJE_DE = {};
-const COLOR_GRUPO = { ejercito: "#77756E", elite: "#C46686", pueblo: "#D97757", potencias: "#6A9BCC", palacio: "#B0AEA5" };
 /* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Varela solo son mencionados.
-   Grupo de cada personaje = fuerza a la que pertenece (y color de su fondo).
+   Grupo de cada personaje = fuerza a la que pertenece.
    Élite: el gabinete civil. Ejército: Interior (policía y Seguridad del Estado) y Fuerzas Armadas. Potencias: el extranjero.
    Pueblo no tiene portavoz: sus problemas llegan a través de los ministros. */
 const GRUPO_DE = {
   "Ministro del Interior": "ejercito", "Ministro de las Fuerzas Armadas": "ejercito",
   "Vicepresidente del Consejo de Ministros": "elite", "Ministro de Economía": "elite", "Ministro de Comercio": "elite",
-  "Ministro de Agricultura": "elite", "Ministro de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
+  "Ministro de Agricultura": "elite", "Ministra de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
   "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias"
-};
-const EXPRESIONES = {
-  neutra:      { ojos: "ojos_neutros",           boca: "boca_cerrada" },
-  soberbia:    { ojos: "ojos_felices",           boca: "boca_sonrisa" },
-  carcajada:   { ojos: "ojos_felices",           boca: "boca_sonrisa" },
-  furiosa:     { ojos: "ojos_furiosos",          boca: "boca_dientes_apretados" },
-  desconfiada: { ojos: "ojos_desconfiados",      boca: "boca_cerrada", bocaSinOjos: "boca_torcida" },
-  sorprendida: { ojos: "ojos_sorprendidos",      boca: "boca_abierta_redonda" },
-  calculadora: { ojos: "ojos_desconfiados_ceja", boca: "boca_sonrisa_ladeada" },
-  aburrida:    { ojos: "ojos_aburridos",         boca: "boca_cerrada" },
-  preocupada:  { ojos: "ojos_preocupados",       boca: "boca_torcida" }
 };
 Object.values(IMG).forEach(p => { const i = new Image(); i.src = p.src; });
 
 /* =====================================================
    LAS CUATRO FUERZAS: un emoji, una barra horizontal debajo y los puntos de pista bajo la barra
    ===================================================== */
-const EMOJI_FUERZA = { pueblo: "👥", ejercito: "🪖", elite: "🎩", potencias: "🌐" };
+const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "🎩", potencias: "🌐" };
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
 const FUERZAS = {
@@ -240,7 +168,7 @@ let ocupado = false;
 let panelAbierto = false;
 
 /* Los lados se mezclan al azar en cada carta (como en Reigns), para que no se pueda aprender
-   que "la opción valiente siempre está a la derecha". Cada opción conserva sus efectos y su cara. */
+   que "la opción valiente siempre está a la derecha". Cada opción conserva sus efectos. */
 let mezclarLados = true;
 function barajarLados() {
   const c = E && E.actual;
@@ -416,13 +344,13 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  cerrarMenu();
   if (id === "screen-start") $("cont-archivo").textContent = `${desbloqueados.size} de ${ARCHIVABLES.length}`;
 }
 
 function parBarra(id, esc = 1) {
   return `<div class="par">
       <div class="emoji" style="font-size:${Math.round(26 * esc)}px" aria-hidden="true">${EMOJI_FUERZA[id]}</div>
+      <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true" style="max-width:${Math.round(72 * esc)}px"><i class="relleno"></i></div>
     </div>`;
 }
@@ -447,7 +375,12 @@ function pintarBarras() {
     const v = E.barras[b.id];
     const el = document.querySelector(`.barra[data-b="${b.id}"]`);
     el.querySelector(".relleno").style.width = v + "%";
-    el.classList.toggle("peligro", v <= 15 || v >= 85);
+    const peligro = v <= 15 || v >= 85;
+    if (peligro && !el.classList.contains("peligro") && previos[b.id] !== undefined) {   // acaba de entrar en zona crítica
+      try { if (navigator.vibrate) navigator.vibrate([40, 60, 40]); } catch (e) {}
+    }
+    el.classList.toggle("peligro", peligro);
+    el.setAttribute("aria-label", `${b.nombre}${peligro ? ": en peligro" : ""}`);
     if (previos[b.id] !== undefined && previos[b.id] !== v) {      // se llena o se vacía: destello breve
       el.classList.remove("cambia"); void el.offsetWidth; el.classList.add("cambia");
       setTimeout(() => el.classList.remove("cambia"), 850);
@@ -457,7 +390,6 @@ function pintarBarras() {
 }
 
 function pintarCabecera() {
-  $("anio").textContent = tituloAnio(E.turno);
   const n = anios();
   $("anios-poder").textContent = n === 0 ? "Recién llegado al poder" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
 }
@@ -527,46 +459,14 @@ function mostrarFuerza(id, el) {
      <div class="extremos"><div>▼ Si se vacía: <strong>${esc(bajo)}</strong>.</div><div>▲ Si se llena: <strong>${esc(alto)}</strong>.</div></div>
      <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
 }
-function cerrarMenu() {
-  $("menu-juego").classList.add("hidden");
-  $("btn-menu").setAttribute("aria-expanded", "false");
-}
 
 function pintarCarta(c) {
-  const pj = PERSONAJES[PERSONAJE_DE[c.personaje]];
-  const color = COLOR_GRUPO[GRUPO_DE[c.personaje] || "palacio"];
-  let ilus;
-  if (c.ilustracion) ilus = `<div class="ilustracion" style="background-image:url('${c.ilustracion}')"></div>`;
-  else if (pj) ilus = `<div class="ilustracion pj" style="--grupo:${color}"><img class="pj-base" id="pj-base" alt=""><img class="pj-ojos" id="pj-ojos" alt=""><img class="pj-boca" id="pj-boca" alt=""></div>`;
-  else if (ILUSTRACION_PEGATINA[c.personaje]) ilus = `<div class="ilustracion pegatina" style="--tinte:${tinteGrupo(color, 0.62)}"><img class="img-pegatina" src="${IMG[ILUSTRACION_PEGATINA[c.personaje]].src}" alt=""></div>`;
-  else if (ILUSTRACION_FIJA[c.personaje]) ilus = `<div class="ilustracion fija" style="--tinte:${tinteGrupo(color)}"><img class="img-fija" src="${IMG[ILUSTRACION_FIJA[c.personaje]].src}" alt=""></div>`;
-  else ilus = `<div class="ilustracion ph" style="--grupo:${color}"><div><b>Ilustración 1:1</b><br>900 × 900 px</div></div>`;
+  const clave = ILUSTRACION[c.personaje];
+  const ilus = clave && IMG[clave]
+    ? `<div class="ilustracion"><img class="retrato" src="${IMG[clave].src}" alt=""></div>`
+    : `<div class="ilustracion ph"><div><b>Retrato 3:4</b></div></div>`;
   $("mensaje").textContent = c.texto;
-  $("carta").innerHTML = `${ilus}<div class="nombre${c.personaje.length > 30 ? " largo" : ""}">${esc(c.personaje)}</div><div class="respuesta" id="respuesta"></div>`;
-  if (pj) { $("pj-base").src = IMG[pj.base].src; ponerExpresion("neutra"); }
-}
-
-/* ojos y boca del personaje de la carta */
-function colocarPieza(img, cfg, anchoPieza) {
-  img.style.left = (cfg.cx / 1024 * 100) + "%";
-  img.style.top = (cfg.cy / 1024 * 100) + "%";
-  img.style.width = (anchoPieza * cfg.esc / 1024 * 100) + "%";
-}
-function ponerExpresion(nombre) {
-  const c = E && E.actual;
-  const pj = c && PERSONAJES[PERSONAJE_DE[c.personaje]];
-  const base = $("pj-base");
-  if (!pj || !base) return;
-  const ex = EXPRESIONES[nombre] || EXPRESIONES.neutra;
-  const ojos = $("pj-ojos"), boca = $("pj-boca");
-  if (pj.ojos) {
-    const o = IMG[ex.ojos];
-    ojos.src = o.src; colocarPieza(ojos, pj.ojos, o.w); ojos.style.display = "";
-  } else {
-    ojos.style.display = "none";
-  }
-  const b = IMG[pj.ojos ? ex.boca : (ex.bocaSinOjos || ex.boca)];
-  boca.src = b.src; colocarPieza(boca, pj.boca, b.w);
+  $("carta").innerHTML = `${ilus}<div class="nombre">${esc(c.personaje)}</div><div class="respuesta" id="respuesta"></div>`;
 }
 
 function pintarEleccion(dir) {
@@ -583,7 +483,6 @@ function pintarEleccion(dir) {
     const d = e === 0 ? 0 : e <= 14 ? 8 : e <= 20 ? 13 : 18;
     p.style.width = p.style.height = d + "px";
   });
-  ponerExpresion(op ? op.cara : "neutra");
 }
 
 function empezar() {
@@ -740,9 +639,10 @@ function siguiente() {
 function anios() { return Math.max(0, E.turno - 1); }
 
 const TEXTO_FIN_ERA = {
-  1: "Has sobrevivido a los primeros años. El país continúa. Tú también. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte."
+  1: "Has sobrevivido a los primeros años. El país continúa. Tú también. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
+  2: "El régimen ya no se llama revolución, sino costumbre. Tus ministros han decidido que «Comandante» suena a cuartel: a partir de ahora serás Excelencia."
 };
-const TEXTO_FIN_JUEGO = "El régimen se ha consolidado. Lo que decidiste en los primeros años ya forma parte de la rutina del país. La era 3 todavía no existe en este prototipo.";
+const TEXTO_FIN_JUEGO = "El régimen se ha consolidado. Lo que decidiste en los primeros años ya forma parte de la rutina del país. La era 4 todavía no existe en este prototipo.";
 
 function finDeEra() {
   if (E.era < ERAS.length) terminar(null, true);      // hay otra era: se puede seguir gobernando
@@ -751,6 +651,7 @@ function finDeEra() {
 function continuarEra() {
   iniciarEra(E.era + 1);
   E.avisoPendiente = null;
+  $("nombre-dictador").textContent = nombreCompleto();
   mostrar("screen-game");
   siguiente();
 }
@@ -765,7 +666,7 @@ function terminar(clave, transicion) {
   if (clave) {
     const f = FINALES[clave];
     const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
-    $("fin-principal").textContent = "Has caído";
+    $("fin-principal").textContent = "¡Has caído!";
     $("fin-titulo").textContent = f.titulo;
     $("fin-texto").textContent = f.texto;
     caja.innerHTML = parBarra(idF, 1.6) +
@@ -864,10 +765,7 @@ function atrasArchivo() {
 
 /* ---------- Nombre del dictador ---------- */
 function actualizarVistaNombre() {
-  const v = $("input-nombre").value.trim();
-  const palabra = v.split(/\s+/)[0];
-  $("vista-nombre").textContent = "Comandante " + (palabra ? palabra.charAt(0).toUpperCase() + palabra.slice(1) : "…");
-  $("nombre-error").textContent = /\s/.test(v) ? "Una sola palabra: Aureliano, Anselmo, Esteban…" : "";
+  $("nombre-error").textContent = /\s/.test($("input-nombre").value.trim()) ? "Una sola palabra: Aureliano, Anselmo, Esteban…" : "";
 }
 function irANombre() {
   $("input-nombre").value = nombreDictador;
@@ -949,7 +847,7 @@ function confirmarNombre() {
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     if (!$("screen-archive").classList.contains("hidden")) atrasArchivo();
-    else { ocultarInfo(); cerrarMenu(); }
+    else ocultarInfo();
     return;
   }
   if ($("screen-game").classList.contains("hidden")) return;
@@ -958,13 +856,8 @@ document.addEventListener("keydown", e => {
 });
 document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
-  if (!e.target.closest("#menu-juego") && !e.target.closest("#btn-menu")) cerrarMenu();
 });
 
-$("btn-menu").addEventListener("click", () => {
-  const abierto = $("menu-juego").classList.toggle("hidden") === false;
-  $("btn-menu").setAttribute("aria-expanded", String(abierto));
-});
 $("btn-salir").addEventListener("click", () => mostrar("screen-start"));
 $("btn-jugar").addEventListener("click", irANombre);
 $("btn-nombre-volver").addEventListener("click", () => mostrar("screen-start"));

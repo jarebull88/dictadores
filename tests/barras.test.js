@@ -28,10 +28,10 @@ test("el relleno es horizontal y refleja el valor", () => {
   assert.deepEqual(w, { pueblo: "72%", ejercito: "25%", elite: "50%", potencias: "93%" });
 });
 
-test("al caer, «Has caído» es el mensaje principal y se explica la causa", () => {
+test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa", () => {
   const j = cargar(); j.empezar();
   j.w.eval("E.ultimaDecision='Juicio público.'; terminar('ejercito_0')");
-  assert.equal(j.$("fin-principal").textContent, "Has caído");
+  assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
   assert.equal(j.$("fin-titulo").textContent, "Golpe de Estado");
   assert.match(j.$("fin-fuerza").textContent, /Ejército llegó al mínimo/);
   assert.match(j.$("fin-fuerza").textContent, /Juicio público/);

@@ -1,14 +1,14 @@
-# A la orden mi comandante
+# ¡Comandante, ordene!
 
 Juego de cartas satírico, tipo Reigns, de Jorge. Eres un dictador de un país del Caribe **sin nombre**: decides deslizando la carta a izquierda o derecha, y cada decisión mueve cuatro fuerzas (Pueblo, Ejército, Élite, Potencias). Si una llega a 0 o a 100, caes. Humor negro seco: los personajes hablan en serio y con servilismo; el chiste lo pone la ironía del propio dictador.
 
-Es **un único HTML autocontenido** (`dist/index.html`, ~740 KB, sin red). Hoy hay dos eras jugables: Ascenso (era 1) y Consolidación (era 2), 45 cartas. El plan completo es de 7 eras.
+Es **un único HTML autocontenido** (`dist/index.html`, ~1,7 MB, sin red). Hoy hay tres eras jugables: Ascenso (1), Consolidación (2) y Culto (3), 70 cartas. El plan completo es de 7 eras.
 
 ## Cómo trabajar
 ```
 npm install            # una vez (jsdom, para las pruebas)
 pip install pillow     # una vez (para montar las imágenes)
-npm test               # monta el juego y pasa 21 pruebas
+npm test               # monta el juego y pasa 24 pruebas
 npm run build          # solo montar → dist/index.html
 npm run docs           # regenera docs/ desde los datos
 npm run simular        # supervivencia y cobertura de cartas con miles de partidas
@@ -19,43 +19,45 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 ## Mapa de la carpeta
 - `src/datos.js` — **fuente única** de cartas, eras, finales y consecuencias futuras. Aquí se editan textos y efectos.
 - `src/motor.js` — reglas, estados del régimen, interfaz y gestos. `src/estilos.css`, `src/cuerpo.html` — aspecto y pantallas.
-- `data/ilustraciones.json` — qué imagen tiene cada personaje. `assets/personajes/definitivos|provisionales/` — retratos cuadrados.
-- `assets/originales/` — imágenes tal como se generaron. `assets/descartado/` — arte probado y rechazado (no lo recuperes sin preguntar).
+- `data/ilustraciones.json` — qué imagen tiene cada personaje. `assets/personajes/definitivos/` — los once retratos (3:4, con el nombre impreso debajo; el montaje lo recorta).
+- El arte antiguo (lápiz de cera, papel recortado, pegatinas, provisionales) se borró el 6 oct; solo queda en el historial de git. No lo recuperes sin preguntar.
 - `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md` y `brief_claude_design.md`.
-- `prompts/` — fichas y generador de los prompts de imagen. `tools/` — build, simulación, exportación y preparación de retratos. `tests/` — pruebas.
+- `prompts/` — fichas y generador de los prompts de imagen. `tools/` — build (incluye el recorte de retratos), simulación y exportación. `tests/` — pruebas.
 
 ## Reglas de contenido (no negociables)
 1. **Ningún país real dentro de las cartas ni de las ilustraciones.** Solo el `archivo` histórico de cada carta puede nombrar casos reales (Cuba, URSS, Chile…), siempre marcado «datos pendientes de verificar». Sin banderas, estrellas, escudos ni insignias reales.
 2. **Con el dictador solo hablan:** sus ministros, el mando militar (Interior y Fuerzas Armadas) y los embajadores extranjeros. **La gente corriente y Varela nunca hablan**: los mencionan los ministros («el general Varela recibe oficiales en su casa»).
-3. **Once portavoces:** Vicepresidente del Consejo de Ministros, Economía, Comercio, Agricultura, Educación, Trabajo, Cultura (ministra), Fuerzas Armadas, Interior, Embajador del bloque oriental, Embajador de la potencia del norte. Los ministerios se inspiran en los cubanos (de memoria: **verifícalos**). Para eras futuras: Salud Pública, Justicia, Relaciones Exteriores, Industrias, Azúcar, Recuperación de Bienes Malversados.
-4. **Grupos = fuerza = color de fondo:** Élite (rosa higo): el gabinete civil. Ejército (gris grafito): Interior y Fuerzas Armadas. Potencias (azul): los embajadores. Pueblo (naranja): sin portavoz.
+3. **Once portavoces:** Vicepresidente del Consejo de Ministros, Economía, Comercio, Agricultura, Educación (ministra), Trabajo, Cultura (ministra), Fuerzas Armadas, Interior, Embajador del bloque oriental, Embajador de la potencia del norte. Los ministerios se inspiran en los cubanos (de memoria: **verifícalos**). Para eras futuras: Salud Pública, Justicia, Relaciones Exteriores, Industrias, Azúcar, Recuperación de Bienes Malversados.
+4. **Grupo = fuerza:** Élite: el gabinete civil. Ejército: Interior y Fuerzas Armadas. Potencias: los embajadores. Pueblo: sin portavoz. (Los colores por grupo se quitaron: la interfaz es en blanco y negro.)
 5. **Los ministros son «víboras vividoras»:** cerdos de la granja, no trabajadores. En arte y texto, lujo, glotonería y desprecio; nunca sudor, herramientas, aulas ni ropa de obrero.
 6. **Diversidad:** el gabinete mezcla sexos y orígenes (ahora mismo: Educación y Cultura son mujeres). No se expresa la maldad con rasgos étnicos, sino con gesto, mirada y lujo. Caribe: sin trajes y casi sin mangas largas (camisas de manga corta, guayaberas); solo los embajadores visten de fuera.
-7. **Tratamiento:** «Comandante» en las eras 1 y 2; «Excelencia» a partir de la era 3 (`culto_iniciado`); «Padre de la Patria» más adelante.
+7. **Tratamiento:** «Comandante» en las eras 1 y 2; **«Excelencia» desde la era 3** (el motor lo cambia solo, `tratamiento()`; las cartas de la era 3 empiezan por «Excelencia,»); «Padre de la Patria» más adelante.
 8. **El nombre del dictador es una sola palabra** y se muestra como «Comandante X».
 
 ## Cómo se escriben las cartas
-- Mensaje del personaje: ~20 palabras, serio y servil, empieza por «Comandante,». Sin réplicas posteriores (se eliminaron).
-- Cada opción: **acción de 2 a 5 palabras** + **remate irónico de unas 7** (un test lo vigila). El chiste va en la propia opción.
-- Los efectos se escriben **en escala pequeña** (±4 a ±12) y cada barra suma lo que la otra opción resta (**recentrados**). El motor los multiplica: Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5, deriva de estados ×2 y, en la era 2, ×0.7 más (`era.factor`). Cambia los factores en `motor.js` (`FACTOR_EFECTOS`), nunca los números de las cartas en bloque.
+- **Límites (todas las eras, vigilados por un test):** mensaje ≤150 caracteres, acción ≤5 palabras y ≤28 caracteres, remate ≤75 caracteres. Más largo no cabe sobre la carta en móviles pequeños.
+- **Los embajadores hablan en primera persona** del país que representan («nuestro país considera…, aplicaremos…»), no en tercera.
+- Mensaje del personaje: ~20 palabras, serio y servil, empieza por «Comandante,» (era 3: «Excelencia,»). Sin réplicas posteriores (se eliminaron).
+- Cada opción: **acción de 2 a 5 palabras** + **remate irónico** dicho en primera persona por el dictador (hasta 75 caracteres). El chiste va en la propia opción.
+- Los efectos se escriben **en escala pequeña** (±4 a ±12) y cada barra suma lo que la otra opción resta (**recentrados**). El motor los multiplica: Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5, deriva de estados ×2 y, en las eras 2 y 3, ×0.7 y ×0.75 más (`era.factor`). Cambia los factores en `motor.js` (`FACTOR_EFECTOS`), nunca los números de las cartas en bloque.
 - **Los lados se mezclan al azar** (`mezclarLados`), así que A/B no es izquierda/derecha. No dependas del lado.
 - Tipos: `ancla` (con `ventana` de años de la era), `cola` (la encola una decisión), `sorteo` (con `peso` y `cond`), `crisis` y `coalicion` (las dispara el estado de las barras; repetibles). `cond` admite `requiere`, `alguna`, `barraMax`, `barraMin`, `crisisMin`, `turnoMin`.
 - Las banderas llevan el prefijo del mazo (`base.`). **Nunca se borra un identificador**, solo se marca obsoleto. Cada bandera que apunta a una era futura debe tener su carta cuando esa era exista (mira `docs/banderas.md`).
 - Cada carta con `archivo` desbloquea una referencia histórica (una por partida, en un momento aleatorio, con aviso discreto).
 
 ## Interfaz (decisiones vigentes)
-- Solo se juega **arrastrando** (o con las flechas): sin botones de decisión ni pantallas entre cartas. Umbral = 22 % del ancho de la carta; un gesto rápido también decide. Al llegar a la zona de decisión, la carta se rodea de un **borde naranja** y la respuesta se vuelve opaca (sin texto añadido).
-- Arriba: nombre del año pequeño (un guiño), **cuatro emojis** (🪖 Ejército, 👥 Pueblo, 🎩 Élite, 🌐 Potencias) con barra horizontal debajo y **puntos de pista debajo de la barra** (tamaño = cuánto, nunca signo). Barra **roja solo por debajo de 15 o por encima de 85**.
-- Mensaje del personaje **sobre la carta**, hasta 5 líneas. Carta **cuadrada** con la ilustración y el **nombre centrado debajo**. La respuesta a la opción aparece **sobre la carta** en un plano translúcido.
-- Abajo: «Comandante X», «N años en el poder» y cuatro ranuras de **estados** (emojis). Tocar un emoji de arriba o una ranura abre una ventana que lo explica.
-- Pantalla final: **«Has caído» enorme**, la causa, la fuerza que cayó con su barra y la última decisión.
-- Aspecto: Material Design en tonos de blanco, tipografía **Space Grotesk**, paleta de Claude (marfil, pizarra `#141413`, naranja `#D97757`, azul `#6A9BCC`, error `#B3261E`). **Sin verde. Solo tema claro.** Sin pictogramas: emojis.
-- Primera pantalla: «A la orden 🫡 / mi comandante» y un subtítulo en negrita, sin país.
+- Solo se juega **arrastrando** (o con las flechas): sin botones de decisión ni pantallas entre cartas. Umbral = 22 % del ancho de la carta; un gesto rápido también decide. Al llegar a la zona de decisión, la carta se rodea de un **contorno negro grueso**, el nombre se invierte y la respuesta se vuelve opaca (sin texto añadido).
+- Arriba (sin línea de año): **cuatro emojis** (🪖 Ejército, ✊ Pueblo, 🎩 Élite, 🌐 Potencias) con barra horizontal debajo, **puntos rojos de pista** debajo (tamaño = cuánto, nunca signo) y cerradas por una línea doble. Por debajo de 15 o por encima de 85 la barra se pone **roja (lisa), parpadea, sale un «!»** junto al emoji y el móvil vibra al entrar (nunca solo color).
+- Mensaje del personaje **sobre la carta**, sin caja (directo sobre el papel), hasta 6 líneas a 19 px (17 px en pantallas bajas). Carta **3:4** (foto + **nombre escrito debajo**), con el mazo detrás y marcas de corte. La respuesta a la opción aparece **sobre la carta** en un plano de tinta. En la zona de decisión: **contorno grueso rojo** y la respuesta (lo que eliges) en un bloque rojo. La carta nunca se recorta al arrastrarla.
+- Abajo, tras una línea de puntos: «Comandante X», «N años en el poder» y cuatro ranuras de **estados** (emojis; vacías con borde discontinuo, llenas con contorno negro). Debajo, otro divisor y «Abandonar partida» en texto pequeño (no hay botón de menú). Tocar un emoji de arriba o una ranura abre una ventana (borde doble) que lo explica.
+- Pantalla final: **«¡Has caído!» enorme**, la causa, la fuerza que cayó con su barra y la última decisión.
+- Aspecto: **documento impreso de los 60.** Papel envejecido `#ECE9E1`, bloques blanco roto `#F8F6F0`, gris imprenta `#D9D5CB`, carbón `#2B2A27`, tinta `#1C1B19`. **Rojo `#B3261E` solo para alertas y decisión** (barras en peligro, puntos de pista, contorno de la carta lista para decidir, «¡Has caído!»). El fondo blanco de los retratos se mezcla por multiplicación con el gris imprenta. Sin sombras ni degradados: lo pulsable lleva contorno negro neto; activo = colores invertidos; separaciones con línea doble, línea de puntos y marcas de corte. Tipografía de máquina de escribir: **Courier Prime** (texto, 16 px mínimo en el cuerpo) y **Special Elite** (títulos). Solo tema claro. Sin pictogramas: emojis.
+- Primera pantalla: título «¡Comandante, ordene!» (el juego se llama así) y un subtítulo en negrita, sin país. Segunda: solo «Comandante» y debajo el campo del nombre (se lee «Comandante X»); más de una palabra da aviso.
 
 ## Ilustraciones
-- **Vigente:** retratos de busto a **lápiz de cera** sobre blanco (las cinco definitivas vienen de Flow), mezclados por multiplicación sobre un fondo pálido del color del grupo. Seis son recortes provisionales de baja resolución.
-- **Nueva dirección (en curso):** fotografía de prensa de los años 60 en blanco y negro, con trama de puntos, contorno negro grueso (excepto abajo) y el personaje **pegado al borde inferior**. Cinco prompts hechos (`prompts/personajes_bn.json`), seis pendientes. Sin imagen de referencia en el prompt (el generador no la sigue bien). `tools/preparar_retrato.py` prepara el resultado; el flujo está en `docs/DISENO.md`.
-- Descartados: papel recortado con ojos y boca que cambian, pegatinas con borde blanco, hojas de baja resolución con etiquetas.
+- **Vigente (6 oct):** fotografías de prensa en blanco y negro, 1792×2400 (3:4), una por portavoz, en `assets/personajes/definitivos/`. Traen el nombre impreso debajo con tipografías distintas (y alguna errata): `tools/build.py` detecta la franja en blanco, **quita el pie de foto**, deja el personaje pegado al borde inferior y las iguala de proporción. El nombre lo escribe el juego.
+- Para cambiar un retrato basta con sustituir el archivo (mismo nombre) y `npm run build`.
+- Descartados: lápiz de cera, papel recortado con ojos y boca que cambian, pegatinas con borde blanco, hojas de baja resolución con etiquetas.
 
 ## Cómo trabaja Jorge (y cómo responderle)
 - Español, **tuteo**. Lo revisa casi todo **desde el móvil**: respuestas cortas y claras, lo importante primero, sin tablas enormes.
@@ -65,4 +67,4 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - Mantén `docs/` al día con `npm run docs` y apunta cada decisión nueva en `docs/HISTORIAL_DE_DECISIONES.md`.
 
 ## Pendiente (ver también el final del historial)
-Ilustrar los 6 personajes que faltan en blanco y negro e integrar los 11 · renombrar «Ministro de Educación» a «Ministra de Educación» al integrar su retrato · era 3 en adelante (culto, «Excelencia», monumentos) · verificar los datos históricos y los nombres de los ministerios cubanos · cartas de coalición adicionales · reforzar o reubicar los avisos si se juegan eras largas.
+Era 4 en adelante · verificar los datos históricos y los nombres de los ministerios cubanos · cartas de coalición adicionales · reforzar o reubicar los avisos si se juegan eras largas.

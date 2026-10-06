@@ -1,6 +1,6 @@
 # Historial de decisiones
 
-Lo que se ha decidido hasta el **3 de octubre de 2026**, agrupado por tema. «Vigente» = sigue en el juego. «Descartado» = se probó y se quitó (no volver a ello sin preguntar a Jorge). Añade aquí cada decisión nueva, con fecha.
+Lo que se ha decidido hasta el **6 de octubre de 2026**, agrupado por tema. «Vigente» = sigue en el juego. «Descartado» = se probó y se quitó (no volver a ello sin preguntar a Jorge). Añade aquí cada decisión nueva, con fecha.
 
 ## 1. Concepto y tono
 - **Vigente.** Juego tipo Reigns: cartas con dos opciones, cuatro fuerzas y fin al llegar a 0 o 100. Eres un dictador de un país del Caribe **sin nombre** (antes se llamaba «República de Valderia»; se quitó de la portada porque «no hace falta hacer referencia a ningún país»).
@@ -53,9 +53,45 @@ Lo que se ha decidido hasta el **3 de octubre de 2026**, agrupado por tema. «Vi
 2. **Descartado.** Hojas de baja resolución (512 px) con etiquetas, recortadas a mano. Algunas siguen como **provisionales** (seis personajes).
 3. **Descartado.** Pegatinas con borde blanco y sombra, a alta resolución («no me gustan las nuevas»).
 4. **Vigente.** Retratos a lápiz de cera generados en Flow (cinco definitivos: Vicepresidente, Economía, Comercio, Educación y Cultura), recortados a cuadrado y mezclados por multiplicación sobre un tono pálido del color del grupo.
-5. **En curso (3 oct).** Nueva dirección: **fotografía de prensa de los años 60 en blanco y negro**, con trama de puntos, contorno negro grueso salvo abajo, fondo blanco, el personaje **pegado al borde inferior**, y el nombre en una franja inferior. **Sin imagen de referencia** en el prompt (el generador no la reproduce). Los ministros son **«víboras vividoras»**: ropa cara, oro, glotonería y desprecio; nunca sudor, herramientas ni aspecto de campesino u obrero. Se pide diversidad de sexos y orígenes. Cinco prompts hechos, seis pendientes.
+5. **Vigente (6 oct; en curso desde el 3 oct).** Nueva dirección: **fotografía de prensa de los años 60 en blanco y negro**, con trama de puntos, contorno negro grueso salvo abajo, fondo blanco, el personaje **pegado al borde inferior**, y el nombre en una franja inferior. **Sin imagen de referencia** en el prompt (el generador no la reproduce). Los ministros son **«víboras vividoras»**: ropa cara, oro, glotonería y desprecio; nunca sudor, herramientas ni aspecto de campesino u obrero. Se pide diversidad de sexos y orígenes. Los once retratos llegaron el 6 oct (3:4, con el nombre impreso debajo, que el montaje recorta). Ese día se borraron todos los provisionales, el arte descartado, los originales antiguos, los prompts descartados y la herramienta que dejaba los retratos cuadrados.
 - **Vigente.** Reglas de ropa: Caribe, sin trajes y casi sin mangas largas; solo los embajadores visten de fuera.
 - **Aviso.** Los dos embajadores de las hojas antiguas llevaban símbolos reales (bandera estadounidense, insignia roja) y el General una estrella roja: en las ilustraciones nuevas no puede haber ninguno.
+
+## 6 bis. Rediseño «documento impreso» (6 oct)
+- **Vigente.** Paleta estricta de blanco, negro y gris carbón; **rojo solo para alertas** (barras en peligro, puntos de pista, «Has caído»). Se quitan el naranja, el azul y los colores de grupo.
+- **Vigente.** Tipografía de máquina de escribir de los 60: Courier Prime para el texto y Special Elite para los títulos (sustituyen a Space Grotesk). Cuerpo del mensaje a 16 px como mínimo.
+- **Vigente.** Fondo de papel envejecido grisáceo con tinta carbón (no blanco puro sobre negro puro).
+- **Vigente.** Sin sombras ni degradados (se abandona la elevación de Material): contornos negros netos en lo pulsable (ranuras, botones, menú), bloques planos en lo informativo, línea doble bajo la cabecera, línea de puntos sobre la barra inferior, marcas de corte alrededor de la carta y ventanas con borde doble. Activo o seleccionado = colores invertidos (el pie de la carta en la zona de decisión, las ranuras al entrar o actuar un estado).
+- **Vigente.** Alertas que no dependen del color: en peligro la barra se pone roja **y rayada**, parpadea, aparece un «!» junto al emoji y el móvil vibra al entrar en la zona crítica.
+- **Vigente.** Se quita la línea del año («Año 7 - Año de…») para ganar espacio; el menú pasa a la fila de las fuerzas. Los nombres de los años se eliminan del código.
+- **Vigente.** Pueblo pasa de 👥 a ✊.
+- **Vigente.** La carta pasa de cuadrada a **3:4** (la proporción de los retratos nuevos): foto arriba y nombre escrito debajo.
+
+## 6 ter. Ajustes del 6 oct (tarde)
+- **Vigente.** El juego se llama **«¡Comandante, ordene!»** (antes «A la orden mi comandante»); se quita el 🫡 de la portada.
+- **Vigente.** Pantalla de nombre: solo «Comandante» como título y el campo debajo; se quitan el subtítulo y la vista previa.
+- **Vigente.** Se quita el botón de tres puntos y su menú: «Abandonar partida» pasa a ser una línea de texto pequeña bajo un divisor, debajo de las ranuras.
+- **Vigente.** El mensaje del personaje va sin caja, directamente sobre el papel.
+- **Corregido.** Al arrastrar, la carta se cortaba al salir de la columna (el contenedor recortaba). Ya no se recorta.
+- **Vigente.** Los retratos se mezclan por multiplicación sobre el gris imprenta (el blanco del fondo pasa a gris). Sí se recortan: se quita el pie de foto y 1,5 % por cada lado.
+- **Vigente.** Rojo también en la decisión: contorno grueso rojo y nombre invertido en rojo cuando la carta está lista para decidir.
+- **Vigente.** Lo que se marca en rojo al decidir es la **respuesta** (el bloque de arriba de la carta), no el nombre. Barra en peligro: **roja lisa**, sin rayas (sigue el «!» y el parpadeo). Mensaje del personaje a 19 px (17 px en pantallas bajas): el texto más largo, 152 caracteres, cabe en 6 líneas.
+
+## 4 bis. Era 3 · Culto (7 oct)
+- **Vigente.** Tercera era, «Culto» (6–8 años, factor 0.75): 25 cartas. 11 son consecuencias de las banderas que estaban reservadas para ella (`culto_iniciado`, `modestia_aparente`, `desfile_militar`, `misiles_instalados`, `misiles_rechazados`, `jefe_poderoso`, `estudiantes_reprimidos`, `periodista_oficial`, `criticos_detenidos`, `deuda_externa`, `mercado_paralelo`); 11 son universales (ciudad con su nombre, himno, libro de texto, cumpleaños nacional, biografía, mausoleo, palacio del pueblo, zafra de los diez millones, sucesión, beso fraterno, viaje oficial); 1 ancla de final de era (el atentado) y 2 de cola (el pedestal, la investigación).
+- **Vigente.** Desde la era 3 el tratamiento es **«Excelencia»**: lo cambia el motor solo, aparece en la barra inferior y las cartas empiezan por «Excelencia,». El texto de fin de era 2 lo anuncia.
+- **Vigente.** Límites de longitud para la era 3 (test): mensaje ≤150, acción ≤5 palabras y ≤28, remate ≤75 caracteres. Desde la revisión de Jorge del 7 oct (ver abajo) también los cumplen las eras 1 y 2.
+- **Vigente.** Los remates de la era 3 hablan en primera persona del dictador. Sin retratos nuevos: salen los once portavoces existentes (los ministerios futuros, Salud, Justicia, etc., siguen sin retrato).
+- **Pendiente.** Las banderas nuevas apuntan a la era 4: `sucesor_designado`, `oposicion_culpada`, `mausoleo_construido`, `palacio_del_pueblo`, `estado_policial`. Los datos del archivo histórico de la era 3 están escritos de memoria y por verificar.
+
+## 4 ter. Revisión de textos de las eras 1 y 2 (7 oct)
+- **Vigente.** Jorge reescribió los **mensajes y los remates de las 45 cartas** de las eras 1 y 2 (las acciones no cambian). Los mensajes pasan a ser más cortos y directos y los remates hablan en **primera persona del dictador**, con tono más seco y menos chiste de frase hecha. Ya cumplen todos los límites (mensaje ≤150, remate ≤75); el test de longitud vale ahora para todas las cartas.
+- **Anotado.** Varias cartas de embajadores pasan a hablar de «ofrecen», «piden», «consideran» en tercera persona (antes «mi gobierno ofrece…»). Y «El jefe pide más» empieza «quiero crear una unidad…» en lugar de «solicito autorización».
+
+## 4 quater. Revisión de la era 3 (7 oct)
+- **Vigente.** Jorge reescribió también los mensajes y remates de las **25 cartas de la era 3**, en el mismo tono que las eras 1 y 2 (primera persona del dictador). Cumplen todos los límites.
+- **Corregido.** «El viaje oficial», opción A: el remate era el de la B; ahora dice «Dos semanas de aplausos extranjeros valen un par de riesgos».
+- **Vigente.** Los embajadores hablan en **primera persona** («nuestro país considera…, aplicaremos…», «pedimos…»), nunca en tercera. Afecta a las cartas de embajador de las tres eras. «El jefe pide más» vuelve a «solicito autorización…» (servilismo).
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
@@ -63,10 +99,8 @@ Lo que se ha decidido hasta el **3 de octubre de 2026**, agrupado por tema. «Vi
 - **Vigente (3 oct).** Se migró de una conversación a esta carpeta para tener control de versiones, `CLAUDE.md` y pruebas.
 
 ## Pendiente
-- Generar los **seis retratos en blanco y negro** que faltan (Cultura, Trabajo, Fuerzas Armadas, Interior y los dos embajadores) y sustituir los once. Decidir si la titular de Fuerzas Armadas es hombre o mujer.
-- Al integrar su retrato, renombrar «Ministro de Educación» a **«Ministra de Educación»**.
+- Los pies de foto de los retratos dicen «Embajador del Bloque Occidental» y «Vicepresidente del Consejo de Estado», pero en el juego son «Embajador de la potencia del norte» y «Vicepresidente del Consejo de Ministros». Decidir si se cambian los nombres del juego.
 - **Era 3 en adelante**: culto a la personalidad, «Excelencia», monumentos, `culto_iniciado`.
 - Verificar los **datos históricos** del archivo y los **nombres de los ministerios cubanos** (están de memoria).
 - Reforzar las cartas de coalición (hoy dos borradores) y repasar las 5 cartas borrador de la era 1.
-- Si Jorge pasa la paleta «industrial» de Claude Design, aplicarla.
 - Probar el juego en móviles reales (hasta ahora solo se ha mirado en Chromium a 360–430 px). Un fallo de iconos que Jorge vio en su móvil se atribuyó a Safari y se reforzó, pero no se pudo reproducir.

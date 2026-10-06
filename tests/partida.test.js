@@ -9,7 +9,7 @@ test("500 partidas al azar terminan bien y alguna llega a la era 2", () => {
   for (let g = 0; g < 500; g++) {
     const r = jugarPartida(j);
     transiciones += r.transiciones;
-    assert.ok(["Has caído", "Sigues en el poder"].includes(r.principal), "final inesperado: " + r.principal);
+    assert.ok(["¡Has caído!", "Sigues en el poder"].includes(r.principal), "final inesperado: " + r.principal);
     r.cae ? caidas++ : finales++;
   }
   assert.deepEqual(j.errores, []);
@@ -26,4 +26,17 @@ test("el paso de era conserva barras y cambia la numeración de años", () => {
   assert.equal(j.w.eval("E.era"), 2);
   assert.equal(j.w.eval("E.barras.pueblo"), 58);
   assert.equal(j.w.eval("E.inicioEra"), j.w.eval("E.turno"));
+});
+
+test("al pasar a la era 3 el tratamiento cambia de «Comandante» a «Excelencia»", () => {
+  const j = cargar();
+  j.empezar();
+  assert.match(j.$("nombre-dictador").textContent, /^Comandante /);
+  j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
+  j.$("btn-continuar").click();
+  j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
+  assert.ok(j.visible("btn-continuar"), "debería haber paso a la era 3");
+  j.$("btn-continuar").click();
+  assert.equal(j.w.eval("E.era"), 3);
+  assert.match(j.$("nombre-dictador").textContent, /^Excelencia /);
 });

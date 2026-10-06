@@ -1,4 +1,4 @@
-// Simula miles de partidas de dos eras con distintos estilos de juego y muestra supervivencia, causas de caída y cobertura de cartas.
+// Simula miles de partidas de todas las eras con distintos estilos de juego y muestra supervivencia, causas de caída y cobertura de cartas.
 //   npm run simular
 const { JSDOM } = require("jsdom"); const fs = require("fs"); const path = require("path");
 const html = fs.readFileSync(process.env.JUEGO_HTML || path.join(__dirname, "..", "dist", "index.html"), "utf8");
@@ -19,23 +19,26 @@ w.eval(`
       if(E.turno>finEra()){ if(E.era<ERAS.length) iniciarEra(E.era+1); else return {caida:null,era:E.era,nulos,anios:E.turno-1}; }
       E.actual=siguienteCarta(); barajarLados();
     } }
-  window.__run=(n,N)=>{ const r={caeEra1:0,caeEra2:0,gana:0,nulos:0,errores:0,causas:{},anios:0}; window.__vistas={};
+  window.__run=(n,N)=>{ const r={cae:{},gana:0,nulos:0,errores:0,causas:{},anios:0}; window.__vistas={};
     for(let i=0;i<N;i++){ const x=__sim(n); if(x.error){r.errores++;continue;} r.nulos+=x.nulos; r.anios+=x.anios;
-      if(!x.caida) r.gana++; else { (x.era===1?r.caeEra1++:r.caeEra2++); r.causas[x.era+":"+x.caida]=(r.causas[x.era+":"+x.caida]||0)+1; } }
+      if(!x.caida) r.gana++; else { r.cae[x.era]=(r.cae[x.era]||0)+1; r.causas[x.era+":"+x.caida]=(r.causas[x.era+":"+x.caida]||0)+1; } }
     r.vistas=window.__vistas; return r; };
 `);
 const N = Number(process.argv[2]) || 4000;
+const NE = w.eval("ERAS.length");
 for (const e of ["azar", "cauto", "omnisciente"]) {
-  const r = w.__run(e, N), pasa1 = (N - r.caeEra1) / N;
-  console.log(`${e.padEnd(12)} supera la era 1: ${(pasa1*100).toFixed(0)}% | de ellos, supera la era 2: ${(r.gana/(N-r.caeEra1||1)*100).toFixed(0)}% | gana las dos: ${(r.gana/N*100).toFixed(0)}% | huecos sin carta: ${r.nulos} | errores: ${r.errores} | años medios: ${(r.anios/N).toFixed(1)}`);
+  const r = w.__run(e, N);
+  let vivos = N, tramos = [];
+  for (let era = 1; era <= NE; era++) { const cae = r.cae[era] || 0; tramos.push(`supera la era ${era}: ${(((vivos - cae) / (vivos || 1)) * 100).toFixed(0)}%`); vivos -= cae; }
+  console.log(`${e.padEnd(12)} ${tramos.join(" | ")} | gana todas: ${(r.gana / N * 100).toFixed(0)}% | huecos sin carta: ${r.nulos} | errores: ${r.errores} | años medios: ${(r.anios / N).toFixed(1)}`);
   if (e === "azar") {
-    for (const era of ["1", "2"]) {
+    for (let era = 1; era <= NE; era++) {
       const c = Object.entries(r.causas).filter(([k]) => k.startsWith(era + ":")), tot = c.reduce((a, [, v]) => a + v, 0) || 1;
       console.log(`   causas de caída en la era ${era}:`, c.sort((a, b) => b[1] - a[1]).map(([k, v]) => k.slice(2).replace("_100", " ↑").replace("_0", " ↓") + " " + (v / tot * 100).toFixed(0) + "%").join(" · "));
     }
     const todas = w.eval("CARTAS.map(c=>c.id)"), nunca = todas.filter(id => !(id in r.vistas));
     const v = Object.entries(r.vistas).sort((a, b) => a[1] - b[1]);
-    console.log("   cartas que casi nunca salen:", v.slice(0, 6).map(([k, n]) => k + " " + n).join(", "));
+    console.log("   cartas que casi nunca salen:", v.slice(0, 8).map(([k, n]) => k + " " + n).join(", "));
     console.log("   cartas que nunca salen:", nunca.join(", ") || "ninguna");
   }
 }

@@ -9,7 +9,7 @@ const D = new Function(fs.readFileSync(path.join(RAIZ, "src/datos.js"), "utf8") 
   "; return { CARTAS, ERAS, FINALES, FUTURO, FUTURO_ERA, BARRAS };")();
 // 2) lo que depende del motor (estados, grupos, ilustraciones, factores) se lee del juego montado
 const w = new JSDOM(fs.readFileSync(path.join(RAIZ, "dist/index.html"), "utf8"), { runScripts: "dangerously" }).window;
-const juego = w.eval("({ ESTADOS, RESUMEN, GRUPO_DE, ILUSTRACION_FIJA, FACTOR_EFECTOS, FACTOR_DERIVA, COLOR_GRUPO, EMOJI_ESTADO, EMOJI_FUERZA, FUERZAS })");
+const juego = w.eval("({ ESTADOS, RESUMEN, GRUPO_DE, ILUSTRACION, FACTOR_EFECTOS, FACTOR_DERIVA, EMOJI_ESTADO, EMOJI_FUERZA, FUERZAS })");
 const ilus = JSON.parse(fs.readFileSync(path.join(RAIZ, "data/ilustraciones.json"), "utf8"));
 
 const N = { pueblo: "Pueblo", ejercito: "Ejército", elite: "Élite", potencias: "Potencias", crisis: "Crisis" };
@@ -68,8 +68,8 @@ out("banderas.md", `# Banderas y cadenas\n\n${AUTO}Cada decisión puede dejar un
 // ---- personajes ----
 const porP = {}; D.CARTAS.forEach(c => (porP[c.personaje] = porP[c.personaje] || []).push(c));
 const fila = ([p, cs]) => {
-  const clave = juego.ILUSTRACION_FIJA[p], ruta = ilus[clave] || "—";
-  const estado = ruta.includes("definitivos") ? "definitiva" : ruta.includes("provisionales") ? "provisional" : "sin dibujo";
+  const clave = juego.ILUSTRACION[p], ruta = ilus[clave] || "—";
+  const estado = ruta.includes("definitivos") ? "definitiva" : "sin retrato";
   return `| ${p} | ${juego.GRUPO_DE[p]} | ${cs.length} (${cs.filter(c => !c.era).length}/${cs.filter(c => c.era === 2).length}) | ${estado} | \`${ruta}\` |`;
 };
 out("personajes.md", `# Personajes\n\n${AUTO}Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército y los embajadores. La gente corriente y Varela solo aparecen mencionados.\n\n| Personaje | Grupo | Cartas (era 1 / era 2) | Ilustración | Archivo |\n| --- | --- | --- | --- | --- |\n` +

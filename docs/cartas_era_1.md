@@ -98,7 +98,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 ### 7. La tierra
 
-**Personaje:** Ministro de Agricultura  
+**Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
 
 **Carta:** «Comandante, proponemos repartir las grandes propiedades entre los campesinos. Los terratenientes no estarán contentos.»

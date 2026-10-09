@@ -2,12 +2,12 @@
 
 Juego de cartas satírico tipo Reigns: eres un dictador del Caribe (sin nombre de país) y decides deslizando la carta. Cuatro fuerzas (Pueblo, Ejército, Élite, Potencias); si una llega a 0 o a 100, caes.
 
-Es un único HTML autocontenido. Hoy: era 1 (Ascenso) y era 2 (Consolidación), 45 cartas, 11 portavoces.
+Es un único HTML autocontenido. Hoy: eras 1 (Ascenso), 2 (Consolidación) y 3 (Culto), 70 cartas, 10 portavoces de papel recortado y dos estilos (Normal y Noir).
 
 ## Empezar
 ```
 npm install            # una vez
-pip install pillow     # una vez
+pip install pillow numpy scipy   # solo para recortar personajes e iconos
 npm test               # monta el juego y pasa las pruebas
 ```
 Abre `dist/index.html` en el navegador, con la ventana estrecha (formato móvil).
@@ -19,8 +19,7 @@ Abre `dist/index.html` en el navegador, con la ventana estrecha (formato móvil)
 | Añadir una carta o una era | `src/datos.js` (y `docs/DISENO.md`, «Cómo se añade una era») |
 | Cambiar reglas, estados, interfaz o dificultad | `src/motor.js` |
 | Cambiar colores o maquetación | `src/estilos.css`, `src/cuerpo.html` |
-| Cambiar el retrato de un personaje | `assets/personajes/definitivos/` + `data/ilustraciones.json` |
-| Crear los prompts de imagen | `prompts/` y `python3 tools/generar_prompts.py` |
+| Cambiar un personaje o un icono | `docs/PIPELINE_PERSONAJES.md` (assets, recorte y ojos) |
 | Ver las cartas como documento | `docs/` (se genera con `npm run docs`) |
 | Entender por qué se decidió algo | `docs/HISTORIAL_DE_DECISIONES.md` |
 

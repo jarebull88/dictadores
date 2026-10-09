@@ -3,54 +3,30 @@
 
     python3 tools/build.py
 
-Une src/ (datos, motor, estilos y cuerpo), recorta y convierte a WebP los retratos de data/ilustraciones.json
-y embebe las fuentes (Courier Prime y Special Elite). Necesita Pillow (pip install pillow).
-
-Los retratos se generan en 3:4 con el nombre impreso debajo de la foto. El montaje quita ese pie de foto
-(el juego escribe el nombre con su propia tipografía), deja el personaje pegado al borde inferior y recorta
-todos a la misma proporción. Los originales de assets/ no se tocan.
+Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
+(assets/personajes/personajes.json), los iconos (assets/iconos/recortados/) y las fuentes
+(Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
-import base64, io, json, pathlib, sys
-from PIL import Image
+import base64, json, pathlib, sys
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
-ANCHO = 720           # ancho de los retratos embebidos (px)
-PROPORCION = 0.92     # ancho / alto de la foto, sin el pie (la carta entera, con el nombre, queda en 3:4)
-MARGEN_LADOS = 0.015  # se quita un poco de cada lado: algunos retratos traen el marco del pie de foto
-CALIDAD = 80          # calidad WebP
 
 def leer(ruta):
     return (RAIZ / ruta).read_text(encoding="utf-8")
 
-def fin_de_la_foto(im):
-    """Primera fila casi en blanco por debajo del 70 % de la altura: ahí acaba la foto y empieza el pie."""
-    g = im.convert("L")
-    w, h = g.size
-    px = g.load()
-    xs = range(int(w * 0.03), int(w * 0.97), 4)
-    for y in range(int(h * 0.7), h):
-        if sum(1 for x in xs if px[x, y] < 200) / len(xs) < 0.02:
-            return y
-    return h                                   # sin pie de foto: la imagen entera
+def datos_uri(ruta, tipo):
+    return f"data:{tipo};base64," + base64.b64encode((RAIZ / ruta).read_bytes()).decode()
 
-def retrato(im):
-    w = im.width
-    abajo = fin_de_la_foto(im)
-    lado = int(w * MARGEN_LADOS)
-    ancho = w - 2 * lado
-    alto = min(abajo, round(ancho / PROPORCION))
-    im = im.crop((lado, abajo - alto, w - lado, abajo))
-    return im.resize((ANCHO, round(ANCHO * im.height / im.width)), Image.LANCZOS)
+def personajes():
+    """Retratos de papel recortado: imagen con transparencia + posición de los ojos y extras."""
+    mapa = json.loads(leer("assets/personajes/personajes.json"))
+    for slug, p in mapa.items():
+        p["src"] = datos_uri(f"assets/personajes/recortados/{p['archivo']}", "image/webp")
+    return mapa
 
-def imagenes():
-    mapa = json.loads(leer("data/ilustraciones.json"))
-    img = {}
-    for clave, ruta in mapa.items():
-        im = retrato(Image.open(RAIZ / "assets" / ruta).convert("RGB"))
-        b = io.BytesIO()
-        im.save(b, "WEBP", quality=CALIDAD, method=6)
-        img[clave] = {"src": "data:image/webp;base64," + base64.b64encode(b.getvalue()).decode(), "w": im.width, "h": im.height}
-    return img
+def iconos():
+    return {f"icono_{f.stem}": {"src": datos_uri(f.relative_to(RAIZ), "image/webp")}
+            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
 
 def fuentes():
     css = ""
@@ -67,8 +43,9 @@ def main():
     cuerpo = leer("src/cuerpo.html")
     datos = leer("src/datos.js")
     motor = leer("src/motor.js")
-    activos = ('<script>\n/* Dibujos de los personajes (WebP, incrustados) */\nconst IMG = '
-               + json.dumps(imagenes(), ensure_ascii=False) + ';\n</script>\n')
+    activos = ('<script>\n/* Personajes e iconos de papel recortado (WebP con transparencia, incrustados) */\nconst RETRATOS = '
+               + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
+               + json.dumps(iconos(), ensure_ascii=False) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

@@ -2,12 +2,12 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar } = require("./_juego");
 
-test("cada fuerza tiene emoji, barra y puntos de pista", () => {
+test("cada fuerza tiene icono, barra y puntos de pista", () => {
   const j = cargar(); j.empezar();
   const barras = [...j.d.querySelectorAll(".barra")];
   assert.equal(barras.length, 4);
   for (const b of barras) {
-    assert.ok(b.querySelector(".emoji") && b.querySelector(".nivel .relleno") && b.querySelector(".punto"), b.dataset.b);
+    assert.ok(b.querySelector(".icono-fuerza img.icono") && b.querySelector(".nivel .relleno") && b.querySelector(".punto"), b.dataset.b);
     assert.ok(b.getAttribute("aria-label"));
   }
 });

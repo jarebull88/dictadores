@@ -1,3 +1,27 @@
+<!-- Filtros de la paleta Noir (van en un SVG global, no en CSS: Safari ignora filter:grayscale sobre <image> en SVG) -->
+<svg class="defs-svg" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="bw" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".33 .59 .11 0 0  .33 .59 .11 0 0  .33 .59 .11 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="1.75" intercept="-.41"/>
+        <feFuncG type="linear" slope="1.75" intercept="-.41"/>
+        <feFuncB type="linear" slope="1.75" intercept="-.41"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="bw-suave" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".33 .59 .11 0 0  .33 .59 .11 0 0  .33 .59 .11 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0 .07 .24 .5 .74 .88"/>
+        <feFuncG type="table" tableValues="0 .07 .24 .5 .74 .88"/>
+        <feFuncB type="table" tableValues="0 .07 .24 .5 .74 .88"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="sombra-humo" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#000" flood-opacity=".3"/>
+    </filter>
+  </defs>
+</svg>
 <div id="app">
 
   <section id="screen-start" class="screen pantalla-texto">
@@ -7,7 +31,8 @@
       <button class="modo principal" id="btn-jugar" type="button"><b>Empezar partida</b></button>
       <button class="modo" id="btn-archivo" type="button"><b>Archivo histórico</b><span id="cont-archivo"></span></button>
     </div>
-    <p class="nota">Arrastra la carta a la izquierda o a la derecha. Antes de decidir verás qué fuerzas se ven afectadas y cuánto, pero no si suben o bajan. Si una llega a cero o al máximo, caes. Los cuatro emojis de arriba son las fuerzas que pueden derribarte: Ejército (🪖), Pueblo (✊), Élite (🎩) y Potencias (🌐). Tócalos para ver qué son. Si su barra se vacía o se llena hasta el rojo, estás cerca de caer. Los cuadrados de abajo guardan las consecuencias duraderas de tus decisiones: tócalos también. Este prototipo contiene las eras 1, 2 y 3, con algunas cartas en borrador.</p>
+    <div class="estilo" id="estilo"></div>
+    <p class="nota">Arrastra la carta a la izquierda o a la derecha. Antes de decidir verás qué fuerzas se ven afectadas y cuánto, pero no si suben o bajan. Si una llega a cero o al máximo, caes. Los cuatro iconos de arriba son las fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). Tócalos para ver qué son. Si su barra se vacía o se llena hasta el rojo, estás cerca de caer. Los cuadrados de abajo guardan las consecuencias duraderas de tus decisiones: tócalos también. Este prototipo contiene las eras 1, 2 y 3, con algunas cartas en borrador.</p>
   </section>
 
   <section id="screen-name" class="screen pantalla-texto hidden">

@@ -82,7 +82,7 @@ const CARTAS = [
   /* ---------- Sorteo ---------- */
   {
     id: "tierra", tipo: "sorteo", peso: 12, titulo: "La tierra", ilustracion: null,
-    personaje: "Ministro de Agricultura",
+    personaje: "Ministro de Trabajo",
     texto: "Comandante, proponemos repartir las grandes propiedades entre los campesinos. Los terratenientes no estarán contentos.",
     archivo: "La Ley de Reforma Agraria de Cuba (1959) y la del Perú bajo el gobierno militar de Velasco (1969) repartieron grandes propiedades. Ambas afectaron a intereses extranjeros y locales, y obligaron a replantear la producción agrícola.",
     izq: { accion: "Aplazar la reforma.", remate: "Primero necesito que estén contentos los que tienen dinero.", efectos: { pueblo: -10, elite: 8 } },
@@ -260,7 +260,7 @@ const CARTAS = [
 
   {
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre", ilustracion: null,
-    personaje: "Ministro de Agricultura",
+    personaje: "Ministro de Trabajo",
     texto: "Comandante, los campesinos tienen tierra, pero no semillas, tractores ni crédito. La cosecha ha caído a la mitad.",
     archivo: "En marzo de 1962 Cuba introdujo la libreta de abastecimiento para racionar alimentos y productos básicos, un sistema que se mantuvo durante décadas.",
     izq: { accion: "Racionar los alimentos.", remate: "El Pueblo tendrá lo necesario y aprenderá a agradecerlo.", efectos: { pueblo: -6, elite: 3, crisis: -1 } },
@@ -404,7 +404,7 @@ const CARTAS = [
 
   {
     id: "cosecha_record", era: 2, tipo: "sorteo", peso: 8, titulo: "La cosecha récord", ilustracion: null,
-    personaje: "Ministro de Agricultura",
+    personaje: "Ministro de Trabajo",
     texto: "Comandante, la cosecha es récord, según los informes. Los almacenes, curiosamente, están vacíos.",
     archivo: "Durante el Gran Salto Adelante en China (1958-1962), muchos funcionarios locales informaron de cosechas infladas para complacer al Partido. El Estado requisó grano que luego faltó, y la hambruna causó millones de muertes.",
     izq: { accion: "Proclamar el récord.", remate: "El Pueblo no come estadísticas, pero escucha las noticias.", efectos: { pueblo: 5, elite: 3, crisis: 2 } },
@@ -584,7 +584,7 @@ const CARTAS = [
   },
   {
     id: "zafra_diez_millones", era: 3, tipo: "sorteo", peso: 10, titulo: "La zafra de los diez millones", ilustracion: null,
-    personaje: "Ministro de Agricultura",
+    personaje: "Ministro de Trabajo",
     texto: "Excelencia, para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.",
     archivo: "En 1970 Cuba se propuso una zafra de diez millones de toneladas de azúcar. Movilizó a media población y logró unos ocho millones y medio, la mayor de su historia, a costa de desorganizar el resto de la economía.",
     izq: { accion: "Todos a la zafra.", remate: "El que corta caña no conspira.", efectos: { pueblo: -6, ejercito: 3, elite: 3, crisis: -1 } },

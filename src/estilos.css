@@ -37,6 +37,11 @@ body {
 .titulo { font-family: var(--fuente-titulo); font-weight: 400; letter-spacing: 0; }
 .hidden { display: none !important; }
 .emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-style: normal; line-height: 1; }
+.defs-svg { position: absolute; width: 0; height: 0; overflow: hidden; }
+/* Iconos de papel recortado. En Noir pasan a blanco y negro (son <img> HTML: aquí el filtro CSS sí funciona). */
+.icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.icono.en-linea { display: inline-block; height: 1.25em; width: auto; vertical-align: -.3em; margin: 0 .25em 0 .05em; }
+.noir .icono { filter: grayscale(1) contrast(1.15); }
 .ico { display: inline-block; width: 24px; height: 24px; flex: none; fill: currentColor; }
 
 .screen {
@@ -106,18 +111,34 @@ body {
 .pendiente h3 { margin: 0 0 6px; font-weight: 700; font-size: 16px; }
 .pendiente ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.45; }
 
+/* Estilo (portada): muestra del personaje + botones segmentados con contorno; el elegido, invertido */
+.estilo { display: flex; gap: 14px; align-items: stretch; padding: 12px; border: 2px dashed var(--carbon); }
+.estilo .muestra { flex: none; width: 92px; aspect-ratio: 3 / 4; background: var(--fondo-escena, var(--gris)); border: var(--trazo); overflow: hidden; }
+.estilo .controles { flex: 1; min-width: 0; display: grid; gap: 8px; align-content: center; }
+.fila-estilo { display: grid; gap: 4px; }
+.fila-estilo > span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); }
+.segmento { display: flex; border: var(--trazo); border-radius: var(--radio); overflow: hidden; }
+.segmento button {
+  flex: 1; min-width: 0; min-height: 36px; padding: 0 4px; border: none; border-left: 2px solid var(--carbon);
+  background: var(--bloque); color: var(--tinta); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.segmento button:first-child { border-left: none; }
+.segmento button[aria-pressed="true"] { background: var(--tinta); color: var(--bloque); }
+.segmento button:focus-visible { outline: 3px solid var(--tinta); outline-offset: -5px; }
+
 /* ---------- Juego ---------- */
 #screen-game { position: relative; overflow: visible; }
 
 /* Cabecera: las cuatro fuerzas y el menú, cerradas por una línea doble de tinta */
 .cabecera { display: flex; align-items: flex-start; gap: 6px; padding-bottom: 6px; border-bottom: 4px double var(--carbon); }
 
-/* Las cuatro fuerzas: un emoji, la barra horizontal debajo y los puntos de pista bajo la barra */
+/* Las cuatro fuerzas: un icono, la barra horizontal debajo y los puntos de pista bajo la barra */
 .barras { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
 .barra { display: block; width: 100%; margin: 0; padding: 4px 6px 0; border: none; background: none; color: inherit; font: inherit; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
 .barra:focus-visible { outline: 2px solid var(--tinta); outline-offset: 1px; }
 .par { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.par .emoji { height: 30px; display: flex; align-items: center; justify-content: center; }
+.par .icono-fuerza { height: 32px; display: flex; align-items: center; justify-content: center; }
+.par .icono-fuerza .icono { height: 100%; }
 .nivel {
   position: relative; width: 100%; height: 10px; overflow: hidden;
   background: var(--bloque); border: 1.5px solid var(--carbon); border-radius: 1px;
@@ -129,7 +150,7 @@ body {
 .barra .punto-zona { height: 18px; margin-top: 4px; display: flex; align-items: center; justify-content: center; }
 .barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
 
-/* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al emoji.
+/* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
    Al entrar en la zona crítica el móvil vibra (motor.js). */
 .alerta {
   display: none; position: absolute; top: -2px; right: calc(50% - 30px);
@@ -180,9 +201,19 @@ body {
   cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease;
 }
 .carta:active { cursor: grabbing; }
-.ilustracion { flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; background: var(--gris); }
+.ilustracion { flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; background: var(--fondo-escena, var(--gris)); }
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background: var(--gris); color: var(--tinta-suave); }
-.retrato { mix-blend-mode: multiply; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+/* Personaje: SVG con la imagen recortada y los ojos encima, pegado al borde inferior */
+.personaje { display: block; width: 100%; height: 100%; pointer-events: none; user-select: none; }
+.personaje .ojos { fill: var(--ojo, #161618); transition: transform .14s ease-out; }
+.personaje .humo { fill: #e9e7e2; filter: url(#sombra-humo); transform-box: fill-box; transform-origin: 50% 100%; }
+.humo1 { animation: humo 4.5s linear infinite; }
+.humo2 { animation: humo 4.5s linear -2.25s infinite; }
+@keyframes humo {
+  0%   { opacity: .85; transform: translate(0, 0) scale(.7); }
+  70%  { opacity: .5; }
+  100% { opacity: 0; transform: translate(14px, -120px) scale(1.5); }
+}
 .carta .nombre {
   flex: none; min-height: 46px; padding: 6px 10px; background: var(--bloque); border-top: var(--trazo);
   display: flex; align-items: center; justify-content: center; text-align: center;
@@ -215,13 +246,13 @@ body {
   font: inherit; font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer;
   animation: aparece .35s ease-out;
 }
-.aviso-archivo .emoji { font-size: 13px; }
+.aviso-archivo .icono.en-linea { height: 18px; margin-right: 4px; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; gap: 5px; flex-shrink: 0; }
 .ranura { width: 36px; height: 36px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
 .ranura.llena { background: var(--bloque); border: var(--trazo); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .emoji { font-size: 20px; }
+.ranura .icono { width: 28px; height: 28px; }
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
 @keyframes invierte { 0% { background: var(--tinta); border-color: var(--bloque); } 100% { background: var(--bloque); } }
@@ -259,7 +290,7 @@ body {
 #screen-end h2.fin-causa { font-size: clamp(26px, 8vw, 36px); line-height: 1.1; margin: 0; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
 .fin-fuerza { display: flex; align-items: center; gap: 18px; padding: 14px 16px; border: 2px solid var(--rojo); background: var(--rojo-claro); color: var(--tinta); }
 .fin-fuerza .par { flex: none; width: 110px; gap: 10px; }
-.fin-fuerza .par .emoji { height: auto; }
+.fin-fuerza .par .icono-fuerza { height: 52px; }
 .fin-fuerza .alerta { display: flex; animation: none; top: 0; right: 4px; }
 .fin-fuerza .nivel { height: 14px; background: var(--bloque); }
 .fin-fuerza .nivel .relleno { transition: none; animation: none; }
@@ -285,6 +316,7 @@ body {
   border: var(--trazo); border-radius: var(--radio); background: var(--bloque);
   color: var(--tinta); font: inherit; text-align: left; cursor: pointer;
 }
+.fila-archivo .ico-circulo .icono { width: 80%; height: 80%; }
 .fila-archivo .ico-circulo { display: flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; background: var(--gris); font-size: 20px; }
 .fila-archivo .textos { display: grid; min-width: 0; }
 .fila-archivo b { font-weight: 700; font-size: 16px; line-height: 1.3; }
@@ -304,12 +336,12 @@ body {
 }
 @media (max-height: 640px) {
   .mensaje { height: calc(5 * 1.3em + 8px); }
-  .par .emoji { height: 26px; }
+  .par .icono-fuerza { height: 28px; }
 }
 @media (max-width: 380px) {
   .ranuras { gap: 4px; }
   .ranura { width: 33px; height: 33px; }
-  .ranura .emoji { font-size: 18px; }
+  .ranura .icono { width: 25px; height: 25px; }
   .pie-juego { gap: 8px; }
   .dictador b { font-size: 14px; }
   .aviso-archivo { font-size: 12px; padding: 0 6px 0 4px; }

@@ -238,7 +238,7 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 
 ### 20. La zafra de los diez millones
 
-**Personaje:** Ministro de Agricultura  
+**Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Excelencia, para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.»

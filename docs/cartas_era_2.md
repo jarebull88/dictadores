@@ -98,7 +98,7 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 
 ### 8. El hambre
 
-**Personaje:** Ministro de Agricultura  
+**Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `reforma_agraria`.
 
 **Carta:** «Comandante, los campesinos tienen tierra, pero no semillas, tractores ni crédito. La cosecha ha caído a la mitad.»
@@ -296,7 +296,7 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 
 ### 24. La cosecha récord
 
-**Personaje:** Ministro de Agricultura  
+**Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8.
 
 **Carta:** «Comandante, la cosecha es récord, según los informes. Los almacenes, curiosamente, están vacíos.»

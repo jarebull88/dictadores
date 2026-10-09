@@ -1,6 +1,6 @@
 # Historial de decisiones
 
-Lo que se ha decidido hasta el **6 de octubre de 2026**, agrupado por tema. «Vigente» = sigue en el juego. «Descartado» = se probó y se quitó (no volver a ello sin preguntar a Jorge). Añade aquí cada decisión nueva, con fecha.
+Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «Vigente» = sigue en el juego. «Descartado» = se probó y se quitó (no volver a ello sin preguntar a Jorge). Añade aquí cada decisión nueva, con fecha.
 
 ## 1. Concepto y tono
 - **Vigente.** Juego tipo Reigns: cartas con dos opciones, cuatro fuerzas y fin al llegar a 0 o 100. Eres un dictador de un país del Caribe **sin nombre** (antes se llamaba «República de Valderia»; se quitó de la portada porque «no hace falta hacer referencia a ningún país»).
@@ -92,6 +92,14 @@ Lo que se ha decidido hasta el **6 de octubre de 2026**, agrupado por tema. «Vi
 - **Vigente.** Jorge reescribió también los mensajes y remates de las **25 cartas de la era 3**, en el mismo tono que las eras 1 y 2 (primera persona del dictador). Cumplen todos los límites.
 - **Corregido.** «El viaje oficial», opción A: el remate era el de la B; ahora dice «Dos semanas de aplausos extranjeros valen un par de riesgos».
 - **Vigente.** Los embajadores hablan en **primera persona** («nuestro país considera…, aplicaremos…», «pedimos…»), nunca en tercera. Afecta a las cartas de embajador de las tres eras. «El jefe pide más» vuelve a «solicito autorización…» (servilismo).
+
+## 7 bis. Papel recortado, ojos y estilos (10 oct)
+- **Vigente.** Nueva dirección de arte: **manualidades de papel recortado** (Gemini, sobre croma verde). Diez personajes y catorce iconos que sustituyen a los emojis en todo el juego. Se borran las fotos de prensa en blanco y negro, los prompts antiguos y su herramienta.
+- **Vigente.** **Agricultura desaparece**: el Ministro de Trabajo hereda sus cuatro cartas (la tierra, el hambre, la cosecha récord y la zafra). Diez portavoces.
+- **Vigente.** Los ojos se dibujan por código y **siguen a la carta**: miran al centro, al lado contrario del arrastre. Se descarta la animación automática de 11 s del documento original.
+- **Vigente.** Dos estilos, Normal y **Noir** (blanco y negro con rojo como único acento; fondo y ojos a elegir entre blanco, negro y rojo; por defecto fondo negro y ojos blancos). Se eligen en la portada, con una muestra del personaje.
+- **Vigente.** Se mantienen los nombres del juego («Consejo de Ministros», «potencia del norte»), no los del documento de Gemini.
+- **Pendiente.** Fondos de escena más elaborados (ahora son colores planos). Revisar las estrellas de tres personajes (regla de insignias). El HTML pasa a pesar ~3,4 MB; si hace falta, bajar los personajes a 700 px.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

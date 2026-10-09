@@ -2,13 +2,13 @@
 
 Juego de cartas satírico, tipo Reigns, de Jorge. Eres un dictador de un país del Caribe **sin nombre**: decides deslizando la carta a izquierda o derecha, y cada decisión mueve cuatro fuerzas (Pueblo, Ejército, Élite, Potencias). Si una llega a 0 o a 100, caes. Humor negro seco: los personajes hablan en serio y con servilismo; el chiste lo pone la ironía del propio dictador.
 
-Es **un único HTML autocontenido** (`dist/index.html`, ~1,7 MB, sin red). Hoy hay tres eras jugables: Ascenso (1), Consolidación (2) y Culto (3), 70 cartas. El plan completo es de 7 eras.
+Es **un único HTML autocontenido** (`dist/index.html`, sin red). Hoy hay tres eras jugables: Ascenso (1), Consolidación (2) y Culto (3), 70 cartas. El plan completo es de 7 eras.
 
 ## Cómo trabajar
 ```
 npm install            # una vez (jsdom, para las pruebas)
-pip install pillow     # una vez (para montar las imágenes)
-npm test               # monta el juego y pasa 24 pruebas
+pip install pillow numpy scipy   # solo para recortar personajes e iconos (tools/recortar.py)
+npm test               # monta el juego y pasa 28 pruebas
 npm run build          # solo montar → dist/index.html
 npm run docs           # regenera docs/ desde los datos
 npm run simular        # supervivencia y cobertura de cartas con miles de partidas
@@ -19,15 +19,15 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 ## Mapa de la carpeta
 - `src/datos.js` — **fuente única** de cartas, eras, finales y consecuencias futuras. Aquí se editan textos y efectos.
 - `src/motor.js` — reglas, estados del régimen, interfaz y gestos. `src/estilos.css`, `src/cuerpo.html` — aspecto y pantallas.
-- `data/ilustraciones.json` — qué imagen tiene cada personaje. `assets/personajes/definitivos/` — los once retratos (3:4, con el nombre impreso debajo; el montaje lo recorta).
-- El arte antiguo (lápiz de cera, papel recortado, pegatinas, provisionales) se borró el 6 oct; solo queda en el historial de git. No lo recuperes sin preguntar.
+- `assets/personajes/` — `originales/` (Gemini, con croma), `recortados/` (WebP con transparencia) y `personajes.json` (ojos, Noir, extras). `assets/iconos/` — igual, para los iconos. **Antes de tocar personajes o iconos, lee `docs/PIPELINE_PERSONAJES.md`.**
+- El arte antiguo (lápiz de cera, fotos de prensa, papel recortado con ojos, pegatinas) se borró; solo queda en el historial de git. No lo recuperes sin preguntar.
 - `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md` y `brief_claude_design.md`.
-- `prompts/` — fichas y generador de los prompts de imagen. `tools/` — build (incluye el recorte de retratos), simulación y exportación. `tests/` — pruebas.
+- `tools/` — `recortar.py` (croma de personajes e iconos), build, simulación y exportación. `tests/` — pruebas.
 
 ## Reglas de contenido (no negociables)
 1. **Ningún país real dentro de las cartas ni de las ilustraciones.** Solo el `archivo` histórico de cada carta puede nombrar casos reales (Cuba, URSS, Chile…), siempre marcado «datos pendientes de verificar». Sin banderas, estrellas, escudos ni insignias reales.
 2. **Con el dictador solo hablan:** sus ministros, el mando militar (Interior y Fuerzas Armadas) y los embajadores extranjeros. **La gente corriente y Varela nunca hablan**: los mencionan los ministros («el general Varela recibe oficiales en su casa»).
-3. **Once portavoces:** Vicepresidente del Consejo de Ministros, Economía, Comercio, Agricultura, Educación (ministra), Trabajo, Cultura (ministra), Fuerzas Armadas, Interior, Embajador del bloque oriental, Embajador de la potencia del norte. Los ministerios se inspiran en los cubanos (de memoria: **verifícalos**). Para eras futuras: Salud Pública, Justicia, Relaciones Exteriores, Industrias, Azúcar, Recuperación de Bienes Malversados.
+3. **Diez portavoces:** Vicepresidente del Consejo de Ministros, Economía, Comercio, Educación (ministra), Trabajo (heredó las cartas de Agricultura, que ya no existe), Cultura (ministra), Fuerzas Armadas, Interior, Embajador del bloque oriental, Embajador de la potencia del norte. Los ministerios se inspiran en los cubanos (de memoria: **verifícalos**). Para eras futuras: Salud Pública, Justicia, Relaciones Exteriores, Industrias, Azúcar, Recuperación de Bienes Malversados.
 4. **Grupo = fuerza:** Élite: el gabinete civil. Ejército: Interior y Fuerzas Armadas. Potencias: los embajadores. Pueblo: sin portavoz. (Los colores por grupo se quitaron: la interfaz es en blanco y negro.)
 5. **Los ministros son «víboras vividoras»:** cerdos de la granja, no trabajadores. En arte y texto, lujo, glotonería y desprecio; nunca sudor, herramientas, aulas ni ropa de obrero.
 6. **Diversidad:** el gabinete mezcla sexos y orígenes (ahora mismo: Educación y Cultura son mujeres). No se expresa la maldad con rasgos étnicos, sino con gesto, mirada y lujo. Caribe: sin trajes y casi sin mangas largas (camisas de manga corta, guayaberas); solo los embajadores visten de fuera.
@@ -47,17 +47,19 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 
 ## Interfaz (decisiones vigentes)
 - Solo se juega **arrastrando** (o con las flechas): sin botones de decisión ni pantallas entre cartas. Umbral = 22 % del ancho de la carta; un gesto rápido también decide. Al llegar a la zona de decisión, la carta se rodea de un **contorno negro grueso**, el nombre se invierte y la respuesta se vuelve opaca (sin texto añadido).
-- Arriba (sin línea de año): **cuatro emojis** (🪖 Ejército, ✊ Pueblo, 🎩 Élite, 🌐 Potencias) con barra horizontal debajo, **puntos rojos de pista** debajo (tamaño = cuánto, nunca signo) y cerradas por una línea doble. Por debajo de 15 o por encima de 85 la barra se pone **roja (lisa), parpadea, sale un «!»** junto al emoji y el móvil vibra al entrar (nunca solo color).
+- Arriba (sin línea de año): **cuatro iconos de papel** (casco = Ejército, puño = Pueblo, chistera = Élite, globo = Potencias) con barra horizontal debajo, **puntos rojos de pista** debajo (tamaño = cuánto, nunca signo) y cerradas por una línea doble. Por debajo de 15 o por encima de 85 la barra se pone **roja (lisa), parpadea, sale un «!»** junto al emoji y el móvil vibra al entrar (nunca solo color).
 - Mensaje del personaje **sobre la carta**, sin caja (directo sobre el papel), hasta 6 líneas a 19 px (17 px en pantallas bajas). Carta **3:4** (foto + **nombre escrito debajo**), con el mazo detrás y marcas de corte. La respuesta a la opción aparece **sobre la carta** en un plano de tinta. En la zona de decisión: **contorno grueso rojo** y la respuesta (lo que eliges) en un bloque rojo. La carta nunca se recorta al arrastrarla.
-- Abajo, tras una línea de puntos: «Comandante X», «N años en el poder» y cuatro ranuras de **estados** (emojis; vacías con borde discontinuo, llenas con contorno negro). Debajo, otro divisor y «Abandonar partida» en texto pequeño (no hay botón de menú). Tocar un emoji de arriba o una ranura abre una ventana (borde doble) que lo explica.
+- Abajo, tras una línea de puntos: «Comandante X», «N años en el poder» y cuatro ranuras de **estados** (iconos de papel; vacías con borde discontinuo, llenas con contorno negro). Debajo, otro divisor y «Abandonar partida» en texto pequeño (no hay botón de menú). Tocar un emoji de arriba o una ranura abre una ventana (borde doble) que lo explica.
 - Pantalla final: **«¡Has caído!» enorme**, la causa, la fuerza que cayó con su barra y la última decisión.
-- Aspecto: **documento impreso de los 60.** Papel envejecido `#ECE9E1`, bloques blanco roto `#F8F6F0`, gris imprenta `#D9D5CB`, carbón `#2B2A27`, tinta `#1C1B19`. **Rojo `#B3261E` solo para alertas y decisión** (barras en peligro, puntos de pista, contorno de la carta lista para decidir, «¡Has caído!»). El fondo blanco de los retratos se mezcla por multiplicación con el gris imprenta. Sin sombras ni degradados: lo pulsable lleva contorno negro neto; activo = colores invertidos; separaciones con línea doble, línea de puntos y marcas de corte. Tipografía de máquina de escribir: **Courier Prime** (texto, 16 px mínimo en el cuerpo) y **Special Elite** (títulos). Solo tema claro. Sin pictogramas: emojis.
+- Aspecto: **documento impreso de los 60.** Papel envejecido `#ECE9E1`, bloques blanco roto `#F8F6F0`, gris imprenta `#D9D5CB`, carbón `#2B2A27`, tinta `#1C1B19`. **Rojo `#B3261E` solo para alertas y decisión** (barras en peligro, puntos de pista, contorno de la carta lista para decidir, «¡Has caído!»). El fondo blanco de los retratos se mezcla por multiplicación con el gris imprenta. Sin sombras ni degradados: lo pulsable lleva contorno negro neto; activo = colores invertidos; separaciones con línea doble, línea de puntos y marcas de corte. Tipografía de máquina de escribir: **Courier Prime** (texto, 16 px mínimo en el cuerpo) y **Special Elite** (títulos). Solo tema claro. Iconos: manualidades de papel recortado (ya no emojis).
 - Primera pantalla: título «¡Comandante, ordene!» (el juego se llama así) y un subtítulo en negrita, sin país. Segunda: solo «Comandante» y debajo el campo del nombre (se lee «Comandante X»); más de una palabra da aviso.
 
-## Ilustraciones
-- **Vigente (6 oct):** fotografías de prensa en blanco y negro, 1792×2400 (3:4), una por portavoz, en `assets/personajes/definitivos/`. Traen el nombre impreso debajo con tipografías distintas (y alguna errata): `tools/build.py` detecta la franja en blanco, **quita el pie de foto**, deja el personaje pegado al borde inferior y las iguala de proporción. El nombre lo escribe el juego.
-- Para cambiar un retrato basta con sustituir el archivo (mismo nombre) y `npm run build`.
-- Descartados: lápiz de cera, papel recortado con ojos y boca que cambian, pegatinas con borde blanco, hojas de baja resolución con etiquetas.
+## Personajes, iconos y estilos (vigente desde el 10 oct)
+- **Manualidades de papel recortado** generadas con Gemini sobre croma verde; recortadas con `tools/recortar.py`. Diez personajes y catorce iconos (4 fuerzas, 8 estados, archivo y candado).
+- **La imagen no tiene ojos:** son dos círculos SVG por encima. **Siguen a la carta**: miran al centro, al lado contrario del arrastre (no se mueven solos). Fuerzas Armadas lleva humo animado en el puro.
+- **Dos estilos**, elegidos en la portada y guardados en el navegador: **Normal** (a color; fondo gris, papel o carbón) y **Noir** (filtro SVG de blanco y negro; fondo y ojos en blanco, negro o rojo; el rojo es el único acento; iconos en gris). El resto de la interfaz es igual en los dos.
+- El blanco y negro de los personajes va **siempre con el filtro SVG** (`#bw`, `#bw-suave`), nunca con CSS. Interior y Trabajo usan el suave.
+- Aún pendiente: fondos de escena con más trabajo (ahora son colores planos). Hay estrellas en tres personajes (solapa roja del Embajador oriental, boina de Fuerzas Armadas, placa dorada de Educación): la regla 1 prohíbe insignias reales.
 
 ## Cómo trabaja Jorge (y cómo responderle)
 - Español, **tuteo**. Lo revisa casi todo **desde el móvil**: respuestas cortas y claras, lo importante primero, sin tablas enormes.

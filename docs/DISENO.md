@@ -11,7 +11,7 @@ Este documento explica **cómo funciona** el juego. Las cartas concretas, las ba
 6. **Archivo histórico:** colección persistente (localStorage) de referencias reales desbloqueadas, una por partida.
 
 ## Las cuatro fuerzas y la crisis oculta
-Pueblo ✊, Ejército 🪖, Élite 🎩 y Potencias 🌐, todas empiezan en 50. 0 o 100 = caída (cada extremo tiene su final en `finales.md`). La **crisis oculta** (la economía) no es una barra: sube con promesas imposibles y, al cruzar umbrales, dispara cartas de crisis. El jugador nunca ve su número.
+Pueblo (puño), Ejército 🪖, Élite 🎩 y Potencias 🌐, todas empiezan en 50. 0 o 100 = caída (cada extremo tiene su final en `finales.md`). La **crisis oculta** (la economía) no es una barra: sube con promesas imposibles y, al cruzar umbrales, dispara cartas de crisis. El jugador nunca ve su número.
 Los puntos de pista que aparecen al arrastrar avisan **de cuánto** se verá afectada cada fuerza, **no de si sube o baja**.
 
 ## Orden en que se roba una carta
@@ -42,14 +42,10 @@ Objetivo: **jugando al azar se supera la era 1 en torno al 28 % de las veces**; 
 5. `npm test`, `npm run simular` (¿se ven todas las cartas? ¿supervivencia razonable?), ajusta `era.factor`, `npm run docs`, y apunta la decisión en el historial.
 
 ## Cómo se añade o cambia un personaje
-1. Retrato: fotografía en blanco y negro 3:4 (la generada trae el nombre impreso debajo; no hace falta quitarlo, lo recorta el montaje). Guárdala en `assets/personajes/definitivos/`.
-2. Mapa: `data/ilustraciones.json` (clave → archivo) y, si el personaje es nuevo, `ILUSTRACION` y `GRUPO_DE` en `src/motor.js`.
-3. Si cambia el nombre, cámbialo en `src/datos.js` (campo `personaje`) y en `motor.js`.
-4. `npm test` (comprueba que cada personaje tiene grupo e imagen) y `npm run docs`.
-5. Prompts de imagen: fichas en `prompts/personajes_bn.json` → `python3 tools/generar_prompts.py`.
+Sigue `docs/PIPELINE_PERSONAJES.md`: imagen de Gemini con croma en `assets/personajes/originales/`, `python3 tools/recortar.py`, ojos en `assets/personajes/personajes.json`, `PERSONAJE_SLUG` y `GRUPO_DE` en `src/motor.js`, `npm test` y `npm run docs`.
 
 ## Técnica
-- Un solo HTML: datos + motor + estilos + retratos WebP (720 px de ancho, recortados) + fuentes en base64. Ver `tools/build.py`.
+- Un solo HTML: datos + motor + estilos + personajes e iconos WebP con transparencia + fuentes, todo en base64. Ver `tools/build.py`.
 - Persistencia: `localStorage` (archivo y nombre), con respaldo en memoria si no está disponible.
 - Las pruebas usan jsdom (sin navegador). Para ver el aspecto real, abre `dist/index.html` a 360–430 px de ancho.
 - Fecha de esta versión: 6 de octubre de 2026.

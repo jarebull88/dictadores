@@ -42,7 +42,7 @@ const UI = {
 };
 const icoUI = n => `<svg class="ico" viewBox="0 -960 960 960" aria-hidden="true"><path d="${UI[n]}"/></svg>`;
 
-/* Los estados del régimen se muestran con emojis */
+/* Emojis de los estados: ya no se ven en el juego (se usan iconos de papel); solo los usan los documentos generados */
 const EMOJI_ESTADO = {
   censura: "🤐", vigilancia: "👁️", culto: "🖼️", alineado: "🤝",
   embargo: "🚫", frontera: "🧱", nacionalizado: "🏭", deuda: "💸"
@@ -119,21 +119,21 @@ for (const id in ESTADOS) {
 const MAX_RANURAS = 4;
 
 /* =====================================================
-   RETRATOS: fotografía de prensa en blanco y negro, en 3:4, con el nombre del personaje debajo.
-   Clave de cada personaje en data/ilustraciones.json (el montaje recorta el pie de foto impreso).
+   PERSONAJES: manualidades de papel recortado (RETRATOS, incrustado por tools/build.py desde
+   assets/personajes/personajes.json). La imagen no tiene ojos: se pintan por código y miran hacia el
+   centro cuando la carta se desplaza. Ver docs/PIPELINE_PERSONAJES.md.
    ===================================================== */
-const ILUSTRACION = {
+const PERSONAJE_SLUG = {
   "Vicepresidente del Consejo de Ministros": "vicepresidente",
   "Ministro de Economía": "economia",
   "Ministro de Comercio": "comercio",
-  "Ministro de Agricultura": "agricultura",
   "Ministra de Educación": "educacion",
-  "Ministro de Trabajo": "trabajo",
+  "Ministro de Trabajo": "trabajo",                 /* hereda las cartas del antiguo Ministro de Agricultura */
   "Ministra de Cultura": "cultura",
-  "Ministro de las Fuerzas Armadas": "fuerzas_armadas",
+  "Ministro de las Fuerzas Armadas": "fuerzas-armadas",
   "Ministro del Interior": "interior",
-  "Embajador del bloque oriental": "embajador_oriental",
-  "Embajador de la potencia del norte": "embajador_norte"
+  "Embajador del bloque oriental": "embajador-oriental",
+  "Embajador de la potencia del norte": "embajador-occidental"
 };
 /* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Varela solo son mencionados.
    Grupo de cada personaje = fuerza a la que pertenece.
@@ -142,14 +142,90 @@ const ILUSTRACION = {
 const GRUPO_DE = {
   "Ministro del Interior": "ejercito", "Ministro de las Fuerzas Armadas": "ejercito",
   "Vicepresidente del Consejo de Ministros": "elite", "Ministro de Economía": "elite", "Ministro de Comercio": "elite",
-  "Ministro de Agricultura": "elite", "Ministra de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
+  "Ministra de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
   "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias"
 };
-Object.values(IMG).forEach(p => { const i = new Image(); i.src = p.src; });
+[...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
+
+/* Iconos de papel recortado (fuerzas, estados del régimen y archivo) */
+const icono = (id, clase = "") => IMG["icono_" + id]
+  ? `<img class="icono${clase ? " " + clase : ""}" src="${IMG["icono_" + id].src}" alt="" draggable="false">` : "";
+
+/* Una voluta de humo (Fuerzas Armadas): tres círculos grises con una sombra corta */
+const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/><circle cx="-7" cy="-34" r="10"/>';
+function svgPersonaje(slug, nombre) {
+  const p = RETRATOS[slug];
+  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+  const suave = p.noir && p.noir.contraste === "suave";
+  const humo = (p.extras || []).includes("humo") && p.humo
+    ? `<g transform="translate(${p.humo[0]} ${p.humo[1]})"><g class="humo humo1">${VOLUTA}</g><g class="humo humo2">${VOLUTA}</g></g>` : "";
+  return `<svg class="personaje" viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMax slice" role="img" aria-label="${esc(nombre || p.nombre)}">` +
+    `<image class="base" data-suave="${suave ? 1 : 0}" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${humo}` +
+    `<g class="ojos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
+}
+/* Los ojos miran hacia el centro: si la carta va a la derecha, miran a la izquierda. frac: −1 … 1 */
+const RECORRIDO_OJOS = 10;   // en unidades del dibujo (900 de ancho)
+function mirar(frac) {
+  const g = document.querySelector("#carta .ojos");
+  if (!g) return;
+  const f = Math.max(-1, Math.min(1, frac || 0));
+  g.style.transform = `translate(${(-f * RECORRIDO_OJOS).toFixed(1)}px, ${(Math.abs(f) * 1.5).toFixed(1)}px)`;
+}
 
 /* =====================================================
-   LAS CUATRO FUERZAS: un emoji, una barra horizontal debajo y los puntos de pista bajo la barra
+   ESTILO: Normal (papel a color) o Noir (blanco y negro, con el rojo como único acento).
+   En Noir el jugador elige el fondo y el color de los ojos. Se guarda en el navegador.
    ===================================================== */
+const CLAVE_ESTILO = "dictadores_estilo_v1";
+const OPCIONES_ESTILO = {
+  modo:        { normal: "Normal", noir: "Noir" },
+  fondoNormal: { gris: "#D9D5CB", papel: "#F8F6F0", carbon: "#2B2A27" },
+  fondoNoir:   { negro: "#0b0b0c", blanco: "#f2f0ea", rojo: "#b3171f" },
+  ojosNoir:    { blancos: "#f4f2ec", negros: "#0b0b0c", rojos: "#d3202a" }
+};
+const OJO_NORMAL = "#161618";
+const ETIQUETA_ESTILO = { gris: "Gris", papel: "Papel", carbon: "Carbón", negro: "Negro", blanco: "Blanco", rojo: "Rojo", blancos: "Blancos", negros: "Negros", rojos: "Rojos" };
+const estilo = { modo: "normal", fondoNormal: "gris", fondoNoir: "negro", ojosNoir: "blancos" };
+try {
+  const guardado = JSON.parse(localStorage.getItem(CLAVE_ESTILO) || "{}");
+  for (const k in estilo) if (guardado[k] && OPCIONES_ESTILO[k][guardado[k]]) estilo[k] = guardado[k];
+} catch (e) {}
+function filtrarRetrato(img) {
+  if (estilo.modo === "noir") img.setAttribute("filter", `url(#${img.dataset.suave === "1" ? "bw-suave" : "bw"})`);
+  else img.removeAttribute("filter");
+}
+function aplicarEstilo() {
+  const noir = estilo.modo === "noir", raiz = document.documentElement;
+  raiz.classList.toggle("noir", noir);
+  raiz.style.setProperty("--fondo-escena", noir ? OPCIONES_ESTILO.fondoNoir[estilo.fondoNoir] : OPCIONES_ESTILO.fondoNormal[estilo.fondoNormal]);
+  raiz.style.setProperty("--ojo", noir ? OPCIONES_ESTILO.ojosNoir[estilo.ojosNoir] : OJO_NORMAL);
+  document.querySelectorAll("svg.personaje image.base").forEach(filtrarRetrato);
+  document.querySelectorAll("#estilo [data-grupo]").forEach(g =>
+    g.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(estilo[g.dataset.grupo] === b.dataset.v))));
+  document.querySelectorAll("#estilo [data-solo]").forEach(el => el.classList.toggle("hidden", el.dataset.solo !== estilo.modo));
+}
+function cambiarEstilo(grupo, valor) {
+  if (!OPCIONES_ESTILO[grupo] || !OPCIONES_ESTILO[grupo][valor]) return;
+  estilo[grupo] = valor;
+  try { localStorage.setItem(CLAVE_ESTILO, JSON.stringify(estilo)); } catch (e) {}
+  aplicarEstilo();
+}
+function construirEstilo() {
+  const grupo = (g, etiqueta) => `<div class="fila-estilo"><span>${etiqueta}</span><div class="segmento" data-grupo="${g}" role="group" aria-label="${etiqueta}">` +
+    Object.entries(OPCIONES_ESTILO[g]).map(([v, color]) =>
+      `<button type="button" data-v="${v}">${g === "modo" ? color : ETIQUETA_ESTILO[v] || v}</button>`).join("") + "</div></div>";
+  $("estilo").innerHTML = `<div class="muestra" aria-hidden="true">${svgPersonaje("vicepresidente")}</div><div class="controles">` +
+    grupo("modo", "Estilo") +
+    `<div data-solo="normal">${grupo("fondoNormal", "Fondo")}</div>` +
+    `<div data-solo="noir">${grupo("fondoNoir", "Fondo")}${grupo("ojosNoir", "Ojos")}</div></div>`;
+  $("estilo").querySelectorAll("[data-grupo] button").forEach(b =>
+    b.addEventListener("click", () => cambiarEstilo(b.closest("[data-grupo]").dataset.grupo, b.dataset.v)));
+}
+
+/* =====================================================
+   LAS CUATRO FUERZAS: un icono, una barra horizontal debajo y los puntos de pista bajo la barra
+   ===================================================== */
+/* Emojis de las fuerzas: solo para los documentos generados; en el juego se ven los iconos de papel */
 const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "🎩", potencias: "🌐" };
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
@@ -349,7 +425,7 @@ function mostrar(id) {
 
 function parBarra(id, esc = 1) {
   return `<div class="par">
-      <div class="emoji" style="font-size:${Math.round(26 * esc)}px" aria-hidden="true">${EMOJI_FUERZA[id]}</div>
+      <div class="icono-fuerza" style="height:${Math.round(32 * esc)}px" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true" style="max-width:${Math.round(72 * esc)}px"><i class="relleno"></i></div>
     </div>`;
@@ -399,7 +475,7 @@ function pintarRanuras() {
   cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
     const s = E.estados[i];
     return s
-      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}"><span class="emoji" aria-hidden="true">${EMOJI_ESTADO[s.id]}</span></button>`
+      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
       : `<div class="ranura"></div>`;
   }).join("");
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
@@ -443,7 +519,7 @@ function contenidoEstado(id, s, etiqueta) {
   const tiempo = d.duracion
     ? `${cadencia} Dura ${d.duracion} años${s ? " y lleva " + s.edad : ""}.`
     : `${cadencia} Se queda hasta que otro estado lo desplace: solo caben ${MAX_RANURAS}.`;
-  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${EMOJI_ESTADO[id]} ${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
+  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
 }
 function mostrarInfo(i) {
   const s = E.estados[i];
@@ -455,18 +531,19 @@ function mostrarFuerza(id, el) {
   const f = FUERZAS[id];
   const bajo = FINALES[id + "_0"].titulo, alto = FINALES[id + "_100"].titulo;
   abrirPopup("fuerza-" + id,
-    `<b>${EMOJI_FUERZA[id]} ${esc(f.nombre)}</b><span>${esc(f.quien)}</span>
+    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>
      <div class="extremos"><div>▼ Si se vacía: <strong>${esc(bajo)}</strong>.</div><div>▲ Si se llena: <strong>${esc(alto)}</strong>.</div></div>
      <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
 }
 
 function pintarCarta(c) {
-  const clave = ILUSTRACION[c.personaje];
-  const ilus = clave && IMG[clave]
-    ? `<div class="ilustracion"><img class="retrato" src="${IMG[clave].src}" alt=""></div>`
+  const slug = PERSONAJE_SLUG[c.personaje];
+  const ilus = slug && RETRATOS[slug]
+    ? `<div class="ilustracion">${svgPersonaje(slug, c.personaje)}</div>`
     : `<div class="ilustracion ph"><div><b>Retrato 3:4</b></div></div>`;
   $("mensaje").textContent = c.texto;
   $("carta").innerHTML = `${ilus}<div class="nombre">${esc(c.personaje)}</div><div class="respuesta" id="respuesta"></div>`;
+  $("carta").querySelectorAll("image.base").forEach(filtrarRetrato);
 }
 
 function pintarEleccion(dir) {
@@ -516,6 +593,7 @@ function decidir(dir) {
   ocultarInfo();
   const carta = $("carta");
   pintarEleccion(dir);
+  mirar(dir);
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
   carta.style.transition = "";
@@ -591,7 +669,7 @@ function mostrarAvisoArchivo() {
   if (!id) return;
   E.archivoPendiente = null;
   const c = POR_ID[id], btn = $("aviso-archivo");
-  btn.innerHTML = "<span class=\"emoji\" aria-hidden=\"true\">📜</span>Archivo desbloqueado";
+  btn.innerHTML = icono("archivo", "en-linea") + "Archivo desbloqueado";
   btn.setAttribute("aria-label", `Archivo desbloqueado: ${c.titulo}`);
   btn.dataset.id = id;
   btn.classList.remove("hidden");
@@ -723,8 +801,8 @@ function terminar(clave, transicion) {
 function pintarArchivo() {
   $("archivo-intro").textContent = `Has descubierto ${desbloqueados.size} de ${ARCHIVABLES.length} referencias históricas. Toca una para leerla.`;
   $("archivo-lista").innerHTML = ARCHIVABLES.map(c => desbloqueados.has(c.id)
-    ? `<button class="fila-archivo" type="button" data-id="${c.id}"><span class="ico-circulo emoji">📜</span><span class="textos"><b>${c.titulo}</b><span class="sub-fila">${c.personaje}</span></span></button>`
-    : `<div class="fila-archivo cerrada"><span class="ico-circulo emoji">🔒</span><span class="textos"><b>Sin descubrir</b></span></div>`
+    ? `<button class="fila-archivo" type="button" data-id="${c.id}"><span class="ico-circulo">${icono("archivo")}</span><span class="textos"><b>${c.titulo}</b><span class="sub-fila">${c.personaje}</span></span></button>`
+    : `<div class="fila-archivo cerrada"><span class="ico-circulo">${icono("bloqueado")}</span><span class="textos"><b>Sin descubrir</b></span></div>`
   ).join("");
   $("archivo-lista").querySelectorAll("button.fila-archivo").forEach(b =>
     b.addEventListener("click", () => abrirDetalle(b.dataset.id))
@@ -806,6 +884,7 @@ function confirmarNombre() {
     marcarListo(false);
     carta.style.transition = ""; carta.style.transform = "";
     pintarEleccion(0);
+    mirar(0);
   }
   carta.addEventListener("pointerdown", e => {
     if (ocupado || panelAbierto) return;
@@ -824,6 +903,7 @@ function confirmarNombre() {
     const dir = Math.abs(drag.dx) > 24 ? Math.sign(drag.dx) : 0;
     if (dir !== drag.dir) { drag.dir = dir; pintarEleccion(dir); }
     marcarListo(Math.abs(drag.dx) > umbral());
+    mirar(drag.dx / umbral());
   });
   function soltar() {
     if (!drag) return;
@@ -877,4 +957,7 @@ $("btn-fin-archivo").addEventListener("click", () => abrirArchivo("screen-end"))
 $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
+document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
+construirEstilo();
+aplicarEstilo();
 mostrar("screen-start");

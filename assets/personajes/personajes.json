@@ -1,0 +1,12 @@
+{
+  "vicepresidente": {"nombre": "Vicepresidente del Consejo de Ministros", "archivo": "vicepresidente.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [374, 272], "der": [530, 272], "r": 11}, "noir": {"contraste": "duro"}, "extras": []},
+  "economia": {"nombre": "Ministro de Economía", "archivo": "economia.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [345, 335], "der": [562, 335], "r": 12}, "noir": {"contraste": "duro"}, "extras": []},
+  "comercio": {"nombre": "Ministro de Comercio", "archivo": "comercio.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [350, 395], "der": [555, 395], "r": 12}, "noir": {"contraste": "duro"}, "extras": []},
+  "educacion": {"nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [362, 397], "der": [537, 397], "r": 10}, "noir": {"contraste": "duro"}, "extras": []},
+  "trabajo": {"nombre": "Ministro de Trabajo", "archivo": "trabajo.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [372, 395], "der": [537, 395], "r": 11}, "noir": {"contraste": "suave"}, "extras": []},
+  "cultura": {"nombre": "Ministra de Cultura", "archivo": "cultura.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [386, 448], "der": [539, 448], "r": 10}, "noir": {"contraste": "duro"}, "extras": []},
+  "fuerzas-armadas": {"nombre": "Ministro de las Fuerzas Armadas", "archivo": "fuerzas-armadas.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [385, 305], "der": [530, 305], "r": 11}, "noir": {"contraste": "duro"}, "extras": ["humo"], "humo": [752, 1128]},
+  "interior": {"nombre": "Ministro del Interior", "archivo": "interior.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [400, 285], "der": [522, 285], "r": 11}, "noir": {"contraste": "suave"}, "extras": []},
+  "embajador-oriental": {"nombre": "Embajador del bloque oriental", "archivo": "embajador-oriental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [375, 355], "der": [530, 355], "r": 10}, "noir": {"contraste": "duro"}, "extras": []},
+  "embajador-occidental": {"nombre": "Embajador de la potencia del norte", "archivo": "embajador-occidental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [355, 385], "der": [550, 385], "r": 13}, "noir": {"contraste": "duro"}, "extras": []}
+}

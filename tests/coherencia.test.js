@@ -16,11 +16,11 @@ test("hay cartas de las tres eras", () => {
 });
 
 test("todas las cartas tienen portavoz con grupo e ilustración", () => {
-  const grupo = ev("GRUPO_DE"), fija = ev("ILUSTRACION"), img = ev("Object.keys(IMG)");
+  const grupo = ev("GRUPO_DE"), slug = ev("PERSONAJE_SLUG"), retratos = ev("Object.keys(RETRATOS)");
   for (const p of new Set(cartas.map(c => c.personaje))) {
     assert.ok(grupo[p], `«${p}» no tiene grupo`);
-    assert.ok(fija[p], `«${p}» no tiene ilustración asignada`);
-    assert.ok(img.includes(fija[p]), `la imagen ${fija[p]} de «${p}» no está embebida`);
+    assert.ok(slug[p], `«${p}» no tiene personaje asignado`);
+    assert.ok(retratos.includes(slug[p]), `el personaje ${slug[p]} de «${p}» no está embebido`);
   }
 });
 
@@ -45,7 +45,8 @@ test("cada carta se pinta con su imagen y su nombre", () => {
   j.empezar();
   for (const c of cartas) {
     w.eval(`E.actual=POR_ID["${c.id}"]; pintarCarta(E.actual);`);
-    assert.ok(d.querySelector("#carta .ilustracion img"), `«${c.id}» no muestra imagen`);
+    assert.ok(d.querySelector("#carta svg.personaje image.base"), `«${c.id}» no muestra imagen`);
+    assert.equal(d.querySelectorAll("#carta svg.personaje .ojos circle").length, 2, `«${c.id}» no tiene dos ojos`);
     assert.equal(d.querySelector("#carta .nombre").textContent, c.personaje);
   }
 });
@@ -79,4 +80,9 @@ test("cada bandera reservada para la era 3 tiene su carta de consecuencia", () =
   const reservadas = Object.keys(futuro).filter(b => futuro[b] === 3);
   const sinCarta = reservadas.filter(b => !exigidas.has(b));
   assert.deepEqual(sinCarta, [], "banderas de la era 3 sin carta: " + sinCarta.join(", "));
+});
+
+test("ya no habla el Ministro de Agricultura: sus cartas son del Ministro de Trabajo", () => {
+  assert.equal(cartas.filter(c => c.personaje === "Ministro de Agricultura").length, 0);
+  assert.ok(cartas.filter(c => c.personaje === "Ministro de Trabajo").length >= 6);
 });

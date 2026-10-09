@@ -13,7 +13,7 @@ sueltas y se quita el rebote verde del borde. Las hojas de iconos se parten en p
 recortes cercanos es un icono, y se nombran por su posición en la hoja (filas de arriba abajo, de
 izquierda a derecha). Necesita numpy, scipy y Pillow.
 """
-import pathlib, sys
+import json, pathlib, sys
 import numpy as np
 from PIL import Image
 from scipy import ndimage as ndi
@@ -52,7 +52,21 @@ def recortar_personaje(entrada, salida):
     rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
     out = Image.fromarray(rgba).resize((ANCHO_PERSONAJE, int(H * ANCHO_PERSONAJE / W)), Image.LANCZOS)
     out.save(salida, "WEBP", quality=88, method=6)
+    anotar_arriba(salida.stem, out)
     return out.size
+
+
+def anotar_arriba(slug, imagen):
+    """Guarda en personajes.json la fila donde empieza el personaje (la cabeza), con un pequeño margen:
+    la carta recorta el aire de encima para que quepa más figura cuando el hueco es ancho."""
+    ruta = RAIZ / "assets/personajes/personajes.json"
+    mapa = json.loads(ruta.read_text(encoding="utf-8"))
+    if slug not in mapa:
+        print(f"  (aviso: {slug} no está en personajes.json; añádelo con sus ojos)"); return
+    alfa = np.array(imagen)[..., 3]
+    filas = np.where((alfa > 128).sum(axis=1) > 3)[0]
+    mapa[slug]["arriba"] = max(0, int(filas[0]) - 24) if len(filas) else 0
+    ruta.write_text("{\n" + ",\n".join(f'  "{k}": ' + json.dumps(v, ensure_ascii=False) for k, v in mapa.items()) + "\n}\n", encoding="utf-8")
 
 
 def recortar_hoja(entrada, nombres, carpeta):

@@ -159,7 +159,8 @@ function svgPersonaje(slug, nombre) {
   const suave = p.noir && p.noir.contraste === "suave";
   const humo = (p.extras || []).includes("humo") && p.humo
     ? `<g transform="translate(${p.humo[0]} ${p.humo[1]})"><g class="humo humo1">${VOLUTA}</g><g class="humo humo2">${VOLUTA}</g></g>` : "";
-  return `<svg class="personaje" viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMax slice" role="img" aria-label="${esc(nombre || p.nombre)}">` +
+  const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza
+  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMin slice" role="img" aria-label="${esc(nombre || p.nombre)}">` +
     `<image class="base" data-suave="${suave ? 1 : 0}" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${humo}` +
     `<g class="ojos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
 }
@@ -539,10 +540,11 @@ function mostrarFuerza(id, el) {
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
   const ilus = slug && RETRATOS[slug]
-    ? `<div class="ilustracion">${svgPersonaje(slug, c.personaje)}</div>`
-    : `<div class="ilustracion ph"><div><b>Retrato 3:4</b></div></div>`;
+    ? svgPersonaje(slug, c.personaje)
+    : `<div class="ph"><b>Sin retrato</b></div>`;
   $("mensaje").textContent = c.texto;
-  $("carta").innerHTML = `${ilus}<div class="nombre">${esc(c.personaje)}</div><div class="respuesta" id="respuesta"></div>`;
+  /* la respuesta va en la parte baja de la foto, para no tapar los ojos mientras se arrastra */
+  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div><div class="nombre">${esc(c.personaje)}</div>`;
   $("carta").querySelectorAll("image.base").forEach(filtrarRetrato);
 }
 

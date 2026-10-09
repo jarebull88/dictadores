@@ -127,17 +127,17 @@ body {
 .segmento button:focus-visible { outline: 3px solid var(--tinta); outline-offset: -5px; }
 
 /* ---------- Juego ---------- */
-#screen-game { position: relative; overflow: visible; }
+#screen-game { position: relative; overflow: visible; padding: 8px 12px 6px; }
 
 /* Cabecera: las cuatro fuerzas y el menú, cerradas por una línea doble de tinta */
-.cabecera { display: flex; align-items: flex-start; gap: 6px; padding-bottom: 6px; border-bottom: 4px double var(--carbon); }
+.cabecera { display: flex; align-items: flex-start; gap: 6px; padding-bottom: 2px; border-bottom: 4px double var(--carbon); }
 
 /* Las cuatro fuerzas: un icono, la barra horizontal debajo y los puntos de pista bajo la barra */
 .barras { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-.barra { display: block; width: 100%; margin: 0; padding: 4px 6px 0; border: none; background: none; color: inherit; font: inherit; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
+.barra { display: block; width: 100%; margin: 0; padding: 0 5px; border: none; background: none; color: inherit; font: inherit; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
 .barra:focus-visible { outline: 2px solid var(--tinta); outline-offset: 1px; }
-.par { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.par .icono-fuerza { height: 32px; display: flex; align-items: center; justify-content: center; }
+.par { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.par .icono-fuerza { height: 46px; display: flex; align-items: center; justify-content: center; }
 .par .icono-fuerza .icono { height: 100%; }
 .nivel {
   position: relative; width: 100%; height: 10px; overflow: hidden;
@@ -147,13 +147,13 @@ body {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
 }
-.barra .punto-zona { height: 18px; margin-top: 4px; display: flex; align-items: center; justify-content: center; }
+.barra .punto-zona { height: 16px; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
 .barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
    Al entrar en la zona crítica el móvil vibra (motor.js). */
 .alerta {
-  display: none; position: absolute; top: -2px; right: calc(50% - 30px);
+  display: none; position: absolute; top: -2px; right: calc(50% - 38px);
   width: 16px; height: 16px; align-items: center; justify-content: center;
   background: var(--rojo); color: var(--bloque); font-family: var(--fuente); font-weight: 700; font-size: 13px; line-height: 1;
 }
@@ -167,33 +167,34 @@ body {
 @keyframes parpadeo { 50% { opacity: 0; } }
 @keyframes parpadeo-suave { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
 @keyframes latido { 0% { outline: 2px solid var(--carbon); outline-offset: 1px; } 100% { outline: 0 solid transparent; } }
-.barra.sube .par::after, .barra.baja .par::after { position: absolute; left: calc(50% + 18px); top: 2px; font-size: 12px; color: var(--carbon); animation: flecha 1.8s ease-out forwards; }
+.barra.sube .par::after, .barra.baja .par::after { position: absolute; left: calc(50% + 26px); top: 2px; font-size: 12px; color: var(--carbon); animation: flecha 1.8s ease-out forwards; }
 .barra.sube .par::after { content: "▲"; }
 .barra.baja .par::after { content: "▼"; }
 @keyframes flecha { 0% { opacity: 0; } 12% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
 
-/* Lo que dice el personaje: bloque con borde, con sitio para seis líneas a 16 px */
+/* Lo que dice el personaje: sin caja, con sitio para cinco líneas (el mensaje más largo, 143 caracteres, ocupa cinco) */
 .mensaje {
-  flex: none; height: calc(6 * 1.3em + 12px); margin-top: 12px;
+  flex: none; height: calc(5 * 1.28em + 6px); margin-top: 6px;
   display: flex; align-items: center; justify-content: center; text-align: center;
-  font-size: 19px; line-height: 1.3; font-weight: 400; padding: 4px 6px;
+  font-size: 19px; line-height: 1.28; font-weight: 400; padding: 3px 2px;
 }
 
-/* Escenario: carta 3:4 (retrato + nombre debajo), el mazo detrás y marcas de corte alrededor */
+/* Escenario: la carta ocupa todo el hueco libre (ancho completo y el alto que dejan el mensaje y la barra inferior), con el mazo detrás.
+   Sin proporción fija: el personaje se ajusta con preserveAspectRatio (ver svgPersonaje). Alto máximo: 1,45 veces el ancho. */
 .escenario {
-  flex: 1; min-height: 240px; padding: 18px 0 16px; position: relative;
+  flex: 1; min-height: 220px; padding: 6px 0 10px; position: relative;
   display: flex; align-items: center; justify-content: center;
   container-type: size;
 }
 .carta, .pila {
-  --ancho: clamp(150px, min(100cqw - 34px, (100cqh - 22px) * 0.75), 360px);
-  width: var(--ancho);
-  height: calc(var(--ancho) * 4 / 3);
+  width: calc(100cqw - 8px);
+  height: min(100cqh - 8px, (100cqw - 8px) * 1.45);
 }
-.pila { position: absolute; inset: 0; margin: auto; pointer-events: none; }
+.pila { position: absolute; inset: 0; margin: auto; translate: -4px -4px; pointer-events: none; }
+.carta { translate: -4px -4px; }
 .pila .capa { position: absolute; inset: 0; background: var(--bloque); border: var(--trazo); border-radius: var(--radio); }
-.pila .c1 { transform: translate(5px, 5px); }
-.pila .c2 { transform: translate(10px, 10px); background: var(--gris); }
+.pila .c1 { transform: translate(4px, 4px); }
+.pila .c2 { transform: translate(8px, 8px); background: var(--gris); }
 .carta {
   position: relative; background: var(--bloque); color: var(--tinta);
   border: var(--trazo); border-radius: var(--radio); overflow: hidden;
@@ -215,15 +216,15 @@ body {
   100% { opacity: 0; transform: translate(14px, -120px) scale(1.5); }
 }
 .carta .nombre {
-  flex: none; min-height: 46px; padding: 6px 10px; background: var(--bloque); border-top: var(--trazo);
+  flex: none; min-height: 40px; padding: 5px 10px; background: var(--bloque); border-top: var(--trazo);
   display: flex; align-items: center; justify-content: center; text-align: center;
-  font-weight: 700; font-size: 14px; line-height: 1.2; letter-spacing: .01em;
+  font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: .01em;
   transition: background-color .12s, color .12s;
 }
-/* Respuesta según el arrastre: plano de tinta sobre la carta */
+/* Respuesta según el arrastre: plano de tinta en la parte baja de la foto (arriba taparía los ojos) */
 .respuesta {
-  position: absolute; left: 0; right: 0; top: 0; z-index: 3; padding: 14px 16px;
-  background: var(--carbon); color: var(--bloque); text-align: center; border-bottom: 2px solid var(--bloque);
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 12px 16px;
+  background: var(--carbon); color: var(--bloque); text-align: center; border-top: 2px solid var(--bloque);
   opacity: 0; transition: opacity .12s; pointer-events: none;
 }
 .respuesta.visible { opacity: .84; }
@@ -235,10 +236,10 @@ body {
 .respuesta.firme { background: var(--rojo); }
 
 /* Barra inferior: separada por una línea de puntos (borde desprendible); dictador, años y ranuras */
-.pie-juego { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0 2px; border-top: 2px dashed var(--carbon); }
+.pie-juego { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 6px 0 0; border-top: 2px dashed var(--carbon); }
 .dictador { min-width: 0; flex: 1; }
 .dictador b { display: block; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
-.dictador small { display: block; font-size: 13px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); }
+.dictador small { display: block; font-size: 12px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dictador small.hidden { display: none; }
 .aviso-archivo {
   display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 26px; margin: 0; padding: 0 8px 0 6px;
@@ -249,10 +250,10 @@ body {
 .aviso-archivo .icono.en-linea { height: 18px; margin-right: 4px; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; gap: 5px; flex-shrink: 0; }
-.ranura { width: 36px; height: 36px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
+.ranura { width: 42px; height: 42px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
 .ranura.llena { background: var(--bloque); border: var(--trazo); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .icono { width: 28px; height: 28px; }
+.ranura .icono { width: 35px; height: 35px; }
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
 @keyframes invierte { 0% { background: var(--tinta); border-color: var(--bloque); } 100% { background: var(--bloque); } }
@@ -260,7 +261,7 @@ body {
 
 /* Abandonar partida: una línea de texto bajo un divisor, sin botón */
 .abandonar {
-  flex: none; margin: 8px 0 0; padding: 8px 0 2px; border: none; border-top: 1.5px solid var(--carbon); background: none;
+  flex: none; margin: 6px 0 0; padding: 5px 0 0; border: none; border-top: 1.5px solid var(--carbon); background: none;
   color: var(--tinta-suave); font: inherit; font-size: 14px; text-align: center; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
 }
 .abandonar:hover, .abandonar:focus-visible { color: var(--tinta); outline: none; }
@@ -335,15 +336,17 @@ body {
   .mensaje { font-size: 17px; }
 }
 @media (max-height: 640px) {
-  .mensaje { height: calc(5 * 1.3em + 8px); }
-  .par .icono-fuerza { height: 28px; }
+  .par .icono-fuerza { height: 36px; }
+  .ranura { width: 40px; height: 40px; }
+  .ranura .icono { width: 32px; height: 32px; }
 }
 @media (max-width: 380px) {
   .ranuras { gap: 4px; }
-  .ranura { width: 33px; height: 33px; }
-  .ranura .icono { width: 25px; height: 25px; }
+  .ranura { width: 38px; height: 38px; }
+  .ranura .icono { width: 32px; height: 32px; }
   .pie-juego { gap: 8px; }
   .dictador b { font-size: 14px; }
+  .dictador small { font-size: 11px; }
   .aviso-archivo { font-size: 12px; padding: 0 6px 0 4px; }
 }
 @media (prefers-reduced-motion: reduce) {

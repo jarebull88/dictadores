@@ -102,6 +102,11 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** Las estrellas de tres personajes (Embajador oriental, Fuerzas Armadas, Educación) **se quedan**: excepción decidida por Jorge a la regla de insignias.
 - **Aparcado.** El peso del HTML (~3,4 MB; se podría bajar a 700 px) y los fondos de escena (colores planos por ahora): no son prioridad.
 
+## 7 ter. La carta manda (10 oct)
+- **Vigente.** En el móvil de Jorge la carta quedaba pequeña y con mucho aire alrededor. Ahora **ocupa todo el hueco libre**, sin proporción fija (máximo 1,45 veces el ancho). Se aprieta todo lo demás: menos márgenes, mensaje con sitio para 5 líneas (el más largo ocupa 5), sin marcas de corte alrededor de la carta, mazo más pegado.
+- **Vigente.** Iconos más grandes para que se vea que son manualidades: fuerzas a 46 px y ranuras de estado a 42 px.
+- **Vigente.** Con la carta ancha el personaje se ve de busto (se recorta el aire de encima de la cabeza, `arriba` en `personajes.json`). La respuesta pasa a la parte baja de la foto, porque arriba tapaba los ojos justo cuando se mueven.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

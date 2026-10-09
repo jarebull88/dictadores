@@ -156,12 +156,11 @@ const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/
 function svgPersonaje(slug, nombre) {
   const p = RETRATOS[slug];
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const suave = p.noir && p.noir.contraste === "suave";
   const humo = (p.extras || []).includes("humo") && p.humo
     ? `<g transform="translate(${p.humo[0]} ${p.humo[1]})"><g class="humo humo1">${VOLUTA}</g><g class="humo humo2">${VOLUTA}</g></g>` : "";
-  const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza
-  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMin slice" role="img" aria-label="${esc(nombre || p.nombre)}">` +
-    `<image class="base" data-suave="${suave ? 1 : 0}" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${humo}` +
+  const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
+  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" role="img" aria-label="${esc(nombre || p.nombre)}">` +
+    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${humo}` +
     `<g class="ojos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
 }
 /* Los ojos miran hacia el centro: si la carta va a la derecha, miran a la izquierda. frac: −1 … 1 */
@@ -171,56 +170,6 @@ function mirar(frac) {
   if (!g) return;
   const f = Math.max(-1, Math.min(1, frac || 0));
   g.style.transform = `translate(${(-f * RECORRIDO_OJOS).toFixed(1)}px, ${(Math.abs(f) * 1.5).toFixed(1)}px)`;
-}
-
-/* =====================================================
-   ESTILO: Normal (papel a color) o Noir (blanco y negro, con el rojo como único acento).
-   En Noir el jugador elige el fondo y el color de los ojos. Se guarda en el navegador.
-   ===================================================== */
-const CLAVE_ESTILO = "dictadores_estilo_v1";
-const OPCIONES_ESTILO = {
-  modo:        { normal: "Normal", noir: "Noir" },
-  fondoNormal: { gris: "#D9D5CB", papel: "#F8F6F0", carbon: "#2B2A27" },
-  fondoNoir:   { negro: "#0b0b0c", blanco: "#f2f0ea", rojo: "#b3171f" },
-  ojosNoir:    { blancos: "#f4f2ec", negros: "#0b0b0c", rojos: "#d3202a" }
-};
-const OJO_NORMAL = "#161618";
-const ETIQUETA_ESTILO = { gris: "Gris", papel: "Papel", carbon: "Carbón", negro: "Negro", blanco: "Blanco", rojo: "Rojo", blancos: "Blancos", negros: "Negros", rojos: "Rojos" };
-const estilo = { modo: "normal", fondoNormal: "gris", fondoNoir: "negro", ojosNoir: "blancos" };
-try {
-  const guardado = JSON.parse(localStorage.getItem(CLAVE_ESTILO) || "{}");
-  for (const k in estilo) if (guardado[k] && OPCIONES_ESTILO[k][guardado[k]]) estilo[k] = guardado[k];
-} catch (e) {}
-function filtrarRetrato(img) {
-  if (estilo.modo === "noir") img.setAttribute("filter", `url(#${img.dataset.suave === "1" ? "bw-suave" : "bw"})`);
-  else img.removeAttribute("filter");
-}
-function aplicarEstilo() {
-  const noir = estilo.modo === "noir", raiz = document.documentElement;
-  raiz.classList.toggle("noir", noir);
-  raiz.style.setProperty("--fondo-escena", noir ? OPCIONES_ESTILO.fondoNoir[estilo.fondoNoir] : OPCIONES_ESTILO.fondoNormal[estilo.fondoNormal]);
-  raiz.style.setProperty("--ojo", noir ? OPCIONES_ESTILO.ojosNoir[estilo.ojosNoir] : OJO_NORMAL);
-  document.querySelectorAll("svg.personaje image.base").forEach(filtrarRetrato);
-  document.querySelectorAll("#estilo [data-grupo]").forEach(g =>
-    g.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(estilo[g.dataset.grupo] === b.dataset.v))));
-  document.querySelectorAll("#estilo [data-solo]").forEach(el => el.classList.toggle("hidden", el.dataset.solo !== estilo.modo));
-}
-function cambiarEstilo(grupo, valor) {
-  if (!OPCIONES_ESTILO[grupo] || !OPCIONES_ESTILO[grupo][valor]) return;
-  estilo[grupo] = valor;
-  try { localStorage.setItem(CLAVE_ESTILO, JSON.stringify(estilo)); } catch (e) {}
-  aplicarEstilo();
-}
-function construirEstilo() {
-  const grupo = (g, etiqueta) => `<div class="fila-estilo"><span>${etiqueta}</span><div class="segmento" data-grupo="${g}" role="group" aria-label="${etiqueta}">` +
-    Object.entries(OPCIONES_ESTILO[g]).map(([v, color]) =>
-      `<button type="button" data-v="${v}">${g === "modo" ? color : ETIQUETA_ESTILO[v] || v}</button>`).join("") + "</div></div>";
-  $("estilo").innerHTML = `<div class="muestra" aria-hidden="true">${svgPersonaje("vicepresidente")}</div><div class="controles">` +
-    grupo("modo", "Estilo") +
-    `<div data-solo="normal">${grupo("fondoNormal", "Fondo")}</div>` +
-    `<div data-solo="noir">${grupo("fondoNoir", "Fondo")}${grupo("ojosNoir", "Ojos")}</div></div>`;
-  $("estilo").querySelectorAll("[data-grupo] button").forEach(b =>
-    b.addEventListener("click", () => cambiarEstilo(b.closest("[data-grupo]").dataset.grupo, b.dataset.v)));
 }
 
 /* =====================================================
@@ -545,7 +494,6 @@ function pintarCarta(c) {
   $("mensaje").textContent = c.texto;
   /* la respuesta va en la parte baja de la foto, para no tapar los ojos mientras se arrastra */
   $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div><div class="nombre">${esc(c.personaje)}</div>`;
-  $("carta").querySelectorAll("image.base").forEach(filtrarRetrato);
 }
 
 function pintarEleccion(dir) {
@@ -960,6 +908,4 @@ $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
-construirEstilo();
-aplicarEstilo();
 mostrar("screen-start");

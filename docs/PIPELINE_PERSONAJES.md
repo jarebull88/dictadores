@@ -2,6 +2,8 @@
 
 Especificación del pipeline de personajes de *¡Comandante, ordene!*. Léela entera antes de tocar nada.
 
+> **Importante (10 oct 2026): el modo Noir se quitó del juego.** Las secciones sobre la paleta Noir y los filtros `#bw` quedan como referencia, pero ya no se usan; el campo `noir` de `personajes.json` también se quitó. La ilustración se muestra entera (`preserveAspectRatio="xMidYMax meet"`).
+>
 > **Actualizado el 10 oct 2026** a lo que hay en el juego: los ojos ya no se mueven solos (siguen a la carta, ver «Ojos»), Agricultura se fusionó con Trabajo, el recorte lo hace `tools/recortar.py` y los iconos siguen el mismo proceso.
 
 ## 1. Qué es cada personaje

@@ -1,4 +1,4 @@
-// Personajes de papel recortado: ojos que miran al centro al arrastrar y estilos Normal / Noir.
+// Personajes de papel recortado: ojos que miran al centro al arrastrar y la ilustración completa.
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar } = require("./_juego");
 
@@ -18,22 +18,7 @@ test("los ojos miran hacia el centro: carta a la derecha, ojos a la izquierda", 
   assert.equal(desplazamientoOjos(j), 0);
 });
 
-test("Noir pasa el personaje a blanco y negro con el filtro SVG y Normal lo quita", () => {
+test("la ilustración se ve entera (se ajusta al hueco, no se recorta)", () => {
   const j = cargar(); j.empezar();
-  const base = () => j.d.querySelector("#carta image.base");
-  j.w.eval("cambiarEstilo('modo','noir')");
-  assert.match(base().getAttribute("filter") || "", /^url\(#bw(-suave)?\)$/);
-  assert.ok(j.d.documentElement.classList.contains("noir"));
-  j.w.eval("cambiarEstilo('modo','normal')");
-  assert.equal(base().getAttribute("filter"), null);
-  assert.ok(!j.d.documentElement.classList.contains("noir"));
-});
-
-test("en Noir solo se ofrecen blanco, negro y rojo para el fondo y los ojos", () => {
-  const j = cargar();
-  const op = j.w.eval("OPCIONES_ESTILO");
-  assert.deepEqual(Object.keys(op.fondoNoir).sort(), ["blanco", "negro", "rojo"]);
-  assert.deepEqual(Object.keys(op.ojosNoir).sort(), ["blancos", "negros", "rojos"]);
-  j.w.eval("cambiarEstilo('modo','noir'); cambiarEstilo('ojosNoir','rojos')");
-  assert.equal(j.d.documentElement.style.getPropertyValue("--ojo"), "#d3202a");
+  assert.equal(j.d.querySelector("#carta svg.personaje").getAttribute("preserveAspectRatio"), "xMidYMax meet");
 });

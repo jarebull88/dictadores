@@ -107,6 +107,11 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** Iconos más grandes para que se vea que son manualidades: fuerzas a 46 px y ranuras de estado a 42 px.
 - **Vigente.** Con la carta ancha el personaje se ve de busto (se recorta el aire de encima de la cabeza, `arriba` en `personajes.json`). La respuesta pasa a la parte baja de la foto, porque arriba tapaba los ojos justo cuando se mueven.
 
+## 7 quater. Sin Noir e ilustración entera (10 oct)
+- **Descartado.** El modo **Noir** y el bloque «Estilo» de la portada: queda solo el estilo original, a color, con fondo gris.
+- **Vigente.** La ilustración **se ve entera** (tiene muchos detalles): se ajusta al hueco de la carta apoyada abajo, sin recortar. Sustituye al busto recortado de la versión anterior.
+- **Anotado.** El Embajador oriental no tiene cigarro: lleva un documento enrollado con cordel. Para que eche humo habría que regenerar su imagen.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

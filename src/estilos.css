@@ -38,10 +38,9 @@ body {
 .hidden { display: none !important; }
 .emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-style: normal; line-height: 1; }
 .defs-svg { position: absolute; width: 0; height: 0; overflow: hidden; }
-/* Iconos de papel recortado. En Noir pasan a blanco y negro (son <img> HTML: aquí el filtro CSS sí funciona). */
+/* Iconos de papel recortado */
 .icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
 .icono.en-linea { display: inline-block; height: 1.25em; width: auto; vertical-align: -.3em; margin: 0 .25em 0 .05em; }
-.noir .icono { filter: grayscale(1) contrast(1.15); }
 .ico { display: inline-block; width: 24px; height: 24px; flex: none; fill: currentColor; }
 
 .screen {
@@ -110,21 +109,6 @@ body {
 .pendiente { padding: 14px 16px; background: var(--gris); }
 .pendiente h3 { margin: 0 0 6px; font-weight: 700; font-size: 16px; }
 .pendiente ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.45; }
-
-/* Estilo (portada): muestra del personaje + botones segmentados con contorno; el elegido, invertido */
-.estilo { display: flex; gap: 14px; align-items: stretch; padding: 12px; border: 2px dashed var(--carbon); }
-.estilo .muestra { flex: none; width: 92px; aspect-ratio: 3 / 4; background: var(--fondo-escena, var(--gris)); border: var(--trazo); overflow: hidden; }
-.estilo .controles { flex: 1; min-width: 0; display: grid; gap: 8px; align-content: center; }
-.fila-estilo { display: grid; gap: 4px; }
-.fila-estilo > span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); }
-.segmento { display: flex; border: var(--trazo); border-radius: var(--radio); overflow: hidden; }
-.segmento button {
-  flex: 1; min-width: 0; min-height: 36px; padding: 0 4px; border: none; border-left: 2px solid var(--carbon);
-  background: var(--bloque); color: var(--tinta); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
-}
-.segmento button:first-child { border-left: none; }
-.segmento button[aria-pressed="true"] { background: var(--tinta); color: var(--bloque); }
-.segmento button:focus-visible { outline: 3px solid var(--tinta); outline-offset: -5px; }
 
 /* ---------- Juego ---------- */
 #screen-game { position: relative; overflow: visible; padding: 8px 12px 6px; }

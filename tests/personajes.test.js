@@ -1,21 +1,24 @@
-// Personajes de papel recortado: ojos que miran al centro al arrastrar y la ilustración completa.
+// Personajes de papel recortado: ojos que se mueven solos, una mini animación por personaje y la ilustración entera.
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar } = require("./_juego");
 
-const desplazamientoOjos = j => {
-  const t = j.d.querySelector("#carta .ojos").style.transform || "";
-  const m = t.match(/translate\((-?[\d.]+)px/);
-  return m ? Number(m[1]) : 0;
-};
-
-test("los ojos miran hacia el centro: carta a la derecha, ojos a la izquierda", () => {
+test("cada personaje tiene dos ojos animados y su mini animación", () => {
   const j = cargar(); j.empezar();
-  j.w.eval("mirar(1)");
-  assert.ok(desplazamientoOjos(j) < 0, "con la carta a la derecha, los ojos deberían ir a la izquierda");
-  j.w.eval("mirar(-1)");
-  assert.ok(desplazamientoOjos(j) > 0, "con la carta a la izquierda, los ojos deberían ir a la derecha");
-  j.w.eval("mirar(0)");
-  assert.equal(desplazamientoOjos(j), 0);
+  const retratos = j.w.eval("RETRATOS"), tipos = Object.keys(j.w.eval("ANIMACION"));
+  for (const slug of Object.keys(retratos)) {
+    const a = retratos[slug].animacion;
+    assert.ok(a && tipos.includes(a.tipo), `«${slug}» no tiene una animación conocida`);
+    j.d.querySelector("#carta").innerHTML = j.w.eval(`svgPersonaje("${slug}")`);
+    const ojos = j.d.querySelector("#carta .ojos");
+    assert.equal(ojos.querySelectorAll("circle").length, 2, `«${slug}» no tiene dos ojos`);
+    assert.match(ojos.getAttribute("style") || "", /animation-delay/, `los ojos de «${slug}» no tienen desfase`);
+    assert.ok(j.d.querySelector(`#carta .animacion.anim-${a.tipo}`), `«${slug}» no pinta su animación`);
+  }
+});
+
+test("los ojos ya no dependen de la carta: arrastrar no los mueve por código", () => {
+  const j = cargar(); j.empezar();
+  assert.equal(j.w.eval("typeof mirar"), "undefined");
 });
 
 test("la ilustración se ve entera (se ajusta al hueco, no se recorta)", () => {

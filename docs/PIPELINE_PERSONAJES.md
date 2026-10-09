@@ -155,33 +155,20 @@ base.removeAttribute('filter');            // vivo
 
 ### Ojos
 
-Dos círculos del color `--ojo`, que cambia con la paleta. **No se mueven solos**: siguen a la carta. En reposo
-miran al frente; cuando el jugador arrastra la carta, miran hacia el centro de la pantalla, es decir, al lado
-contrario del arrastre (carta a la derecha → ojos a la izquierda), con un recorrido máximo de 10 unidades del
-dibujo al llegar a la zona de decisión. Es `mirar(fracción)` en `src/motor.js`.
+Dos círculos del color `--ojo` (`#161618`). **Se mueven solos**, sin depender de la carta: miran a un lado y a otro
+con pausas (`@keyframes mirar`, 7 s, recorrido de 13 unidades del dibujo). Cada carta arranca con un desfase al
+azar (`animation-delay` negativo) para que no miren todos a la vez.
 
-```css
-.personaje .ojos { fill: var(--ojo, #161618); transition: transform .14s ease-out; }
-```
+**Cuidado con el `transform` en SVG:** una animación CSS de `transform` pisa el atributo `transform` del mismo
+elemento. Si un grupo necesita las dos cosas, pon la colocación en un grupo padre y la animación en el hijo.
 
-**Cuidado con el `transform` en SVG:** una animación o transición CSS de `transform` pisa el atributo `transform`
-del mismo elemento. Si un grupo necesita las dos cosas, pon la colocación en un grupo padre y el movimiento en el hijo.
+### Mini animaciones
 
-### Extras
-
-Fuerzas Armadas lleva humo saliendo del puro: dos volutas idénticas con la misma animación desfasada media vuelta.
-
-```css
-@keyframes humo {
-  0%   { opacity: .85; transform: translate(0, 0) scale(.7); }
-  70%  { opacity: .5; }
-  100% { opacity: 0; transform: translate(14px, -120px) scale(1.5); }
-}
-.humo1 { animation: humo 4.5s linear infinite; }
-.humo2 { animation: humo 4.5s linear -2.25s infinite; }
-```
-
-Las volutas van dentro del SVG, colocadas sobre la punta del puro, en gris claro y con una sombra corta.
+Cada personaje lleva una, dibujada en SVG encima de la imagen. En `personajes.json`:
+`"animacion": { "tipo": "humo", "x": 752, "y": 1128 }` — el tipo y el punto (en píxeles del recorte) donde se coloca.
+Los dibujos están en `ANIMACION` (`src/motor.js`) y el movimiento en `src/estilos.css`. Tipos: `humo` (puro),
+`timbre` (teléfono que suena), `flecha` (gráfico que sube), `destello`, `mosca`, `sello` («PROHIBIDO»),
+`piloto` (luz roja que parpadea) y `gota` (sudor). Para uno nuevo, añade su dibujo a `ANIMACION` y su `@keyframes`.
 
 ## 5. Las dos paletas
 

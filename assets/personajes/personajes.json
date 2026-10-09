@@ -1,12 +1,12 @@
 {
-  "vicepresidente": {"nombre": "Vicepresidente del Consejo de Ministros", "archivo": "vicepresidente.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [374, 272], "der": [530, 272], "r": 11}, "extras": [], "arriba": 44},
-  "economia": {"nombre": "Ministro de Economía", "archivo": "economia.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [345, 335], "der": [562, 335], "r": 12}, "extras": [], "arriba": 72},
-  "comercio": {"nombre": "Ministro de Comercio", "archivo": "comercio.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [350, 395], "der": [555, 395], "r": 12}, "extras": [], "arriba": 19},
-  "educacion": {"nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [362, 397], "der": [537, 397], "r": 10}, "extras": [], "arriba": 71},
-  "trabajo": {"nombre": "Ministro de Trabajo", "archivo": "trabajo.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [372, 395], "der": [537, 395], "r": 11}, "extras": [], "arriba": 43},
-  "cultura": {"nombre": "Ministra de Cultura", "archivo": "cultura.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [386, 448], "der": [539, 448], "r": 10}, "extras": [], "arriba": 91},
-  "fuerzas-armadas": {"nombre": "Ministro de las Fuerzas Armadas", "archivo": "fuerzas-armadas.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [385, 305], "der": [530, 305], "r": 11}, "extras": ["humo"], "humo": [752, 1128], "arriba": 27},
-  "interior": {"nombre": "Ministro del Interior", "archivo": "interior.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [400, 285], "der": [522, 285], "r": 11}, "extras": [], "arriba": 17},
-  "embajador-oriental": {"nombre": "Embajador del bloque oriental", "archivo": "embajador-oriental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [375, 355], "der": [530, 355], "r": 10}, "extras": [], "arriba": 60},
-  "embajador-occidental": {"nombre": "Embajador de la potencia del norte", "archivo": "embajador-occidental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [355, 385], "der": [550, 385], "r": 13}, "extras": [], "arriba": 63}
+  "vicepresidente": {"nombre": "Vicepresidente del Consejo de Ministros", "archivo": "vicepresidente.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [374, 272], "der": [530, 272], "r": 11}, "arriba": 44, "animacion": {"tipo": "timbre", "x": 760, "y": 400}},
+  "economia": {"nombre": "Ministro de Economía", "archivo": "economia.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [345, 335], "der": [562, 335], "r": 12}, "arriba": 72, "animacion": {"tipo": "flecha", "x": 662, "y": 962}},
+  "comercio": {"nombre": "Ministro de Comercio", "archivo": "comercio.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [350, 395], "der": [555, 395], "r": 12}, "arriba": 19, "animacion": {"tipo": "destello", "x": 104, "y": 1108}},
+  "educacion": {"nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [362, 397], "der": [537, 397], "r": 10}, "arriba": 71, "animacion": {"tipo": "destello", "x": 596, "y": 782}},
+  "trabajo": {"nombre": "Ministro de Trabajo", "archivo": "trabajo.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [372, 395], "der": [537, 395], "r": 11}, "arriba": 43, "animacion": {"tipo": "mosca", "x": 300, "y": 880}},
+  "cultura": {"nombre": "Ministra de Cultura", "archivo": "cultura.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [385, 440], "der": [522, 440], "r": 10}, "arriba": 90, "animacion": {"tipo": "sello", "x": 700, "y": 1125}},
+  "fuerzas-armadas": {"nombre": "Ministro de las Fuerzas Armadas", "archivo": "fuerzas-armadas.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [385, 305], "der": [530, 305], "r": 11}, "arriba": 27, "animacion": {"tipo": "humo", "x": 752, "y": 1128}},
+  "interior": {"nombre": "Ministro del Interior", "archivo": "interior.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [400, 285], "der": [522, 285], "r": 11}, "arriba": 17, "animacion": {"tipo": "piloto", "x": 668, "y": 704}},
+  "embajador-oriental": {"nombre": "Embajador del bloque oriental", "archivo": "embajador-oriental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [375, 355], "der": [530, 355], "r": 10}, "arriba": 60, "animacion": {"tipo": "gota", "x": 330, "y": 305}},
+  "embajador-occidental": {"nombre": "Embajador de la potencia del norte", "archivo": "embajador-occidental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [355, 385], "der": [550, 385], "r": 13}, "arriba": 63, "animacion": {"tipo": "destello", "x": 588, "y": 548}}
 }

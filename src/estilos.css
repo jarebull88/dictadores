@@ -190,7 +190,15 @@ body {
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background: var(--gris); color: var(--tinta-suave); }
 /* Personaje: SVG con la imagen recortada y los ojos encima, pegado al borde inferior */
 .personaje { display: block; width: 100%; height: 100%; pointer-events: none; user-select: none; }
-.personaje .ojos { fill: var(--ojo, #161618); transition: transform .14s ease-out; }
+/* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
+.personaje .ojos { fill: var(--ojo, #161618); animation: mirar 7s ease-in-out infinite; }
+@keyframes mirar {
+  0%, 14%   { transform: translate(0, 0); }
+  22%, 40%  { transform: translate(-13px, 1px); }
+  48%, 56%  { transform: translate(0, 0); }
+  64%, 84%  { transform: translate(13px, -1px); }
+  92%, 100% { transform: translate(0, 0); }
+}
 .personaje .humo { fill: #e9e7e2; filter: url(#sombra-humo); transform-box: fill-box; transform-origin: 50% 100%; }
 .humo1 { animation: humo 4.5s linear infinite; }
 .humo2 { animation: humo 4.5s linear -2.25s infinite; }
@@ -198,6 +206,59 @@ body {
   0%   { opacity: .85; transform: translate(0, 0) scale(.7); }
   70%  { opacity: .5; }
   100% { opacity: 0; transform: translate(14px, -120px) scale(1.5); }
+}
+/* Mini animaciones: piezas de papel encima de la imagen, con pausas largas para que no cansen */
+.animacion * { transform-box: fill-box; }
+/* Vicepresidente: el teléfono suena (rayitas que vibran) */
+.timbre { fill: none; stroke: #1c1b19; stroke-width: 6; stroke-linecap: round; opacity: 0; animation: timbre 4s steps(1) infinite; }
+@keyframes timbre {
+  0%, 50%, 100% { opacity: 0; transform: none; }
+  52%, 60%, 68% { opacity: 1; transform: translate(-3px, 0); }
+  56%, 64%, 72% { opacity: 1; transform: translate(3px, 0); }
+  76% { opacity: 0; }
+}
+/* Economía: la flecha del gráfico sube */
+.flecha { fill: #b0242a; animation: flecha 3s ease-in-out infinite; }
+@keyframes flecha { 0%, 55%, 100% { transform: translate(0, 0); } 70%, 82% { transform: translate(10px, -16px); } }
+/* Comercio (reloj), Educación (estrella) y Embajador occidental (sonrisa): destello */
+.destello { fill: #fffdf5; filter: drop-shadow(0 0 6px rgba(255, 245, 200, .9)); transform-origin: center; opacity: 0; animation: destello 4.2s ease-in-out infinite; }
+@keyframes destello {
+  0%, 62%, 100% { opacity: 0; transform: scale(.2) rotate(0deg); }
+  72% { opacity: 1; transform: scale(1) rotate(45deg); }
+  84% { opacity: 0; transform: scale(.3) rotate(90deg); }
+}
+/* Trabajo: una mosca revolotea sobre los plátanos */
+.mosca { fill: #161618; animation: mosca 5s ease-in-out infinite; }
+.mosca .ala { fill: rgba(235, 240, 245, .85); stroke: #6d6f73; stroke-width: 1; transform-origin: 50% 100%; animation: aleteo .08s linear infinite alternate; }
+@keyframes mosca {
+  0%, 100% { transform: translate(-70px, -20px); }
+  20% { transform: translate(-10px, -70px); }
+  40% { transform: translate(60px, -30px); }
+  55% { transform: translate(20px, 30px); }
+  75% { transform: translate(-50px, 25px); }
+}
+@keyframes aleteo { from { transform: scaleY(1); } to { transform: scaleY(.35); } }
+/* Cultura: el sello golpea y deja un «PROHIBIDO» rojo */
+.sello { fill: none; stroke: #b0242a; stroke-width: 5; transform-origin: center; opacity: 0; animation: sello 4.5s ease-out infinite; }
+.sello text { fill: #b0242a; stroke: none; font-family: "Special Elite", "Courier Prime", monospace; font-size: 30px; letter-spacing: 1px; }
+.anim-sello > .sello { rotate: -9deg; }
+@keyframes sello {
+  0%, 30% { opacity: 0; transform: scale(1.6); }
+  34% { opacity: .9; transform: scale(.95); }
+  38%, 70% { opacity: .85; transform: scale(1); }
+  88%, 100% { opacity: 0; transform: scale(1); }
+}
+/* Interior: la cámara del bolsillo graba */
+.piloto { fill: #e0262c; filter: drop-shadow(0 0 5px rgba(255, 40, 40, .9)); animation: piloto 1.6s steps(1) infinite; }
+@keyframes piloto { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .1; } }
+/* Embajador oriental: una gota de sudor resbala por la frente */
+.gota { fill: rgba(225, 240, 250, .9); stroke: rgba(120, 150, 175, .8); stroke-width: 1.5; opacity: 0; animation: gota 5.5s ease-in infinite; }
+.gota .brillo { fill: #fff; stroke: none; }
+@keyframes gota {
+  0%, 40% { opacity: 0; transform: translate(0, 0); }
+  48% { opacity: 1; transform: translate(0, 0); }
+  85% { opacity: 1; transform: translate(-4px, 95px); }
+  95%, 100% { opacity: 0; transform: translate(-4px, 110px); }
 }
 .carta .nombre {
   flex: none; min-height: 40px; padding: 5px 10px; background: var(--bloque); border-top: var(--trazo);
@@ -220,10 +281,10 @@ body {
 .respuesta.firme { background: var(--rojo); }
 
 /* Barra inferior: separada por una línea de puntos (borde desprendible); dictador, años y ranuras */
-.pie-juego { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 6px 0 0; border-top: 2px dashed var(--carbon); }
-.dictador { min-width: 0; flex: 1; }
-.dictador b { display: block; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
-.dictador small { display: block; font-size: 12px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pie-juego { display: grid; gap: 5px; padding: 5px 0 0; border-top: 2px dashed var(--carbon); }
+.dictador { min-width: 0; display: flex; align-items: baseline; gap: 10px; white-space: nowrap; overflow: hidden; }
+.dictador b { display: block; flex: none; font-weight: 700; font-size: 15px; line-height: 1.2; }
+.dictador small { display: block; min-width: 0; font-size: 13px; line-height: 1.3; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dictador small.hidden { display: none; }
 .aviso-archivo {
   display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 26px; margin: 0; padding: 0 8px 0 6px;
@@ -233,11 +294,11 @@ body {
 }
 .aviso-archivo .icono.en-linea { height: 18px; margin-right: 4px; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-.ranuras { display: flex; gap: 5px; flex-shrink: 0; }
-.ranura { width: 42px; height: 42px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
+.ranuras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ranura { width: 100%; height: 62px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
 .ranura.llena { background: var(--bloque); border: var(--trazo); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .icono { width: 35px; height: 35px; }
+.ranura .icono { width: 54px; height: 54px; }
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
 @keyframes invierte { 0% { background: var(--tinta); border-color: var(--bloque); } 100% { background: var(--bloque); } }
@@ -321,20 +382,21 @@ body {
 }
 @media (max-height: 640px) {
   .par .icono-fuerza { height: 36px; }
-  .ranura { width: 40px; height: 40px; }
-  .ranura .icono { width: 32px; height: 32px; }
+  .ranura { height: 52px; }
+  .ranura .icono { width: 44px; height: 44px; }
 }
 @media (max-width: 380px) {
   .ranuras { gap: 4px; }
-  .ranura { width: 38px; height: 38px; }
-  .ranura .icono { width: 32px; height: 32px; }
+  .ranura { height: 56px; }
+  .ranura .icono { width: 48px; height: 48px; }
   .pie-juego { gap: 8px; }
   .dictador b { font-size: 14px; }
-  .dictador small { font-size: 11px; }
+  .dictador small { font-size: 12px; }
   .aviso-archivo { font-size: 12px; padding: 0 6px 0 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .carta, .nivel .relleno { transition: none; }
   .peligro .alerta, .peligro .nivel .relleno { animation: none; }
   .ranura.nueva, .ranura.actua, .barra.cambia .nivel { animation: none; }
+  .personaje .ojos, .animacion * { animation: none !important; }
 }

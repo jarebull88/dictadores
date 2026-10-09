@@ -112,6 +112,12 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** La ilustración **se ve entera** (tiene muchos detalles): se ajusta al hueco de la carta apoyada abajo, sin recortar. Sustituye al busto recortado de la versión anterior.
 - **Anotado.** El Embajador oriental no tiene cigarro: lleva un documento enrollado con cordel. Para que eche humo habría que regenerar su imagen.
 
+## 7 quinquies. Ojos vivos y animaciones (10 oct)
+- **Vigente.** Los ojos **se mueven solos** (a un lado y a otro, con pausas; 7 s; cada carta con su desfase). Se descarta que siguieran a la carta: «casi no se nota».
+- **Vigente.** **Una mini animación por personaje** (ver CLAUDE.md). El Embajador oriental no tiene cigarro (lleva un documento enrollado): en lugar de humo, una gota de sudor.
+- **Vigente.** Nueva imagen de la Ministra de Cultura (corrige un error en la cara).
+- **Vigente.** Los iconos de estado de abajo, mucho más grandes: fila propia a todo el ancho (62 px de alto); el nombre y los años pasan a una sola línea encima.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

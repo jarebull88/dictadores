@@ -99,7 +99,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** Los ojos se dibujan por código y **siguen a la carta**: miran al centro, al lado contrario del arrastre. Se descarta la animación automática de 11 s del documento original.
 - **Vigente.** Dos estilos, Normal y **Noir** (blanco y negro con rojo como único acento; fondo y ojos a elegir entre blanco, negro y rojo; por defecto fondo negro y ojos blancos). Se eligen en la portada, con una muestra del personaje.
 - **Vigente.** Se mantienen los nombres del juego («Consejo de Ministros», «potencia del norte»), no los del documento de Gemini.
-- **Pendiente.** Fondos de escena más elaborados (ahora son colores planos). Revisar las estrellas de tres personajes (regla de insignias). El HTML pasa a pesar ~3,4 MB; si hace falta, bajar los personajes a 700 px.
+- **Vigente.** Las estrellas de tres personajes (Embajador oriental, Fuerzas Armadas, Educación) **se quedan**: excepción decidida por Jorge a la regla de insignias.
+- **Aparcado.** El peso del HTML (~3,4 MB; se podría bajar a 700 px) y los fondos de escena (colores planos por ahora): no son prioridad.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

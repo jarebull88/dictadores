@@ -59,7 +59,8 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - **La imagen no tiene ojos:** son dos círculos SVG por encima. **Siguen a la carta**: miran al centro, al lado contrario del arrastre (no se mueven solos). Fuerzas Armadas lleva humo animado en el puro.
 - **Dos estilos**, elegidos en la portada y guardados en el navegador: **Normal** (a color; fondo gris, papel o carbón) y **Noir** (filtro SVG de blanco y negro; fondo y ojos en blanco, negro o rojo; el rojo es el único acento; iconos en gris). El resto de la interfaz es igual en los dos.
 - El blanco y negro de los personajes va **siempre con el filtro SVG** (`#bw`, `#bw-suave`), nunca con CSS. Interior y Trabajo usan el suave.
-- Aún pendiente: fondos de escena con más trabajo (ahora son colores planos). Hay estrellas en tres personajes (solapa roja del Embajador oriental, boina de Fuerzas Armadas, placa dorada de Educación): la regla 1 prohíbe insignias reales.
+- **Excepción a la regla 1 (decidido por Jorge, 10 oct):** las estrellas de tres personajes se quedan (solapa roja del Embajador oriental, boina de Fuerzas Armadas, placa dorada de Educación). No las señales ni las quites.
+- De momento no preocupan el peso del HTML (~3,4 MB) ni los fondos de escena (colores planos); no los toques sin que lo pida.
 
 ## Cómo trabaja Jorge (y cómo responderle)
 - Español, **tuteo**. Lo revisa casi todo **desde el móvil**: respuestas cortas y claras, lo importante primero, sin tablas enormes.

@@ -427,15 +427,17 @@ function pintarBarras() {
 
 function pintarCabecera() {
   const n = anios();
-  $("anios-poder").textContent = n === 0 ? "Recién llegado al poder" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
+  $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
 }
 
 function pintarRanuras() {
   const cont = $("ranuras");
-  /* Solo se ven los estados activos, uno debajo de otro sobre el fondo de la carta, sin recuadro */
-  cont.innerHTML = E.estados.map((s, i) =>
-    `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
-  ).join("");
+  cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
+    const s = E.estados[i];
+    return s
+      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
+      : `<div class="ranura"></div>`;
+  }).join("");
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
   cont.querySelectorAll("button.ranura").forEach(b =>
     b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })
@@ -494,14 +496,29 @@ function mostrarFuerza(id, el) {
      <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
 }
 
+function fichaPersonaje(cargo) {
+  const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
+  return `<div class="dorso"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
+    `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div>`;
+}
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
   $("mensaje").textContent = c.texto;
-  /* la respuesta va en la parte baja de la foto, para no tapar los ojos mientras se arrastra */
-  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div><div class="nombre">${esc(c.personaje)}</div>`;
+  /* Anverso: el personaje (la respuesta va en la parte baja, para no tapar los ojos). Reverso: su ficha. */
+  $("carta").classList.remove("volteada", "girando");
+  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div>${fichaPersonaje(c.personaje)}`;
+}
+/* Al tocar la carta se voltea (media vuelta, cambio de cara, media vuelta) y enseña la ficha del personaje */
+function voltear() {
+  const carta = $("carta");
+  if (ocupado || carta.classList.contains("girando")) return;
+  pintarEleccion(0);
+  carta.classList.add("girando");
+  setTimeout(() => carta.classList.toggle("volteada"), 150);
+  setTimeout(() => carta.classList.remove("girando"), 320);
 }
 
 function pintarEleccion(dir) {
@@ -550,6 +567,7 @@ function decidir(dir) {
   ocupado = true;
   ocultarInfo();
   const carta = $("carta");
+  carta.classList.remove("volteada", "girando");
   pintarEleccion(dir);
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
@@ -876,7 +894,7 @@ function confirmarNombre() {
   }
   carta.addEventListener("pointerdown", e => {
     if (ocupado || panelAbierto) return;
-    drag = { x: e.clientX, dx: 0, dir: 0, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    drag = { x: e.clientX, dx: 0, dir: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
     carta.style.transition = "none";
@@ -885,6 +903,7 @@ function confirmarNombre() {
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
+    if (carta.classList.contains("volteada")) return;          // por detrás no se decide: solo se voltea
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
@@ -892,11 +911,13 @@ function confirmarNombre() {
     if (dir !== drag.dir) { drag.dir = dir; pintarEleccion(dir); }
     marcarListo(Math.abs(drag.dx) > umbral());
   });
-  function soltar() {
+  function soltar(e) {
     if (!drag) return;
-    const dx = drag.dx, h = drag.hist;
+    const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
     drag = null;
     arrastrando = false;
+    if (toque) { volver(); voltear(); return; }
+    if (carta.classList.contains("volteada")) { volver(); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
     if (Math.abs(dx) > umbral() || lanzada) decidir(Math.sign(dx));

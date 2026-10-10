@@ -130,6 +130,10 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** **Victoria**: sobrevivir a la cuarta era. «¡Has ganado!», «Moriste en tu cama, y en el poder» y una esquela con hasta cuatro líneas de epitafio según las decisiones de la partida. Al azar se gana el 1 % de las veces; quien conoce los efectos, casi siempre.
 - **Vigente.** Primer MVP listo; a partir de aquí, pulir.
 
+## 7 septies. Carta que se voltea (10 oct)
+- **Vigente.** Vuelve la barra inferior: «Comandante X» y los años en dos líneas, con las cuatro casillas de estado a la derecha (se descarta la línea de arriba y los estados dentro de la carta). Lo primero que se ve son las cuatro fuerzas; el mensaje, más pegado a ellas.
+- **Vigente.** Se quita la franja blanca con el cargo: más alto para la ilustración. **Al tocar la carta, se voltea** y enseña la ficha del personaje (nombre propio, cargo, historia breve). Los nombres e historias son una primera propuesta de Claude, pendiente de revisar por Jorge.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

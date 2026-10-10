@@ -25,3 +25,22 @@ test("la ilustración se ve entera (se ajusta al hueco, no se recorta)", () => {
   const j = cargar(); j.empezar();
   assert.equal(j.d.querySelector("#carta svg.personaje").getAttribute("preserveAspectRatio"), "xMidYMax meet");
 });
+
+test("cada portavoz tiene ficha (nombre e historia) para el reverso de la carta", () => {
+  const j = cargar();
+  const fichas = j.w.eval("FICHAS"), cargos = new Set(j.w.eval("CARTAS.map(c => c.personaje)"));
+  for (const cargo of cargos) {
+    assert.ok(fichas[cargo] && fichas[cargo].nombre && fichas[cargo].historia, `«${cargo}» no tiene ficha`);
+    assert.ok(fichas[cargo].historia.length <= 220, `la historia de «${cargo}» es demasiado larga`);
+  }
+});
+
+test("al tocar la carta se voltea y enseña la ficha; al decidir vuelve al anverso", () => {
+  const j = cargar({ temporizadores: "inmediatos" }); j.empezar();
+  const carta = j.$("carta");
+  j.w.eval("voltear()");
+  assert.ok(carta.classList.contains("volteada"), "la carta debería estar volteada");
+  assert.match(j.d.querySelector("#carta .dorso").textContent, /Expediente/);
+  j.w.eval("voltear()");
+  assert.ok(!carta.classList.contains("volteada"), "un segundo toque la devuelve al anverso");
+});

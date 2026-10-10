@@ -143,7 +143,7 @@ body {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
 }
-.barra .punto-zona { height: 16px; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
+.barra .punto-zona { height: 14px; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
 .barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
@@ -170,8 +170,8 @@ body {
 
 /* Lo que dice el personaje: sin caja, con sitio para cinco líneas (el mensaje más largo, 143 caracteres, ocupa cinco) */
 .mensaje {
-  flex: none; height: calc(5 * 1.28em + 6px); margin-top: 6px;
-  display: flex; align-items: center; justify-content: center; text-align: center;
+  flex: none; height: calc(5 * 1.28em + 6px); margin-top: 0;
+  display: flex; align-items: flex-start; justify-content: center; text-align: center;
   font-size: 19px; line-height: 1.28; font-weight: 400; padding: 3px 2px;
 }
 
@@ -180,7 +180,7 @@ body {
 .escenario {
   flex: 1; min-height: 260px; padding: 4px 0 8px; position: relative;
   display: flex; align-items: flex-start; justify-content: center;
-  container-type: size;
+  container-type: size; perspective: 1400px;
 }
 .carta, .pila {
   width: calc(100cqw - 8px);
@@ -279,6 +279,18 @@ body {
   font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: .01em;
   transition: background-color .12s, color .12s;
 }
+/* Volteo: media vuelta, cambio de cara y media vuelta (se usa «rotate», no «transform», que es del arrastre) */
+.carta.girando { animation: voltear .32s ease-in-out; }
+@keyframes voltear { 50% { rotate: y 90deg; } }
+.carta.volteada .ilustracion, .carta:not(.volteada) .dorso { display: none; }
+/* Reverso: la ficha del personaje, como un expediente */
+.dorso { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding: 24px 22px; text-align: center; background: var(--bloque); }
+.ficha-etiqueta { font-size: 12px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--tinta-suave); padding: 3px 10px; border: 1.5px dashed var(--carbon); }
+.ficha-nombre { font-family: var(--fuente-titulo); font-weight: 400; font-size: 30px; line-height: 1.05; }
+.ficha-cargo { font-size: 15px; font-weight: 700; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
+.ficha-historia { margin: 4px 0 0; font-size: 17px; line-height: 1.45; max-width: 30ch; }
+.ficha-pie { margin-top: 8px; font-size: 12px; color: var(--tinta-suave); }
+
 /* Respuesta según el arrastre: plano de tinta en la parte baja de la foto (arriba taparía los ojos) */
 .respuesta {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 12px 16px;
@@ -293,12 +305,12 @@ body {
 .carta.listo { outline: 4px solid var(--rojo); outline-offset: 3px; border-color: var(--rojo); }
 .respuesta.firme { background: var(--rojo); }
 
-/* Línea de arriba: «Comandante X | N años en el poder» */
-.linea-dictador { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 24px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; }
-.linea-dictador b { flex: none; font-weight: 700; font-size: 15px; line-height: 1.2; }
-.linea-dictador .sep { color: var(--tinta-suave); }
-.linea-dictador small { min-width: 0; font-size: 14px; line-height: 1.2; color: var(--tinta-suave); overflow: hidden; text-overflow: ellipsis; }
-.linea-dictador small.hidden { display: none; }
+/* Barra inferior: dictador y años en dos líneas; a la derecha, las cuatro casillas de estado */
+.pie-juego { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 6px 0 0; border-top: 2px dashed var(--carbon); }
+.dictador { min-width: 0; flex: 1; }
+.dictador b { display: block; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
+.dictador small { display: block; font-size: 12px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dictador small.hidden { display: none; }
 .aviso-archivo {
   display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 26px; margin: 0; padding: 0 8px 0 6px;
   border: var(--trazo); border-radius: var(--radio); background: var(--bloque); color: var(--tinta);
@@ -307,15 +319,14 @@ body {
 }
 .aviso-archivo .icono.en-linea { height: 18px; margin-right: 4px; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-/* Estados del régimen: sobre el fondo de la carta, arriba a la izquierda, uno debajo de otro, sin recuadro.
-   Solo aparecen los activos. Van fuera de la carta (no se mueven al arrastrarla). */
-.ranuras { position: absolute; top: 12px; left: 6px; z-index: 4; display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
-.ranura { width: 54px; height: 54px; padding: 0; border: none; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: auto; }
-.ranura:focus-visible { outline: 3px solid var(--bloque); outline-offset: 1px; }
-.ranura .icono { width: 50px; height: 50px; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .55)); }
-.ranura.nueva { animation: entra .45s cubic-bezier(.2, .9, .3, 1.4); }
-.ranura.actua { animation: actua .7s ease-out; }
-@keyframes actua { 0%, 100% { transform: scale(1); } 35% { transform: scale(1.18) rotate(-6deg); } }
+.ranuras { display: flex; gap: 6px; flex-shrink: 0; }
+.ranura { width: 46px; height: 46px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
+.ranura.llena { background: var(--bloque); border: var(--trazo); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+.ranura .icono { width: 40px; height: 40px; }
+.ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
+.ranura.actua { animation: invierte .8s steps(1) 1; }
+@keyframes invierte { 0% { background: var(--tinta); border-color: var(--bloque); } 100% { background: var(--bloque); } }
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* Abandonar partida: una línea de texto pequeña, sin botón */
@@ -404,18 +415,22 @@ body {
 }
 @media (max-height: 640px) {
   .par .icono-fuerza { height: 36px; }
-  .ranura { width: 46px; height: 46px; }
-  .ranura .icono { width: 42px; height: 42px; }
+  .ranura { width: 42px; height: 42px; }
+  .ranura .icono { width: 36px; height: 36px; }
 }
 @media (max-width: 380px) {
-  .linea-dictador b { font-size: 14px; }
-  .linea-dictador small { font-size: 12px; }
+  .ranuras { gap: 4px; }
+  .ranura { width: 40px; height: 40px; }
+  .ranura .icono { width: 34px; height: 34px; }
+  .pie-juego { gap: 8px; }
+  .dictador b { font-size: 14px; }
+  .dictador small { font-size: 11px; }
   .aviso-archivo { font-size: 12px; padding: 0 6px 0 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .carta, .nivel .relleno { transition: none; }
   .peligro .alerta, .peligro .nivel .relleno { animation: none; }
-  .ranura.nueva, .ranura.actua, .barra.cambia .nivel { animation: none; }
+  .ranura.nueva, .ranura.actua, .barra.cambia .nivel, .carta.girando { animation: none; }
   .personaje .ojos, .animacion * { animation: none !important; }
 }
 </style>
@@ -455,7 +470,6 @@ body {
   </section>
 
   <section id="screen-game" class="screen hidden">
-    <div class="linea-dictador"><b id="nombre-dictador"></b><span class="sep" aria-hidden="true">|</span><small id="anios-poder"></small><button class="aviso-archivo hidden" id="aviso-archivo" type="button"></button></div>
     <div class="cabecera">
       <div class="barras" id="barras"></div>
     </div>
@@ -463,6 +477,9 @@ body {
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa c2"></div><div class="capa c1"></div></div>
       <div class="carta" id="carta" role="group" aria-label="Carta de decisión"></div>
+    </div>
+    <div class="pie-juego">
+      <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small><button class="aviso-archivo hidden" id="aviso-archivo" type="button"></button></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
     </div>
     <button class="abandonar" id="btn-salir" type="button">Abandonar partida</button>
@@ -1336,6 +1353,29 @@ const CARTAS = [
   }
 ];
 
+/* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo e historia breve. */
+const FICHAS = {
+  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones",
+    historia: "Ha sido vicepresidente de tres gobiernos y ha sobrevivido a todos sin que nadie recuerde una sola decisión suya. Contesta el teléfono antes de que suene." },
+  "Ministro de Economía": { nombre: "Rigoberto Peña",
+    historia: "Doctor en economía por correspondencia. Sus gráficos siempre suben, sobre todo los que dibuja él. Nunca ha pisado un mercado, pero los ha cerrado casi todos." },
+  "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta",
+    historia: "Firma contratos con los dos bloques a la vez y con la misma pluma de oro. El reloj se lo regaló un cliente; del cliente no se ha vuelto a saber." },
+  "Ministra de Educación": { nombre: "Hortensia Lamadrid",
+    historia: "Treinta años de directora de escuela y nunca ha dejado de corregir a nadie. Siempre lleva El Príncipe: dice que es un manual de buenas maneras." },
+  "Ministro de Trabajo": { nombre: "Eusebio Palmares",
+    historia: "Defiende a los trabajadores desde un despacho con aire acondicionado. Desde que absorbió Agricultura, lleva plátanos a todas partes: dice que son de su finca." },
+  "Ministra de Cultura": { nombre: "Mirta Albear",
+    historia: "Poeta premiada por un jurado que presidía ella misma. Tiene un sello para cada cosa, pero el que más usa es el de «Prohibido»." },
+  "Ministro de las Fuerzas Armadas": { nombre: "General Domingo Cuesta",
+    historia: "Bajó de la sierra con el Comandante y no se ha vuelto a quitar la boina. Fuma puros que no paga y lleva balas que todavía no ha disparado." },
+  "Ministro del Interior": { nombre: "Octavio Sarria",
+    historia: "Siempre sonríe, pero nunca con los ojos. Guarda un expediente de cada ministro, incluido el suyo, por si acaso. Del guante negro nadie pregunta." },
+  "Embajador del bloque oriental": { nombre: "Pavel Strenko",
+    historia: "Llegó para una misión de seis meses hace once años. Suda incluso en invierno, lo que en su país sería motivo de sospecha." },
+  "Embajador de la potencia del norte": { nombre: "Chester Whitlow",
+    historia: "Sonríe con todos los dientes, sobre todo cuando trae malas noticias. Su país respeta siempre la soberanía ajena, salvo cuando no." }
+};
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 
@@ -1829,15 +1869,17 @@ function pintarBarras() {
 
 function pintarCabecera() {
   const n = anios();
-  $("anios-poder").textContent = n === 0 ? "Recién llegado al poder" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
+  $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
 }
 
 function pintarRanuras() {
   const cont = $("ranuras");
-  /* Solo se ven los estados activos, uno debajo de otro sobre el fondo de la carta, sin recuadro */
-  cont.innerHTML = E.estados.map((s, i) =>
-    `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
-  ).join("");
+  cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
+    const s = E.estados[i];
+    return s
+      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
+      : `<div class="ranura"></div>`;
+  }).join("");
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
   cont.querySelectorAll("button.ranura").forEach(b =>
     b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })
@@ -1896,14 +1938,29 @@ function mostrarFuerza(id, el) {
      <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
 }
 
+function fichaPersonaje(cargo) {
+  const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
+  return `<div class="dorso"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
+    `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div>`;
+}
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
   $("mensaje").textContent = c.texto;
-  /* la respuesta va en la parte baja de la foto, para no tapar los ojos mientras se arrastra */
-  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div><div class="nombre">${esc(c.personaje)}</div>`;
+  /* Anverso: el personaje (la respuesta va en la parte baja, para no tapar los ojos). Reverso: su ficha. */
+  $("carta").classList.remove("volteada", "girando");
+  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div>${fichaPersonaje(c.personaje)}`;
+}
+/* Al tocar la carta se voltea (media vuelta, cambio de cara, media vuelta) y enseña la ficha del personaje */
+function voltear() {
+  const carta = $("carta");
+  if (ocupado || carta.classList.contains("girando")) return;
+  pintarEleccion(0);
+  carta.classList.add("girando");
+  setTimeout(() => carta.classList.toggle("volteada"), 150);
+  setTimeout(() => carta.classList.remove("girando"), 320);
 }
 
 function pintarEleccion(dir) {
@@ -1952,6 +2009,7 @@ function decidir(dir) {
   ocupado = true;
   ocultarInfo();
   const carta = $("carta");
+  carta.classList.remove("volteada", "girando");
   pintarEleccion(dir);
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
@@ -2278,7 +2336,7 @@ function confirmarNombre() {
   }
   carta.addEventListener("pointerdown", e => {
     if (ocupado || panelAbierto) return;
-    drag = { x: e.clientX, dx: 0, dir: 0, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    drag = { x: e.clientX, dx: 0, dir: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
     carta.style.transition = "none";
@@ -2287,6 +2345,7 @@ function confirmarNombre() {
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
+    if (carta.classList.contains("volteada")) return;          // por detrás no se decide: solo se voltea
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
@@ -2294,11 +2353,13 @@ function confirmarNombre() {
     if (dir !== drag.dir) { drag.dir = dir; pintarEleccion(dir); }
     marcarListo(Math.abs(drag.dx) > umbral());
   });
-  function soltar() {
+  function soltar(e) {
     if (!drag) return;
-    const dx = drag.dx, h = drag.hist;
+    const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
     drag = null;
     arrastrando = false;
+    if (toque) { volver(); voltear(); return; }
+    if (carta.classList.contains("volteada")) { volver(); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
     if (Math.abs(dx) > umbral() || lanzada) decidir(Math.sign(dx));

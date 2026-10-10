@@ -827,6 +827,29 @@ const CARTAS = [
   }
 ];
 
+/* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo e historia breve. */
+const FICHAS = {
+  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones",
+    historia: "Ha sido vicepresidente de tres gobiernos y ha sobrevivido a todos sin que nadie recuerde una sola decisión suya. Contesta el teléfono antes de que suene." },
+  "Ministro de Economía": { nombre: "Rigoberto Peña",
+    historia: "Doctor en economía por correspondencia. Sus gráficos siempre suben, sobre todo los que dibuja él. Nunca ha pisado un mercado, pero los ha cerrado casi todos." },
+  "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta",
+    historia: "Firma contratos con los dos bloques a la vez y con la misma pluma de oro. El reloj se lo regaló un cliente; del cliente no se ha vuelto a saber." },
+  "Ministra de Educación": { nombre: "Hortensia Lamadrid",
+    historia: "Treinta años de directora de escuela y nunca ha dejado de corregir a nadie. Siempre lleva El Príncipe: dice que es un manual de buenas maneras." },
+  "Ministro de Trabajo": { nombre: "Eusebio Palmares",
+    historia: "Defiende a los trabajadores desde un despacho con aire acondicionado. Desde que absorbió Agricultura, lleva plátanos a todas partes: dice que son de su finca." },
+  "Ministra de Cultura": { nombre: "Mirta Albear",
+    historia: "Poeta premiada por un jurado que presidía ella misma. Tiene un sello para cada cosa, pero el que más usa es el de «Prohibido»." },
+  "Ministro de las Fuerzas Armadas": { nombre: "General Domingo Cuesta",
+    historia: "Bajó de la sierra con el Comandante y no se ha vuelto a quitar la boina. Fuma puros que no paga y lleva balas que todavía no ha disparado." },
+  "Ministro del Interior": { nombre: "Octavio Sarria",
+    historia: "Siempre sonríe, pero nunca con los ojos. Guarda un expediente de cada ministro, incluido el suyo, por si acaso. Del guante negro nadie pregunta." },
+  "Embajador del bloque oriental": { nombre: "Pavel Strenko",
+    historia: "Llegó para una misión de seis meses hace once años. Suda incluso en invierno, lo que en su país sería motivo de sospecha." },
+  "Embajador de la potencia del norte": { nombre: "Chester Whitlow",
+    historia: "Sonríe con todos los dientes, sobre todo cuando trae malas noticias. Su país respeta siempre la soberanía ajena, salvo cuando no." }
+};
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 

@@ -48,7 +48,7 @@ test("cada carta se pinta con su imagen y su nombre", () => {
     w.eval(`E.actual=POR_ID["${c.id}"]; pintarCarta(E.actual);`);
     assert.ok(d.querySelector("#carta svg.personaje image.base"), `«${c.id}» no muestra imagen`);
     assert.equal(d.querySelectorAll("#carta svg.personaje .ojos circle").length, 2, `«${c.id}» no tiene dos ojos`);
-    assert.equal(d.querySelector("#carta .nombre").textContent, c.personaje);
+    assert.equal(d.querySelector("#carta .dorso .ficha-cargo").textContent, c.personaje);
   }
 });
 

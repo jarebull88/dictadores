@@ -496,6 +496,17 @@ function mostrarFuerza(id, el) {
      <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
 }
 
+/* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);
+   si aun así no cabe (pantallas muy estrechas), la caja crece lo justo para ese mensaje. */
+function ajustarMensaje() {
+  const m = $("mensaje");
+  m.style.fontSize = ""; m.style.height = "";
+  let px = parseFloat(getComputedStyle(m).fontSize) || 19;
+  while (m.scrollHeight > m.clientHeight + 1 && px > 15) { px -= 1; m.style.fontSize = px + "px"; }
+  if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
+}
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) ajustarMensaje(); });
+
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
   return `<div class="dorso"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
@@ -507,6 +518,7 @@ function pintarCarta(c) {
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
   $("mensaje").textContent = c.texto;
+  ajustarMensaje();
   /* Anverso: el personaje (la respuesta va en la parte baja, para no tapar los ojos). Reverso: su ficha. */
   $("carta").classList.remove("volteada", "girando");
   $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div>${fichaPersonaje(c.personaje)}`;

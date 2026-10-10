@@ -520,17 +520,15 @@ function pintarCarta(c) {
   $("mensaje").textContent = c.texto;
   ajustarMensaje();
   /* Anverso: el personaje (la respuesta va en la parte baja, para no tapar los ojos). Reverso: su ficha. */
-  $("carta").classList.remove("volteada", "girando");
-  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div>${fichaPersonaje(c.personaje)}`;
+  $("carta").classList.remove("volteada");
+  $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}` +
+    `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
-/* Al tocar la carta se voltea (media vuelta, cambio de cara, media vuelta) y enseña la ficha del personaje */
+/* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
-  const carta = $("carta");
-  if (ocupado || carta.classList.contains("girando")) return;
+  if (ocupado) return;
   pintarEleccion(0);
-  carta.classList.add("girando");
-  setTimeout(() => carta.classList.toggle("volteada"), 150);
-  setTimeout(() => carta.classList.remove("girando"), 320);
+  $("carta").classList.toggle("volteada");
 }
 
 function pintarEleccion(dir) {
@@ -579,7 +577,7 @@ function decidir(dir) {
   ocupado = true;
   ocultarInfo();
   const carta = $("carta");
-  carta.classList.remove("volteada", "girando");
+  carta.classList.remove("volteada");
   pintarEleccion(dir);
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");

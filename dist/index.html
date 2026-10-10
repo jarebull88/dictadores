@@ -192,12 +192,24 @@ body {
 .pila .capa { position: absolute; inset: 0; background: var(--bloque); border: var(--trazo); border-radius: var(--radio); }
 .pila .c1 { transform: translate(4px, 4px); }
 .pila .c2 { transform: translate(8px, 8px); background: var(--gris); }
+/* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
+   .giro da la media vuelta en 3D: anverso (personaje) y reverso (ficha), cada uno con la espalda oculta. */
 .carta {
-  position: relative; background: var(--bloque); color: var(--tinta);
-  border: var(--trazo); border-radius: var(--radio); overflow: hidden;
-  display: flex; flex-direction: column; touch-action: none; user-select: none; -webkit-user-select: none;
+  position: relative; color: var(--tinta); perspective: 2200px;
+  touch-action: none; user-select: none; -webkit-user-select: none;
   cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease;
 }
+.giro {
+  position: absolute; inset: 0; transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.3, .1, .2, 1);
+}
+.carta.volteada .giro { transform: rotateY(180deg); }
+.cara, .dorso {
+  position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
+  border: var(--trazo); border-radius: var(--radio); background: var(--bloque);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dorso { transform: rotateY(180deg); }
 .carta:active { cursor: grabbing; }
 .ilustracion { flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column; background: var(--fondo-escena, #2F2E2B); }
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background: var(--gris); color: var(--tinta-suave); }
@@ -280,12 +292,8 @@ body {
   font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: .01em;
   transition: background-color .12s, color .12s;
 }
-/* Volteo: media vuelta, cambio de cara y media vuelta (se usa «rotate», no «transform», que es del arrastre) */
-.carta.girando { animation: voltear .32s ease-in-out; }
-@keyframes voltear { 50% { rotate: y 90deg; } }
-.carta.volteada .ilustracion, .carta:not(.volteada) .dorso { display: none; }
 /* Reverso: la ficha del personaje, como un expediente */
-.dorso { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding: 24px 22px; text-align: center; background: var(--bloque); }
+.dorso { justify-content: center; align-items: center; gap: 10px; padding: 24px 22px; text-align: center; }
 .ficha-etiqueta { font-size: 12px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--tinta-suave); padding: 3px 10px; border: 1.5px dashed var(--carbon); }
 .ficha-nombre { font-family: var(--fuente-titulo); font-weight: 400; font-size: 30px; line-height: 1.05; }
 .ficha-cargo { font-size: 15px; font-weight: 700; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
@@ -303,7 +311,8 @@ body {
 .respuesta span { display: block; font-weight: 400; font-size: 16px; line-height: 1.3; margin-top: 4px; }
 .respuesta.firme { opacity: 1; }
 /* En la zona de decisión: contorno grueso y el pie con el nombre, invertido */
-.carta.listo { outline: 4px solid var(--rojo); outline-offset: 3px; border-color: var(--rojo); }
+.carta.listo { outline: 4px solid var(--rojo); outline-offset: 3px; border-radius: var(--radio); }
+.carta.listo .cara { border-color: var(--rojo); }
 .respuesta.firme { background: var(--rojo); }
 
 /* Barra inferior: dictador y años en dos líneas; a la derecha, las cuatro casillas de estado */
@@ -431,7 +440,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .carta, .nivel .relleno { transition: none; }
   .peligro .alerta, .peligro .nivel .relleno { animation: none; }
-  .ranura.nueva, .ranura.actua, .barra.cambia .nivel, .carta.girando { animation: none; }
+  .ranura.nueva, .ranura.actua, .barra.cambia .nivel { animation: none; }
+  .giro { transition: none; }
   .personaje .ojos, .animacion * { animation: none !important; }
 }
 </style>
@@ -1963,17 +1973,15 @@ function pintarCarta(c) {
   $("mensaje").textContent = c.texto;
   ajustarMensaje();
   /* Anverso: el personaje (la respuesta va en la parte baja, para no tapar los ojos). Reverso: su ficha. */
-  $("carta").classList.remove("volteada", "girando");
-  $("carta").innerHTML = `<div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}<div class="respuesta" id="respuesta"></div></div>${fichaPersonaje(c.personaje)}`;
+  $("carta").classList.remove("volteada");
+  $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}` +
+    `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
-/* Al tocar la carta se voltea (media vuelta, cambio de cara, media vuelta) y enseña la ficha del personaje */
+/* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
-  const carta = $("carta");
-  if (ocupado || carta.classList.contains("girando")) return;
+  if (ocupado) return;
   pintarEleccion(0);
-  carta.classList.add("girando");
-  setTimeout(() => carta.classList.toggle("volteada"), 150);
-  setTimeout(() => carta.classList.remove("girando"), 320);
+  $("carta").classList.toggle("volteada");
 }
 
 function pintarEleccion(dir) {
@@ -2022,7 +2030,7 @@ function decidir(dir) {
   ocupado = true;
   ocultarInfo();
   const carta = $("carta");
-  carta.classList.remove("volteada", "girando");
+  carta.classList.remove("volteada");
   pintarEleccion(dir);
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");

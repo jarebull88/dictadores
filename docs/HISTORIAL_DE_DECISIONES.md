@@ -118,6 +118,12 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** Nueva imagen de la Ministra de Cultura (corrige un error en la cara).
 - **Vigente.** Los iconos de estado de abajo, mucho más grandes: fila propia a todo el ancho (62 px de alto); el nombre y los años pasan a una sola línea encima.
 
+## 7 sexies. Composición del boceto de Jorge (10 oct)
+- **Vigente.** Arriba, una línea «Comandante X | N años en el poder»; debajo, las fuerzas; el mensaje; la carta lo más grande posible; «Abandonar partida» al pie. Se quitan la línea doble y la barra inferior.
+- **Vigente.** Los **estados pasan dentro de la carta**, arriba a la izquierda, uno debajo de otro, sin recuadro; solo aparecen los activos. Así la carta puede ser más vertical (hasta 1,6 veces el ancho).
+- **Vigente.** La ilustración ocupa **siempre todo el ancho** (algunas vienen cortadas a los lados): se apoya abajo y, si no cabe en alto, se recorta por abajo. Fondo de la carta **gris oscuro** por ahora.
+- **Vigente.** Los iconos proyectan una **sombra leve**, como recortes de papel.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

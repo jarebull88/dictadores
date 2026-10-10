@@ -176,7 +176,7 @@ function svgPersonaje(slug, nombre) {
     ? `<g class="animacion anim-${p.animacion.tipo}" transform="translate(${p.animacion.x} ${p.animacion.y})">${ANIMACION[p.animacion.tipo]()}</g>` : "";
   const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo
-  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" role="img" aria-label="${esc(nombre || p.nombre)}">` +
+  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" style="aspect-ratio:${p.ancho} / ${p.alto - arriba}" role="img" aria-label="${esc(nombre || p.nombre)}">` +
     `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${a}` +
     `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
 }
@@ -431,12 +431,10 @@ function pintarCabecera() {
 
 function pintarRanuras() {
   const cont = $("ranuras");
-  cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
-    const s = E.estados[i];
-    return s
-      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
-      : `<div class="ranura"></div>`;
-  }).join("");
+  /* Solo se ven los estados activos, uno debajo de otro sobre el fondo de la carta, sin recuadro */
+  cont.innerHTML = E.estados.map((s, i) =>
+    `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
+  ).join("");
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
   cont.querySelectorAll("button.ranura").forEach(b =>
     b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })

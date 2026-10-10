@@ -51,7 +51,7 @@ body {
 .emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-style: normal; line-height: 1; }
 .defs-svg { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Iconos de papel recortado */
-.icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .35)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
 .icono.en-linea { display: inline-block; height: 1.25em; width: auto; vertical-align: -.3em; margin: 0 .25em 0 .05em; }
 .ico { display: inline-block; width: 24px; height: 24px; flex: none; fill: currentColor; }
 
@@ -126,7 +126,7 @@ body {
 #screen-game { position: relative; overflow: visible; padding: 8px 12px 6px; }
 
 /* Cabecera: las cuatro fuerzas y el menú, cerradas por una línea doble de tinta */
-.cabecera { display: flex; align-items: flex-start; gap: 6px; padding-bottom: 2px; border-bottom: 4px double var(--carbon); }
+.cabecera { display: flex; align-items: flex-start; gap: 6px; }
 
 /* Las cuatro fuerzas: un icono, la barra horizontal debajo y los puntos de pista bajo la barra */
 .barras { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
@@ -178,16 +178,16 @@ body {
 /* Escenario: la carta ocupa todo el hueco libre (ancho completo y el alto que dejan el mensaje y la barra inferior), con el mazo detrás.
    Sin proporción fija: el personaje se ajusta con preserveAspectRatio (ver svgPersonaje). Alto máximo: 1,45 veces el ancho. */
 .escenario {
-  flex: 1; min-height: 220px; padding: 6px 0 10px; position: relative;
-  display: flex; align-items: center; justify-content: center;
+  flex: 1; min-height: 260px; padding: 4px 0 8px; position: relative;
+  display: flex; align-items: flex-start; justify-content: center;
   container-type: size;
 }
 .carta, .pila {
   width: calc(100cqw - 8px);
-  height: min(100cqh - 8px, (100cqw - 8px) * 1.45);
+  height: min(100cqh - 8px, (100cqw - 8px) * 1.6);
 }
-.pila { position: absolute; inset: 0; margin: auto; translate: -4px -4px; pointer-events: none; }
-.carta { translate: -4px -4px; }
+.pila { position: absolute; top: 4px; left: 0; right: 0; margin: 0 auto; translate: -4px 0; pointer-events: none; }
+.carta { translate: -4px 0; }
 .pila .capa { position: absolute; inset: 0; background: var(--bloque); border: var(--trazo); border-radius: var(--radio); }
 .pila .c1 { transform: translate(4px, 4px); }
 .pila .c2 { transform: translate(8px, 8px); background: var(--gris); }
@@ -198,10 +198,11 @@ body {
   cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease;
 }
 .carta:active { cursor: grabbing; }
-.ilustracion { flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; background: var(--fondo-escena, var(--gris)); }
+.ilustracion { flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column; background: var(--fondo-escena, #2F2E2B); }
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background: var(--gris); color: var(--tinta-suave); }
-/* Personaje: SVG con la imagen recortada y los ojos encima, pegado al borde inferior */
-.personaje { display: block; width: 100%; height: 100%; pointer-events: none; user-select: none; }
+/* Personaje: SVG a todo el ancho de la carta, apoyado abajo (margin-top: auto). Si es más alto que el hueco,
+   el margen automático se anula y se recorta por abajo, nunca la cabeza. */
+.personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
 .personaje .ojos { fill: var(--ojo, #161618); animation: mirar 7s ease-in-out infinite; }
 @keyframes mirar {
@@ -292,12 +293,12 @@ body {
 .carta.listo { outline: 4px solid var(--rojo); outline-offset: 3px; border-color: var(--rojo); }
 .respuesta.firme { background: var(--rojo); }
 
-/* Barra inferior: separada por una línea de puntos (borde desprendible); dictador, años y ranuras */
-.pie-juego { display: grid; gap: 5px; padding: 5px 0 0; border-top: 2px dashed var(--carbon); }
-.dictador { min-width: 0; display: flex; align-items: baseline; gap: 10px; white-space: nowrap; overflow: hidden; }
-.dictador b { display: block; flex: none; font-weight: 700; font-size: 15px; line-height: 1.2; }
-.dictador small { display: block; min-width: 0; font-size: 13px; line-height: 1.3; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dictador small.hidden { display: none; }
+/* Línea de arriba: «Comandante X | N años en el poder» */
+.linea-dictador { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 24px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; }
+.linea-dictador b { flex: none; font-weight: 700; font-size: 15px; line-height: 1.2; }
+.linea-dictador .sep { color: var(--tinta-suave); }
+.linea-dictador small { min-width: 0; font-size: 14px; line-height: 1.2; color: var(--tinta-suave); overflow: hidden; text-overflow: ellipsis; }
+.linea-dictador small.hidden { display: none; }
 .aviso-archivo {
   display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 26px; margin: 0; padding: 0 8px 0 6px;
   border: var(--trazo); border-radius: var(--radio); background: var(--bloque); color: var(--tinta);
@@ -306,19 +307,20 @@ body {
 }
 .aviso-archivo .icono.en-linea { height: 18px; margin-right: 4px; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-.ranuras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.ranura { width: 100%; height: 62px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
-.ranura.llena { background: var(--bloque); border: var(--trazo); cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .icono { width: 54px; height: 54px; }
-.ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
-.ranura.actua { animation: invierte .8s steps(1) 1; }
-@keyframes invierte { 0% { background: var(--tinta); border-color: var(--bloque); } 100% { background: var(--bloque); } }
+/* Estados del régimen: sobre el fondo de la carta, arriba a la izquierda, uno debajo de otro, sin recuadro.
+   Solo aparecen los activos. Van fuera de la carta (no se mueven al arrastrarla). */
+.ranuras { position: absolute; top: 12px; left: 6px; z-index: 4; display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
+.ranura { width: 54px; height: 54px; padding: 0; border: none; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: auto; }
+.ranura:focus-visible { outline: 3px solid var(--bloque); outline-offset: 1px; }
+.ranura .icono { width: 50px; height: 50px; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .55)); }
+.ranura.nueva { animation: entra .45s cubic-bezier(.2, .9, .3, 1.4); }
+.ranura.actua { animation: actua .7s ease-out; }
+@keyframes actua { 0%, 100% { transform: scale(1); } 35% { transform: scale(1.18) rotate(-6deg); } }
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* Abandonar partida: una línea de texto bajo un divisor, sin botón */
+/* Abandonar partida: una línea de texto pequeña, sin botón */
 .abandonar {
-  flex: none; margin: 6px 0 0; padding: 5px 0 0; border: none; border-top: 1.5px solid var(--carbon); background: none;
+  flex: none; margin: 2px 0 0; padding: 4px 0 0; border: none; background: none;
   color: var(--tinta-suave); font: inherit; font-size: 14px; text-align: center; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
 }
 .abandonar:hover, .abandonar:focus-visible { color: var(--tinta); outline: none; }
@@ -394,16 +396,12 @@ body {
 }
 @media (max-height: 640px) {
   .par .icono-fuerza { height: 36px; }
-  .ranura { height: 52px; }
-  .ranura .icono { width: 44px; height: 44px; }
+  .ranura { width: 46px; height: 46px; }
+  .ranura .icono { width: 42px; height: 42px; }
 }
 @media (max-width: 380px) {
-  .ranuras { gap: 4px; }
-  .ranura { height: 56px; }
-  .ranura .icono { width: 48px; height: 48px; }
-  .pie-juego { gap: 8px; }
-  .dictador b { font-size: 14px; }
-  .dictador small { font-size: 12px; }
+  .linea-dictador b { font-size: 14px; }
+  .linea-dictador small { font-size: 12px; }
   .aviso-archivo { font-size: 12px; padding: 0 6px 0 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -449,6 +447,7 @@ body {
   </section>
 
   <section id="screen-game" class="screen hidden">
+    <div class="linea-dictador"><b id="nombre-dictador"></b><span class="sep" aria-hidden="true">|</span><small id="anios-poder"></small><button class="aviso-archivo hidden" id="aviso-archivo" type="button"></button></div>
     <div class="cabecera">
       <div class="barras" id="barras"></div>
     </div>
@@ -456,10 +455,7 @@ body {
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa c2"></div><div class="capa c1"></div></div>
       <div class="carta" id="carta" role="group" aria-label="Carta de decisión"></div>
-    </div>
-    <div class="pie-juego">
-      <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small><button class="aviso-archivo hidden" id="aviso-archivo" type="button"></button></div>
-      <div class="ranuras" id="ranuras"></div>
+      <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
     </div>
     <button class="abandonar" id="btn-salir" type="button">Abandonar partida</button>
     <div class="popup hidden" id="popup" role="dialog"></div>
@@ -1378,7 +1374,7 @@ function svgPersonaje(slug, nombre) {
     ? `<g class="animacion anim-${p.animacion.tipo}" transform="translate(${p.animacion.x} ${p.animacion.y})">${ANIMACION[p.animacion.tipo]()}</g>` : "";
   const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo
-  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" role="img" aria-label="${esc(nombre || p.nombre)}">` +
+  return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" style="aspect-ratio:${p.ancho} / ${p.alto - arriba}" role="img" aria-label="${esc(nombre || p.nombre)}">` +
     `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${a}` +
     `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
 }
@@ -1633,12 +1629,10 @@ function pintarCabecera() {
 
 function pintarRanuras() {
   const cont = $("ranuras");
-  cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
-    const s = E.estados[i];
-    return s
-      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
-      : `<div class="ranura"></div>`;
-  }).join("");
+  /* Solo se ven los estados activos, uno debajo de otro sobre el fondo de la carta, sin recuadro */
+  cont.innerHTML = E.estados.map((s, i) =>
+    `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
+  ).join("");
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
   cont.querySelectorAll("button.ranura").forEach(b =>
     b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })

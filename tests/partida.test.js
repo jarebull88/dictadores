@@ -9,7 +9,7 @@ test("500 partidas al azar terminan bien y alguna llega a la era 2", () => {
   for (let g = 0; g < 500; g++) {
     const r = jugarPartida(j);
     transiciones += r.transiciones;
-    assert.ok(["¡Has caído!", "Sigues en el poder"].includes(r.principal), "final inesperado: " + r.principal);
+    assert.ok(["¡Has caído!", "¡Has ganado!"].includes(r.principal), "final inesperado: " + r.principal);
     r.cae ? caidas++ : finales++;
   }
   assert.deepEqual(j.errores, []);
@@ -39,4 +39,20 @@ test("al pasar a la era 3 el tratamiento cambia de «Comandante» a «Excelencia
   j.$("btn-continuar").click();
   assert.equal(j.w.eval("E.era"), 3);
   assert.match(j.$("nombre-dictador").textContent, /^Excelencia /);
+});
+
+test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has ganado!» con esquela", () => {
+  const j = cargar();
+  j.empezar();
+  for (let era = 1; era <= 3; era++) {
+    j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
+    j.$("btn-continuar").click();
+  }
+  assert.equal(j.w.eval("E.era"), 4);
+  assert.match(j.$("nombre-dictador").textContent, /, Padre de la Patria$/);
+  j.w.eval("E.banderas.add('base.mausoleo_construido'); E.turno=finEra()+1; finDeEra();");
+  assert.equal(j.$("fin-principal").textContent, "¡Has ganado!");
+  assert.ok(j.$("screen-end").classList.contains("victoria"));
+  assert.ok(!j.visible("btn-continuar"), "tras la última era no se sigue gobernando");
+  assert.match(j.$("fin-esquela").textContent, /mausoleo/);
 });

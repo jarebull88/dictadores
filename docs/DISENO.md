@@ -25,7 +25,7 @@ Las cartas solo salen en su era y una vez por partida, salvo las `repetible` (de
 Máximo 4 ranuras: al entrar el quinto sale el más antiguo. Cada estado tiene deriva sobre las barras, cadencia, a veces duración, y cambia los pesos del sorteo. Lista en `estados.md`. Al entrar un estado nuevo se abre una ventana explicativa automática.
 
 ## Eras
-Cada era dura de 6 a 8 años. Ahora: **1 · Ascenso**, **2 · Consolidación** (factor de dureza 0.7) y **3 · Culto** (0.75; tratamiento «Excelencia»). Las eras 4 a 7 aún no existen ni tienen nombre. Entre eras se conservan barras, estados, banderas y crisis; los años siguen contando; los nombres de año (Año 1 – Año de la Gloriosa Revolución…) llegan a 30 y luego se numeran.
+Cada era dura de 6 a 8 años. Son cuatro: **1 · Ascenso**, **2 · Consolidación** (factor de dureza 0.7), **3 · Culto** (0.75; tratamiento «Excelencia») y **4 · Ocaso** (0.8; «Padre de la Patria»). Sobrevivir a la cuarta es **ganar** (pantalla de victoria con esquela). Entre eras se conservan barras, estados, banderas y crisis; los años siguen contando; los nombres de año (Año 1 – Año de la Gloriosa Revolución…) llegan a 30 y luego se numeran.
 En la era 2, cada bandera que la era 1 apuntaba hacia ella tiene su carta; algunas aceptan varias banderas (`alguna`) porque sus disparadores son raros.
 
 ## Dificultad

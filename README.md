@@ -2,7 +2,7 @@
 
 Juego de cartas satírico tipo Reigns: eres un dictador del Caribe (sin nombre de país) y decides deslizando la carta. Cuatro fuerzas (Pueblo, Ejército, Élite, Potencias); si una llega a 0 o a 100, caes.
 
-Es un único HTML autocontenido. Hoy: eras 1 (Ascenso), 2 (Consolidación) y 3 (Culto), 70 cartas, 10 portavoces de papel recortado y dos estilos (Normal y Noir).
+Es un único HTML autocontenido. Juego completo: cuatro eras (Ascenso, Consolidación, Culto y Ocaso), 94 cartas, pantalla de victoria y 10 portavoces de papel recortado con su mini animación.
 
 ## Empezar
 ```

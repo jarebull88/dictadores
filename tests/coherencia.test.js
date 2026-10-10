@@ -9,10 +9,11 @@ const ev = x => w.eval(x);
 
 test("el juego carga sin errores", () => assert.deepEqual(j.errores, []));
 
-test("hay cartas de las tres eras", () => {
+test("hay cartas de las cuatro eras", () => {
   assert.ok(cartas.filter(c => !c.era).length >= 19, "faltan cartas de la era 1");
   assert.ok(cartas.filter(c => c.era === 2).length >= 20, "faltan cartas de la era 2");
   assert.ok(cartas.filter(c => c.era === 3).length >= 20, "faltan cartas de la era 3");
+  assert.ok(cartas.filter(c => c.era === 4).length >= 20, "faltan cartas de la era 4");
 });
 
 test("todas las cartas tienen portavoz con grupo e ilustración", () => {
@@ -65,7 +66,7 @@ test("los datos históricos no mencionan países en el texto de la carta", () =>
 
 test("todas las cartas respetan los límites de longitud y el tratamiento de su era", () => {
   for (const c of cartas) {
-    const saludo = (c.era || 1) >= 3 ? "Excelencia," : "Comandante,";
+    const era = c.era || 1, saludo = era >= 4 ? "Padre de la Patria," : era >= 3 ? "Excelencia," : "Comandante,";
     assert.ok(c.texto.length <= 150, `«${c.id}»: el mensaje tiene ${c.texto.length} caracteres (máx. 150)`);
     assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
     for (const l of ["izq", "der"]) {
@@ -75,11 +76,13 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
   }
 });
 
-test("cada bandera reservada para la era 3 tiene su carta de consecuencia", () => {
-  const futuro = ev("FUTURO_ERA"), exigidas = new Set(ev("CARTAS.filter(c=>c.era===3).flatMap(c=>c.cond?[...(c.cond.requiere||[]),...(c.cond.alguna||[])]:[])"));
-  const reservadas = Object.keys(futuro).filter(b => futuro[b] === 3);
-  const sinCarta = reservadas.filter(b => !exigidas.has(b));
-  assert.deepEqual(sinCarta, [], "banderas de la era 3 sin carta: " + sinCarta.join(", "));
+test("cada bandera reservada para las eras 3 y 4 tiene su carta de consecuencia", () => {
+  const futuro = ev("FUTURO_ERA");
+  for (const era of [3, 4]) {
+    const exigidas = new Set(ev(`CARTAS.filter(c=>c.era===${era}).flatMap(c=>c.cond?[...(c.cond.requiere||[]),...(c.cond.alguna||[])]:[])`));
+    const sinCarta = Object.keys(futuro).filter(b => futuro[b] === era && !exigidas.has(b));
+    assert.deepEqual(sinCarta, [], `banderas de la era ${era} sin carta: ` + sinCarta.join(", "));
+  }
 });
 
 test("ya no habla el Ministro de Agricultura: sus cartas son del Ministro de Trabajo", () => {

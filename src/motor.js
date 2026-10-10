@@ -20,8 +20,9 @@ const CLAVE_NOMBRE = "dictadores_nombre_v2";
 let nombreDictador = "";
 try { nombreDictador = (localStorage.getItem(CLAVE_NOMBRE) || "").trim().split(/\s+/)[0] || ""; } catch (e) {}
 /* «Comandante» en las eras 1 y 2; «Excelencia» a partir de la era 3 (culto a la personalidad) */
-const tratamiento = () => (E && E.era >= 3 ? "Excelencia" : "Comandante");
-const nombreCompleto = () => tratamiento() + " " + nombreDictador;
+/* «Comandante» en las eras 1 y 2, «Excelencia» en la 3 y «Padre de la Patria» en la 4 (la última) */
+const tratamiento = () => (E && E.era >= 4 ? "Padre de la Patria" : E && E.era >= 3 ? "Excelencia" : "Comandante");
+const nombreCompleto = () => (E && E.era >= 4 ? `${nombreDictador}, Padre de la Patria` : tratamiento() + " " + nombreDictador);
 function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch (e) {} }
 
 /* =====================================================
@@ -674,9 +675,30 @@ function anios() { return Math.max(0, E.turno - 1); }
 
 const TEXTO_FIN_ERA = {
   1: "Has sobrevivido a los primeros años. El país continúa. Tú también. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
-  2: "El régimen ya no se llama revolución, sino costumbre. Tus ministros han decidido que «Comandante» suena a cuartel: a partir de ahora serás Excelencia."
+  2: "El régimen ya no se llama revolución, sino costumbre. Tus ministros han decidido que «Comandante» suena a cuartel: a partir de ahora serás Excelencia.",
+  3: "Ya nadie recuerda quién gobernaba antes que tú. El Partido te ha nombrado Padre de la Patria y los médicos te visitan cada semana. Solo queda saber cómo termina esto."
 };
-const TEXTO_FIN_JUEGO = "El régimen se ha consolidado. Lo que decidiste en los primeros años ya forma parte de la rutina del país. La era 4 todavía no existe en este prototipo.";
+/* Victoria: sobrevivir a la última era. El final al que aspira todo dictador: morir de viejo, en la cama y en el poder.
+   La esquela cambia según lo que hayas decidido en la partida. */
+const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
+const EPITAFIO = [
+  ["base.mausoleo_construido", "Tu cuerpo, embalsamado, recibe visitas en el mausoleo. Las colas son voluntarias."],
+  ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],
+  ["base.capital_rebautizada", "La capital lleva tu nombre. De momento."],
+  ["base.monumento_colosal", "Tu estatua de cuarenta metros se ve desde la costa."],
+  ["base.palacio_del_pueblo", "El palacio del pueblo sigue sin terminar."],
+  ["base.libro_obligatorio", "Tu libro sigue siendo obligatorio para sacarse el carné de conducir."],
+  ["base.derrota_aceptada", "Perdiste un plebiscito y aun así moriste en el poder. Los historiadores no se ponen de acuerdo."],
+  ["base.recuento", "El recuento de aquel plebiscito todavía no ha terminado."],
+  ["base.culto_iniciado", "Tus retratos siguen colgados en las aulas, cada vez más torcidos."],
+  ["base.estado_policial", "El batallón del Interior monta guardia en tu funeral. Por si acaso."]
+];
+function epitafio() {
+  const lineas = EPITAFIO.filter(([b]) => E.banderas.has(b)).map(([, t]) => t);
+  if (!E.banderas.has("base.sucesor_designado")) lineas.push("Sin sucesor, el gabinete se reparte el país en la sala de espera del hospital.");
+  if (!E.banderas.has("base.mausoleo_construido")) lineas.push("Te entierran con honores en una tumba que nadie sabrá encontrar.");
+  return lineas.slice(0, 4);
+}
 
 function finDeEra() {
   if (E.era < ERAS.length) terminar(null, true);      // hay otra era: se puede seguir gobernando
@@ -695,7 +717,9 @@ function terminar(clave, transicion) {
   ocupado = false;
   const n = anios();
   const pantalla = $("screen-end");
+  const victoria = !clave && !transicion;
   pantalla.classList.toggle("caida", !!clave);
+  pantalla.classList.toggle("victoria", victoria);
   const caja = $("fin-fuerza");
   if (clave) {
     const f = FINALES[clave];
@@ -707,13 +731,22 @@ function terminar(clave, transicion) {
       `<p><strong>${esc(FUERZAS[idF].nombre)}</strong> llegó al ${extremo === 100 ? "máximo" : "mínimo"}.${E.ultimaDecision ? `<small>Tu última decisión: «${esc(E.ultimaDecision)}»</small>` : ""}</p>`;
     caja.querySelector(".relleno").style.width = extremo + "%";
     caja.classList.remove("hidden");
+  } else if (victoria) {
+    $("fin-principal").textContent = "¡Has ganado!";
+    $("fin-titulo").textContent = "Moriste en tu cama, y en el poder";
+    $("fin-texto").textContent = TEXTO_VICTORIA(n);
+    caja.classList.add("hidden");
+    caja.innerHTML = "";
   } else {
     $("fin-principal").textContent = "Sigues en el poder";
     $("fin-titulo").textContent = `Fin de la era ${E.era} · ${ERAS[E.era - 1].nombre}`;
-    $("fin-texto").textContent = transicion ? TEXTO_FIN_ERA[E.era] : TEXTO_FIN_JUEGO;
+    $("fin-texto").textContent = TEXTO_FIN_ERA[E.era];
     caja.classList.add("hidden");
     caja.innerHTML = "";
   }
+  $("fin-esquela").innerHTML = victoria
+    ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
+      `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
   $("btn-continuar").classList.toggle("hidden", !transicion);
   $("btn-repetir").classList.toggle("hidden", !!transicion);
   $("fin-cuadro").innerHTML =
@@ -739,7 +772,7 @@ function terminar(clave, transicion) {
     });
   }
 
-  $("fin-lineas").innerHTML = clave ? "" : BARRAS.map(b => {
+  $("fin-lineas").innerHTML = clave || victoria ? "" : BARRAS.map(b => {
     const v = E.barras[b.id];
     const l = LINEAS_BARRA[b.id];
     return v >= 60 ? `<li>${l.alto}</li>` : v <= 40 ? `<li>${l.bajo}</li>` : "";
@@ -747,7 +780,7 @@ function terminar(clave, transicion) {
 
   const pend = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) > E.era).map(b => `<li>${FUTURO[b]}</li>`);
   const colaTxt = E.cola.map(q => POR_ID[q.carta]).filter(Boolean).map(c => `<li>Te espera una carta: ${c.titulo}.</li>`);
-  const todo = transicion ? [] : colaTxt.concat(pend);
+  const todo = transicion || victoria ? [] : colaTxt.concat(pend);
   $("fin-pendiente").innerHTML = todo.length
     ? `<h3>Lo que dejas pendiente para las siguientes eras</h3><ul>${todo.join("")}</ul>` : "";
   mostrar("screen-end");

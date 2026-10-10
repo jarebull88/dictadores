@@ -37,10 +37,12 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
   assert.match(j.$("fin-fuerza").textContent, /Juicio público/);
 });
 
-test("al sobrevivir a la última era sale «Sigues en el poder»", () => {
+test("al pasar de era sale «Sigues en el poder» y al sobrevivir a la última, «¡Has ganado!»", () => {
   const j = cargar(); j.empezar();
-  j.w.eval("empezar(); terminar(null)");
+  j.w.eval("empezar(); terminar(null, true)");
   assert.equal(j.$("fin-principal").textContent, "Sigues en el poder");
+  j.w.eval("empezar(); terminar(null)");
+  assert.equal(j.$("fin-principal").textContent, "¡Has ganado!");
   assert.ok(!j.$("screen-end").classList.contains("caida"));
 });
 

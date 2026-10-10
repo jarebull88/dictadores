@@ -20,7 +20,8 @@ const BARRAS = [
 const ERAS = [
   { nombre: "Ascenso", min: 6, max: 8 },
   { nombre: "Consolidación", min: 6, max: 8, factor: 0.7 },
-  { nombre: "Culto", min: 6, max: 8, factor: 0.75 }
+  { nombre: "Culto", min: 6, max: 8, factor: 0.75 },
+  { nombre: "Ocaso", min: 6, max: 8, factor: 0.8 }
 ];
 const ERA = ERAS[0];
 const UMBRAL_COALICION = 30;
@@ -629,6 +630,200 @@ const CARTAS = [
     archivo: null,
     izq: { accion: "Mantener la acusación.", remate: "Los certificados de defunción también confiesan.", efectos: { ejercito: 6, pueblo: -5, potencias: -3 } },
     der: { accion: "Liberar a los acusados.", remate: "Liberarlos sería reconocer un error, y la Revolución no se equivoca.", efectos: { ejercito: -6, pueblo: 5, potencias: 3 } }
+  },
+  /* ---------- Era 4 · Ocaso ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
+  {
+    id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje", ilustracion: null,
+    personaje: "Ministra de Cultura",
+    texto: "Padre de la Patria, un periódico al que usted dejó publicar ha destapado las cuentas del palacio. Se vende en todos los quioscos.",
+    archivo: "Entre 1972 y 1974, las informaciones del Washington Post sobre el caso Watergate acabaron con la dimisión del presidente estadounidense Richard Nixon.",
+    izq: { accion: "Cerrar el periódico.", remate: "La libertad de prensa también tiene horario de cierre.", efectos: { pueblo: -7, ejercito: 4, potencias: -5 } },
+    der: { accion: "Despedir a un ministro.", remate: "Alguien tendrá que haber firmado esas cuentas.", efectos: { pueblo: 7, elite: -6, potencias: 4 } }
+  },
+  {
+    id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Varela vuelve", ilustracion: null,
+    personaje: "Ministro del Interior",
+    texto: "Padre de la Patria, el general Varela ha vuelto de su embajada. Los descontentos lo reciben en el aeropuerto como a un candidato.",
+    archivo: "El 20 de junio de 1973, el regreso de Juan Domingo Perón a Argentina tras dieciocho años de exilio reunió a una multitud en Ezeiza, y la jornada terminó en enfrentamientos armados.",
+    izq: { accion: "Recibirlo en palacio.", remate: "Dos viejos generales; solo uno tiene palacio.", efectos: { ejercito: 7, pueblo: 4, elite: -6 } },
+    der: { accion: "Devolverlo al avión.", remate: "Su embajada le echaba mucho de menos.", efectos: { ejercito: -7, pueblo: -4, elite: 6 } }
+  },
+  {
+    id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente", ilustracion: null,
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Padre de la Patria, su sucesor ya recibe a los embajadores en su despacho y ha encargado retratos suyos para las escuelas.",
+    archivo: "Lin Biao, designado sucesor de Mao Zedong en 1969, murió en 1971 al estrellarse en Mongolia el avión en el que huía, tras un supuesto intento de golpe.",
+    izq: { accion: "Recordarle quién manda.", remate: "La paciencia también es un mérito revolucionario.", efectos: { elite: -7, ejercito: 5, potencias: -3 } },
+    der: { accion: "Dejarle hacer.", remate: "Que aprenda; algún día tendrá que hacerlo sin mí.", efectos: { elite: 7, ejercito: -5, potencias: 3 } }
+  },
+  {
+    id: "los_inocentes", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.oposicion_culpada"] }, titulo: "Los inocentes", ilustracion: null,
+    personaje: "Embajador de la potencia del norte",
+    texto: "Padre de la Patria, nuestro país tiene pruebas de que la oposición no puso aquella bomba. Pedimos que se revise el caso.",
+    archivo: "Marinus van der Lubbe fue ejecutado en 1934 por el incendio del Reichstag de Berlín. En 2008 la justicia alemana anuló su condena.",
+    izq: { accion: "Revisar el caso.", remate: "Que se revise; la sentencia, que no se mueva.", efectos: { potencias: 7, pueblo: 4, ejercito: -6 } },
+    der: { accion: "Asunto cerrado.", remate: "La Historia ya dictó sentencia; yo solo la firmé.", efectos: { potencias: -7, pueblo: -4, ejercito: 6 } }
+  },
+  {
+    id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío", ilustracion: null,
+    personaje: "Ministro de Economía",
+    texto: "Padre de la Patria, el mausoleo necesita mantenimiento y usted aún no lo ha estrenado. Los embalsamadores piden un aumento.",
+    archivo: "Desde 1924, un laboratorio especializado de Moscú se ocupa de conservar el cuerpo de Lenin, con tratamientos periódicos.",
+    izq: { accion: "Pagar el aumento.", remate: "La eternidad no se recorta.", efectos: { elite: 5, pueblo: -5, crisis: 2 } },
+    der: { accion: "Alquilarlo para actos.", remate: "Mientras tanto, que dé beneficios.", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
+  },
+  {
+    id: "palacio_sin_terminar", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar", ilustracion: null,
+    personaje: "Ministro de Economía",
+    texto: "Padre de la Patria, el palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
+    archivo: "Cuando cayó Nicolae Ceaușescu, en diciembre de 1989, la Casa del Pueblo de Bucarest seguía sin terminar. Hoy alberga el Parlamento rumano.",
+    izq: { accion: "Terminarlo como sea.", remate: "Que mis sucesores tengan dónde aburrirse.", efectos: { elite: 6, pueblo: -7, crisis: 3 } },
+    der: { accion: "Convertirlo en museo.", remate: "Un museo de lo que pudo haber sido.", efectos: { elite: -6, pueblo: 7, crisis: -1 } }
+  },
+  {
+    id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estado_policial", "base.jefe_poderoso"] }, titulo: "Dos ejércitos", ilustracion: null,
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Padre de la Patria, la unidad del Interior ya tiene más tanques que el Ejército. Mis oficiales preguntan quién manda.",
+    archivo: "En 1934, Hitler ordenó eliminar a la cúpula de las SA, cuyo poder inquietaba al ejército regular, en la llamada Noche de los Cuchillos Largos.",
+    izq: { accion: "Desarmar al batallón.", remate: "Un ejército basta; dos acaban discutiendo.", efectos: { ejercito: 8, elite: -4, pueblo: 3 } },
+    der: { accion: "Más tanques al Ejército.", remate: "Si sobran tanques, que sobren en los dos lados.", efectos: { ejercito: -8, elite: 4, crisis: 2 } }
+  },
+
+  {
+    id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud", ilustracion: null,
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Padre de la Patria, corren rumores sobre su salud. Proponemos que se le vea nadando en el río, como hacía de joven.",
+    archivo: "En julio de 1966, con 72 años, Mao Zedong nadó en el río Yangtsé ante las cámaras para desmentir los rumores sobre su salud.",
+    izq: { accion: "Nadar en el río.", remate: "Que la corriente sepa quién manda.", efectos: { pueblo: 6, elite: 3, ejercito: -4 } },
+    der: { accion: "Mandar a un doble.", remate: "Nadie notará la diferencia; yo tampoco.", efectos: { pueblo: -6, elite: -3, ejercito: 4 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
+  },
+  {
+    id: "el_doble", era: 4, tipo: "cola", titulo: "El doble", ilustracion: null,
+    personaje: "Ministro del Interior",
+    texto: "Padre de la Patria, su doble ha empezado a dar discursos por su cuenta. Dicen que habla mejor que usted.",
+    archivo: null,
+    izq: { accion: "Retirar al doble.", remate: "Solo hay sitio para un Padre de la Patria.", efectos: { ejercito: 6, pueblo: -5, elite: -2 } },
+    der: { accion: "Dejarle los discursos.", remate: "Que hable él; yo descanso y escucho.", efectos: { ejercito: -6, pueblo: 5, elite: 2 } }
+  },
+  {
+    id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas", ilustracion: null,
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Padre de la Patria, el Ejército quiere concederle su máxima condecoración. Sería la número ochenta y tres.",
+    archivo: "Leonid Brézhnev acumuló más de cien condecoraciones soviéticas y extranjeras, entre ellas cuatro títulos de Héroe de la Unión Soviética.",
+    izq: { accion: "Aceptarla.", remate: "La modestia también necesita sitio en el pecho.", efectos: { ejercito: 6, pueblo: -4, elite: 2 } },
+    der: { accion: "Rechazarla.", remate: "Ochenta y dos bastan para un hombre humilde.", efectos: { ejercito: -6, pueblo: 4, elite: -2 } }
+  },
+  {
+    id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito", ilustracion: null,
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Padre de la Patria, el Partido propone un plebiscito para que el Pueblo diga si quiere que usted siga ocho años más.",
+    archivo: "En el plebiscito de 1988 en Chile, el 56 % votó «No» a que Augusto Pinochet siguiera en el poder, lo que abrió la transición a la democracia.",
+    izq: { accion: "Convocar el plebiscito.", remate: "El Pueblo decidirá lo que ya está decidido.", efectos: { potencias: 6, pueblo: 4, ejercito: -5 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
+    der: { accion: "No hace falta.", remate: "No pregunto lo que ya sé.", efectos: { potencias: -6, pueblo: -4, ejercito: 5 } }
+  },
+  {
+    id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio", ilustracion: null,
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Padre de la Patria, el plebiscito ha salido mal: gana el «No». El escrutinio todavía no es oficial.",
+    archivo: null,
+    izq: { accion: "Aceptar el resultado.", remate: "Que no se diga que no sé perder; solo que no me voy.", efectos: { pueblo: 9, potencias: 7, ejercito: -9, elite: -4 }, banderas: ["base.derrota_aceptada"] },
+    der: { accion: "Recontar los votos.", remate: "Hasta que salgan bien.", efectos: { pueblo: -9, potencias: -7, ejercito: 9, elite: 4 }, banderas: ["base.recuento"] }
+  },
+  {
+    id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde", ilustracion: null,
+    personaje: "Embajador del bloque oriental",
+    texto: "Padre de la Patria, nuestro país atraviesa dificultades. El año que viene no podremos enviar petróleo, ni créditos, ni, quizá, embajador.",
+    archivo: "Tras la disolución de la Unión Soviética en 1991, Cuba perdió la mayor parte de su comercio exterior y entró en una grave crisis económica, el llamado «Período Especial».",
+    izq: { accion: "Pedir un último envío.", remate: "Por los viejos tiempos y por los nuevos apagones.", efectos: { potencias: 5, pueblo: -5, crisis: 2 } },
+    der: { accion: "Buscar nuevos amigos.", remate: "La amistad eterna también caduca.", efectos: { potencias: -5, pueblo: 5, elite: 3, crisis: 1 } }
+  },
+  {
+    id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa", ilustracion: null,
+    personaje: "Embajador de la potencia del norte",
+    texto: "Padre de la Patria, nuestro país le ofrece una salida honrosa: elecciones libres, inmunidad y una casa en la costa.",
+    archivo: "En 1990 Augusto Pinochet entregó la presidencia de Chile a un gobierno elegido, pero siguió al frente del Ejército hasta 1998 y después fue senador vitalicio.",
+    izq: { accion: "Negociar la salida.", remate: "Una casa en la costa, con vistas al palacio.", efectos: { potencias: 8, pueblo: 5, ejercito: -7, elite: -4 } },
+    der: { accion: "Rechazar la oferta.", remate: "De aquí solo salgo en procesión.", efectos: { potencias: -8, pueblo: -5, ejercito: 7, elite: 4 } }
+  },
+  {
+    id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias", ilustracion: null,
+    personaje: "Ministra de Cultura",
+    texto: "Padre de la Patria, la editorial del Estado prepara sus memorias en doce tomos. Necesitamos saber qué recuerda usted.",
+    archivo: "Leonid Brézhnev publicó en 1978 una trilogía de memorias, escrita en realidad por periodistas, que recibió el Premio Lenin de Literatura en 1979.",
+    izq: { accion: "Doce tomos.", remate: "Y un decimotercero con lo que no recuerdo.", efectos: { elite: 5, pueblo: -5, crisis: 1 } },
+    der: { accion: "Un solo tomo.", remate: "Lo esencial cabe en una página: yo.", efectos: { elite: -5, pueblo: 5 } }
+  },
+  {
+    id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo", ilustracion: null,
+    personaje: "Ministro de Comercio",
+    texto: "Padre de la Patria, su hijo quiere la concesión del puerto. Dice que conoce el negocio porque ha visto llegar los barcos.",
+    archivo: "En 1990, Hutomo «Tommy» Mandala Putra, hijo del presidente indonesio Suharto, obtuvo el control del comercio del clavo de olor a través de un organismo creado para ello.",
+    izq: { accion: "Darle la concesión.", remate: "La experiencia se hereda, como el apellido.", efectos: { elite: 6, pueblo: -6, potencias: -2 } },
+    der: { accion: "Negársela.", remate: "Que empiece desde abajo: un ministerio pequeño.", efectos: { elite: -6, pueblo: 6, potencias: 2 } }
+  },
+  {
+    id: "la_cuenta", era: 4, tipo: "sorteo", peso: 10, titulo: "La cuenta en el extranjero", ilustracion: null,
+    personaje: "Ministro de Economía",
+    texto: "Padre de la Patria, un banco extranjero pregunta de dónde salen los fondos de su cuenta personal. Quiere un papel firmado.",
+    archivo: "Tras la caída de Ferdinand Marcos en Filipinas, en 1986, salieron a la luz cuentas a su nombre en bancos suizos; Suiza devolvió después parte de esos fondos al Estado filipino.",
+    izq: { accion: "Firmar cualquier cosa.", remate: "Mi firma vale más que su pregunta.", efectos: { potencias: 6, elite: 3, pueblo: -5 } },
+    der: { accion: "Traer el dinero a casa.", remate: "Bajo el colchón del Estado no pregunta nadie.", efectos: { potencias: -6, elite: -3, pueblo: 5, crisis: -1 } }
+  },
+  {
+    id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria", ilustracion: null,
+    personaje: "Ministra de Educación",
+    texto: "Padre de la Patria, los nietos de los que usted encarceló piden que los libros de texto cuenten lo que pasó.",
+    archivo: "En España, la Ley de Memoria Histórica de 2007 reconoció a las víctimas de la guerra civil y de la dictadura franquista.",
+    izq: { accion: "Una página en el libro.", remate: "Breve, en letra pequeña y al final.", efectos: { pueblo: 6, potencias: 4, ejercito: -6 } },
+    der: { accion: "Nada que contar.", remate: "La Historia ya está escrita; yo tengo la pluma.", efectos: { pueblo: -6, potencias: -4, ejercito: 6 } }
+  },
+  {
+    id: "huelga_general", era: 4, tipo: "sorteo", peso: 10, titulo: "La huelga general", ilustracion: null,
+    personaje: "Ministro de Trabajo",
+    texto: "Padre de la Patria, los sindicatos convocan una huelga general. Por primera vez se han puesto de acuerdo entre ellos.",
+    archivo: "En 1988 y 1989, una oleada de huelgas en Polonia llevó al gobierno a negociar con Solidaridad en la Mesa Redonda, que desembocó en elecciones parcialmente libres.",
+    izq: { accion: "Subir los salarios.", remate: "Que celebren; la inflación los pondrá en su sitio.", efectos: { pueblo: 8, elite: -5, crisis: 2 } },
+    der: { accion: "Declarar el estado de sitio.", remate: "Si no trabajan, que vigilen el toque de queda.", efectos: { pueblo: -8, ejercito: 6, potencias: -4 } }
+  },
+  {
+    id: "el_concierto", era: 4, tipo: "sorteo", peso: 10, titulo: "El concierto", ilustracion: null,
+    personaje: "Ministra de Cultura",
+    texto: "Padre de la Patria, una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.",
+    archivo: "El 19 de julio de 1988, Bruce Springsteen tocó en Berlín Este ante unas trescientas mil personas, uno de los mayores conciertos de la historia de la República Democrática Alemana.",
+    izq: { accion: "Que toquen.", remate: "Si cantan, no gritan.", efectos: { pueblo: 7, potencias: 4, ejercito: -5 } },
+    der: { accion: "Prohibir el concierto.", remate: "La música extranjera también necesita visado.", efectos: { pueblo: -7, potencias: -4, ejercito: 5 } }
+  },
+  {
+    id: "estatuas_caen", era: 4, tipo: "sorteo", peso: 10, titulo: "Las estatuas caen", ilustracion: null,
+    personaje: "Ministro del Interior",
+    texto: "Padre de la Patria, en la televisión extranjera derriban estatuas de dirigentes como usted. El Pueblo lo está viendo.",
+    archivo: "En agosto de 1991, tras el fracaso del golpe contra Gorbachov, una multitud celebró en Moscú la retirada de la estatua de Félix Dzerzhinski, fundador de la policía política soviética.",
+    izq: { accion: "Cortar la señal.", remate: "Lo que no se ve, no se derriba.", efectos: { pueblo: -6, ejercito: 5, potencias: -3 } },
+    der: { accion: "Reforzar las estatuas.", remate: "Con hormigón y con guardia.", efectos: { pueblo: 3, ejercito: -5, elite: 3, crisis: 1 } }
+  },
+  {
+    id: "la_sequia", era: 4, tipo: "sorteo", peso: 10, titulo: "La sequía", ilustracion: null,
+    personaje: "Ministro de Trabajo",
+    texto: "Padre de la Patria, la sequía ha arruinado la cosecha. Los campesinos piden ayuda y los almacenes del Ejército están llenos.",
+    archivo: "En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la revolución.",
+    izq: { accion: "Abrir los almacenes.", remate: "El Ejército comerá menos; por una vez.", efectos: { pueblo: 8, ejercito: -7 } },
+    der: { accion: "Mantenerlos cerrados.", remate: "La reserva es para emergencias, no para el hambre.", efectos: { pueblo: -8, ejercito: 7 } }
+  },
+  {
+    id: "los_turistas", era: 4, tipo: "sorteo", peso: 10, titulo: "Los turistas", ilustracion: null,
+    personaje: "Ministro de Comercio",
+    texto: "Padre de la Patria, proponemos abrir las playas al turismo extranjero. Traerán divisas, cámaras y malas costumbres.",
+    archivo: "En los años noventa, Cuba apostó por el turismo extranjero para conseguir divisas. Hasta 2008, los cubanos no podían alojarse en muchos de esos hoteles.",
+    izq: { accion: "Abrir las playas.", remate: "Las divisas no tienen ideología.", efectos: { potencias: 6, elite: 4, pueblo: -4, crisis: -2 } },
+    der: { accion: "Mantenerlas cerradas.", remate: "Las playas, para el Pueblo; el Pueblo, en su casa.", efectos: { potencias: -6, elite: -4, pueblo: 4, crisis: 1 } }
+  },
+  {
+    id: "el_parte_medico", era: 4, tipo: "ancla", ventana: [5, 8], titulo: "El parte médico", ilustracion: null,
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Padre de la Patria, los médicos recomiendan reposo absoluto. El Partido pregunta quién firmará los decretos mientras tanto.",
+    archivo: "Francisco Franco agonizó durante más de un mes en 1975 y murió el 20 de noviembre. Durante semanas se publicaron partes médicos diarios.",
+    izq: { accion: "Firmarlos desde la cama.", remate: "Gobierno mejor tumbado: me cuesta menos sonreír.", efectos: { ejercito: 6, elite: -6, pueblo: -3 } },
+    der: { accion: "Delegar en el Consejo.", remate: "Que firmen; luego revisaré quién firmó qué.", efectos: { ejercito: -6, elite: 6, pueblo: 3 } }
   }
 ];
 

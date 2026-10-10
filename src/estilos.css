@@ -347,6 +347,14 @@ body {
 .fin-fuerza p small { display: block; margin-top: 4px; font-size: 14px; }
 @keyframes golpe { from { opacity: 0; transform: scale(1.18); } to { opacity: 1; transform: none; } }
 #fin-archivo:empty { display: none; }
+/* Victoria: «¡Has ganado!» en tinta y una esquela de periódico con lo que deja el dictador */
+#screen-end.victoria h1.fin-principal { color: var(--tinta); font-size: min(13vw, 64px); white-space: nowrap; }
+.esquela:empty { display: none; }
+.esquela { display: grid; gap: 4px; justify-items: center; text-align: center; padding: 16px 16px 14px; background: var(--bloque); border: var(--trazo); border-top: 10px solid var(--tinta); }
+.esquela .qepd { font-size: 13px; font-weight: 700; letter-spacing: .3em; color: var(--tinta-suave); }
+.esquela b { font-family: var(--fuente-titulo); font-weight: 400; font-size: 26px; line-height: 1.1; }
+.esquela .anos { font-size: 15px; color: var(--tinta-suave); padding-bottom: 8px; border-bottom: 1.5px dotted var(--carbon); width: 100%; }
+.esquela ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15px; line-height: 1.4; }
 #fin-archivo .enlace { margin-top: 4px; padding: 0; }
 
 /* ---------- Archivo histórico ---------- */

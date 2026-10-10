@@ -25,7 +25,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 4. Eras y cartas
 - **Vigente.** Era 1 «Ascenso» (6–8 años): 14 cartas con historia y 5 borradores (crisis y coaliciones). Era 2 «Consolidación» (6–8 años, 26 cartas): **20 son consecuencias directas de las banderas de la era 1** y 6 son universales; seis cartas aceptan varios disparadores porque su bandera venía de cartas raras. Crisis y coaliciones repetibles tras 10 años.
-- **Vigente.** Las eras 3 a 7 no existen todavía ni tienen nombre. Banderas ya reservadas para la era 3: `culto_iniciado`, `modestia_aparente`, `desfile_militar`, `misiles_instalados`, `misiles_rechazados`, `jefe_poderoso`, `estudiantes_reprimidos`, `periodista_oficial`; para la 4: `prensa_libre`, `general_apartado`.
+- **Superado (10 oct).** Las eras 3 a 7 no existían; al final el juego tiene cuatro. Banderas ya reservadas para la era 3: `culto_iniciado`, `modestia_aparente`, `desfile_militar`, `misiles_instalados`, `misiles_rechazados`, `jefe_poderoso`, `estudiantes_reprimidos`, `periodista_oficial`; para la 4: `prensa_libre`, `general_apartado`.
 - **Vigente.** **Sin réplicas.** Había un segundo paso tras decidir (un diálogo, y una pantalla de «Ver / Continuar» para el archivo) que «atrasaba la partida». Se quitó: el chiste de la réplica se fundió en la propia opción y el archivo pasó a ser un **aviso discreto** (una ficha en la barra inferior, nueve segundos).
 - **Vigente.** Opciones **mucho más cortas**: acción de 2–5 palabras + remate de unas 7 (antes, 5–8 y 11–16).
 
@@ -123,6 +123,12 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** Los **estados pasan dentro de la carta**, arriba a la izquierda, uno debajo de otro, sin recuadro; solo aparecen los activos. Así la carta puede ser más vertical (hasta 1,6 veces el ancho).
 - **Vigente.** La ilustración ocupa **siempre todo el ancho** (algunas vienen cortadas a los lados): se apoya abajo y, si no cabe en alto, se recorta por abajo. Fondo de la carta **gris oscuro** por ahora.
 - **Vigente.** Los iconos proyectan una **sombra leve**, como recortes de papel.
+
+## 4 quinquies. Era 4 · Ocaso y victoria: el juego completo (10 oct)
+- **Vigente.** El juego tiene **cuatro eras** (antes se planeaban siete). La cuarta, «Ocaso» (6–8 años, factor 0.8), tiene 24 cartas: 7 consecuencias de las banderas reservadas (`prensa_libre`, `general_apartado`, `sucesor_designado`, `oposicion_culpada`, `mausoleo_construido`, `palacio_del_pueblo`, `estado_policial`), 13 universales (salud, medallas, plebiscito, el aliado se hunde, salida honrosa, memorias, el hijo, la cuenta en el extranjero, la memoria histórica, huelga general, concierto, estatuas que caen, sequía, turistas), 2 anclas (la salud y el parte médico) y 2 de cola (el doble, el escrutinio).
+- **Vigente.** Tratamiento **«Padre de la Patria»** en la era 4.
+- **Vigente.** **Victoria**: sobrevivir a la cuarta era. «¡Has ganado!», «Moriste en tu cama, y en el poder» y una esquela con hasta cuatro líneas de epitafio según las decisiones de la partida. Al azar se gana el 1 % de las veces; quien conoce los efectos, casi siempre.
+- **Vigente.** Primer MVP listo; a partir de aquí, pulir.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

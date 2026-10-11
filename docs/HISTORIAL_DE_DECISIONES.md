@@ -135,6 +135,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** Se quita la franja blanca con el cargo: más alto para la ilustración. **Al tocar la carta, se voltea** y enseña la ficha del personaje (nombre propio, cargo, historia breve). Los nombres e historias son una primera propuesta de Claude, pendiente de revisar por Jorge.
 - **Vigente.** Más alto para la carta: se quita la línea discontinua de la barra inferior y el mensaje reserva 4 líneas en vez de 5 (los largos bajan la letra hasta 15 px). En un móvil de 390×664 la carta pasa de 373 a 411 px de alto.
 - **Vigente.** El volteo es un **giro 3D real de 180°** (0,6 s, con perspectiva): la carta entera, con su marco, da media vuelta y el reverso aparece por detrás. Se descarta el primer intento (encoger y estirar), que parecía «medio giro».
+- **Vigente.** La carta mantiene el alto máximo y **ajusta el ancho a la proporción de las ilustraciones** (≈ 0,747): todas se ven enteras. En 390×664 mide 307×411 (antes 358×411, con los personajes cortados por abajo).
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

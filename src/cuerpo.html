@@ -8,24 +8,20 @@
 </svg>
 <div id="app">
 
-  <section id="screen-start" class="screen oscura portada">
-    <div class="portada-textos">
+  <section id="screen-start" class="screen pantalla-carta">
+    <div class="cabecera-carta">
       <h1 class="titulo">¡Comandante, ordene!</h1>
       <p class="sub">Acabas de tomar el poder, tu objetivo es mantenerte el mayor tiempo posible.</p>
-      <nav class="enlaces" aria-label="Menú principal">
-        <div class="enlaces-fila">
-          <button class="enlace-oscuro" id="btn-jugar" type="button">Empezar partida</button>
-          <span class="sep" aria-hidden="true">|</span>
-          <button class="enlace-oscuro" id="btn-como-jugar" type="button">Cómo se juega</button>
-        </div>
-        <button class="enlace-oscuro" id="btn-archivo" type="button">Archivo histórico <span id="cont-archivo"></span></button>
-      </nav>
     </div>
-    <div class="portada-dictador" id="portada-dictador" aria-hidden="true"></div>
+    <div class="escenario">
+      <div class="pila" aria-hidden="true"><div class="capa c2"></div><div class="capa c1"></div></div>
+      <div class="carta" id="carta-portada" role="group" aria-label="Arrastra a la derecha para empezar a gobernar, a la izquierda para el archivo histórico"></div>
+    </div>
+    <button class="abandonar" id="btn-como-jugar" type="button">Cómo se juega</button>
     <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
       <div class="modal-caja" tabindex="-1">
         <h2 class="titulo" id="como-jugar-titulo">Cómo se juega</h2>
-        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión.</p>
+        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. En la portada, arrastra al Comandante a la derecha para empezar a gobernar, o a la izquierda para ver el archivo histórico.</p>
         <p><b>Arrastra la carta</b> a la izquierda o a la derecha para decidir. Antes de soltarla verás tu respuesta y unos puntos rojos sobre las fuerzas afectadas: indican cuánto se moverán, pero no si suben o bajan.</p>
         <p>Las cuatro fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). <b>Si una se vacía o se llena del todo, caes.</b> Cuando su barra se pone roja, estás cerca.</p>
         <p>Las casillas de abajo guardan los estados del régimen, consecuencias duraderas de tus decisiones. Toca los iconos para saber qué son, y <b>toca la carta</b> para darle la vuelta y conocer al personaje.</p>
@@ -75,6 +71,19 @@
     <div class="arch-detalle hidden" id="archivo-detalle"></div>
   </section>
 
+  <section id="screen-era" class="screen pantalla-carta hidden">
+    <div class="cabecera-carta">
+      <h1 class="titulo" id="era-titulo">Sigues en el poder</h1>
+      <p class="era-anios" id="era-anios"></p>
+      <p class="era-texto" id="era-texto"></p>
+    </div>
+    <div class="escenario">
+      <div class="pila" aria-hidden="true"><div class="capa c2"></div><div class="capa c1"></div></div>
+      <div class="carta carta-fija" id="carta-era" aria-hidden="true"></div>
+    </div>
+    <button class="modo principal boton-pie" id="btn-continuar" type="button"><b>Seguir gobernando</b></button>
+  </section>
+
   <section id="screen-end" class="screen pantalla-texto hidden">
     <h1 class="titulo fin-principal" id="fin-principal"></h1>
     <h2 class="titulo fin-causa" id="fin-titulo"></h2>
@@ -86,12 +95,10 @@
     <div id="fin-archivo"></div>
     <div class="pendiente" id="fin-pendiente"></div>
     <div class="acciones">
-      <button class="modo principal hidden" id="btn-continuar" type="button"><b>Seguir gobernando</b></button>
       <button class="modo principal" id="btn-repetir" type="button"><b>Jugar de nuevo</b></button>
       <button class="modo" id="btn-fin-archivo" type="button"><b>Archivo histórico</b></button>
       <button class="enlace" id="btn-cambiar-nombre" type="button">Cambiar de nombre</button>
     </div>
-    <div class="fin-dictador" id="fin-dictador" aria-hidden="true"></div>
   </section>
 
 </div>

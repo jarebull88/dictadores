@@ -53,17 +53,29 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
   j.w.eval("E.banderas.add('base.mausoleo_construido'); E.turno=finEra()+1; finDeEra();");
   assert.equal(j.$("fin-principal").textContent, "¡Has ganado!");
   assert.ok(j.$("screen-end").classList.contains("victoria"));
-  assert.ok(!j.visible("btn-continuar"), "tras la última era no se sigue gobernando");
+  assert.ok(!j.visible("screen-era"), "tras la última era no se sigue gobernando");
   assert.match(j.$("fin-esquela").textContent, /mausoleo/);
 });
 
-test("«Sigues en el poder»: años gobernados, sin tabla ni cambio de nombre, y el dictador de la era que empieza", () => {
+test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el dictador de la era que empieza en una carta", () => {
   const j = cargar();
   j.empezar();
   j.w.eval("E.turno=finEra()+1; finDeEra();");
-  assert.equal(j.$("fin-principal").textContent, "Sigues en el poder");
-  assert.match(j.$("fin-titulo").textContent, /^Has gobernado \d+ años?$/);
-  assert.ok(j.$("screen-end").classList.contains("transicion"));
-  assert.ok(j.d.querySelector("#fin-dictador svg.personaje"), "falta la ilustración del dictador");
-  assert.ok(j.d.body.classList.contains("fondo-oscuro"));
+  assert.ok(j.visible("screen-era"));
+  assert.equal(j.$("era-titulo").textContent, "Sigues en el poder");
+  assert.match(j.$("era-anios").textContent, /^Has gobernado \d+ años?$/);
+  assert.ok(j.$("era-texto").textContent.length > 40, "falta el párrafo");
+  assert.ok(j.d.querySelector("#carta-era svg.personaje"), "falta el dictador en la carta");
+  j.$("btn-continuar").click();
+  assert.ok(j.visible("screen-game"));
+  assert.equal(j.w.eval("E.era"), 2);
+});
+
+test("portada: la carta del dictador a la derecha empieza a gobernar y a la izquierda abre el archivo", () => {
+  const j = cargar();
+  assert.ok(j.d.querySelector("#carta-portada svg.personaje"), "falta el dictador en la portada");
+  j.w.eval("decidirPortada(1)");
+  assert.ok(j.visible("screen-name"));
+  j.w.eval("mostrar('screen-start'); decidirPortada(-1)");
+  assert.ok(j.visible("screen-archive"));
 });

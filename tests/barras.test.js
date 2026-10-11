@@ -40,7 +40,8 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
 test("al pasar de era sale «Sigues en el poder» y al sobrevivir a la última, «¡Has ganado!»", () => {
   const j = cargar(); j.empezar();
   j.w.eval("empezar(); terminar(null, true)");
-  assert.equal(j.$("fin-principal").textContent, "Sigues en el poder");
+  assert.ok(j.visible("screen-era"));
+  assert.equal(j.$("era-titulo").textContent, "Sigues en el poder");
   j.w.eval("empezar(); terminar(null)");
   assert.equal(j.$("fin-principal").textContent, "¡Has ganado!");
   assert.ok(!j.$("screen-end").classList.contains("caida"));
@@ -48,7 +49,7 @@ test("al pasar de era sale «Sigues en el poder» y al sobrevivir a la última, 
 
 test("el nombre del dictador es una sola palabra y se muestra como «Comandante X»", () => {
   const j = cargar();
-  j.$("btn-jugar").click();
+  j.w.eval("irANombre()");
   j.$("input-nombre").value = "Aureliano Buendía";
   j.$("input-nombre").dispatchEvent(new j.w.Event("input"));
   j.$("btn-tomar-poder").click();

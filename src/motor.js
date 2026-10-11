@@ -375,13 +375,13 @@ function comprobarCaida() {
 /* =====================================================
    INTERFAZ
    ===================================================== */
-const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-archive", "screen-end"];
+const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-archive", "screen-era", "screen-end"];
 function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  if (id === "screen-start") $("cont-archivo").textContent = `(${desbloqueados.size} de ${ARCHIVABLES.length})`;
-  document.body.classList.toggle("fondo-oscuro", id === "screen-start" || id === "screen-name");
+  if (id === "screen-start") pintarPortada();
+  document.body.classList.toggle("fondo-oscuro", id === "screen-name");
   cerrarComoJugar();
 }
 
@@ -705,9 +705,9 @@ function anios() { return Math.max(0, E.turno - 1); }
 
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {
-  1: "Has sobrevivido a los primeros años y el palacio es tuyo. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
-  2: "La revolución ya es costumbre. Desde hoy serás Excelencia: llegan las estatuas, los himnos y las biografías, y alguien tendrá que pagarlos.",
-  3: "El Partido te ha nombrado Padre de la Patria y los médicos te visitan cada semana. Aguanta hasta el final y morirás en tu cama, en el poder."
+  1: "El palacio es tuyo. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
+  2: "La revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
+  3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
 };
 /* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
 const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-asentado", 4: "dictador-viejo" };
@@ -746,6 +746,7 @@ function continuarEra() {
 }
 
 function terminar(clave, transicion) {
+  if (transicion) { mostrarEra(); return; }
   panelAbierto = false;
   ocupado = false;
   const n = anios();
@@ -781,7 +782,6 @@ function terminar(clave, transicion) {
   $("fin-esquela").innerHTML = victoria
     ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
-  $("btn-continuar").classList.toggle("hidden", !transicion);
   $("btn-repetir").classList.toggle("hidden", !!transicion);
   $("fin-cuadro").innerHTML =
     `<div class="fila"><span>Dictador</span><span>${esc(nombreCompleto())}</span></div>` +
@@ -822,9 +822,7 @@ function terminar(clave, transicion) {
   const todo = transicion || victoria ? [] : colaTxt.concat(pend);
   $("fin-pendiente").innerHTML = todo.length
     ? `<h3>Lo que dejas pendiente para las siguientes eras</h3><ul>${todo.join("")}</ul>` : "";
-  $("fin-dictador").innerHTML = transicion && DICTADOR_ERA[E.era + 1] ? svgPersonaje(DICTADOR_ERA[E.era + 1], "El dictador") : "";
   mostrar("screen-end");
-  document.body.classList.toggle("fondo-oscuro", !!transicion);
 }
 
 /* ---------- Archivo histórico ---------- */
@@ -900,23 +898,25 @@ function confirmarNombre() {
 }
 
 /* ---------- Gestos ---------- */
-(function gestos() {
-  const carta = $("carta");
+/* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la portada.
+   op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
+   op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
+function arrastrable(carta, op) {
   let drag = null;
   const umbral = () => Math.max(64, carta.offsetWidth * 0.22);      // distancia a partir de la cual se decide
   function marcarListo(listo) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);
-    const r = $("respuesta"); if (r) r.classList.toggle("firme", listo);
+    const r = carta.querySelector(".respuesta"); if (r) r.classList.toggle("firme", listo);
     if (listo) { try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {} }
   }
   function volver() {
     marcarListo(false);
     carta.style.transition = ""; carta.style.transform = "";
-    pintarEleccion(0);
+    op.mostrar(0);
   }
   carta.addEventListener("pointerdown", e => {
-    if (ocupado || panelAbierto) return;
+    if (!op.activa()) return;
     drag = { x: e.clientX, dx: 0, dir: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
@@ -931,7 +931,7 @@ function confirmarNombre() {
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
     const dir = Math.abs(drag.dx) > 24 ? Math.sign(drag.dx) : 0;
-    if (dir !== drag.dir) { drag.dir = dir; pintarEleccion(dir); }
+    if (dir !== drag.dir) { drag.dir = dir; op.mostrar(dir); }
     marcarListo(Math.abs(drag.dx) > umbral());
   });
   function soltar(e) {
@@ -939,11 +939,11 @@ function confirmarNombre() {
     const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
     drag = null;
     arrastrando = false;
-    if (toque) { volver(); voltear(); return; }
+    if (toque) { volver(); if (op.toque) op.toque(); return; }
     if (carta.classList.contains("volteada")) { volver(); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
-    if (Math.abs(dx) > umbral() || lanzada) decidir(Math.sign(dx));
+    if (Math.abs(dx) > umbral() || lanzada) op.decidir(Math.sign(dx));
     else volver();
   }
   function cancelar() {
@@ -952,7 +952,61 @@ function confirmarNombre() {
   }
   carta.addEventListener("pointerup", soltar);
   carta.addEventListener("pointercancel", cancelar);
-})();
+}
+arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, mostrar: pintarEleccion, decidir, toque: voltear });
+
+/* ---------- Portada: el dictador joven en una carta. Derecha = empezar a gobernar; izquierda = archivo histórico ---------- */
+let portadaOcupada = false;
+function pintarPortada() {
+  const carta = $("carta-portada");
+  portadaOcupada = false;
+  carta.classList.remove("listo");
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
+  carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion">${svgPersonaje("dictador-joven", "El Comandante")}` +
+    `<div class="respuesta"></div></div></div></div>`;
+  void carta.offsetWidth; carta.style.transition = "";
+}
+function eleccionPortada(dir) {
+  const r = $("carta-portada").querySelector(".respuesta");
+  if (!r) return;
+  if (!dir) { r.classList.remove("visible"); return; }
+  r.innerHTML = dir > 0
+    ? "<strong>Empezar a gobernar</strong><span>El palacio es tuyo. Solo falta tu nombre.</span>"
+    : `<strong>Archivo histórico</strong><span>${desbloqueados.size} de ${ARCHIVABLES.length} referencias descubiertas.</span>`;
+  r.classList.add("visible");
+}
+function decidirPortada(dir) {
+  if (portadaOcupada) return;
+  portadaOcupada = true;
+  const carta = $("carta-portada");
+  eleccionPortada(dir);
+  carta.classList.add("listo");
+  const r = carta.querySelector(".respuesta"); if (r) r.classList.add("firme");
+  carta.style.transition = "";
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`;
+  carta.style.opacity = "0";
+  setTimeout(() => { if (dir > 0) irANombre(); else abrirArchivo("screen-start"); }, 240);
+}
+arrastrable($("carta-portada"), { activa: () => !portadaOcupada, mostrar: eleccionPortada, decidir: decidirPortada });
+
+/* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
+function parrafoEra() {
+  const masTensa = BARRAS.map(b => ({ id: b.id, v: E.barras[b.id] })).sort((a, b) => Math.abs(b.v - 50) - Math.abs(a.v - 50))[0];
+  const estado = Math.abs(masTensa.v - 50) >= 10 ? LINEAS_BARRA[masTensa.id][masTensa.v > 50 ? "alto" : "bajo"] : "";
+  const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2)
+    .map(b => FUTURO[b].replace(/\.$/, "")).map(t => t.charAt(0).toLowerCase() + t.slice(1));
+  return [TEXTO_FIN_ERA[E.era], estado, espera.length ? `Te espera: ${espera.join("; ")}.` : ""].filter(Boolean).join(" ");
+}
+function mostrarEra() {
+  panelAbierto = false; ocupado = false;
+  const n = anios();
+  $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
+  $("era-texto").textContent = parrafoEra();
+  const slug = DICTADOR_ERA[E.era + 1];
+  $("carta-era").innerHTML = slug
+    ? `<div class="giro"><div class="cara"><div class="ilustracion">${svgPersonaje(slug, "El dictador")}</div></div></div>` : "";
+  mostrar("screen-era");
+}
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
@@ -960,6 +1014,11 @@ document.addEventListener("keydown", e => {
     if (!$("como-jugar").classList.contains("hidden")) cerrarComoJugar();
     else if (!$("screen-archive").classList.contains("hidden")) atrasArchivo();
     else ocultarInfo();
+    return;
+  }
+  if (!$("screen-start").classList.contains("hidden") && $("como-jugar").classList.contains("hidden")) {
+    if (e.key === "ArrowLeft") decidirPortada(-1);
+    if (e.key === "ArrowRight") decidirPortada(1);
     return;
   }
   if ($("screen-game").classList.contains("hidden")) return;
@@ -971,7 +1030,6 @@ document.addEventListener("click", e => {
 });
 
 $("btn-salir").addEventListener("click", () => mostrar("screen-start"));
-$("btn-jugar").addEventListener("click", irANombre);
 $("btn-nombre-volver").addEventListener("click", () => mostrar("screen-start"));
 $("btn-tomar-poder").addEventListener("click", confirmarNombre);
 $("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") confirmarNombre(); });
@@ -984,14 +1042,11 @@ $("aviso-archivo").addEventListener("click", ev => {
 $("btn-continuar").addEventListener("click", continuarEra);
 $("btn-repetir").addEventListener("click", empezar);
 $("btn-cambiar-nombre").addEventListener("click", irANombre);
-$("btn-archivo").addEventListener("click", () => abrirArchivo("screen-start"));
 $("btn-fin-archivo").addEventListener("click", () => abrirArchivo("screen-end"));
 $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
-/* Portada: el dictador joven, entero y apoyado abajo, con sus ojos y el humo del puro */
-$("portada-dictador").innerHTML = svgPersonaje("dictador-joven", "El Comandante");
 /* «Cómo jugar»: ventana con las instrucciones */
 function abrirComoJugar() {
   $("como-jugar").classList.remove("hidden");

@@ -126,11 +126,15 @@ body.fondo-oscuro { background: var(--noche); }
 .enlace-oscuro.secundario { font-size: 16px; font-weight: 400; color: var(--gris-noche); }
 .enlace-oscuro:hover, .enlace-oscuro:focus-visible { color: var(--rojo-noche); outline: none; }
 /* Portada: título rojo centrado, subtítulo gris, tres enlaces y el dictador joven abajo, entero */
-.portada { padding-bottom: 0; }
-.portada-textos { display: grid; gap: 10px; justify-items: center; text-align: center; padding-top: 14px; }
+.portada { padding: 8px 10px 0; }
+.enlaces-fila { display: flex; align-items: center; justify-content: center; gap: 2px; }
+.enlaces-fila .sep { color: var(--gris-noche); }
+.enlaces-fila .enlace-oscuro { white-space: nowrap; font-size: 17px; padding: 4px 8px; }
+.portada .enlace-oscuro { padding: 4px 10px; min-height: 40px; }
+.portada-textos { display: grid; gap: 8px; justify-items: center; text-align: center; padding-top: 6px; }
 .portada h1 { margin: 0; color: var(--rojo-noche); font-size: clamp(36px, 11vw, 56px); line-height: 1; }
-.portada .sub { margin: 0 0 4px; max-width: 30ch; color: var(--gris-noche); font-size: 17px; font-weight: 400; }
-.portada-dictador { flex: 1; min-height: 160px; margin: 4px -16px 0; display: flex; }
+.portada .sub { margin: 0; color: var(--gris-noche); font-size: 17px; line-height: 1.35; font-weight: 400; }
+.portada-dictador { flex: 1; min-height: 160px; margin: 2px -10px 0; display: flex; }
 .portada-dictador .personaje { width: 100%; height: 100%; margin-top: 0; aspect-ratio: auto !important; }
 /* Cómo jugar: ventana con las instrucciones */
 .modal { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(10, 10, 10, .6); }

@@ -9,7 +9,7 @@
   "interior": {"nombre": "Ministro del Interior", "archivo": "interior.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [400, 285], "der": [522, 285], "r": 11}, "arriba": 17, "animacion": {"tipo": "piloto", "x": 668, "y": 704}},
   "embajador-oriental": {"nombre": "Embajador del bloque oriental", "archivo": "embajador-oriental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [375, 355], "der": [530, 355], "r": 10}, "arriba": 60, "animacion": {"tipo": "gota", "x": 330, "y": 305}},
   "embajador-occidental": {"nombre": "Embajador de la potencia del norte", "archivo": "embajador-occidental.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [355, 385], "der": [550, 385], "r": 13}, "arriba": 63, "animacion": {"tipo": "destello", "x": 588, "y": 548}},
-  "dictador-joven": {"nombre": "El Comandante", "archivo": "dictador-joven.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [380, 400], "der": [465, 400], "r": 10}, "arriba": 140, "animacion": {"tipo": "humo", "x": 618, "y": 1035}},
+  "dictador-joven": {"nombre": "El Comandante", "archivo": "dictador-joven.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [412, 405], "der": [500, 405], "r": 10}, "arriba": 140, "animacion": {"tipo": "humo", "x": 618, "y": 1035}},
   "dictador-asentado": {"nombre": "Su Excelencia", "archivo": "dictador-asentado.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [400, 370], "der": [500, 370], "r": 10}, "arriba": 112, "animacion": {"tipo": "humo", "x": 505, "y": 1080}},
   "dictador-viejo": {"nombre": "El Padre de la Patria", "archivo": "dictador-viejo.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [395, 372], "der": [490, 372], "r": 10}, "arriba": 84, "animacion": {"tipo": "destello", "x": 440, "y": 832}}
 }

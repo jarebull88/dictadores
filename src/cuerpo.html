@@ -13,15 +13,18 @@
       <h1 class="titulo">¡Comandante, ordene!</h1>
       <p class="sub">Acabas de tomar el poder, tu objetivo es mantenerte el mayor tiempo posible.</p>
       <nav class="enlaces" aria-label="Menú principal">
-        <button class="enlace-oscuro" id="btn-jugar" type="button">Empezar partida</button>
-        <button class="enlace-oscuro" id="btn-como-jugar" type="button">Cómo jugar</button>
+        <div class="enlaces-fila">
+          <button class="enlace-oscuro" id="btn-jugar" type="button">Empezar partida</button>
+          <span class="sep" aria-hidden="true">|</span>
+          <button class="enlace-oscuro" id="btn-como-jugar" type="button">Cómo se juega</button>
+        </div>
         <button class="enlace-oscuro" id="btn-archivo" type="button">Archivo histórico <span id="cont-archivo"></span></button>
       </nav>
     </div>
     <div class="portada-dictador" id="portada-dictador" aria-hidden="true"></div>
     <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
       <div class="modal-caja" tabindex="-1">
-        <h2 class="titulo" id="como-jugar-titulo">Cómo jugar</h2>
+        <h2 class="titulo" id="como-jugar-titulo">Cómo se juega</h2>
         <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión.</p>
         <p><b>Arrastra la carta</b> a la izquierda o a la derecha para decidir. Antes de soltarla verás tu respuesta y unos puntos rojos sobre las fuerzas afectadas: indican cuánto se moverán, pero no si suben o bajan.</p>
         <p>Las cuatro fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). <b>Si una se vacía o se llena del todo, caes.</b> Cuando su barra se pone roja, estás cerca.</p>

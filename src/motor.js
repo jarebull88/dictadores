@@ -703,11 +703,14 @@ function siguiente() {
 
 function anios() { return Math.max(0, E.turno - 1); }
 
+/* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {
-  1: "Has sobrevivido a los primeros años. El país continúa. Tú también. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
-  2: "El régimen ya no se llama revolución, sino costumbre. Tus ministros han decidido que «Comandante» suena a cuartel: a partir de ahora serás Excelencia.",
-  3: "Ya nadie recuerda quién gobernaba antes que tú. El Partido te ha nombrado Padre de la Patria y los médicos te visitan cada semana. Solo queda saber cómo termina esto."
+  1: "Has sobrevivido a los primeros años y el palacio es tuyo. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
+  2: "La revolución ya es costumbre. Desde hoy serás Excelencia: llegan las estatuas, los himnos y las biografías, y alguien tendrá que pagarlos.",
+  3: "El Partido te ha nombrado Padre de la Patria y los médicos te visitan cada semana. Aguanta hasta el final y morirás en tu cama, en el poder."
 };
+/* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
+const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-asentado", 4: "dictador-viejo" };
 /* Victoria: sobrevivir a la última era. El final al que aspira todo dictador: morir de viejo, en la cama y en el poder.
    La esquela cambia según lo que hayas decidido en la partida. */
 const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
@@ -750,6 +753,7 @@ function terminar(clave, transicion) {
   const victoria = !clave && !transicion;
   pantalla.classList.toggle("caida", !!clave);
   pantalla.classList.toggle("victoria", victoria);
+  pantalla.classList.toggle("transicion", !!transicion);
   const caja = $("fin-fuerza");
   if (clave) {
     const f = FINALES[clave];
@@ -769,7 +773,7 @@ function terminar(clave, transicion) {
     caja.innerHTML = "";
   } else {
     $("fin-principal").textContent = "Sigues en el poder";
-    $("fin-titulo").textContent = `Fin de la era ${E.era} · ${ERAS[E.era - 1].nombre}`;
+    $("fin-titulo").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
     $("fin-texto").textContent = TEXTO_FIN_ERA[E.era];
     caja.classList.add("hidden");
     caja.innerHTML = "";
@@ -802,18 +806,25 @@ function terminar(clave, transicion) {
     });
   }
 
-  $("fin-lineas").innerHTML = clave || victoria ? "" : BARRAS.map(b => {
-    const v = E.barras[b.id];
-    const l = LINEAS_BARRA[b.id];
-    return v >= 60 ? `<li>${l.alto}</li>` : v <= 40 ? `<li>${l.bajo}</li>` : "";
-  }).join("");
+  const estadoPais = BARRAS.map(b => {
+    const v = E.barras[b.id], l = LINEAS_BARRA[b.id];
+    return v >= 60 ? l.alto : v <= 40 ? l.bajo : "";
+  }).filter(Boolean);
+  /* Al pasar de era, una sola lista breve: cómo está el país y lo que te espera en la siguiente */
+  const teEspera = transicion
+    ? E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).map(b => "Te espera: " + FUTURO[b].charAt(0).toLowerCase() + FUTURO[b].slice(1))
+    : [];
+  const lineas = transicion ? estadoPais.slice(0, 2).concat(teEspera).slice(0, 4) : estadoPais;
+  $("fin-lineas").innerHTML = clave || victoria ? "" : lineas.map(t => `<li>${esc(t)}</li>`).join("");
 
   const pend = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) > E.era).map(b => `<li>${FUTURO[b]}</li>`);
   const colaTxt = E.cola.map(q => POR_ID[q.carta]).filter(Boolean).map(c => `<li>Te espera una carta: ${c.titulo}.</li>`);
   const todo = transicion || victoria ? [] : colaTxt.concat(pend);
   $("fin-pendiente").innerHTML = todo.length
     ? `<h3>Lo que dejas pendiente para las siguientes eras</h3><ul>${todo.join("")}</ul>` : "";
+  $("fin-dictador").innerHTML = transicion && DICTADOR_ERA[E.era + 1] ? svgPersonaje(DICTADOR_ERA[E.era + 1], "El dictador") : "";
   mostrar("screen-end");
+  document.body.classList.toggle("fondo-oscuro", !!transicion);
 }
 
 /* ---------- Archivo histórico ---------- */

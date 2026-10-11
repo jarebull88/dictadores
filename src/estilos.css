@@ -406,6 +406,24 @@ body.fondo-oscuro { background: var(--noche); }
 .fin-fuerza p small { display: block; margin-top: 4px; font-size: 14px; }
 @keyframes golpe { from { opacity: 0; transform: scale(1.18); } to { opacity: 1; transform: none; } }
 #fin-archivo:empty { display: none; }
+/* «Sigues en el poder»: fondo oscuro, todo centrado, sin tabla ni archivo; el dictador de la era que empieza, abajo */
+#screen-end.transicion { color: var(--texto-noche); text-align: center; padding-bottom: 0; gap: 10px; overflow: hidden; }
+#screen-end.transicion > :last-child { margin-bottom: 0; }
+#screen-end.transicion h1.fin-principal { color: var(--rojo-noche); font-size: min(8.6vw, 46px); white-space: nowrap; margin-top: 8px; }
+#screen-end.transicion h2.fin-causa { border: none; padding: 0; color: var(--gris-noche); font-size: 21px; }
+#screen-end.transicion .relato { font-size: 16px; line-height: 1.4; }
+#screen-end.transicion .lineas { font-size: 14px; line-height: 1.35; }
+#screen-end.transicion .lineas li { margin-bottom: 3px; }
+#screen-end.transicion .lineas { color: var(--gris-noche); }
+#screen-end.transicion .pendiente { background: none; padding: 0; color: var(--texto-noche); }
+#screen-end.transicion .pendiente ul { list-style: none; padding: 0; color: var(--gris-noche); }
+#screen-end.transicion #fin-cuadro, #screen-end.transicion #fin-archivo,
+#screen-end.transicion #btn-fin-archivo, #screen-end.transicion #btn-cambiar-nombre { display: none; }
+#screen-end.transicion #btn-continuar { justify-self: center; width: auto; min-height: 44px; padding: 6px 14px; border: none; background: none; color: var(--texto-noche); font-size: 19px; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px; box-shadow: none; }
+#screen-end.transicion #btn-continuar:hover, #screen-end.transicion #btn-continuar:focus-visible { color: var(--rojo-noche); }
+.fin-dictador:empty { display: none; }
+.fin-dictador { flex: 1 1 auto; min-height: 150px; display: flex; margin: 0 -16px; }
+.fin-dictador .personaje { width: 100%; height: 100%; margin-top: 0; aspect-ratio: auto !important; }
 /* Victoria: «¡Has ganado!» en tinta y una esquela de periódico con lo que deja el dictador */
 #screen-end.victoria h1.fin-principal { color: var(--tinta); font-size: min(13vw, 64px); white-space: nowrap; }
 .esquela:empty { display: none; }

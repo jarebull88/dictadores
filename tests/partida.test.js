@@ -56,3 +56,14 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
   assert.ok(!j.visible("btn-continuar"), "tras la última era no se sigue gobernando");
   assert.match(j.$("fin-esquela").textContent, /mausoleo/);
 });
+
+test("«Sigues en el poder»: años gobernados, sin tabla ni cambio de nombre, y el dictador de la era que empieza", () => {
+  const j = cargar();
+  j.empezar();
+  j.w.eval("E.turno=finEra()+1; finDeEra();");
+  assert.equal(j.$("fin-principal").textContent, "Sigues en el poder");
+  assert.match(j.$("fin-titulo").textContent, /^Has gobernado \d+ años?$/);
+  assert.ok(j.$("screen-end").classList.contains("transicion"));
+  assert.ok(j.d.querySelector("#fin-dictador svg.personaje"), "falta la ilustración del dictador");
+  assert.ok(j.d.body.classList.contains("fondo-oscuro"));
+});

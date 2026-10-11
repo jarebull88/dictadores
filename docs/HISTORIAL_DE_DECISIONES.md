@@ -141,6 +141,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 ## 7 octies. El dictador (11 oct)
 - **Vigente.** El jugador tendrá cara: **tres etapas del dictador**, inspiradas en el arquetipo del líder guerrillero carismático (sin parecido con personas reales): **joven** (eras 1 y 2, «Comandante»), **tirano asentado** (era 3, «Excelencia») y **viejo en chándal** (era 4, «Padre de la Patria»). Las tres con el gesto del índice levantado, el codo a 90°.
 - **Hecho.** Imágenes recortadas y guardadas (`dictador-joven`, `dictador-asentado`, `dictador-viejo`); el viejo se refleja al recortarlo (`REFLEJAR` en `tools/recortar.py`) para que el dedo quede en la misma mano. **Aún no se usan**: dónde aparecen (portada, cambio de era) está por decidir.
+- **Vigente (11 oct).** Portada y pantalla del nombre **sobre fondo oscuro**, con enlaces de texto en lugar de botones. La portada estrena al **dictador joven** (ojos animados y humo del puro) y la ventana «Cómo jugar» sustituye a la nota de instrucciones. El subtítulo pierde «en él».
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

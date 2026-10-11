@@ -8,27 +8,41 @@
 </svg>
 <div id="app">
 
-  <section id="screen-start" class="screen pantalla-texto">
-    <h1 class="titulo">¡Comandante, ordene!</h1>
-    <p class="sub">Acabas de tomar el poder, tu objetivo es mantenerte en él el mayor tiempo posible.</p>
-    <div class="acciones">
-      <button class="modo principal" id="btn-jugar" type="button"><b>Empezar partida</b></button>
-      <button class="modo" id="btn-archivo" type="button"><b>Archivo histórico</b><span id="cont-archivo"></span></button>
+  <section id="screen-start" class="screen oscura portada">
+    <div class="portada-textos">
+      <h1 class="titulo">¡Comandante, ordene!</h1>
+      <p class="sub">Acabas de tomar el poder, tu objetivo es mantenerte el mayor tiempo posible.</p>
+      <nav class="enlaces" aria-label="Menú principal">
+        <button class="enlace-oscuro" id="btn-jugar" type="button">Empezar partida</button>
+        <button class="enlace-oscuro" id="btn-como-jugar" type="button">Cómo jugar</button>
+        <button class="enlace-oscuro" id="btn-archivo" type="button">Archivo histórico <span id="cont-archivo"></span></button>
+      </nav>
     </div>
-    <p class="nota">Arrastra la carta a la izquierda o a la derecha. Antes de decidir verás qué fuerzas se ven afectadas y cuánto, pero no si suben o bajan. Si una llega a cero o al máximo, caes. Los cuatro iconos de arriba son las fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). Tócalos para ver qué son. Si su barra se vacía o se llena hasta el rojo, estás cerca de caer. Los cuadrados de abajo guardan las consecuencias duraderas de tus decisiones: tócalos también. Hay cuatro eras: si sobrevives a todas, ganas.</p>
+    <div class="portada-dictador" id="portada-dictador" aria-hidden="true"></div>
+    <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
+      <div class="modal-caja" tabindex="-1">
+        <h2 class="titulo" id="como-jugar-titulo">Cómo jugar</h2>
+        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión.</p>
+        <p><b>Arrastra la carta</b> a la izquierda o a la derecha para decidir. Antes de soltarla verás tu respuesta y unos puntos rojos sobre las fuerzas afectadas: indican cuánto se moverán, pero no si suben o bajan.</p>
+        <p>Las cuatro fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). <b>Si una se vacía o se llena del todo, caes.</b> Cuando su barra se pone roja, estás cerca.</p>
+        <p>Las casillas de abajo guardan los estados del régimen, consecuencias duraderas de tus decisiones. Toca los iconos para saber qué son, y <b>toca la carta</b> para darle la vuelta y conocer al personaje.</p>
+        <p>Hay cuatro eras. <b>Sobrevive a todas y habrás ganado.</b></p>
+        <button class="enlace" id="btn-cerrar-como" type="button">Cerrar</button>
+      </div>
+    </div>
   </section>
 
-  <section id="screen-name" class="screen pantalla-texto hidden">
+  <section id="screen-name" class="screen oscura pantalla-texto pantalla-nombre hidden">
     <h2 class="titulo">Comandante</h2>
     <div class="campo">
       <label for="input-nombre" class="solo-lector">Tu nombre</label>
       <input id="input-nombre" type="text" maxlength="14" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Aureliano">
       <p class="error" id="nombre-error"></p>
     </div>
-    <div class="acciones">
-      <button class="modo principal" id="btn-tomar-poder" type="button"><b>Tomar el poder</b></button>
-      <button class="modo" id="btn-nombre-volver" type="button"><b>Volver</b></button>
-    </div>
+    <nav class="enlaces">
+      <button class="enlace-oscuro" id="btn-tomar-poder" type="button">Tomar el poder</button>
+      <button class="enlace-oscuro secundario" id="btn-nombre-volver" type="button">Volver</button>
+    </nav>
   </section>
 
   <section id="screen-game" class="screen hidden">

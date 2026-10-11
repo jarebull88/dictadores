@@ -380,7 +380,9 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  if (id === "screen-start") $("cont-archivo").textContent = `${desbloqueados.size} de ${ARCHIVABLES.length}`;
+  if (id === "screen-start") $("cont-archivo").textContent = `(${desbloqueados.size} de ${ARCHIVABLES.length})`;
+  document.body.classList.toggle("fondo-oscuro", id === "screen-start" || id === "screen-name");
+  cerrarComoJugar();
 }
 
 function parBarra(id, esc = 1) {
@@ -944,7 +946,8 @@ function confirmarNombre() {
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
-    if (!$("screen-archive").classList.contains("hidden")) atrasArchivo();
+    if (!$("como-jugar").classList.contains("hidden")) cerrarComoJugar();
+    else if (!$("screen-archive").classList.contains("hidden")) atrasArchivo();
     else ocultarInfo();
     return;
   }
@@ -976,4 +979,16 @@ $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
+/* Portada: el dictador joven, entero y apoyado abajo, con sus ojos y el humo del puro */
+$("portada-dictador").innerHTML = svgPersonaje("dictador-joven", "El Comandante");
+/* «Cómo jugar»: ventana con las instrucciones */
+function abrirComoJugar() {
+  $("como-jugar").classList.remove("hidden");
+  const caja = $("como-jugar").querySelector(".modal-caja");
+  caja.scrollTop = 0; caja.focus({ preventScroll: true });
+}
+function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
+$("btn-como-jugar").addEventListener("click", abrirComoJugar);
+$("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
+$("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
 mostrar("screen-start");

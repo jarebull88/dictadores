@@ -138,6 +138,10 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente.** La carta mantiene el alto máximo y **ajusta el ancho a la proporción de las ilustraciones** (≈ 0,747): todas se ven enteras. En 390×664 mide 307×411 (antes 358×411, con los personajes cortados por abajo).
 - **Vigente (11 oct).** Nuevo Ministro de Comercio, regenerado desde cero con proporciones medidas en el prompt (cabeza ≈ un tercio del ancho, barbilla al 43 % del alto): camisa vaquera de retales, pelo de ganchillo, moneda como insignia. Ojos y destello del reloj recolocados.
 
+## 7 octies. El dictador (11 oct)
+- **Vigente.** El jugador tendrá cara: **tres etapas del dictador**, inspiradas en el arquetipo del líder guerrillero carismático (sin parecido con personas reales): **joven** (eras 1 y 2, «Comandante»), **tirano asentado** (era 3, «Excelencia») y **viejo en chándal** (era 4, «Padre de la Patria»). Las tres con el gesto del índice levantado, el codo a 90°.
+- **Hecho.** Imágenes recortadas y guardadas (`dictador-joven`, `dictador-asentado`, `dictador-viejo`); el viejo se refleja al recortarlo (`REFLEJAR` en `tools/recortar.py`) para que el dedo quede en la misma mano. **Aún no se usan**: dónde aparecen (portada, cambio de era) está por decidir.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

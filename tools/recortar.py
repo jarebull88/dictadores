@@ -20,6 +20,8 @@ from scipy import ndimage as ndi
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ANCHO_PERSONAJE = 900
+# Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
+REFLEJAR = {"dictador-viejo"}
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
 # Orden de los iconos en cada hoja: filas de arriba abajo, cada fila de izquierda a derecha.
@@ -46,6 +48,8 @@ def alfa_croma(a, isla_min):
 
 def recortar_personaje(entrada, salida):
     im = Image.open(entrada).convert("RGB")
+    if entrada.stem in REFLEJAR:
+        im = im.transpose(Image.FLIP_LEFT_RIGHT)
     W, H = im.size
     a = np.array(im).astype(float)
     alpha, g2 = alfa_croma(a, 8000)
@@ -62,7 +66,7 @@ def anotar_arriba(slug, imagen):
     ruta = RAIZ / "assets/personajes/personajes.json"
     mapa = json.loads(ruta.read_text(encoding="utf-8"))
     if slug not in mapa:
-        print(f"  (aviso: {slug} no está en personajes.json; añádelo con sus ojos)"); return
+        return            # aún no está en el juego (p. ej. el dictador): se recorta y se guarda, sin datos
     alfa = np.array(imagen)[..., 3]
     filas = np.where((alfa > 128).sum(axis=1) > 3)[0]
     mapa[slug]["arriba"] = max(0, int(filas[0]) - 24) if len(filas) else 0

@@ -33,7 +33,7 @@ function condicion(c) {
   return t.join("; ");
 }
 function opcion(o, L) {
-  let s = `- **${L}. ${o.accion}** *${o.remate}* ${fx(o.efectos)}`;
+  let s = `- **${L}. ${o.accion}**${o.remate ? ` *${o.remate}*` : ""} ${fx(o.efectos)}`;
   if (o.banderas && o.banderas.length) s += " · Bandera: " + o.banderas.map(cod).join(", ");
   if (o.encolar && o.encolar.length) s += " · Encola: " + o.encolar.map(q => `\`${q.carta}\` en ${q.min === q.max ? q.min : q.min + " a " + q.max} años`).join(", ");
   return s;

@@ -71,7 +71,12 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
     assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
     for (const l of ["izq", "der"]) {
       assert.ok(c[l].accion.length <= 28, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. 28)`);
-      assert.ok(c[l].remate.length <= 75, `«${c.id}» ${l}: el remate tiene ${c[l].remate.length} caracteres (máx. 75)`);
+      if (era === 1) {
+        // Prueba de respuestas cortas (11 oct): en la era 1, de 1 a 3 palabras y sin remate
+        const palabras = c[l].accion.split(/\s+/).filter(Boolean).length;
+        assert.ok(palabras >= 1 && palabras <= 3, `«${c.id}» ${l}: la acción tiene ${palabras} palabras (era 1: de 1 a 3)`);
+        assert.ok(!c[l].remate, `«${c.id}» ${l}: en la era 1 ya no hay remate`);
+      } else assert.ok(c[l].remate.length <= 75, `«${c.id}» ${l}: el remate tiene ${c[l].remate.length} caracteres (máx. 75)`);
     }
   }
 });

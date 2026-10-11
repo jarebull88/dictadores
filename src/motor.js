@@ -521,7 +521,7 @@ function pintarCarta(c) {
     : `<div class="ph"><b>Sin retrato</b></div>`;
   $("mensaje").textContent = c.texto;
   ajustarMensaje();
-  /* Anverso: el personaje (la respuesta va en la parte baja, para no tapar los ojos). Reverso: su ficha. */
+  /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
   $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}` +
     `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
@@ -538,7 +538,7 @@ function pintarEleccion(dir) {
   const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
   const r = $("respuesta");
   if (r) {
-    if (op) { r.innerHTML = `<strong>${op.accion}</strong><span>${op.remate}</span>`; r.classList.add("visible"); }
+    if (op) { r.innerHTML = `<strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}`; r.classList.add("visible"); }
     else r.classList.remove("visible");
   }
   BARRAS.forEach(b => {

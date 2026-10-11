@@ -10,18 +10,18 @@
 
   <section id="screen-start" class="screen pantalla-carta">
     <div class="cabecera-carta">
-      <h1 class="titulo">¡Comandante, ordene!</h1>
-      <p class="sub">Acabas de tomar el poder, tu objetivo es mantenerte el mayor tiempo posible.</p>
+      <h1 class="logo" id="logo"><span class="solo-lector">¡Comandante, ordene!</span></h1>
+      <p class="sub">Mantén el poder tanto tiempo como puedas.</p>
     </div>
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa c2"></div><div class="capa c1"></div></div>
-      <div class="carta" id="carta-portada" role="group" aria-label="Arrastra a la derecha para empezar a gobernar, a la izquierda para el archivo histórico"></div>
+      <div class="carta" id="carta-portada" role="group" aria-label="Arrastra la carta a un lado para empezar a gobernar"></div>
     </div>
-    <button class="abandonar" id="btn-como-jugar" type="button">Cómo se juega</button>
+    <p class="pie-portada"><button class="abandonar" id="btn-como-jugar" type="button">Cómo se juega</button><span aria-hidden="true">|</span><button class="abandonar" id="btn-portada-archivo" type="button">Archivo histórico</button></p>
     <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
       <div class="modal-caja" tabindex="-1">
         <h2 class="titulo" id="como-jugar-titulo">Cómo se juega</h2>
-        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. En la portada, arrastra al Comandante a la derecha para empezar a gobernar, o a la izquierda para ver el archivo histórico.</p>
+        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. En la portada, arrastra al Comandante a un lado para empezar a gobernar.</p>
         <p><b>Arrastra la carta</b> a la izquierda o a la derecha para decidir. Antes de soltarla verás tu respuesta y unos puntos rojos sobre las fuerzas afectadas: indican cuánto se moverán, pero no si suben o bajan.</p>
         <p>Las cuatro fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). <b>Si una se vacía o se llena del todo, caes.</b> Cuando su barra se pone roja, estás cerca.</p>
         <p>Las casillas de abajo guardan los estados del régimen, consecuencias duraderas de tus decisiones. Toca los iconos para saber qué son, y <b>toca la carta</b> para darle la vuelta y conocer al personaje.</p>

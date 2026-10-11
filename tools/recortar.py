@@ -4,9 +4,12 @@
     python3 tools/recortar.py            # todo
     python3 tools/recortar.py personajes
     python3 tools/recortar.py iconos
+    python3 tools/recortar.py logo
 
 Entrada:  assets/personajes/originales/<slug>.jpg   y   assets/iconos/originales/hoja-*.jpg
+Entrada:  assets/logo/originales/logo.jpg (letras de papel y tela recortadas, para la portada)
 Salida:   assets/personajes/recortados/<slug>.webp  y   assets/iconos/recortados/<id>.webp
+          assets/logo/recortados/logo.webp
 
 El recorte sigue docs/PIPELINE_PERSONAJES.md: alfa en rampa (no umbral binario), se descartan islas
 sueltas y se quita el rebote verde del borde. Las hojas de iconos se parten en piezas: cada grupo de
@@ -22,6 +25,7 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ANCHO_PERSONAJE = 900
 # Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
 REFLEJAR = {"dictador-viejo"}
+ANCHO_LOGO = 1000         # se muestra a ~400 px de ancho como mucho
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
 # Orden de los iconos en cada hoja: filas de arriba abajo, cada fila de izquierda a derecha.
@@ -102,6 +106,17 @@ def recortar_hoja(entrada, nombres, carpeta):
     return hechos
 
 
+def recortar_logo(entrada, salida):
+    """Como un personaje, pero ajustado al contenido: sin aire alrededor de las letras."""
+    a = np.array(Image.open(entrada).convert("RGB")).astype(float)
+    alpha, g2 = alfa_croma(a, 300)                      # islas pequeñas: la coma y los hilos del vaquero cuentan
+    rgba = Image.fromarray(np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8))
+    rgba = rgba.crop(rgba.getbbox())
+    out = rgba.resize((ANCHO_LOGO, round(rgba.height * ANCHO_LOGO / rgba.width)), Image.LANCZOS)
+    out.save(salida, "WEBP", quality=86, method=6)
+    return out.size
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
     if que in ("todo", "personajes"):
@@ -113,6 +128,10 @@ def main():
         dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for hoja, nombres in HOJAS.items():
             print(f"{hoja}:", ", ".join(recortar_hoja(RAIZ / f"assets/iconos/originales/{hoja}.jpg", nombres, dst)))
+    if que in ("todo", "logo"):
+        dst = RAIZ / "assets/logo/recortados"; dst.mkdir(parents=True, exist_ok=True)
+        w, h = recortar_logo(RAIZ / "assets/logo/originales/logo.jpg", dst / "logo.webp")
+        print(f"logo: {w}×{h}, {(dst / 'logo.webp').stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":

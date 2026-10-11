@@ -8,7 +8,7 @@ Es **un único HTML autocontenido** (`dist/index.html`, sin red). **Juego comple
 ```
 npm install            # una vez (jsdom, para las pruebas)
 pip install pillow numpy scipy   # solo para recortar personajes e iconos (tools/recortar.py)
-npm test               # monta el juego y pasa 28 pruebas
+npm test               # monta el juego y pasa 33 pruebas
 npm run build          # solo montar → dist/index.html
 npm run docs           # regenera docs/ desde los datos
 npm run simular        # supervivencia y cobertura de cartas con miles de partidas
@@ -19,6 +19,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 ## Mapa de la carpeta
 - `src/datos.js` — **fuente única** de cartas, eras, finales y consecuencias futuras. Aquí se editan textos y efectos.
 - `src/motor.js` — reglas, estados del régimen, interfaz y gestos. `src/estilos.css`, `src/cuerpo.html` — aspecto y pantallas.
+- `assets/logo/` — el logo de la portada (`originales/` con croma, `recortados/logo.webp`).
 - `assets/personajes/` — `originales/` (Gemini, con croma), `recortados/` (WebP con transparencia) y `personajes.json` (ojos, Noir, extras). `assets/iconos/` — igual, para los iconos. **Antes de tocar personajes o iconos, lee `docs/PIPELINE_PERSONAJES.md`.**
 - El arte antiguo (lápiz de cera, fotos de prensa, papel recortado con ojos, pegatinas) se borró; solo queda en el historial de git. No lo recuperes sin preguntar.
 - `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md` y `brief_claude_design.md`.
@@ -53,7 +54,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - Abajo, sin línea separadora: «Comandante X» y los años en el poder (dos líneas) y, a la derecha, **cuatro casillas de estado** (vacías con borde discontinuo; llenas con su icono). Tocar un icono de arriba o un estado abre una ventana que lo explica. Al pie, «Abandonar partida» en texto pequeño.
 - Pantalla final: **«¡Has caído!» enorme**, la causa, la fuerza que cayó con su barra y la última decisión. Al superar una era, **«Sigues en el poder»** (pantalla propia, `screen-era`): «Has gobernado N años», **un solo párrafo** (qué ha pasado y el objetivo de la siguiente era, la fuerza más tensa y hasta dos cosas que te esperan; `parrafoEra()`), el **dictador de la era que empieza en una carta** (`DICTADOR_ERA`: asentado al empezar las eras 2 y 3, viejo al empezar la 4) y el botón **«Seguir gobernando»** abajo. **Al superar la cuarta: «¡Has ganado!»**, «Moriste en tu cama, y en el poder» y una **esquela** cuyo epitafio depende de las decisiones (mausoleo, sucesor, capital con tu nombre, plebiscito…; `EPITAFIO` en `motor.js`).
 - Aspecto: **documento impreso de los 60.** Papel envejecido `#ECE9E1`, bloques blanco roto `#F8F6F0`, gris imprenta `#D9D5CB`, carbón `#2B2A27`, tinta `#1C1B19`. **Rojo `#B3261E` solo para alertas y decisión** (barras en peligro, puntos de pista, contorno de la carta lista para decidir, «¡Has caído!»). El fondo blanco de los retratos se mezcla por multiplicación con el gris imprenta. Sin sombras ni degradados: lo pulsable lleva contorno negro neto; activo = colores invertidos; separaciones con línea doble, línea de puntos y marcas de corte. Tipografía de máquina de escribir: **Courier Prime** (texto, 16 px mínimo en el cuerpo) y **Special Elite** (títulos). Solo tema claro. Iconos: manualidades de papel recortado (ya no emojis), con una **sombra leve** para que parezcan recortes.
-- **Las pantallas de inicio y de era usan la interfaz del juego** (textos arriba, una carta en medio, una acción abajo). **Portada:** «¡Comandante, ordene!» en rojo y el subtítulo; la carta con el **dictador joven** (ojos y humo): **arrástrala a la derecha para empezar a gobernar, a la izquierda para el archivo histórico** (con las flechas también); al pie, el enlace «Cómo se juega» (ventana con instrucciones). **Pantalla del nombre:** oscura, «Comandante» y el campo beige sin contorno centrados, «Tomar el poder» y «Volver» como enlaces de texto. El arrastre es una sola función, `arrastrable()`, para todas las cartas.
+- **Las pantallas de inicio y de era usan la interfaz del juego** (textos arriba, una carta en medio, una acción abajo). **Portada:** el **logo de letras de papel y tela recortadas** (`assets/logo/`) y «Mantén el poder tanto tiempo como puedas.»; la carta con el **dictador joven** (ojos y humo): **arrástrala a cualquier lado para empezar a gobernar** (con las flechas también); al pie, «Cómo se juega | Archivo histórico» (enlaces de texto). **Pantalla del nombre:** oscura, «Comandante» y el campo beige sin contorno centrados, «Tomar el poder» y «Volver» como enlaces de texto. El arrastre es una sola función, `arrastrable()`, para todas las cartas.
 
 ## Personajes, iconos y estilos (vigente desde el 10 oct)
 - **Manualidades de papel recortado** generadas con Gemini sobre croma verde; recortadas con `tools/recortar.py`. Diez personajes y catorce iconos (4 fuerzas, 8 estados, archivo y candado).

@@ -955,7 +955,8 @@ function arrastrable(carta, op) {
 }
 arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, mostrar: pintarEleccion, decidir, toque: voltear });
 
-/* ---------- Portada: el dictador joven en una carta. Derecha = empezar a gobernar; izquierda = archivo histórico ---------- */
+/* ---------- Portada: el logo y el dictador joven en una carta. Arrastrarla a cualquier lado empieza a gobernar;
+   el archivo histórico está en el pie («Cómo se juega | Archivo histórico») ---------- */
 let portadaOcupada = false;
 function pintarPortada() {
   const carta = $("carta-portada");
@@ -970,9 +971,7 @@ function eleccionPortada(dir) {
   const r = $("carta-portada").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = dir > 0
-    ? "<strong>Empezar a gobernar</strong><span>El palacio es tuyo. Solo falta tu nombre.</span>"
-    : `<strong>Archivo histórico</strong><span>${desbloqueados.size} de ${ARCHIVABLES.length} referencias descubiertas.</span>`;
+  r.innerHTML = "<strong>Empezar a gobernar</strong><span>El palacio es tuyo. Solo falta tu nombre.</span>";
   r.classList.add("visible");
 }
 function decidirPortada(dir) {
@@ -985,7 +984,7 @@ function decidirPortada(dir) {
   carta.style.transition = "";
   carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`;
   carta.style.opacity = "0";
-  setTimeout(() => { if (dir > 0) irANombre(); else abrirArchivo("screen-start"); }, 240);
+  setTimeout(irANombre, 240);
 }
 arrastrable($("carta-portada"), { activa: () => !portadaOcupada, mostrar: eleccionPortada, decidir: decidirPortada });
 
@@ -1055,6 +1054,8 @@ function abrirComoJugar() {
 }
 function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
 $("btn-como-jugar").addEventListener("click", abrirComoJugar);
+$("btn-portada-archivo").addEventListener("click", () => abrirArchivo("screen-start"));
+if (IMG.logo) $("logo").insertAdjacentHTML("afterbegin", `<img src="${IMG.logo.src}" alt="" draggable="false">`);
 $("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
 $("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
 mostrar("screen-start");

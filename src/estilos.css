@@ -130,6 +130,9 @@ body.fondo-oscuro { background: var(--noche); }
 .pantalla-carta { padding: 8px 12px 6px; }
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
 .cabecera-carta h1 { margin: 0; color: var(--rojo); font-size: clamp(30px, 9vw, 48px); line-height: 1; }
+.cabecera-carta .logo { margin: 0; width: min(100%, 400px); }
+.cabecera-carta .logo img { display: block; width: 100%; height: auto; max-height: 20vh; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .3)); }
+.pie-portada { flex: none; margin: 0; display: flex; justify-content: center; align-items: baseline; gap: 10px; color: var(--tinta-suave); font-size: 14px; }
 .cabecera-carta .sub { margin: 0; color: var(--tinta-suave); font-size: 16px; line-height: 1.35; font-weight: 400; }
 .cabecera-carta .era-anios { margin: 0; font-family: var(--fuente-titulo); font-size: 22px; color: var(--tinta-suave); }
 .cabecera-carta .era-texto { margin: 0; font-size: 15px; line-height: 1.4; }

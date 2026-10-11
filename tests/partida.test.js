@@ -71,11 +71,15 @@ test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el di
   assert.equal(j.w.eval("E.era"), 2);
 });
 
-test("portada: la carta del dictador a la derecha empieza a gobernar y a la izquierda abre el archivo", () => {
+test("portada: el logo, la carta del dictador a cualquier lado empieza a gobernar y el archivo está en el pie", () => {
   const j = cargar();
+  assert.ok(j.d.querySelector("#logo img"), "falta el logo en la portada");
   assert.ok(j.d.querySelector("#carta-portada svg.personaje"), "falta el dictador en la portada");
   j.w.eval("decidirPortada(1)");
   assert.ok(j.visible("screen-name"));
   j.w.eval("mostrar('screen-start'); decidirPortada(-1)");
+  assert.ok(j.visible("screen-name"));
+  j.w.eval("mostrar('screen-start')");
+  j.d.getElementById("btn-portada-archivo").click();
   assert.ok(j.visible("screen-archive"));
 });

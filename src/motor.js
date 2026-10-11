@@ -170,6 +170,8 @@ const ANIMACION = {
   piloto:   () => '<g class="piloto"><circle r="10"/></g>',
   gota:     () => '<g class="gota"><g transform="scale(1.7)"><path d="M0 -14 C6 -4 10 2 10 7 A10 10 0 0 1 -10 7 C-10 2 -6 -4 0 -14Z"/><ellipse class="brillo" cx="-3" cy="5" rx="2.5" ry="4"/></g></g>'
 };
+/* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */
+const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fondo-escena:${RETRATOS[slug].fondo}"` : "";
 function svgPersonaje(slug, nombre) {
   const p = RETRATOS[slug];
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
@@ -523,7 +525,7 @@ function pintarCarta(c) {
   ajustarMensaje();
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
-  $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}">${ilus}` +
+  $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
     `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
@@ -538,7 +540,7 @@ function pintarEleccion(dir) {
   const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
   const r = $("respuesta");
   if (r) {
-    if (op) { r.innerHTML = `<strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}`; r.classList.add("visible"); }
+    if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; r.classList.add("visible"); }
     else r.classList.remove("visible");
   }
   BARRAS.forEach(b => {
@@ -584,7 +586,7 @@ function decidir(dir) {
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`;
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`);
   carta.style.opacity = "0";
   setTimeout(() => resolver(dir), 240);
 }
@@ -912,7 +914,7 @@ function arrastrable(carta, op) {
   }
   function volver() {
     marcarListo(false);
-    carta.style.transition = ""; carta.style.transform = "";
+    carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg");
     op.mostrar(0);
   }
   carta.addEventListener("pointerdown", e => {
@@ -930,6 +932,7 @@ function arrastrable(carta, op) {
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
+    carta.style.setProperty("--giro", `${drag.dx / 18}deg`);
     const dir = Math.abs(drag.dx) > 24 ? Math.sign(drag.dx) : 0;
     if (dir !== drag.dir) { drag.dir = dir; op.mostrar(dir); }
     marcarListo(Math.abs(drag.dx) > umbral());
@@ -962,8 +965,8 @@ function pintarPortada() {
   const carta = $("carta-portada");
   portadaOcupada = false;
   carta.classList.remove("listo");
-  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
-  carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion">${svgPersonaje("dictador-joven", "El Comandante")}` +
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg");
+  carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
 }
@@ -971,7 +974,8 @@ function eleccionPortada(dir) {
   const r = $("carta-portada").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = "<strong>Empezar a gobernar</strong><span>El palacio es tuyo. Solo falta tu nombre.</span>";
+  r.innerHTML = '<div class="texto-respuesta"><strong>Empezar a gobernar</strong></div>';
+  r.dataset.dir = dir;
   r.classList.add("visible");
 }
 function decidirPortada(dir) {
@@ -982,7 +986,7 @@ function decidirPortada(dir) {
   carta.classList.add("listo");
   const r = carta.querySelector(".respuesta"); if (r) r.classList.add("firme");
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`;
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`);
   carta.style.opacity = "0";
   setTimeout(irANombre, 240);
 }
@@ -1003,7 +1007,7 @@ function mostrarEra() {
   $("era-texto").textContent = parrafoEra();
   const slug = DICTADOR_ERA[E.era + 1];
   $("carta-era").innerHTML = slug
-    ? `<div class="giro"><div class="cara"><div class="ilustracion">${svgPersonaje(slug, "El dictador")}</div></div></div>` : "";
+    ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}</div></div></div>` : "";
   mostrar("screen-era");
 }
 

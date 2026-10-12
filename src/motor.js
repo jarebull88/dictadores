@@ -569,6 +569,7 @@ function empezar() {
   carta.style.transition = "none";
   carta.style.transform = "";
   carta.style.opacity = "1";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   void carta.offsetWidth;
   carta.style.transition = "";
   panelAbierto = false;
@@ -586,7 +587,7 @@ function decidir(dir) {
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`);
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
   setTimeout(() => resolver(dir), 240);
 }
@@ -697,6 +698,7 @@ function siguiente() {
   carta.style.transition = "";
   carta.style.transform = "";
   carta.style.opacity = "1";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   ocupado = false;
   pintarEleccion(0);
   mostrarAvisoPendiente();
@@ -915,7 +917,7 @@ function arrastrable(carta, op) {
   }
   function volver() {
     marcarListo(false);
-    carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg");
+    carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
   }
   carta.addEventListener("pointerdown", e => {
@@ -934,6 +936,8 @@ function arrastrable(carta, op) {
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
     carta.style.setProperty("--giro", `${drag.dx / 18}deg`);
+    // El panel baja desde el primer píxel, al ritmo del arrastre; llega abajo justo en el umbral, cuando sale el texto
+    carta.style.setProperty("--bajada", Math.min(1, Math.abs(drag.dx) / umbral()).toFixed(3));
     const dir = Math.abs(drag.dx) > umbral() ? Math.sign(drag.dx) : 0;
     if (dir !== drag.dir) { drag.dir = dir; op.mostrar(dir); }
     marcarListo(dir !== 0);
@@ -966,7 +970,7 @@ function pintarPortada() {
   const carta = $("carta-portada");
   portadaOcupada = false;
   carta.classList.remove("listo");
-  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg");
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
@@ -987,7 +991,7 @@ function decidirPortada(dir) {
   carta.classList.add("listo");
   const r = carta.querySelector(".respuesta"); if (r) r.classList.add("firme");
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`);
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
   setTimeout(irANombre, 240);
 }

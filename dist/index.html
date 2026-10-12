@@ -345,8 +345,8 @@ body.fondo-oscuro { background: var(--noche); }
 .ficha-historia { margin: 4px 0 0; font-size: 17px; line-height: 1.45; max-width: 30ch; }
 .ficha-pie { margin-top: 8px; font-size: 12px; color: var(--tinta-suave); }
 
-/* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja al
-   inclinarla. Gira al revés que la carta (--giro), así su borde inferior queda siempre horizontal y el panel
+/* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
+   cuanto se empieza a mover. Gira al revés que la carta (--giro), así su borde inferior queda siempre horizontal y el panel
    es una cuña: más alto en el lado que sube. El texto (1 a 3 palabras, hasta 2 líneas) va en esa esquina,
    la contraria al arrastre. Siempre negro al 50 %, también en la zona de decisión. El panel es más ancho que la carta; la carta lo recorta (overflow de .ilustracion). */
 .respuesta {
@@ -354,9 +354,12 @@ body.fondo-oscuro { background: var(--noche); }
   position: absolute; left: -50%; width: 200%; height: 400%; bottom: calc(100% - var(--alto-panel)); z-index: 3;
   background: rgba(0, 0, 0, .5); color: var(--bloque);
   transform-origin: 50% 100%; transform: rotate(calc(-1 * var(--giro, 0deg)));
-  translate: 0 -100%; opacity: 0; transition: translate .2s ease-out, opacity .12s; pointer-events: none;
+  /* Baja al ritmo del arrastre (--bajada de 0 a 1, ver arrastrable): empieza en cuanto la carta se mueve */
+  translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .1s linear; pointer-events: none;
 }
-.respuesta.visible { translate: 0 0; opacity: 1; }
+/* El texto, en cambio, solo aparece en el umbral: si se ve, soltar decide */
+.texto-respuesta { opacity: 0; transition: opacity .1s; }
+.respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
 .texto-respuesta strong, .texto-respuesta span { max-width: 62%; overflow-wrap: break-word; }
@@ -2097,6 +2100,7 @@ function empezar() {
   carta.style.transition = "none";
   carta.style.transform = "";
   carta.style.opacity = "1";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   void carta.offsetWidth;
   carta.style.transition = "";
   panelAbierto = false;
@@ -2114,7 +2118,7 @@ function decidir(dir) {
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`);
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
   setTimeout(() => resolver(dir), 240);
 }
@@ -2225,6 +2229,7 @@ function siguiente() {
   carta.style.transition = "";
   carta.style.transform = "";
   carta.style.opacity = "1";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   ocupado = false;
   pintarEleccion(0);
   mostrarAvisoPendiente();
@@ -2443,7 +2448,7 @@ function arrastrable(carta, op) {
   }
   function volver() {
     marcarListo(false);
-    carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg");
+    carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
   }
   carta.addEventListener("pointerdown", e => {
@@ -2462,6 +2467,8 @@ function arrastrable(carta, op) {
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
     carta.style.setProperty("--giro", `${drag.dx / 18}deg`);
+    // El panel baja desde el primer píxel, al ritmo del arrastre; llega abajo justo en el umbral, cuando sale el texto
+    carta.style.setProperty("--bajada", Math.min(1, Math.abs(drag.dx) / umbral()).toFixed(3));
     const dir = Math.abs(drag.dx) > umbral() ? Math.sign(drag.dx) : 0;
     if (dir !== drag.dir) { drag.dir = dir; op.mostrar(dir); }
     marcarListo(dir !== 0);
@@ -2494,7 +2501,7 @@ function pintarPortada() {
   const carta = $("carta-portada");
   portadaOcupada = false;
   carta.classList.remove("listo");
-  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg");
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
@@ -2515,7 +2522,7 @@ function decidirPortada(dir) {
   carta.classList.add("listo");
   const r = carta.querySelector(".respuesta"); if (r) r.classList.add("firme");
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`);
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
   setTimeout(irANombre, 240);
 }

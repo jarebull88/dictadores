@@ -151,6 +151,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **En prueba (12 oct), era 1:** las respuestas van **sin punto final** y las preguntas **sin «Comandante,»**; las 19 preguntas se reescribieron más cortas y claras. El panel de respuesta es **siempre negro al 50 %** (ya no se vuelve rojo en la zona de decisión).
 - **Vigente (12 oct). Sin resaltado de confirmación.** Se quita el contorno rojo de la carta lista para decidir: la respuesta aparece justo en el umbral (15 % del ancho de la carta, mín. 44 px), así que **si se ve la respuesta, soltar decide**. Queda una vibración corta al cruzarlo.
 - **Vigente (12 oct).** El umbral baja al **7 % del ancho de la carta (mín. 20 px)**: con el 15 % la respuesta salía tarde, con la carta ya muy inclinada. Ahora sale casi en cuanto empieza a inclinarse (unos 20 px en un móvil de 360).
+- **Vigente (12 oct).** El panel de la respuesta **empieza a bajar en cuanto la carta se mueve**, al ritmo del arrastre, y llega abajo justo en el umbral; el texto sigue apareciendo solo en el umbral. Más fluido que antes, cuando el panel aparecía de golpe.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

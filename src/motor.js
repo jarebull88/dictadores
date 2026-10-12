@@ -905,7 +905,8 @@ function confirmarNombre() {
    op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
 function arrastrable(carta, op) {
   let drag = null;
-  const umbral = () => Math.max(64, carta.offsetWidth * 0.22);      // distancia a partir de la cual se decide
+  // Distancia a partir de la cual se decide: es también la que muestra la respuesta, así que si se ve, soltar decide
+  const umbral = () => Math.max(44, carta.offsetWidth * 0.15);
   function marcarListo(listo) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);
@@ -933,9 +934,9 @@ function arrastrable(carta, op) {
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
     carta.style.setProperty("--giro", `${drag.dx / 18}deg`);
-    const dir = Math.abs(drag.dx) > 24 ? Math.sign(drag.dx) : 0;
+    const dir = Math.abs(drag.dx) > umbral() ? Math.sign(drag.dx) : 0;
     if (dir !== drag.dir) { drag.dir = dir; op.mostrar(dir); }
-    marcarListo(Math.abs(drag.dx) > umbral());
+    marcarListo(dir !== 0);
   });
   function soltar(e) {
     if (!drag) return;

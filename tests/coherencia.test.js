@@ -68,7 +68,9 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
   for (const c of cartas) {
     const era = c.era || 1, saludo = era >= 4 ? "Padre de la Patria," : era >= 3 ? "Excelencia," : "Comandante,";
     assert.ok(c.texto.length <= 150, `«${c.id}»: el mensaje tiene ${c.texto.length} caracteres (máx. 150)`);
-    assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
+    // Era 1 en prueba (12 oct): las preguntas van sin saludo
+    if (era === 1) assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: en la era 1 la pregunta va sin «Comandante,»`);
+    else assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
     for (const l of ["izq", "der"]) {
       assert.ok(c[l].accion.length <= 28, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. 28)`);
       if (era === 1) {
@@ -76,6 +78,7 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
         const palabras = c[l].accion.split(/\s+/).filter(Boolean).length;
         assert.ok(palabras >= 1 && palabras <= 3, `«${c.id}» ${l}: la acción tiene ${palabras} palabras (era 1: de 1 a 3)`);
         assert.ok(!c[l].remate, `«${c.id}» ${l}: en la era 1 ya no hay remate`);
+        assert.ok(!/[^.]\.$/.test(c[l].accion), `«${c.id}» ${l}: la respuesta no lleva punto final`);
       } else assert.ok(c[l].remate.length <= 75, `«${c.id}» ${l}: el remate tiene ${c[l].remate.length} caracteres (máx. 75)`);
     }
   }

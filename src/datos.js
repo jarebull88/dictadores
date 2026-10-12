@@ -31,145 +31,145 @@ const CARTAS = [
   {
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], titulo: "La casa vacía", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Comandante, el palacio es nuestro. Los ministros del gobierno anterior esperan en el sótano. ¿Qué hacemos con ellos?",
+    texto: "El palacio es nuestro. Los ministros del gobierno anterior esperan en el sótano. ¿Qué hacemos con ellos?",
     archivo: "En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
-    izq: { accion: "Juicio ejemplar.", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Buen viaje, señores.", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+    izq: { accion: "Juicio ejemplar", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
+    der: { accion: "Buen viaje, señores", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Comandante, Varela es muy querido por la tropa y pide Defensa. En los cuarteles lo aplauden más a él que a usted.",
+    texto: "El general Varela pide Defensa. En los cuarteles lo aplauden más a él que a usted.",
     archivo: "En Egipto, tras el derrocamiento de la monarquía en 1952, el general Muhammad Naguib, muy popular, presidió el nuevo régimen. En 1954 fue apartado del poder por Gamal Abdel Nasser, que acabó al frente del país.",
-    izq: { accion: "Varela, a Defensa.", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
-    der: { accion: "Embajador, muy lejos.", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
+    izq: { accion: "Varela, a Defensa", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
+    der: { accion: "Embajador, muy lejos", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
   },
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías", ilustracion: null,
     personaje: "Ministro de Comercio",
-    texto: "Comandante, las refinerías extranjeras se niegan a procesar el petróleo del bloque oriental. ¿Negociamos o las tomamos?",
+    texto: "Las refinerías extranjeras se niegan a refinar el crudo del bloque oriental. ¿Negociamos o las tomamos?",
     archivo: "En Cuba, en 1960, las refinerías de empresas estadounidenses y británicas se negaron a procesar crudo soviético y el gobierno las nacionalizó. En 1951, Irán nacionalizó la Anglo-Iranian Oil Company.",
-    izq: { accion: "Negociemos, caballeros.", efectos: { potencias: 10, elite: 6, pueblo: -8 }, banderas: ["base.negocio_refinerias"] },
+    izq: { accion: "Negociemos, caballeros", efectos: { potencias: 10, elite: 6, pueblo: -8 }, banderas: ["base.negocio_refinerias"] },
     der: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -6, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"],
            encolar: [{ carta: "embargo", min: 3, max: 8 }] }
   },
   {
     id: "visitante_oriental", tipo: "ancla", ventana: [4, 7], cond: { turnoMin: 4 }, titulo: "El visitante del bloque oriental", ilustracion: null,
     personaje: "Embajador del bloque oriental",
-    texto: "Comandante, nuestro país le ofrece petróleo, créditos y asesores. A cambio, pedimos que se alinee con el bloque.",
+    texto: "Le ofrecemos petróleo, créditos y asesores. A cambio, solo pedimos que se una a nuestro bloque.",
     archivo: "En 1960 Cuba firmó acuerdos con la Unión Soviética para venderle azúcar y recibir petróleo. En 1955, Egipto anunció la compra de armas a Checoslovaquia tras ser rechazado por proveedores occidentales.",
-    izq: { accion: "Trato hecho, camarada.", efectos: { potencias: 9, pueblo: 5, elite: -6, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
-    der: { accion: "Gracias, pero no.", efectos: { elite: 6, potencias: -9, pueblo: -5, crisis: 1 }, banderas: ["base.no_alineado"] }
+    izq: { accion: "Trato hecho, camarada", efectos: { potencias: 9, pueblo: 5, elite: -6, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
+    der: { accion: "Gracias, pero no", efectos: { elite: 6, potencias: -9, pueblo: -5, crisis: 1 }, banderas: ["base.no_alineado"] }
   },
 
   /* ---------- Cola ---------- */
   {
     id: "embargo", tipo: "cola", titulo: "El embargo", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
-    texto: "Comandante, nuestro país considera las nacionalizaciones un acto hostil y aplicaremos restricciones comerciales.",
+    texto: "Nuestro país considera hostiles las nacionalizaciones. Aplicaremos restricciones comerciales.",
     archivo: "Estados Unidos impuso restricciones comerciales a Cuba en 1960 y un embargo más amplio en 1962. En 1951, tras la nacionalización petrolera de Irán, el Reino Unido organizó un boicot al petróleo iraní, y en 1953 un golpe derrocó al primer ministro Mosaddeq.",
-    izq: { accion: "Dignidad ante todo.", efectos: { pueblo: 9, potencias: -9, elite: -5, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Pagaremos… algo.", efectos: { potencias: 9, elite: 5, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
+    izq: { accion: "Dignidad ante todo", efectos: { pueblo: 9, potencias: -9, elite: -5, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
+    der: { accion: "Pagaremos… algo", efectos: { potencias: 9, elite: 5, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
   },
   {
     id: "depuracion_criticos", tipo: "cola", borrador: true, titulo: "La lista", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Comandante, tenemos una lista de quienes más criticaron al gobierno. ¿Qué hacemos con ella?",
+    texto: "Tenemos la lista de los que más lo han criticado. ¿Qué hacemos con ella?",
     archivo: null,
-    izq: { accion: "Archívela. Por ahora.", efectos: { pueblo: 8, ejercito: -5, potencias: 5 } },
-    der: { accion: "Deténganlos.", efectos: { pueblo: -8, ejercito: 5, elite: 4, potencias: -5 }, banderas: ["base.criticos_detenidos"] }
+    izq: { accion: "Archívela. Por ahora", efectos: { pueblo: 8, ejercito: -5, potencias: 5 } },
+    der: { accion: "Deténganlos", efectos: { pueblo: -8, ejercito: 5, elite: 4, potencias: -5 }, banderas: ["base.criticos_detenidos"] }
   },
 
   /* ---------- Sorteo ---------- */
   {
     id: "tierra", tipo: "sorteo", peso: 12, titulo: "La tierra", ilustracion: null,
     personaje: "Ministro de Trabajo",
-    texto: "Comandante, proponemos repartir las grandes propiedades entre los campesinos. Los terratenientes no estarán contentos.",
+    texto: "Proponemos repartir los latifundios entre los campesinos. A los terratenientes no les va a gustar.",
     archivo: "La Ley de Reforma Agraria de Cuba (1959) y la del Perú bajo el gobierno militar de Velasco (1969) repartieron grandes propiedades. Ambas afectaron a intereses extranjeros y locales, y obligaron a replantear la producción agrícola.",
-    izq: { accion: "Más adelante.", efectos: { pueblo: -10, elite: 8 } },
-    der: { accion: "Repártanla. Con fotógrafo.", efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
+    izq: { accion: "Más adelante", efectos: { pueblo: -10, elite: 8 } },
+    der: { accion: "Repártanla. Con fotógrafo", efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
   },
   {
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "Comandante, los periódicos cuestionan los decretos. ¿Les dejamos publicar o revisamos los textos antes de imprimirlos?",
+    texto: "Los periódicos critican sus decretos. ¿Los dejamos publicar o revisamos antes lo que imprimen?",
     archivo: "La Ley de Prensa española de 1938 estableció la censura previa de publicaciones. Muchos regímenes del siglo XX combinaron el control de la prensa con la propaganda oficial.",
-    izq: { accion: "Publiquen, publiquen.", efectos: { pueblo: 6, potencias: 6, ejercito: -4 }, banderas: ["base.prensa_libre"] },
-    der: { accion: "Censura no: revisión.", efectos: { pueblo: -6, elite: 5, potencias: -5 }, banderas: ["base.censura_previa"] }
+    izq: { accion: "Publiquen, publiquen", efectos: { pueblo: 6, potencias: 6, ejercito: -4 }, banderas: ["base.prensa_libre"] },
+    der: { accion: "Censura no: revisión", efectos: { pueblo: -6, elite: 5, potencias: -5 }, banderas: ["base.censura_previa"] }
   },
   {
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Comandante, usted prometió elecciones. El Pueblo pregunta cuándo serán.",
+    texto: "Usted prometió elecciones. El Pueblo pregunta cuándo serán.",
     archivo: "Muchos regímenes surgidos de una revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.",
-    izq: { accion: "En seis meses.", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
-    der: { accion: "Todavía no.", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
+    izq: { accion: "En seis meses", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
+    der: { accion: "Todavía no", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "Comandante, proponemos abrir un período en que cualquiera pueda criticar al gobierno.",
+    texto: "Proponemos un periodo de libertad: que cualquiera pueda criticar al gobierno sin miedo.",
     archivo: "En China, la Campaña de las Cien Flores (1956-1957) invitó a criticar al Partido. En 1957, la Campaña Antiderechista persiguió a muchos de quienes habían hablado.",
-    izq: { accion: "Que hablen. Apunten.", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
+    izq: { accion: "Que hablen. Apunten", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
-    der: { accion: "Ya hablaron.", efectos: { pueblo: -8, ejercito: 4, elite: 4 } }
+    der: { accion: "Ya hablaron", efectos: { pueblo: -8, ejercito: 4, elite: 4 } }
   },
   {
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Comandante, siguen en los cuarteles oficiales del gobierno anterior. Todavía no han hecho nada.",
+    texto: "Quedan en los cuarteles oficiales del antiguo régimen. Todavía no han hecho nada.",
     archivo: "En la Unión Soviética, entre 1937 y 1938, la Gran Purga alcanzó al Ejército Rojo. Altos mandos como Tujachevski fueron juzgados y ejecutados, y buena parte del cuerpo de oficiales fue depurado.",
-    izq: { accion: "Jubílenlos.", efectos: { ejercito: 7, elite: 4, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "Algo encontraremos.", efectos: { ejercito: -7, potencias: -4 }, banderas: ["base.purga_inicial"] }
+    izq: { accion: "Jubílenlos", efectos: { ejercito: 7, elite: 4, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
+    der: { accion: "Algo encontraremos", efectos: { ejercito: -7, potencias: -4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado", ilustracion: null,
     personaje: "Ministro de Trabajo",
-    texto: "Comandante, los estibadores han parado. Piden mejores salarios y un sindicato independiente del gobierno.",
+    texto: "Los estibadores están en huelga. Piden más sueldo y un sindicato propio, sin el gobierno.",
     archivo: "En Polonia, las huelgas de los astilleros de Gdansk en 1980 dieron origen a Solidaridad, el primer sindicato independiente del bloque oriental. En 1981 el gobierno declaró la ley marcial.",
-    izq: { accion: "Sindicato concedido.", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
-    der: { accion: "Tropa al puerto.", efectos: { pueblo: -10, elite: 7, ejercito: 4, potencias: -4 }, banderas: ["base.huelga_reprimida"] }
+    izq: { accion: "Sindicato concedido", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
+    der: { accion: "Tropa al puerto", efectos: { pueblo: -10, elite: 7, ejercito: 4, potencias: -4 }, banderas: ["base.huelga_reprimida"] }
   },
   {
     id: "ojos_barrio", tipo: "sorteo", peso: 8, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Comandante, proponemos comités de vecinos que informen sobre actividades sospechosas en cada manzana.",
+    texto: "Proponemos un comité de vecinos en cada manzana que nos informe de cualquier cosa sospechosa.",
     archivo: "En la República Democrática Alemana, el Ministerio para la Seguridad del Estado (Stasi), creado en 1950, construyó una extensa red de informantes. En Cuba, los Comités de Defensa de la Revolución se crearon en 1960.",
-    izq: { accion: "Vecinos vigilantes.", efectos: { ejercito: 6, elite: 3, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
-    der: { accion: "La policía basta.", efectos: { pueblo: 7, ejercito: -6, elite: -3 }, banderas: ["base.policia_tradicional"] }
+    izq: { accion: "Vecinos vigilantes", efectos: { ejercito: 6, elite: 3, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
+    der: { accion: "La policía basta", efectos: { pueblo: 7, ejercito: -6, elite: -3 }, banderas: ["base.policia_tradicional"] }
   },
   {
     id: "retrato", tipo: "sorteo", peso: 6, cond: { turnoMin: 4 }, titulo: "El retrato", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Comandante, las escuelas piden un retrato suyo para cada aula y una estatua en la plaza principal.",
+    texto: "Las escuelas piden un retrato suyo en cada aula. Y la plaza mayor, una estatua.",
     archivo: "En Turkmenistán, en 2002, el presidente Saparmurat Niyazov rebautizó los meses del año, y dio a enero su propio título y a abril el nombre de su madre. Muchos regímenes del siglo XX levantaron monumentos y retratos de sus líderes.",
     izq: { accion: "Si insisten…", efectos: { pueblo: 1, elite: 6, ejercito: 4, crisis: 1 }, banderas: ["base.culto_iniciado"] },
-    der: { accion: "Soy muy modesto.", efectos: { pueblo: -1, potencias: 2, elite: -6, ejercito: -4 }, banderas: ["base.modestia_aparente"] }
+    der: { accion: "Soy muy modesto", efectos: { pueblo: -1, potencias: 2, elite: -6, ejercito: -4 }, banderas: ["base.modestia_aparente"] }
   },
   {
     id: "marchan", tipo: "sorteo", peso: 10, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Comandante, cada semana salen más familias ricas con sus fondos. ¿Las dejamos ir o cerramos la frontera?",
+    texto: "Cada semana se van más familias ricas, y se llevan su dinero. ¿Las dejamos ir o cerramos la frontera?",
     archivo: "Entre 1949 y 1961, millones de personas abandonaron la República Democrática Alemana rumbo a Berlín Occidental y la República Federal. En agosto de 1961 se levantó el Muro de Berlín.",
-    izq: { accion: "Váyanse… sin dinero.", efectos: { pueblo: 7, elite: -7, potencias: -4, crisis: -1 }, banderas: ["base.exodo_elite"] },
-    der: { accion: "Frontera cerrada.", efectos: { ejercito: 6, elite: 7, pueblo: -7, potencias: -8 }, banderas: ["base.frontera_cerrada"] }
+    izq: { accion: "Váyanse… sin dinero", efectos: { pueblo: 7, elite: -7, potencias: -4, crisis: -1 }, banderas: ["base.exodo_elite"] },
+    der: { accion: "Frontera cerrada", efectos: { ejercito: 6, elite: 7, pueblo: -7, potencias: -8 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */
   {
     id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura", ilustracion: null,
     personaje: "Ministro de Economía",
-    texto: "Comandante, hemos prometido más de lo que tenemos. Podemos subir precios o pedir un préstamo extranjero.",
+    texto: "Hemos prometido más de lo que tenemos. O subimos los precios o pedimos un préstamo fuera.",
     archivo: null,
-    izq: { accion: "Suban los precios.", efectos: { pueblo: -10, elite: 6, crisis: -3 } },
-    der: { accion: "El futuro paga.", efectos: { potencias: 8, elite: 4, crisis: -3 }, banderas: ["base.deuda_externa"] }
+    izq: { accion: "Suban los precios", efectos: { pueblo: -10, elite: 6, crisis: -3 } },
+    der: { accion: "El futuro paga", efectos: { potencias: 8, elite: 4, crisis: -3 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías", ilustracion: null,
     personaje: "Ministro de Comercio",
-    texto: "Comandante, las tiendas están vacías. Podemos racionar lo que queda o tolerar un mercado paralelo.",
+    texto: "Las tiendas están vacías. O racionamos lo que queda o hacemos la vista gorda con el mercado negro.",
     archivo: null,
-    izq: { accion: "Escasez, pero justa.", efectos: { pueblo: -8, ejercito: 4, elite: -5, crisis: -3 } },
+    izq: { accion: "Escasez, pero justa", efectos: { pueblo: -8, ejercito: 4, elite: -5, crisis: -3 } },
     der: { accion: "¿Qué mercado?", efectos: { pueblo: 8, elite: 5, potencias: -4, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
   },
 
@@ -179,20 +179,20 @@ const CARTAS = [
     disparo: e => e.barras.pueblo < UMBRAL_COALICION && e.barras.ejercito < UMBRAL_COALICION,
     titulo: "La calle y los cuarteles", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Comandante, manifestantes y oficiales han empezado a hablar entre ellos. Si se coordinan, no podremos detenerlos.",
+    texto: "Los manifestantes y algunos oficiales han empezado a hablar. Si se unen, no podremos pararlos.",
     archivo: null,
-    izq: { accion: "Asciéndanlos.", efectos: { ejercito: 12, elite: -6, crisis: 2 } },
-    der: { accion: "Cabecillas, al calabozo.", efectos: { pueblo: -6, ejercito: 8, potencias: -6 } }
+    izq: { accion: "Asciéndanlos", efectos: { ejercito: 12, elite: -6, crisis: 2 } },
+    der: { accion: "Cabecillas, al calabozo", efectos: { pueblo: -6, ejercito: 8, potencias: -6 } }
   },
   {
     id: "coalicion_dinero_sale", tipo: "coalicion", repetible: true, borrador: true,
     disparo: e => e.barras.elite < UMBRAL_COALICION && e.barras.potencias < UMBRAL_COALICION,
     titulo: "El dinero se va", ilustracion: null,
     personaje: "Ministro de Economía",
-    texto: "Comandante, empresarios y diplomáticos coordinan la salida de capitales y un bloqueo comercial.",
+    texto: "Los empresarios sacan su dinero del país y los diplomáticos preparan un bloqueo comercial.",
     archivo: null,
-    izq: { accion: "Contenten al capital.", efectos: { elite: 9, pueblo: -8, crisis: 2 } },
-    der: { accion: "Cuentas congeladas.", efectos: { potencias: -8, pueblo: 8, elite: -9 } }
+    izq: { accion: "Contenten al capital", efectos: { elite: 9, pueblo: -8, crisis: 2 } },
+    der: { accion: "Cuentas congeladas", efectos: { potencias: -8, pueblo: 8, elite: -9 } }
   },
 
   /* ---------- Era 2 · Consolidación ---------- */

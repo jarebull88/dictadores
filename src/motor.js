@@ -906,7 +906,7 @@ function confirmarNombre() {
 function arrastrable(carta, op) {
   let drag = null;
   // Distancia a partir de la cual se decide: es también la que muestra la respuesta, así que si se ve, soltar decide
-  const umbral = () => Math.max(44, carta.offsetWidth * 0.15);
+  const umbral = () => Math.max(20, carta.offsetWidth * 0.07);      // casi en cuanto empieza a inclinarse
   function marcarListo(listo) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);

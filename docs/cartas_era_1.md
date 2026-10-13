@@ -9,10 +9,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «El palacio es nuestro. Los ministros del gobierno anterior esperan en el sótano. ¿Qué hacemos con ellos?»
+**Carta:** «Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterioros?»
 
-- **A. Juicio ejemplar** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
-- **B. Buen viaje, señores** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`
+- **A. Juicio público** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
+- **B. Al exilio** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
 
@@ -25,10 +25,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «El general Varela pide Defensa. En los cuarteles lo aplauden más a él que a usted.»
+**Carta:** «El General Cienfuegos es muy popular y quiere ser Ministro de las Fuerzas Armadas.»
 
-- **A. Varela, a Defensa** Ejército +9 · Élite −4 · Bandera: `general_popular`
-- **B. Embajador, muy lejos** Ejército −9 · Élite +4 · Bandera: `general_apartado`
+- **A. Que sea Ministro** Ejército +9 · Élite −4 · Bandera: `general_popular`
+- **B. Mejor lejos de Embajador** Ejército −9 · Élite +4 · Bandera: `general_apartado`
 
 **Consecuencia futura de `general_popular`:** Varela conspira si el Ejército baja de 35.
 
@@ -41,9 +41,9 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Comercio  
 **Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
 
-**Carta:** «Las refinerías extranjeras se niegan a refinar el crudo del bloque oriental. ¿Negociamos o las tomamos?»
+**Carta:** «Las refinerías extranjeras nos cierran las puertas. ¿Negociamos o las tomamos?»
 
-- **A. Negociemos, caballeros** Potencias +10 · Élite +6 · Pueblo −8 · Bandera: `negocio_refinerias`
+- **A. Negociemos** Potencias +10 · Élite +6 · Pueblo −8 · Bandera: `negocio_refinerias`
 - **B. ¡Exprópiese!** Pueblo +8 · Élite −6 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años
 
 **Consecuencia futura de `negocio_refinerias`:** Las empresas exigen garantías que limitan tus decisiones económicas.
@@ -57,10 +57,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
 
-**Carta:** «Le ofrecemos petróleo, créditos y asesores. A cambio, solo pedimos que se una a nuestro bloque.»
+**Carta:** «Le ofrecemos ayuda económica y militar. A cambio, queremos su lealtad.»
 
-- **A. Trato hecho, camarada** Potencias +9 · Pueblo +5 · Élite −6 · Crisis +2 · Bandera: `alineado_bloque_oriental`
-- **B. Gracias, pero no** Élite +6 · Potencias −9 · Pueblo −5 · Crisis +1 · Bandera: `no_alineado`
+- **A. Trato hecho** Potencias +9 · Pueblo +5 · Élite −6 · Crisis +2 · Bandera: `alineado_bloque_oriental`
+- **B. No gracias** Élite +6 · Potencias −9 · Pueblo −5 · Crisis +1 · Bandera: `no_alineado`
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 

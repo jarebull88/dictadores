@@ -400,8 +400,7 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  if (id === "screen-start") pintarPortada();
-  document.body.classList.toggle("fondo-oscuro", id === "screen-name");
+  if (id === "screen-name") pintarCartaNombre();
   cerrarComoJugar();
 }
 
@@ -737,7 +736,7 @@ function anios() { return Math.max(0, E.turno - 1); }
 
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {
-  1: "El palacio es tuyo. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
+  1: "Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.",
   2: "La revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
   3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
 };
@@ -909,28 +908,26 @@ function irANombre() {
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
   mostrar("screen-name");
-  setTimeout(() => $("input-nombre").focus(), 60);
 }
-function confirmarNombre() {
+/* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */
+function nombreValido() {
   let v = $("input-nombre").value.trim();
   if (!v) {
     $("nombre-error").textContent = "Un dictador sin nombre no sale en los libros de historia.";
-    $("input-nombre").focus();
-    return;
+    return false;
   }
   if (/\s/.test(v)) {
     $("nombre-error").textContent = "Una sola palabra: Aureliano, Anselmo, Esteban…";
-    $("input-nombre").focus();
-    return;
+    return false;
   }
   v = v.charAt(0).toUpperCase() + v.slice(1);
   nombreDictador = v;
   guardarNombre(v);
-  empezar();
+  return true;
 }
 
 /* ---------- Gestos ---------- */
-/* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la portada.
+/* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la pantalla del nombre.
    op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
    op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
 function arrastrable(carta, op) {
@@ -991,12 +988,11 @@ function arrastrable(carta, op) {
 }
 arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, mostrar: pintarEleccion, decidir, toque: voltear });
 
-/* ---------- Portada: el logo y el dictador joven en una carta. Arrastrarla a cualquier lado empieza a gobernar;
-   el archivo histórico está en el pie («Cómo se juega | Archivo histórico») ---------- */
-let portadaOcupada = false;
-function pintarPortada() {
-  const carta = $("carta-portada");
-  portadaOcupada = false;
+/* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida; izquierda = volver ---------- */
+let nombreOcupada = false;
+function pintarCartaNombre() {
+  const carta = $("carta-nombre");
+  nombreOcupada = false;
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonAleatorio(carta, "dictador-joven");
@@ -1004,28 +1000,32 @@ function pintarPortada() {
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
 }
-function eleccionPortada(dir) {
-  const r = $("carta-portada").querySelector(".respuesta");
+function eleccionNombre(dir) {
+  const r = $("carta-nombre").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = '<div class="texto-respuesta"><strong>Empezar a gobernar</strong></div>';
+  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Empezar partida" : "Volver"}</strong></div>`;
   r.dataset.dir = dir;
   ajustarRespuesta(r);
   r.classList.add("visible");
 }
-function decidirPortada(dir) {
-  if (portadaOcupada) return;
-  portadaOcupada = true;
-  const carta = $("carta-portada");
-  eleccionPortada(dir);
-  carta.classList.add("listo");
-  const r = carta.querySelector(".respuesta"); if (r) r.classList.add("firme");
+function volverCartaNombre() {
+  const carta = $("carta-nombre");
+  carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  eleccionNombre(0);
+}
+function decidirNombre(dir) {
+  if (nombreOcupada) return;
+  if (dir > 0 && !nombreValido()) { volverCartaNombre(); $("input-nombre").focus(); return; }   // sin nombre no se empieza
+  nombreOcupada = true;
+  const carta = $("carta-nombre");
+  eleccionNombre(dir);
   carta.style.transition = "";
   carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
-  setTimeout(irANombre, 240);
+  setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
-arrastrable($("carta-portada"), { activa: () => !portadaOcupada, mostrar: eleccionPortada, decidir: decidirPortada });
+arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre });
 
 /* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
 function parrafoEra() {
@@ -1055,9 +1055,10 @@ document.addEventListener("keydown", e => {
     else ocultarInfo();
     return;
   }
-  if (!$("screen-start").classList.contains("hidden") && $("como-jugar").classList.contains("hidden")) {
-    if (e.key === "ArrowLeft") decidirPortada(-1);
-    if (e.key === "ArrowRight") decidirPortada(1);
+  if (!$("screen-name").classList.contains("hidden")) {
+    if (document.activeElement === $("input-nombre")) return;      // escribiendo: las flechas mueven el cursor
+    if (e.key === "ArrowLeft") decidirNombre(-1);
+    if (e.key === "ArrowRight") decidirNombre(1);
     return;
   }
   if ($("screen-game").classList.contains("hidden")) return;
@@ -1069,9 +1070,8 @@ document.addEventListener("click", e => {
 });
 
 $("btn-salir").addEventListener("click", () => mostrar("screen-start"));
-$("btn-nombre-volver").addEventListener("click", () => mostrar("screen-start"));
-$("btn-tomar-poder").addEventListener("click", confirmarNombre);
-$("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") confirmarNombre(); });
+$("btn-comenzar").addEventListener("click", irANombre);
+$("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
 $("input-nombre").addEventListener("input", actualizarVistaNombre);
 $("aviso-archivo").addEventListener("click", ev => {
   ev.stopPropagation();

@@ -52,9 +52,9 @@ test("el nombre del dictador es una sola palabra y se muestra como «Comandante 
   j.w.eval("irANombre()");
   j.$("input-nombre").value = "Aureliano Buendía";
   j.$("input-nombre").dispatchEvent(new j.w.Event("input"));
-  j.$("btn-tomar-poder").click();
+  j.w.eval("decidirNombre(1)");
   assert.ok(j.visible("screen-name"), "no debe empezar con dos palabras");
   j.$("input-nombre").value = "aureliano";
-  j.$("btn-tomar-poder").click();
+  j.w.eval("decidirNombre(1)");
   assert.equal(j.$("nombre-dictador").textContent, "Comandante Aureliano");
 });

@@ -8,20 +8,17 @@
 </svg>
 <div id="app">
 
-  <section id="screen-start" class="screen pantalla-carta">
-    <div class="cabecera-carta">
-      <h1 class="logo" id="logo"><span class="solo-lector">¡Comandante, ordene!</span></h1>
-      <p class="sub">Mantén el poder tanto tiempo como puedas.</p>
-    </div>
-    <div class="escenario">
-      <div class="pila" aria-hidden="true"><div class="capa"></div></div>
-      <div class="carta" id="carta-portada" role="group" aria-label="Arrastra la carta a un lado para empezar a gobernar"></div>
-    </div>
-    <p class="pie-portada"><button class="abandonar" id="btn-como-jugar" type="button">Cómo se juega</button><span aria-hidden="true">|</span><button class="abandonar" id="btn-portada-archivo" type="button">Archivo histórico</button></p>
+  <section id="screen-start" class="screen portada">
+    <h1 class="logo" id="logo"><span class="solo-lector">¡Comandante, ordene!</span></h1>
+    <nav class="menu-portada">
+      <button class="opcion-portada principal" id="btn-comenzar" type="button">Comenzar partida</button>
+      <button class="opcion-portada" id="btn-como-jugar" type="button">Cómo se juega</button>
+      <button class="opcion-portada" id="btn-portada-archivo" type="button">Archivo histórico</button>
+    </nav>
     <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
       <div class="modal-caja" tabindex="-1">
         <h2 class="titulo" id="como-jugar-titulo">Cómo se juega</h2>
-        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. En la portada, arrastra al Comandante a un lado para empezar a gobernar.</p>
+        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. Para empezar, escribe tu nombre bajo la carta del Comandante y arrástrala a la derecha.</p>
         <p><b>Arrastra la carta</b> a la izquierda o a la derecha para decidir. Antes de soltarla verás tu respuesta y unos puntos rojos sobre las fuerzas afectadas: indican cuánto se moverán, pero no si suben o bajan.</p>
         <p>Las cuatro fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). <b>Si una se vacía o se llena del todo, caes.</b> Cuando su barra se pone roja, estás cerca.</p>
         <p>Las casillas de abajo guardan los estados del régimen, consecuencias duraderas de tus decisiones. Toca los iconos para saber qué son, y <b>toca la carta</b> para darle la vuelta y conocer al personaje.</p>
@@ -31,17 +28,19 @@
     </div>
   </section>
 
-  <section id="screen-name" class="screen oscura pantalla-texto pantalla-nombre hidden">
-    <h2 class="titulo">Comandante</h2>
+  <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
+    <div class="cabecera-carta">
+      <p class="intro">El tirano ha caído. El pueblo te adora y el futuro pinta glorioso. Tienes el poder, Comandante. ¡No nos decepciones!</p>
+    </div>
+    <div class="escenario">
+      <div class="pila" aria-hidden="true"><div class="capa"></div></div>
+      <div class="carta" id="carta-nombre" role="group" aria-label="Arrastra a la derecha para empezar la partida o a la izquierda para volver"></div>
+    </div>
     <div class="campo">
       <label for="input-nombre" class="solo-lector">Tu nombre</label>
-      <input id="input-nombre" type="text" maxlength="14" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Aureliano">
+      <input id="input-nombre" type="text" maxlength="14" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Tu nombre">
       <p class="error" id="nombre-error"></p>
     </div>
-    <nav class="enlaces">
-      <button class="enlace-oscuro" id="btn-tomar-poder" type="button">Tomar el poder</button>
-      <button class="enlace-oscuro secundario" id="btn-nombre-volver" type="button">Volver</button>
-    </nav>
   </section>
 
   <section id="screen-game" class="screen hidden">

@@ -155,9 +155,6 @@ body.fondo-oscuro { background: var(--noche); }
 .pantalla-carta { padding: 8px 12px 6px; }
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
 .cabecera-carta h1 { margin: 0; color: var(--rojo); font-size: clamp(30px, 9vw, 48px); line-height: 1; }
-.cabecera-carta .logo { margin: 0; width: min(100%, 400px); }
-.cabecera-carta .logo img { display: block; width: 100%; height: auto; max-height: 20vh; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .3)); }
-.pie-portada { flex: none; margin: 0; display: flex; justify-content: center; align-items: baseline; gap: 10px; color: var(--tinta-suave); font-size: 14px; }
 .cabecera-carta .sub { margin: 0; color: var(--tinta-suave); font-size: 16px; line-height: 1.35; font-weight: 400; }
 .cabecera-carta .era-anios { margin: 0; font-family: var(--fuente-titulo); font-size: 22px; color: var(--tinta-suave); }
 .cabecera-carta .era-texto { margin: 0; font-size: 15px; line-height: 1.4; }
@@ -172,11 +169,28 @@ body.fondo-oscuro { background: var(--noche); }
 .modal-caja p { margin: 0 0 10px; font-size: 16px; line-height: 1.45; }
 .modal-caja .enlace { display: block; margin: 4px auto 0; }
 /* Pantalla del nombre: «Comandante» y el campo centrados, sin contorno, sobre papel beige */
-.pantalla-nombre { text-align: center; }
-.pantalla-nombre h2 { color: var(--texto-noche); }
-.pantalla-nombre .campo input { text-align: center; border: none; background: var(--papel); color: var(--tinta); }
-.pantalla-nombre .campo input:focus { outline: 3px solid var(--rojo-noche); outline-offset: 2px; }
-.pantalla-nombre .error { color: var(--rojo-noche); text-align: center; }
+/* Portada: el logo y, debajo, las tres opciones como texto */
+.portada { justify-content: center; align-items: center; gap: 34px; text-align: center; }
+.portada .logo { margin: 0; width: min(100%, 400px); }
+.portada .logo img { display: block; width: 100%; height: auto; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .3)); }
+.menu-portada { display: grid; justify-items: center; gap: 6px; }
+.opcion-portada {
+  min-height: 44px; padding: 6px 14px; border: none; background: none; cursor: pointer; color: var(--tinta);
+  font-family: var(--fuente); font-size: 19px; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px;
+}
+.opcion-portada.principal { font-family: var(--fuente-titulo); font-size: 28px; text-decoration: none; }
+.opcion-portada:hover, .opcion-portada:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+/* Pantalla del nombre: el texto arriba, la carta del dictador en medio y el nombre abajo, en una perforación del cartón */
+.pantalla-nombre .intro { margin: 0; font-size: 18px; line-height: 1.35; }
+.pantalla-nombre .campo { flex: none; padding-top: 10px; gap: 4px; }
+.pantalla-nombre .campo input {
+  height: 48px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
+  background: var(--tex-cartulina3) center / cover;
+  box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .7);
+}
+.pantalla-nombre .campo input::placeholder { color: rgba(28, 27, 25, .55); }
+.pantalla-nombre .campo input:focus { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.pantalla-nombre .error { margin: 0; min-height: 1.3em; color: var(--rojo); text-align: center; font-size: 15px; }
 
 /* ---------- Juego ---------- */
 #screen-game { position: relative; overflow: visible; padding: 8px 12px 6px; }
@@ -276,7 +290,9 @@ body.fondo-oscuro { background: var(--noche); }
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
   padding: 6.5%; border-radius: var(--radio-carta);
-  background: var(--c-base, #D9B98A) var(--c-tex, var(--tex-cartulina2)) center / cover; background-blend-mode: multiply;
+  background-color: var(--c-base, #D9B98A);
+  background-image: var(--tex-cartulina5), var(--c-tex, var(--tex-cartulina2));   /* la pulpa de las cartulinas, sobre el cartón */
+  background-position: 60% 40%, center; background-size: 640px auto, cover; background-blend-mode: multiply;
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);   /* sombra corta y oscura: está pegada, no flota */
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -550,20 +566,17 @@ body.fondo-oscuro { background: var(--noche); }
 </svg>
 <div id="app">
 
-  <section id="screen-start" class="screen pantalla-carta">
-    <div class="cabecera-carta">
-      <h1 class="logo" id="logo"><span class="solo-lector">¡Comandante, ordene!</span></h1>
-      <p class="sub">Mantén el poder tanto tiempo como puedas.</p>
-    </div>
-    <div class="escenario">
-      <div class="pila" aria-hidden="true"><div class="capa"></div></div>
-      <div class="carta" id="carta-portada" role="group" aria-label="Arrastra la carta a un lado para empezar a gobernar"></div>
-    </div>
-    <p class="pie-portada"><button class="abandonar" id="btn-como-jugar" type="button">Cómo se juega</button><span aria-hidden="true">|</span><button class="abandonar" id="btn-portada-archivo" type="button">Archivo histórico</button></p>
+  <section id="screen-start" class="screen portada">
+    <h1 class="logo" id="logo"><span class="solo-lector">¡Comandante, ordene!</span></h1>
+    <nav class="menu-portada">
+      <button class="opcion-portada principal" id="btn-comenzar" type="button">Comenzar partida</button>
+      <button class="opcion-portada" id="btn-como-jugar" type="button">Cómo se juega</button>
+      <button class="opcion-portada" id="btn-portada-archivo" type="button">Archivo histórico</button>
+    </nav>
     <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
       <div class="modal-caja" tabindex="-1">
         <h2 class="titulo" id="como-jugar-titulo">Cómo se juega</h2>
-        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. En la portada, arrastra al Comandante a un lado para empezar a gobernar.</p>
+        <p>Eres el dictador. Cada carta es un ministro o un embajador que te pide una decisión. Para empezar, escribe tu nombre bajo la carta del Comandante y arrástrala a la derecha.</p>
         <p><b>Arrastra la carta</b> a la izquierda o a la derecha para decidir. Antes de soltarla verás tu respuesta y unos puntos rojos sobre las fuerzas afectadas: indican cuánto se moverán, pero no si suben o bajan.</p>
         <p>Las cuatro fuerzas que pueden derribarte: Ejército (<span data-icono="ejercito"></span>), Pueblo (<span data-icono="pueblo"></span>), Élite (<span data-icono="elite"></span>) y Potencias (<span data-icono="potencias"></span>). <b>Si una se vacía o se llena del todo, caes.</b> Cuando su barra se pone roja, estás cerca.</p>
         <p>Las casillas de abajo guardan los estados del régimen, consecuencias duraderas de tus decisiones. Toca los iconos para saber qué son, y <b>toca la carta</b> para darle la vuelta y conocer al personaje.</p>
@@ -573,17 +586,19 @@ body.fondo-oscuro { background: var(--noche); }
     </div>
   </section>
 
-  <section id="screen-name" class="screen oscura pantalla-texto pantalla-nombre hidden">
-    <h2 class="titulo">Comandante</h2>
+  <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
+    <div class="cabecera-carta">
+      <p class="intro">El tirano ha caído. El pueblo te adora y el futuro pinta glorioso. Tienes el poder, Comandante. ¡No nos decepciones!</p>
+    </div>
+    <div class="escenario">
+      <div class="pila" aria-hidden="true"><div class="capa"></div></div>
+      <div class="carta" id="carta-nombre" role="group" aria-label="Arrastra a la derecha para empezar la partida o a la izquierda para volver"></div>
+    </div>
     <div class="campo">
       <label for="input-nombre" class="solo-lector">Tu nombre</label>
-      <input id="input-nombre" type="text" maxlength="14" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Aureliano">
+      <input id="input-nombre" type="text" maxlength="14" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Tu nombre">
       <p class="error" id="nombre-error"></p>
     </div>
-    <nav class="enlaces">
-      <button class="enlace-oscuro" id="btn-tomar-poder" type="button">Tomar el poder</button>
-      <button class="enlace-oscuro secundario" id="btn-nombre-volver" type="button">Volver</button>
-    </nav>
   </section>
 
   <section id="screen-game" class="screen hidden">
@@ -1971,8 +1986,7 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  if (id === "screen-start") pintarPortada();
-  document.body.classList.toggle("fondo-oscuro", id === "screen-name");
+  if (id === "screen-name") pintarCartaNombre();
   cerrarComoJugar();
 }
 
@@ -2308,7 +2322,7 @@ function anios() { return Math.max(0, E.turno - 1); }
 
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {
-  1: "El palacio es tuyo. Ahora toca consolidar el régimen: lo que decidiste vuelve a buscarte.",
+  1: "Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.",
   2: "La revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
   3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
 };
@@ -2480,28 +2494,26 @@ function irANombre() {
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
   mostrar("screen-name");
-  setTimeout(() => $("input-nombre").focus(), 60);
 }
-function confirmarNombre() {
+/* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */
+function nombreValido() {
   let v = $("input-nombre").value.trim();
   if (!v) {
     $("nombre-error").textContent = "Un dictador sin nombre no sale en los libros de historia.";
-    $("input-nombre").focus();
-    return;
+    return false;
   }
   if (/\s/.test(v)) {
     $("nombre-error").textContent = "Una sola palabra: Aureliano, Anselmo, Esteban…";
-    $("input-nombre").focus();
-    return;
+    return false;
   }
   v = v.charAt(0).toUpperCase() + v.slice(1);
   nombreDictador = v;
   guardarNombre(v);
-  empezar();
+  return true;
 }
 
 /* ---------- Gestos ---------- */
-/* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la portada.
+/* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la pantalla del nombre.
    op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
    op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
 function arrastrable(carta, op) {
@@ -2562,12 +2574,11 @@ function arrastrable(carta, op) {
 }
 arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, mostrar: pintarEleccion, decidir, toque: voltear });
 
-/* ---------- Portada: el logo y el dictador joven en una carta. Arrastrarla a cualquier lado empieza a gobernar;
-   el archivo histórico está en el pie («Cómo se juega | Archivo histórico») ---------- */
-let portadaOcupada = false;
-function pintarPortada() {
-  const carta = $("carta-portada");
-  portadaOcupada = false;
+/* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida; izquierda = volver ---------- */
+let nombreOcupada = false;
+function pintarCartaNombre() {
+  const carta = $("carta-nombre");
+  nombreOcupada = false;
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonAleatorio(carta, "dictador-joven");
@@ -2575,28 +2586,32 @@ function pintarPortada() {
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
 }
-function eleccionPortada(dir) {
-  const r = $("carta-portada").querySelector(".respuesta");
+function eleccionNombre(dir) {
+  const r = $("carta-nombre").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = '<div class="texto-respuesta"><strong>Empezar a gobernar</strong></div>';
+  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Empezar partida" : "Volver"}</strong></div>`;
   r.dataset.dir = dir;
   ajustarRespuesta(r);
   r.classList.add("visible");
 }
-function decidirPortada(dir) {
-  if (portadaOcupada) return;
-  portadaOcupada = true;
-  const carta = $("carta-portada");
-  eleccionPortada(dir);
-  carta.classList.add("listo");
-  const r = carta.querySelector(".respuesta"); if (r) r.classList.add("firme");
+function volverCartaNombre() {
+  const carta = $("carta-nombre");
+  carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  eleccionNombre(0);
+}
+function decidirNombre(dir) {
+  if (nombreOcupada) return;
+  if (dir > 0 && !nombreValido()) { volverCartaNombre(); $("input-nombre").focus(); return; }   // sin nombre no se empieza
+  nombreOcupada = true;
+  const carta = $("carta-nombre");
+  eleccionNombre(dir);
   carta.style.transition = "";
   carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
-  setTimeout(irANombre, 240);
+  setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
-arrastrable($("carta-portada"), { activa: () => !portadaOcupada, mostrar: eleccionPortada, decidir: decidirPortada });
+arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre });
 
 /* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
 function parrafoEra() {
@@ -2626,9 +2641,10 @@ document.addEventListener("keydown", e => {
     else ocultarInfo();
     return;
   }
-  if (!$("screen-start").classList.contains("hidden") && $("como-jugar").classList.contains("hidden")) {
-    if (e.key === "ArrowLeft") decidirPortada(-1);
-    if (e.key === "ArrowRight") decidirPortada(1);
+  if (!$("screen-name").classList.contains("hidden")) {
+    if (document.activeElement === $("input-nombre")) return;      // escribiendo: las flechas mueven el cursor
+    if (e.key === "ArrowLeft") decidirNombre(-1);
+    if (e.key === "ArrowRight") decidirNombre(1);
     return;
   }
   if ($("screen-game").classList.contains("hidden")) return;
@@ -2640,9 +2656,8 @@ document.addEventListener("click", e => {
 });
 
 $("btn-salir").addEventListener("click", () => mostrar("screen-start"));
-$("btn-nombre-volver").addEventListener("click", () => mostrar("screen-start"));
-$("btn-tomar-poder").addEventListener("click", confirmarNombre);
-$("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") confirmarNombre(); });
+$("btn-comenzar").addEventListener("click", irANombre);
+$("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
 $("input-nombre").addEventListener("input", actualizarVistaNombre);
 $("aviso-archivo").addEventListener("click", ev => {
   ev.stopPropagation();

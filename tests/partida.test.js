@@ -71,15 +71,23 @@ test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el di
   assert.equal(j.w.eval("E.era"), 2);
 });
 
-test("portada: el logo, la carta del dictador a cualquier lado empieza a gobernar y el archivo está en el pie", () => {
+test("portada: el logo y tres opciones; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
   const j = cargar();
   assert.ok(j.d.querySelector("#logo img"), "falta el logo en la portada");
-  assert.ok(j.d.querySelector("#carta-portada svg.personaje"), "falta el dictador en la portada");
-  j.w.eval("decidirPortada(1)");
+  assert.ok(!j.d.querySelector("#screen-start .carta"), "la portada ya no lleva carta");
+  j.$("btn-comenzar").click();
   assert.ok(j.visible("screen-name"));
-  j.w.eval("mostrar('screen-start'); decidirPortada(-1)");
-  assert.ok(j.visible("screen-name"));
+  assert.ok(j.d.querySelector("#carta-nombre svg.personaje"), "falta el dictador en la carta del nombre");
+  j.w.eval("decidirNombre(-1)");
+  assert.ok(j.visible("screen-start"), "a la izquierda vuelve a la portada");
+  j.$("btn-comenzar").click();
+  j.$("input-nombre").value = "";
+  j.w.eval("decidirNombre(1)");
+  assert.ok(j.visible("screen-name"), "sin nombre no empieza");
+  j.$("input-nombre").value = "aureliano";
+  j.w.eval("decidirNombre(1)");
+  assert.ok(j.visible("screen-game"), "con nombre, a la derecha empieza");
   j.w.eval("mostrar('screen-start')");
-  j.d.getElementById("btn-portada-archivo").click();
+  j.$("btn-portada-archivo").click();
   assert.ok(j.visible("screen-archive"));
 });

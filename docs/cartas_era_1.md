@@ -275,7 +275,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Economía  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
 
-**Carta:** «Los empresarios huyen con su dinero y se avecina un bloqueo comercial.»
+**Carta:** «Los empresarios se reúnen con los embajadores. Si se alían, nos asfixian.»
 
 - **A. Mimen a los empresarios** Élite +9 · Pueblo −8 · Crisis +2
-- **B. Congelen sus cuentas** Potencias −8 · Pueblo +8 · Élite −9
+- **B. Intervenir sus empresas** Potencias −8 · Pueblo +8 · Élite −9

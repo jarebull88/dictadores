@@ -169,6 +169,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente (13 oct). Un cartón fijo por personaje** (color y textura en `personajes.json`), en vez de uno al azar: así el mismo personaje no sale con dos cartones distintos.
 - **Vigente (13 oct).** La pregunta de cada carta va **centrada en vertical** en su hueco de 4 líneas, para que con 2 líneas quede el mismo aire arriba y abajo. **«Cómo se juega»** con el texto nuevo de Jorge (con los iconos dibujados en lugar de emojis).
 - **Vigente (13 oct).** En la carta de la pantalla del nombre, las respuestas pasan de «Empezar partida» / «Volver» a **«¡La Revolución empieza hoy!»** / **«Primero, elecciones»** (más punch tras el texto inicial; el chiste: elegir la democracia te saca del juego).
+- **En prueba (13 oct). Iconos de estado de cartón y carta de estado nuevo.** Ocho iconos nuevos (censura, vigilancia, culto, alineado, embargo, frontera, nacionalizado, deuda), minimalistas y cuadrados, hechos para leerse a 40 px. Cuando entra un estado, en lugar de la ventana emergente sale una carta con el icono grande; al tocarla o arrastrarla baja volando a su casilla. Los iconos de papel antiguos se conservan.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

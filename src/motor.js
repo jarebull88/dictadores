@@ -152,7 +152,8 @@ const GRUPO_DE = {
 /* Iconos: si hay versión dibujada a mano (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), se usa esa en todo el
    juego; si no, el recorte de papel. Los dibujos van sin sombra: están pintados en la cartulina. */
 const icono = (id, clase = "") => {
-  const dib = IMG["icono_" + id + "-dibujo"], img = dib || IMG["icono_" + id];
+  // Prioridad: icono de cartón (estados, 13 oct) > dibujo a mano > recorte de papel antiguo
+  const dib = IMG["icono_" + id + "-carton"] || IMG["icono_" + id + "-dibujo"], img = dib || IMG["icono_" + id];
   const cl = ["icono", dib ? "dibujo" : "", clase].filter(Boolean).join(" ");
   return img ? `<img class="${cl}" src="${img.src}" alt="" draggable="false">` : "";
 };
@@ -472,7 +473,8 @@ function pintarRanuras() {
   const cont = $("ranuras");
   cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
     const s = E.estados[i];
-    return s
+    const fuera = E.estadoNuevo && s && s.id === E.estadoNuevo.id;     // su carta aún no ha bajado
+    return s && !fuera
       ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
       : `<div class="ranura"></div>`;
   }).join("");
@@ -565,6 +567,7 @@ function pintarCarta(c) {
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
+  if (modoEstado) { recogerEstado(); return; }
   if (ocupado) return;
   pintarEleccion(0);
   $("carta").classList.toggle("volteada");
@@ -580,6 +583,11 @@ function ajustarRespuesta(r) {
   while (s.offsetHeight > px * 1.15 * 2 + 2 && px > 14) { px -= 1; s.style.fontSize = px + "px"; }
 }
 function pintarEleccion(dir) {
+  if (modoEstado) {                                   // la carta de estado no tiene respuestas: arrastrarla también la guarda
+    const r = $("respuesta");
+    if (r) { r.innerHTML = dir ? '<div class="texto-respuesta"><strong>Guardar</strong></div>' : ""; r.dataset.dir = dir; r.classList.toggle("visible", !!dir); }
+    return;
+  }
   const c = E && E.actual;
   const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
   const r = $("respuesta");
@@ -602,6 +610,7 @@ function empezar() {
   $("nombre-dictador").textContent = nombreCompleto();
   E.avisoPendiente = null;
   E.archivoPendiente = null;
+  E.estadoNuevo = null; modoEstado = false;
   $("carta").classList.remove("hidden", "listo");
   E.actual = siguienteCarta();
   barajarLados();
@@ -622,6 +631,7 @@ function empezar() {
 }
 
 function decidir(dir) {
+  if (modoEstado) { recogerEstado(); return; }
   if (ocupado || panelAbierto) return;
   ocupado = true;
   ocultarInfo();
@@ -684,10 +694,8 @@ function prepararAviso() {
   if (!ent.length && !sal.length && !fin.length) return;
   const nom = ids => ids.map(id => ESTADOS[id].nombre).join(" y ");
   if (ent.length) {
-    const idx = E.estados.findIndex(s => s.id === ent[ent.length - 1]);
-    let html = contenidoEstado(ent[ent.length - 1], E.estados[idx], "Nuevo estado");
-    if (sal.length) html += `<small>${esc(nom(sal))} desaparece para dejarle sitio.</small>`;
-    E.avisoPendiente = { clave: "nuevo-" + ent[ent.length - 1], html, indice: idx };
+    // Un estado nuevo sale como carta propia; al tocarla (o arrastrarla) baja a su casilla
+    E.estadoNuevo = { id: ent[ent.length - 1], sale: sal.length ? nom(sal) : "" };
   } else {
     const fuerte = fin.length ? `${nom(fin)} termina` : `${nom(sal)} desaparece`;
     const texto = fin.length ? "Su efecto desaparece." : "Se ha desplazado de las ranuras.";
@@ -725,8 +733,51 @@ function mostrarAvisoPendiente() {
   abrirPopup(a.clave, a.html, ancla, 6500);
 }
 
+/* ---------- Carta de estado: el estado nuevo aparece como carta; al tocarla o arrastrarla, baja a su casilla ---------- */
+let modoEstado = false;
+const FONDO_ESTADO = { censura: "#9C3B33", vigilancia: "#D8C77A", culto: "#5A3F7A", alineado: "#B9604F",
+  embargo: "#4F6F8F", frontera: "#6E8F55", nacionalizado: "#C9A447", deuda: "#3F6E63" };
+function mostrarCartaEstado() {
+  const n = E.estadoNuevo, d = ESTADOS[n.id];
+  modoEstado = true; ocupado = false;
+  $("mensaje").innerHTML = `<span><b>Nuevo estado: ${esc(d.nombre)}.</b> ${esc(d.descripcion)}${n.sale ? ` ${esc(n.sale)} desaparece para dejarle sitio.` : ""}</span>`;
+  ajustarMensaje();
+  const carta = $("carta");
+  carta.classList.remove("hidden", "listo", "volteada");
+  cartonDe(carta, "");
+  carta.style.transition = "none"; carta.style.transform = "translateY(10px) scale(.94)"; carta.style.opacity = "0";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  carta.innerHTML = `<div class="giro"><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
+    `<div class="icono-grande">${icono(n.id)}</div><div class="pie-estado">Toca la carta para guardarla</div><div class="respuesta" id="respuesta"></div></div></div></div>`;
+  void carta.offsetWidth;
+  carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";
+  pintarRanuras();
+}
+/* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
+function recogerEstado() {
+  if (!modoEstado || ocupado) return;
+  ocupado = true;
+  const carta = $("carta"), id = E.estadoNuevo.id;
+  const idx = E.estados.findIndex(s => s.id === id);
+  const destino = $("ranuras").children[idx] || $("ranuras");
+  const a = carta.getBoundingClientRect(), b = destino.getBoundingClientRect();
+  const dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+  const k = a.width ? b.width / a.width : 0.1;
+  carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
+  carta.style.transform = `translate(${dx}px, ${dy}px) scale(${k})`;
+  carta.style.opacity = "0.3";
+  setTimeout(() => {
+    modoEstado = false;
+    E.estadoNuevo = null;
+    const s = E.estados[idx]; if (s) s.nuevo = true;
+    pintarRanuras();
+    siguiente();
+  }, 460);
+}
+
 function siguiente() {
   pintarCabecera();
+  if (E.estadoNuevo) { mostrarCartaEstado(); return; }
   const nueva = siguienteCarta();
   if (!nueva) return finDeEra();
   E.actual = nueva;

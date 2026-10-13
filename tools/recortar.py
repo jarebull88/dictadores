@@ -7,6 +7,7 @@
     python3 tools/recortar.py logo
     python3 tools/recortar.py fondos
     python3 tools/recortar.py dibujos
+    python3 tools/recortar.py carton
 
 Entrada:  assets/personajes/originales/<slug>.jpg   y   assets/iconos/originales/hoja-*.jpg
 Entrada:  assets/logo/originales/logo.jpg (letras de papel y tela recortadas, para la portada)
@@ -216,6 +217,22 @@ def recortar_dibujo(entrada, salida, recorte=None, principal=False):
     return im.size
 
 
+LADO_CARTON = 512          # iconos de estado de cartón (13 oct): se ven pequeños en las casillas y grandes en su carta
+
+
+def recortar_carton(entrada, salida):
+    """Icono de cartón sobre croma verde -> recorte con transparencia, ajustado al contenido y centrado en un cuadrado."""
+    a = np.array(Image.open(entrada).convert("RGB")).astype(float)
+    alpha, g2 = alfa_croma(a, 600)
+    im = Image.fromarray(np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8))
+    im = im.crop(im.getbbox())
+    esc = LADO_CARTON / max(im.size)
+    im = im.resize((max(1, round(im.width * esc)), max(1, round(im.height * esc))), Image.LANCZOS)
+    lienzo = Image.new("RGBA", (LADO_CARTON, LADO_CARTON), (0, 0, 0, 0))
+    lienzo.alpha_composite(im, ((LADO_CARTON - im.width) // 2, (LADO_CARTON - im.height) // 2))
+    lienzo.save(salida, "WEBP", quality=86, method=6)
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
     if que in ("todo", "personajes"):
@@ -233,6 +250,12 @@ def main():
             nombre = f.stem[len("dibujo-"):] + "-dibujo"
             w, h = recortar_dibujo(f, dst / f"{nombre}.webp", **DIBUJO_AJUSTES.get(f.stem[len("dibujo-"):], {}))
             print(f"dibujo {nombre}: {w}×{h}, {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
+    if que in ("todo", "carton"):
+        dst = RAIZ / "assets/iconos/recortados"
+        for f in sorted((RAIZ / "assets/iconos/originales").glob("carton-*.jpg")):
+            nombre = f.stem[len("carton-"):] + "-carton"
+            recortar_carton(f, dst / f"{nombre}.webp")
+            print(f"cartón {nombre}: {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
     if que in ("todo", "fondos"):
         aligerar_fondos(RAIZ / "assets/fondos")
     if que in ("todo", "logo"):

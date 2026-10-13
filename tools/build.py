@@ -4,7 +4,7 @@
     python3 tools/build.py
 
 Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
-(assets/personajes/personajes.json), los iconos (assets/iconos/recortados/), el logo y las fuentes
+(assets/personajes/personajes.json), los iconos (assets/iconos/recortados/), el logo, las texturas de cartulina (assets/fondos/web/) y las fuentes
 (Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
 import base64, json, pathlib, sys
@@ -41,8 +41,15 @@ def fuentes():
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))
     return css
 
+def texturas():
+    """Texturas de cartulina como variables CSS (--tex-cartulina1…3): capa «multiplicar» de cartones y cartulinas."""
+    css = ":root {\n"
+    for f in sorted((RAIZ / "assets/fondos/web").glob("*.jpg")):
+        css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/jpeg")});\n'
+    return css + "}\n"
+
 def main():
-    css = fuentes() + leer("src/estilos.css")
+    css = fuentes() + texturas() + leer("src/estilos.css")
     cuerpo = leer("src/cuerpo.html")
     datos = leer("src/datos.js")
     motor = leer("src/motor.js")

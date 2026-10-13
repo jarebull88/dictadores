@@ -513,8 +513,8 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  return `<div class="dorso"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
-    `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div>`;
+  return `<div class="dorso"><div class="hoja"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
+    `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
 }
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];

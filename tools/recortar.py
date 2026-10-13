@@ -5,6 +5,7 @@
     python3 tools/recortar.py personajes
     python3 tools/recortar.py iconos
     python3 tools/recortar.py logo
+    python3 tools/recortar.py fondos
 
 Entrada:  assets/personajes/originales/<slug>.jpg   y   assets/iconos/originales/hoja-*.jpg
 Entrada:  assets/logo/originales/logo.jpg (letras de papel y tela recortadas, para la portada)
@@ -25,6 +26,7 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ANCHO_PERSONAJE = 900
 # Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
 REFLEJAR = {"dictador-viejo"}
+ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
 ANCHO_LOGO = 1000         # se muestra a ~400 px de ancho como mucho
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
@@ -117,6 +119,16 @@ def recortar_logo(entrada, salida):
     return out.size
 
 
+def aligerar_fondos(carpeta):
+    """Texturas de cartulina (assets/fondos/*.jpg) -> versiones ligeras en assets/fondos/web/ para incrustar en el HTML."""
+    dst = carpeta / "web"; dst.mkdir(exist_ok=True)
+    for f in sorted(carpeta.glob("*.jpg")):
+        im = Image.open(f).convert("RGB")
+        im = im.resize((ANCHO_FONDO, round(im.height * ANCHO_FONDO / im.width)), Image.LANCZOS)
+        im.save(dst / f.name, "JPEG", quality=70, optimize=True)
+        print(f"fondo {f.stem}: {im.width}×{im.height}, {(dst / f.name).stat().st_size // 1024} KB")
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
     if que in ("todo", "personajes"):
@@ -128,6 +140,8 @@ def main():
         dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for hoja, nombres in HOJAS.items():
             print(f"{hoja}:", ", ".join(recortar_hoja(RAIZ / f"assets/iconos/originales/{hoja}.jpg", nombres, dst)))
+    if que in ("todo", "fondos"):
+        aligerar_fondos(RAIZ / "assets/fondos")
     if que in ("todo", "logo"):
         dst = RAIZ / "assets/logo/recortados"; dst.mkdir(parents=True, exist_ok=True)
         w, h = recortar_logo(RAIZ / "assets/logo/originales/logo.jpg", dst / "logo.webp")

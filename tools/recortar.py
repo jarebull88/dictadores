@@ -29,6 +29,12 @@ REFLEJAR = {"dictador-viejo"}
 ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
 ANCHO_PULPA = 1100         # la 4 (papel de pulpa) se usa a tamaño fijo y su relieve necesita más resolución
 GANANCIA_PULPA = 1.08      # y se aclara un poco: al multiplicar sobre un color lo oscurece
+# Piel de papel: se le suma el grano de la cartulina 1. La piel se encuentra por color: se mide en la cara (entre los ojos,
+# bajo el puente de la nariz) y se marca todo lo que se le parece. D_PIEL_* = distancia de color (Lab) donde la máscara
+# pasa de 1 a 0; FUERZA_PIEL = cuánto marca el grano (1 = la textura tal cual).
+D_PIEL_0, D_PIEL_1 = 9.0, 17.0
+FUERZA_PIEL = 1.4
+STD_PIEL_X, STD_PIEL_ANCHO = 1.8, 4.0   # la tela (lino, punto) tiene más trama que el papel: se excluye lo que supera X veces la trama de la cara (rampa de ANCHO)
 ANCHO_LOGO = 1000         # se muestra a ~400 px de ancho como mucho
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
@@ -54,6 +60,47 @@ def alfa_croma(a, isla_min):
     return alpha, g2
 
 
+def a_lab(rgb):
+    """sRGB (0-255, forma [...,3]) -> Lab."""
+    c = rgb / 255.0
+    c = np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
+    m = np.array([[0.4124, 0.3576, 0.1805], [0.2126, 0.7152, 0.0722], [0.0193, 0.1192, 0.9505]])
+    xyz = (c @ m.T) / np.array([0.95047, 1.0, 1.08883])
+    f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+    return np.stack([116 * f[..., 1] - 16, 500 * (f[..., 0] - f[..., 1]), 200 * (f[..., 1] - f[..., 2])], axis=-1)
+
+
+def mascara_piel(rgba, ojos):
+    """Máscara (0-1) de las zonas de piel: el color medido en la cara, con rampa suave."""
+    (xi, yi), (xd, yd) = ojos["izq"], ojos["der"]
+    cx, cy = int((xi + xd) / 2), int((yi + yd) / 2 + (xd - xi) * 0.30)
+    parche = rgba[cy - 8:cy + 8, cx - 8:cx + 8, :3].reshape(-1, 3)
+    ref = a_lab(np.median(parche, axis=0))
+    d = np.linalg.norm(a_lab(rgba[..., :3].astype(float)) - ref, axis=-1)
+    m = np.clip(1 - (d - D_PIEL_0) / (D_PIEL_1 - D_PIEL_0), 0, 1) * (rgba[..., 3] / 255.0)
+    lum = rgba[..., :3].mean(axis=-1)                                  # trama local: desviación típica en 7×7
+    sd = ndi.gaussian_filter(np.sqrt(np.maximum(ndi.uniform_filter(lum ** 2, 7) - ndi.uniform_filter(lum, 7) ** 2, 0)), 1.5)
+    sd0 = max(3.0, STD_PIEL_X * float(np.median(sd[cy - 12:cy + 12, cx - 12:cx + 12])))   # lo que tiene la propia cara
+    m = m * np.clip(1 - (sd - sd0) / STD_PIEL_ANCHO, 0, 1)
+    return ndi.gaussian_filter(m, 0.8)
+
+
+def texturizar_piel(out, slug):
+    """Suma el grano de cartulina1 a la piel del personaje (multiplicar suave sobre la máscara de piel)."""
+    ruta = RAIZ / "assets/personajes/personajes.json"
+    ojos = json.loads(ruta.read_text(encoding="utf-8")).get(slug, {}).get("ojos")
+    if not ojos:
+        return out
+    rgba = np.array(out).astype(float)
+    tex = Image.open(RAIZ / "assets/fondos/cartulina1.jpg").convert("L").resize(out.size, Image.LANCZOS)
+    g = np.array(tex).astype(float)
+    grano = g / np.maximum(ndi.gaussian_filter(g, 30), 1)          # solo el grano: sin viñeta ni manchas grandes
+    k = 1 + FUERZA_PIEL * (grano - 1)
+    m = mascara_piel(rgba, ojos)[..., None]
+    rgba[..., :3] = np.clip(rgba[..., :3] * (1 + m * (k[..., None] - 1)), 0, 255)
+    return Image.fromarray(rgba.astype(np.uint8))
+
+
 def recortar_personaje(entrada, salida):
     im = Image.open(entrada).convert("RGB")
     if entrada.stem in REFLEJAR:
@@ -63,6 +110,7 @@ def recortar_personaje(entrada, salida):
     alpha, g2 = alfa_croma(a, 8000)
     rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
     out = Image.fromarray(rgba).resize((ANCHO_PERSONAJE, int(H * ANCHO_PERSONAJE / W)), Image.LANCZOS)
+    out = texturizar_piel(out, entrada.stem)
     out.save(salida, "WEBP", quality=88, method=6)
     anotar_arriba(salida.stem, out)
     return out.size

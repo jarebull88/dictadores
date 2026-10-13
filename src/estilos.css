@@ -29,8 +29,8 @@
   --trazo: 2px solid var(--carbon);
   --radio: 3px;
   --radio-carta: 18px;      /* esquinas de la carta de cartón */
-  /* Bisel del papel: filo claro arriba y a la izquierda, algo de sombra abajo y a la derecha (volumen) */
-  --bisel: inset 0 1.5px 0 rgba(255, 255, 255, .6), inset 1.5px 0 0 rgba(255, 255, 255, .35), inset 0 -1.5px 0 rgba(0, 0, 0, .25), inset -1.5px 0 0 rgba(0, 0, 0, .15);
+  /* Bisel del papel, mínimo: filo claro arriba y un filo oscuro abajo (luz cenital; nada a los lados) */
+  --bisel: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -1px 0 rgba(0, 0, 0, .12);
   --radio-pegado: 10px;     /* esquinas de la cartulina y la hoja pegadas encima */
 }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
@@ -228,12 +228,11 @@ body.fondo-oscuro { background: var(--noche); }
 }
 /* Cartón: color liso × textura de cartulina (capa «multiplicar»). Las texturas están en assets/fondos/ y se
    incrustan como --tex-cartulina1 (clara), 2 (con motas) y 3 (kraft). */
-.pila { position: absolute; top: 2px; left: 0; right: 0; margin: 0 auto; translate: -3px 0; pointer-events: none; }
-.carta { translate: -3px 0; }
+.pila { position: absolute; top: 2px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
-  position: absolute; inset: 0; transform: translate(6px, 6px); border-radius: var(--radio-carta);
+  position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
   background: #8A7156 var(--tex-cartulina3) center / cover; background-blend-mode: multiply;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .35), var(--bisel);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .6), var(--bisel);
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
    .giro da la media vuelta en 3D: anverso (personaje) y reverso (ficha), cada uno con la espalda oculta. */
@@ -253,25 +252,25 @@ body.fondo-oscuro { background: var(--noche); }
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
   padding: 6.5%; border-radius: var(--radio-carta);
   background: var(--c-base, #D9B98A) var(--c-tex, var(--tex-cartulina2)) center / cover; background-blend-mode: multiply;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .5), var(--bisel);
+  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);   /* sombra corta y oscura: está pegada, no flota */
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .dorso { transform: rotateY(180deg); }
-/* Cada carta, un cartón: textura y tinte distintos (el tinte es más suave cuanto más oscura es la textura) */
-.carta.k1 { --c-base: #EBDABB; --c-tex: var(--tex-cartulina1); }   /* cartón claro, grisáceo */
-.carta.k2 { --c-base: #D2AE7C; --c-tex: var(--tex-cartulina2); }   /* kraft con motas */
-.carta.k3 { --c-base: #D9B27E; --c-tex: var(--tex-cartulina3); }   /* kraft oscuro */
+/* Cada carta, un cartón: textura (k1 a k3) y color (--c-base, ver cartonAleatorio) distintos */
+.carta.k1 { --c-tex: var(--tex-cartulina1); }   /* cartón liso, claro */
+.carta.k2 { --c-tex: var(--tex-cartulina2); }   /* con motas */
+.carta.k3 { --c-tex: var(--tex-cartulina3); }   /* kraft */
 .carta:active { cursor: grabbing; }
 .ilustracion {
   flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column;
   border-radius: var(--radio-pegado);
-  background: var(--fondo-escena, #2F2E2B) var(--tex-cartulina4) 30% 20% / 700px auto; background-blend-mode: multiply;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, .5), var(--bisel);
+  background: var(--fondo-escena, #2F2E2B) var(--tex-cartulina5) 40% 30% / 640px auto; background-blend-mode: multiply;
+  box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
 }
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background-color: var(--gris); color: var(--tinta-suave); }
 /* Personaje: SVG a todo el ancho de la carta, apoyado abajo (margin-top: auto). Si es más alto que el hueco,
    el margen automático se anula y se recorta por abajo, nunca la cabeza. */
-.personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, .4)); }
+.personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
 .personaje .ojos { fill: var(--ojo, #161618); animation: mirar 7s ease-in-out infinite; }
 @keyframes mirar {
@@ -352,8 +351,8 @@ body.fondo-oscuro { background: var(--noche); }
 .dorso .hoja {
   flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px;
   padding: 12px 12px; overflow: hidden; text-align: center; border-radius: var(--radio-pegado);
-  background: #F8F6F0 var(--tex-cartulina4) 70% 60% / 700px auto; background-blend-mode: multiply;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, .5), var(--bisel);
+  background: #F8F6F0 var(--tex-cartulina5) 60% 70% / 640px auto; background-blend-mode: multiply;
+  box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
 }
 .ficha-etiqueta { font-size: 12px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--tinta-suave); padding: 3px 10px; border: 1.5px dashed var(--carbon); }
 .ficha-nombre { font-family: var(--fuente-titulo); font-weight: 400; font-size: 26px; line-height: 1.05; }

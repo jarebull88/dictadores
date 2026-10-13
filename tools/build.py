@@ -44,7 +44,10 @@ def fuentes():
 def texturas():
     """Texturas de cartulina como variables CSS (--tex-cartulina1…3): capa «multiplicar» de cartones y cartulinas."""
     css = ":root {\n"
+    estilos = leer("src/estilos.css")
     for f in sorted((RAIZ / "assets/fondos/web").glob("*.jpg")):
+        if f"var(--tex-{f.stem})" not in estilos:
+            continue                      # solo se incrustan las texturas que usan los estilos
         css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/jpeg")});\n'
     return css + "}\n"
 

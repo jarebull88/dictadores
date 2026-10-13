@@ -57,7 +57,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
 
-**Carta:** «Le ofrecemos ayuda económica y militar. A cambio, queremos su lealtad.»
+**Carta:** «Le ofrecemos ayuda económica y militar. A cambio queremos lealtad.»
 
 - **A. Trato hecho** Potencias +9 · Pueblo +5 · Élite −6 · Crisis +2 · Bandera: `alineado_bloque_oriental`
 - **B. No gracias** Élite +6 · Potencias −9 · Pueblo −5 · Crisis +1 · Bandera: `no_alineado`
@@ -73,9 +73,9 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Nuestro país considera hostiles las nacionalizaciones. Aplicaremos restricciones comerciales.»
+**Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.»
 
-- **A. Dignidad ante todo** Pueblo +9 · Potencias −9 · Élite −5 · Crisis +2 · Bandera: `embargo_en_marcha`
+- **A. Que nos embarguen** Pueblo +9 · Potencias −9 · Élite −5 · Crisis +2 · Bandera: `embargo_en_marcha`
 - **B. Pagaremos… algo** Potencias +9 · Élite +5 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
@@ -89,9 +89,9 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Tenemos la lista de los que más lo han criticado. ¿Qué hacemos con ella?»
+**Carta:** «Ya sabemos quiénes nos critican. ¿Cómo procedemos?»
 
-- **A. Archívela. Por ahora** Pueblo +8 · Ejército −5 · Potencias +5
+- **A. Es su derecho** Pueblo +8 · Ejército −5 · Potencias +5
 - **B. Deténganlos** Pueblo −8 · Ejército +5 · Élite +4 · Potencias −5 · Bandera: `criticos_detenidos`
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
@@ -101,10 +101,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
 
-**Carta:** «Proponemos repartir los latifundios entre los campesinos. A los terratenientes no les va a gustar.»
+**Carta:** «Proponemos repartir las tierras entre los campesinos, pero los terratenientes protestarán.»
 
-- **A. Más adelante** Pueblo −10 · Élite +8
-- **B. Repártanla. Con fotógrafo** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
+- **A. Mejor no** Pueblo −10 · Élite +8
+- **B. Repártanla** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
@@ -115,9 +115,9 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Los periódicos critican sus decretos. ¿Los dejamos publicar o revisamos antes lo que imprimen?»
+**Carta:** «La prensa critica nuestros decretos. ¿Toleramos o censuramos?»
 
-- **A. Publiquen, publiquen** Pueblo +6 · Potencias +6 · Ejército −4 · Bandera: `prensa_libre`
+- **A. Que publiquen** Pueblo +6 · Potencias +6 · Ejército −4 · Bandera: `prensa_libre`
 - **B. Censura no: revisión** Pueblo −6 · Élite +5 · Potencias −5 · Bandera: `censura_previa`
 
 **Consecuencia futura de `prensa_libre`:** Un reportaje destapa un escándalo.
@@ -131,10 +131,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 2 de la era.
 
-**Carta:** «Usted prometió elecciones. El Pueblo pregunta cuándo serán.»
+**Carta:** «Usted prometió elecciones. ¿Cuándo piensa celebrarlas?»
 
 - **A. En seis meses** Pueblo +9 · Potencias +7 · Ejército −4 · Élite −4 · Bandera: `elecciones_prometidas`
-- **B. Todavía no** Pueblo −9 · Potencias −7 · Ejército +4 · Élite +4 · Bandera: `elecciones_aplazadas`
+- **B. No hay prisa** Pueblo −9 · Potencias −7 · Ejército +4 · Élite +4 · Bandera: `elecciones_aplazadas`
 
 **Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
 
@@ -147,10 +147,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Proponemos un periodo de libertad: que cualquiera pueda criticar al gobierno sin miedo.»
+**Carta:** «¿Y si dejamos que el pueblo critique al gobierno libremente?»
 
-- **A. Que hablen. Apunten** Pueblo +8 · Élite −4 · Ejército −4 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
-- **B. Ya hablaron** Pueblo −8 · Ejército +4 · Élite +4
+- **A. Que hablen** Pueblo +8 · Élite −4 · Ejército −4 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
+- **B. La Revolución no se cuestiona** Pueblo −8 · Ejército +4 · Élite +4
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 
@@ -161,10 +161,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Quedan en los cuarteles oficiales del antiguo régimen. Todavía no han hecho nada.»
+**Carta:** «Los oficiales del antiguo régimen siguen en sus puestos. ¿Qué hacemos?»
 
 - **A. Jubílenlos** Ejército +7 · Élite +4 · Crisis +1 · Bandera: `viejos_oficiales`
-- **B. Algo encontraremos** Ejército −7 · Potencias −4 · Bandera: `purga_inicial`
+- **B. Limpien los cuarteles** Ejército −7 · Potencias −4 · Bandera: `purga_inicial`
 
 **Consecuencia futura de `viejos_oficiales`:** Conspiración de oficiales retirados.
 
@@ -177,10 +177,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8; a partir del año 3 de la era.
 
-**Carta:** «Los estibadores están en huelga. Piden más sueldo y un sindicato propio, sin el gobierno.»
+**Carta:** «Los estibadores están en huelga. Exigen más sueldo y autonomía sindical.»
 
 - **A. Sindicato concedido** Pueblo +10 · Élite −7 · Ejército −4 · Crisis +1 · Bandera: `sindicato_libre`
-- **B. Tropa al puerto** Pueblo −10 · Élite +7 · Ejército +4 · Potencias −4 · Bandera: `huelga_reprimida`
+- **B. Manden al ejército** Pueblo −10 · Élite +7 · Ejército +4 · Potencias −4 · Bandera: `huelga_reprimida`
 
 **Consecuencia futura de `sindicato_libre`:** Nuevas huelgas cuando la crisis sube.
 
@@ -193,10 +193,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 8; exige alguna de `purga_inicial`, `censura_previa`.
 
-**Carta:** «Proponemos un comité de vecinos en cada manzana que nos informe de cualquier cosa sospechosa.»
+**Carta:** «¿Y si creamos Comités de Defensa Revolucionaria para vigilar los barrios?»
 
-- **A. Vecinos vigilantes** Ejército +6 · Élite +3 · Pueblo −7 · Bandera: `comites_vigilancia`
-- **B. La policía basta** Pueblo +7 · Ejército −6 · Élite −3 · Bandera: `policia_tradicional`
+- **A. La Revolución somos todos** Ejército +6 · Élite +3 · Pueblo −7 · Bandera: `comites_vigilancia`
+- **B. No necesitamos chivatos** Pueblo +7 · Ejército −6 · Élite −3 · Bandera: `policia_tradicional`
 
 **Consecuencia futura de `comites_vigilancia`:** Denuncias falsas entre vecinos.
 
@@ -209,10 +209,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 6; a partir del año 4 de la era.
 
-**Carta:** «Las escuelas piden un retrato suyo en cada aula. Y la plaza mayor, una estatua.»
+**Carta:** «Quieren su retrato en cada aula y una estatua en la plaza. ¿Qué opina?»
 
 - **A. Si insisten…** Pueblo +1 · Élite +6 · Ejército +4 · Crisis +1 · Bandera: `culto_iniciado`
-- **B. Soy muy modesto** Pueblo −1 · Potencias +2 · Élite −6 · Ejército −4 · Bandera: `modestia_aparente`
+- **B. No necesito estatuas** Pueblo −1 · Potencias +2 · Élite −6 · Ejército −4 · Bandera: `modestia_aparente`
 
 **Consecuencia futura de `culto_iniciado`:** Tratamiento de Excelencia y monumentos cada vez más costosos.
 
@@ -225,9 +225,9 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
 
-**Carta:** «Cada semana se van más familias ricas, y se llevan su dinero. ¿Las dejamos ir o cerramos la frontera?»
+**Carta:** «Cada vez se van más ricos. ¿Los dejamos escapar o les prohibimos salir?»
 
-- **A. Váyanse… sin dinero** Pueblo +7 · Élite −7 · Potencias −4 · Crisis −1 · Bandera: `exodo_elite`
+- **A. Que se vayan, sin el dinero** Pueblo +7 · Élite −7 · Potencias −4 · Crisis −1 · Bandera: `exodo_elite`
 - **B. Frontera cerrada** Ejército +6 · Élite +7 · Pueblo −7 · Potencias −8 · Bandera: `frontera_cerrada`
 
 **Consecuencia futura de `exodo_elite`:** Faltan técnicos y gestores.
@@ -241,10 +241,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Economía  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
 
-**Carta:** «Hemos prometido más de lo que tenemos. O subimos los precios o pedimos un préstamo fuera.»
+**Carta:** «Hemos prometido demasiado. ¿Subimos los precios o pedimos un préstamo?»
 
 - **A. Suban los precios** Pueblo −10 · Élite +6 · Crisis −3
-- **B. El futuro paga** Potencias +8 · Élite +4 · Crisis −3 · Bandera: `deuda_externa`
+- **B. Que paguen nuestros nietos** Potencias +8 · Élite +4 · Crisis −3 · Bandera: `deuda_externa`
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 
@@ -253,10 +253,10 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
 
-**Carta:** «Las tiendas están vacías. O racionamos lo que queda o hacemos la vista gorda con el mercado negro.»
+**Carta:** «Las tiendas están vacías. ¿Racionamos o toleramos el mercado negro?»
 
 - **A. Escasez, pero justa** Pueblo −8 · Ejército +4 · Élite −5 · Crisis −3
-- **B. ¿Qué mercado?** Pueblo +8 · Élite +5 · Potencias −4 · Crisis −3 · Bandera: `mercado_paralelo`
+- **B. Ojos que no ven** Pueblo +8 · Élite +5 · Potencias −4 · Crisis −3 · Bandera: `mercado_paralelo`
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
@@ -265,17 +265,17 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
 
-**Carta:** «Los manifestantes y algunos oficiales han empezado a hablar. Si se unen, no podremos pararlos.»
+**Carta:** «Hay oficiales reuniéndose con los manifestantes. Si se unen, caemos. ¿Los compramos o los cortamos?»
 
-- **A. Asciéndanlos** Ejército +12 · Élite −6 · Crisis +2
-- **B. Cabecillas, al calabozo** Pueblo −6 · Ejército +8 · Potencias −6
+- **A. Ascender oficiales** Ejército +12 · Élite −6 · Crisis +2
+- **B. Detener cabecillas** Pueblo −6 · Ejército +8 · Potencias −6
 
 ### 19. El dinero se va *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
 
-**Carta:** «Los empresarios sacan su dinero del país y los diplomáticos preparan un bloqueo comercial.»
+**Carta:** «Los empresarios huyen con su dinero y se avecina un bloqueo comercial.»
 
-- **A. Contenten al capital** Élite +9 · Pueblo −8 · Crisis +2
-- **B. Cuentas congeladas** Potencias −8 · Pueblo +8 · Élite −9
+- **A. Mimen a los empresarios** Élite +9 · Pueblo −8 · Crisis +2
+- **B. Congelen sus cuentas** Potencias −8 · Pueblo +8 · Élite −9

@@ -1027,7 +1027,7 @@ function decidirNombre(dir) {
 }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre });
 /* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
-new ResizeObserver(() => {
+if (window.ResizeObserver) new ResizeObserver(() => {
   const w = $("carta-nombre").offsetWidth;
   if (w) $("screen-name").style.setProperty("--ancho-carta", w + "px");
 }).observe($("carta-nombre"));

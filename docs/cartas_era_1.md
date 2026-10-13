@@ -9,7 +9,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?»
+**Carta:** «Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anteriores?»
 
 - **A. Juicio público** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
 - **B. Al exilio** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`

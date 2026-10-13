@@ -175,18 +175,13 @@ const ANIMACION = {
   piloto:   () => '<g class="piloto"><circle r="10"/></g>',
   gota:     () => '<g class="gota"><g transform="scale(1.7)"><path d="M0 -14 C6 -4 10 2 10 7 A10 10 0 0 1 -10 7 C-10 2 -6 -4 0 -14Z"/><ellipse class="brillo" cx="-3" cy="5" rx="2.5" ry="4"/></g></g>'
 };
-/* Cada carta se hace con un cartón distinto (texturas 1 a 3; la 4, de pulpa, es solo para las cartulinas de color) */
-/* y de un color distinto: kraft, crema, gris, mostaza, verde, azul, rojo ladrillo y morado apagados. Se descartan los
-   que se parecen al fondo de color del personaje, para que la cartulina se distinga del cartón. */
-const COLORES_CARTON = ["#D2AE7C", "#E9D8B6", "#C9C6BC", "#D6B04E", "#8DA672", "#7F9BB8", "#B9604F", "#9C84A8"];
-const hexRGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
-function cartonAleatorio(carta, slug) {
+/* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
+   (La textura 5, de pulpa, va encima de todos.) */
+function cartonDe(carta, slug) {
+  const p = RETRATOS[slug] || {};
   carta.classList.remove("k1", "k2", "k3");
-  carta.classList.add("k" + (1 + Math.floor(Math.random() * 3)));
-  const f = RETRATOS[slug] && RETRATOS[slug].fondo ? hexRGB(RETRATOS[slug].fondo) : null;
-  const lejos = COLORES_CARTON.filter(c => !f || Math.hypot(...hexRGB(c).map((v, i) => v - f[i])) > 90);
-  const lista = lejos.length ? lejos : COLORES_CARTON;
-  carta.style.setProperty("--c-base", lista[Math.floor(Math.random() * lista.length)]);
+  carta.classList.add("k" + (p.carton_textura || 2));
+  carta.style.setProperty("--c-base", p.carton || "#D2AE7C");
 }
 /* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */
 const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fondo-escena:${RETRATOS[slug].fondo}"` : "";
@@ -396,7 +391,29 @@ function comprobarCaida() {
    INTERFAZ
    ===================================================== */
 const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-archive", "screen-era", "screen-end"];
+/* Todas las cartas miden lo que la de la partida y están a la misma altura. Se mide la pantalla de juego (aunque
+   esté oculta: se muestra un instante invisible) y se guardan --carta-w, --carta-h y --cabecera-h (lo que ocupan
+   arriba las barras y el mensaje). Las pantallas con carta (nombre, «Sigues en el poder») usan esas medidas. */
+function medirCartaJuego() {
+  const g = $("screen-game"), c = $("carta"), esc = c.parentElement;
+  if (!$("barras").children.length) construirBarras();
+  if (!$("ranuras").children.length) $("ranuras").innerHTML = '<div class="ranura"></div>'.repeat(MAX_RANURAS);
+  const oculta = g.classList.contains("hidden"), cartaOculta = c.classList.contains("hidden");
+  if (oculta) { g.classList.remove("hidden"); g.style.position = "absolute"; g.style.inset = "0"; g.style.visibility = "hidden"; }
+  c.classList.remove("hidden");
+  const w = c.offsetWidth, h = c.offsetHeight;
+  const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
+  if (cartaOculta) c.classList.add("hidden");
+  if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
+  if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
+  const r = document.documentElement.style;
+  r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
+  document.body.classList.add("carta-medida");
+}
+window.addEventListener("resize", medirCartaJuego);
+
 function mostrar(id) {
+  if (id === "screen-name" || id === "screen-era") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
@@ -542,7 +559,7 @@ function pintarCarta(c) {
   ajustarMensaje();
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
-  cartonAleatorio($("carta"), slug);
+  cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
     `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
@@ -995,7 +1012,7 @@ function pintarCartaNombre() {
   nombreOcupada = false;
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
-  cartonAleatorio(carta, "dictador-joven");
+  cartonDe(carta, "dictador-joven");
   carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
@@ -1046,7 +1063,7 @@ function mostrarEra() {
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = parrafoEra();
   const slug = DICTADOR_ERA[E.era + 1];
-  cartonAleatorio($("carta-era"), slug);
+  cartonDe($("carta-era"), slug);
   $("carta-era").innerHTML = slug
     ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}</div></div></div>` : "";
   mostrar("screen-era");

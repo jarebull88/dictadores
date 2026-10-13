@@ -43,7 +43,7 @@ body {
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
 *, *::before, *::after { box-sizing: border-box; }
-#app { height: 100%; }
+#app { height: 100%; position: relative; }
 .titulo { font-family: var(--fuente-titulo); font-weight: 400; letter-spacing: 0; }
 .hidden { display: none !important; }
 .emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-style: normal; line-height: 1; }
@@ -135,6 +135,12 @@ body.fondo-oscuro { background: var(--noche); }
 /* Pantallas con carta (portada y «Sigues en el poder»): la misma interfaz que el juego.
    Arriba, los textos (donde en el juego están las fuerzas y el mensaje); en medio, la carta; abajo, una acción. */
 .pantalla-carta { padding: 8px 12px 6px; }
+/* Con la carta de la partida medida (medirCartaJuego): misma carta, misma altura; arriba, el hueco de barras y mensaje */
+body.carta-medida .pantalla-carta .cabecera-carta { height: var(--cabecera-h); overflow: hidden; padding: 0; align-content: center; }
+body.carta-medida .pantalla-carta .escenario { flex: none; min-height: 0; container-type: normal; }
+body.carta-medida .pantalla-carta .carta, body.carta-medida .pantalla-carta .pila { width: var(--carta-w); height: var(--carta-h); }
+body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por ahora el texto largo se corta por abajo */
+.pantalla-carta .boton-pie { margin-top: auto; }
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
 .cabecera-carta h1 { margin: 0; color: var(--rojo); font-size: clamp(30px, 9vw, 48px); line-height: 1; }
 .cabecera-carta .sub { margin: 0; color: var(--tinta-suave); font-size: 16px; line-height: 1.35; font-weight: 400; }
@@ -229,7 +235,7 @@ body.fondo-oscuro { background: var(--noche); }
 /* Lo que dice el personaje: sin caja, con sitio para cinco líneas (el mensaje más largo, 143 caracteres, ocupa cinco) */
 .mensaje {
   flex: none; height: var(--alto-mensaje); margin-top: 0; overflow: hidden;
-  display: flex; align-items: flex-start; justify-content: center; text-align: center;
+  display: flex; align-items: center; justify-content: center; text-align: center;   /* centrada en vertical: 2 o 4 líneas, mismo aire */
   font-size: 19px; line-height: 1.28; font-weight: 400; padding: 2px 2px 0;
   --alto-mensaje: calc(4 * 19px * 1.28 + 2px);   /* 4 líneas a 19 px; si no cabe, ajustarMensaje() baja la letra */
 }

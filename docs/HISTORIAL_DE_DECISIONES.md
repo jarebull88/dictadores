@@ -163,6 +163,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente (13 oct). Nueva portada y nueva pantalla del nombre.** La portada queda en el logo y tres opciones de texto («Comenzar partida», «Cómo se juega», «Archivo histórico»); se quitan la carta y «Mantén el poder…». La carta del dictador joven pasa a la **pantalla del nombre**, con el texto «El tirano ha caído…» arriba: a la derecha empieza la partida, a la izquierda vuelve a la portada; el nombre se escribe debajo, en una **perforación del cartón** como las casillas de estado. La pantalla del nombre deja de ser oscura.
 - **Vigente (13 oct). Texto de fin de la era 1**, de Jorge: «Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.» (Detrás siguen, si toca, la fuerza más tensa y lo que te espera.)
 - **Vigente (13 oct).** El cartón de la carta lleva también la **pulpa de la textura 5**, como la cartulina de color.
+- **Vigente (13 oct).** La portada va sobre **cartón kraft oscuro** (textura 3) para que contraste con el logo, que es claro. Las tres opciones pasan a crema: en tinta quedaban a 3:1 de contraste; en crema, 5:1.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

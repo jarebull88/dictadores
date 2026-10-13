@@ -400,6 +400,7 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
+  document.body.classList.toggle("fondo-portada", id === "screen-start");   // cartón oscuro: el logo es claro
   if (id === "screen-name") pintarCartaNombre();
   cerrarComoJugar();
 }

@@ -122,6 +122,10 @@ body {
 
 /* ---------- Portada y pantalla del nombre: fondo oscuro, enlaces de texto ---------- */
 body.fondo-oscuro { background: var(--noche); }
+/* Portada: cartón kraft oscuro (textura 3), para que contraste con el logo, que es claro */
+body.fondo-portada { background: var(--carton-portada, #B8976C) var(--tex-cartulina3) center / cover; background-blend-mode: multiply; }
+.portada .opcion-portada { color: var(--bloque); }   /* crema sobre el kraft oscuro: contraste 5:1 (en tinta era 3:1) */
+.portada .opcion-portada:hover, .portada .opcion-portada:focus-visible { outline-color: var(--bloque); }
 .oscura { color: var(--texto-noche); }
 .enlaces { display: grid; justify-items: center; gap: 2px; }
 .enlace-oscuro {

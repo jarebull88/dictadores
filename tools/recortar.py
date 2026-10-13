@@ -27,6 +27,8 @@ ANCHO_PERSONAJE = 900
 # Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
 REFLEJAR = {"dictador-viejo"}
 ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
+ANCHO_PULPA = 1100         # la 4 (papel de pulpa) se usa a tamaño fijo y su relieve necesita más resolución
+GANANCIA_PULPA = 1.08      # y se aclara un poco: al multiplicar sobre un color lo oscurece
 ANCHO_LOGO = 1000         # se muestra a ~400 px de ancho como mucho
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
@@ -124,7 +126,10 @@ def aligerar_fondos(carpeta):
     dst = carpeta / "web"; dst.mkdir(exist_ok=True)
     for f in sorted(carpeta.glob("*.jpg")):
         im = Image.open(f).convert("RGB")
-        im = im.resize((ANCHO_FONDO, round(im.height * ANCHO_FONDO / im.width)), Image.LANCZOS)
+        ancho = ANCHO_PULPA if f.stem == "cartulina4" else ANCHO_FONDO
+        im = im.resize((ancho, round(im.height * ancho / im.width)), Image.LANCZOS)
+        if f.stem == "cartulina4":
+            im = Image.fromarray(np.clip(np.array(im).astype(float) * GANANCIA_PULPA, 0, 255).astype(np.uint8))
         im.save(dst / f.name, "JPEG", quality=70, optimize=True)
         print(f"fondo {f.stem}: {im.width}×{im.height}, {(dst / f.name).stat().st_size // 1024} KB")
 

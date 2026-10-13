@@ -170,6 +170,11 @@ const ANIMACION = {
   piloto:   () => '<g class="piloto"><circle r="10"/></g>',
   gota:     () => '<g class="gota"><g transform="scale(1.7)"><path d="M0 -14 C6 -4 10 2 10 7 A10 10 0 0 1 -10 7 C-10 2 -6 -4 0 -14Z"/><ellipse class="brillo" cx="-3" cy="5" rx="2.5" ry="4"/></g></g>'
 };
+/* Cada carta se hace con un cartón distinto (texturas 1 a 3; la 4, de pulpa, es solo para las cartulinas de color) */
+function cartonAleatorio(carta) {
+  carta.classList.remove("k1", "k2", "k3");
+  carta.classList.add("k" + (1 + Math.floor(Math.random() * 3)));
+}
 /* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */
 const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fondo-escena:${RETRATOS[slug].fondo}"` : "";
 function svgPersonaje(slug, nombre) {
@@ -525,6 +530,7 @@ function pintarCarta(c) {
   ajustarMensaje();
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
+  cartonAleatorio($("carta"));
   $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
     `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
@@ -971,6 +977,7 @@ function pintarPortada() {
   portadaOcupada = false;
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  cartonAleatorio(carta);
   carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
@@ -1011,6 +1018,7 @@ function mostrarEra() {
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = parrafoEra();
   const slug = DICTADOR_ERA[E.era + 1];
+  cartonAleatorio($("carta-era"));
   $("carta-era").innerHTML = slug
     ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}</div></div></div>` : "";
   mostrar("screen-era");

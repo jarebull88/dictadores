@@ -66,9 +66,9 @@ const CARTAS = [
   {
     id: "embargo", tipo: "cola", titulo: "El embargo", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
-    texto: "Han expropiado las refinerías de nuestras empresas. Exigimos compensación o aplicaremos un embargo comercial. ¿Qué decide?",
+    texto: "Nuestro país considera hostiles las nacionalizaciones. Aplicaremos restricciones comerciales.",
     archivo: "Estados Unidos impuso restricciones comerciales a Cuba en 1960 y un embargo más amplio en 1962. En 1951, tras la nacionalización petrolera de Irán, el Reino Unido organizó un boicot al petróleo iraní, y en 1953 un golpe derrocó al primer ministro Mosaddeq.",
-    izq: { accion: "Que nos embarguen", efectos: { pueblo: 9, potencias: -9, elite: -5, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
+    izq: { accion: "Dignidad ante todo", efectos: { pueblo: 9, potencias: -9, elite: -5, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
     der: { accion: "Pagaremos… algo", efectos: { potencias: 9, elite: 5, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
   },
   {

@@ -2596,7 +2596,8 @@ function arrastrable(carta, op) {
 }
 arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, mostrar: pintarEleccion, decidir, toque: voltear });
 
-/* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida; izquierda = volver ---------- */
+/* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
+   izquierda = volver a la portada («Primero, elecciones») ---------- */
 let nombreOcupada = false;
 function pintarCartaNombre() {
   const carta = $("carta-nombre");
@@ -2612,7 +2613,7 @@ function eleccionNombre(dir) {
   const r = $("carta-nombre").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Empezar partida" : "Volver"}</strong></div>`;
+  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "¡La Revolución empieza hoy!" : "Primero, elecciones"}</strong></div>`;
   r.dataset.dir = dir;
   ajustarRespuesta(r);
   r.classList.add("visible");

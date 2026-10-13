@@ -168,6 +168,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente (13 oct). Misma carta en todas las pantallas.** La carta de la pantalla del nombre y la de «Sigues en el poder» miden y se colocan exactamente como la de la partida (antes tomaban el alto libre de su pantalla y salían más grandes o más pequeñas). El texto de arriba ocupa el hueco de las barras y el mensaje; en «Sigues en el poder» el párrafo se corta por ahora (pendiente de decidir).
 - **Vigente (13 oct). Un cartón fijo por personaje** (color y textura en `personajes.json`), en vez de uno al azar: así el mismo personaje no sale con dos cartones distintos.
 - **Vigente (13 oct).** La pregunta de cada carta va **centrada en vertical** en su hueco de 4 líneas, para que con 2 líneas quede el mismo aire arriba y abajo. **«Cómo se juega»** con el texto nuevo de Jorge (con los iconos dibujados en lugar de emojis).
+- **Vigente (13 oct).** En la carta de la pantalla del nombre, las respuestas pasan de «Empezar partida» / «Volver» a **«¡La Revolución empieza hoy!»** / **«Primero, elecciones»** (más punch tras el texto inicial; el chiste: elegir la democracia te saca del juego).
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

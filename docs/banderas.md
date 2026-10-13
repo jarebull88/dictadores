@@ -26,8 +26,8 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `exiliados_vocales` | La casa vacía (B) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
 | `frontera_cerrada` | Los que se marchan (B) | Intentos de fuga | Intentos de fuga. (era 2) |
-| `general_apartado` | El general querido (B) | Varela vuelve | Varela regresa como candidato de los descontentos. (era 4) |
-| `general_popular` | El general querido (A) | El general murmura | Varela conspira si el Ejército baja de 35. (era 2) |
+| `general_apartado` | El general querido (B) | Cienfuegos vuelve | Cienfuegos regresa como candidato de los descontentos. (era 4) |
+| `general_popular` | El general querido (A) | El general murmura | Cienfuegos conspira si el Ejército baja de 35. (era 2) |
 | `huelga_reprimida` | El puerto parado (B) | Panfletos en la universidad; Las aulas vacías | Malestar en las universidades. (era 2) |
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable; Dos ejércitos | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |

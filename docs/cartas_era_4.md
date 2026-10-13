@@ -16,12 +16,12 @@ Duración: entre 6 y 8 años. 24 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** Entre 1972 y 1974, las informaciones del Washington Post sobre el caso Watergate acabaron con la dimisión del presidente estadounidense Richard Nixon.
 
-### 2. Varela vuelve
+### 2. Cienfuegos vuelve
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `general_apartado`.
 
-**Carta:** «Padre de la Patria, el general Varela ha vuelto de su embajada. Los descontentos lo reciben en el aeropuerto como a un candidato.»
+**Carta:** «Padre de la Patria, el general Cienfuegos ha vuelto de su embajada. Los descontentos lo reciben en el aeropuerto como a un candidato.»
 
 - **A. Recibirlo en palacio.** *Dos viejos generales; solo uno tiene palacio.* Ejército +7 · Pueblo +4 · Élite −6
 - **B. Devolverlo al avión.** *Su embajada le echaba mucho de menos.* Ejército −7 · Pueblo −4 · Élite +6

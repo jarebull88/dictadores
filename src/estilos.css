@@ -408,7 +408,7 @@ body.fondo-oscuro { background: var(--noche); }
 .ranura { width: 46px; height: 46px; border-radius: 9px; border: none; padding: 0; display: block; }
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; }
+.ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; mix-blend-mode: multiply; }   /* pintados sobre el cartón del hueco */
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
 @keyframes invierte { 0% { filter: brightness(1.55); } 100% { filter: none; } }

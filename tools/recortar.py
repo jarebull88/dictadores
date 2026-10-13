@@ -184,18 +184,27 @@ def aligerar_fondos(carpeta):
         print(f"fondo {f.stem}: {im.width}×{im.height}, {(dst / f.name).stat().st_size // 1024} KB")
 
 
-def recortar_dibujo(entrada, salida):
+# Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
+# «principal» = quedarse solo con los trazos grandes (fuera garabatos sueltos de las esquinas).
+DIBUJO_AJUSTES = {"alineado": {"recorte": (108, 108, 918, 918), "principal": True}}
+
+
+def recortar_dibujo(entrada, salida, recorte=None, principal=False):
     """Dibujo sobre papel blanco -> tinta con transparencia, para que parezca pintado en la cartulina.
     Se mide cuánto oscurece cada píxel respecto al papel (alfa) y se recupera el color de la tinta bajo esa alfa;
     así los trazos finos de bolígrafo quedan sólidos y el lápiz de color queda translúcido, como en el papel."""
-    a = np.array(Image.open(entrada).convert("RGB")).astype(float)
+    im0 = Image.open(entrada).convert("RGB")
+    if recorte:
+        im0 = im0.crop(recorte)
+    a = np.array(im0).astype(float)
     papel = np.percentile(a.reshape(-1, 3), 97, axis=0)              # el blanco del papel (la mayor parte de la hoja)
     ratio = np.clip(a / papel, 0, 1)
     alfa = 1 - ratio.min(axis=-1)
     fg = alfa > 0.25
     lab, n = ndi.label(ndi.binary_dilation(fg, iterations=3))
     tam = ndi.sum(fg, lab, range(1, n + 1))
-    keep = np.isin(lab, [i + 1 for i, s in enumerate(tam) if s > 150])   # fuera las motas del papel
+    minimo = 0.12 * tam.max() if principal and n else 150
+    keep = np.isin(lab, [i + 1 for i, s in enumerate(tam) if s > minimo])   # fuera las motas del papel (y los garabatos)
     alfa = np.where(keep, alfa, 0)
     tinta = 1 - (1 - ratio) / np.maximum(alfa, 0.04)[..., None]
     rgba = np.dstack([np.clip(tinta, 0, 1) * 255, np.clip(alfa * 1.35, 0, 1) * 255]).astype(np.uint8)
@@ -222,7 +231,7 @@ def main():
         dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for f in sorted((RAIZ / "assets/iconos/originales").glob("dibujo-*.jpeg")):
             nombre = f.stem[len("dibujo-"):] + "-dibujo"
-            w, h = recortar_dibujo(f, dst / f"{nombre}.webp")
+            w, h = recortar_dibujo(f, dst / f"{nombre}.webp", **DIBUJO_AJUSTES.get(f.stem[len("dibujo-"):], {}))
             print(f"dibujo {nombre}: {w}×{h}, {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
     if que in ("todo", "fondos"):
         aligerar_fondos(RAIZ / "assets/fondos")

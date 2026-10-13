@@ -73,7 +73,7 @@ const fila = ([p, cs]) => {
   const estado = r ? `papel recortado${r.animacion ? " (animación: " + r.animacion.tipo + ")" : ""}` : "sin retrato";
   return `| ${p} | ${juego.GRUPO_DE[p]} | ${cs.length} (${cs.filter(c => !c.era).length}/${cs.filter(c => c.era === 2).length}) | ${estado} | \`${ruta}\` |`;
 };
-out("personajes.md", `# Personajes\n\n${AUTO}Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército y los embajadores. La gente corriente y Varela solo aparecen mencionados.\n\n| Personaje | Grupo | Cartas (era 1 / era 2) | Ilustración | Archivo |\n| --- | --- | --- | --- | --- |\n` +
+out("personajes.md", `# Personajes\n\n${AUTO}Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército y los embajadores. La gente corriente y Cienfuegos solo aparecen mencionados.\n\n| Personaje | Grupo | Cartas (era 1 / era 2) | Ilustración | Archivo |\n| --- | --- | --- | --- | --- |\n` +
   Object.entries(porP).sort((a, b) => b[1].length - a[1].length).map(fila).join("\n") + "\n");
 
 // ---- estados ----

@@ -136,7 +136,7 @@ const PERSONAJE_SLUG = {
   "Embajador del bloque oriental": "embajador-oriental",
   "Embajador de la potencia del norte": "embajador-occidental"
 };
-/* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Varela solo son mencionados.
+/* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Cienfuegos solo son mencionados.
    Grupo de cada personaje = fuerza a la que pertenece.
    Élite: el gabinete civil. Ejército: Interior (policía y Seguridad del Estado) y Fuerzas Armadas. Potencias: el extranjero.
    Pueblo no tiene portavoz: sus problemas llegan a través de los ministros. */
@@ -149,8 +149,13 @@ const GRUPO_DE = {
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
 /* Iconos de papel recortado (fuerzas, estados del régimen y archivo) */
-const icono = (id, clase = "") => IMG["icono_" + id]
-  ? `<img class="icono${clase ? " " + clase : ""}" src="${IMG["icono_" + id].src}" alt="" draggable="false">` : "";
+/* Iconos: si hay versión dibujada a mano (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), se usa esa en todo el
+   juego; si no, el recorte de papel. Los dibujos van sin sombra: están pintados en la cartulina. */
+const icono = (id, clase = "") => {
+  const dib = IMG["icono_" + id + "-dibujo"], img = dib || IMG["icono_" + id];
+  const cl = ["icono", dib ? "dibujo" : "", clase].filter(Boolean).join(" ");
+  return img ? `<img class="${cl}" src="${img.src}" alt="" draggable="false">` : "";
+};
 
 /* Mini animaciones de cada personaje: se dibujan en SVG encima de la imagen, en el punto (x, y) de
    personajes.json ("animacion"). La colocación va en el grupo padre y el movimiento (CSS) en el hijo,
@@ -400,12 +405,9 @@ function mostrar(id) {
   cerrarComoJugar();
 }
 
-/* Arriba, las fuerzas se prueban con iconos «dibujados a mano en la cartulina» (assets/iconos/originales/dibujo-*.jpeg).
-   Los que aún no tienen dibujo (la Élite) conservan el recorte de papel. */
-const iconoFuerza = id => IMG["icono_" + id + "-dibujo"] ? icono(id + "-dibujo", "dibujo") : icono(id);
-function parBarra(id, esc = 1, dibujo = false) {
+function parBarra(id, esc = 1) {
   return `<div class="par">
-      <div class="icono-fuerza" style="height:${Math.round(32 * esc)}px" aria-hidden="true">${dibujo ? iconoFuerza(id) : icono(id)}</div>
+      <div class="icono-fuerza" style="height:${Math.round(32 * esc)}px" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true" style="max-width:${Math.round(72 * esc)}px"><i class="relleno"></i></div>
     </div>`;
@@ -414,7 +416,7 @@ function parBarra(id, esc = 1, dibujo = false) {
 function construirBarras() {
   $("barras").innerHTML = BARRAS.map(b => `
     <div class="barra" role="button" tabindex="0" data-b="${b.id}" aria-label="${b.nombre}" title="${b.nombre}">
-      ${parBarra(b.id, 1, true)}
+      ${parBarra(b.id)}
       <div class="punto-zona"><div class="punto"></div></div>
     </div>`).join("");
   $("barras").querySelectorAll(".barra").forEach(el => {
@@ -552,12 +554,21 @@ function voltear() {
   $("carta").classList.toggle("volteada");
 }
 
+/* La respuesta cabe siempre en 2 líneas: si es larga, la letra baja (de 21 px hasta 14 px).
+   Se mide con offsetHeight, que no cuenta el giro del panel. */
+function ajustarRespuesta(r) {
+  const s = r && r.querySelector(".texto-respuesta strong");
+  if (!s) return;
+  s.style.fontSize = "";
+  let px = parseFloat(getComputedStyle(s).fontSize) || 21;
+  while (s.offsetHeight > px * 1.15 * 2 + 2 && px > 14) { px -= 1; s.style.fontSize = px + "px"; }
+}
 function pintarEleccion(dir) {
   const c = E && E.actual;
   const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
   const r = $("respuesta");
   if (r) {
-    if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; r.classList.add("visible"); }
+    if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
     else r.classList.remove("visible");
   }
   BARRAS.forEach(b => {
@@ -999,6 +1010,7 @@ function eleccionPortada(dir) {
   if (!dir) { r.classList.remove("visible"); return; }
   r.innerHTML = '<div class="texto-respuesta"><strong>Empezar a gobernar</strong></div>';
   r.dataset.dir = dir;
+  ajustarRespuesta(r);
   r.classList.add("visible");
 }
 function decidirPortada(dir) {

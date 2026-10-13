@@ -9,7 +9,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterioros?»
+**Carta:** «Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anteriores?»
 
 - **A. Juicio público** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
 - **B. Al exilio** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`
@@ -30,9 +30,9 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 - **A. Que sea Ministro** Ejército +9 · Élite −4 · Bandera: `general_popular`
 - **B. Mejor lejos de Embajador** Ejército −9 · Élite +4 · Bandera: `general_apartado`
 
-**Consecuencia futura de `general_popular`:** Varela conspira si el Ejército baja de 35.
+**Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 35.
 
-**Consecuencia futura de `general_apartado`:** Varela regresa como candidato de los descontentos.
+**Consecuencia futura de `general_apartado`:** Cienfuegos regresa como candidato de los descontentos.
 
 **Archivo histórico:** En Egipto, tras el derrocamiento de la monarquía en 1952, el general Muhammad Naguib, muy popular, presidió el nuevo régimen. En 1954 fue apartado del poder por Gamal Abdel Nasser, que acabó al frente del país.
 
@@ -193,7 +193,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 8; exige alguna de `purga_inicial`, `censura_previa`.
 
-**Carta:** «¿Y si creamos Comités de Defensa Revolucionaria para vigilar los barrios?»
+**Carta:** «¿Y si creamos Comités de Vigilancia Revolucionaria para vigilar los barrios?»
 
 - **A. La Revolución somos todos** Ejército +6 · Élite +3 · Pueblo −7 · Bandera: `comites_vigilancia`
 - **B. No necesitamos chivatos** Pueblo +7 · Ejército −6 · Élite −3 · Bandera: `policia_tradicional`

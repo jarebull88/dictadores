@@ -52,8 +52,8 @@ test("cada carta se pinta con su imagen y su nombre", () => {
   }
 });
 
-test("las opciones son cortas (acción de 5 palabras o menos)", () => {
-  for (const c of cartas) for (const l of ["izq", "der"]) {
+test("las opciones son cortas (acción de 5 palabras o menos; en la era 1 manda el límite de caracteres)", () => {
+  for (const c of cartas.filter(c => (c.era || 1) !== 1)) for (const l of ["izq", "der"]) {
     const n = c[l].accion.trim().split(/\s+/).length;
     assert.ok(n <= 5, `«${c.id}» ${l}: la acción tiene ${n} palabras`);
   }
@@ -72,11 +72,11 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
     if (era === 1) assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: en la era 1 la pregunta va sin «Comandante,»`);
     else assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
     for (const l of ["izq", "der"]) {
-      assert.ok(c[l].accion.length <= 28, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. 28)`);
+      const maxAccion = era === 1 ? 30 : 28;   // era 1: la letra se ajusta a 2 líneas, cabe algo más
+      assert.ok(c[l].accion.length <= maxAccion, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. ${maxAccion})`);
       if (era === 1) {
-        // Prueba de respuestas cortas (11 oct): en la era 1, de 1 a 3 palabras y sin remate
-        const palabras = c[l].accion.split(/\s+/).filter(Boolean).length;
-        assert.ok(palabras >= 1 && palabras <= 3, `«${c.id}» ${l}: la acción tiene ${palabras} palabras (era 1: de 1 a 3)`);
+        // Respuestas cortas en la era 1 (11-13 oct): sin remate ni punto final; si es larga, la letra baja hasta caber
+        // en 2 líneas (ajustarRespuesta), así que el límite es de caracteres, no de palabras (ver el de arriba)
         assert.ok(!c[l].remate, `«${c.id}» ${l}: en la era 1 ya no hay remate`);
         assert.ok(!/[^.]\.$/.test(c[l].accion), `«${c.id}» ${l}: la respuesta no lleva punto final`);
       } else assert.ok(c[l].remate.length <= 75, `«${c.id}» ${l}: el remate tiene ${c[l].remate.length} caracteres (máx. 75)`);

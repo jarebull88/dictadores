@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército y los embajadores. La gente corriente y Varela solo aparecen mencionados.
+Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército y los embajadores. La gente corriente y Cienfuegos solo aparecen mencionados.
 
 | Personaje | Grupo | Cartas (era 1 / era 2) | Ilustración | Archivo |
 | --- | --- | --- | --- | --- |

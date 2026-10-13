@@ -89,10 +89,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 18; exige `general_popular`; solo si Ejército está en 40 o menos.
 
-**Carta:** «Comandante, Varela recibe oficiales en su casa. Dicen que habla de usted en pasado.»
+**Carta:** «Comandante, Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.»
 
-- **A. Ascender a Varela.** *Un ascenso para que se calle.* Ejército +9 · Élite −4 · Crisis +1
-- **B. Detener a Varela.** *La Historia juzgará mis decisiones cuando nadie pueda discutirlas.* Ejército −9 · Pueblo −5 · Potencias −4
+- **A. Ascender a Cienfuegos.** *Un ascenso para que se calle.* Ejército +9 · Élite −4 · Crisis +1
+- **B. Detener a Cienfuegos.** *La Historia juzgará mis decisiones cuando nadie pueda discutirlas.* Ejército −9 · Pueblo −5 · Potencias −4
 
 **Archivo histórico:** En Egipto, el general Mohamed Naguib fue el primer presidente de la república en 1953. En 1954 fue apartado por Gamal Abdel Nasser y pasó casi dos décadas bajo arresto domiciliario.
 

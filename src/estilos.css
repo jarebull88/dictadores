@@ -169,7 +169,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .opcion-portada.principal { font-family: var(--fuente-titulo); font-size: 28px; text-decoration: none; }
 .opcion-portada:hover, .opcion-portada:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 /* Pantalla del nombre: el texto arriba, la carta del dictador en medio y el nombre abajo, en una perforación del cartón */
-.pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); font-size: 18px; line-height: 1.35; text-align: left; }
+.pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); font-size: 19px; line-height: 1.28; text-align: center; }   /* como la pregunta de la partida */
 .pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
 .pantalla-nombre .campo input {
   height: 48px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
@@ -303,12 +303,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta-estado .icono-grande { width: 66%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
 /* Etiqueta de papel blanco pegada, escrita «a boli» (Gochi Hand, tinta azul de BIC) */
 .etiqueta-boli {
-  width: 84%; padding: 10px 14px 12px; text-align: center; color: #1F3A9E; font-family: "Gochi Hand", var(--fuente);
+  width: 84%; padding: 10px 14px 12px; text-align: center; color: var(--tinta);
   background: #F8F6F0 var(--tex-cartulina1) center / cover; background-blend-mode: multiply; border-radius: 4px;
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .6); transform: rotate(-1.5deg);
 }
-.etiqueta-boli b { display: block; font-weight: 400; font-size: 32px; line-height: 1.05; }
-.etiqueta-boli span { display: block; margin-top: 4px; font-size: 20px; line-height: 1.15; }
+.etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: 26px; line-height: 1.1; }   /* título a máquina */
+.etiqueta-boli span { display: block; margin-top: 6px; font-family: "Gochi Hand", var(--fuente); color: #14286E; font-size: 21px; line-height: 1.15; }   /* frase a boli, tinta azul oscura */
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */

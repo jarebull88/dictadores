@@ -140,10 +140,6 @@ body {
 
 /* ---------- Portada y pantalla del nombre: fondo oscuro, enlaces de texto ---------- */
 body.fondo-oscuro { background: var(--noche); }
-/* Portada: cartón kraft oscuro (textura 3), para que contraste con el logo, que es claro */
-body.fondo-portada { background: var(--carton-portada, #B8976C) var(--tex-cartulina3) center / cover; background-blend-mode: multiply; }
-.portada .opcion-portada { color: var(--bloque); }   /* crema sobre el kraft oscuro: contraste 5:1 (en tinta era 3:1) */
-.portada .opcion-portada:hover, .portada .opcion-portada:focus-visible { outline-color: var(--bloque); }
 .oscura { color: var(--texto-noche); }
 .enlaces { display: grid; justify-items: center; gap: 2px; }
 .enlace-oscuro {
@@ -185,8 +181,8 @@ body.fondo-portada { background: var(--carton-portada, #B8976C) var(--tex-cartul
 .opcion-portada.principal { font-family: var(--fuente-titulo); font-size: 28px; text-decoration: none; }
 .opcion-portada:hover, .opcion-portada:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 /* Pantalla del nombre: el texto arriba, la carta del dictador en medio y el nombre abajo, en una perforación del cartón */
-.pantalla-nombre .intro { margin: 0; font-size: 18px; line-height: 1.35; }
-.pantalla-nombre .campo { flex: none; padding-top: 10px; gap: 4px; }
+.pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); font-size: 18px; line-height: 1.35; text-align: left; }
+.pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
 .pantalla-nombre .campo input {
   height: 48px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
   background: var(--tex-cartulina3) center / cover;
@@ -1990,7 +1986,6 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  document.body.classList.toggle("fondo-portada", id === "screen-start");   // cartón oscuro: el logo es claro
   if (id === "screen-name") pintarCartaNombre();
   cerrarComoJugar();
 }
@@ -2617,6 +2612,11 @@ function decidirNombre(dir) {
   setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre });
+/* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
+new ResizeObserver(() => {
+  const w = $("carta-nombre").offsetWidth;
+  if (w) $("screen-name").style.setProperty("--ancho-carta", w + "px");
+}).observe($("carta-nombre"));
 
 /* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
 function parrafoEra() {

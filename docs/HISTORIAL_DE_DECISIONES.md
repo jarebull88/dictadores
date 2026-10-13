@@ -164,6 +164,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente (13 oct). Texto de fin de la era 1**, de Jorge: «Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.» (Detrás siguen, si toca, la fuerza más tensa y lo que te espera.)
 - **Vigente (13 oct).** El cartón de la carta lleva también la **pulpa de la textura 5**, como la cartulina de color.
 - **Vigente (13 oct).** La portada va sobre **cartón kraft oscuro** (textura 3) para que contraste con el logo, que es claro. Las tres opciones pasan a crema: en tinta quedaban a 3:1 de contraste; en crema, 5:1.
+- **Vigente (13 oct).** Se quita el kraft oscuro de la portada (no quedaba bien): vuelve al cartón claro del resto, con las opciones en tinta. En la pantalla del nombre, el texto de arriba (alineado a la izquierda) y el campo del nombre miden lo mismo que la carta.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

@@ -400,7 +400,6 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
-  document.body.classList.toggle("fondo-portada", id === "screen-start");   // cartón oscuro: el logo es claro
   if (id === "screen-name") pintarCartaNombre();
   cerrarComoJugar();
 }
@@ -1027,6 +1026,11 @@ function decidirNombre(dir) {
   setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre });
+/* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
+new ResizeObserver(() => {
+  const w = $("carta-nombre").offsetWidth;
+  if (w) $("screen-name").style.setProperty("--ancho-carta", w + "px");
+}).observe($("carta-nombre"));
 
 /* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
 function parrafoEra() {

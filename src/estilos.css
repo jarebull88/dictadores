@@ -50,6 +50,7 @@ body {
 .defs-svg { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Iconos de papel recortado */
 .icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .35)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.icono.dibujo { filter: none; }   /* está dibujado en la cartulina: sin sombra de recorte */
 .icono.en-linea { display: inline-block; height: 1.25em; width: auto; vertical-align: -.3em; margin: 0 .25em 0 .05em; }
 .ico { display: inline-block; width: 24px; height: 24px; flex: none; fill: currentColor; }
 
@@ -172,10 +173,17 @@ body.fondo-oscuro { background: var(--noche); }
 .par { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .par .icono-fuerza { height: 46px; display: flex; align-items: center; justify-content: center; }
 .par .icono-fuerza .icono { height: 100%; }
-.nivel {
-  position: relative; width: 100%; height: 10px; overflow: hidden;
-  background: var(--bloque); border: 1.5px solid var(--carbon); border-radius: 1px;
+/* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
+   (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
+.nivel, .ranura {
+  position: relative; background: var(--tex-cartulina3) center / cover;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .7);
 }
+.nivel::after, .ranura::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+  box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .5);
+}
+.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 4px; }
 .nivel .relleno {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
@@ -191,7 +199,6 @@ body.fondo-oscuro { background: var(--noche); }
   background: var(--rojo); color: var(--bloque); font-family: var(--fuente); font-weight: 700; font-size: 13px; line-height: 1;
 }
 .peligro .alerta { display: flex; animation: parpadeo 1s steps(1) infinite; }
-.peligro .nivel { border-color: var(--rojo); }
 .peligro .nivel .relleno {
   background: var(--rojo);
   animation: parpadeo-suave 1.2s ease-in-out infinite;
@@ -398,13 +405,13 @@ body.fondo-oscuro { background: var(--noche); }
 .aviso-archivo .icono.en-linea { height: 18px; margin-right: 4px; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; gap: 6px; flex-shrink: 0; }
-.ranura { width: 46px; height: 46px; border-radius: var(--radio); background: transparent; border: 1.5px dashed var(--gris-trazo); padding: 0; display: block; }
-.ranura.llena { background: var(--bloque); border: var(--trazo); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ranura { width: 46px; height: 46px; border-radius: 9px; border: none; padding: 0; display: block; }
+.ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .icono { width: 40px; height: 40px; }
+.ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; }
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
-@keyframes invierte { 0% { background: var(--tinta); border-color: var(--bloque); } 100% { background: var(--bloque); } }
+@keyframes invierte { 0% { filter: brightness(1.55); } 100% { filter: none; } }
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* Abandonar partida: una línea de texto pequeña, sin botón */
@@ -441,7 +448,7 @@ body.fondo-oscuro { background: var(--noche); }
 .fin-fuerza .par { flex: none; width: 110px; gap: 10px; }
 .fin-fuerza .par .icono-fuerza { height: 52px; }
 .fin-fuerza .alerta { display: flex; animation: none; top: 0; right: 4px; }
-.fin-fuerza .nivel { height: 14px; background: var(--bloque); }
+.fin-fuerza .nivel { height: 14px; }
 .fin-fuerza .nivel .relleno { transition: none; animation: none; }
 .fin-fuerza p { margin: 0; font-size: 16px; line-height: 1.4; }
 .fin-fuerza p strong { font-weight: 700; }

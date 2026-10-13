@@ -6,6 +6,7 @@
     python3 tools/recortar.py iconos
     python3 tools/recortar.py logo
     python3 tools/recortar.py fondos
+    python3 tools/recortar.py dibujos
 
 Entrada:  assets/personajes/originales/<slug>.jpg   y   assets/iconos/originales/hoja-*.jpg
 Entrada:  assets/logo/originales/logo.jpg (letras de papel y tela recortadas, para la portada)
@@ -36,6 +37,7 @@ D_PIEL_0, D_PIEL_1 = 9.0, 17.0
 FUERZA_PIEL = 1.4
 STD_PIEL_X, STD_PIEL_ANCHO = 1.8, 4.0   # la tela (lino, punto) tiene más trama que el papel: se excluye lo que supera X veces la trama de la cara (rampa de ANCHO)
 ANCHO_LOGO = 1000         # se muestra a ~400 px de ancho como mucho
+LADO_DIBUJO = 256         # los dibujos a bolígrafo/lápiz llevan más detalle fino que los recortes de papel
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
 # Orden de los iconos en cada hoja: filas de arriba abajo, cada fila de izquierda a derecha.
@@ -182,6 +184,29 @@ def aligerar_fondos(carpeta):
         print(f"fondo {f.stem}: {im.width}×{im.height}, {(dst / f.name).stat().st_size // 1024} KB")
 
 
+def recortar_dibujo(entrada, salida):
+    """Dibujo sobre papel blanco -> tinta con transparencia, para que parezca pintado en la cartulina.
+    Se mide cuánto oscurece cada píxel respecto al papel (alfa) y se recupera el color de la tinta bajo esa alfa;
+    así los trazos finos de bolígrafo quedan sólidos y el lápiz de color queda translúcido, como en el papel."""
+    a = np.array(Image.open(entrada).convert("RGB")).astype(float)
+    papel = np.percentile(a.reshape(-1, 3), 97, axis=0)              # el blanco del papel (la mayor parte de la hoja)
+    ratio = np.clip(a / papel, 0, 1)
+    alfa = 1 - ratio.min(axis=-1)
+    fg = alfa > 0.25
+    lab, n = ndi.label(ndi.binary_dilation(fg, iterations=3))
+    tam = ndi.sum(fg, lab, range(1, n + 1))
+    keep = np.isin(lab, [i + 1 for i, s in enumerate(tam) if s > 150])   # fuera las motas del papel
+    alfa = np.where(keep, alfa, 0)
+    tinta = 1 - (1 - ratio) / np.maximum(alfa, 0.04)[..., None]
+    rgba = np.dstack([np.clip(tinta, 0, 1) * 255, np.clip(alfa * 1.35, 0, 1) * 255]).astype(np.uint8)
+    im = Image.fromarray(rgba, "RGBA")
+    im = im.crop(im.getbbox())
+    esc = LADO_DIBUJO / max(im.size)
+    im = im.resize((max(1, round(im.width * esc)), max(1, round(im.height * esc))), Image.LANCZOS)
+    im.save(salida, "WEBP", quality=88, method=6)
+    return im.size
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
     if que in ("todo", "personajes"):
@@ -193,6 +218,12 @@ def main():
         dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for hoja, nombres in HOJAS.items():
             print(f"{hoja}:", ", ".join(recortar_hoja(RAIZ / f"assets/iconos/originales/{hoja}.jpg", nombres, dst)))
+    if que in ("todo", "dibujos"):
+        dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
+        for f in sorted((RAIZ / "assets/iconos/originales").glob("dibujo-*.jpeg")):
+            nombre = f.stem[len("dibujo-"):] + "-dibujo"
+            w, h = recortar_dibujo(f, dst / f"{nombre}.webp")
+            print(f"dibujo {nombre}: {w}×{h}, {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
     if que in ("todo", "fondos"):
         aligerar_fondos(RAIZ / "assets/fondos")
     if que in ("todo", "logo"):

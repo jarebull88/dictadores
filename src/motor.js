@@ -400,9 +400,12 @@ function mostrar(id) {
   cerrarComoJugar();
 }
 
-function parBarra(id, esc = 1) {
+/* Arriba, las fuerzas se prueban con iconos «dibujados a mano en la cartulina» (assets/iconos/originales/dibujo-*.jpeg).
+   Los que aún no tienen dibujo (la Élite) conservan el recorte de papel. */
+const iconoFuerza = id => IMG["icono_" + id + "-dibujo"] ? icono(id + "-dibujo", "dibujo") : icono(id);
+function parBarra(id, esc = 1, dibujo = false) {
   return `<div class="par">
-      <div class="icono-fuerza" style="height:${Math.round(32 * esc)}px" aria-hidden="true">${icono(id)}</div>
+      <div class="icono-fuerza" style="height:${Math.round(32 * esc)}px" aria-hidden="true">${dibujo ? iconoFuerza(id) : icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true" style="max-width:${Math.round(72 * esc)}px"><i class="relleno"></i></div>
     </div>`;
@@ -411,7 +414,7 @@ function parBarra(id, esc = 1) {
 function construirBarras() {
   $("barras").innerHTML = BARRAS.map(b => `
     <div class="barra" role="button" tabindex="0" data-b="${b.id}" aria-label="${b.nombre}" title="${b.nombre}">
-      ${parBarra(b.id)}
+      ${parBarra(b.id, 1, true)}
       <div class="punto-zona"><div class="punto"></div></div>
     </div>`).join("");
   $("barras").querySelectorAll(".barra").forEach(el => {

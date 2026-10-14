@@ -29,12 +29,28 @@ const UMBRAL_COALICION = 30;
 const CARTAS = [
   /* ---------- Anclas ---------- */
   {
-    id: "casa_vacia", tipo: "ancla", ventana: [1, 1], titulo: "La casa vacía", ilustracion: null,
+    id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?",
     archivo: "En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
     izq: { accion: "Juicio público", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Al exilio", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+  },
+  {
+    id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano", ilustracion: null,
+    personaje: "Ministra de Cultura",
+    texto: "El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?",
+    archivo: "En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.",
+    izq: { accion: "Museo del pueblo", efectos: { pueblo: 8, elite: -6 } },
+    der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
+  },
+  {
+    id: "arcas_vacias", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Las arcas vacías", ilustracion: null,
+    personaje: "Ministro de Economía",
+    texto: "El tirano huyó con la reserva del banco nacional. No hay con qué pagar los sueldos de este mes.",
+    archivo: "En la madrugada del 1 de enero de 1959, Fulgencio Batista huyó de Cuba a la República Dominicana; se le acusó de llevarse grandes sumas del Estado. Muchos dictadores en fuga se marcharon con las reservas del país.",
+    izq: { accion: "Impriman billetes", efectos: { pueblo: 5, elite: -4, potencias: -4 }, banderas: ["base.mercado_paralelo"] },
+    der: { accion: "Pidan un préstamo", efectos: { pueblo: -5, elite: 4, potencias: 4 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido", ilustracion: null,

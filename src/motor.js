@@ -265,7 +265,9 @@ function nuevaPartida() {
 const anioEra = () => E.turno - E.inicioEra + 1;
 const finEra = () => E.inicioEra + E.N - 1;
 const deEra = c => (c.era || 1) === E.era;
-const libre = c => !E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= (c.descanso || 10));
+const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= (c.descanso || 10))) && !grupoVisto(c);
+/* Cartas de un mismo «grupo» (p. ej. las tres cartas iniciales): solo sale una por partida, sorteada */
+const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
 function iniciarEra(n) {
   const def = ERAS[n - 1];
   E.era = n;
@@ -313,7 +315,10 @@ function siguienteCarta() {
   const anclas = CARTAS.filter(c => c.tipo === "ancla" && deEra(c) && libre(c) && cumple(c) && anioEra() >= c.ventana[0]);
 
   const forzadas = anclas.filter(c => anioEra() >= fin(c));
-  if (forzadas.length) return forzadas[0];
+  if (forzadas.length) {
+    const g = forzadas[0].grupo, delGrupo = g ? forzadas.filter(c => c.grupo === g) : [forzadas[0]];
+    return delGrupo[Math.floor(Math.random() * delGrupo.length)];
+  }
 
   const criticas = CARTAS.filter(c => (c.tipo === "crisis" || c.tipo === "coalicion") && libre(c) && c.disparo(E));
   if (criticas.length) return criticas[0];
@@ -953,6 +958,7 @@ function terminar(clave, transicion) {
     caja.textContent = `${FUERZAS[idF].nombre} llegó al ${extremo === 100 ? "máximo" : "mínimo"}.`;
     caja.classList.remove("hidden");
     pintarCartaFin(f.titulo);
+    $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta, como en «Sigues en el poder»
   } else if (victoria) {
     $("fin-principal").textContent = "¡Has ganado!";
     $("fin-titulo").textContent = "Moriste en tu cama, y en el poder";

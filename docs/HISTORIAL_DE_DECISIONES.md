@@ -200,6 +200,10 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — «Los oficiales de antes».** La opción de purga decía «Limpien los cuarteles», que no dejaba claro qué se hacía. Ahora es «¡Al paredón!». «Jubílenlos» se queda.
 
+**14 oct — Tres cartas iniciales.** Para que la partida no empiece siempre igual, la primera carta se sortea entre tres del grupo `inicio`: «La casa vacía» (Fuerzas Armadas: juicio o exilio), «La casa del tirano» (Cultura: «Museo del pueblo» / «Me mudo yo») y «Las arcas vacías» (Economía: «Impriman billetes», que deja el mercado paralelo, / «Pidan un préstamo», que activa la Deuda externa). Solo sale una por partida.
+
+**14 oct — Textos a la izquierda y años al caer.** Todos los textos van alineados a la izquierda, salvo los titulares. En «¡Has caído!», debajo de la carta, sale «Gobernaste por N años».
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

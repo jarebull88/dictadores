@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
+Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
 
 ### 1. La casa vacía
 
@@ -20,7 +20,35 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.
 
-### 2. El general querido
+### 2. La casa del tirano
+
+**Personaje:** Ministra de Cultura  
+**Condición:** ancla de los años 1 a 1 de su era.
+
+**Carta:** «El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?»
+
+- **A. Museo del pueblo** Pueblo +8 · Élite −6
+- **B. Me mudo yo** Pueblo −8 · Élite +6
+
+**Archivo histórico:** En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.
+
+### 3. Las arcas vacías
+
+**Personaje:** Ministro de Economía  
+**Condición:** ancla de los años 1 a 1 de su era.
+
+**Carta:** «El tirano huyó con la reserva del banco nacional. No hay con qué pagar los sueldos de este mes.»
+
+- **A. Impriman billetes** Pueblo +5 · Élite −4 · Potencias −4 · Bandera: `mercado_paralelo`
+- **B. Pidan un préstamo** Pueblo −5 · Élite +4 · Potencias +4 · Bandera: `deuda_externa`
+
+**Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
+
+**Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
+
+**Archivo histórico:** En la madrugada del 1 de enero de 1959, Fulgencio Batista huyó de Cuba a la República Dominicana; se le acusó de llevarse grandes sumas del Estado. Muchos dictadores en fuga se marcharon con las reservas del país.
+
+### 4. El general querido
 
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 1 a 3 de su era.
@@ -36,7 +64,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En Egipto, tras el derrocamiento de la monarquía en 1952, el general Muhammad Naguib, muy popular, presidió el nuevo régimen. En 1954 fue apartado del poder por Gamal Abdel Nasser, que acabó al frente del país.
 
-### 3. Las refinerías
+### 5. Las refinerías
 
 **Personaje:** Ministro de Comercio  
 **Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
@@ -52,7 +80,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En Cuba, en 1960, las refinerías de empresas estadounidenses y británicas se negaron a procesar crudo soviético y el gobierno las nacionalizó. En 1951, Irán nacionalizó la Anglo-Iranian Oil Company.
 
-### 4. El visitante del bloque oriental
+### 6. El visitante del bloque oriental
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
@@ -68,7 +96,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En 1960 Cuba firmó acuerdos con la Unión Soviética para venderle azúcar y recibir petróleo. En 1955, Egipto anunció la compra de armas a Checoslovaquia tras ser rechazado por proveedores occidentales.
 
-### 5. El embargo
+### 7. El embargo
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -84,7 +112,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** Estados Unidos impuso restricciones comerciales a Cuba en 1960 y un embargo más amplio en 1962. En 1951, tras la nacionalización petrolera de Irán, el Reino Unido organizó un boicot al petróleo iraní, y en 1953 un golpe derrocó al primer ministro Mosaddeq.
 
-### 6. La lista *(borrador)*
+### 8. La lista *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -96,7 +124,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
 
-### 7. La tierra
+### 9. La tierra
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
@@ -110,7 +138,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** La Ley de Reforma Agraria de Cuba (1959) y la del Perú bajo el gobierno militar de Velasco (1969) repartieron grandes propiedades. Ambas afectaron a intereses extranjeros y locales, y obligaron a replantear la producción agrícola.
 
-### 8. Los periódicos
+### 10. Los periódicos
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
@@ -126,7 +154,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** La Ley de Prensa española de 1938 estableció la censura previa de publicaciones. Muchos regímenes del siglo XX combinaron el control de la prensa con la propaganda oficial.
 
-### 9. Las urnas prometidas
+### 11. Las urnas prometidas
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 2 de la era.
@@ -142,7 +170,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** Muchos regímenes surgidos de una revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.
 
-### 10. Las mil flores
+### 12. Las mil flores
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
@@ -156,7 +184,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En China, la Campaña de las Cien Flores (1956-1957) invitó a criticar al Partido. En 1957, la Campaña Antiderechista persiguió a muchos de quienes habían hablado.
 
-### 11. Los oficiales de antes
+### 13. Los oficiales de antes
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -172,7 +200,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En la Unión Soviética, entre 1937 y 1938, la Gran Purga alcanzó al Ejército Rojo. Altos mandos como Tujachevski fueron juzgados y ejecutados, y buena parte del cuerpo de oficiales fue depurado.
 
-### 12. El puerto parado
+### 14. El puerto parado
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8; a partir del año 3 de la era.
@@ -188,7 +216,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En Polonia, las huelgas de los astilleros de Gdansk en 1980 dieron origen a Solidaridad, el primer sindicato independiente del bloque oriental. En 1981 el gobierno declaró la ley marcial.
 
-### 13. Los ojos del barrio
+### 15. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 8; exige alguna de `purga_inicial`, `censura_previa`.
@@ -204,7 +232,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En la República Democrática Alemana, el Ministerio para la Seguridad del Estado (Stasi), creado en 1950, construyó una extensa red de informantes. En Cuba, los Comités de Defensa de la Revolución se crearon en 1960.
 
-### 14. El retrato
+### 16. El retrato
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 6; a partir del año 4 de la era.
@@ -220,7 +248,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** En Turkmenistán, en 2002, el presidente Saparmurat Niyazov rebautizó los meses del año, y dio a enero su propio título y a abril el nombre de su madre. Muchos regímenes del siglo XX levantaron monumentos y retratos de sus líderes.
 
-### 15. Los que se marchan
+### 17. Los que se marchan
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
@@ -236,7 +264,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** Entre 1949 y 1961, millones de personas abandonaron la República Democrática Alemana rumbo a Berlín Occidental y la República Federal. En agosto de 1961 se levantó el Muro de Berlín.
 
-### 16. La factura *(borrador)*
+### 18. La factura *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -248,7 +276,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 
-### 17. Las tiendas vacías *(borrador)*
+### 19. Las tiendas vacías *(borrador)*
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -260,7 +288,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
-### 18. La calle y los cuarteles *(borrador)*
+### 20. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -270,7 +298,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 - **A. Ascender oficiales** Ejército +12 · Élite −6 · Crisis +2
 - **B. Detener cabecillas** Pueblo −6 · Ejército +8 · Potencias −6
 
-### 19. El dinero se va *(borrador)*
+### 21. El dinero se va *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).

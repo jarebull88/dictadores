@@ -65,7 +65,6 @@ body {
 .titulo { font-family: var(--fuente-titulo); font-weight: 700; letter-spacing: 0; }
 .hidden { display: none !important; }
 .emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-style: normal; line-height: 1; }
-.defs-svg { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Iconos de papel recortado */
 .icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .35)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
 .icono.dibujo { filter: none; }   /* está dibujado en la cartulina: sin sombra de recorte */
@@ -374,37 +373,13 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   64%, 84%  { transform: translate(13px, -1px); }
   92%, 100% { transform: translate(0, 0); }
 }
-/* PRUEBA 1: hilo de humo */
-.hilo path { fill: none; stroke: url(#hilo-degradado); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 90 22; filter: url(#sombra-humo); }
-.hilo { transform-origin: 50% 100%; animation: mecer 3.2s ease-in-out infinite alternate; }
-.hilo1 { animation: fluir 2.4s linear infinite; }
-.hilo2 { stroke-width: 4; opacity: .6; animation: fluir 3.1s linear infinite; }
-@keyframes fluir { to { stroke-dashoffset: -200; } }
-@keyframes mecer { from { transform: skewX(-6deg); } to { transform: skewX(7deg); } }
-/* PRUEBA 3: papel de seda */
-.seda { transform-box: fill-box; transform-origin: center; opacity: 0; animation: seda 4.8s ease-out infinite; }
-.seda path { fill: rgba(250, 248, 242, .6); stroke: rgba(255, 255, 255, .85); stroke-width: 1.2; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .25)); }
-@keyframes seda {
-  0%   { opacity: 0; transform: translate(0, 0) rotate(-10deg) scale(.4); }
-  15%  { opacity: 1; }
-  60%  { transform: translate(-30px, -330px) rotate(25deg) scale(1); }
-  100% { opacity: 0; transform: translate(40px, -640px) rotate(60deg) scale(1.3); }
-}
-/* PRUEBA 2: bocanadas */
+/* Humo del puro: bocanadas suaves */
 .bocanada { fill: rgba(240, 238, 232, .7); filter: blur(7px); transform-box: fill-box; transform-origin: center; opacity: 0; animation: bocanada 4.5s ease-out infinite; }
 @keyframes bocanada {
   0%   { opacity: 0; transform: translate(0, 0) scale(.3); }
   12%  { opacity: .8; }
   50%  { transform: translate(-40px, -330px) scale(1.4); }
   100% { opacity: 0; transform: translate(50px, -680px) scale(2.4); }
-}
-.personaje .humo { fill: #e9e7e2; filter: url(#sombra-humo); transform-box: fill-box; transform-origin: 50% 100%; }
-.humo1 { animation: humo 4.5s linear infinite; }
-.humo2 { animation: humo 4.5s linear -2.25s infinite; }
-@keyframes humo {
-  0%   { opacity: .85; transform: translate(0, 0) scale(.7); }
-  70%  { opacity: .5; }
-  100% { opacity: 0; transform: translate(26px, -230px) scale(1.8); }
 }
 /* Mini animaciones: piezas de papel encima de la imagen, con pausas largas para que no cansen */
 .animacion * { transform-box: fill-box; }
@@ -595,14 +570,6 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 </style>
 </head>
 <body>
-<!-- Filtro SVG global: la sombra corta del humo -->
-<svg class="defs-svg" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs>
-    <filter id="sombra-humo" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#000" flood-opacity=".3"/>
-    </filter>
-  </defs>
-</svg>
 <div id="app">
 
   <section id="screen-start" class="screen portada">
@@ -1891,19 +1858,9 @@ const icono = (id, clase = "") => {
 /* Mini animaciones de cada personaje: se dibujan en SVG encima de la imagen, en el punto (x, y) de
    personajes.json ("animacion"). La colocación va en el grupo padre y el movimiento (CSS) en el hijo,
    para que la animación no pise el atributo transform. */
-const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/><circle cx="-7" cy="-34" r="10"/>';
 const ANIMACION = {
-  // 14 oct: solo queda el humo de los puros (más grande); las demás mini animaciones se quitaron
-  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`,
-  // PRUEBA 1: hilo de humo a boli (dos trazos ondulados que fluyen hacia arriba y se mecen)
-  hilo: () => `<g class="hilo"><g transform="scale(2.1)"><defs><linearGradient id="hilo-degradado" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="-310">` +
-    `<stop offset="0" stop-color="#f0eee8" stop-opacity=".95"/><stop offset=".6" stop-color="#f0eee8" stop-opacity=".6"/><stop offset="1" stop-color="#f0eee8" stop-opacity="0"/></linearGradient></defs><path class="hilo1" d="M0 0 C-14 -30 16 -60 0 -95 S-18 -160 4 -200 S12 -260 -6 -300"/>` +
-    `<path class="hilo2" d="M2 -4 C16 -36 -12 -70 6 -110 S20 -175 -4 -215 S-10 -270 8 -310"/></g></g>`,
-  // PRUEBA 3: volutas de papel de seda (recortes translúcidos que suben girando)
-  seda: () => `<g class="sedas">${[0, 1, 2].map(i => `<g class="seda" style="animation-delay:${(-i * 1.6).toFixed(1)}s"><path transform="scale(${(1.9 + i * 0.25).toFixed(2)})" ` +
-    `d="M0 0 C-30 -8 -42 -48 -14 -70 C14 -92 50 -66 34 -38 C22 -18 -2 -26 6 -44 C11 -55 26 -50 22 -41 C32 -58 12 -78 -8 -64 C-30 -48 -22 -14 0 0 Z"/></g>`).join("")}</g>`,
-  // PRUEBA 2: bocanadas suaves (nubecitas difuminadas que salen una tras otra)
-  bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
+  // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
+  humo: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */

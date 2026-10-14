@@ -161,19 +161,9 @@ const icono = (id, clase = "") => {
 /* Mini animaciones de cada personaje: se dibujan en SVG encima de la imagen, en el punto (x, y) de
    personajes.json ("animacion"). La colocación va en el grupo padre y el movimiento (CSS) en el hijo,
    para que la animación no pise el atributo transform. */
-const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/><circle cx="-7" cy="-34" r="10"/>';
 const ANIMACION = {
-  // 14 oct: solo queda el humo de los puros (más grande); las demás mini animaciones se quitaron
-  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`,
-  // PRUEBA 1: hilo de humo a boli (dos trazos ondulados que fluyen hacia arriba y se mecen)
-  hilo: () => `<g class="hilo"><g transform="scale(2.1)"><defs><linearGradient id="hilo-degradado" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="-310">` +
-    `<stop offset="0" stop-color="#f0eee8" stop-opacity=".95"/><stop offset=".6" stop-color="#f0eee8" stop-opacity=".6"/><stop offset="1" stop-color="#f0eee8" stop-opacity="0"/></linearGradient></defs><path class="hilo1" d="M0 0 C-14 -30 16 -60 0 -95 S-18 -160 4 -200 S12 -260 -6 -300"/>` +
-    `<path class="hilo2" d="M2 -4 C16 -36 -12 -70 6 -110 S20 -175 -4 -215 S-10 -270 8 -310"/></g></g>`,
-  // PRUEBA 3: volutas de papel de seda (recortes translúcidos que suben girando)
-  seda: () => `<g class="sedas">${[0, 1, 2].map(i => `<g class="seda" style="animation-delay:${(-i * 1.6).toFixed(1)}s"><path transform="scale(${(1.9 + i * 0.25).toFixed(2)})" ` +
-    `d="M0 0 C-30 -8 -42 -48 -14 -70 C14 -92 50 -66 34 -38 C22 -18 -2 -26 6 -44 C11 -55 26 -50 22 -41 C32 -58 12 -78 -8 -64 C-30 -48 -22 -14 0 0 Z"/></g>`).join("")}</g>`,
-  // PRUEBA 2: bocanadas suaves (nubecitas difuminadas que salen una tras otra)
-  bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
+  // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
+  humo: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */

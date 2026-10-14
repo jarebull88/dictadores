@@ -226,6 +226,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Pruebas de humo.** Jorge ve el humo del puro tosco. Hay dos alternativas en el código para elegir (`hilo`: trazos ondulados a boli que fluyen hacia arriba; `bocanadas`: nubecitas difuminadas que salen una tras otra; `seda`: volutas de papel de seda translúcido que suben girando); de momento sigue el humo de siempre.
 
+**14 oct — Humo en bocanadas.** De las tres pruebas (hilo a boli, bocanadas suaves y volutas de papel de seda) Jorge elige las bocanadas. Se borran las otras dos y el humo antiguo de tres círculos.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

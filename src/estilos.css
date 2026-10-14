@@ -171,7 +171,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); font-size: 19px; line-height: 1.28; text-align: center; }   /* como la pregunta de la partida */
 .pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
 .pantalla-nombre .campo input {
-  height: 48px; padding: 0 14px; text-align: left; border: none; border-radius: 9px; color: var(--tinta);
+  height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
   background: var(--tex-cartulina3) center / cover;
   box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .7);
 }
@@ -284,7 +284,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 }
 .carta.revelando .dorso { visibility: hidden; }
 /* Icono «360» en la esquina de arriba a la derecha de la cartulina: la carta se puede girar */
-.icono-giro { position: absolute; top: 4%; right: 5%; z-index: 2; width: 13%; max-width: 40px; height: auto; fill: #fff; opacity: .7; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .35)); pointer-events: none; }
+.icono-giro { position: absolute; top: 12px; right: 12px; z-index: 2; width: 13%; max-width: 40px; height: auto; pointer-events: none;
+  fill: color-mix(in oklab, var(--fondo-escena, #888) 72%, #000); }   /* del color de la cartulina, algo más intenso (como el dibujo del reverso) */
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
 @keyframes amago {
@@ -364,7 +365,16 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   64%, 84%  { transform: translate(13px, -1px); }
   92%, 100% { transform: translate(0, 0); }
 }
-/* Humo del puro: bocanadas suaves */
+/* Humo del puro (prueba 14 oct): una bola de papel que sube rodando cada 10 s y crece hasta un límite */
+.bola-humo { transform-box: fill-box; transform-origin: center; opacity: 0; animation: bola-humo 10s linear infinite; }
+@keyframes bola-humo {
+  0%   { opacity: 0; transform: translate(0, 0) rotate(0deg) scale(.12); }
+  2%   { opacity: 1; }
+  32%  { opacity: 1; transform: translate(-40px, -560px) rotate(-420deg) scale(.7); }
+  42%  { opacity: 0; transform: translate(-50px, -740px) rotate(-560deg) scale(.75); }
+  100% { opacity: 0; transform: translate(-50px, -740px) rotate(-560deg) scale(.75); }
+}
+/* Humo del puro: bocanadas suaves (la versión anterior, por si se vuelve) */
 .bocanada { fill: rgba(240, 238, 232, .7); filter: blur(7px); transform-box: fill-box; transform-origin: center; opacity: 0; animation: bocanada 4.5s ease-out infinite; }
 @keyframes bocanada {
   0%   { opacity: 0; transform: translate(0, 0) scale(.3); }

@@ -163,7 +163,10 @@ const icono = (id, clase = "") => {
    para que la animación no pise el atributo transform. */
 const ANIMACION = {
   // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
-  humo: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
+  // 14 oct (prueba): una bola de papel arrugado cada 10 s; sale pequeña de la punta del puro, sube rodando, crece como
+  // una bola de nieve hasta un límite y, tras un trecho, se desvanece
+  humo: () => IMG["icono_bola-papel"] ? `<g class="bola-humo"><image href="${IMG["icono_bola-papel"].src}" x="-150" y="-150" width="300" height="300"/></g>` : ANIMACION.bocanadas(),
+  bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */

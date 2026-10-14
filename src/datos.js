@@ -32,7 +32,7 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?",
-    archivo: "En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
+    archivo: "En 1959, tras el triunfo de la Revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
     izq: { accion: "Juicio público", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Al exilio", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
@@ -117,7 +117,7 @@ const CARTAS = [
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Usted prometió elecciones. ¿Cuándo piensa celebrarlas?",
-    archivo: "Muchos regímenes surgidos de una revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.",
+    archivo: "Muchos regímenes surgidos de una Revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.",
     izq: { accion: "En seis meses", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "No hay prisa", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
   },
@@ -474,7 +474,7 @@ const CARTAS = [
     id: "desfile_anual", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.desfile_militar"] }, titulo: "El desfile del año", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Excelencia, el Ejército espera un desfile mayor que el del año pasado: más tanques, más soldados y, por tradición, caballería.",
-    archivo: "Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.",
+    archivo: "Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la Revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.",
     izq: { accion: "Desfile aún mayor.", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 8, elite: 3, pueblo: -7, crisis: 2 } },
     der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -8, elite: -3, pueblo: 7 } }
   },
@@ -821,7 +821,7 @@ const CARTAS = [
     id: "la_sequia", era: 4, tipo: "sorteo", peso: 10, titulo: "La sequía", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Padre de la Patria, la sequía ha arruinado la cosecha. Los campesinos piden ayuda y los almacenes del Ejército están llenos.",
-    archivo: "En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la revolución.",
+    archivo: "En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la Revolución.",
     izq: { accion: "Abrir los almacenes.", remate: "El Ejército comerá menos; por una vez.", efectos: { pueblo: 8, ejercito: -7 } },
     der: { accion: "Mantenerlos cerrados.", remate: "La reserva es para emergencias, no para el hambre.", efectos: { pueblo: -8, ejercito: 7 } }
   },

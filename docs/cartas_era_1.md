@@ -18,7 +18,7 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
 
-**Archivo histórico:** En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.
+**Archivo histórico:** En 1959, tras el triunfo de la Revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.
 
 ### 2. La casa del tirano
 
@@ -168,7 +168,7 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `elecciones_aplazadas`:** Protestas estudiantiles.
 
-**Archivo histórico:** Muchos regímenes surgidos de una revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.
+**Archivo histórico:** Muchos regímenes surgidos de una Revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.
 
 ### 12. Las mil flores
 

@@ -806,7 +806,7 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?",
-    archivo: "En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
+    archivo: "En 1959, tras el triunfo de la Revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
     izq: { accion: "Juicio público", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Al exilio", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
@@ -891,7 +891,7 @@ const CARTAS = [
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Usted prometió elecciones. ¿Cuándo piensa celebrarlas?",
-    archivo: "Muchos regímenes surgidos de una revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.",
+    archivo: "Muchos regímenes surgidos de una Revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.",
     izq: { accion: "En seis meses", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "No hay prisa", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
   },
@@ -1248,7 +1248,7 @@ const CARTAS = [
     id: "desfile_anual", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.desfile_militar"] }, titulo: "El desfile del año", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Excelencia, el Ejército espera un desfile mayor que el del año pasado: más tanques, más soldados y, por tradición, caballería.",
-    archivo: "Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.",
+    archivo: "Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la Revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.",
     izq: { accion: "Desfile aún mayor.", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 8, elite: 3, pueblo: -7, crisis: 2 } },
     der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -8, elite: -3, pueblo: 7 } }
   },
@@ -1595,7 +1595,7 @@ const CARTAS = [
     id: "la_sequia", era: 4, tipo: "sorteo", peso: 10, titulo: "La sequía", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Padre de la Patria, la sequía ha arruinado la cosecha. Los campesinos piden ayuda y los almacenes del Ejército están llenos.",
-    archivo: "En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la revolución.",
+    archivo: "En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la Revolución.",
     izq: { accion: "Abrir los almacenes.", remate: "El Ejército comerá menos; por una vez.", efectos: { pueblo: 8, ejercito: -7 } },
     der: { accion: "Mantenerlos cerrados.", remate: "La reserva es para emergencias, no para el hambre.", efectos: { pueblo: -8, ejercito: 7 } }
   },
@@ -2513,7 +2513,7 @@ let modoEstado = false;
 const FRASE_ESTADO = {
   nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
-  deuda: "La revolución se pagará en cómodos plazos.",
+  deuda: "La Revolución se pagará en cómodos plazos.",
   vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
   culto: "El pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
@@ -2612,14 +2612,14 @@ function anios() { return Math.floor((E.meses || 0) / 12); }
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {
   1: "Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.",
-  2: "La revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
+  2: "La Revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
   3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
 };
 /* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
 const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador-viejo" };
 /* Victoria: sobrevivir a la última era. El final al que aspira todo dictador: morir de viejo, en la cama y en el poder.
    La esquela cambia según lo que hayas decidido en la partida. */
-const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
+const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna Revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
 const EPITAFIO = [
   ["base.mausoleo_construido", "Tu cuerpo, embalsamado, recibe visitas en el mausoleo. Las colas son voluntarias."],
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],

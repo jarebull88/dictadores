@@ -262,7 +262,7 @@ Duración: entre 6 y 8 años. 24 cartas. Los efectos están en la escala pequeñ
 - **A. Abrir los almacenes.** *El Ejército comerá menos; por una vez.* Pueblo +8 · Ejército −7
 - **B. Mantenerlos cerrados.** *La reserva es para emergencias, no para el hambre.* Pueblo −8 · Ejército +7
 
-**Archivo histórico:** En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la revolución.
+**Archivo histórico:** En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la Revolución.
 
 ### 23. Los turistas
 

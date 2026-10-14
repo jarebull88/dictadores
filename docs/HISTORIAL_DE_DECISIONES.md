@@ -220,6 +220,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Una sola tipografía y solo el humo.** Los títulos pasan también a Iosevka, en negrita (Special Elite ya no se incrusta). «¡No nos decepciones!» va en negrita. Se quitan todas las mini animaciones de los personajes (teléfono, flecha, destellos, mosca, sello, piloto, gota) salvo el humo de los puros, que ahora es casi el doble de grande y sube más.
 
+**14 oct — «Revolución», siempre con mayúscula.** Se corrigen las que quedaban en minúscula (frase del estado Deuda, texto del paso a la era 3, texto de victoria y los archivos históricos: «Revolución cubana», «Revolución rusa»). Revisada la tipografía en todas las pantallas: todo el texto sale en Iosevka.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

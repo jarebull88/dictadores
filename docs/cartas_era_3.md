@@ -48,7 +48,7 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 - **A. Desfile aún mayor.** *El Pueblo debe ver que la Revolución sigue fuerte.* Ejército +8 · Élite +3 · Pueblo −7 · Crisis +2
 - **B. El mismo desfile.** *La fuerza de la Revolución no se mide en tanques.* Ejército −8 · Élite −3 · Pueblo +7
 
-**Archivo histórico:** Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.
+**Archivo histórico:** Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la Revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.
 
 ### 5. Los satélites
 

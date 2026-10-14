@@ -807,7 +807,7 @@ let modoEstado = false;
 const FRASE_ESTADO = {
   nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
-  deuda: "La revolución se pagará en cómodos plazos.",
+  deuda: "La Revolución se pagará en cómodos plazos.",
   vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
   culto: "El pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
@@ -906,14 +906,14 @@ function anios() { return Math.floor((E.meses || 0) / 12); }
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {
   1: "Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.",
-  2: "La revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
+  2: "La Revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
   3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
 };
 /* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
 const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador-viejo" };
 /* Victoria: sobrevivir a la última era. El final al que aspira todo dictador: morir de viejo, en la cama y en el poder.
    La esquela cambia según lo que hayas decidido en la partida. */
-const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
+const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna Revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
 const EPITAFIO = [
   ["base.mausoleo_construido", "Tu cuerpo, embalsamado, recibe visitas en el mausoleo. Las colas son voluntarias."],
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],

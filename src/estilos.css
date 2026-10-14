@@ -284,6 +284,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .carta.revelando .dorso { visibility: hidden; }
+.mensaje { transition: opacity .12s ease; }
+.mensaje.oculto { opacity: 0; transition: none; }
 .carta.revelando .giro { transition-duration: .56s; }
 /* Reparto al empezar: las cartas que llegan al mazo; mientras tanto, ni carta ni mazo propio */
 .pila.reparto .capa { transform: none; }

@@ -196,6 +196,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Reparto y volteo.** Al empezar la partida, las cartas llegan volando y se apilan en el mazo, como el reparto del solitario; después se descubre la primera. Cada carta nueva (decisión o estado) sale boca abajo sobre el mazo y se le da la vuelta. Con «reducir movimiento» del sistema no hay animación.
 
+**14 oct — Ajustes del reparto y del volteo.** El reparto ya no llega de todas partes girando: es una cascada diagonal, en línea recta y desde una sola esquina. El volteo se queda rápido, y la pregunta no aparece hasta que la carta se descubre.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

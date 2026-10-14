@@ -289,6 +289,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.k1 { --c-tex: var(--tex-cartulina1); }   /* cartón liso, claro */
 .carta.k2 { --c-tex: var(--tex-cartulina2); }   /* con motas */
 .carta.k3 { --c-tex: var(--tex-cartulina3); }   /* kraft */
+/* Cartas de estado: el marco es de cartulina de purpurina dorada (assets/fondos/purpurina.jpg), sin color ni pulpa encima */
+.carta.purpurina .cara { background-color: #FFF; background-image: var(--tex-purpurina); background-size: cover; background-position: center; }
 .carta:active { cursor: grabbing; }
 .ilustracion {
   flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column;

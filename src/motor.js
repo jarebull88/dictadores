@@ -180,7 +180,7 @@ const ANIMACION = {
    (La textura 5, de pulpa, va encima de todos.) */
 function cartonDe(carta, slug) {
   const p = RETRATOS[slug] || {};
-  carta.classList.remove("k1", "k2", "k3");
+  carta.classList.remove("k1", "k2", "k3", "purpurina");
   carta.classList.add("k" + (p.carton_textura || 2));
   carta.style.setProperty("--c-base", p.carton || "#D2AE7C");
 }
@@ -585,11 +585,7 @@ function ajustarRespuesta(r) {
   while (s.offsetHeight > px * 1.15 * 2 + 2 && px > 14) { px -= 1; s.style.fontSize = px + "px"; }
 }
 function pintarEleccion(dir) {
-  if (modoEstado) {                                   // la carta de estado no tiene respuestas: arrastrarla también la guarda
-    const r = $("respuesta");
-    if (r) { r.innerHTML = dir ? '<div class="texto-respuesta"><strong>Guardar</strong></div>' : ""; r.dataset.dir = dir; r.classList.toggle("visible", !!dir); }
-    return;
-  }
+  if (modoEstado) return;                             // la carta de estado no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
   const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
   const r = $("respuesta");
@@ -759,6 +755,7 @@ function mostrarCartaEstado() {
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
   cartonDe(carta, "");
+  carta.classList.add("purpurina");                  // el marco de las cartas de estado es de cartulina de purpurina
   carta.style.transition = "none"; carta.style.transform = "translateY(10px) scale(.94)"; carta.style.opacity = "0";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
@@ -1103,7 +1100,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
-    if (carta.classList.contains("volteada")) return;          // por detrás no se decide: solo se voltea
+    if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
@@ -1119,7 +1116,7 @@ function arrastrable(carta, op) {
     const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
     drag = null;
     arrastrando = false;
-    if (toque) { volver(); if (op.toque) op.toque(); return; }
+    if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(dx) < 30)) op.toque(); return; }
     if (carta.classList.contains("volteada")) { volver(); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
@@ -1133,7 +1130,8 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointerup", soltar);
   carta.addEventListener("pointercancel", cancelar);
 }
-arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, mostrar: pintarEleccion, decidir, toque: voltear });
+// La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
+arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, fija: () => modoEstado, mostrar: pintarEleccion, decidir, toque: voltear });
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */

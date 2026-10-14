@@ -190,6 +190,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Escenas para las cartas de estado.** La carta de un estado nuevo ya no enseña solo el icono: lleva un collage de papel recortado, plano y de piezas grandes, construido alrededor del icono (Gemini, 3:4, croma; los primeros intentos salían como maqueta, con muchas piezas pequeñas y volumen, y se pidió «plano, pocas piezas y grandes»). Ideas: Nacionalizaciones (todo sellado, llaves, chistera caída, retrato), Censura (bocadillos idénticos con corazones), Embargo (dedo acusador), Deuda (factura infinita, hucha rota, bombín del banquero), Vigilancia (un ojo en cada ventana, cancioncita), Culto (marcos con tu cara por todas partes), Frontera (los talentos huyen en balsa) y Alineado (marioneta). Los marcos vacíos llevan la cara del dictador de la etapa en curso, pegada por el juego. El icono queda para la casilla de abajo.
 
+**14 oct — Cartas de estado: solo se tocan y con marco de purpurina.** La carta de un estado nuevo ya no se arrastra: solo responde al toque, que la manda volando a su casilla. Su marco ya no es de cartón, sino de cartulina de purpurina dorada (textura nueva de Jorge), para distinguirlas de las cartas de decisión.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

@@ -565,6 +565,8 @@ function fichaPersonaje(cargo) {
   return `<div class="dorso"><div class="hoja"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
     `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
 }
+/* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
+const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z"/></svg>';
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
   const ilus = slug && RETRATOS[slug]
@@ -577,7 +579,7 @@ function pintarCarta(c) {
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
-    `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
+    `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
@@ -658,6 +660,7 @@ function entrarCarta(carta) {
     carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";
     return;
   }
+  vigilarReposo();
   carta.classList.add("revelando", "boca-abajo");
   // La pregunta (o la frase del estado) sale justo cuando se descubre la carta, a mitad de la vuelta
   const msg = $("mensaje"); msg.classList.add("oculto");
@@ -669,6 +672,21 @@ function entrarCarta(carta) {
   msg._revela = setTimeout(() => msg.classList.remove("oculto"), VOLTEO_MS / 2);
   carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
 }
+/* Si la carta lleva un rato quieta, hace un amago sutil de deslizar a un lado y a otro (para enseñar qué se puede hacer) */
+const REPOSO_MS = 7000;
+let reposo = null;
+function vigilarReposo() { clearTimeout(reposo); reposo = setTimeout(amagar, REPOSO_MS); }
+function amagar() {
+  const c = $("carta");
+  const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !panelAbierto && !modoEstado &&
+    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden");
+  if (quieta) {
+    c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago");
+    setTimeout(() => c.classList.remove("amago"), 1300);
+  }
+  vigilarReposo();
+}
+document.addEventListener("pointerdown", () => { if (reposo) vigilarReposo(); });
 /* Al empezar, las cartas llegan en cascada diagonal, en línea recta y desde una sola esquina, y se apilan en el mazo
    (como el reparto del solitario); después se descubre la primera. */
 function repartir() {

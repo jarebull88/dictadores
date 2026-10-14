@@ -5,7 +5,7 @@
 
 Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
 (assets/personajes/personajes.json), los iconos (assets/iconos/recortados/), el logo, las texturas de cartulina (assets/fondos/web/) y las fuentes
-(Iosevka, en prueba, para textos y títulos; antes Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
+(Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
 import base64, json, pathlib, sys
 
@@ -33,8 +33,9 @@ def iconos():
 
 def fuentes():
     css = ""
-    for familia, archivo, peso in (("Iosevka", "iosevka-latin-400-normal", 400),          # 14 oct: en prueba, más estrecha que Courier Prime
-                                   ("Iosevka", "iosevka-latin-700-normal", 700)):
+    for familia, archivo, peso in (("Courier Prime", "courier-prime-latin-400-normal", 400),   # 14 oct: se probó Iosevka y se volvió a estas
+                                   ("Courier Prime", "courier-prime-latin-700-normal", 700),
+                                   ("Special Elite", "special-elite-latin-400-normal", 400)):
         datos = base64.b64encode((RAIZ / f"assets/fuentes/{archivo}.woff2").read_bytes()).decode()
         css += ('@font-face { font-family: "%s"; font-style: normal; font-weight: %d; font-display: swap; '
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))

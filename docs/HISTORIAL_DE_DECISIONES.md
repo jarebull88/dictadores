@@ -228,6 +228,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Humo en bocanadas.** De las tres pruebas (hilo a boli, bocanadas suaves y volutas de papel de seda) Jorge elige las bocanadas. Se borran las otras dos y el humo antiguo de tres círculos.
 
+**14 oct — Vuelta atrás y pistas.** Se vuelve a Courier Prime y Special Elite (Iosevka no convenció) y los textos de encima de las cartas vuelven a ir centrados. «Abandonar partida» pasa a la derecha. Para enseñar a jugar sin explicarlo: un icono «360» semitransparente en la esquina de la cartulina (la carta se gira) y, si la carta lleva 7 segundos quieta, un amago sutil de deslizar a izquierda y derecha.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

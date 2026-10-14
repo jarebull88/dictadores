@@ -7,7 +7,7 @@ Si una fuerza llega a 0 o a 100, la partida termina.
 | Causa | Título | Texto |
 | --- | --- | --- |
 | `pueblo_0` | Revolución popular | Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae. |
-| `pueblo_100` | Transición democrática | Compraste el cariño del pueblo a base de subsidios y precios congelados. Cuando llegaron los recortes, salieron a reclamar sus «derechos»… y tu cabeza. |
+| `pueblo_100` | Transición democrática | Regalaste tanto para ganarte al pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos»… y tu cabeza. |
 | `ejercito_0` | Golpe de Estado | Sin el respaldo de las armas, un grupo de oficiales te arresta durante la madrugada. |
 | `ejercito_100` | Junta militar | Los militares controlan todo. Sigues en el palacio, pero ya no decides nada. |
 | `elite_0` | Conspiración y fuga de capitales | Los poderosos retiran su dinero y su apoyo, y financian a quien pueda sustituirte. |

@@ -31,7 +31,7 @@ const CARTAS = [
   {
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], titulo: "La casa vacía", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anteriores?",
+    texto: "Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?",
     archivo: "En 1959, tras el triunfo de la revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
     izq: { accion: "Juicio público", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Al exilio", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
@@ -855,7 +855,7 @@ const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 
 const FINALES = {
   pueblo_0:     { titulo: "Revolución popular",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
-  pueblo_100:   { titulo: "Transición democrática",           texto: "Compraste el cariño del pueblo a base de subsidios y precios congelados. Cuando llegaron los recortes, salieron a reclamar sus «derechos»… y tu cabeza." },
+  pueblo_100:   { titulo: "Transición democrática",           texto: "Regalaste tanto para ganarte al pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos»… y tu cabeza." },
   ejercito_0:   { titulo: "Golpe de Estado",                  texto: "Sin el respaldo de las armas, un grupo de oficiales te arresta durante la madrugada." },
   ejercito_100: { titulo: "Junta militar",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
   elite_0:      { titulo: "Conspiración y fuga de capitales", texto: "Los poderosos retiran su dinero y su apoyo, y financian a quien pueda sustituirte." },

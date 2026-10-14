@@ -198,6 +198,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Ajustes del reparto y del volteo.** El reparto ya no llega de todas partes girando: es una cascada diagonal, en línea recta y desde una sola esquina. El volteo se queda rápido, y la pregunta no aparece hasta que la carta se descubre.
 
+**14 oct — «Los oficiales de antes».** La opción de purga decía «Limpien los cuarteles», que no dejaba claro qué se hacía. Ahora es «¡Al paredón!». «Jubílenlos» se queda.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

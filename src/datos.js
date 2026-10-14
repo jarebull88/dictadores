@@ -120,7 +120,7 @@ const CARTAS = [
     texto: "Los oficiales del antiguo régimen siguen en sus puestos. ¿Qué hacemos?",
     archivo: "En la Unión Soviética, entre 1937 y 1938, la Gran Purga alcanzó al Ejército Rojo. Altos mandos como Tujachevski fueron juzgados y ejecutados, y buena parte del cuerpo de oficiales fue depurado.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: 7, elite: 4, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "Limpien los cuarteles", efectos: { ejercito: -7, potencias: -4 }, banderas: ["base.purga_inicial"] }
+    der: { accion: "¡Al paredón!", efectos: { ejercito: -7, potencias: -4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado", ilustracion: null,

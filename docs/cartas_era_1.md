@@ -164,7 +164,7 @@ Duración: entre 6 y 8 años. 19 cartas. Los efectos están en la escala pequeñ
 **Carta:** «Los oficiales del antiguo régimen siguen en sus puestos. ¿Qué hacemos?»
 
 - **A. Jubílenlos** Ejército +7 · Élite +4 · Crisis +1 · Bandera: `viejos_oficiales`
-- **B. Limpien los cuarteles** Ejército −7 · Potencias −4 · Bandera: `purga_inicial`
+- **B. ¡Al paredón!** Ejército −7 · Potencias −4 · Bandera: `purga_inicial`
 
 **Consecuencia futura de `viejos_oficiales`:** Conspiración de oficiales retirados.
 

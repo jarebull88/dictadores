@@ -544,6 +544,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 #screen-end.caida .fin-anios { display: block; }
 #screen-end.caida .fin-cab { flex: none; display: grid; gap: 6px; justify-items: center; align-content: center; text-align: center; }
 body.carta-medida #screen-end.caida .fin-cab { height: var(--cabecera-h); overflow: hidden; }
+/* Los textos de arriba, del ancho de la carta (como en la partida) */
+body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { width: var(--carta-w); max-width: 100%; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { grid-template-columns: minmax(0, 1fr); }
+body.carta-medida #screen-era .cabecera-carta h1 { font-size: min(calc(var(--carta-w) * .088), 46px); }
+body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(--carta-w) * .15), 56px); }
 #screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones, #screen-end.caida #fin-lineas { display: none; }
 #screen-end.caida .relato { justify-self: stretch; text-align: left; font-size: 15px; line-height: 1.35; }
 .carta-caida .ilustracion { align-items: center; justify-content: center; }
@@ -2708,6 +2713,7 @@ function continuarEra() {
   siguiente();
 }
 
+const SUJETO_FUERZA = { pueblo: ["El pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
   panelAbierto = false;
@@ -2727,9 +2733,10 @@ function terminar(clave, transicion) {
     const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
     $("fin-principal").textContent = "¡Has caído!";
     $("fin-titulo").textContent = f.titulo;
-    $("fin-texto").textContent = f.texto;
-    caja.textContent = `${FUERZAS[idF].nombre} llegó al ${extremo === 100 ? "máximo" : "mínimo"}.`;
-    caja.classList.remove("hidden");
+    // Un solo párrafo para ahorrar sitio: «Las potencias llegaron al máximo.» en negrita y, seguido, el relato
+    const [sujeto, verbo] = SUJETO_FUERZA[idF];
+    $("fin-texto").innerHTML = `<b>${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.</b> ${esc(f.texto)}`;
+    caja.textContent = ""; caja.classList.add("hidden");
     pintarCartaFin(f.titulo);
     $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta, como en «Sigues en el poder»
   } else if (victoria) {
@@ -3096,6 +3103,7 @@ $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
+colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
 /* «Cómo jugar»: ventana con las instrucciones */
 function abrirComoJugar() {

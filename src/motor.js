@@ -955,6 +955,7 @@ function continuarEra() {
   siguiente();
 }
 
+const SUJETO_FUERZA = { pueblo: ["El pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
   panelAbierto = false;
@@ -974,9 +975,10 @@ function terminar(clave, transicion) {
     const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
     $("fin-principal").textContent = "¡Has caído!";
     $("fin-titulo").textContent = f.titulo;
-    $("fin-texto").textContent = f.texto;
-    caja.textContent = `${FUERZAS[idF].nombre} llegó al ${extremo === 100 ? "máximo" : "mínimo"}.`;
-    caja.classList.remove("hidden");
+    // Un solo párrafo para ahorrar sitio: «Las potencias llegaron al máximo.» en negrita y, seguido, el relato
+    const [sujeto, verbo] = SUJETO_FUERZA[idF];
+    $("fin-texto").innerHTML = `<b>${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.</b> ${esc(f.texto)}`;
+    caja.textContent = ""; caja.classList.add("hidden");
     pintarCartaFin(f.titulo);
     $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta, como en «Sigues en el poder»
   } else if (victoria) {
@@ -1343,6 +1345,7 @@ $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
+colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
 /* «Cómo jugar»: ventana con las instrucciones */
 function abrirComoJugar() {

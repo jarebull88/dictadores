@@ -33,7 +33,7 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
   j.w.eval("E.ultimaDecision='Juicio público.'; terminar('ejercito_0')");
   assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
   assert.equal(j.$("fin-titulo").textContent, "Extracción nocturna");
-  assert.match(j.$("fin-fuerza").textContent, /Ejército llegó al mínimo/);
+  assert.match(j.$("fin-texto").textContent, /^El ejército llegó al mínimo\. /);
   assert.ok(j.d.querySelector("#carta-fin .titulo-caida"), "la causa va en una carta");
 });
 

@@ -216,6 +216,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Reverso por etapas.** El reverso lleva la pulpa de la textura 5, como el anverso, y un color por etapa: verde (Ascenso), azul (Consolidación), dorado (Culto) y lavanda (Ocaso). El dibujo a boli ya no va en azul: es del mismo tono que la carta, algo más intenso, para que sea sutil.
 
+**14 oct — «¡Has caído!» más compacto.** «X llegó al máximo» y el relato van en un solo párrafo, la primera frase en negrita, y con concordancia: «El pueblo llegó…», «El ejército llegó…», «Las élites llegaron…», «Las potencias llegaron…». Los textos de arriba de esta pantalla (y de las del nombre y el paso de era) se alinean con la carta. El mazo de la pantalla del nombre ya tiene el reverso verde de la primera etapa.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

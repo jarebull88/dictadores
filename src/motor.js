@@ -571,6 +571,7 @@ function pintarCarta(c) {
     : `<div class="ph"><b>Sin retrato</b></div>`;
   $("mensaje").textContent = c.texto;
   ajustarMensaje();
+  if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
@@ -615,6 +616,7 @@ function empezar() {
   nuevaPartida();
   construirBarras();
   mostrar("screen-game");
+  medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
   $("nombre-dictador").textContent = nombreCompleto();
   E.avisoPendiente = null;
   E.archivoPendiente = null;

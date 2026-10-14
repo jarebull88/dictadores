@@ -210,6 +210,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Respaldo cuando se acaban las cartas.** Con tres cartas iniciales, muchas cartas de la era 2 que dependían de las banderas de «La casa vacía» dejaron de estar siempre disponibles, y en 1 de cada pocos miles de partidas una era se quedaba sin carta (falló la publicación en GitHub Pages por eso). Ahora, si no queda ninguna carta nueva, se repite la de esa era que hace más tiempo que salió. En 12 000 partidas simuladas: ningún hueco.
 
+**14 oct — Todo alineado con la carta.** En móviles donde la carta no ocupa todo el ancho, la pregunta y el pie se salían de sus bordes y se veía desencajado. Ahora las barras, la pregunta, el nombre y las cuatro casillas empiezan y acaban justo donde la carta.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

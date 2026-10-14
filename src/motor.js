@@ -414,7 +414,7 @@ function medirCartaJuego() {
 window.addEventListener("resize", medirCartaJuego);
 
 function mostrar(id) {
-  if (id === "screen-name" || id === "screen-era") medirCartaJuego();
+  if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   ocultarAvisoArchivo();
@@ -862,16 +862,18 @@ function terminar(clave, transicion) {
   pantalla.classList.toggle("victoria", victoria);
   pantalla.classList.toggle("transicion", !!transicion);
   const caja = $("fin-fuerza");
+  pantalla.classList.toggle("pantalla-carta", !!clave);
+  pantalla.classList.toggle("pantalla-texto", !clave);
   if (clave) {
+    /* Caída: «¡Has caído!», qué fuerza cayó, el relato y la causa en una carta (derecha = jugar de nuevo, izquierda = archivo) */
     const f = FINALES[clave];
     const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
     $("fin-principal").textContent = "¡Has caído!";
     $("fin-titulo").textContent = f.titulo;
     $("fin-texto").textContent = f.texto;
-    caja.innerHTML = parBarra(idF, 1.6) +
-      `<p><strong>${esc(FUERZAS[idF].nombre)}</strong> llegó al ${extremo === 100 ? "máximo" : "mínimo"}.${E.ultimaDecision ? `<small>Tu última decisión: «${esc(E.ultimaDecision)}»</small>` : ""}</p>`;
-    caja.querySelector(".relleno").style.width = extremo + "%";
+    caja.textContent = `${FUERZAS[idF].nombre} llegó al ${extremo === 100 ? "máximo" : "mínimo"}.`;
     caja.classList.remove("hidden");
+    pintarCartaFin(f.titulo);
   } else if (victoria) {
     $("fin-principal").textContent = "¡Has ganado!";
     $("fin-titulo").textContent = "Moriste en tu cama, y en el poder";
@@ -889,10 +891,6 @@ function terminar(clave, transicion) {
     ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
   $("btn-repetir").classList.toggle("hidden", !!transicion);
-  $("fin-cuadro").innerHTML =
-    `<div class="fila"><span>Dictador</span><span>${esc(nombreCompleto())}</span></div>` +
-    `<div class="fila"><span>Has gobernado</span><span>${n} ${n === 1 ? "año" : "años"}</span></div>` +
-    BARRAS.map(b => `<div class="fila"><span>${b.nombre}</span><span>${E.barras[b.id]}</span></div>`).join("");
 
   const cajaArch = $("fin-archivo");
   cajaArch.innerHTML = "";
@@ -923,13 +921,40 @@ function terminar(clave, transicion) {
   const lineas = transicion ? estadoPais.slice(0, 2).concat(teEspera).slice(0, 4) : estadoPais;
   $("fin-lineas").innerHTML = clave || victoria ? "" : lineas.map(t => `<li>${esc(t)}</li>`).join("");
 
-  const pend = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) > E.era).map(b => `<li>${FUTURO[b]}</li>`);
-  const colaTxt = E.cola.map(q => POR_ID[q.carta]).filter(Boolean).map(c => `<li>Te espera una carta: ${c.titulo}.</li>`);
-  const todo = transicion || victoria ? [] : colaTxt.concat(pend);
-  $("fin-pendiente").innerHTML = todo.length
-    ? `<h3>Lo que dejas pendiente para las siguientes eras</h3><ul>${todo.join("")}</ul>` : "";
+  if (clave) $("fin-archivo").innerHTML = "";        // al caer, el archivo está en la carta (izquierda)
   mostrar("screen-end");
 }
+
+/* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = archivo histórico ---------- */
+let finOcupada = false;
+function pintarCartaFin(titulo) {
+  const carta = $("carta-fin");
+  finOcupada = false;
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  cartonDe(carta, "");
+  carta.innerHTML = `<div class="giro"><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
+    `<div class="titulo-caida">${esc(titulo)}</div><div class="respuesta"></div></div></div></div>`;
+  void carta.offsetWidth; carta.style.transition = "";
+}
+function eleccionFin(dir) {
+  const r = $("carta-fin").querySelector(".respuesta");
+  if (!r) return;
+  if (!dir) { r.classList.remove("visible"); return; }
+  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Jugar de nuevo" : "Archivo histórico"}</strong></div>`;
+  r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible");
+}
+function decidirFin(dir) {
+  if (finOcupada) return;
+  finOcupada = true;
+  const carta = $("carta-fin");
+  eleccionFin(dir);
+  carta.style.transition = "";
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
+  carta.style.opacity = "0";
+  setTimeout(() => { if (dir > 0) empezar(); else { abrirArchivo("screen-end"); pintarCartaFin($("fin-titulo").textContent); } }, 240);
+}
+arrastrable($("carta-fin"), { activa: () => !finOcupada, mostrar: eleccionFin, decidir: decidirFin });
 
 /* ---------- Archivo histórico ---------- */
 function pintarArchivo() {
@@ -1122,11 +1147,43 @@ function mostrarEra() {
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = parrafoEra();
   const slug = DICTADOR_ERA[E.era + 1];
-  cartonDe($("carta-era"), slug);
-  $("carta-era").innerHTML = slug
-    ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}</div></div></div>` : "";
+  const carta = $("carta-era");
+  eraOcupada = false;
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  cartonDe(carta, slug);
+  carta.innerHTML = slug
+    ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}<div class="respuesta"></div></div></div></div>` : "";
+  void carta.offsetWidth; carta.style.transition = "";
   mostrar("screen-era");
 }
+/* Seguir o retirarse, con frases de cada paso de era (la clave es la era que empieza) */
+const FRASES_ERA = {
+  2: { seguir: "La Revolución no ha terminado", dejar: "Convocar elecciones" },
+  3: { seguir: "El pueblo me necesita", dejar: "Retirarme a tiempo" },
+  4: { seguir: "Aún me queda cuerda", dejar: "Ceder el testigo" }
+};
+let eraOcupada = false;
+function eleccionEra(dir) {
+  const r = $("carta-era").querySelector(".respuesta");
+  if (!r) return;
+  if (!dir) { r.classList.remove("visible"); return; }
+  const f = FRASES_ERA[E.era + 1] || FRASES_ERA[2];
+  r.innerHTML = `<div class="texto-respuesta"><strong>${esc(dir > 0 ? f.seguir : f.dejar)}</strong></div>`;
+  r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible");
+}
+/* Derecha: seguir gobernando. Izquierda: te retiras y vuelves a la portada */
+function decidirEra(dir) {
+  if (eraOcupada) return;
+  eraOcupada = true;
+  const carta = $("carta-era");
+  eleccionEra(dir);
+  carta.style.transition = "";
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
+  carta.style.opacity = "0";
+  setTimeout(() => { if (dir > 0) continuarEra(); else mostrar("screen-start"); }, 240);
+}
+arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra });
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
@@ -1136,6 +1193,8 @@ document.addEventListener("keydown", e => {
     else ocultarInfo();
     return;
   }
+  if (!$("screen-era").classList.contains("hidden")) { if (e.key === "ArrowLeft") decidirEra(-1); if (e.key === "ArrowRight") decidirEra(1); return; }
+  if (!$("screen-end").classList.contains("hidden") && $("screen-end").classList.contains("caida")) { if (e.key === "ArrowLeft") decidirFin(-1); if (e.key === "ArrowRight") decidirFin(1); return; }
   if (!$("screen-name").classList.contains("hidden")) {
     if (document.activeElement === $("input-nombre")) return;      // escribiendo: las flechas mueven el cursor
     if (e.key === "ArrowLeft") decidirNombre(-1);
@@ -1159,9 +1218,7 @@ $("aviso-archivo").addEventListener("click", ev => {
   const c = POR_ID[$("aviso-archivo").dataset.id];
   if (c) abrirPopup("archivo-" + c.id, contenidoArchivo(c), $("aviso-archivo"));
 });
-$("btn-continuar").addEventListener("click", continuarEra);
 $("btn-repetir").addEventListener("click", empezar);
-$("btn-cambiar-nombre").addEventListener("click", irANombre);
 $("btn-fin-archivo").addEventListener("click", () => abrirArchivo("screen-end"));
 $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 

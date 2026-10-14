@@ -475,17 +475,19 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 
 /* ---------- Pantalla final: el mensaje principal es lo más grande ---------- */
 #screen-end h1.fin-principal { font-size: clamp(52px, 16vw, 88px); line-height: .95; margin: 0; animation: golpe .55s cubic-bezier(.2, .9, .3, 1.2); }
-#screen-end.caida h1.fin-principal { color: var(--rojo); font-size: min(13vw, 64px); white-space: nowrap; }
+#screen-end.caida h1.fin-principal { color: var(--rojo); font-size: min(12vw, 56px); white-space: nowrap; animation: none; }
 #screen-end h2.fin-causa { font-size: clamp(26px, 8vw, 36px); line-height: 1.1; margin: 0; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
-.fin-fuerza { display: flex; align-items: center; gap: 18px; padding: 14px 16px; border: 2px solid var(--rojo); background: var(--rojo-claro); color: var(--tinta); }
-.fin-fuerza .par { flex: none; width: 110px; gap: 10px; }
-.fin-fuerza .par .icono-fuerza { height: 52px; }
-.fin-fuerza .alerta { display: flex; animation: none; top: 0; right: 4px; }
-.fin-fuerza .nivel { height: 14px; }
-.fin-fuerza .nivel .relleno { transition: none; animation: none; }
-.fin-fuerza p { margin: 0; font-size: 16px; line-height: 1.4; }
-.fin-fuerza p strong { font-weight: 700; }
-.fin-fuerza p small { display: block; margin-top: 4px; font-size: 14px; }
+.fin-fuerza { margin: 0; font-size: 17px; font-weight: 700; }
+.fin-fuerza:empty { display: none; }
+/* Caída: cabecera en el hueco de las barras y la pregunta; sin título de la causa (va en la carta) ni divisor */
+.fin-escenario { display: none; }
+#screen-end.caida .fin-escenario { display: flex; }
+#screen-end.caida .fin-cab { flex: none; display: grid; gap: 6px; justify-items: center; align-content: center; text-align: center; }
+body.carta-medida #screen-end.caida .fin-cab { height: var(--cabecera-h); overflow: hidden; }
+#screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones, #screen-end.caida #fin-lineas { display: none; }
+#screen-end.caida .relato { font-size: 15px; line-height: 1.35; }
+.carta-caida .ilustracion { align-items: center; justify-content: center; }
+.titulo-caida { padding: 0 10%; text-align: center; font-family: var(--fuente-titulo); font-size: 34px; line-height: 1.1; color: var(--bloque); text-shadow: 0 1px 1px rgba(0, 0, 0, .5); }
 @keyframes golpe { from { opacity: 0; transform: scale(1.18); } to { opacity: 1; transform: none; } }
 #fin-archivo:empty { display: none; }
 /* Victoria: «¡Has ganado!» en tinta y una esquela de periódico con lo que deja el dictador */

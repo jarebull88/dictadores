@@ -31,7 +31,7 @@ function jugarPartida(j, { maxPasos = 160 } = {}) {
   const resumen = { transiciones: 0, cae: false, principal: "" };
   for (let n = 0; n < maxPasos; n++) {
     if (visible("screen-game")) { tecla(Math.random() < 0.5 ? -1 : 1); continue; }
-    if (visible("screen-era")) { resumen.transiciones++; $("btn-continuar").click(); continue; }
+    if (visible("screen-era")) { resumen.transiciones++; w.eval("decidirEra(1)"); continue; }
     if (visible("screen-end")) {
       resumen.cae = $("screen-end").classList.contains("caida");
       resumen.principal = $("fin-principal").textContent;

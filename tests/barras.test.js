@@ -34,7 +34,7 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
   assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
   assert.equal(j.$("fin-titulo").textContent, "Golpe de Estado");
   assert.match(j.$("fin-fuerza").textContent, /Ejército llegó al mínimo/);
-  assert.match(j.$("fin-fuerza").textContent, /Juicio público/);
+  assert.ok(j.d.querySelector("#carta-fin .titulo-caida"), "la causa va en una carta");
 });
 
 test("al pasar de era sale «Sigues en el poder» y al sobrevivir a la última, «¡Has ganado!»", () => {

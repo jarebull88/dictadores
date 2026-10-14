@@ -21,8 +21,8 @@ test("el paso de era conserva barras y cambia la numeración de años", () => {
   const j = cargar();
   j.empezar();
   j.w.eval("E.barras={pueblo:58,ejercito:46,elite:55,potencias:40}; E.turno=finEra()+1; finDeEra();");
-  assert.ok(j.visible("btn-continuar"), "debería haber botón de continuar");
-  j.$("btn-continuar").click();
+  assert.ok(j.visible("screen-era"), "debería poder seguir gobernando");
+  j.w.eval("decidirEra(1)");
   assert.equal(j.w.eval("E.era"), 2);
   assert.equal(j.w.eval("E.barras.pueblo"), 58);
   assert.equal(j.w.eval("E.inicioEra"), j.w.eval("E.turno"));
@@ -33,10 +33,10 @@ test("al pasar a la era 3 el tratamiento cambia de «Comandante» a «Excelencia
   j.empezar();
   assert.match(j.$("nombre-dictador").textContent, /^Comandante /);
   j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
-  j.$("btn-continuar").click();
+  j.w.eval("decidirEra(1)");
   j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
-  assert.ok(j.visible("btn-continuar"), "debería haber paso a la era 3");
-  j.$("btn-continuar").click();
+  assert.ok(j.visible("screen-era"), "debería haber paso a la era 3");
+  j.w.eval("decidirEra(1)");
   assert.equal(j.w.eval("E.era"), 3);
   assert.match(j.$("nombre-dictador").textContent, /^Excelencia /);
 });
@@ -46,7 +46,7 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
   j.empezar();
   for (let era = 1; era <= 3; era++) {
     j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
-    j.$("btn-continuar").click();
+    j.w.eval("decidirEra(1)");
   }
   assert.equal(j.w.eval("E.era"), 4);
   assert.match(j.$("nombre-dictador").textContent, /, Padre de la Patria$/);
@@ -66,7 +66,7 @@ test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el di
   assert.match(j.$("era-anios").textContent, /^Has gobernado \d+ años?$/);
   assert.ok(j.$("era-texto").textContent.length > 40, "falta el párrafo");
   assert.ok(j.d.querySelector("#carta-era svg.personaje"), "falta el dictador en la carta");
-  j.$("btn-continuar").click();
+  j.w.eval("decidirEra(1)");
   assert.ok(j.visible("screen-game"));
   assert.equal(j.w.eval("E.era"), 2);
 });

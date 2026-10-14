@@ -77,25 +77,28 @@
     </div>
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa"></div></div>
-      <div class="carta carta-fija" id="carta-era" aria-hidden="true"></div>
+      <div class="carta" id="carta-era" role="group" aria-label="Arrastra a la derecha para seguir gobernando o a la izquierda para retirarte"></div>
     </div>
-    <button class="modo principal boton-pie" id="btn-continuar" type="button"><b>Seguir gobernando</b></button>
   </section>
 
   <section id="screen-end" class="screen pantalla-texto hidden">
-    <h1 class="titulo fin-principal" id="fin-principal"></h1>
-    <h2 class="titulo fin-causa" id="fin-titulo"></h2>
-    <div class="fin-fuerza hidden peligro" id="fin-fuerza"></div>
-    <p class="relato" id="fin-texto"></p>
+    <div class="fin-cab">
+      <h1 class="titulo fin-principal" id="fin-principal"></h1>
+      <h2 class="titulo fin-causa" id="fin-titulo"></h2>
+      <p class="fin-fuerza" id="fin-fuerza"></p>
+      <p class="relato" id="fin-texto"></p>
+    </div>
+    <!-- Al caer: la causa en una carta; derecha = jugar de nuevo, izquierda = archivo histórico -->
+    <div class="escenario fin-escenario">
+      <div class="pila" aria-hidden="true"><div class="capa"></div></div>
+      <div class="carta" id="carta-fin" role="group" aria-label="Arrastra a la derecha para jugar de nuevo o a la izquierda para ver el archivo histórico"></div>
+    </div>
     <div class="esquela" id="fin-esquela"></div>
-    <div class="cuadro" id="fin-cuadro"></div>
     <ul class="lineas" id="fin-lineas"></ul>
     <div id="fin-archivo"></div>
-    <div class="pendiente" id="fin-pendiente"></div>
-    <div class="acciones">
+    <div class="acciones" id="fin-acciones">
       <button class="modo principal" id="btn-repetir" type="button"><b>Jugar de nuevo</b></button>
       <button class="modo" id="btn-fin-archivo" type="button"><b>Archivo histórico</b></button>
-      <button class="enlace" id="btn-cambiar-nombre" type="button">Cambiar de nombre</button>
     </div>
   </section>
 

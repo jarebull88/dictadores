@@ -737,7 +737,8 @@ function mostrarAvisoPendiente() {
 let modoEstado = false;
 /* Frase que va escrita «a boli» en la carta de cada estado, bajo su nombre. Las que faltan, pendientes de Jorge. */
 const FRASE_ESTADO = { nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
-  embargo: "La culpa de todo, por fin, tiene nombre.", deuda: "Que paguen los nietos. Ya lo dijiste." };
+  embargo: "La culpa de todo, por fin, tiene nombre.", deuda: "Que paguen los nietos. Ya lo dijiste.",
+  vigilancia: "En cada barrio, Revolución." };
 const FONDO_ESTADO = { censura: "#9C3B33", vigilancia: "#D8C77A", culto: "#5A3F7A", alineado: "#B9604F",
   embargo: "#4F6F8F", frontera: "#6E8F55", nacionalizado: "#C9A447", deuda: "#3F6E63" };
 function mostrarCartaEstado() {

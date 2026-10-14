@@ -8,6 +8,7 @@
     python3 tools/recortar.py fondos
     python3 tools/recortar.py dibujos
     python3 tools/recortar.py carton
+    python3 tools/recortar.py escenas
 
 Entrada:  assets/personajes/originales/<slug>.jpg   y   assets/iconos/originales/hoja-*.jpg
 Entrada:  assets/logo/originales/logo.jpg (letras de papel y tela recortadas, para la portada)
@@ -233,6 +234,68 @@ def recortar_carton(entrada, salida):
     lienzo.save(salida, "WEBP", quality=86, method=6)
 
 
+# Escenas de las cartas de estado (14 oct): collage de papel alrededor del icono, 3:4, sobre croma.
+# Los marcos vacíos (papel crema) llevan dentro la cara del dictador de la etapa: aquí se da un punto de cada
+# hueco (en píxeles del original) y el giro del marco; el hueco visible se busca por color y se guarda como máscara.
+ANCHO_ESCENA = 900
+MARCOS = {
+    "nacionalizado": [((520, 1330), -11.5)],
+    "culto": [((600, 500), -10.5), ((1300, 500), 8), ((420, 1000), -12), ((1300, 1000), 12), ((1500, 1200), 9)],
+}
+
+def recortar_escena(entrada, salida, marcos):
+    im = Image.open(entrada).convert("RGB")
+    W, H = im.size
+    a = np.array(im).astype(float)
+    # Aquí hay papel verde de verdad (hojas de laurel, casas menta): en vez de «cuánto domina el verde» se mide la
+    # distancia al color del croma de esta imagen (medido en las esquinas), y el rebote solo se quita en el borde.
+    fondo = np.median(np.concatenate([a[:40, :40].reshape(-1, 3), a[:40, -40:].reshape(-1, 3), a[-40:, :40].reshape(-1, 3), a[-40:, -40:].reshape(-1, 3)]), 0)
+    dist = np.sqrt(((a - fondo) ** 2).sum(-1))
+    alpha = np.clip((dist - 70) / (130 - 70), 0, 1)
+    # Las sombras sobre el croma son verde oscuro (lejos del color de fondo, pero casi solo verde): también fuera
+    cuota = a[..., 1] / (a.sum(-1) + 1)
+    alpha = np.minimum(alpha, np.clip((0.80 - cuota) / (0.80 - 0.62), 0, 1))
+    fg = alpha > 0.5
+    lab_, n_ = ndi.label(fg)
+    tam = ndi.sum(fg, lab_, range(1, n_ + 1))
+    keep = np.isin(lab_, [i + 1 for i, t in enumerate(tam) if t > 3000])
+    alpha = np.where(ndi.binary_dilation(keep, iterations=3), alpha, 0)
+    borde = ndi.binary_dilation(alpha < 0.98, iterations=6)    # el rebote verde (y el de la pelusa de los limpiapipas) vive cerca del borde
+    g2 = np.where(borde, np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6), a[..., 1])
+    rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
+    k = ANCHO_ESCENA / W
+    out = Image.fromarray(rgba).resize((ANCHO_ESCENA, round(H * k)), Image.LANCZOS)
+    out.save(salida, "WEBP", quality=86, method=6)
+    if not marcos:
+        return out.size, []
+    # Papel crema: claro, poco saturado y algo cálido (no el blanco puro de los sellos)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    crema = ((r + g + b) / 3 > 195) & (a.max(-1) - a.min(-1) < 50) & (r - b > 10)
+    crema = ndi.binary_opening(crema, iterations=3)
+    lab, _ = ndi.label(crema)
+    hueco = np.zeros_like(crema)
+    datos = []
+    for (x, y), giro in marcos:
+        n = lab[y, x]
+        if not n:
+            raise SystemExit(f"{entrada.name}: el punto {(x, y)} no cae en papel crema")
+        m = ndi.binary_fill_holes(lab == n)
+        hueco |= m
+        # Rectángulo del hueco visible en los ejes del marco (girado)
+        ys, xs = np.nonzero(m)
+        t = np.radians(giro)
+        u = xs * np.cos(t) + ys * np.sin(t)
+        v = -xs * np.sin(t) + ys * np.cos(t)
+        u0, u1, v0, v1 = np.percentile(u, 0.5), np.percentile(u, 99.5), np.percentile(v, 0.5), np.percentile(v, 99.5)
+        uc, vc = (u0 + u1) / 2, (v0 + v1) / 2
+        cx, cy = uc * np.cos(t) - vc * np.sin(t), uc * np.sin(t) + vc * np.cos(t)
+        datos.append({"x": round(cx * k, 1), "y": round(cy * k, 1), "w": round((u1 - u0) * k, 1), "h": round((v1 - v0) * k, 1), "giro": giro})
+    hueco = ndi.binary_dilation(hueco, iterations=2)
+    mascara = Image.fromarray((hueco * 255).astype(np.uint8)).resize(out.size, Image.LANCZOS)
+    mascara.save(salida.with_name(salida.stem.replace("-escena", "-huecos") + ".webp"), "WEBP", quality=80, method=6)
+    return out.size, datos
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
     if que in ("todo", "personajes"):
@@ -256,6 +319,15 @@ def main():
             nombre = f.stem[len("carton-"):] + "-carton"
             recortar_carton(f, dst / f"{nombre}.webp")
             print(f"cartón {nombre}: {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
+    if que in ("todo", "escenas"):
+        dst = RAIZ / "assets/iconos/recortados"
+        info = {}
+        for f in sorted((RAIZ / "assets/iconos/originales").glob("escena-*.jpg")):
+            id = f.stem[len("escena-"):]
+            (w, h), marcos = recortar_escena(f, dst / f"{id}-escena.webp", MARCOS.get(id))
+            info[id] = {"ancho": w, "alto": h, "marcos": marcos}
+            print(f"escena {id}: {w}×{h}, {len(marcos)} marcos, {(dst / f'{id}-escena.webp').stat().st_size // 1024} KB")
+        (RAIZ / "assets/iconos/escenas.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
     if que in ("todo", "fondos"):
         aligerar_fondos(RAIZ / "assets/fondos")
     if que in ("todo", "logo"):

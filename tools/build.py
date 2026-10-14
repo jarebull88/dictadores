@@ -58,7 +58,8 @@ def main():
     motor = leer("src/motor.js")
     activos = ('<script>\n/* Personajes e iconos de papel recortado (WebP con transparencia, incrustados) */\nconst RETRATOS = '
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
-               + json.dumps(iconos(), ensure_ascii=False) + ';\n</script>\n')
+               + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
+               + leer("assets/iconos/escenas.json").strip() + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

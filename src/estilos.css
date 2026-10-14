@@ -308,6 +308,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .6); transform: rotate(-1.5deg);
 }
 .etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: min(24px, 6.4vw); line-height: 1.1; }   /* título a máquina */
+/* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
+.carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
+.carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
+.carta-estado .escena .ojos-fijos { fill: #161618; }
+.carta-estado .escena + .etiqueta-boli { position: absolute; left: 8%; bottom: 5%; }
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */

@@ -762,12 +762,36 @@ function mostrarCartaEstado() {
   carta.style.transition = "none"; carta.style.transform = "translateY(10px) scale(.94)"; carta.style.opacity = "0";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
-    `<div class="icono-grande">${icono(n.id)}</div>` +
+    (svgEscena(n.id) || `<div class="icono-grande">${icono(n.id)}</div>`) +
     `<div class="etiqueta-boli"><b>${esc(d.nombre)}</b></div>` +
     `<div class="respuesta" id="respuesta"></div></div></div></div>`;
   void carta.offsetWidth;
   carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";
   pintarRanuras();
+}
+/* Escena de la carta de estado (collage de papel alrededor de su icono). Los marcos vacíos llevan la cara del
+   dictador de la etapa en curso; la máscara de huecos (papel crema visible) la recorta donde algo tapa el marco. */
+const dictadorDeEra = era => DICTADOR_ERA[era] || "dictador-joven";
+function svgEscena(id) {
+  const e = typeof ESCENAS !== "undefined" && ESCENAS[id], img = IMG["icono_" + id + "-escena"];
+  if (!e || !img) return "";
+  let caras = "";
+  const huecos = IMG["icono_" + id + "-huecos"];
+  if (e.marcos.length && huecos) {
+    const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
+    const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+    const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
+    const vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;     // cabeza y hombros
+    const retrato = (m, i) => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
+      `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vista}" preserveAspectRatio="xMidYMid slice">` +
+      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>` +
+      `<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
+      `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></g>`;
+    caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
+      `<g mask="url(#huecos-${id})">${e.marcos.map(retrato).join("")}</g>`;
+  }
+  return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}" role="img" aria-label="${esc(ESTADOS[id].nombre)}">` +
+    `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}</svg>`;
 }
 /* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
 function recogerEstado() {

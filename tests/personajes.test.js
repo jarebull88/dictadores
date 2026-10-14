@@ -1,18 +1,18 @@
-// Personajes de papel recortado: ojos que se mueven solos, una mini animación por personaje y la ilustración entera.
+// Personajes de papel recortado: ojos que se mueven solos, el humo del puro en los que fuman y la ilustración entera.
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar } = require("./_juego");
 
-test("cada personaje tiene dos ojos animados y su mini animación", () => {
+test("cada personaje tiene dos ojos animados y, si fuma, su humo", () => {
   const j = cargar(); j.empezar();
   const retratos = j.w.eval("RETRATOS"), tipos = Object.keys(j.w.eval("ANIMACION"));
   for (const slug of Object.keys(retratos)) {
-    const a = retratos[slug].animacion;
-    assert.ok(a && tipos.includes(a.tipo), `«${slug}» no tiene una animación conocida`);
+    const a = retratos[slug].animacion;     // 14 oct: solo los que fuman tienen animación (el humo del puro)
+    assert.ok(!a || tipos.includes(a.tipo), `«${slug}» tiene una animación desconocida`);
     j.d.querySelector("#carta").innerHTML = j.w.eval(`svgPersonaje("${slug}")`);
     const ojos = j.d.querySelector("#carta .ojos");
     assert.equal(ojos.querySelectorAll("circle").length, 2, `«${slug}» no tiene dos ojos`);
     assert.match(ojos.getAttribute("style") || "", /animation-delay/, `los ojos de «${slug}» no tienen desfase`);
-    assert.ok(j.d.querySelector(`#carta .animacion.anim-${a.tipo}`), `«${slug}» no pinta su animación`);
+    if (a) assert.ok(j.d.querySelector(`#carta .animacion.anim-${a.tipo}`), `«${slug}» no pinta su animación`);
   }
 });
 

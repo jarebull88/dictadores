@@ -162,19 +162,9 @@ const icono = (id, clase = "") => {
    personajes.json ("animacion"). La colocación va en el grupo padre y el movimiento (CSS) en el hijo,
    para que la animación no pise el atributo transform. */
 const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/><circle cx="-7" cy="-34" r="10"/>';
-const ESTRELLA = '<path d="M0 -26 C3 -6 6 -3 26 0 C6 3 3 6 0 26 C-3 6 -6 3 -26 0 C-6 -3 -3 -6 0 -26Z"/>';
 const ANIMACION = {
-  humo:     () => `<g class="humo humo1">${VOLUTA}</g><g class="humo humo2">${VOLUTA}</g>`,
-  timbre:   () => '<g class="timbre">' +
-              '<path d="M-78 -40 q-14 22 0 44 M-98 -52 q-20 34 0 68 M78 -40 q14 22 0 44 M98 -52 q20 34 0 68"/></g>',
-  flecha:   () => '<g class="flecha"><path d="M-14 4 L14 -22 L18 10 Z"/></g>',
-  destello: () => `<g class="destello">${ESTRELLA}</g>`,
-  mosca:    () => '<g class="mosca"><g class="mosca-cuerpo" transform="scale(2.4)"><ellipse class="ala" cx="-5" cy="-7" rx="7" ry="4" transform="rotate(-30)"/>' +
-              '<ellipse class="ala" cx="5" cy="-7" rx="7" ry="4" transform="rotate(30)"/><ellipse cx="0" cy="0" rx="6" ry="5"/></g></g>',
-  sello:    () => '<g class="sello"><rect x="-82" y="-24" width="164" height="48" rx="4"/>' +
-              '<text x="0" y="10" text-anchor="middle">PROHIBIDO</text></g>',
-  piloto:   () => '<g class="piloto"><circle r="10"/></g>',
-  gota:     () => '<g class="gota"><g transform="scale(1.7)"><path d="M0 -14 C6 -4 10 2 10 7 A10 10 0 0 1 -10 7 C-10 2 -6 -4 0 -14Z"/><ellipse class="brillo" cx="-3" cy="5" rx="2.5" ry="4"/></g></g>'
+  // 14 oct: solo queda el humo de los puros (más grande); las demás mini animaciones se quitaron
+  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */

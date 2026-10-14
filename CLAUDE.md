@@ -2,7 +2,7 @@
 
 Juego de cartas satírico, tipo Reigns, de Jorge. Eres un dictador de un país del Caribe **sin nombre**: decides deslizando la carta a izquierda o derecha, y cada decisión mueve cuatro fuerzas (Pueblo, Ejército, Élite, Potencias). Si una llega a 0 o a 100, caes. Humor negro seco: los personajes hablan en serio y con servilismo; el chiste lo pone la ironía del propio dictador.
 
-Es **un único HTML autocontenido** (`dist/index.html`, sin red). **Juego completo (MVP, 10 oct): cuatro eras** — Ascenso (1), Consolidación (2), Culto (3) y Ocaso (4) —, 94 cartas. Si sobrevives a la cuarta, **ganas**: mueres de viejo, en tu cama y en el poder.
+Es **un único HTML autocontenido** (`dist/index.html`, sin red). **Juego completo (MVP, 10 oct): cuatro eras** — Ascenso (1), Consolidación (2), Culto (3) y Ocaso (4) —, 94 cartas. Cada era dura 6–8 cartas y **cada carta son 12–24 meses** (`MESES_POR_CARTA`; una partida entera, unos 40–50 años). Si sobrevives a la cuarta, **ganas**: mueres de viejo, en tu cama y en el poder.
 
 ## Cómo trabajar
 ```

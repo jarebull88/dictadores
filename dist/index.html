@@ -1635,11 +1635,11 @@ function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch
    ESTADOS DEL RÉGIMEN (las cuatro ranuras bajo la carta)
    Un estado se activa cuando el jugador toma cierta decisión (bandera).
    Solo caben 4: el más antiguo sale cuando entra uno nuevo.
-   - deriva / cada: cambia las barras solo, cada N años
-   - crisis: suma a la cuenta oculta, cada N años
+   - deriva / cada: cambia las barras solo, cada N cartas
+   - crisis: suma a la cuenta oculta, cada N cartas
    - multCrisis: multiplica lo que suman las decisiones a la crisis
    - pesos: cambia la probabilidad de ciertas cartas (0 = no salen)
-   - duracion: años que dura (null = hasta que lo desplace otro)
+   - duracion: cartas que dura (null = hasta que lo desplace otro)
    La descripción no da números: cuenta qué pasa, no cuánto.
    ===================================================== */
 /* Iconos de interfaz (Material Symbols de Google) */
@@ -1845,6 +1845,7 @@ function nuevaPartida() {
     barras: { pueblo: 50, ejercito: 50, elite: 50, potencias: 50 },
     crisis: 0,
     turno: 1,
+    meses: 0,
     N: ERA.min + Math.floor(Math.random() * (ERA.max - ERA.min + 1)),
     era: 1,
     inicioEra: 1,
@@ -1866,7 +1867,7 @@ function nuevaPartida() {
   E.turnoArchivo = 2 + Math.floor(Math.random() * (E.N - 1));
 }
 
-/* Una era dura entre 6 y 8 años. Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
+/* Una era dura entre 6 y 8 cartas (unos 9-12 años). Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
 const anioEra = () => E.turno - E.inicioEra + 1;
 const finEra = () => E.inicioEra + E.N - 1;
 const deEra = c => (c.era || 1) === E.era;
@@ -1983,6 +1984,7 @@ function aplicar(c, op) {
   E.vistas.add(c.id);
   E.ultima[c.id] = E.turno;
   E.turno++;
+  E.meses += MESES_POR_CARTA[0] + Math.floor(Math.random() * (MESES_POR_CARTA[1] - MESES_POR_CARTA[0] + 1));
   avanzarEstados();
 }
 
@@ -2121,9 +2123,9 @@ function ocultarInfo() {
 }
 function contenidoEstado(id, s, etiqueta) {
   const d = ESTADOS[id];
-  const cadencia = d.cada === 1 ? "Actúa cada año." : `Actúa cada ${d.cada} años.`;
+  const cadencia = d.cada === 1 ? "Actúa en cada decisión." : `Actúa cada ${d.cada} decisiones.`;
   const tiempo = d.duracion
-    ? `${cadencia} Dura ${d.duracion} años${s ? " y lleva " + s.edad : ""}.`
+    ? `${cadencia} Dura ${d.duracion} decisiones${s ? " y lleva " + s.edad : ""}.`
     : `${cadencia} Se queda hasta que otro estado lo desplace: solo caben ${MAX_RANURAS}.`;
   return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
 }
@@ -2420,7 +2422,9 @@ function siguiente() {
   mostrarAvisoArchivo();
 }
 
-function anios() { return Math.max(0, E.turno - 1); }
+/* Cada carta es un año y medio, más o menos: así una partida entera da unos 40-50 años, como un dictador de verdad */
+const MESES_POR_CARTA = [12, 24];
+function anios() { return Math.floor((E.meses || 0) / 12); }
 
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
 const TEXTO_FIN_ERA = {

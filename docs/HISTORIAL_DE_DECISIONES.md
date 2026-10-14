@@ -186,6 +186,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Cartón base en pastel.** Los colores vivos del cartón base parecían planos y no dejaban ver la textura. Ahora cada personaje tiene un tono claro/pastel del mismo matiz (azul, melocotón, menta, amarillo, coral, verde salvia, rosa, lavanda…), que sigue contrastando con su cartulina de color.
 
+**14 oct — Cada carta, año y medio.** Con un año por carta una partida completa daba 24–32 años, poco para imitar a un dictador de verdad (Castro, casi 50). Ahora cada carta avanza entre 12 y 24 meses al azar (`MESES_POR_CARTA`) y una partida entera dura unos 40–50 años. Las reglas internas (estados, colas, ventanas) siguen contando cartas; la ventana de un estado dice «decisiones» en vez de «años».
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

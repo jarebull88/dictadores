@@ -204,6 +204,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Textos a la izquierda y años al caer.** Todos los textos van alineados a la izquierda, salvo los titulares. En «¡Has caído!», debajo de la carta, sale «Gobernaste por N años».
 
+**14 oct — Paleta tropical y cinta de carrocero.** Todo se veía opaco y oscuro para un juego de humor en el Caribe: los fondos de los personajes y de las cartas de estado pasan a colores vivos y claros (mango, turquesa, coral, flamenco, lima, cielo, lavanda), y el mazo a un kraft más claro. La etiqueta con el nombre del estado es ahora una tira de cinta de carrocero, algo translúcida y con los extremos en zigzag.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

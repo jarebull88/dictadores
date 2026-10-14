@@ -804,8 +804,8 @@ const FRASE_ESTADO = {
   frontera: "El imperialismo lleva años intentando llevarse a nuestros mejores talentos.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
 };
-const FONDO_ESTADO = { censura: "#9C3B33", vigilancia: "#D8C77A", culto: "#5A3F7A", alineado: "#B9604F",
-  embargo: "#4F6F8F", frontera: "#6E8F55", nacionalizado: "#C9A447", deuda: "#3F6E63" };
+const FONDO_ESTADO = { censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",
+  embargo: "#5BA8DC", frontera: "#7CC67A", nacionalizado: "#7CC6EE", deuda: "#A5D867" };
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
   modoEstado = true; ocupado = false;

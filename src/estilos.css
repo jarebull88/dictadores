@@ -258,7 +258,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pila { position: absolute; top: 2px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
-  background: #8A7156 var(--tex-cartulina3) center / cover; background-blend-mode: multiply;
+  background: #B48F62 var(--tex-cartulina3) center / cover; background-blend-mode: multiply;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .6), var(--bisel);
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -279,7 +279,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
-  background: #8A7156 var(--tex-cartulina3) center / cover; background-blend-mode: multiply;
+  background: #B48F62 var(--tex-cartulina3) center / cover; background-blend-mode: multiply;
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -321,10 +321,18 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta-estado .ilustracion { align-items: center; justify-content: center; gap: 6%; padding: 6% 0; }
 .carta-estado .icono-grande { width: 66%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
 /* Etiqueta de papel blanco pegada con el nombre del estado, a máquina */
+/* Como un trozo de cinta de carrocero: papel crema algo translúcido (se ve sutilmente lo de debajo), con los
+   extremos cortados en zigzag y casi sin sombra */
 .etiqueta-boli {
+  position: relative; isolation: isolate;
   width: 84%; padding: 10px 14px 12px; text-align: center; color: var(--tinta);
-  background: #F8F6F0 var(--tex-cartulina1) center / cover; background-blend-mode: multiply; border-radius: 4px;
-  box-shadow: 0 1.5px 1px rgba(0, 0, 0, .6); transform: rotate(-1.5deg);
+  transform: rotate(-1.5deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));
+}
+.etiqueta-boli::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .8;
+  background: #EFE3BE var(--tex-cartulina1) center / cover; background-blend-mode: multiply;
+  clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
+    0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
 .etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: min(24px, 6.4vw); line-height: 1.1; }   /* título a máquina */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */

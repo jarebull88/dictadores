@@ -30,8 +30,6 @@ ANCHO_PERSONAJE = 900
 # Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
 REFLEJAR = set()           # el dictador viejo antiguo se reflejaba; los cuatro nuevos (14 oct) ya vienen con el brazo en su sitio
 ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
-ANCHO_PULPA = 1100         # la 4 (papel de pulpa) se usa a tamaño fijo y su relieve necesita más resolución
-GANANCIA_PULPA = 1.08      # y se aclara un poco: al multiplicar sobre un color lo oscurece
 # Piel de papel: se le suma el grano de la cartulina 1. La piel se encuentra por color: se mide en la cara (entre los ojos,
 # bajo el puente de la nariz) y se marca todo lo que se le parece. D_PIEL_* = distancia de color (Lab) donde la máscara
 # pasa de 1 a 0; FUERZA_PIEL = cuánto marca el grano (1 = la textura tal cual).
@@ -44,8 +42,6 @@ LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobr
 
 # Orden de los iconos en cada hoja: filas de arriba abajo, cada fila de izquierda a derecha.
 HOJAS = {
-    "hoja-fuerzas": [["pueblo", "ejercito"], ["elite", "potencias"]],
-    "hoja-estados": [["censura", "vigilancia"], ["culto", "alineado"], ["embargo", "frontera"], ["nacionalizado", "deuda"]],
     "hoja-archivo": [["archivo", "bloqueado"]],
 }
 
@@ -178,17 +174,14 @@ def aligerar_fondos(carpeta):
     dst = carpeta / "web"; dst.mkdir(exist_ok=True)
     for f in sorted(carpeta.glob("*.jpg")):
         im = Image.open(f).convert("RGB")
-        ancho = ANCHO_PULPA if f.stem == "cartulina4" else ANCHO_FONDO
-        im = im.resize((ancho, round(im.height * ancho / im.width)), Image.LANCZOS)
-        if f.stem == "cartulina4":
-            im = Image.fromarray(np.clip(np.array(im).astype(float) * GANANCIA_PULPA, 0, 255).astype(np.uint8))
+        im = im.resize((ANCHO_FONDO, round(im.height * ANCHO_FONDO / im.width)), Image.LANCZOS)
         im.save(dst / f.name, "JPEG", quality=70, optimize=True)
         print(f"fondo {f.stem}: {im.width}×{im.height}, {(dst / f.name).stat().st_size // 1024} KB")
 
 
 # Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
 # «principal» = quedarse solo con los trazos grandes (fuera garabatos sueltos de las esquinas).
-DIBUJO_AJUSTES = {"alineado": {"recorte": (108, 108, 918, 918), "principal": True}}
+DIBUJO_AJUSTES = {}
 
 
 def recortar_dibujo(entrada, salida, recorte=None, principal=False):

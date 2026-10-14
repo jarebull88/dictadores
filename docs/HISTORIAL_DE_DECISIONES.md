@@ -192,6 +192,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Cartas de estado: solo se tocan y con marco de purpurina.** La carta de un estado nuevo ya no se arrastra: solo responde al toque, que la manda volando a su casilla. Su marco ya no es de cartón, sino de cartulina de purpurina dorada (textura nueva de Jorge), para distinguirlas de las cartas de decisión.
 
+**14 oct — Limpieza de lo que no se usa.** Se borran los recortes de papel antiguos de las fuerzas y los estados (y sus hojas originales), el dibujo de «Alineado» (lo tapaba el icono de cartón) y la textura 4 (pulpa, sin usar). Quedan en el historial de git.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

@@ -38,7 +38,7 @@ assets/
     recortados/        WebP con transparencia, 900 px de ancho (<slug>.webp), generados por tools/recortar.py
     personajes.json    metadatos: posición de los ojos, contraste en Noir, extras
   iconos/
-    originales/        hojas de iconos con croma: hoja-fuerzas, hoja-estados, hoja-archivo
+    originales/        hoja-archivo (archivo y candado, con croma); dibujo-* (fuerzas, a bolígrafo); carton-* (estados); escena-* (cartas de estado). Los recortes de papel antiguos de fuerzas y estados se borraron el 14 oct (siguen en git)
     recortados/        un WebP por icono (pueblo, ejercito, elite, potencias, censura, …, archivo, bloqueado)
 ```
 

@@ -930,6 +930,18 @@ function terminar(clave, transicion) {
 
   if (clave) $("fin-archivo").innerHTML = "";        // al caer, el archivo está en la carta (izquierda)
   mostrar("screen-end");
+  if (clave) ajustarCabeceraFin();
+}
+/* Al caer, todo lo de arriba debe caber en el hueco de las barras y la pregunta: si no cabe, baja la letra
+   del relato (hasta 13 px) y después la del título (hasta 36 px) */
+function ajustarCabeceraFin() {
+  const cab = document.querySelector("#screen-end .fin-cab"), rel = $("fin-texto"), h1 = $("fin-principal");
+  rel.style.fontSize = ""; h1.style.fontSize = "";
+  if (!cab.clientHeight) return;
+  let px = parseFloat(getComputedStyle(rel).fontSize) || 15;
+  while (cab.scrollHeight > cab.clientHeight + 1 && px > 13) { px -= 0.5; rel.style.fontSize = px + "px"; }
+  let t = parseFloat(getComputedStyle(h1).fontSize) || 56;
+  while (cab.scrollHeight > cab.clientHeight + 1 && t > 36) { t -= 2; h1.style.fontSize = t + "px"; }
 }
 
 /* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = archivo histórico ---------- */

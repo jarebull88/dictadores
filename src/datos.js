@@ -855,7 +855,7 @@ const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 
 const FINALES = {
   pueblo_0:     { titulo: "Revolución popular",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
-  pueblo_100:   { titulo: "Transición democrática",           texto: "Tu popularidad es tal que el pueblo exige elegir a quien gobierna. Esta vez no hay discurso que lo evite." },
+  pueblo_100:   { titulo: "Transición democrática",           texto: "Compraste el cariño del pueblo a base de subsidios y precios congelados. Cuando llegaron los recortes, salieron a reclamar sus «derechos»… y tu cabeza." },
   ejercito_0:   { titulo: "Golpe de Estado",                  texto: "Sin el respaldo de las armas, un grupo de oficiales te arresta durante la madrugada." },
   ejercito_100: { titulo: "Junta militar",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
   elite_0:      { titulo: "Conspiración y fuga de capitales", texto: "Los poderosos retiran su dinero y su apoyo, y financian a quien pueda sustituirte." },

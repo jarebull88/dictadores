@@ -164,7 +164,13 @@ const icono = (id, clase = "") => {
 const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/><circle cx="-7" cy="-34" r="10"/>';
 const ANIMACION = {
   // 14 oct: solo queda el humo de los puros (más grande); las demás mini animaciones se quitaron
-  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`
+  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`,
+  // PRUEBA 1: hilo de humo a boli (dos trazos ondulados que fluyen hacia arriba y se mecen)
+  hilo: () => `<g class="hilo"><g transform="scale(2.1)"><defs><linearGradient id="hilo-degradado" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="-310">` +
+    `<stop offset="0" stop-color="#f0eee8" stop-opacity=".95"/><stop offset=".6" stop-color="#f0eee8" stop-opacity=".6"/><stop offset="1" stop-color="#f0eee8" stop-opacity="0"/></linearGradient></defs><path class="hilo1" d="M0 0 C-14 -30 16 -60 0 -95 S-18 -160 4 -200 S12 -260 -6 -300"/>` +
+    `<path class="hilo2" d="M2 -4 C16 -36 -12 -70 6 -110 S20 -175 -4 -215 S-10 -270 8 -310"/></g></g>`,
+  // PRUEBA 2: bocanadas suaves (nubecitas difuminadas que salen una tras otra)
+  bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */
@@ -805,11 +811,11 @@ function mostrarAvisoPendiente() {
 let modoEstado = false;
 /* Frase de cada estado (de Jorge): sale arriba, donde va la pregunta, cuando su carta aparece. */
 const FRASE_ESTADO = {
-  nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
+  nacionalizado: "Ahora todo es del Pueblo. Y el Pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
   deuda: "La Revolución se pagará en cómodos plazos.",
   vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
-  culto: "El pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
+  culto: "El Pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
   frontera: "El imperialismo lleva años intentando llevarse a nuestros mejores talentos.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
@@ -919,7 +925,7 @@ const EPITAFIO = [
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],
   ["base.capital_rebautizada", "La capital lleva tu nombre. De momento."],
   ["base.monumento_colosal", "Tu estatua de cuarenta metros se ve desde la costa."],
-  ["base.palacio_del_pueblo", "El palacio del pueblo sigue sin terminar."],
+  ["base.palacio_del_pueblo", "El palacio del Pueblo sigue sin terminar."],
   ["base.libro_obligatorio", "Tu libro sigue siendo obligatorio para sacarse el carné de conducir."],
   ["base.derrota_aceptada", "Perdiste un plebiscito y aun así moriste en el poder. Los historiadores no se ponen de acuerdo."],
   ["base.recuento", "El recuento de aquel plebiscito todavía no ha terminado."],
@@ -945,7 +951,7 @@ function continuarEra() {
   siguiente();
 }
 
-const SUJETO_FUERZA = { pueblo: ["El pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
+const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
   panelAbierto = false;
@@ -1270,7 +1276,7 @@ function mostrarEra() {
 /* Seguir o retirarse, con frases de cada paso de era (la clave es la era que empieza) */
 const FRASES_ERA = {
   2: { seguir: "La Revolución no ha terminado", dejar: "Convocar elecciones" },
-  3: { seguir: "El pueblo me necesita", dejar: "Retirarme a tiempo" },
+  3: { seguir: "El Pueblo me necesita", dejar: "Retirarme a tiempo" },
   4: { seguir: "Aún me queda cuerda", dejar: "Ceder el testigo" }
 };
 let eraOcupada = false;

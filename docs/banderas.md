@@ -43,7 +43,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `negocio_refinerias` | Las refinerías (A) | Las garantías | Las empresas exigen garantías que limitan tus decisiones económicas. (era 2) |
 | `no_alineado` | El visitante del bloque oriental (B) | La mano del norte | La potencia del norte se acerca y el aislamiento económico se agrava. (era 2) |
 | `oposicion_culpada` | El atentado (A) | Los inocentes | La oposición recuerda al acusado injusto. (era 4) |
-| `palacio_del_pueblo` | El palacio del pueblo (A) | El palacio sin terminar | Las deudas del palacio siguen sin pagarse. (era 4) |
+| `palacio_del_pueblo` | El palacio del Pueblo (A) | El palacio sin terminar | Las deudas del palacio siguen sin pagarse. (era 4) |
 | `periodista_oficial` | El periodista oficial (A) | Los titulares | La prensa del régimen exige titulares cada vez más generosos. (era 3) |
 | `policia_tradicional` | Los ojos del barrio (B) | Una carta con firmas | La oposición se organiza con más facilidad. (era 2) |
 | `prensa_libre` | Los periódicos (A) | El reportaje | Un reportaje destapa un escándalo. (era 4) |

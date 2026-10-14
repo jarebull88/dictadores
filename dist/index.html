@@ -374,6 +374,21 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   64%, 84%  { transform: translate(13px, -1px); }
   92%, 100% { transform: translate(0, 0); }
 }
+/* PRUEBA 1: hilo de humo */
+.hilo path { fill: none; stroke: url(#hilo-degradado); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 90 22; filter: url(#sombra-humo); }
+.hilo { transform-origin: 50% 100%; animation: mecer 3.2s ease-in-out infinite alternate; }
+.hilo1 { animation: fluir 2.4s linear infinite; }
+.hilo2 { stroke-width: 4; opacity: .6; animation: fluir 3.1s linear infinite; }
+@keyframes fluir { to { stroke-dashoffset: -200; } }
+@keyframes mecer { from { transform: skewX(-6deg); } to { transform: skewX(7deg); } }
+/* PRUEBA 2: bocanadas */
+.bocanada { fill: rgba(240, 238, 232, .7); filter: blur(7px); transform-box: fill-box; transform-origin: center; opacity: 0; animation: bocanada 4.5s ease-out infinite; }
+@keyframes bocanada {
+  0%   { opacity: 0; transform: translate(0, 0) scale(.3); }
+  12%  { opacity: .8; }
+  50%  { transform: translate(-40px, -330px) scale(1.4); }
+  100% { opacity: 0; transform: translate(50px, -680px) scale(2.4); }
+}
 .personaje .humo { fill: #e9e7e2; filter: url(#sombra-humo); transform-box: fill-box; transform-origin: 50% 100%; }
 .humo1 { animation: humo 4.5s linear infinite; }
 .humo2 { animation: humo 4.5s linear -2.25s infinite; }
@@ -602,7 +617,7 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 
   <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
     <div class="cabecera-carta">
-      <p class="intro">El tirano ha caído. El pueblo te adora y el futuro pinta glorioso. Tienes el poder, Comandante. <b>¡No nos decepciones!</b></p>
+      <p class="intro">El tirano ha caído. El Pueblo te adora y el futuro pinta glorioso. Tienes el poder, Comandante. <b>¡No nos decepciones!</b></p>
     </div>
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa"></div></div>
@@ -815,7 +830,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?",
     archivo: "En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.",
-    izq: { accion: "Museo del pueblo", efectos: { pueblo: 8, elite: -6 } },
+    izq: { accion: "Museo del Pueblo", efectos: { pueblo: 8, elite: -6 } },
     der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
   },
   {
@@ -898,7 +913,7 @@ const CARTAS = [
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "¿Y si dejamos que el pueblo critique al gobierno libremente?",
+    texto: "¿Y si dejamos que el Pueblo critique al gobierno libremente?",
     archivo: "En China, la Campaña de las Cien Flores (1956-1957) invitó a criticar al Partido. En 1957, la Campaña Antiderechista persiguió a muchos de quienes habían hablado.",
     izq: { accion: "Que hablen", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
@@ -1366,7 +1381,7 @@ const CARTAS = [
     der: { accion: "Sepultura sencilla.", remate: "No hace falta pensar en mi tumba mientras sigo dando órdenes.", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
   },
   {
-    id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del pueblo", ilustracion: null,
+    id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Excelencia, el nuevo palacio costará cinco años de presupuesto y exige derribar tres barrios enteros.",
     archivo: "En 1984 comenzó en Bucarest la construcción de la Casa del Pueblo, hoy Palacio del Parlamento, para lo cual se demolió una parte importante del centro histórico de la ciudad.",
@@ -1645,7 +1660,7 @@ const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 
 const FINALES = {
   pueblo_0:     { titulo: "Revolución popular",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
-  pueblo_100:   { titulo: "Pan para hoy",           texto: "Regalaste tanto para ganarte al pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
+  pueblo_100:   { titulo: "Pan para hoy",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
   ejercito_0:   { titulo: "Extracción nocturna",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
   ejercito_100: { titulo: "Junta militar",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
   elite_0:      { titulo: "Junta de accionistas", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
@@ -1655,7 +1670,7 @@ const FINALES = {
 };
 
 const LINEAS_BARRA = {
-  pueblo:    { alto: "El pueblo te aplaude, de momento.",                          bajo: "El pueblo aprendió a no hacer demasiadas preguntas." },
+  pueblo:    { alto: "El Pueblo te aplaude, de momento.",                          bajo: "El Pueblo aprendió a no hacer demasiadas preguntas." },
   ejercito:  { alto: "El ejército no te ha abandonado.",                           bajo: "El ejército te obedece, pero cuenta los días." },
   elite:     { alto: "Las élites aprendieron a beneficiarse de tu gobierno.",      bajo: "Las élites miran hacia la salida." },
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                        bajo: "En el exterior nadie te quiere, salvo quien te teme." }
@@ -1870,7 +1885,13 @@ const icono = (id, clase = "") => {
 const VOLUTA = '<circle cx="0" cy="-12" r="15"/><circle cx="13" cy="-25" r="12"/><circle cx="-7" cy="-34" r="10"/>';
 const ANIMACION = {
   // 14 oct: solo queda el humo de los puros (más grande); las demás mini animaciones se quitaron
-  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`
+  humo: () => `<g class="humo humo1"><g transform="scale(1.9)">${VOLUTA}</g></g><g class="humo humo2"><g transform="scale(1.9)">${VOLUTA}</g></g>`,
+  // PRUEBA 1: hilo de humo a boli (dos trazos ondulados que fluyen hacia arriba y se mecen)
+  hilo: () => `<g class="hilo"><g transform="scale(2.1)"><defs><linearGradient id="hilo-degradado" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="-310">` +
+    `<stop offset="0" stop-color="#f0eee8" stop-opacity=".95"/><stop offset=".6" stop-color="#f0eee8" stop-opacity=".6"/><stop offset="1" stop-color="#f0eee8" stop-opacity="0"/></linearGradient></defs><path class="hilo1" d="M0 0 C-14 -30 16 -60 0 -95 S-18 -160 4 -200 S12 -260 -6 -300"/>` +
+    `<path class="hilo2" d="M2 -4 C16 -36 -12 -70 6 -110 S20 -175 -4 -215 S-10 -270 8 -310"/></g></g>`,
+  // PRUEBA 2: bocanadas suaves (nubecitas difuminadas que salen una tras otra)
+  bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */
@@ -2511,11 +2532,11 @@ function mostrarAvisoPendiente() {
 let modoEstado = false;
 /* Frase de cada estado (de Jorge): sale arriba, donde va la pregunta, cuando su carta aparece. */
 const FRASE_ESTADO = {
-  nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
+  nacionalizado: "Ahora todo es del Pueblo. Y el Pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
   deuda: "La Revolución se pagará en cómodos plazos.",
   vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
-  culto: "El pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
+  culto: "El Pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
   frontera: "El imperialismo lleva años intentando llevarse a nuestros mejores talentos.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
@@ -2625,7 +2646,7 @@ const EPITAFIO = [
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],
   ["base.capital_rebautizada", "La capital lleva tu nombre. De momento."],
   ["base.monumento_colosal", "Tu estatua de cuarenta metros se ve desde la costa."],
-  ["base.palacio_del_pueblo", "El palacio del pueblo sigue sin terminar."],
+  ["base.palacio_del_pueblo", "El palacio del Pueblo sigue sin terminar."],
   ["base.libro_obligatorio", "Tu libro sigue siendo obligatorio para sacarse el carné de conducir."],
   ["base.derrota_aceptada", "Perdiste un plebiscito y aun así moriste en el poder. Los historiadores no se ponen de acuerdo."],
   ["base.recuento", "El recuento de aquel plebiscito todavía no ha terminado."],
@@ -2651,7 +2672,7 @@ function continuarEra() {
   siguiente();
 }
 
-const SUJETO_FUERZA = { pueblo: ["El pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
+const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
   panelAbierto = false;
@@ -2976,7 +2997,7 @@ function mostrarEra() {
 /* Seguir o retirarse, con frases de cada paso de era (la clave es la era que empieza) */
 const FRASES_ERA = {
   2: { seguir: "La Revolución no ha terminado", dejar: "Convocar elecciones" },
-  3: { seguir: "El pueblo me necesita", dejar: "Retirarme a tiempo" },
+  3: { seguir: "El Pueblo me necesita", dejar: "Retirarme a tiempo" },
   4: { seguir: "Aún me queda cuerda", dejar: "Ceder el testigo" }
 };
 let eraOcupada = false;

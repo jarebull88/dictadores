@@ -222,7 +222,7 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 
 **Archivo histórico:** Tras la muerte de Lenin, en 1924, su cuerpo fue embalsamado y expuesto en un mausoleo en la Plaza Roja de Moscú, donde permanece abierto al público.
 
-### 19. El palacio del pueblo
+### 19. El palacio del Pueblo
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10.

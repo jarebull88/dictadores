@@ -41,7 +41,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?",
     archivo: "En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.",
-    izq: { accion: "Museo del pueblo", efectos: { pueblo: 8, elite: -6 } },
+    izq: { accion: "Museo del Pueblo", efectos: { pueblo: 8, elite: -6 } },
     der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
   },
   {
@@ -124,7 +124,7 @@ const CARTAS = [
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "¿Y si dejamos que el pueblo critique al gobierno libremente?",
+    texto: "¿Y si dejamos que el Pueblo critique al gobierno libremente?",
     archivo: "En China, la Campaña de las Cien Flores (1956-1957) invitó a criticar al Partido. En 1957, la Campaña Antiderechista persiguió a muchos de quienes habían hablado.",
     izq: { accion: "Que hablen", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
@@ -592,7 +592,7 @@ const CARTAS = [
     der: { accion: "Sepultura sencilla.", remate: "No hace falta pensar en mi tumba mientras sigo dando órdenes.", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
   },
   {
-    id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del pueblo", ilustracion: null,
+    id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Excelencia, el nuevo palacio costará cinco años de presupuesto y exige derribar tres barrios enteros.",
     archivo: "En 1984 comenzó en Bucarest la construcción de la Casa del Pueblo, hoy Palacio del Parlamento, para lo cual se demolió una parte importante del centro histórico de la ciudad.",
@@ -871,7 +871,7 @@ const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 
 const FINALES = {
   pueblo_0:     { titulo: "Revolución popular",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
-  pueblo_100:   { titulo: "Pan para hoy",           texto: "Regalaste tanto para ganarte al pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
+  pueblo_100:   { titulo: "Pan para hoy",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
   ejercito_0:   { titulo: "Extracción nocturna",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
   ejercito_100: { titulo: "Junta militar",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
   elite_0:      { titulo: "Junta de accionistas", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
@@ -881,7 +881,7 @@ const FINALES = {
 };
 
 const LINEAS_BARRA = {
-  pueblo:    { alto: "El pueblo te aplaude, de momento.",                          bajo: "El pueblo aprendió a no hacer demasiadas preguntas." },
+  pueblo:    { alto: "El Pueblo te aplaude, de momento.",                          bajo: "El Pueblo aprendió a no hacer demasiadas preguntas." },
   ejercito:  { alto: "El ejército no te ha abandonado.",                           bajo: "El ejército te obedece, pero cuenta los días." },
   elite:     { alto: "Las élites aprendieron a beneficiarse de tu gobierno.",      bajo: "Las élites miran hacia la salida." },
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                        bajo: "En el exterior nadie te quiere, salvo quien te teme." }

@@ -27,7 +27,7 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Carta:** «El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?»
 
-- **A. Museo del pueblo** Pueblo +8 · Élite −6
+- **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6
 
 **Archivo histórico:** En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.
@@ -175,7 +175,7 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «¿Y si dejamos que el pueblo critique al gobierno libremente?»
+**Carta:** «¿Y si dejamos que el Pueblo critique al gobierno libremente?»
 
 - **A. Que hablen** Pueblo +8 · Élite −4 · Ejército −4 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
 - **B. La Revolución no se cuestiona** Pueblo −8 · Ejército +4 · Élite +4

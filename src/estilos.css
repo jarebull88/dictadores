@@ -356,6 +356,21 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   64%, 84%  { transform: translate(13px, -1px); }
   92%, 100% { transform: translate(0, 0); }
 }
+/* PRUEBA 1: hilo de humo */
+.hilo path { fill: none; stroke: url(#hilo-degradado); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 90 22; filter: url(#sombra-humo); }
+.hilo { transform-origin: 50% 100%; animation: mecer 3.2s ease-in-out infinite alternate; }
+.hilo1 { animation: fluir 2.4s linear infinite; }
+.hilo2 { stroke-width: 4; opacity: .6; animation: fluir 3.1s linear infinite; }
+@keyframes fluir { to { stroke-dashoffset: -200; } }
+@keyframes mecer { from { transform: skewX(-6deg); } to { transform: skewX(7deg); } }
+/* PRUEBA 2: bocanadas */
+.bocanada { fill: rgba(240, 238, 232, .7); filter: blur(7px); transform-box: fill-box; transform-origin: center; opacity: 0; animation: bocanada 4.5s ease-out infinite; }
+@keyframes bocanada {
+  0%   { opacity: 0; transform: translate(0, 0) scale(.3); }
+  12%  { opacity: .8; }
+  50%  { transform: translate(-40px, -330px) scale(1.4); }
+  100% { opacity: 0; transform: translate(50px, -680px) scale(2.4); }
+}
 .personaje .humo { fill: #e9e7e2; filter: url(#sombra-humo); transform-box: fill-box; transform-origin: 50% 100%; }
 .humo1 { animation: humo 4.5s linear infinite; }
 .humo2 { animation: humo 4.5s linear -2.25s infinite; }

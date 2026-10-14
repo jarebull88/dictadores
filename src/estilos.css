@@ -258,8 +258,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pila { position: absolute; top: 2px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
-  background: var(--reverso, none) center / 88% 90% no-repeat, #B48F62 var(--tex-cartulina3) center / cover;   /* reverso: el dibujo a boli sobre el kraft */
-  background-blend-mode: normal, multiply;
+  background: var(--rev-base, #B48F62) var(--tex-cartulina5) 60% 40% / 640px auto; background-blend-mode: multiply;   /* reverso: color de la etapa × pulpa, como el anverso */
   box-shadow: 0 1px 2px rgba(0, 0, 0, .6), var(--bisel);
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -280,12 +279,16 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
-  background: var(--reverso, none) center / 88% 90% no-repeat, #B48F62 var(--tex-cartulina3) center / cover;   /* reverso: el dibujo a boli sobre el kraft */
-  background-blend-mode: normal, multiply;
+  background: var(--rev-base, #B48F62) var(--tex-cartulina5) 60% 40% / 640px auto; background-blend-mode: multiply;   /* reverso: color de la etapa × pulpa, como el anverso */
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .carta.revelando .dorso { visibility: hidden; }
+/* El dibujo del reverso, sutil: del color de la carta pero más intenso (la tinta hace de máscara) */
+.pila .capa::after, .carta.revelando .tapa::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--rev-tinta, #8A6A44); opacity: .8;
+  -webkit-mask: var(--reverso, none) center / 88% 90% no-repeat; mask: var(--reverso, none) center / 88% 90% no-repeat;
+}
 .mensaje { transition: opacity .12s ease; }
 .mensaje.oculto { opacity: 0; transition: none; }
 .carta.revelando .giro { transition-duration: .56s; }

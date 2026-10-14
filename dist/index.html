@@ -277,8 +277,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pila { position: absolute; top: 2px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
-  background: var(--reverso, none) center / 88% 90% no-repeat, #B48F62 var(--tex-cartulina3) center / cover;   /* reverso: el dibujo a boli sobre el kraft */
-  background-blend-mode: normal, multiply;
+  background: var(--rev-base, #B48F62) var(--tex-cartulina5) 60% 40% / 640px auto; background-blend-mode: multiply;   /* reverso: color de la etapa × pulpa, como el anverso */
   box-shadow: 0 1px 2px rgba(0, 0, 0, .6), var(--bisel);
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -299,12 +298,16 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
-  background: var(--reverso, none) center / 88% 90% no-repeat, #B48F62 var(--tex-cartulina3) center / cover;   /* reverso: el dibujo a boli sobre el kraft */
-  background-blend-mode: normal, multiply;
+  background: var(--rev-base, #B48F62) var(--tex-cartulina5) 60% 40% / 640px auto; background-blend-mode: multiply;   /* reverso: color de la etapa × pulpa, como el anverso */
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .carta.revelando .dorso { visibility: hidden; }
+/* El dibujo del reverso, sutil: del color de la carta pero más intenso (la tinta hace de máscara) */
+.pila .capa::after, .carta.revelando .tapa::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--rev-tinta, #8A6A44); opacity: .8;
+  -webkit-mask: var(--reverso, none) center / 88% 90% no-repeat; mask: var(--reverso, none) center / 88% 90% no-repeat;
+}
 .mensaje { transition: opacity .12s ease; }
 .mensaje.oculto { opacity: 0; transition: none; }
 .carta.revelando .giro { transition-duration: .56s; }
@@ -2018,9 +2021,21 @@ const deEra = c => (c.era || 1) === E.era;
 const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= (c.descanso || 10))) && !grupoVisto(c);
 /* Cartas de un mismo «grupo» (p. ej. las tres cartas iniciales): solo sale una por partida, sorteada */
 const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
+/* El reverso de las cartas cambia de color con la etapa (base pastel y el dibujo, del mismo tono, más intenso) */
+const REVERSO_ERA = {
+  1: { base: "#A9D3A0", tinta: "#4E8A47" },   // Ascenso: verde guerrillero
+  2: { base: "#9EC8EA", tinta: "#3F7DB3" },   // Consolidación: azul
+  3: { base: "#F2C76E", tinta: "#B9832A" },   // Culto: dorado
+  4: { base: "#C9B1E4", tinta: "#7D5BAE" }    // Ocaso: lavanda
+};
+function colorReverso(era) {
+  const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;
+  r.setProperty("--rev-base", c.base); r.setProperty("--rev-tinta", c.tinta);
+}
 function iniciarEra(n) {
   const def = ERAS[n - 1];
   E.era = n;
+  colorReverso(n);
   E.inicioEra = E.turno;
   E.N = def.min + Math.floor(Math.random() * (def.max - def.min + 1));
   E.archivoEntregado = false;
@@ -2366,6 +2381,7 @@ function empezar() {
   nuevaPartida();
   construirBarras();
   mostrar("screen-game");
+  colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
   $("nombre-dictador").textContent = nombreCompleto();
   E.avisoPendiente = null;

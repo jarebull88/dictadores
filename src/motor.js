@@ -268,9 +268,21 @@ const deEra = c => (c.era || 1) === E.era;
 const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= (c.descanso || 10))) && !grupoVisto(c);
 /* Cartas de un mismo «grupo» (p. ej. las tres cartas iniciales): solo sale una por partida, sorteada */
 const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
+/* El reverso de las cartas cambia de color con la etapa (base pastel y el dibujo, del mismo tono, más intenso) */
+const REVERSO_ERA = {
+  1: { base: "#A9D3A0", tinta: "#4E8A47" },   // Ascenso: verde guerrillero
+  2: { base: "#9EC8EA", tinta: "#3F7DB3" },   // Consolidación: azul
+  3: { base: "#F2C76E", tinta: "#B9832A" },   // Culto: dorado
+  4: { base: "#C9B1E4", tinta: "#7D5BAE" }    // Ocaso: lavanda
+};
+function colorReverso(era) {
+  const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;
+  r.setProperty("--rev-base", c.base); r.setProperty("--rev-tinta", c.tinta);
+}
 function iniciarEra(n) {
   const def = ERAS[n - 1];
   E.era = n;
+  colorReverso(n);
   E.inicioEra = E.turno;
   E.N = def.min + Math.floor(Math.random() * (def.max - def.min + 1));
   E.archivoEntregado = false;
@@ -616,6 +628,7 @@ function empezar() {
   nuevaPartida();
   construirBarras();
   mostrar("screen-game");
+  colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
   $("nombre-dictador").textContent = nombreCompleto();
   E.avisoPendiente = null;

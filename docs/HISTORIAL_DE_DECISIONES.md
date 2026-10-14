@@ -214,6 +214,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Reverso de las cartas.** El reverso liso era aburrido. Ahora lleva un dibujo a boli azul, como hecho por un niño de 5 años, que imita el reverso de una baraja con motivos revolucionarios (fusiles cruzados con una palmera en el centro, machetes, puros, caña, puños, soles sonrientes). Se quita el papel blanco y la tinta queda pegada sobre el kraft del mazo, del reparto y de la carta que se voltea.
 
+**14 oct — Reverso por etapas.** El reverso lleva la pulpa de la textura 5, como el anverso, y un color por etapa: verde (Ascenso), azul (Consolidación), dorado (Culto) y lavanda (Ocaso). El dibujo a boli ya no va en azul: es del mismo tono que la carta, algo más intenso, para que sea sutil.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

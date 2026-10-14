@@ -1328,6 +1328,8 @@ $("btn-fin-archivo").addEventListener("click", () => abrirArchivo("screen-end"))
 $("btn-archivo-volver").addEventListener("click", atrasArchivo);
 
 $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
+/* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
+if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
 /* «Cómo jugar»: ventana con las instrucciones */
 function abrirComoJugar() {

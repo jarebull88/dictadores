@@ -212,6 +212,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Todo alineado con la carta.** En móviles donde la carta no ocupa todo el ancho, la pregunta y el pie se salían de sus bordes y se veía desencajado. Ahora las barras, la pregunta, el nombre y las cuatro casillas empiezan y acaban justo donde la carta.
 
+**14 oct — Reverso de las cartas.** El reverso liso era aburrido. Ahora lleva un dibujo a boli azul, como hecho por un niño de 5 años, que imita el reverso de una baraja con motivos revolucionarios (fusiles cruzados con una palmera en el centro, machetes, puros, caña, puños, soles sonrientes). Se quita el papel blanco y la tinta queda pegada sobre el kraft del mazo, del reparto y de la carta que se voltea.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

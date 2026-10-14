@@ -181,10 +181,10 @@ def aligerar_fondos(carpeta):
 
 # Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
 # «principal» = quedarse solo con los trazos grandes (fuera garabatos sueltos de las esquinas).
-DIBUJO_AJUSTES = {}
+DIBUJO_AJUSTES = {"reverso": {"lado": 800}}   # el reverso de las cartas (14 oct) ocupa la carta entera: más resolución
 
 
-def recortar_dibujo(entrada, salida, recorte=None, principal=False):
+def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None):
     """Dibujo sobre papel blanco -> tinta con transparencia, para que parezca pintado en la cartulina.
     Se mide cuánto oscurece cada píxel respecto al papel (alfa) y se recupera el color de la tinta bajo esa alfa;
     así los trazos finos de bolígrafo quedan sólidos y el lápiz de color queda translúcido, como en el papel."""
@@ -205,7 +205,7 @@ def recortar_dibujo(entrada, salida, recorte=None, principal=False):
     rgba = np.dstack([np.clip(tinta, 0, 1) * 255, np.clip(alfa * 1.35, 0, 1) * 255]).astype(np.uint8)
     im = Image.fromarray(rgba, "RGBA")
     im = im.crop(im.getbbox())
-    esc = LADO_DIBUJO / max(im.size)
+    esc = (lado or LADO_DIBUJO) / max(im.size)
     im = im.resize((max(1, round(im.width * esc)), max(1, round(im.height * esc))), Image.LANCZOS)
     im.save(salida, "WEBP", quality=88, method=6)
     return im.size

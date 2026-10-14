@@ -184,6 +184,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vigente (14 oct). Cartón con color.** El cartón base de cada carta tenía casi siempre tonos ocre; ahora cada personaje tiene un color vivo propio que contrasta con su cartulina (azul, naranja, turquesa, amarillo, rojo, ámbar, verde, rosa, morado…), siempre el mismo para el mismo personaje.
 - **Vigente (14 oct).** En «Sigues en el poder», «Has gobernado N años» baja debajo de la carta y deja más sitio al párrafo de arriba.
 
+**14 oct — Cartón base en pastel.** Los colores vivos del cartón base parecían planos y no dejaban ver la textura. Ahora cada personaje tiene un tono claro/pastel del mismo matiz (azul, melocotón, menta, amarillo, coral, verde salvia, rosa, lavanda…), que sigue contrastando con su cartulina de color.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

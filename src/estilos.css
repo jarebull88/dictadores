@@ -365,15 +365,24 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   64%, 84%  { transform: translate(13px, -1px); }
   92%, 100% { transform: translate(0, 0); }
 }
-/* Humo del puro (prueba 14 oct): una bola de papel que sube rodando cada 10 s y crece hasta un límite */
-.bola-humo { transform-box: fill-box; transform-origin: center; opacity: 0; animation: bola-humo 10s linear infinite; }
-@keyframes bola-humo {
-  0%   { opacity: 0; transform: translate(0, 0) rotate(0deg) scale(.12); }
-  2%   { opacity: 1; }
-  32%  { opacity: 1; transform: translate(-40px, -560px) rotate(-420deg) scale(.7); }
-  42%  { opacity: 0; transform: translate(-50px, -740px) rotate(-560deg) scale(.75); }
-  100% { opacity: 0; transform: translate(-50px, -740px) rotate(-560deg) scale(.75); }
+/* Humo del puro (14 oct): bola de papel que sube rodando cada 10 s, crece, se abre en 4 fases y se desvanece */
+.bola-mov { transform-box: fill-box; transform-origin: center; opacity: 0; animation: bola-mov 10s linear infinite; }
+.bola-giro { transform-box: fill-box; transform-origin: center; animation: bola-giro 10s linear infinite; }
+.bola-fase { opacity: 0; animation: 10s linear infinite; }
+.bola-fase.f1 { animation-name: fase1; } .bola-fase.f2 { animation-name: fase2; }
+.bola-fase.f3 { animation-name: fase3; } .bola-fase.f4 { animation-name: fase4; }
+@keyframes bola-mov {
+  0%   { opacity: 0; transform: translate(0, 0) scale(.15); }
+  3%   { opacity: 1; }
+  36%  { opacity: 1; transform: translate(-40px, -600px) scale(.8); }
+  44%  { opacity: 0; transform: translate(-50px, -720px) scale(.9); }
+  100% { opacity: 0; transform: translate(-50px, -720px) scale(.9); }
 }
+@keyframes bola-giro { 0% { transform: rotate(0deg); } 44%, 100% { transform: rotate(-540deg); } }
+@keyframes fase1 { 0%, 12% { opacity: 1; } 17%, 100% { opacity: 0; } }
+@keyframes fase2 { 0%, 12% { opacity: 0; } 17%, 22% { opacity: 1; } 27%, 100% { opacity: 0; } }
+@keyframes fase3 { 0%, 22% { opacity: 0; } 27%, 32% { opacity: 1; } 37%, 100% { opacity: 0; } }
+@keyframes fase4 { 0%, 32% { opacity: 0; } 37%, 44% { opacity: 1; } 50%, 100% { opacity: 0; } }
 /* Humo del puro: bocanadas suaves (la versión anterior, por si se vuelve) */
 .bocanada { fill: rgba(240, 238, 232, .7); filter: blur(7px); transform-box: fill-box; transform-origin: center; opacity: 0; animation: bocanada 4.5s ease-out infinite; }
 @keyframes bocanada {

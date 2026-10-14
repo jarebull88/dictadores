@@ -232,6 +232,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Humo de bola de papel (prueba).** Nueva técnica para el humo: una bola de papel arrugado cada 10 segundos que sale pequeña del puro, sube rodando sobre la carta, crece como una bola de nieve hasta un tamaño de «bola de humo» y se desvanece. La imagen de referencia de Jorge era de Vecteezy con marca de agua (no se puede usar), así que Jorge subió otra sin marca, que es la que se usa. El icono 360 pasa a 12 px de la esquina y al color de la cartulina, más intenso. El campo del nombre, centrado.
 
+**14 oct — La bola de papel se abre.** Jorge sube una foto con la misma hoja en varias fases (bola, abriéndose, casi abierta, arrugada). Se recortan cuatro y la bola sube rodando, crece y pasa de una fase a otra mientras sube, con sombra sobre la cartulina, antes de desvanecerse.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

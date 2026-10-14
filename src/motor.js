@@ -165,7 +165,16 @@ const ANIMACION = {
   // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
   // 14 oct (prueba): una bola de papel arrugado cada 10 s; sale pequeña de la punta del puro, sube rodando, crece como
   // una bola de nieve hasta un límite y, tras un trecho, se desvanece
-  humo: () => IMG["icono_bola-papel"] ? `<g class="bola-humo"><image href="${IMG["icono_bola-papel"].src}" x="-150" y="-150" width="300" height="300"/></g>` : ANIMACION.bocanadas(),
+  humo: () => {
+    // 14 oct: una bola de papel cada 10 s: sale pequeña del puro, sube rodando, crece y se va abriendo (4 fases de la
+    // misma foto) con su sombra sobre la cartulina, y se desvanece. La sombra va en el grupo que no gira (luz de arriba).
+    const fases = [1, 2, 3, 4].map(k => IMG["icono_bola-" + k]).filter(Boolean);
+    if (fases.length < 4) return ANIMACION.bocanadas();
+    return `<filter id="sombra-bola" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="14" stdDeviation="9" flood-color="#000" flood-opacity=".35"/></filter>` +
+      `<g class="bola-mov" filter="url(#sombra-bola)"><g class="bola-giro">` +
+      fases.map((f, k) => `<image class="bola-fase f${k + 1}" href="${f.src}" x="-130" y="-130" width="260" height="260" preserveAspectRatio="xMidYMid meet"/>`).join("") +
+      `</g></g>`;
+  },
   bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.

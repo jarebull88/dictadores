@@ -206,6 +206,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Paleta tropical y cinta de carrocero.** Todo se veía opaco y oscuro para un juego de humor en el Caribe: los fondos de los personajes y de las cartas de estado pasan a colores vivos y claros (mango, turquesa, coral, flamenco, lima, cielo, lavanda), y el mazo a un kraft más claro. La etiqueta con el nombre del estado es ahora una tira de cinta de carrocero, algo translúcida y con los extremos en zigzag.
 
+**14 oct — Iosevka en prueba.** Se buscaba una letra de máquina de escribir más estrecha que Courier Prime. Se compararon ocho (Xanh Mono, Iosevka, Anonymous Pro, Sometype, Victor, PT Mono, Syne y Cutive Mono) y Jorge eligió probar Iosevka en los textos. Los títulos siguen en Special Elite. Courier Prime se queda en `assets/fuentes/` por si se vuelve atrás.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

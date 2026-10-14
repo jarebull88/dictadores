@@ -8,7 +8,7 @@
 :root {
   box-sizing: border-box;
   color-scheme: light;
-  --fuente: "Courier Prime", "Courier New", Courier, monospace;
+  --fuente: "Iosevka", "Courier Prime", "Courier New", Courier, monospace;   /* 14 oct: Iosevka en prueba (más estrecha) */
   --fuente-titulo: "Special Elite", "Courier Prime", "Courier New", monospace;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);

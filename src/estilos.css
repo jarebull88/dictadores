@@ -273,6 +273,21 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   transition: transform .6s cubic-bezier(.3, .1, .2, 1);
 }
 .carta.volteada .giro { transform: rotateY(180deg); }
+/* Boca abajo: la carta nueva aparece sobre el mazo enseñando la tapa (el mismo cartón oscuro del mazo) y da la vuelta.
+   Mientras se revela (.revelando), la tapa sustituye a la ficha por detrás. */
+.carta.boca-abajo .giro { transform: rotateY(180deg); }
+.tapa { display: none; }
+.carta.revelando .tapa {
+  display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
+  background: #8A7156 var(--tex-cartulina3) center / cover; background-blend-mode: multiply;
+  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.carta.revelando .dorso { visibility: hidden; }
+.carta.revelando .giro { transition-duration: .56s; }
+/* Reparto al empezar: las cartas que llegan al mazo; mientras tanto, ni carta ni mazo propio */
+.pila.reparto .capa { transform: none; }
+.escenario.repartiendo .carta, .escenario.repartiendo .pila:not(.reparto) { visibility: hidden; }
 /* La carta es de cartón: rectángulo con esquinas redondeadas y, pegada encima y algo más pequeña, la cartulina de
    color del personaje (.ilustracion), con su sombra de papel pegado. El marco es el 6,5 % del ancho de la carta. */
 .cara, .dorso {

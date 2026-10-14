@@ -564,7 +564,7 @@ function pintarCarta(c) {
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
-  $("carta").innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
+  $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
     `<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
@@ -626,6 +626,58 @@ function empezar() {
   panelAbierto = false;
   ocupado = false;
   pintarEleccion(0);
+  if (animar()) repartir();
+}
+
+/* =====================================================
+   ANIMACIONES DEL MAZO: el reparto al empezar y cada carta nueva, que se descubre dándole la vuelta sobre el mazo.
+   Sin ellas si el sistema pide menos movimiento (y en las pruebas, que no tienen matchMedia).
+   ===================================================== */
+const animar = () => !!(window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches && document.body.animate);
+const VOLTEO_MS = 560;
+/* La carta aparece boca abajo, justo encima del mazo, y da la vuelta */
+function entrarCarta(carta) {
+  carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
+  if (!animar()) {
+    carta.style.transform = "translateY(10px) scale(.94)"; carta.style.opacity = "0";
+    void carta.offsetWidth;
+    carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";
+    return;
+  }
+  carta.classList.add("revelando", "boca-abajo");
+  void carta.offsetWidth;
+  carta.style.transition = "";
+  carta.classList.remove("boca-abajo");
+  clearTimeout(carta._revela);
+  carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
+}
+/* Al empezar, las cartas llegan volando de todas partes y se apilan en el mazo (como el reparto del solitario);
+   después se descubre la primera. */
+function repartir() {
+  const esc = document.querySelector("#screen-game .escenario"), carta = $("carta");
+  if (!esc) return;
+  ocupado = true;
+  esc.classList.add("repartiendo");
+  esc.querySelectorAll(".pila.reparto").forEach(n => n.remove());
+  const N = 9, PASO = 85, DURA = 560;
+  const ancho = window.innerWidth, alto = window.innerHeight;
+  for (let i = 0; i < N; i++) {
+    const p = document.createElement("div");
+    p.className = "pila reparto"; p.setAttribute("aria-hidden", "true");
+    p.innerHTML = '<div class="capa"></div>';
+    esc.appendChild(p);
+    const lado = i % 2 ? 1 : -1, ang = (Math.random() * 50 + 25) * lado;
+    const x = lado * (ancho * (0.7 + Math.random() * 0.5)), y = (Math.random() - 0.35) * alto * 1.1;
+    const fin = `translate(0, 0) rotate(${(Math.random() - 0.5) * 5}deg)`;
+    p.animate([{ transform: `translate(${x}px, ${y}px) rotate(${ang}deg)` }, { transform: fin }],
+      { duration: DURA, delay: i * PASO, easing: "cubic-bezier(.2, .7, .3, 1)", fill: "both" });
+  }
+  setTimeout(() => {
+    esc.querySelectorAll(".pila.reparto").forEach(n => n.remove());
+    esc.classList.remove("repartiendo");
+    entrarCarta(carta);
+    setTimeout(() => { ocupado = false; }, VOLTEO_MS * 0.7);
+  }, (N - 1) * PASO + DURA + 60);
 }
 
 function decidir(dir) {
@@ -756,14 +808,12 @@ function mostrarCartaEstado() {
   carta.classList.remove("hidden", "listo", "volteada");
   cartonDe(carta, "");
   carta.classList.add("purpurina");                  // el marco de las cartas de estado es de cartulina de purpurina
-  carta.style.transition = "none"; carta.style.transform = "translateY(10px) scale(.94)"; carta.style.opacity = "0";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
-  carta.innerHTML = `<div class="giro"><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     (svgEscena(n.id) || `<div class="icono-grande">${icono(n.id)}</div>`) +
     `<div class="etiqueta-boli"><b>${esc(d.nombre)}</b></div>` +
     `<div class="respuesta" id="respuesta"></div></div></div></div>`;
-  void carta.offsetWidth;
-  carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";
+  entrarCarta(carta);
   pintarRanuras();
 }
 /* Escena de la carta de estado (collage de papel alrededor de su icono). Los marcos vacíos llevan la cara del
@@ -821,15 +871,9 @@ function siguiente() {
   barajarLados();
   const carta = $("carta");
   carta.classList.remove("hidden", "listo");
-  carta.style.transition = "none";
-  carta.style.transform = "translateY(10px) scale(.94)";
-  carta.style.opacity = "0";
   pintarCarta(nueva);
   pintarBarras();
-  void carta.offsetWidth;
-  carta.style.transition = "";
-  carta.style.transform = "";
-  carta.style.opacity = "1";
+  entrarCarta(carta);
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   ocupado = false;
   pintarEleccion(0);

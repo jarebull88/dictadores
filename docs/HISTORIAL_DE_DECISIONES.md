@@ -194,6 +194,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — Limpieza de lo que no se usa.** Se borran los recortes de papel antiguos de las fuerzas y los estados (y sus hojas originales), el dibujo de «Alineado» (lo tapaba el icono de cartón) y la textura 4 (pulpa, sin usar). Quedan en el historial de git.
 
+**14 oct — Reparto y volteo.** Al empezar la partida, las cartas llegan volando y se apilan en el mazo, como el reparto del solitario; después se descubre la primera. Cada carta nueva (decisión o estado) sale boca abajo sobre el mazo y se le da la vuelta. Con «reducir movimiento» del sistema no hay animación.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

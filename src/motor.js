@@ -574,7 +574,7 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  return `<div class="dorso"><div class="hoja"><small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
     `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */

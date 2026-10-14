@@ -234,6 +234,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — La bola de papel se abre.** Jorge sube una foto con la misma hoja en varias fases (bola, abriéndose, casi abierta, arrugada). Se recortan cuatro y la bola sube rodando, crece y pasa de una fase a otra mientras sube, con sombra sobre la cartulina, antes de desvanecerse.
 
+**14 oct — 360 en los dos lados.** El icono 360 sale también en la ficha del personaje, en la misma esquina, del blanco de la hoja algo más oscuro.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

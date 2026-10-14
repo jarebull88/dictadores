@@ -286,6 +286,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Icono «360» en la esquina de arriba a la derecha de la cartulina: la carta se puede girar */
 .icono-giro { position: absolute; top: 12px; right: 12px; z-index: 2; width: 13%; max-width: 40px; height: auto; pointer-events: none;
   fill: color-mix(in oklab, var(--fondo-escena, #888) 72%, #000); }   /* del color de la cartulina, algo más intenso (como el dibujo del reverso) */
+/* En la ficha (el otro lado), en la misma esquina y con el mismo principio: el blanco de la hoja, algo más oscuro */
+.dorso .hoja { position: relative; --fondo-escena: #F8F6F0; }
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
 @keyframes amago {

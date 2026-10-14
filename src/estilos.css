@@ -301,14 +301,13 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    el margen automático se anula y se recorta por abajo, nunca la cabeza. */
 .carta-estado .ilustracion { align-items: center; justify-content: center; gap: 6%; padding: 6% 0; }
 .carta-estado .icono-grande { width: 66%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
-/* Etiqueta de papel blanco pegada, escrita «a boli» (Gochi Hand, tinta azul de BIC) */
+/* Etiqueta de papel blanco pegada con el nombre del estado, a máquina */
 .etiqueta-boli {
   width: 84%; padding: 10px 14px 12px; text-align: center; color: var(--tinta);
   background: #F8F6F0 var(--tex-cartulina1) center / cover; background-blend-mode: multiply; border-radius: 4px;
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .6); transform: rotate(-1.5deg);
 }
-.etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: 26px; line-height: 1.1; }   /* título a máquina */
-.etiqueta-boli span { display: block; margin-top: 6px; font-family: "Gochi Hand", var(--fuente); color: #14286E; font-size: 21px; line-height: 1.15; }   /* frase a boli, tinta azul oscura */
+.etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: min(24px, 6.4vw); line-height: 1.1; }   /* título a máquina */
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */

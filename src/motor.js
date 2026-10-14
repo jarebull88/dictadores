@@ -735,7 +735,7 @@ function mostrarAvisoPendiente() {
 
 /* ---------- Carta de estado: el estado nuevo aparece como carta; al tocarla o arrastrarla, baja a su casilla ---------- */
 let modoEstado = false;
-/* Frase que va escrita «a boli» en la carta de cada estado, bajo su nombre. Las que faltan, pendientes de Jorge. */
+/* Frase de cada estado: sale arriba, donde va la pregunta, cuando su carta aparece. Las que faltan, pendientes de Jorge. */
 const FRASE_ESTADO = { nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
   embargo: "La culpa de todo, por fin, tiene nombre.", deuda: "Que paguen los nietos. Ya lo dijiste.",
   vigilancia: "En cada barrio, Revolución." };
@@ -744,8 +744,8 @@ const FONDO_ESTADO = { censura: "#9C3B33", vigilancia: "#D8C77A", culto: "#5A3F7
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
   modoEstado = true; ocupado = false;
-  // Arriba solo el aviso; en la carta, el nombre y la frase a boli; el detalle, al tocar la casilla de abajo
-  $("mensaje").innerHTML = `<span>Nuevo estado del régimen.${n.sale ? ` ${esc(n.sale)} desaparece para dejarle sitio.` : ""} Toca la carta para guardarla.</span>`;
+  // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
+  $("mensaje").textContent = FRASE_ESTADO[n.id] || "Nuevo estado del régimen.";
   ajustarMensaje();
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
@@ -754,7 +754,7 @@ function mostrarCartaEstado() {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     `<div class="icono-grande">${icono(n.id)}</div>` +
-    `<div class="etiqueta-boli"><b>${esc(d.nombre)}</b>${FRASE_ESTADO[n.id] ? `<span>${esc(FRASE_ESTADO[n.id])}</span>` : ""}</div>` +
+    `<div class="etiqueta-boli"><b>${esc(d.nombre)}</b></div>` +
     `<div class="respuesta" id="respuesta"></div></div></div></div>`;
   void carta.offsetWidth;
   carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";

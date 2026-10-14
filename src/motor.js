@@ -738,8 +738,8 @@ let modoEstado = false;
 /* Frase de cada estado (de Jorge): sale arriba, donde va la pregunta, cuando su carta aparece. */
 const FRASE_ESTADO = {
   nacionalizado: "Ahora todo es del pueblo. Y el pueblo eres tú.",
-  embargo: "La culpa de todo, por fin, tiene nombre.",
-  deuda: "Que paguen los nietos. Ya lo dijiste.",
+  embargo: "La culpa de todo por fin tiene nombre.",
+  deuda: "La revolución se pagará en cómodos plazos.",
   vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
   culto: "El pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",

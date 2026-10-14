@@ -298,7 +298,12 @@ function pesoEfectivo(c) {
 
 function sorteo() {
   const cand = CARTAS.filter(c => c.tipo === "sorteo" && deEra(c) && libre(c) && cumple(c) && pesoEfectivo(c) > 0);
-  if (!cand.length) return null;
+  if (!cand.length) {
+    // Respaldo (muy raro: muchas cartas dependen de banderas): repite la carta de la era que hace más tiempo que salió
+    const vistas = CARTAS.filter(c => c.tipo === "sorteo" && deEra(c) && cumple(c) && pesoEfectivo(c) > 0 && !grupoVisto(c))
+      .sort((a, b) => (E.ultima[a.id] || 0) - (E.ultima[b.id] || 0));
+    return vistas[0] || null;
+  }
   const total = cand.reduce((s, c) => s + pesoEfectivo(c), 0);
   let r = Math.random() * total;
   for (const c of cand) { r -= pesoEfectivo(c); if (r <= 0) return c; }

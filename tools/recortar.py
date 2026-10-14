@@ -27,7 +27,7 @@ from scipy import ndimage as ndi
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ANCHO_PERSONAJE = 900
 # Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
-REFLEJAR = {"dictador-viejo"}
+REFLEJAR = set()           # el dictador viejo antiguo se reflejaba; los cuatro nuevos (14 oct) ya vienen con el brazo en su sitio
 ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
 ANCHO_PULPA = 1100         # la 4 (papel de pulpa) se usa a tamaño fijo y su relieve necesita más resolución
 GANANCIA_PULPA = 1.08      # y se aclara un poco: al multiplicar sobre un color lo oscurece

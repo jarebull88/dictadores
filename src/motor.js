@@ -823,7 +823,7 @@ const TEXTO_FIN_ERA = {
   3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
 };
 /* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
-const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-asentado", 4: "dictador-viejo" };
+const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador-viejo" };
 /* Victoria: sobrevivir a la última era. El final al que aspira todo dictador: morir de viejo, en la cama y en el poder.
    La esquela cambia según lo que hayas decidido en la partida. */
 const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;

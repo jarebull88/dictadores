@@ -363,6 +363,15 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .hilo2 { stroke-width: 4; opacity: .6; animation: fluir 3.1s linear infinite; }
 @keyframes fluir { to { stroke-dashoffset: -200; } }
 @keyframes mecer { from { transform: skewX(-6deg); } to { transform: skewX(7deg); } }
+/* PRUEBA 3: papel de seda */
+.seda { transform-box: fill-box; transform-origin: center; opacity: 0; animation: seda 4.8s ease-out infinite; }
+.seda path { fill: rgba(250, 248, 242, .6); stroke: rgba(255, 255, 255, .85); stroke-width: 1.2; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .25)); }
+@keyframes seda {
+  0%   { opacity: 0; transform: translate(0, 0) rotate(-10deg) scale(.4); }
+  15%  { opacity: 1; }
+  60%  { transform: translate(-30px, -330px) rotate(25deg) scale(1); }
+  100% { opacity: 0; transform: translate(40px, -640px) rotate(60deg) scale(1.3); }
+}
 /* PRUEBA 2: bocanadas */
 .bocanada { fill: rgba(240, 238, 232, .7); filter: blur(7px); transform-box: fill-box; transform-origin: center; opacity: 0; animation: bocanada 4.5s ease-out infinite; }
 @keyframes bocanada {

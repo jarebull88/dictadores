@@ -224,7 +224,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — «el Pueblo», con mayúscula.** Como en las eras 2–4, en todos los textos «el Pueblo» va con mayúscula: es un ente con vida en boca del régimen (igual que la Patria o el Partido). Afecta a la era 1, las frases de los estados, las líneas de las fuerzas, la pantalla del nombre y «El Pueblo llegó al mínimo/máximo».
 
-**14 oct — Pruebas de humo.** Jorge ve el humo del puro tosco. Hay dos alternativas en el código para elegir (`hilo`: trazos ondulados a boli que fluyen hacia arriba; `bocanadas`: nubecitas difuminadas que salen una tras otra); de momento sigue el humo de siempre.
+**14 oct — Pruebas de humo.** Jorge ve el humo del puro tosco. Hay dos alternativas en el código para elegir (`hilo`: trazos ondulados a boli que fluyen hacia arriba; `bocanadas`: nubecitas difuminadas que salen una tras otra; `seda`: volutas de papel de seda translúcido que suben girando); de momento sigue el humo de siempre.
 
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.

@@ -92,12 +92,12 @@ const ESTADOS = {
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
   luna: {
     nombre: "Luna de miel", bandera: null, duracion: 1, soloTutorial: true,
-    descripcion: "El Pueblo te quiere sin motivo. Dura lo que dura este paseo.",
+    descripcion: "Todos te quieren, por ahora. Especialmente el Pueblo.",
     deriva: { pueblo: 1 }, cada: 1
   }
 };
 const RESUMEN = {
-  luna: "El Pueblo sube cada año, mientras dure.",
+  luna: "El Pueblo sube cada año.",
   censura: "El Pueblo se enfría cada año.",
   vigilancia: "El Ejército sube y el Pueblo baja.",
   culto: "El Pueblo sube, pero la crisis crece.",
@@ -521,8 +521,17 @@ function pintarRanuras() {
 }
 
 let temporizadorPopup = null;
+/* Color pastel claro de cada ventana: uno por fuerza; los estados, su cartulina aclarada */
+const COLOR_POPUP = { pueblo: "#F7DCCB", ejercito: "#DCE8CC", elite: "#E6DAF2", potencias: "#D3E7F4" };
+function colorPopup(clave) {
+  const [tipo, id] = clave.split("-");
+  if (tipo === "fuerza") return COLOR_POPUP[id];
+  if (tipo === "estado" && FONDO_ESTADO[id]) return `color-mix(in srgb, ${FONDO_ESTADO[id]} 30%, #FBF8F0)`;
+  return "";
+}
 function abrirPopup(clave, html, ancla, autocierre) {
   const pop = $("popup");
+  pop.style.setProperty("--pop-color", colorPopup(clave) || "#F3EEDF");
   if (!pop.classList.contains("hidden") && pop.dataset.clave === clave) { ocultarInfo(); return; }
   clearTimeout(temporizadorPopup);
   pop.innerHTML = html;
@@ -552,15 +561,16 @@ function contenidoEstado(id, s, etiqueta) {
   const d = ESTADOS[id];
   const cadencia = d.cada === 1 ? "Actúa en cada decisión." : `Actúa cada ${d.cada} decisiones.`;
   const tiempo = d.duracion
-    ? `${cadencia} Dura ${d.duracion} decisiones${s ? " y lleva " + s.edad : ""}.`
+    ? `${cadencia} Dura ${d.duracion} ${d.duracion === 1 ? "decisión" : "decisiones"}${s ? " y lleva " + s.edad : ""}.`
     : `${cadencia} Se queda hasta que otro estado lo desplace: solo caben ${MAX_RANURAS}.`;
-  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
+  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">Efecto: ${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
 }
 function mostrarInfo(i) {
   const s = E.estados[i];
   const el = $("ranuras").querySelectorAll("button.ranura")[0] && $("ranuras").children[i];
   if (!s || !el) { ocultarInfo(); return; }
   abrirPopup("estado-" + s.id, contenidoEstado(s.id, s), el);
+  if (E.tutorial && TUTORIAL[E.tutorial.i].paso === "guardar") { E.tutorial.casilla = true; $("ranuras").classList.remove("destacar"); }
 }
 function mostrarFuerza(id, el) {
   const f = FUERZAS[id];
@@ -628,6 +638,10 @@ function silabas(palabra) {
   }
   return cortes;
 }
+/* Texto con *negritas* (y guiones de partición): el tutorial marca así sus instrucciones */
+function conNegritas(texto) {
+  return `<span>${texto.split("*").map((t, k) => k % 2 ? `<b>${esc(partirTexto(t))}</b>` : esc(partirTexto(t))).join("")}</span>`;   // un solo bloque: el mensaje es flex
+}
 function partirTexto(texto) {
   return texto.replace(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{6,}/g, palabra => {
     const cortes = silabas(palabra).filter(c => c >= 2 && palabra.length - c >= 2);
@@ -641,7 +655,7 @@ function pintarCarta(c) {
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
-  $("mensaje").textContent = partirTexto(c.texto);    // con guiones de partición (solo en las preguntas)
+  $("mensaje").innerHTML = conNegritas(c.texto);    // con guiones de partición (solo en las preguntas)
   ajustarMensaje();
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
@@ -1219,7 +1233,11 @@ function actualizarVistaNombre() {
 const CLAVE_TUTORIAL = "comandante.tutorial";
 function tutorialVisto() { try { return localStorage.getItem(CLAVE_TUTORIAL) === "1"; } catch (e) { return true; } }   // sin almacenamiento (pruebas): como visto
 function marcarTutorial() { try { localStorage.setItem(CLAVE_TUTORIAL, "1"); } catch (e) {} $("btn-repasar").classList.remove("hidden"); }
-const tutorialBloquea = () => !!(E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "girar" && !E.tutorial.girada);
+const tutorialBloquea = () => {
+  const t = E && E.tutorial; if (!t) return false;
+  const paso = TUTORIAL[t.i].paso;
+  return (paso === "girar" && !t.girada) || (paso === "guardar" && !t.casilla);   // hay que girar la carta / tocar la casilla
+};
 
 function empezarTutorial() {
   nuevaPartida();
@@ -1238,7 +1256,7 @@ function empezarTutorial() {
 function pasoTutorial(i, sinEntrada) {
   const t = E.tutorial;
   if (i >= TUTORIAL.length) { terminarTutorial(); return; }
-  t.i = i; t.vista = t.girada = false;
+  t.i = i; t.vista = t.girada = t.casilla = false;
   const p = TUTORIAL[i];
   $("nombre-dictador").textContent = "La víspera";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
@@ -1246,7 +1264,7 @@ function pasoTutorial(i, sinEntrada) {
     E.estados = [{ id: "luna", edad: 0 }];
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
-    $("mensaje").textContent = partirTexto(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
+    $("mensaje").innerHTML = conNegritas(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
     return;
   }
   const ef = p.efectos || {};
@@ -1261,6 +1279,7 @@ function pasoTutorial(i, sinEntrada) {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
   carta.classList.toggle("giro-destacado", p.paso === "girar");
+  $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.pueblo = 12; pintarBarras(); }   // una barra en peligro, de mentira
@@ -1278,6 +1297,7 @@ function encenderFuerzas() {
 function terminarTutorial() {
   marcarTutorial();
   $("carta").classList.remove("con-giro", "giro-destacado");
+  $("ranuras").classList.remove("destacar");
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   $("btn-salir").textContent = "Abandonar partida";

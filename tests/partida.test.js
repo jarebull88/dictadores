@@ -92,7 +92,7 @@ test("portada: el logo y dos opciones; el nombre se elige en una carta (derecha 
   assert.ok(j.visible("screen-archive"));
 });
 
-test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {
+test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {
   const j = cargar();
   j.w.eval("empezarTutorial()");
   assert.ok(j.visible("screen-game"));
@@ -114,8 +114,13 @@ test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, 
   assert.equal(j.w.eval("E.tutorial.i"), 5);
   assert.ok(j.w.eval("modoEstado"), "entra la carta de «Luna de miel»");
   j.w.eval("recogerEstado()");
-  assert.equal(j.w.eval("E.tutorial.i"), 6);
-  j.tecla(1);                                                        // 7: fin → nombre
+  assert.equal(j.w.eval("E.tutorial.i"), 6);                         // 7: guardar
+  j.tecla(1);
+  assert.equal(j.w.eval("E.tutorial.i"), 6, "hay que tocar la casilla antes de seguir");
+  j.w.eval("mostrarInfo(0); ocultarInfo();");
+  j.tecla(1);
+  assert.equal(j.w.eval("E.tutorial.i"), 7);
+  j.tecla(1);                                                        // 8: fin → nombre
   assert.ok(j.visible("screen-name"));
   j.$("input-nombre").value = "aureliano"; j.w.eval("decidirNombre(1)");
   assert.ok(j.visible("screen-game"));

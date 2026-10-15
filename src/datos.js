@@ -938,21 +938,15 @@ const FUTURO = {
            · pistas (puntos rojos y una barra en peligro) · consecuencias · estado (entra «Luna de miel») · fin
    - la instrucción va en el propio texto de la carta (15 oct: nada de notas aparte)
    ===================================================== */
-const TUTORIAL = [
-  { paso: "deslizar", texto: "La capital es nuestra, Comandante. ¿Entramos? Arrastre la carta a un lado o al otro para decidir.",
-    izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy? Toque la carta para leer mi expediente y vuelva a tocarla.",
-    izq: "Vamos, Domingo", der: "Vamos, general" },
-  { paso: "fuerzas", texto: "Arriba, las cuatro fuerzas: Pueblo, Ejército, Élite y Potencias. Toque sus iconos para saber más.",
-    izq: "Las cuidaré", der: "A todas, sí" },
-  { paso: "pistas", texto: "Al arrastrar, los puntos rojos dicen cuánto cambia cada fuerza. Si una se vacía o se llena, usted cae.",
-    izq: "Entendido", der: "Lo tendré en cuenta",
-    efectos: { izq: { pueblo: 8, elite: -6, potencias: -4 }, der: { ejercito: 7, pueblo: -4 } } },
-  { paso: "consecuencias", texto: "Lo que decida hoy volverá mañana: cada decisión puede traer cartas nuevas, a veces años después.",
-    izq: "Lo recordaré", der: "Que vuelvan" },
-  { paso: "estado", texto: "Luna de miel: el Pueblo le quiere sin motivo. Algunas decisiones dejan estados así. Toque la carta para guardarlo." },
-  { paso: "fin", texto: "Abajo quedan los estados: tóquelos para ver qué hacen. Y ahora, el Pueblo quiere saber su nombre.",
-    izq: "¡Vamos allá!", der: "¡A la plaza!" }
+const TUTORIAL = [   // *entre asteriscos* = negrita
+  { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos? *Arrastre la carta a un lado o al otro para decidir.*", izq: "¡Adelante!", der: "¡Pues adelante!" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy? *Toque la carta para leer mi expediente y vuelva a tocarla.*", izq: "Vas bien, Domingo", der: "Vamos, general" },
+  { paso: "fuerzas", texto: "Arriba, las cuatro fuerzas que sostienen su gobierno: si pierde el control de una, cae. *Toque los iconos para saber más.*", izq: "Las cuidaré", der: "A todas, sí" },
+  { paso: "pistas", texto: "Los puntos rojos avisan cuánto influye su decisión en cada fuerza. Si una se vacía o se llena, usted cae.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 8, elite: -6, potencias: -4 }, der: { ejercito: 7, pueblo: -4 } } },
+  { paso: "consecuencias", texto: "Sus decisiones podrían tener consecuencias a largo plazo.", izq: "Lo recordaré", der: "Que vengan" },
+  { paso: "estado", texto: "La Revolución le trae *Luna de miel*. Sus decisiones traerán más cartas así, y duran hasta que otra las desplace." },
+  { paso: "guardar", texto: "La carta se guarda abajo. *Tóquela para ver qué hace.*", izq: "Ya veo", der: "Entendido" },
+  { paso: "fin", texto: "El tirano ha caído, el Pueblo le adora y el futuro pinta glorioso. Ahora quieren saber su nombre. *¡No nos decepcione!*", izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */
 

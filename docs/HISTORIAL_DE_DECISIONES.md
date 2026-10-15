@@ -250,6 +250,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Descripciones de las fuerzas.** Fuera las notas «Te aclama», «Te sigue»… (no aportaban). Cada ventana dice quiénes son y cómo reaccionan: el Pueblo aplaude o protesta según cómo vive; el Ejército te protege mientras se sienta respetado, si no conspira; la Élite te apoya mientras haga negocio, si no saca su dinero o conspira; las Potencias te ayudan o castigan según les convenga.
 
+**15 oct — Textos del tutorial de Jorge y ventanas de cartón.** Jorge reescribe el tutorial (8 cartas): las instrucciones van en negrita dentro del mismo texto; nueva carta «guardar» (la casilla de «Luna de miel» parpadea y hay que tocarla). «Luna de miel»: «Todos te quieren, por ahora. Especialmente el Pueblo.» Las ventanas de fuerzas y estados pasan a ser mini cartones de color pastel con pulpa de papel, y el efecto del estado («Efecto: …») va en cinta de carrocero, como el nombre en su carta.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

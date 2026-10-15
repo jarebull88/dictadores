@@ -298,6 +298,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .icono-giro { display: none; }
 .carta.con-giro .icono-giro { display: block; }
 .carta.giro-destacado .icono-giro { animation: parpadeo-giro 1.1s ease-in-out infinite; }
+#ranuras.destacar button.ranura { animation: parpadeo-giro 1.1s ease-in-out infinite; }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
    enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
@@ -488,15 +489,27 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 #screen-game .abandonar { align-self: center; width: var(--carta-w, 100%); max-width: 100%; }   /* a la derecha, en el borde de la carta */
 .abandonar:hover, .abandonar:focus-visible { color: var(--tinta); outline: none; }
 
-/* Ventana emergente: explica una fuerza de arriba o un estado de abajo. Borde doble, sin sombra. */
+/* Ventana emergente: explica una fuerza de arriba o un estado de abajo (15 oct). Un mini cartón pegado:
+   esquinas redondeadas, color pastel claro (uno por fuerza o estado, --pop-color) × la pulpa de papel, sombra corta y bisel. */
 .popup {
-  position: absolute; z-index: 7; background: var(--bloque); color: var(--tinta);
-  border: 4px double var(--carbon); border-radius: var(--radio); padding: 14px 16px;
+  position: absolute; z-index: 7; color: var(--tinta);
+  background: var(--pop-color, #F3EEDF) var(--tex-cartulina5) 40% 60% / 640px auto; background-blend-mode: multiply;
+  border-radius: 14px; padding: 14px 16px;
+  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
 }
 .popup .etiqueta-pop { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); margin-bottom: 2px; }
 .popup b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: 21px; margin-bottom: 4px; }
 .popup span { display: block; font-size: 16px; line-height: 1.4; }
-.popup .efecto { margin-top: 8px; padding: 8px 10px; background: var(--carbon); color: var(--bloque); font-weight: 700; }
+.popup .efecto {   /* el efecto, en cinta de carrocero (como el nombre en la carta del estado) */
+  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-weight: 700;
+  transform: rotate(-1deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));
+}
+.popup .efecto::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .8;
+  background: #EFE3BE var(--tex-cartulina1) center / cover; background-blend-mode: multiply;
+  clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
+    0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
+}
 .popup .extremos { margin-top: 10px; display: grid; gap: 4px; font-size: 15px; line-height: 1.4; }
 .popup small { display: block; margin-top: 8px; font-size: 14px; color: var(--tinta-suave); }
 

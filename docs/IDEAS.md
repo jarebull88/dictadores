@@ -21,4 +21,4 @@ Fotos reales para el hueco de la carta grande del archivo histórico. Van en `as
 
 | Carta (id) | Foto | Estado |
 |---|---|---|
-| La casa vacía (`casa_vacia`) | [Juicio de los aviadores](https://upload.wikimedia.org/wikipedia/commons/9/9a/Juicio_de_los_aviadores.jpg) (Wikimedia Commons) | Pendiente de descargar: la red de esta sesión no deja entrar en Wikimedia |
+| La casa vacía (`casa_vacia`) | [Juicio de los aviadores](https://upload.wikimedia.org/wikipedia/commons/9/9a/Juicio_de_los_aviadores.jpg) (Wikimedia Commons) | Puesta (15 oct, la mandó Jorge). Falta comprobar la licencia en Commons |

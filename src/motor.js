@@ -1204,42 +1204,67 @@ let detalleAbierto = false, detalleId = null;
 function cartaArchivo(c) {
   const foto = IMG["foto_" + c.id];
   const lista = descubiertas(), n = lista.findIndex(x => x.id === c.id) + 1;
-  return `<article class="carta-archivo" style="--c:${colorArchivo(c.id)}"><div class="hoja-archivo">` +
+  return `<article class="carta-archivo" style="--c:${colorArchivo(c.id)}">` +
     `<figure class="foto-archivo${foto ? "" : " vacia"}">${foto ? `<img src="${foto.src}" alt="">` : "<span>Foto</span>"}</figure>` +
     `<h4>${esc(c.titulo)}</h4><p>${esc(c.archivo)}</p><small>Datos pendientes de verificar.</small>` +
-    `<small class="pos-archivo">${n} / ${lista.length}</small></div></article>`;
+    `<small class="pos-archivo">${n} / ${lista.length}</small></article>`;
 }
-function abrirDetalle(id, dir) {
-  const c = POR_ID[id];
+/* Carrusel (15 oct): la anterior, la abierta y la siguiente en fila; la fila sigue al dedo y, al soltar, pasa o vuelve */
+function abrirDetalle(id, sinAnimar) {
   detalleAbierto = true; detalleId = id;
   $("archivo-lista").classList.add("hidden");
   $("archivo-intro").classList.add("hidden");
+  const lista = descubiertas(), i = lista.findIndex(c => c.id === id);
   const det = $("archivo-detalle");
-  det.innerHTML = cartaArchivo(c);
+  det.innerHTML = `<div class="pista-archivo">${[lista[i - 1], lista[i], lista[i + 1]].map(c =>
+    `<div class="hueco-archivo">${c ? cartaArchivo(c) : ""}</div>`).join("")}</div>`;
   det.classList.remove("hidden");
-  const carta = det.firstElementChild;
-  carta.classList.add(dir > 0 ? "entra-der" : dir < 0 ? "entra-izq" : "entra");   // se amplía al abrirla; al pasar, entra por el lado
-  det.scrollTop = 0;
+  if (!sinAnimar) det.querySelectorAll(".hueco-archivo")[1].firstElementChild.classList.add("entra");   // se amplía al abrirla
   $("btn-archivo-volver").innerHTML = icoUI("atras") + "Archivo";
 }
-/* Siguiente (1) o anterior (-1) entre las descubiertas, sin volver a la cuadrícula */
+function moverPista(dx, animado) {
+  const pista = document.querySelector(".pista-archivo");
+  if (!pista) return;
+  pista.style.transition = animado ? "transform .26s cubic-bezier(.2, .7, .2, 1)" : "none";
+  pista.style.transform = `translateX(calc(-100% + ${dx}px))`;
+}
+/* Siguiente (1) o anterior (-1): la fila se desliza entera y luego se rehace centrada en la nueva */
 function pasarArchivo(dir) {
   if (!detalleAbierto) return;
-  const lista = descubiertas(), i = lista.findIndex(c => c.id === detalleId);
-  const sig = lista[i + dir];
-  if (!sig) return;
-  abrirDetalle(sig.id, dir);
+  const lista = descubiertas(), i = lista.findIndex(c => c.id === detalleId), sig = lista[i + dir];
+  const ancho = $("archivo-detalle").clientWidth;
+  if (!sig) { moverPista(0, true); return; }
+  moverPista(-dir * ancho, true);
+  setTimeout(() => { if (detalleAbierto) abrirDetalle(sig.id, true); }, 270);
 }
 (function deslizarArchivo() {
   const det = $("archivo-detalle");
-  let x0 = null, y0 = 0;
-  det.addEventListener("pointerdown", e => { x0 = e.clientX; y0 = e.clientY; });
-  det.addEventListener("pointerup", e => {
+  let x0 = null, y0 = 0, eje = null, dx = 0, t0 = 0;
+  det.addEventListener("pointerdown", e => { x0 = e.clientX; y0 = e.clientY; eje = null; dx = 0; t0 = Date.now(); });
+  det.addEventListener("pointermove", e => {
     if (x0 === null) return;
-    const dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) pasarArchivo(dx < 0 ? 1 : -1);   // a la izquierda, la siguiente
+    const mx = e.clientX - x0, my = e.clientY - y0;
+    if (!eje && Math.hypot(mx, my) > 8) {
+      eje = Math.abs(mx) > Math.abs(my) ? "x" : "y";
+      if (eje === "x") try { det.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    if (eje !== "x") return;
+    const lista = descubiertas(), i = lista.findIndex(c => c.id === detalleId);
+    const tope = (mx > 0 && i <= 0) || (mx < 0 && i >= lista.length - 1);   // sin anterior o siguiente: cuesta moverla
+    dx = tope ? mx * .25 : mx;
+    moverPista(dx, false);
   });
-  det.addEventListener("pointercancel", () => { x0 = null; });
+  const soltar = () => {
+    if (x0 === null) return;
+    x0 = null;
+    if (eje !== "x") return;
+    const ancho = det.clientWidth, rapido = Math.abs(dx) / Math.max(1, Date.now() - t0) > .5;
+    if (dx < -ancho * .2 || (rapido && dx < -30)) pasarArchivo(1);
+    else if (dx > ancho * .2 || (rapido && dx > 30)) pasarArchivo(-1);
+    else moverPista(0, true);
+  };
+  det.addEventListener("pointerup", soltar);
+  det.addEventListener("pointercancel", soltar);
 })();
 function cerrarDetalle() {
   detalleAbierto = false; detalleId = null;

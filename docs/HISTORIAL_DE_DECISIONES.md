@@ -266,6 +266,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Archivo histórico nuevo.** La lista pasa a una cuadrícula de dos columnas con tarjetas 3:4 de colores que solo dicen el título (las no descubiertas, boca abajo con candado). Arriba solo el contador «34 / 86». Al tocar una tarjeta se amplía a una carta de cartón grande con un hueco para una foto real (por ahora vacío; las fotos irán en `assets/archivo/<id>.jpg`) y el texto debajo; deslizando se pasa a la siguiente o la anterior sin volver atrás.
 
+**15 oct — Archivo: carta sencilla y carrusel.** La carta abierta del archivo pasa a ser una sola cartulina (sin la hoja pegada encima), con más sitio para el texto. Entre cartas ya no se salta: la fila sigue al dedo como un carrusel y se ve llegar la siguiente. Primera foto real: el juicio de los aviadores (1959) en «La casa vacía».
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

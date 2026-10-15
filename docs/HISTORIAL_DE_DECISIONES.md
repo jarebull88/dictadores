@@ -236,6 +236,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **14 oct — 360 en los dos lados.** El icono 360 sale también en la ficha del personaje, en la misma esquina, del blanco de la hoja algo más oscuro.
 
+**15 oct — Fuera las animaciones de los personajes.** Ninguna convence todavía: solo quedan los ojos. Se apagan con un interruptor (`ANIMAR_PERSONAJES = false`) para retomarlas más adelante sin perder el trabajo (bola de papel, bocanadas, posición del puro de cada personaje).
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

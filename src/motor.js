@@ -161,6 +161,9 @@ const icono = (id, clase = "") => {
 /* Mini animaciones de cada personaje: se dibujan en SVG encima de la imagen, en el punto (x, y) de
    personajes.json ("animacion"). La colocación va en el grupo padre y el movimiento (CSS) en el hijo,
    para que la animación no pise el atributo transform. */
+/* 15 oct: animaciones de los personajes apagadas (solo se mueven los ojos). El código y la posición del puro se
+   quedan para retomarlas: basta con poner esto a true. */
+const ANIMAR_PERSONAJES = false;
 const ANIMACION = {
   // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
   // 14 oct (prueba): una bola de papel arrugado cada 10 s; sale pequeña de la punta del puro, sube rodando, crece como
@@ -190,7 +193,7 @@ const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fond
 function svgPersonaje(slug, nombre) {
   const p = RETRATOS[slug];
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const a = p.animacion && ANIMACION[p.animacion.tipo]
+  const a = ANIMAR_PERSONAJES && p.animacion && ANIMACION[p.animacion.tipo]
     ? `<g class="animacion anim-${p.animacion.tipo}" transform="translate(${p.animacion.x} ${p.animacion.y})">${ANIMACION[p.animacion.tipo]()}</g>` : "";
   const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo

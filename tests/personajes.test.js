@@ -12,7 +12,9 @@ test("cada personaje tiene dos ojos animados y, si fuma, su humo", () => {
     const ojos = j.d.querySelector("#carta .ojos");
     assert.equal(ojos.querySelectorAll("circle").length, 2, `«${slug}» no tiene dos ojos`);
     assert.match(ojos.getAttribute("style") || "", /animation-delay/, `los ojos de «${slug}» no tienen desfase`);
-    if (a) assert.ok(j.d.querySelector(`#carta .animacion.anim-${a.tipo}`), `«${slug}» no pinta su animación`);
+    const activas = j.w.eval("ANIMAR_PERSONAJES");   // 15 oct: apagadas; si se encienden, cada uno debe pintar la suya
+    if (a && activas) assert.ok(j.d.querySelector(`#carta .animacion.anim-${a.tipo}`), `«${slug}» no pinta su animación`);
+    if (!activas) assert.ok(!j.d.querySelector("#carta .animacion"), `«${slug}» no debería tener animación`);
   }
 });
 

@@ -276,6 +276,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Permanent Marker en vez de Gochi Hand.** La letra a mano de títulos de ventanas, cintas y expediente pasa a ser Permanent Marker (rotulador, en mayúsculas). LiebeHeide se descartó: es de pago y no está disponible.
 
+**15 oct — Dictador joven con cejas.** Jorge regenera el dictador joven (le faltaban las cejas): imagen nueva, recortada y con los ojos recolocados bajo las cejas de fieltro. El asentado, el culto y el viejo se rehacen a partir de esta imagen (prompts en la conversación).
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

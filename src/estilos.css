@@ -10,6 +10,7 @@
   color-scheme: light;
   --fuente: "Courier Prime", "Courier New", Courier, monospace;
   --fuente-titulo: "Special Elite", "Courier Prime", "Courier New", monospace;
+  --tinta-marcador: rgba(28, 27, 25, .9);   /* 15 oct: el rotulador, al 90 %: el negro puro pesaba demasiado */
   --fuente-mano: "Permanent Marker", "Special Elite", cursive;   /* 15 oct: escrito a mano (rotulador): títulos de ventanas, cintas, expediente */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -370,7 +371,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
-.etiqueta-boli b { display: block; font-family: var(--fuente-mano); font-weight: 400; font-size: min(26px, 6.8vw); line-height: 1.1; }   /* título a máquina */
+.etiqueta-boli b { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: min(26px, 6.8vw); line-height: 1.1; }   /* título a máquina */
 .etiqueta-boli.larga b { font-size: min(21px, 5.4vw); }   /* una palabra muy larga («Nacionalizaciones») no cabe al tamaño normal */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
 .carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
@@ -380,7 +381,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Tutorial: la instrucción al jugador, en cinta de carrocero pegada abajo en la cartulina de Cuesta */
 .cinta-tutorial { position: absolute; left: 6%; width: 88%; bottom: 5%; z-index: 2; pointer-events: none; transform: rotate(1.2deg); }
 .cinta-tutorial::before { opacity: .95; }   /* menos translúcida que la del nombre de los estados: aquí hay frases que leer */
-.cinta-tutorial span { display: block; font-family: var(--fuente-mano); font-size: min(21px, 5.5vw); line-height: 1.2; font-weight: 400; }   /* la letra del mensaje de arriba, en negrita */
+.cinta-tutorial span { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-size: min(21px, 5.5vw); line-height: 1.2; font-weight: 400; }   /* la letra del mensaje de arriba, en negrita */
 /* Al girar la carta, la cinta se desvanece enseguida (la vuelta llega a 90° muy pronto y con retardo se veía
    por detrás); al volver, reaparece cuando la cara ya mira de frente */
 .cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: opacity .2s ease .3s; }
@@ -438,7 +439,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
 }
 .ficha-etiqueta { font-size: 12px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--tinta-suave); padding: 3px 10px; border: 1.5px dashed var(--carbon); }
-.ficha-nombre { font-family: var(--fuente-mano); font-weight: 400; font-size: 26px; line-height: 1.05; }
+.ficha-nombre { font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: 26px; line-height: 1.05; }
 .ficha-cargo { font-size: 15px; font-weight: 700; padding-bottom: 10px; border-bottom: 4px double var(--carbon); }
 .ficha-historia { margin: 2px 0 0; font-size: 15px; line-height: 1.4; max-width: 30ch; }
 .ficha-pie { margin-top: 8px; font-size: 12px; color: var(--tinta-suave); }
@@ -508,10 +509,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   background: var(--tex-cartulina5) 40% 60% / 640px auto; mix-blend-mode: multiply; opacity: .4;
 }
 .popup .etiqueta-pop { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); margin-bottom: 2px; }
-.popup b { display: block; font-family: var(--fuente-mano); font-weight: 400; font-size: 25px; line-height: 1.1; margin-bottom: 6px; }
+.popup b { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: 25px; line-height: 1.1; margin-bottom: 6px; }
 .popup span { display: block; font-size: 16px; line-height: 1.4; }
 .popup .efecto {   /* el efecto, en cinta de carrocero (como el nombre en la carta del estado) */
-  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); font-size: 20px; line-height: 1.2; font-weight: 400;
+  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-size: 20px; line-height: 1.2; font-weight: 400;
   transform: rotate(-1deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));
 }
 .popup .efecto::before {

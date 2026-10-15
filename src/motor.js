@@ -159,7 +159,7 @@ const icono = (id, clase = "") => {
    para que la animación no pise el atributo transform. */
 /* 15 oct: animaciones de los personajes apagadas (solo se mueven los ojos). El código y la posición del puro se
    quedan para retomarlas: basta con poner esto a true. */
-const ANIMAR_PERSONAJES = false;
+const ANIMAR_PERSONAJES = true;    // 15 oct: vuelve solo el humo de tela (stop motion); lo demás sigue apagado
 const HUMO_TAM = [[29,41],[61,119],[175,158],[240,272],[329,323],[328,314],[286,300],[236,162]];   // ancho y alto de cada fase del humo de tela (px del recorte)
 const ANIMACION = {
   // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)

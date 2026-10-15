@@ -228,7 +228,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 }
 .barra .punto-zona { height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
 /* Arriba del todo, encima de los iconos: bajan desde fuera de la pantalla al ritmo del arrastre */
-#screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .1s linear; }
+#screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .32s cubic-bezier(.25, .8, .3, 1); }   /* al ritmo del panel */
 .barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
@@ -450,7 +450,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   background: rgba(0, 0, 0, .5); color: var(--bloque);
   transform-origin: 50% 100%; transform: rotate(calc(-1 * var(--giro, 0deg)));
   /* Baja al ritmo del arrastre (--bajada de 0 a 1, ver arrastrable): empieza en cuanto la carta se mueve */
-  translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .1s linear; pointer-events: none;
+  translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */
 }
 /* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
 .texto-respuesta { opacity: 0; }

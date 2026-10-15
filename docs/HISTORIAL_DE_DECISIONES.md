@@ -252,6 +252,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Textos del tutorial de Jorge y ventanas de cartón.** Jorge reescribe el tutorial (8 cartas): las instrucciones van en negrita dentro del mismo texto; nueva carta «guardar» (la casilla de «Luna de miel» parpadea y hay que tocarla). «Luna de miel»: «Todos te quieren, por ahora. Especialmente el Pueblo.» Las ventanas de fuerzas y estados pasan a ser mini cartones de color pastel con pulpa de papel, y el efecto del estado («Efecto: …») va en cinta de carrocero, como el nombre en su carta.
 
+**15 oct — Textos de los estados.** Jorge reescribe las descripciones de los ocho estados con la voz de la propaganda («diversionismo ideológico», «actividades sospechosas»…). La cinta del efecto dice solo lo que nota el jugador (qué fuerza sube o baja y cada cuánto: «cada año» si actúa en cada carta, «cada 3 años» si cada dos); la crisis es un contador interno y no se nombra. Fuera la línea de duración. «Los ojos del barrio» (chivatos) pasa a salir más con Vigilancia en vez de con Censura, que ahora va de prohibiciones culturales. Frases nuevas: Culto («han tenido»), Frontera («no habría aviones para tanta gente»). Se borra la frase de Luna de miel, que no se usaba.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

@@ -51,42 +51,42 @@ const EMOJI_ESTADO = {
 const ESTADOS = {
   censura: {
     nombre: "Censura", bandera: "base.censura_previa", duracion: null,
-    descripcion: "Los rumores ocupan el lugar de las noticias, y la vigilancia de barrio se vuelve más probable.",
-    deriva: { pueblo: -1 }, cada: 1, pesos: { ojos_barrio: 2 }
+    descripcion: "El «diversionismo ideológico» corrompe la conciencia revolucionaria. Toda producción cultural deberá contar con la aprobación del Ministerio de Cultura.",
+    deriva: { pueblo: -1 }, cada: 1
   },
   vigilancia: {
     nombre: "Vigilancia", bandera: "base.comites_vigilancia", duracion: null,
-    descripcion: "Cada vecino vigila al de al lado y el aparato de seguridad gana poder.",
-    deriva: { ejercito: 1, pueblo: -1 }, cada: 2
+    descripcion: "Los enemigos de la Revolución se esconden entre nosotros. Se refuerza la vigilancia ciudadana. Todo vecino tiene el deber de informar sobre «actividades sospechosas».",
+    deriva: { ejercito: 1, pueblo: -1 }, cada: 2, pesos: { ojos_barrio: 2 }
   },
   culto: {
     nombre: "Culto", bandera: "base.culto_iniciado", duracion: null,
-    descripcion: "Retratos, estatuas y fiestas. La gente aplaude, pero alguien tiene que pagarlas.",
+    descripcion: "Tu imagen aparece en cada rincón del país. Las instituciones organizan homenajes y es altamente recomendable asistir a los actos oficiales.",
     deriva: { pueblo: 1 }, cada: 2, crisis: 1
   },
   alineado: {
     nombre: "Alineado", bandera: "base.alineado_bloque_oriental", duracion: null,
-    descripcion: "El aliado te sostiene y lleva la cuenta.",
+    descripcion: "Una potencia aliada te ofrece protección, financiación y asesoramiento. Pero tu soberanía permanece intacta, claro.",
     deriva: { potencias: 1 }, cada: 2, crisis: 1
   },
   embargo: {
     nombre: "Embargo", bandera: "base.embargo_en_marcha", duracion: 6,
-    descripcion: "Nadie te vende nada, y lo poco que llega cuesta más.",
+    descripcion: "Una potencia extranjera impone sanciones económicas a la Revolución. La población afrontará las dificultades con el sacrificio y la unidad de siempre.",
     deriva: { potencias: -1 }, cada: 2, multCrisis: 2
   },
   frontera: {
     nombre: "Frontera cerrada", bandera: "base.frontera_cerrada", duracion: null,
-    descripcion: "Nadie entra ni sale, y el Ejército vigila la frontera.",
+    descripcion: "El imperialismo pretende robarnos a nuestros médicos, ingenieros y científicos. Después de todo lo que el Estado ha invertido en ellos, lo mínimo es que se queden.",
     deriva: { ejercito: 1, potencias: -1 }, cada: 2, pesos: { marchan: 0 }
   },
   nacionalizado: {
     nombre: "Nacionalizaciones", bandera: "base.nacionalizo_empresas", duracion: null,
-    descripcion: "Lo que era privado ahora es tuyo, y las cuentas también.",
+    descripcion: "Ningún interés particular estará por encima del bienestar colectivo. Se nacionalizan empresas, comercios y pequeños negocios.",
     deriva: { elite: -1 }, cada: 2, crisis: 1
   },
   deuda: {
     nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,
-    descripcion: "El acreedor llama cada mes.",
+    descripcion: "Para preservar la soberanía económica, se ha solicitado financiación a los mercados internacionales.",
     deriva: { potencias: 1 }, cada: 2, crisis: 1
   },
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
@@ -98,14 +98,14 @@ const ESTADOS = {
 };
 const RESUMEN = {
   luna: "El Pueblo sube cada año.",
-  censura: "El Pueblo se enfría cada año.",
-  vigilancia: "El Ejército sube y el Pueblo baja.",
-  culto: "El Pueblo sube, pero la crisis crece.",
-  alineado: "Potencias sube, pero la dependencia (crisis) crece.",
-  embargo: "Potencias baja y las promesas cuestan el doble.",
-  frontera: "El Ejército sube, Potencias baja y nadie se marcha.",
-  nacionalizado: "La Élite baja y la crisis crece.",
-  deuda: "Potencias sube, pero la crisis crece."
+  censura: "El Pueblo baja cada año.",
+  vigilancia: "El Ejército sube y el Pueblo baja cada 3 años.",
+  culto: "El Pueblo sube cada 3 años.",
+  alineado: "Las Potencias suben cada 3 años.",
+  embargo: "Las Potencias bajan cada 3 años, durante unos 9.",
+  frontera: "El Ejército sube y las Potencias bajan cada 3 años.",
+  nacionalizado: "La Élite baja cada 3 años.",
+  deuda: "Las Potencias suben cada 3 años."
 };
 /* DIFICULTAD
    Los efectos de las cartas se escriben en una escala pequeña (±4 a ±12) y se multiplican al cargar.
@@ -559,11 +559,7 @@ function ocultarInfo() {
 }
 function contenidoEstado(id, s, etiqueta) {
   const d = ESTADOS[id];
-  const cadencia = d.cada === 1 ? "Actúa en cada decisión." : `Actúa cada ${d.cada} decisiones.`;
-  const tiempo = d.duracion
-    ? `${cadencia} Dura ${d.duracion} ${d.duracion === 1 ? "decisión" : "decisiones"}${s ? " y lleva " + s.edad : ""}.`
-    : `${cadencia} Se queda hasta que otro estado lo desplace: solo caben ${MAX_RANURAS}.`;
-  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">Efecto: ${esc(RESUMEN[id] || "")}</span><small>${esc(tiempo)}</small>`;
+  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">Efecto: ${esc(RESUMEN[id] || "")}</span>`;   // el ritmo y la duración van en el efecto (15 oct)
 }
 function mostrarInfo(i) {
   const s = E.estados[i];
@@ -916,14 +912,13 @@ function mostrarAvisoPendiente() {
 let modoEstado = false;
 /* Frase de cada estado (de Jorge): sale arriba, donde va la pregunta, cuando su carta aparece. */
 const FRASE_ESTADO = {
-  luna: "El Pueblo te quiere sin motivo. Disfrútalo: no dura.",
   nacionalizado: "Ahora todo es del Pueblo. Y el Pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
   deuda: "La Revolución se pagará en cómodos plazos.",
   vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
-  culto: "El Pueblo te quiere tanto que he tenido que repartir tu retrato por todo el país.",
+  culto: "El Pueblo te quiere tanto que han tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
-  frontera: "El imperialismo lleva años intentando llevarse a nuestros mejores talentos.",
+  frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
 };
 const FONDO_ESTADO = { luna: "#F28FA6", censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",

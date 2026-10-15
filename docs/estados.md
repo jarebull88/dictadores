@@ -6,12 +6,12 @@ Hay cuatro ranuras. Al entrar un quinto estado, sale el más antiguo. Los valore
 
 | Estado | Emoji | Qué es | Efecto | Deriva | Cada | Duración |
 | --- | --- | --- | --- | --- | --- | --- |
-| Censura (`censura`) | 🤐 | Los rumores ocupan el lugar de las noticias, y la vigilancia de barrio se vuelve más probable. | El Pueblo se enfría cada año. | Pueblo −2 | 1 | hasta que otro lo desplace |
-| Vigilancia (`vigilancia`) | 👁️ | Cada vecino vigila al de al lado y el aparato de seguridad gana poder. | El Ejército sube y el Pueblo baja. | Ejército +2 · Pueblo −2 | 2 | hasta que otro lo desplace |
-| Culto (`culto`) | 🖼️ | Retratos, estatuas y fiestas. La gente aplaude, pero alguien tiene que pagarlas. | El Pueblo sube, pero la crisis crece. | Pueblo +2 | 2 | hasta que otro lo desplace |
-| Alineado (`alineado`) | 🤝 | El aliado te sostiene y lleva la cuenta. | Potencias sube, pero la dependencia (crisis) crece. | Potencias +2 | 2 | hasta que otro lo desplace |
-| Embargo (`embargo`) | 🚫 | Nadie te vende nada, y lo poco que llega cuesta más. | Potencias baja y las promesas cuestan el doble. | Potencias −2 | 2 | 6 años |
-| Frontera cerrada (`frontera`) | 🧱 | Nadie entra ni sale, y el Ejército vigila la frontera. | El Ejército sube, Potencias baja y nadie se marcha. | Ejército +2 · Potencias −2 | 2 | hasta que otro lo desplace |
-| Nacionalizaciones (`nacionalizado`) | 🏭 | Lo que era privado ahora es tuyo, y las cuentas también. | La Élite baja y la crisis crece. | Élite −2 | 2 | hasta que otro lo desplace |
-| Deuda externa (`deuda`) | 💸 | El acreedor llama cada mes. | Potencias sube, pero la crisis crece. | Potencias +2 | 2 | hasta que otro lo desplace |
+| Censura (`censura`) | 🤐 | El «diversionismo ideológico» corrompe la conciencia revolucionaria. Toda producción cultural deberá contar con la aprobación del Ministerio de Cultura. | El Pueblo baja cada año. | Pueblo −2 | 1 | hasta que otro lo desplace |
+| Vigilancia (`vigilancia`) | 👁️ | Los enemigos de la Revolución se esconden entre nosotros. Se refuerza la vigilancia ciudadana. Todo vecino tiene el deber de informar sobre «actividades sospechosas». | El Ejército sube y el Pueblo baja cada 3 años. | Ejército +2 · Pueblo −2 | 2 | hasta que otro lo desplace |
+| Culto (`culto`) | 🖼️ | Tu imagen aparece en cada rincón del país. Las instituciones organizan homenajes y es altamente recomendable asistir a los actos oficiales. | El Pueblo sube cada 3 años. | Pueblo +2 | 2 | hasta que otro lo desplace |
+| Alineado (`alineado`) | 🤝 | Una potencia aliada te ofrece protección, financiación y asesoramiento. Pero tu soberanía permanece intacta, claro. | Las Potencias suben cada 3 años. | Potencias +2 | 2 | hasta que otro lo desplace |
+| Embargo (`embargo`) | 🚫 | Una potencia extranjera impone sanciones económicas a la Revolución. La población afrontará las dificultades con el sacrificio y la unidad de siempre. | Las Potencias bajan cada 3 años, durante unos 9. | Potencias −2 | 2 | 6 años |
+| Frontera cerrada (`frontera`) | 🧱 | El imperialismo pretende robarnos a nuestros médicos, ingenieros y científicos. Después de todo lo que el Estado ha invertido en ellos, lo mínimo es que se queden. | El Ejército sube y las Potencias bajan cada 3 años. | Ejército +2 · Potencias −2 | 2 | hasta que otro lo desplace |
+| Nacionalizaciones (`nacionalizado`) | 🏭 | Ningún interés particular estará por encima del bienestar colectivo. Se nacionalizan empresas, comercios y pequeños negocios. | La Élite baja cada 3 años. | Élite −2 | 2 | hasta que otro lo desplace |
+| Deuda externa (`deuda`) | 💸 | Para preservar la soberanía económica, se ha solicitado financiación a los mercados internacionales. | Las Potencias suben cada 3 años. | Potencias +2 | 2 | hasta que otro lo desplace |
 | Luna de miel (`luna`) | 🍯 | Todos te quieren, por ahora. Especialmente el Pueblo. | El Pueblo sube cada año. | Pueblo +2 | 1 | 1 años |

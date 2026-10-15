@@ -226,7 +226,9 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
 }
-.barra .punto-zona { height: 14px; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
+.barra .punto-zona { height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
+/* Arriba del todo, encima de los iconos: bajan desde fuera de la pantalla al ritmo del arrastre */
+#screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .1s linear; }
 .barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
@@ -445,8 +447,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   /* Baja al ritmo del arrastre (--bajada de 0 a 1, ver arrastrable): empieza en cuanto la carta se mueve */
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .1s linear; pointer-events: none;
 }
-/* El texto, en cambio, solo aparece en el umbral: si se ve, soltar decide */
-.texto-respuesta { opacity: 0; transition: opacity .1s; }
+/* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
+.texto-respuesta { opacity: 0; }
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
@@ -2190,8 +2192,8 @@ function parBarra(id, esc = 1) {
 function construirBarras() {
   $("barras").innerHTML = BARRAS.map(b => `
     <div class="barra" role="button" tabindex="0" data-b="${b.id}" aria-label="${b.nombre}" title="${b.nombre}">
-      ${parBarra(b.id)}
       <div class="punto-zona"><div class="punto"></div></div>
+      ${parBarra(b.id)}
     </div>`).join("");
   $("barras").querySelectorAll(".barra").forEach(el => {
     el.addEventListener("click", ev => { ev.stopPropagation(); mostrarFuerza(el.dataset.b, el); });
@@ -2349,8 +2351,9 @@ function pintarEleccion(dir) {
   const r = $("respuesta");
   if (r) {
     if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
-    else r.classList.remove("visible");
+    // Sin lado (la carta vuelve a su sitio): el texto se queda en el panel y sube con él
   }
+  if (!op) return;                                    // los puntos tampoco cambian: suben fuera de la pantalla tal cual
   BARRAS.forEach(b => {
     const p = document.querySelector(`.barra[data-b="${b.id}"] .punto`);
     const e = op ? Math.abs(op.efectos[b.id] || 0) : 0;
@@ -2486,6 +2489,7 @@ function resolver(dir) {
   mostrarDerivas();
   prepararAviso();
   pintarEleccion(0);
+  bajarPistas(0);
 
   const caida = comprobarCaida();
   const eraCompleta = !caida && E.turno > finEra();
@@ -2900,6 +2904,8 @@ function nombreValido() {
 /* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la pantalla del nombre.
    op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
    op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
+/* Los puntos de pista bajan desde fuera de la pantalla al ritmo del arrastre (y vuelven a subir si la carta vuelve) */
+const bajarPistas = v => document.documentElement.style.setProperty("--bajada-pistas", v.toFixed ? v.toFixed(3) : v);
 function arrastrable(carta, op) {
   let drag = null;
   // Distancia a partir de la cual se decide: es también la que muestra la respuesta, así que si se ve, soltar decide
@@ -2912,12 +2918,13 @@ function arrastrable(carta, op) {
   }
   function volver() {
     marcarListo(false);
+    bajarPistas(0);
     carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
   }
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
-    drag = { x: e.clientX, dx: 0, dir: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    drag = { x: e.clientX, dx: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
     carta.style.transition = "none";
@@ -2932,9 +2939,13 @@ function arrastrable(carta, op) {
     carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
     carta.style.setProperty("--giro", `${drag.dx / 18}deg`);
     // El panel baja desde el primer píxel, al ritmo del arrastre; llega abajo justo en el umbral, cuando sale el texto
-    carta.style.setProperty("--bajada", Math.min(1, Math.abs(drag.dx) / umbral()).toFixed(3));
-    const dir = Math.abs(drag.dx) > umbral() ? Math.sign(drag.dx) : 0;
-    if (dir !== drag.dir) { drag.dir = dir; op.mostrar(dir); }
+    const bajada = Math.min(1, Math.abs(drag.dx) / umbral());
+    carta.style.setProperty("--bajada", bajada.toFixed(3));
+    bajarPistas(bajada);
+    // El texto de la respuesta va dentro del panel y baja con él desde el primer píxel; se decide al llegar al umbral
+    const lado = Math.sign(drag.dx), dir = Math.abs(drag.dx) > umbral() ? lado : 0;
+    if (lado !== drag.lado) { drag.lado = lado; op.mostrar(lado); }
+    drag.dir = dir;
     marcarListo(dir !== 0);
   });
   function soltar(e) {

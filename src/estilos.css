@@ -207,7 +207,9 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
 }
-.barra .punto-zona { height: 14px; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
+.barra .punto-zona { height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
+/* Arriba del todo, encima de los iconos: bajan desde fuera de la pantalla al ritmo del arrastre */
+#screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .1s linear; }
 .barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
@@ -426,8 +428,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   /* Baja al ritmo del arrastre (--bajada de 0 a 1, ver arrastrable): empieza en cuanto la carta se mueve */
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .1s linear; pointer-events: none;
 }
-/* El texto, en cambio, solo aparece en el umbral: si se ve, soltar decide */
-.texto-respuesta { opacity: 0; transition: opacity .1s; }
+/* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
+.texto-respuesta { opacity: 0; }
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }

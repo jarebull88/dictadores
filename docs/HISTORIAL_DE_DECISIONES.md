@@ -238,6 +238,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Fuera las animaciones de los personajes.** Ninguna convence todavía: solo quedan los ojos. Se apagan con un interruptor (`ANIMAR_PERSONAJES = false`) para retomarlas más adelante sin perder el trabajo (bola de papel, bocanadas, posición del puro de cada personaje).
 
+**15 oct — La respuesta y las pistas bajan con el dedo.** El texto de la respuesta ya no aparece de golpe en el umbral: va dentro del panel semitransparente y baja con él desde que empiezas a arrastrar. Los puntos rojos de pista pasan encima de los iconos y bajan desde fuera de la pantalla al mismo ritmo; si la carta vuelve a su sitio, suben y desaparecen.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

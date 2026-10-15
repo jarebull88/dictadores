@@ -926,9 +926,14 @@ const FRASE_ESTADO = {
 };
 const FONDO_ESTADO = { luna: "#F28FA6", censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",
   embargo: "#5BA8DC", frontera: "#7CC67A", nacionalizado: "#7CC6EE", deuda: "#A5D867" };
+const ESPERA_ESTADO = 7000;   // 15 oct: si nadie toca la carta de estado, se guarda sola a los 7 s (también en el tutorial)
+let relojEstado = null;
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
   modoEstado = true; ocupado = false;
+  clearTimeout(relojEstado);
+  const partida = E;
+  relojEstado = setTimeout(() => { if (modoEstado && E === partida && E.estadoNuevo === n && !$("screen-game").classList.contains("hidden")) recogerEstado(); }, ESPERA_ESTADO);
   // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
   $("mensaje").textContent = FRASE_ESTADO[n.id] || "Nuevo estado del régimen.";
   ajustarMensaje();
@@ -971,6 +976,7 @@ function svgEscena(id) {
 /* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
 function recogerEstado() {
   if (!modoEstado || ocupado) return;
+  clearTimeout(relojEstado);
   ocupado = true;
   const carta = $("carta"), id = E.estadoNuevo.id;
   const idx = E.estados.findIndex(s => s.id === id);
@@ -1263,8 +1269,6 @@ function pasoTutorial(i, sinEntrada) {
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
     $("mensaje").innerHTML = conNegritas(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
-    clearTimeout(t.reloj);
-    t.reloj = setTimeout(() => { if (modoEstado && E && E.tutorial === t && TUTORIAL[t.i].paso === "estado") recogerEstado(); }, 5000);   // si no se toca, se guarda sola
     return;
   }
   const ef = p.efectos || {};
@@ -1298,7 +1302,7 @@ function terminarTutorial() {
   marcarTutorial();
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar");
-  if (E && E.tutorial) clearTimeout(E.tutorial.reloj);
+  clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   $("btn-salir").textContent = "Abandonar partida";

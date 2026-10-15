@@ -258,6 +258,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Retoques del tutorial y sin partición.** La cinta del tutorial es menos translúcida y usa la letra del mensaje en negrita (no la de las cartas de estado), y ya no se ve por detrás al girar la carta. En la carta de los puntos, los efectos de prueba dan puntos de los tres tamaños. Textos nuevos de Jorge (fuerzas, Ejército, «Tus decisiones tienen efectos a largo plazo», Luna de miel). Se vuelve a quitar la partición de palabras con guion en todo el juego.
 
+**15 oct — Las cartas de estado se guardan solas.** Si nadie toca una carta de estado, a los 7 s vuela sola a su casilla, en la partida y en el tutorial (que tenía 5 s).
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

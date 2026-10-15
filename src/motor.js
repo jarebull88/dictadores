@@ -658,6 +658,7 @@ function pintarCarta(c) {
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
+    `${c.cinta ? `<div class="etiqueta-boli cinta-tutorial"><span>${esc(c.cinta)}</span></div>` : ""}` +   // tutorial: la instrucción al jugador, en cinta de carrocero
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
@@ -1260,10 +1261,12 @@ function pasoTutorial(i, sinEntrada) {
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
     $("mensaje").innerHTML = conNegritas(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
+    clearTimeout(t.reloj);
+    t.reloj = setTimeout(() => { if (modoEstado && E && E.tutorial === t && TUTORIAL[t.i].paso === "estado") recogerEstado(); }, 5000);   // si no se toca, se guarda sola
     return;
   }
   const ef = p.efectos || {};
-  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: p.texto,
+  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: p.texto, cinta: p.cinta,
     izq: { accion: p.izq, efectos: ef.izq || {} }, der: { accion: p.der, efectos: ef.der || {} } };
   E.actual = c;
   barajarLados();
@@ -1277,8 +1280,8 @@ function pasoTutorial(i, sinEntrada) {
   $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
-  if (p.paso === "pistas") { E.barras.pueblo = 12; pintarBarras(); }   // una barra en peligro, de mentira
-  if (p.paso === "fin") { E.barras.pueblo = 50; pintarBarras(); }
+  if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira
+  if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }
   ocupado = false;
   pintarEleccion(0);
 }
@@ -1293,6 +1296,7 @@ function terminarTutorial() {
   marcarTutorial();
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar");
+  if (E && E.tutorial) clearTimeout(E.tutorial.reloj);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   $("btn-salir").textContent = "Abandonar partida";

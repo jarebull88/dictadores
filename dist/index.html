@@ -392,6 +392,9 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .carta-estado .escena .ojos-fijos { fill: #161618; }
 .carta-estado .escena + .etiqueta-boli { position: absolute; left: 8%; bottom: 5%; }
+/* Tutorial: la instrucción al jugador, en cinta de carrocero pegada abajo en la cartulina de Cuesta */
+.cinta-tutorial { position: absolute; left: 8%; bottom: 5%; z-index: 2; pointer-events: none; transform: rotate(1.2deg); }
+.cinta-tutorial span { display: block; font-family: var(--fuente-titulo); font-size: min(19px, 5vw); line-height: 1.2; }
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
@@ -654,7 +657,7 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 
   <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
     <div class="cabecera-carta">
-      <p class="intro">El tirano ha caído. El Pueblo te adora y el futuro pinta glorioso. Tienes el poder, Comandante. <b>¡No nos decepciones!</b></p>
+      <p class="intro">Has derrocado al tirano. El Pueblo confía en ti y la Revolución promete un futuro mejor para todos. Tienes el poder, Comandante. No olvides por quién luchaste.</p>
     </div>
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa"></div></div>
@@ -1764,15 +1767,15 @@ const FUTURO = {
            · pistas (puntos rojos y una barra en peligro) · consecuencias · estado (entra «Luna de miel») · fin
    - la instrucción va en el propio texto de la carta (15 oct: nada de notas aparte)
    ===================================================== */
-const TUTORIAL = [   // *entre asteriscos* = negrita
-  { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos? *Arrastre la carta a un lado o al otro para decidir.*", izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy? *Toque la carta para leer mi expediente y vuelva a tocarla.*", izq: "Vas bien, Domingo", der: "Vamos, general" },
-  { paso: "fuerzas", texto: "Arriba, las cuatro fuerzas que sostienen su gobierno: si pierde el control de una, cae. *Toque los iconos para saber más.*", izq: "Las cuidaré", der: "A todas, sí" },
-  { paso: "pistas", texto: "Los puntos rojos avisan cuánto influye su decisión en cada fuerza. Si una se vacía o se llena, usted cae.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 8, elite: -6, potencias: -4 }, der: { ejercito: 7, pueblo: -4 } } },
-  { paso: "consecuencias", texto: "Sus decisiones podrían tener consecuencias a largo plazo.", izq: "Lo recordaré", der: "Que vengan" },
-  { paso: "estado", texto: "La Revolución le trae *Luna de miel*. Sus decisiones traerán más cartas así, y duran hasta que otra las desplace." },
-  { paso: "guardar", texto: "La carta se guarda abajo. *Tóquela para ver qué hace.*", izq: "Ya veo", der: "Entendido" },
-  { paso: "fin", texto: "El tirano ha caído, el Pueblo le adora y el futuro pinta glorioso. Ahora quieren saber su nombre. *¡No nos decepcione!*", izq: "¡Vamos allá!", der: "¡A la plaza!" }
+const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
+  { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, general" },
+  { paso: "fuerzas", texto: "El Pueblo, el Ejército, la Élite y las Potencias deben mantenerse bajo control. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
+  { paso: "pistas", texto: "Comandante, aunque la victoria está conseguida, aún debe consolidarse la lealtad del Ejército.", cinta: "Los puntos rojos te dicen cuánto cambia cada fuerza. Si una se vacía o se llena, pierdes.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 8, elite: -6, potencias: -4 }, der: { ejercito: 7, pueblo: -4 } } },
+  // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.
+  { paso: "estado", texto: "La Revolución te trae *Luna de miel*. Tus decisiones traerán más cartas como esta, a veces años después." },
+  { paso: "guardar", texto: "Comandante, esa carta aumenta el apoyo popular cada año. Las lunas de miel son estupendas… hasta que dejan de serlo.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
+  { paso: "fin", texto: "Comandante, la nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */
 
@@ -2436,6 +2439,7 @@ function pintarCarta(c) {
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
+    `${c.cinta ? `<div class="etiqueta-boli cinta-tutorial"><span>${esc(c.cinta)}</span></div>` : ""}` +   // tutorial: la instrucción al jugador, en cinta de carrocero
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
@@ -3038,10 +3042,12 @@ function pasoTutorial(i, sinEntrada) {
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
     $("mensaje").innerHTML = conNegritas(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
+    clearTimeout(t.reloj);
+    t.reloj = setTimeout(() => { if (modoEstado && E && E.tutorial === t && TUTORIAL[t.i].paso === "estado") recogerEstado(); }, 5000);   // si no se toca, se guarda sola
     return;
   }
   const ef = p.efectos || {};
-  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: p.texto,
+  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: p.texto, cinta: p.cinta,
     izq: { accion: p.izq, efectos: ef.izq || {} }, der: { accion: p.der, efectos: ef.der || {} } };
   E.actual = c;
   barajarLados();
@@ -3055,8 +3061,8 @@ function pasoTutorial(i, sinEntrada) {
   $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
-  if (p.paso === "pistas") { E.barras.pueblo = 12; pintarBarras(); }   // una barra en peligro, de mentira
-  if (p.paso === "fin") { E.barras.pueblo = 50; pintarBarras(); }
+  if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira
+  if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }
   ocupado = false;
   pintarEleccion(0);
 }
@@ -3071,6 +3077,7 @@ function terminarTutorial() {
   marcarTutorial();
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar");
+  if (E && E.tutorial) clearTimeout(E.tutorial.reloj);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   $("btn-salir").textContent = "Abandonar partida";

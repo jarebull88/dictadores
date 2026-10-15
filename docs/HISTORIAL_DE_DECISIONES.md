@@ -254,6 +254,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Textos de los estados.** Jorge reescribe las descripciones de los ocho estados con la voz de la propaganda («diversionismo ideológico», «actividades sospechosas»…). La cinta del efecto dice solo lo que nota el jugador (qué fuerza sube o baja y cada cuánto: «cada año» si actúa en cada carta, «cada 3 años» si cada dos); la crisis es un contador interno y no se nombra. Fuera la línea de duración. «Los ojos del barrio» (chivatos) pasa a salir más con Vigilancia en vez de con Censura, que ahora va de prohibiciones culturales. Frases nuevas: Culto («han tenido»), Frontera («no habría aviones para tanta gente»). Se borra la frase de Luna de miel, que no se usaba.
 
+**15 oct — Tutorial a dos voces.** Arriba, Cuesta habla al Comandante (de usted); la instrucción al jugador (de tú) va en una cinta de carrocero sobre la carta. 7 cartas: se quita «consecuencias» (la idea pasa a la carta de Luna de miel, que se guarda sola a los 5 s). Textos de Jorge en fuerzas, puntos (ahora es el Ejército el que está en rojo), guardar y fin («Ha llegado el momento de presentarse»). Nuevo texto de la pantalla del nombre, sin negritas: «Has derrocado al tirano… No olvides por quién luchaste.»
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

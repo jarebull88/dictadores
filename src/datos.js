@@ -946,7 +946,7 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
   { paso: "guardar", texto: "Esa carta aumenta el apoyo popular. Las lunas de miel son estupendas hasta que dejan de serlo.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
-  { paso: "fin", texto: "Comandante, la nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "¡Vamos allá!", der: "¡A la plaza!" }
+  { paso: "fin", texto: "La nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */
 

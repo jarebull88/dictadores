@@ -262,6 +262,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Retoques.** «afectará» en la cinta de los puntos. El 360 se esconde al instante al girar la carta (como la cinta) y aparece en la otra cara al terminar la vuelta. En la cinta de las cartas de estado, un nombre de una sola palabra muy larga («Nacionalizaciones») va con letra más pequeña.
 
+**15 oct — Textos nuevos de Jorge.** Tutorial: «Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.» y «Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.» Pantalla del nombre: «Has derrocado al tirano. La Revolución empieza ahora: será una empresa dura y llena de peligros, pero promete un futuro mejor para todos. El Pueblo confía en ti, Comandante.» Va a 19 px, como la pregunta; si no cabe (móviles bajos), `ajustarIntro()` baja la letra hasta 14 px.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

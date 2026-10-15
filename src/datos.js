@@ -941,11 +941,11 @@ const FUTURO = {
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
   { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, general" },
-  { paso: "fuerzas", texto: "Pueblo, Ejército, Élite y Potencias deben mantenerse bajo control. Si alguno llega al límite, su gobierno caerá.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
+  { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
-  { paso: "guardar", texto: "Esa carta aumenta el apoyo popular. Las lunas de miel son estupendas hasta que dejan de serlo.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
+  { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
   { paso: "fin", texto: "La nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */

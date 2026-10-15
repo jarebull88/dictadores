@@ -1312,7 +1312,17 @@ function irANombre() {
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
   mostrar("screen-name");
+  ajustarIntro();
 }
+/* El texto de la pantalla del nombre va a 19 px, como la pregunta; si no cabe en el hueco de arriba (móviles bajos), la letra baja hasta 14 px */
+function ajustarIntro() {
+  const p = document.querySelector("#screen-name .intro"), caja = p && p.parentElement;
+  if (!p || $("screen-name").classList.contains("hidden")) return;
+  p.style.fontSize = "";
+  let px = 19;
+  while ((p.offsetHeight > caja.clientHeight || caja.scrollHeight > caja.clientHeight) && px > 14) { px -= 1; p.style.fontSize = px + "px"; }
+}
+window.addEventListener("resize", ajustarIntro);
 /* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */
 function nombreValido() {
   let v = $("input-nombre").value.trim();

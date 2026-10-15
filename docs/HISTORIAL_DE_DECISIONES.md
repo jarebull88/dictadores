@@ -246,6 +246,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Tutorial «La víspera».** «Cómo se juega» deja de ser una ventana de texto y se convierte en el principio de la partida. La primera vez, el general Domingo Cuesta acompaña al Comandante el día que entran en la capital, en 6 cartas: deslizar, girar la carta, las cuatro fuerzas (que se encienden una a una), los puntos rojos y la caída, un estado («Luna de miel», solo del tutorial: dura lo que dura el paseo) y el final, que lleva a la carta del nombre. Se puede saltar en cualquier momento. En la portada, «Comenzar partida» y «Archivo histórico» con el mismo estilo, y «Repasar cómo se juega» tras la primera vez. Falta el arte definitivo de «Luna de miel».
 
+**15 oct — Tutorial en un solo texto.** Se quita la nota en negrita bajo el pie: cada carta del tutorial lo dice todo en la pregunta. Nueva carta «consecuencias» (7 en total): lo que decidas puede traer cartas nuevas, a veces años después. La ventana de cada fuerza queda en nombre + nota («Te aclama»…) + descripción (fuera «si se vacía / si se llena» y el texto común de los puntos); las notas ya no van bajo las barras. El icono 360 sale solo en el paso de girar, parpadeando, y antes no se puede girar la carta; en la partida ya no sale.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

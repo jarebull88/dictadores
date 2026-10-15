@@ -564,11 +564,8 @@ function mostrarInfo(i) {
 }
 function mostrarFuerza(id, el) {
   const f = FUERZAS[id];
-  const bajo = FINALES[id + "_0"].titulo, alto = FINALES[id + "_100"].titulo;
   abrirPopup("fuerza-" + id,
-    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>
-     <div class="extremos"><div>▼ Si se vacía: <strong>${esc(bajo)}</strong>.</div><div>▲ Si se llena: <strong>${esc(alto)}</strong>.</div></div>
-     <small>Los puntos que ves al arrastrar indican cuánto se moverá, no si sube o baja.</small>`, el);
+    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><strong class="nota-fuerza">${esc(NOTA_FUERZA[id] || "")}</strong><span>${esc(f.quien)}</span>`, el);
 }
 
 /* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);
@@ -657,12 +654,13 @@ function pintarCarta(c) {
 function voltear() {
   if (modoEstado) { recogerEstado(); return; }
   if (ocupado) return;
+  if (E && E.tutorial && E.tutorial.i < TUTORIAL.findIndex(x => x.paso === "girar")) return;   // aún no toca girar
   pintarEleccion(0);
   const volteada = $("carta").classList.toggle("volteada");
   const t = E && E.tutorial;
   if (t && TUTORIAL[t.i].paso === "girar") {               // tutorial: hay que darle la vuelta y volver a girarla
-    if (volteada) { t.vista = true; pistaTutorial("Otro toque la devuelve a su sitio"); }
-    else if (t.vista) { t.girada = true; pistaTutorial("Ya puedes arrastrarla"); }
+    if (volteada) t.vista = true;
+    else if (t.vista) t.girada = true;
   }
 }
 
@@ -1222,7 +1220,7 @@ const CLAVE_TUTORIAL = "comandante.tutorial";
 function tutorialVisto() { try { return localStorage.getItem(CLAVE_TUTORIAL) === "1"; } catch (e) { return true; } }   // sin almacenamiento (pruebas): como visto
 function marcarTutorial() { try { localStorage.setItem(CLAVE_TUTORIAL, "1"); } catch (e) {} $("btn-repasar").classList.remove("hidden"); }
 const tutorialBloquea = () => !!(E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "girar" && !E.tutorial.girada);
-function pistaTutorial(texto) { $("pista-tutorial").textContent = texto; $("pista-tutorial").classList.toggle("hidden", !texto); }
+
 function empezarTutorial() {
   nuevaPartida();
   E.tutorial = { i: 0 };
@@ -1244,12 +1242,11 @@ function pasoTutorial(i, sinEntrada) {
   const p = TUTORIAL[i];
   $("nombre-dictador").textContent = "La víspera";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
-  pistaTutorial(p.pista || "");
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
     E.estados = [{ id: "luna", edad: 0 }];
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
-    pistaTutorial(p.pista);
+    $("mensaje").textContent = partirTexto(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
     return;
   }
   const ef = p.efectos || {};
@@ -1262,6 +1259,8 @@ function pasoTutorial(i, sinEntrada) {
   pintarCarta(c);
   if (!sinEntrada) entrarCarta(carta);
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
+  carta.classList.toggle("giro-destacado", p.paso === "girar");
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.pueblo = 12; pintarBarras(); }   // una barra en peligro, de mentira
@@ -1274,12 +1273,11 @@ function encenderFuerzas() {
   const barras = [...$("barras").querySelectorAll(".barra")];
   barras.forEach((b, k) => setTimeout(() => {
     b.classList.add("encendida");
-    b.dataset.nota = NOTA_FUERZA_TUTORIAL[b.dataset.b] || "";
   }, 350 + k * 450));
 }
 function terminarTutorial() {
   marcarTutorial();
-  pistaTutorial("");
+  $("carta").classList.remove("con-giro", "giro-destacado");
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   $("btn-salir").textContent = "Abandonar partida";

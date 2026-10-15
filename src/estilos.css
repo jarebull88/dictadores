@@ -10,7 +10,8 @@
   color-scheme: light;
   --fuente: "Courier Prime", "Courier New", Courier, monospace;
   --fuente-titulo: "Special Elite", "Courier Prime", "Courier New", monospace;
-  --tinta-marcador: rgba(28, 27, 25, .9);   /* 15 oct: el rotulador, al 90 %: el negro puro pesaba demasiado */
+  --tinta-marcador: rgba(28, 27, 25, .9);
+  --rojo-marcador: rgba(179, 38, 30, .9);   /* 15 oct: el rotulador, al 90 %: el negro puro pesaba demasiado */
   --fuente-mano: "Permanent Marker", "Special Elite", cursive;   /* 15 oct: escrito a mano (rotulador): títulos de ventanas, cintas, expediente */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -148,6 +149,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .era-anios, .fin-anios { flex: none; margin: 12px 0 0; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 22px; color: var(--tinta-suave); }   /* debajo de la carta */
 .cabecera-carta .era-texto { justify-self: stretch; text-align: center; margin: 0; font-size: 15px; line-height: 1.4; }
 #screen-era .cabecera-carta h1 { font-size: min(8.6vw, 46px); white-space: nowrap; }
+/* 15 oct: «Sigues en el poder» y «¡Has caído!», escritos con rotulador rojo (al 90 %, como el negro) */
+#screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); font-weight: 400; color: var(--rojo-marcador); }
 .carta-fija { cursor: default; }
 .boton-pie { flex: none; margin-top: 2px; }
 /* Cómo jugar: ventana con las instrucciones */

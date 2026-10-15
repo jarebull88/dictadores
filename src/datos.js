@@ -935,17 +935,17 @@ const FUTURO = {
    TUTORIAL (15 oct): «La víspera». El general Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
    que entran en la capital. Cada carta enseña una sola cosa; las decisiones no cuentan para la partida.
    - paso: deslizar · girar (no se puede decidir hasta volver a girarla) · fuerzas (se encienden las barras)
-           · pistas (puntos rojos y una barra en peligro) · consecuencias · estado (entra «Luna de miel») · fin
-   - la instrucción va en el propio texto de la carta (15 oct: nada de notas aparte)
+           · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Luna de miel») · guardar · fin
+   - arriba habla Cuesta (de usted); la instrucción al jugador va en la cinta (de tú)
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
   { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, general" },
-  { paso: "fuerzas", texto: "El Pueblo, el Ejército, la Élite y las Potencias deben mantenerse bajo control. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
-  { paso: "pistas", texto: "Comandante, aunque la victoria está conseguida, aún debe consolidarse la lealtad del Ejército.", cinta: "Los puntos rojos te dicen cuánto cambia cada fuerza. Si una se vacía o se llena, pierdes.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 8, elite: -6, potencias: -4 }, der: { ejercito: 7, pueblo: -4 } } },
+  { paso: "fuerzas", texto: "Pueblo, Ejército, Élite y Potencias deben mantenerse bajo control. Si alguno llega al límite, su gobierno caerá.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
+  { paso: "pistas", texto: "Comandante, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos te dicen cuánto cambia cada fuerza. Si una se vacía o se llena, pierdes.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.
-  { paso: "estado", texto: "La Revolución te trae *Luna de miel*. Tus decisiones traerán más cartas como esta, a veces años después." },
-  { paso: "guardar", texto: "Comandante, esa carta aumenta el apoyo popular cada año. Las lunas de miel son estupendas… hasta que dejan de serlo.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
+  { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
+  { paso: "guardar", texto: "Esa carta aumenta el apoyo popular. Las lunas de miel son estupendas hasta que dejan de serlo.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
   { paso: "fin", texto: "Comandante, la nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */

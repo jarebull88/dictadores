@@ -638,7 +638,9 @@ function silabas(palabra) {
 function conNegritas(texto) {
   return `<span>${texto.split("*").map((t, k) => k % 2 ? `<b>${esc(partirTexto(t))}</b>` : esc(partirTexto(t))).join("")}</span>`;   // un solo bloque: el mensaje es flex
 }
+const PARTIR_PALABRAS = false;   // 15 oct: sin partición de palabras (Jorge); el código sigue por si se vuelve
 function partirTexto(texto) {
+  if (!PARTIR_PALABRAS) return texto;
   return texto.replace(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{6,}/g, palabra => {
     const cortes = silabas(palabra).filter(c => c >= 2 && palabra.length - c >= 2);
     let out = "", prev = 0;

@@ -1529,4 +1529,6 @@ if (IMG.logo) $("logo").insertAdjacentHTML("afterbegin", `<img src="${IMG.logo.s
 $("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
 $("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
 if (tutorialVisto()) $("btn-repasar").classList.remove("hidden");
+/* «…/index.html?tutorial» vuelve a dejar el tutorial como no visto (para probarlo desde cero) */
+if (/[?&]tutorial\b/.test(location.search)) { try { localStorage.removeItem(CLAVE_TUTORIAL); } catch (e) {} }
 mostrar("screen-start");

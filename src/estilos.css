@@ -377,9 +377,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .cinta-tutorial { position: absolute; left: 6%; width: 88%; bottom: 5%; z-index: 2; pointer-events: none; transform: rotate(1.2deg); }
 .cinta-tutorial::before { opacity: .95; }   /* menos translúcida que la del nombre de los estados: aquí hay frases que leer */
 .cinta-tutorial span { display: block; font-size: min(19px, 5vw); line-height: 1.28; font-weight: 700; }   /* la letra del mensaje de arriba, en negrita */
-/* Al girar la carta, la cinta no se ve por detrás (como el 360) */
-.cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
-.carta.volteada .cinta-tutorial { visibility: hidden; }
+/* Al girar la carta, la cinta se desvanece enseguida (la vuelta llega a 90° muy pronto y con retardo se veía
+   por detrás); al volver, reaparece cuando la cara ya mira de frente */
+.cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: opacity .2s ease .3s; }
+.carta.volteada .cinta-tutorial { opacity: 0; transition: opacity .08s; }
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */

@@ -29,6 +29,11 @@ def iconos():
     img = {f"icono_{f.stem}": {"src": datos_uri(f.relative_to(RAIZ), "image/webp")}
            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
     img["logo"] = {"src": datos_uri("assets/logo/recortados/logo.webp", "image/webp")}
+    # Fotos del archivo histórico (15 oct): assets/archivo/<id de la carta>.jpg|webp → IMG.foto_<id>
+    for f in sorted((RAIZ / "assets/archivo").glob("*")):
+        if f.suffix.lower() in (".jpg", ".jpeg", ".webp", ".png"):
+            tipo = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".png": "image/png"}[f.suffix.lower()]
+            img[f"foto_{f.stem}"] = {"src": datos_uri(f.relative_to(RAIZ), tipo)}
     return img
 
 def fuentes():

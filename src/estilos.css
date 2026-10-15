@@ -575,26 +575,41 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
   border: var(--trazo); border-radius: var(--radio); background: var(--bloque); color: var(--tinta);
   font-family: var(--fuente); font-weight: 700; font-size: 15px; cursor: pointer;
 }
-.arch-lista { flex: 1; min-height: 0; overflow-y: auto; display: grid; gap: 8px; align-content: start; padding: 2px 2px 10px; -webkit-overflow-scrolling: touch; }
-.fila-archivo {
-  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 64px; padding: 10px 14px 10px 10px;
-  border: var(--trazo); border-radius: var(--radio); background: var(--bloque);
-  color: var(--tinta); font: inherit; text-align: left; cursor: pointer;
+/* Cuadrícula de dos columnas: tarjetas 3:4 de cartulina de color con el título (15 oct) */
+.arch-lista { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; padding: 4px 4px 14px; -webkit-overflow-scrolling: touch; }
+#archivo-intro { margin: 0; padding: 0; background: none; border: 0; text-align: center; font-family: var(--fuente-titulo); font-size: 22px; }
+.tarjeta-archivo {
+  aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center; padding: 12px; border: 0; border-radius: 10px;
+  background: var(--c, #F3EEDF) var(--tex-cartulina5) 40% 60% / 640px auto; background-blend-mode: multiply;
+  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel); color: var(--tinta); cursor: pointer; text-align: center;
 }
-.fila-archivo .ico-circulo .icono { width: 80%; height: 80%; }
-.fila-archivo .ico-circulo { display: flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; background: var(--gris); font-size: 20px; }
-.fila-archivo .textos { display: grid; min-width: 0; }
-.fila-archivo b { font-weight: 700; font-size: 16px; line-height: 1.3; }
-.fila-archivo span.sub-fila { font-size: 14px; color: var(--tinta-suave); line-height: 1.3; }
-.fila-archivo:hover, .fila-archivo:focus-visible { background: var(--tinta); color: var(--bloque); outline: none; }
-.fila-archivo:hover span.sub-fila, .fila-archivo:focus-visible span.sub-fila { color: var(--gris); }
-.fila-archivo.cerrada { min-height: 48px; background: transparent; border: 1.5px dashed var(--gris-trazo); color: var(--tinta-suave); cursor: default; }
-.fila-archivo.cerrada .ico-circulo { width: 28px; height: 28px; font-size: 14px; background: transparent; }
-.fila-archivo.cerrada b { font-size: 15px; font-weight: 400; }
-.arch-detalle { flex: 1; min-height: 0; overflow-y: auto; padding: 10px; }
-.arch-detalle .archivo { padding: 18px 18px 20px; border: var(--trazo); }
-.arch-detalle .archivo h4 { font-size: 26px; margin: 6px 0 12px; }
-.arch-detalle .archivo p { font-size: 17px; line-height: 1.55; }
+.tarjeta-archivo b { font-family: var(--fuente-titulo); font-weight: 400; font-size: 18px; line-height: 1.2; }
+.tarjeta-archivo:active { transform: scale(.97); }
+.tarjeta-archivo:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.tarjeta-archivo.cerrada { background-color: #B48F62; cursor: default; }   /* sin descubrir: cartón del mazo, con un candado */
+.tarjeta-archivo.cerrada .icono { width: 34%; height: auto; opacity: .45; mix-blend-mode: multiply; }
+/* La carta abierta: cartón con la hoja pegada; arriba, el hueco de la foto; debajo, el texto */
+.arch-detalle { flex: 1; min-height: 0; overflow-y: auto; padding: 6px 4px 14px; touch-action: pan-y; }
+.carta-archivo {
+  padding: 14px; border-radius: 14px;
+  background: var(--c, #F3EEDF) var(--tex-cartulina5) 40% 30% / 640px auto; background-blend-mode: multiply;
+  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
+}
+.hoja-archivo { padding: 14px 16px 16px; border-radius: 8px; background: #F8F6F0 var(--tex-cartulina5) 60% 70% / 640px auto; background-blend-mode: multiply; box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel); }
+.foto-archivo { margin: 0 0 14px; aspect-ratio: 4 / 3; overflow: hidden; background: #fff; padding: 8px 8px 22px; box-shadow: 0 1.5px 1px rgba(0, 0, 0, .55); transform: rotate(-1deg); }
+.foto-archivo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.foto-archivo.vacia { display: flex; align-items: center; justify-content: center; }
+.foto-archivo.vacia span { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border: 2px dashed var(--gris-trazo); color: var(--tinta-suave); font-family: var(--fuente-titulo); font-size: 18px; }
+.hoja-archivo h4 { margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 400; font-size: 26px; line-height: 1.15; }
+.hoja-archivo p { margin: 0 0 10px; font-size: 17px; line-height: 1.55; }
+.hoja-archivo small { display: block; font-size: 14px; color: var(--tinta-suave); }
+.hoja-archivo .pos-archivo { margin-top: 8px; text-align: right; }
+.carta-archivo.entra { animation: archivo-abre .22s ease-out; }
+.carta-archivo.entra-der { animation: archivo-der .22s ease-out; }
+.carta-archivo.entra-izq { animation: archivo-izq .22s ease-out; }
+@keyframes archivo-abre { from { transform: scale(.6); opacity: 0; } }
+@keyframes archivo-der { from { transform: translateX(40%) rotate(3deg); opacity: 0; } }
+@keyframes archivo-izq { from { transform: translateX(-40%) rotate(-3deg); opacity: 0; } }
 
 @media (max-height: 760px) {
   .mensaje { font-size: 17px; --alto-mensaje: calc(4 * 17px * 1.28 + 2px); }

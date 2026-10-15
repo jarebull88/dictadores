@@ -264,6 +264,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Textos nuevos de Jorge.** Tutorial: «Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.» y «Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.» Pantalla del nombre: «Has derrocado al tirano. La Revolución empieza ahora: será una empresa dura y llena de peligros, pero promete un futuro mejor para todos. El Pueblo confía en ti, Comandante.» Va a 19 px, como la pregunta; si no cabe (móviles bajos), `ajustarIntro()` baja la letra hasta 14 px.
 
+**15 oct — Archivo histórico nuevo.** La lista pasa a una cuadrícula de dos columnas con tarjetas 3:4 de colores que solo dicen el título (las no descubiertas, boca abajo con candado). Arriba solo el contador «34 / 86». Al tocar una tarjeta se amplía a una carta de cartón grande con un hueco para una foto real (por ahora vacío; las fotos irán en `assets/archivo/<id>.jpg`) y el texto debajo; deslizando se pasa a la siguiente o la anterior sin volver atrás.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

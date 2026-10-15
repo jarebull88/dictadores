@@ -1183,31 +1183,66 @@ function decidirFin(dir) {
 arrastrable($("carta-fin"), { activa: () => !finOcupada, mostrar: eleccionFin, decidir: decidirFin });
 
 /* ---------- Archivo histórico ---------- */
+/* ARCHIVO HISTÓRICO (15 oct): cuadrícula de dos columnas con tarjetas 3:4 de colores (solo el título; las no descubiertas,
+   boca abajo); al tocar una se abre en grande, como una carta de cartón, con un hueco para la foto (assets/archivo/<id>.jpg|webp,
+   se incrusta como IMG.foto_<id>) y el texto debajo. Con la carta abierta se pasa a la siguiente o la anterior deslizando. */
+const COLOR_ARCHIVO = ["#F6CFAE", "#BFE3D9", "#F4BFCB", "#D8E8B2", "#C8DDF3", "#E3D5F3", "#F7E2A3", "#BFE0EE"];
+const colorArchivo = id => COLOR_ARCHIVO[ARCHIVABLES.findIndex(c => c.id === id) % COLOR_ARCHIVO.length];
+const descubiertas = () => ARCHIVABLES.filter(c => desbloqueados.has(c.id));
 function pintarArchivo() {
-  $("archivo-intro").textContent = `Has descubierto ${desbloqueados.size} de ${ARCHIVABLES.length} referencias históricas. Toca una para leerla.`;
+  $("archivo-intro").textContent = `${desbloqueados.size} / ${ARCHIVABLES.length}`;
   $("archivo-lista").innerHTML = ARCHIVABLES.map(c => desbloqueados.has(c.id)
-    ? `<button class="fila-archivo" type="button" data-id="${c.id}"><span class="ico-circulo">${icono("archivo")}</span><span class="textos"><b>${c.titulo}</b><span class="sub-fila">${c.personaje}</span></span></button>`
-    : `<div class="fila-archivo cerrada"><span class="ico-circulo">${icono("bloqueado")}</span><span class="textos"><b>Sin descubrir</b></span></div>`
+    ? `<button class="tarjeta-archivo" type="button" data-id="${c.id}" style="--c:${colorArchivo(c.id)}"><b>${esc(c.titulo)}</b></button>`
+    : `<div class="tarjeta-archivo cerrada" aria-label="Sin descubrir">${icono("bloqueado")}</div>`
   ).join("");
-  $("archivo-lista").querySelectorAll("button.fila-archivo").forEach(b =>
+  $("archivo-lista").querySelectorAll("button.tarjeta-archivo").forEach(b =>
     b.addEventListener("click", () => abrirDetalle(b.dataset.id))
   );
 }
 
-let detalleAbierto = false;
-function abrirDetalle(id) {
+let detalleAbierto = false, detalleId = null;
+function cartaArchivo(c) {
+  const foto = IMG["foto_" + c.id];
+  const lista = descubiertas(), n = lista.findIndex(x => x.id === c.id) + 1;
+  return `<article class="carta-archivo" style="--c:${colorArchivo(c.id)}"><div class="hoja-archivo">` +
+    `<figure class="foto-archivo${foto ? "" : " vacia"}">${foto ? `<img src="${foto.src}" alt="">` : "<span>Foto</span>"}</figure>` +
+    `<h4>${esc(c.titulo)}</h4><p>${esc(c.archivo)}</p><small>Datos pendientes de verificar.</small>` +
+    `<small class="pos-archivo">${n} / ${lista.length}</small></div></article>`;
+}
+function abrirDetalle(id, dir) {
   const c = POR_ID[id];
-  detalleAbierto = true;
+  detalleAbierto = true; detalleId = id;
   $("archivo-lista").classList.add("hidden");
   $("archivo-intro").classList.add("hidden");
   const det = $("archivo-detalle");
-  det.innerHTML = `<div class="archivo"><h3>Archivo histórico</h3><h4>${c.titulo}</h4><p>${c.archivo}</p><small>Datos pendientes de verificar.</small></div>`;
+  det.innerHTML = cartaArchivo(c);
   det.classList.remove("hidden");
+  const carta = det.firstElementChild;
+  carta.classList.add(dir > 0 ? "entra-der" : dir < 0 ? "entra-izq" : "entra");   // se amplía al abrirla; al pasar, entra por el lado
   det.scrollTop = 0;
   $("btn-archivo-volver").innerHTML = icoUI("atras") + "Archivo";
 }
+/* Siguiente (1) o anterior (-1) entre las descubiertas, sin volver a la cuadrícula */
+function pasarArchivo(dir) {
+  if (!detalleAbierto) return;
+  const lista = descubiertas(), i = lista.findIndex(c => c.id === detalleId);
+  const sig = lista[i + dir];
+  if (!sig) return;
+  abrirDetalle(sig.id, dir);
+}
+(function deslizarArchivo() {
+  const det = $("archivo-detalle");
+  let x0 = null, y0 = 0;
+  det.addEventListener("pointerdown", e => { x0 = e.clientX; y0 = e.clientY; });
+  det.addEventListener("pointerup", e => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) pasarArchivo(dx < 0 ? 1 : -1);   // a la izquierda, la siguiente
+  });
+  det.addEventListener("pointercancel", () => { x0 = null; });
+})();
 function cerrarDetalle() {
-  detalleAbierto = false;
+  detalleAbierto = false; detalleId = null;
   $("archivo-detalle").classList.add("hidden");
   $("archivo-lista").classList.remove("hidden");
   $("archivo-intro").classList.remove("hidden");
@@ -1515,6 +1550,7 @@ document.addEventListener("keydown", e => {
     else ocultarInfo();
     return;
   }
+  if (!$("screen-archive").classList.contains("hidden")) { if (e.key === "ArrowLeft") pasarArchivo(-1); if (e.key === "ArrowRight") pasarArchivo(1); return; }
   if (!$("screen-era").classList.contains("hidden")) { if (e.key === "ArrowLeft") decidirEra(-1); if (e.key === "ArrowRight") decidirEra(1); return; }
   if (!$("screen-end").classList.contains("hidden") && $("screen-end").classList.contains("caida")) { if (e.key === "ArrowLeft") decidirFin(-1); if (e.key === "ArrowRight") decidirFin(1); return; }
   if (!$("screen-name").classList.contains("hidden")) {

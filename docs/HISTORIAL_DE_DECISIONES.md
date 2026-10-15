@@ -248,6 +248,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Tutorial en un solo texto.** Se quita la nota en negrita bajo el pie: cada carta del tutorial lo dice todo en la pregunta. Nueva carta «consecuencias» (7 en total): lo que decidas puede traer cartas nuevas, a veces años después. La ventana de cada fuerza queda en nombre + nota («Te aclama»…) + descripción (fuera «si se vacía / si se llena» y el texto común de los puntos); las notas ya no van bajo las barras. El icono 360 sale solo en el paso de girar, parpadeando, y antes no se puede girar la carta; en la partida ya no sale.
 
+**15 oct — Descripciones de las fuerzas.** Fuera las notas «Te aclama», «Te sigue»… (no aportaban). Cada ventana dice quiénes son y cómo reaccionan: el Pueblo aplaude o protesta según cómo vive; el Ejército te protege mientras se sienta respetado, si no conspira; la Élite te apoya mientras haga negocio, si no saca su dinero o conspira; las Potencias te ayudan o castigan según les convenga.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

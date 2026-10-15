@@ -217,10 +217,10 @@ const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "🎩", potencias
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
 const FUERZAS = {
-  pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Aplaude o protesta según cómo vive." },
-  ejercito:  { nombre: "Ejército",  quien: "Las fuerzas armadas, la policía y el aparato de seguridad." },
-  elite:     { nombre: "Élite",     quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido." },
-  potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos." }
+  pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Te aplauden o protestan según cómo viven." },
+  ejercito:  { nombre: "Ejército",  quien: "Las Fuerzas Armadas, la policía y el aparato de seguridad. Te protegen mientras se sientan respetados; si no, conspiran en los cuarteles." },
+  elite:     { nombre: "Élite",     quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido. Te apoyan mientras hagan negocio; si no, sacan su dinero o conspiran." },
+  potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos. Te ayudan o te castigan según les convenga." }
 };
 
 /* =====================================================
@@ -565,7 +565,7 @@ function mostrarInfo(i) {
 function mostrarFuerza(id, el) {
   const f = FUERZAS[id];
   abrirPopup("fuerza-" + id,
-    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><strong class="nota-fuerza">${esc(NOTA_FUERZA[id] || "")}</strong><span>${esc(f.quien)}</span>`, el);
+    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>`, el);
 }
 
 /* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);

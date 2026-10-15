@@ -955,5 +955,4 @@ const TUTORIAL = [
     izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */
-const NOTA_FUERZA = { pueblo: "Te aclama", ejercito: "Te sigue", elite: "Desconfía", potencias: "Te observa" };
 

@@ -299,7 +299,6 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.con-giro .icono-giro { display: block; }
 .carta.giro-destacado .icono-giro { animation: parpadeo-giro 1.1s ease-in-out infinite; }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
-.popup .nota-fuerza { display: block; font-size: 17px; margin: 2px 0 4px; }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
    enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
 .icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }

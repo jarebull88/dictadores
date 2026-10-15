@@ -318,7 +318,6 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.con-giro .icono-giro { display: block; }
 .carta.giro-destacado .icono-giro { animation: parpadeo-giro 1.1s ease-in-out infinite; }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
-.popup .nota-fuerza { display: block; font-size: 17px; margin: 2px 0 4px; }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
    enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
 .icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
@@ -1769,7 +1768,6 @@ const TUTORIAL = [
     izq: "¡Vamos allá!", der: "¡A la plaza!" }
 ];
 /* Una nota corta por fuerza: va en su ventana (al tocar el icono) */
-const NOTA_FUERZA = { pueblo: "Te aclama", ejercito: "Te sigue", elite: "Desconfía", potencias: "Te observa" };
 
 /* =====================================================
    UTILIDADES, ARCHIVO PERSISTENTE Y NOMBRE
@@ -1990,10 +1988,10 @@ const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "🎩", potencias
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
 const FUERZAS = {
-  pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Aplaude o protesta según cómo vive." },
-  ejercito:  { nombre: "Ejército",  quien: "Las fuerzas armadas, la policía y el aparato de seguridad." },
-  elite:     { nombre: "Élite",     quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido." },
-  potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos." }
+  pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Te aplauden o protestan según cómo viven." },
+  ejercito:  { nombre: "Ejército",  quien: "Las Fuerzas Armadas, la policía y el aparato de seguridad. Te protegen mientras se sientan respetados; si no, conspiran en los cuarteles." },
+  elite:     { nombre: "Élite",     quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido. Te apoyan mientras hagan negocio; si no, sacan su dinero o conspiran." },
+  potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos. Te ayudan o te castigan según les convenga." }
 };
 
 /* =====================================================
@@ -2338,7 +2336,7 @@ function mostrarInfo(i) {
 function mostrarFuerza(id, el) {
   const f = FUERZAS[id];
   abrirPopup("fuerza-" + id,
-    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><strong class="nota-fuerza">${esc(NOTA_FUERZA[id] || "")}</strong><span>${esc(f.quien)}</span>`, el);
+    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>`, el);
 }
 
 /* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);

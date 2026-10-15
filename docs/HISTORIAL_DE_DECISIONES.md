@@ -268,6 +268,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Archivo: carta sencilla y carrusel.** La carta abierta del archivo pasa a ser una sola cartulina (sin la hoja pegada encima), con más sitio para el texto. Entre cartas ya no se salta: la fila sigue al dedo como un carrusel y se ve llegar la siguiente. Primera foto real: el juicio de los aviadores (1959) en «La casa vacía».
 
+**15 oct — Fuera el archivo histórico.** Jorge decide quitarlo del juego entero: la opción de la portada, la pantalla del archivo (cuadrícula, carta grande, carrusel, fotos), el aviso «Archivo desbloqueado» de la partida, la caja de la pantalla final y los textos `archivo` de las 86 cartas. En la carta de la caída, la izquierda pasa a «Volver a la portada». Los textos se copian en `docs/ARCHIVO_HISTORICO_RETIRADO.md` por si se recuperan; el resto sigue en git.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

@@ -59,9 +59,9 @@ test("las opciones son cortas (acción de 5 palabras o menos; en la era 1 manda 
   }
 });
 
-test("los datos históricos no mencionan países en el texto de la carta", () => {
+test("ninguna carta nombra un país real", () => {
   const paises = /(Cuba|Estados Unidos|Unión Soviética|URSS|Rusia|China|España|Chile|México)/;
-  for (const c of cartas) assert.doesNotMatch(c.texto, paises, `«${c.id}»: el texto de la carta nombra un país real (solo el archivo histórico puede)`);
+  for (const c of cartas) assert.doesNotMatch(c.texto, paises, `«${c.id}»: el texto de la carta nombra un país real`);
 });
 
 test("todas las cartas respetan los límites de longitud y el tratamiento de su era", () => {

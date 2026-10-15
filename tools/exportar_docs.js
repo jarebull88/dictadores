@@ -42,7 +42,6 @@ function bloque(c, n) {
   let s = `### ${n}. ${c.titulo}${c.borrador ? " *(borrador)*" : ""}\n\n**Personaje:** ${c.personaje}  \n**Condición:** ${condicion(c)}.\n\n**Carta:** «${c.texto}»\n\n${opcion(c.izq, "A")}\n${opcion(c.der, "B")}\n`;
   const futuras = [...(c.izq.banderas || []), ...(c.der.banderas || [])].filter(b => D.FUTURO[b]);
   if (futuras.length) s += "\n" + futuras.map(b => `**Consecuencia futura de ${cod(b)}:** ${D.FUTURO[b].replace(/^Con `[^`]+`, /, "")}`).join("\n\n") + "\n";
-  if (c.archivo) s += `\n**Archivo histórico:** ${c.archivo}\n`;
   return s;
 }
 const out = (f, t) => { fs.mkdirSync(path.join(RAIZ, "docs"), { recursive: true }); fs.writeFileSync(path.join(RAIZ, "docs", f), t); console.log("docs/" + f); };

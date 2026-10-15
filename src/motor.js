@@ -1,20 +1,9 @@
 /* =====================================================
-   UTILIDADES, ARCHIVO PERSISTENTE Y NOMBRE
+   UTILIDADES Y NOMBRE
    ===================================================== */
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const limitar = v => Math.max(0, Math.min(100, v));
-
-const CLAVE_ARCHIVO = "dictadores_archivo_v2";
-let desbloqueados = new Set();
-try {
-  const raw = localStorage.getItem(CLAVE_ARCHIVO);
-  if (raw) desbloqueados = new Set(JSON.parse(raw));
-} catch (e) { /* sin almacenamiento: queda en memoria */ }
-function desbloquear(id) {
-  desbloqueados.add(id);
-  try { localStorage.setItem(CLAVE_ARCHIVO, JSON.stringify([...desbloqueados])); } catch (e) {}
-}
 
 const CLAVE_NOMBRE = "dictadores_nombre_v2";
 let nombreDictador = "";
@@ -155,7 +144,7 @@ const GRUPO_DE = {
 };
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
-/* Iconos de papel recortado (fuerzas, estados del régimen y archivo) */
+/* Iconos de papel recortado (fuerzas y estados del régimen) */
 /* Iconos: si hay versión dibujada a mano (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), se usa esa en todo el
    juego; si no, el recorte de papel. Los dibujos van sin sombra: están pintados en la cartulina. */
 const icono = (id, clase = "") => {
@@ -262,14 +251,10 @@ function nuevaPartida() {
     estados: [],
     eventos: [],
     derivaTurno: {},
-    archivoEntregado: false,
-    turnoArchivo: 0,
     aviso: null,
     pistaVista: false,
     actual: null
   };
-  // Un archivo histórico por partida (por era), en un momento aleatorio
-  E.turnoArchivo = 2 + Math.floor(Math.random() * (E.N - 1));
 }
 
 /* Una era dura entre 6 y 8 cartas (unos 9-12 años). Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
@@ -296,8 +281,6 @@ function iniciarEra(n) {
   colorReverso(n);
   E.inicioEra = E.turno;
   E.N = def.min + Math.floor(Math.random() * (def.max - def.min + 1));
-  E.archivoEntregado = false;
-  E.turnoArchivo = E.inicioEra + 1 + Math.floor(Math.random() * (E.N - 1));
 }
 
 function cumple(c) {
@@ -426,7 +409,7 @@ function comprobarCaida() {
 /* =====================================================
    INTERFAZ
    ===================================================== */
-const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-archive", "screen-era", "screen-end"];
+const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-era", "screen-end"];
 /* Todas las cartas miden lo que la de la partida y están a la misma altura. Se mide la pantalla de juego (aunque
    esté oculta: se muestra un instante invisible) y se guardan --carta-w, --carta-h y --cabecera-h (lo que ocupan
    arriba las barras y el mensaje). Las pantallas con carta (nombre, «Sigues en el poder») usan esas medidas. */
@@ -452,7 +435,6 @@ function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
-  ocultarAvisoArchivo();
   if (id === "screen-name") pintarCartaNombre();
   cerrarComoJugar();
 }
@@ -714,7 +696,6 @@ function empezar() {
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
   $("nombre-dictador").textContent = nombreCompleto();
   E.avisoPendiente = null;
-  E.archivoPendiente = null;
   E.estadoNuevo = null; modoEstado = false;
   $("carta").classList.remove("hidden", "listo");
   E.actual = siguienteCarta();
@@ -842,11 +823,6 @@ function resolver(dir) {
   if (caida) despues = () => terminar(caida);
   else if (eraCompleta) despues = finDeEra;
   else despues = siguiente;
-
-  // Un archivo histórico por partida, en un momento aleatorio: el de la carta que acabas de decidir.
-  // No detiene la partida: se avisa de forma discreta en la barra inferior.
-  const toca = !E.archivoEntregado && turnoDecidido >= E.turnoArchivo && !!c.archivo && !desbloqueados.has(c.id);
-  if (toca) { E.archivoEntregado = true; E.archivoPendiente = c.id; desbloquear(c.id); }
   despues();
 }
 
@@ -879,28 +855,6 @@ function prepararAviso() {
     const texto = fin.length ? "Su efecto desaparece." : "Se ha desplazado de las ranuras.";
     E.avisoPendiente = { clave: "fin-" + (fin[0] || sal[0]), html: `<small class="etiqueta-pop">Estado</small><b>${esc(fuerte)}</b><span>${esc(texto)}</span>`, indice: -1 };
   }
-}
-let temporizadorArchivo = null;
-function contenidoArchivo(c) {
-  return `<small class="etiqueta-pop">Archivo histórico desbloqueado</small><b>${esc(c.titulo)}</b><span>${esc(c.archivo)}</span><small>Datos pendientes de verificar.</small>`;
-}
-function mostrarAvisoArchivo() {
-  const id = E.archivoPendiente;
-  if (!id) return;
-  E.archivoPendiente = null;
-  const c = POR_ID[id], btn = $("aviso-archivo");
-  btn.innerHTML = icono("archivo", "en-linea") + "Archivo desbloqueado";
-  btn.setAttribute("aria-label", `Archivo desbloqueado: ${c.titulo}`);
-  btn.dataset.id = id;
-  btn.classList.remove("hidden");
-  $("anios-poder").classList.add("hidden");
-  clearTimeout(temporizadorArchivo);
-  temporizadorArchivo = setTimeout(ocultarAvisoArchivo, 9000);
-}
-function ocultarAvisoArchivo() {
-  clearTimeout(temporizadorArchivo);
-  $("aviso-archivo").classList.add("hidden");
-  $("anios-poder").classList.remove("hidden");
 }
 function mostrarAvisoPendiente() {
   const a = E.avisoPendiente;
@@ -1013,7 +967,6 @@ function siguiente() {
   ocupado = false;
   pintarEleccion(0);
   mostrarAvisoPendiente();
-  mostrarAvisoArchivo();
 }
 
 /* Cada carta es un año y medio, más o menos: así una partida entera da unos 40-50 años, como un dictador de verdad */
@@ -1077,7 +1030,7 @@ function terminar(clave, transicion) {
   pantalla.classList.toggle("pantalla-carta", !!clave);
   pantalla.classList.toggle("pantalla-texto", !clave);
   if (clave) {
-    /* Caída: «¡Has caído!», qué fuerza cayó, el relato y la causa en una carta (derecha = jugar de nuevo, izquierda = archivo) */
+    /* Caída: «¡Has caído!», qué fuerza cayó, el relato y la causa en una carta (derecha = jugar de nuevo, izquierda = volver a la portada) */
     const f = FINALES[clave];
     const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
     $("fin-principal").textContent = "¡Has caído!";
@@ -1106,24 +1059,6 @@ function terminar(clave, transicion) {
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
   $("btn-repetir").classList.toggle("hidden", !!transicion);
 
-  const cajaArch = $("fin-archivo");
-  cajaArch.innerHTML = "";
-  let cFin = E.archivoPendiente ? POR_ID[E.archivoPendiente] : null;
-  if (!cFin && !E.archivoEntregado) {
-    const cand = [...E.vistas].map(id => POR_ID[id]).filter(c => c && c.archivo && !desbloqueados.has(c.id));
-    if (cand.length) { cFin = cand[Math.floor(Math.random() * cand.length)]; E.archivoEntregado = true; desbloquear(cFin.id); }
-  }
-  E.archivoPendiente = null;
-  if (cFin) {
-    cajaArch.innerHTML = `<div class="archivo"><h3>Archivo histórico desbloqueado</h3><h4>${esc(cFin.titulo)}</h4>
-      <div class="arch-texto hidden" id="fin-arch-texto"><p>${cFin.archivo}</p><small>Datos pendientes de verificar.</small></div>
-      <button class="enlace" id="btn-leer-archivo" type="button">Leer</button></div>`;
-    $("btn-leer-archivo").addEventListener("click", () => {
-      $("fin-arch-texto").classList.remove("hidden");
-      $("btn-leer-archivo").remove();
-    });
-  }
-
   const estadoPais = BARRAS.map(b => {
     const v = E.barras[b.id], l = LINEAS_BARRA[b.id];
     return v >= 60 ? l.alto : v <= 40 ? l.bajo : "";
@@ -1135,7 +1070,6 @@ function terminar(clave, transicion) {
   const lineas = transicion ? estadoPais.slice(0, 2).concat(teEspera).slice(0, 4) : estadoPais;
   $("fin-lineas").innerHTML = clave || victoria ? "" : lineas.map(t => `<li>${esc(t)}</li>`).join("");
 
-  if (clave) $("fin-archivo").innerHTML = "";        // al caer, el archivo está en la carta (izquierda)
   mostrar("screen-end");
   if (clave) ajustarCabeceraFin();
 }
@@ -1151,7 +1085,7 @@ function ajustarCabeceraFin() {
   while (cab.scrollHeight > cab.clientHeight + 1 && t > 36) { t -= 2; h1.style.fontSize = t + "px"; }
 }
 
-/* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = archivo histórico ---------- */
+/* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = volver a la portada ---------- */
 let finOcupada = false;
 function pintarCartaFin(titulo) {
   const carta = $("carta-fin");
@@ -1167,7 +1101,7 @@ function eleccionFin(dir) {
   const r = $("carta-fin").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Jugar de nuevo" : "Archivo histórico"}</strong></div>`;
+  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Jugar de nuevo" : "Volver a la portada"}</strong></div>`;
   r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible");
 }
 function decidirFin(dir) {
@@ -1178,113 +1112,9 @@ function decidirFin(dir) {
   carta.style.transition = "";
   carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
-  setTimeout(() => { if (dir > 0) empezar(); else { abrirArchivo("screen-end"); pintarCartaFin($("fin-titulo").textContent); } }, 240);
+  setTimeout(() => { if (dir > 0) empezar(); else { mostrar("screen-start"); pintarCartaFin($("fin-titulo").textContent); } }, 240);
 }
 arrastrable($("carta-fin"), { activa: () => !finOcupada, mostrar: eleccionFin, decidir: decidirFin });
-
-/* ---------- Archivo histórico ---------- */
-/* ARCHIVO HISTÓRICO (15 oct): cuadrícula de dos columnas con tarjetas 3:4 de colores (solo el título; las no descubiertas,
-   boca abajo); al tocar una se abre en grande, como una carta de cartón, con un hueco para la foto (assets/archivo/<id>.jpg|webp,
-   se incrusta como IMG.foto_<id>) y el texto debajo. Con la carta abierta se pasa a la siguiente o la anterior deslizando. */
-const COLOR_ARCHIVO = ["#F6CFAE", "#BFE3D9", "#F4BFCB", "#D8E8B2", "#C8DDF3", "#E3D5F3", "#F7E2A3", "#BFE0EE"];
-const colorArchivo = id => COLOR_ARCHIVO[ARCHIVABLES.findIndex(c => c.id === id) % COLOR_ARCHIVO.length];
-const descubiertas = () => ARCHIVABLES.filter(c => desbloqueados.has(c.id));
-function pintarArchivo() {
-  $("archivo-intro").textContent = `${desbloqueados.size} / ${ARCHIVABLES.length}`;
-  $("archivo-lista").innerHTML = ARCHIVABLES.map(c => desbloqueados.has(c.id)
-    ? `<button class="tarjeta-archivo" type="button" data-id="${c.id}" style="--c:${colorArchivo(c.id)}"><b>${esc(c.titulo)}</b></button>`
-    : `<div class="tarjeta-archivo cerrada" aria-label="Sin descubrir">${icono("bloqueado")}</div>`
-  ).join("");
-  $("archivo-lista").querySelectorAll("button.tarjeta-archivo").forEach(b =>
-    b.addEventListener("click", () => abrirDetalle(b.dataset.id))
-  );
-}
-
-let detalleAbierto = false, detalleId = null;
-function cartaArchivo(c) {
-  const foto = IMG["foto_" + c.id];
-  const lista = descubiertas(), n = lista.findIndex(x => x.id === c.id) + 1;
-  return `<article class="carta-archivo" style="--c:${colorArchivo(c.id)}">` +
-    `<figure class="foto-archivo${foto ? "" : " vacia"}">${foto ? `<img src="${foto.src}" alt="">` : "<span>Foto</span>"}</figure>` +
-    `<h4>${esc(c.titulo)}</h4><p>${esc(c.archivo)}</p><small>Datos pendientes de verificar.</small>` +
-    `<small class="pos-archivo">${n} / ${lista.length}</small></article>`;
-}
-/* Carrusel (15 oct): la anterior, la abierta y la siguiente en fila; la fila sigue al dedo y, al soltar, pasa o vuelve */
-function abrirDetalle(id, sinAnimar) {
-  detalleAbierto = true; detalleId = id;
-  $("archivo-lista").classList.add("hidden");
-  $("archivo-intro").classList.add("hidden");
-  const lista = descubiertas(), i = lista.findIndex(c => c.id === id);
-  const det = $("archivo-detalle");
-  det.innerHTML = `<div class="pista-archivo">${[lista[i - 1], lista[i], lista[i + 1]].map(c =>
-    `<div class="hueco-archivo">${c ? cartaArchivo(c) : ""}</div>`).join("")}</div>`;
-  det.classList.remove("hidden");
-  if (!sinAnimar) det.querySelectorAll(".hueco-archivo")[1].firstElementChild.classList.add("entra");   // se amplía al abrirla
-  $("btn-archivo-volver").innerHTML = icoUI("atras") + "Archivo";
-}
-function moverPista(dx, animado) {
-  const pista = document.querySelector(".pista-archivo");
-  if (!pista) return;
-  pista.style.transition = animado ? "transform .26s cubic-bezier(.2, .7, .2, 1)" : "none";
-  pista.style.transform = `translateX(calc(-100% + ${dx}px))`;
-}
-/* Siguiente (1) o anterior (-1): la fila se desliza entera y luego se rehace centrada en la nueva */
-function pasarArchivo(dir) {
-  if (!detalleAbierto) return;
-  const lista = descubiertas(), i = lista.findIndex(c => c.id === detalleId), sig = lista[i + dir];
-  const ancho = $("archivo-detalle").clientWidth;
-  if (!sig) { moverPista(0, true); return; }
-  moverPista(-dir * ancho, true);
-  setTimeout(() => { if (detalleAbierto) abrirDetalle(sig.id, true); }, 270);
-}
-(function deslizarArchivo() {
-  const det = $("archivo-detalle");
-  let x0 = null, y0 = 0, eje = null, dx = 0, t0 = 0;
-  det.addEventListener("pointerdown", e => { x0 = e.clientX; y0 = e.clientY; eje = null; dx = 0; t0 = Date.now(); });
-  det.addEventListener("pointermove", e => {
-    if (x0 === null) return;
-    const mx = e.clientX - x0, my = e.clientY - y0;
-    if (!eje && Math.hypot(mx, my) > 8) {
-      eje = Math.abs(mx) > Math.abs(my) ? "x" : "y";
-      if (eje === "x") try { det.setPointerCapture(e.pointerId); } catch (err) {}
-    }
-    if (eje !== "x") return;
-    const lista = descubiertas(), i = lista.findIndex(c => c.id === detalleId);
-    const tope = (mx > 0 && i <= 0) || (mx < 0 && i >= lista.length - 1);   // sin anterior o siguiente: cuesta moverla
-    dx = tope ? mx * .25 : mx;
-    moverPista(dx, false);
-  });
-  const soltar = () => {
-    if (x0 === null) return;
-    x0 = null;
-    if (eje !== "x") return;
-    const ancho = det.clientWidth, rapido = Math.abs(dx) / Math.max(1, Date.now() - t0) > .5;
-    if (dx < -ancho * .2 || (rapido && dx < -30)) pasarArchivo(1);
-    else if (dx > ancho * .2 || (rapido && dx > 30)) pasarArchivo(-1);
-    else moverPista(0, true);
-  };
-  det.addEventListener("pointerup", soltar);
-  det.addEventListener("pointercancel", soltar);
-})();
-function cerrarDetalle() {
-  detalleAbierto = false; detalleId = null;
-  $("archivo-detalle").classList.add("hidden");
-  $("archivo-lista").classList.remove("hidden");
-  $("archivo-intro").classList.remove("hidden");
-  $("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
-}
-let origenArchivo = "screen-start";
-function abrirArchivo(desde) {
-  origenArchivo = desde;
-  cerrarDetalle();
-  pintarArchivo();
-  mostrar("screen-archive");
-  $("archivo-lista").scrollTop = 0;
-}
-function atrasArchivo() {
-  if (detalleAbierto) cerrarDetalle();
-  else mostrar(origenArchivo);
-}
 
 /* ---------- Nombre del dictador ---------- */
 function actualizarVistaNombre() {
@@ -1571,11 +1401,9 @@ arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, d
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     if (!$("como-jugar").classList.contains("hidden")) cerrarComoJugar();
-    else if (!$("screen-archive").classList.contains("hidden")) atrasArchivo();
     else ocultarInfo();
     return;
   }
-  if (!$("screen-archive").classList.contains("hidden")) { if (e.key === "ArrowLeft") pasarArchivo(-1); if (e.key === "ArrowRight") pasarArchivo(1); return; }
   if (!$("screen-era").classList.contains("hidden")) { if (e.key === "ArrowLeft") decidirEra(-1); if (e.key === "ArrowRight") decidirEra(1); return; }
   if (!$("screen-end").classList.contains("hidden") && $("screen-end").classList.contains("caida")) { if (e.key === "ArrowLeft") decidirFin(-1); if (e.key === "ArrowRight") decidirFin(1); return; }
   if (!$("screen-name").classList.contains("hidden")) {
@@ -1597,16 +1425,8 @@ $("btn-comenzar").addEventListener("click", () => { if (tutorialVisto()) irANomb
 $("btn-repasar").addEventListener("click", empezarTutorial);
 $("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
 $("input-nombre").addEventListener("input", actualizarVistaNombre);
-$("aviso-archivo").addEventListener("click", ev => {
-  ev.stopPropagation();
-  const c = POR_ID[$("aviso-archivo").dataset.id];
-  if (c) abrirPopup("archivo-" + c.id, contenidoArchivo(c), $("aviso-archivo"));
-});
 $("btn-repetir").addEventListener("click", empezar);
-$("btn-fin-archivo").addEventListener("click", () => abrirArchivo("screen-end"));
-$("btn-archivo-volver").addEventListener("click", atrasArchivo);
 
-$("btn-archivo-volver").innerHTML = icoUI("atras") + "Volver";
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
@@ -1618,7 +1438,6 @@ function abrirComoJugar() {
   caja.scrollTop = 0; caja.focus({ preventScroll: true });
 }
 function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
-$("btn-portada-archivo").addEventListener("click", () => abrirArchivo("screen-start"));
 if (IMG.logo) $("logo").insertAdjacentHTML("afterbegin", `<img src="${IMG.logo.src}" alt="" draggable="false">`);
 $("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
 $("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });

@@ -4,7 +4,6 @@
     <h1 class="logo" id="logo"><span class="solo-lector">¡Comandante, ordene!</span></h1>
     <nav class="menu-portada">
       <button class="opcion-portada principal" id="btn-comenzar" type="button">Comenzar partida</button>
-      <button class="opcion-portada principal" id="btn-portada-archivo" type="button">Archivo histórico</button>
       <button class="opcion-portada secundaria hidden" id="btn-repasar" type="button">Repasar cómo se juega</button>
     </nav>
     <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
@@ -44,21 +43,11 @@
       <div class="carta" id="carta" role="group" aria-label="Carta de decisión"></div>
     </div>
     <div class="pie-juego">
-      <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small><button class="aviso-archivo hidden" id="aviso-archivo" type="button"></button></div>
+      <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
     </div>
     <button class="abandonar" id="btn-salir" type="button">Abandonar partida</button>
     <div class="popup hidden" id="popup" role="dialog"></div>
-  </section>
-
-  <section id="screen-archive" class="screen hidden">
-    <div class="arch-cab">
-      <h2 class="titulo">Archivo histórico</h2>
-      <button class="arch-volver" id="btn-archivo-volver" type="button"></button>
-    </div>
-    <p class="nota" id="archivo-intro"></p>
-    <div class="arch-lista" id="archivo-lista"></div>
-    <div class="arch-detalle hidden" id="archivo-detalle"></div>
   </section>
 
   <section id="screen-era" class="screen pantalla-carta hidden">
@@ -80,18 +69,16 @@
       <p class="fin-fuerza" id="fin-fuerza"></p>
       <p class="relato" id="fin-texto"></p>
     </div>
-    <!-- Al caer: la causa en una carta; derecha = jugar de nuevo, izquierda = archivo histórico -->
+    <!-- Al caer: la causa en una carta; derecha = jugar de nuevo, izquierda = volver a la portada -->
     <div class="escenario fin-escenario">
       <div class="pila" aria-hidden="true"><div class="capa"></div></div>
-      <div class="carta" id="carta-fin" role="group" aria-label="Arrastra a la derecha para jugar de nuevo o a la izquierda para ver el archivo histórico"></div>
+      <div class="carta" id="carta-fin" role="group" aria-label="Arrastra a la derecha para jugar de nuevo o a la izquierda para volver a la portada"></div>
     </div>
     <p class="fin-anios" id="fin-anios"></p>
     <div class="esquela" id="fin-esquela"></div>
     <ul class="lineas" id="fin-lineas"></ul>
-    <div id="fin-archivo"></div>
     <div class="acciones" id="fin-acciones">
       <button class="modo principal" id="btn-repetir" type="button"><b>Jugar de nuevo</b></button>
-      <button class="modo" id="btn-fin-archivo" type="button"><b>Archivo histórico</b></button>
     </div>
   </section>
 

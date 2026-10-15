@@ -71,7 +71,7 @@ test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el di
   assert.equal(j.w.eval("E.era"), 2);
 });
 
-test("portada: el logo y dos opciones; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
+test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
   const j = cargar();
   assert.ok(j.d.querySelector("#logo img"), "falta el logo en la portada");
   assert.ok(!j.d.querySelector("#screen-start .carta"), "la portada ya no lleva carta");
@@ -87,9 +87,6 @@ test("portada: el logo y dos opciones; el nombre se elige en una carta (derecha 
   j.$("input-nombre").value = "aureliano";
   j.w.eval("decidirNombre(1)");
   assert.ok(j.visible("screen-game"), "con nombre, a la derecha empieza");
-  j.w.eval("mostrar('screen-start')");
-  j.$("btn-portada-archivo").click();
-  assert.ok(j.visible("screen-archive"));
 });
 
 test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {

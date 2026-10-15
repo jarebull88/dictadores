@@ -8,8 +8,6 @@
    Efectos, pesos y ventanas son provisionales.
    Las banderas llevan el prefijo del mazo (base.).
    "ilustracion": null -> aquí irá la ruta de la imagen.
-   "archivo": texto que se revela después de decidir.
-   Los datos históricos están escritos de memoria y por verificar.
    ===================================================== */
 const BARRAS = [
   { id: "pueblo",    nombre: "Pueblo" },
@@ -32,7 +30,6 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?",
-    archivo: "En 1959, tras el triunfo de la Revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.",
     izq: { accion: "Juicio público", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Al exilio", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
@@ -40,7 +37,6 @@ const CARTAS = [
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?",
-    archivo: "En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.",
     izq: { accion: "Museo del Pueblo", efectos: { pueblo: 8, elite: -6 } },
     der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
   },
@@ -48,7 +44,6 @@ const CARTAS = [
     id: "arcas_vacias", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Las arcas vacías", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "El tirano huyó con la reserva del banco nacional. No hay con qué pagar los sueldos de este mes.",
-    archivo: "En la madrugada del 1 de enero de 1959, Fulgencio Batista huyó de Cuba a la República Dominicana; se le acusó de llevarse grandes sumas del Estado. Muchos dictadores en fuga se marcharon con las reservas del país.",
     izq: { accion: "Impriman billetes", efectos: { pueblo: 5, elite: -4, potencias: -4 }, banderas: ["base.mercado_paralelo"] },
     der: { accion: "Pidan un préstamo", efectos: { pueblo: -5, elite: 4, potencias: 4 }, banderas: ["base.deuda_externa"] }
   },
@@ -56,7 +51,6 @@ const CARTAS = [
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "El General Cienfuegos es muy popular y quiere ser Ministro de las Fuerzas Armadas.",
-    archivo: "En Egipto, tras el derrocamiento de la monarquía en 1952, el general Muhammad Naguib, muy popular, presidió el nuevo régimen. En 1954 fue apartado del poder por Gamal Abdel Nasser, que acabó al frente del país.",
     izq: { accion: "Que sea Ministro", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
     der: { accion: "Mejor lejos de Embajador", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
   },
@@ -64,7 +58,6 @@ const CARTAS = [
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Las refinerías extranjeras nos cierran las puertas. ¿Negociamos o las tomamos?",
-    archivo: "En Cuba, en 1960, las refinerías de empresas estadounidenses y británicas se negaron a procesar crudo soviético y el gobierno las nacionalizó. En 1951, Irán nacionalizó la Anglo-Iranian Oil Company.",
     izq: { accion: "Negociemos", efectos: { potencias: 10, elite: 6, pueblo: -8 }, banderas: ["base.negocio_refinerias"] },
     der: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -6, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"],
            encolar: [{ carta: "embargo", min: 3, max: 8 }] }
@@ -73,7 +66,6 @@ const CARTAS = [
     id: "visitante_oriental", tipo: "ancla", ventana: [4, 7], cond: { turnoMin: 4 }, titulo: "El visitante del bloque oriental", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Le ofrecemos ayuda económica y militar. A cambio queremos lealtad.",
-    archivo: "En 1960 Cuba firmó acuerdos con la Unión Soviética para venderle azúcar y recibir petróleo. En 1955, Egipto anunció la compra de armas a Checoslovaquia tras ser rechazado por proveedores occidentales.",
     izq: { accion: "Trato hecho", efectos: { potencias: 9, pueblo: 5, elite: -6, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
     der: { accion: "No gracias", efectos: { elite: 6, potencias: -9, pueblo: -5, crisis: 1 }, banderas: ["base.no_alineado"] }
   },
@@ -83,7 +75,6 @@ const CARTAS = [
     id: "embargo", tipo: "cola", titulo: "El embargo", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.",
-    archivo: "Estados Unidos impuso restricciones comerciales a Cuba en 1960 y un embargo más amplio en 1962. En 1951, tras la nacionalización petrolera de Irán, el Reino Unido organizó un boicot al petróleo iraní, y en 1953 un golpe derrocó al primer ministro Mosaddeq.",
     izq: { accion: "Que nos embarguen", efectos: { pueblo: 9, potencias: -9, elite: -5, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
     der: { accion: "Pagaremos… algo", efectos: { potencias: 9, elite: 5, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
   },
@@ -91,7 +82,6 @@ const CARTAS = [
     id: "depuracion_criticos", tipo: "cola", borrador: true, titulo: "La lista", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Ya sabemos quiénes nos critican. ¿Cómo procedemos?",
-    archivo: null,
     izq: { accion: "Es su derecho", efectos: { pueblo: 8, ejercito: -5, potencias: 5 } },
     der: { accion: "Deténganlos", efectos: { pueblo: -8, ejercito: 5, elite: 4, potencias: -5 }, banderas: ["base.criticos_detenidos"] }
   },
@@ -101,7 +91,6 @@ const CARTAS = [
     id: "tierra", tipo: "sorteo", peso: 12, titulo: "La tierra", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Proponemos repartir las tierras entre los campesinos, pero los terratenientes protestarán.",
-    archivo: "La Ley de Reforma Agraria de Cuba (1959) y la del Perú bajo el gobierno militar de Velasco (1969) repartieron grandes propiedades. Ambas afectaron a intereses extranjeros y locales, y obligaron a replantear la producción agrícola.",
     izq: { accion: "Mejor no", efectos: { pueblo: -10, elite: 8 } },
     der: { accion: "Repártanla", efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
   },
@@ -109,7 +98,6 @@ const CARTAS = [
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "La prensa critica nuestros decretos. ¿Toleramos o censuramos?",
-    archivo: "La Ley de Prensa española de 1938 estableció la censura previa de publicaciones. Muchos regímenes del siglo XX combinaron el control de la prensa con la propaganda oficial.",
     izq: { accion: "Que publiquen", efectos: { pueblo: 6, potencias: 6, ejercito: -4 }, banderas: ["base.prensa_libre"] },
     der: { accion: "Censura no: revisión", efectos: { pueblo: -6, elite: 5, potencias: -5 }, banderas: ["base.censura_previa"] }
   },
@@ -117,7 +105,6 @@ const CARTAS = [
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Usted prometió elecciones. ¿Cuándo piensa celebrarlas?",
-    archivo: "Muchos regímenes surgidos de una Revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.",
     izq: { accion: "En seis meses", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "No hay prisa", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
   },
@@ -125,7 +112,6 @@ const CARTAS = [
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "¿Y si dejamos que el Pueblo critique al gobierno libremente?",
-    archivo: "En China, la Campaña de las Cien Flores (1956-1957) invitó a criticar al Partido. En 1957, la Campaña Antiderechista persiguió a muchos de quienes habían hablado.",
     izq: { accion: "Que hablen", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
     der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, ejercito: 4, elite: 4 } }
@@ -134,7 +120,6 @@ const CARTAS = [
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del antiguo régimen siguen en sus puestos. ¿Qué hacemos?",
-    archivo: "En la Unión Soviética, entre 1937 y 1938, la Gran Purga alcanzó al Ejército Rojo. Altos mandos como Tujachevski fueron juzgados y ejecutados, y buena parte del cuerpo de oficiales fue depurado.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: 7, elite: 4, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
     der: { accion: "¡Al paredón!", efectos: { ejercito: -7, potencias: -4 }, banderas: ["base.purga_inicial"] }
   },
@@ -142,7 +127,6 @@ const CARTAS = [
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Los estibadores están en huelga. Exigen más sueldo y autonomía sindical.",
-    archivo: "En Polonia, las huelgas de los astilleros de Gdansk en 1980 dieron origen a Solidaridad, el primer sindicato independiente del bloque oriental. En 1981 el gobierno declaró la ley marcial.",
     izq: { accion: "Sindicato concedido", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
     der: { accion: "Manden al ejército", efectos: { pueblo: -10, elite: 7, ejercito: 4, potencias: -4 }, banderas: ["base.huelga_reprimida"] }
   },
@@ -150,7 +134,6 @@ const CARTAS = [
     id: "ojos_barrio", tipo: "sorteo", peso: 8, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "¿Y si creamos Comités de Vigilancia Revolucionaria para vigilar los barrios?",
-    archivo: "En la República Democrática Alemana, el Ministerio para la Seguridad del Estado (Stasi), creado en 1950, construyó una extensa red de informantes. En Cuba, los Comités de Defensa de la Revolución se crearon en 1960.",
     izq: { accion: "La Revolución somos todos", efectos: { ejercito: 6, elite: 3, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
     der: { accion: "No necesitamos chivatos", efectos: { pueblo: 7, ejercito: -6, elite: -3 }, banderas: ["base.policia_tradicional"] }
   },
@@ -158,7 +141,6 @@ const CARTAS = [
     id: "retrato", tipo: "sorteo", peso: 6, cond: { turnoMin: 4 }, titulo: "El retrato", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Quieren su retrato en cada aula y una estatua en la plaza. ¿Qué opina?",
-    archivo: "En Turkmenistán, en 2002, el presidente Saparmurat Niyazov rebautizó los meses del año, y dio a enero su propio título y a abril el nombre de su madre. Muchos regímenes del siglo XX levantaron monumentos y retratos de sus líderes.",
     izq: { accion: "Si insisten…", efectos: { pueblo: 1, elite: 6, ejercito: 4, crisis: 1 }, banderas: ["base.culto_iniciado"] },
     der: { accion: "No necesito estatuas", efectos: { pueblo: -1, potencias: 2, elite: -6, ejercito: -4 }, banderas: ["base.modestia_aparente"] }
   },
@@ -166,7 +148,6 @@ const CARTAS = [
     id: "marchan", tipo: "sorteo", peso: 10, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Cada vez se van más ricos. ¿Los dejamos escapar o les prohibimos salir?",
-    archivo: "Entre 1949 y 1961, millones de personas abandonaron la República Democrática Alemana rumbo a Berlín Occidental y la República Federal. En agosto de 1961 se levantó el Muro de Berlín.",
     izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, elite: -7, potencias: -4, crisis: -1 }, banderas: ["base.exodo_elite"] },
     der: { accion: "Frontera cerrada", efectos: { ejercito: 6, elite: 7, pueblo: -7, potencias: -8 }, banderas: ["base.frontera_cerrada"] }
   },
@@ -176,7 +157,6 @@ const CARTAS = [
     id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Hemos prometido demasiado. ¿Subimos los precios o pedimos un préstamo?",
-    archivo: null,
     izq: { accion: "Suban los precios", efectos: { pueblo: -10, elite: 6, crisis: -3 } },
     der: { accion: "Que paguen nuestros nietos", efectos: { potencias: 8, elite: 4, crisis: -3 }, banderas: ["base.deuda_externa"] }
   },
@@ -184,7 +164,6 @@ const CARTAS = [
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Las tiendas están vacías. ¿Racionamos o toleramos el mercado negro?",
-    archivo: null,
     izq: { accion: "Escasez, pero justa", efectos: { pueblo: -8, ejercito: 4, elite: -5, crisis: -3 } },
     der: { accion: "Ojos que no ven", efectos: { pueblo: 8, elite: 5, potencias: -4, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
   },
@@ -196,7 +175,6 @@ const CARTAS = [
     titulo: "La calle y los cuarteles", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Hay oficiales reuniéndose con los manifestantes. Si se unen, caemos. ¿Los compramos o los cortamos?",
-    archivo: null,
     izq: { accion: "Ascender oficiales", efectos: { ejercito: 12, elite: -6, crisis: 2 } },
     der: { accion: "Detener cabecillas", efectos: { pueblo: -6, ejercito: 8, potencias: -6 } }
   },
@@ -206,7 +184,6 @@ const CARTAS = [
     titulo: "El dinero se va", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Los empresarios se reúnen con los embajadores. Si se alían, nos asfixian.",
-    archivo: null,
     izq: { accion: "Mimen a los empresarios", efectos: { elite: 9, pueblo: -8, crisis: 2 } },
     der: { accion: "Intervenir sus empresas", efectos: { potencias: -8, pueblo: 8, elite: -9 } }
   },
@@ -216,7 +193,6 @@ const CARTAS = [
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Se cumplen los primeros años de la Revolución. Proponemos un gran desfile militar con tanques.",
-    archivo: "Desde los años veinte, los desfiles de la Plaza Roja de Moscú mostraban cada 1 de mayo y cada 7 de noviembre la fuerza militar del régimen soviético, con los dirigentes saludando desde lo alto del mausoleo de Lenin.",
     izq: { accion: "Gran desfile.", remate: "El Pueblo debe recordar quién derrocó a los tiranos.", efectos: { ejercito: 8, elite: 4, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
     der: { accion: "Fiesta popular.", remate: "La Revolución también sabe celebrar.", efectos: { pueblo: 7, ejercito: -8, elite: -4 } }
   },
@@ -225,7 +201,6 @@ const CARTAS = [
     id: "nuevos_vecinos", era: 2, tipo: "ancla", ventana: [2, 4], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país propone instalar misiles de alcance medio en su territorio. Sería una garantía frente a la potencia del norte.",
-    archivo: "En octubre de 1962 la Unión Soviética instaló misiles nucleares de alcance medio en Cuba, lo que provocó la crisis de los misiles. Terminó cuando Moscú aceptó retirarlos a cambio de que Estados Unidos no invadiera la isla y, en secreto, retirara sus misiles de Turquía.",
     izq: { accion: "Aceptar los misiles.", remate: "Nadie se mete con un país que puede borrar un barrio entero.", efectos: { ejercito: 8, potencias: 7, pueblo: -7, elite: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
     der: { accion: "Declinar.", remate: "La Patria no necesita armas con instrucciones ajenas.", efectos: { ejercito: -8, potencias: -7, pueblo: 7, elite: 4 }, banderas: ["base.misiles_rechazados"] }
   },
@@ -234,7 +209,6 @@ const CARTAS = [
     id: "ultimatum", era: 2, tipo: "cola", titulo: "El ultimátum", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país exige la retirada inmediata de los misiles. De lo contrario, impondremos un bloqueo naval.",
-    archivo: null,
     izq: { accion: "Mantener los misiles.", remate: "Si cedemos hoy, mañana nos pedirán el palacio.", efectos: { ejercito: 8, potencias: -9, pueblo: -4, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
     der: { accion: "Retirarlos.", remate: "La Revolución también sabe cuándo hacer desaparecer una prueba.", efectos: { ejercito: -8, potencias: 9, pueblo: 4, crisis: -1 } }
   },
@@ -243,7 +217,6 @@ const CARTAS = [
     id: "mano_norte", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país le ofrece créditos y comercio, aunque no pertenezca a ningún bloque. Solo pedimos buenas maneras y auditorías.",
-    archivo: "Tras romper con Stalin en 1948, la Yugoslavia de Tito, comunista y no alineada, recibió ayuda económica y militar de Estados Unidos, y en 1961 impulsó en Belgrado la primera cumbre del Movimiento de Países No Alineados.",
     izq: { accion: "Aceptar los créditos.", remate: "El dinero extranjero siempre llega con una bandera escondida.", efectos: { potencias: 8, elite: 5, pueblo: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
     der: { accion: "Seguir sin bloque.", remate: "La Revolución no necesita que nadie le enseñe a gobernar.", efectos: { potencias: -8, pueblo: 6, elite: -4 } }
   },
@@ -252,7 +225,6 @@ const CARTAS = [
     id: "potencias_enfadan", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.juicios_publicos"] }, titulo: "Las potencias se enfadan", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país pide garantías para los acusados que aún esperan sentencia en los juicios públicos.",
-    archivo: "Tras el golpe de 1967 en Grecia, la junta militar detuvo a miles de opositores. Varios países occidentales y el Consejo de Europa criticaron al régimen, y Grecia abandonó el Consejo en 1969 antes de ser expulsada.",
     izq: { accion: "Abogados de oficio.", remate: "Que tengan abogado; la sentencia ya tiene otro dueño.", efectos: { potencias: 7, pueblo: -6, elite: 3 } },
     der: { accion: "Asunto interno.", remate: "La Patria no acepta lecciones sobre sus enemigos.", efectos: { potencias: -7, ejercito: 5, elite: -3 } }
   },
@@ -261,7 +233,6 @@ const CARTAS = [
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Los exiliados emiten por radio y ya los escucha media capital. Dicen que el palacio tiene goteras.",
-    archivo: "Radio Europa Libre emitió hacia Europa del Este desde 1950 y Radio Martí hacia Cuba desde 1985. Los gobiernos de ambos países interfirieron las señales, con resultados desiguales.",
     izq: { accion: "Interferir la emisora.", remate: "La mentira también necesita permiso para entrar en la Patria.", efectos: { pueblo: -6, ejercito: 4, elite: 3 } },
     der: { accion: "Contestar por radio.", remate: "Que hablen; el Pueblo sabrá quién defiende la Revolución.", efectos: { pueblo: 5, potencias: 4, elite: -3 } }
   },
@@ -270,7 +241,6 @@ const CARTAS = [
     id: "general_murmura", era: 2, tipo: "sorteo", peso: 18, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.",
-    archivo: "En Egipto, el general Mohamed Naguib fue el primer presidente de la república en 1953. En 1954 fue apartado por Gamal Abdel Nasser y pasó casi dos décadas bajo arresto domiciliario.",
     izq: { accion: "Ascender a Cienfuegos.", remate: "Un ascenso para que se calle.", efectos: { ejercito: 9, elite: -4, crisis: 1 } },
     der: { accion: "Detener a Cienfuegos.", remate: "La Historia juzgará mis decisiones cuando nadie pueda discutirlas.", efectos: { ejercito: -9, pueblo: -5, potencias: -4 } }
   },
@@ -279,7 +249,6 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Los campesinos tienen tierra, pero no semillas, tractores ni crédito. La cosecha ha caído a la mitad.",
-    archivo: "En marzo de 1962 Cuba introdujo la libreta de abastecimiento para racionar alimentos y productos básicos, un sistema que se mantuvo durante décadas.",
     izq: { accion: "Racionar los alimentos.", remate: "El Pueblo tendrá lo necesario y aprenderá a agradecerlo.", efectos: { pueblo: -6, elite: 3, crisis: -1 } },
     der: { accion: "Importar comida.", remate: "No importa de dónde venga el pan si lo reparte la Revolución.", efectos: { pueblo: 6, potencias: 5, crisis: 2 } }
   },
@@ -288,7 +257,6 @@ const CARTAS = [
     id: "periodista_oficial", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.censura_previa"] }, titulo: "El periodista oficial", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Ya no circulan noticias, solo rumores. Propongo un periodista oficial que los desmienta cada mañana.",
-    archivo: "En la Unión Soviética, Pravda («La Verdad») era el órgano oficial del Partido Comunista. Circulaba un chiste popular: «En Pravda no hay noticias y en Izvestia no hay verdad».",
     izq: { accion: "Periodista oficial.", remate: "Una sola voz evita muchas confusiones.", efectos: { pueblo: -5, elite: 5, ejercito: 3 }, banderas: ["base.periodista_oficial"] },
     der: { accion: "Dejar que corran.", remate: "Mientras escuchen lo que yo diga, pueden hablar.", efectos: { pueblo: 5, elite: -5, ejercito: -3 } }
   },
@@ -297,7 +265,6 @@ const CARTAS = [
     id: "garantias", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Las empresas exigen garantías: no más nacionalizaciones y que sus beneficios salgan del país.",
-    archivo: "En 1967, el régimen de Suharto en Indonesia aprobó una ley de inversión extranjera que garantizaba a las empresas que no serían nacionalizadas, para atraer capital tras años de inestabilidad.",
     izq: { accion: "Firmar las garantías.", remate: "La Revolución puede firmar cualquier cosa cuando lo necesita.", efectos: { potencias: 8, elite: 6, pueblo: -7, crisis: -1 } },
     der: { accion: "Negarse a firmar.", remate: "Ninguna empresa extranjera pondrá condiciones en nuestra Patria.", efectos: { potencias: -8, pueblo: 6, elite: -5, crisis: 1 } }
   },
@@ -306,7 +273,6 @@ const CARTAS = [
     id: "elecciones_controladas", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Las elecciones prometidas están a la vista. El Partido propone una lista única para evitar confusiones.",
-    archivo: "En el referéndum de 2002 en Irak, el gobierno de Sadam Huseín anunció un 100 % de votos a favor, con una participación también del 100 %.",
     izq: { accion: "Lista única.", remate: "El Pueblo no necesita elegir entre nosotros.", efectos: { pueblo: -6, elite: 5, ejercito: 3 } },
     der: { accion: "Varias listas.", remate: "Que voten libremente. El resultado ya está claro.", efectos: { pueblo: 6, potencias: 5, elite: -5, ejercito: -3 } }
   },
@@ -315,7 +281,6 @@ const CARTAS = [
     id: "estudiantes_calle", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
-    archivo: "En noviembre de 1973, estudiantes ocuparon la Escuela Politécnica de Atenas contra la junta militar griega. El día 17 un tanque derribó la puerta y la protesta fue aplastada.",
     izq: { accion: "Hablar con delegados.", remate: "Primero quiero saber quiénes son los que saben escribir.", efectos: { pueblo: 7, ejercito: -5, elite: -2 } },
     der: { accion: "Desalojar la universidad.", remate: "La universidad es para estudiar, no para hacer política.", efectos: { pueblo: -8, ejercito: 6, potencias: -4 }, banderas: ["base.estudiantes_reprimidos"] }
   },
@@ -324,7 +289,6 @@ const CARTAS = [
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales jubilados fundaron un club de ajedrez. Se reúnen en secreto y no juegan al ajedrez.",
-    archivo: "En octubre de 1970, un grupo ligado al general retirado Roberto Viaux intentó secuestrar en Chile al jefe del Ejército, René Schneider, que murió días después. Buscaban impedir que el Congreso ratificara a Salvador Allende.",
     izq: { accion: "Disolver el club.", remate: "La Revolución no tiene paciencia para reuniones sin permiso.", efectos: { ejercito: -6, elite: 3, potencias: -3 } },
     der: { accion: "Ofrecerles cargos.", remate: "Que conspiren dentro del gobierno; allí puedo vigilarlos.", efectos: { ejercito: 6, elite: -3, crisis: 1 } }
   },
@@ -333,7 +297,6 @@ const CARTAS = [
     id: "jefe_poder", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.purga_inicial"] }, titulo: "El jefe pide más", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Solicito autorización para crear una unidad que investigue a la propia policía. Yo la dirigiría, por discreción.",
-    archivo: "Lavrenti Beria dirigió la policía política soviética desde 1938. Tras la muerte de Stalin, en 1953, fue detenido por sus propios compañeros de dirección y ejecutado ese mismo año.",
     izq: { accion: "Autorizar la unidad.", remate: "Quien vigila a todos debe saber que también lo vigilan.", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
     der: { accion: "Denegar la unidad.", remate: "Un hombre con tanto poder nunca debe sentirse cómodo.", efectos: { ejercito: -8, pueblo: 4, elite: 5 } }
   },
@@ -342,7 +305,6 @@ const CARTAS = [
     id: "huelgas_crisis", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"], crisisMin: 2 }, titulo: "Huelga en el puerto", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Con la subida de precios el sindicato exige aumentos y amenaza con otra huelga en el puerto.",
-    archivo: "En agosto de 1980, una huelga en los astilleros de Gdansk, tras una subida de precios de la carne, acabó con la creación de Solidaridad, el primer sindicato independiente del bloque soviético.",
     izq: { accion: "Subir los salarios.", remate: "El Pueblo puede soportar precios altos; lo que no puede es dudar.", efectos: { pueblo: 8, elite: -5, crisis: 2 } },
     der: { accion: "Prohibir la huelga.", remate: "La Patria no se puede parar porque alguien esté descontento.", efectos: { pueblo: -8, ejercito: 5, elite: 5 } }
   },
@@ -351,7 +313,6 @@ const CARTAS = [
     id: "universidades", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.huelga_reprimida"] }, titulo: "Panfletos en la universidad", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Aparecen panfletos en la universidad. Los hijos de los estibadores aún no han olvidado el puerto.",
-    archivo: "El 2 de octubre de 1968, el ejército y las fuerzas de seguridad dispararon contra una concentración de estudiantes en Tlatelolco, Ciudad de México, pocos días antes de los Juegos Olímpicos.",
     izq: { accion: "Becas para todos.", remate: "Una beca vale más que un panfleto.", efectos: { pueblo: 6, elite: -4, crisis: 1 } },
     der: { accion: "Expulsar a los cabecillas.", remate: "La universidad enseñará lo que la Revolución considere necesario.", efectos: { pueblo: -6, ejercito: 5, potencias: -3 } }
   },
@@ -360,7 +321,6 @@ const CARTAS = [
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por un balcón o una gallina.",
-    archivo: "En la Unión Soviética de 1937 y 1938, muchas detenciones empezaron con denuncias de vecinos y compañeros de trabajo, a veces por rencillas personales.",
     izq: { accion: "Investigarlas todas.", remate: "Más vale investigar a cien inocentes que dejar escapar a un enemigo.", efectos: { ejercito: 6, pueblo: -7, elite: 2 } },
     der: { accion: "Castigar las falsas.", remate: "La Revolución necesita confidentes, no bromistas.", efectos: { pueblo: 7, ejercito: -5, elite: -2 } }
   },
@@ -369,7 +329,6 @@ const CARTAS = [
     id: "oposicion_firma", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta"] }, titulo: "Una carta con firmas", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.",
-    archivo: "En enero de 1977, un grupo de intelectuales checoslovacos publicó la Carta 77, que criticaba al gobierno por incumplir los derechos humanos que había firmado en los acuerdos de Helsinki.",
     izq: { accion: "Recibir a los firmantes.", remate: "Quiero conocer a los que creen que eso depende de mí.", efectos: { pueblo: 6, potencias: 5, ejercito: -5, elite: -3 } },
     der: { accion: "Prohibir la carta.", remate: "No permitiré que cuatro firmas aparenten dividir al Pueblo.", efectos: { pueblo: -6, ejercito: 5, potencias: -5, elite: 3 } }
   },
@@ -378,7 +337,6 @@ const CARTAS = [
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
-    archivo: "Tras 1959 salieron de Cuba muchos profesionales con formación. Se suele citar que cerca de la mitad de los médicos abandonó el país en pocos años.",
     izq: { accion: "Contratar extranjeros.", remate: "La Revolución necesita profesionales, no importa el pasaporte.", efectos: { potencias: 6, elite: -4, crisis: 1, pueblo: 1 } },
     der: { accion: "Formar a los fieles.", remate: "Primero lealtad; el oficio se aprende después.", efectos: { elite: 5, pueblo: -1, ejercito: 2 } }
   },
@@ -387,7 +345,6 @@ const CARTAS = [
     id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Tres familias intentaron cruzar la frontera en una barca. Una era la de un viceministro.",
-    archivo: "Entre 1961 y 1989, al menos 140 personas murieron en relación con el Muro de Berlín, la mayoría intentando cruzarlo.",
     izq: { accion: "Reforzar la frontera.", remate: "Quien abandona la Patria debe explicar por qué.", efectos: { ejercito: 6, potencias: -5, pueblo: -5 } },
     der: { accion: "Amnistía a quien vuelva.", remate: "Que vuelvan; aún tenemos preguntas para ellos.", efectos: { pueblo: 6, potencias: 4, ejercito: -6 } }
   },
@@ -396,7 +353,6 @@ const CARTAS = [
     id: "embargo_total", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran medicinas, repuestos ni, al parecer, nuestras quejas.",
-    archivo: "En agosto de 1990, tras la invasión de Kuwait, el Consejo de Seguridad de la ONU impuso sanciones económicas casi totales a Irak. El país sufrió escasez y una fuerte inflación durante años.",
     izq: { accion: "Racionar la escasez.", remate: "El Pueblo tendrá exactamente lo que la Patria pueda darle.", efectos: { pueblo: -6, elite: -2, crisis: -1 } },
     der: { accion: "Contrabando oficial.", remate: "La soberanía también puede entrar por la puerta de atrás.", efectos: { pueblo: 6, elite: 2, potencias: -4, crisis: 1 } }
   },
@@ -405,7 +361,6 @@ const CARTAS = [
     id: "deuda_llama", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.compensaciones", "base.deuda_externa"] }, titulo: "La deuda llama", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Mañana vence el primer pago de las compensaciones. En caja hay menos de lo prometido.",
-    archivo: "En los años setenta, Polonia se endeudó con bancos occidentales para modernizar su industria. En 1981 tuvo que suspender pagos y renegociar su deuda.",
     izq: { accion: "Pagar la cuota.", remate: "La Revolución cumple cuando le conviene.", efectos: { potencias: 6, elite: 3, pueblo: -7, crisis: -2 } },
     der: { accion: "Pedir prórroga.", remate: "La Historia puede esperar; los acreedores tendrán que aprender.", efectos: { potencias: -6, crisis: 3, elite: -3 } }
   },
@@ -414,7 +369,6 @@ const CARTAS = [
     id: "plan_quinquenal", era: 2, tipo: "sorteo", peso: 8, titulo: "El plan quinquenal", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda.",
-    archivo: "El primer plan quinquenal soviético empezó en 1928 y fijó metas de producción para la industria y la agricultura. Muchas cifras oficiales se cumplieron en los informes más que en las fábricas.",
     izq: { accion: "Plan quinquenal.", remate: "El éxito de la Revolución empieza por escribirlo.", efectos: { elite: 5, pueblo: -4, crisis: 2 } },
     der: { accion: "Dejar al mercado.", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, potencias: 4, elite: -4 } }
   },
@@ -423,7 +377,6 @@ const CARTAS = [
     id: "cosecha_record", era: 2, tipo: "sorteo", peso: 8, titulo: "La cosecha récord", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "La cosecha es récord, según los informes. Los almacenes, curiosamente, están vacíos.",
-    archivo: "Durante el Gran Salto Adelante en China (1958-1962), muchos funcionarios locales informaron de cosechas infladas para complacer al Partido. El Estado requisó grano que luego faltó, y la hambruna causó millones de muertes.",
     izq: { accion: "Proclamar el récord.", remate: "El Pueblo no come estadísticas, pero escucha las noticias.", efectos: { pueblo: 5, elite: 3, crisis: 2 } },
     der: { accion: "Pedir cifras reales.", remate: "Quiero saber cuánto falta antes de decidir a quién culpar.", efectos: { pueblo: -4, elite: -4, crisis: -1 } }
   },
@@ -432,7 +385,6 @@ const CARTAS = [
     id: "el_espia", era: 2, tipo: "sorteo", peso: 8, titulo: "El diplomático curioso", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.",
-    archivo: "El 10 de febrero de 1962, en el puente de Glienicke, entre Berlín y Potsdam, Estados Unidos y la Unión Soviética intercambiaron al piloto Francis Gary Powers por el espía soviético Rudolf Abel.",
     izq: { accion: "Expulsarlo.", remate: "Que visite otro país. Aquí ya ha visto demasiado.", efectos: { potencias: -5, ejercito: 5 } },
     der: { accion: "Intercambiarlo.", remate: "La Patria también puede negociar con sus enemigos.", efectos: { potencias: 5, ejercito: -5, elite: 2 } }
   },
@@ -441,7 +393,6 @@ const CARTAS = [
     id: "los_chistes", era: 2, tipo: "sorteo", peso: 8, titulo: "Los chistes", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Circula un chiste sobre usted por todas las oficinas. Al final, todos miran al techo.",
-    archivo: "En la Unión Soviética de Stalin, contar chistes políticos podía castigarse como «agitación antisoviética», según el artículo 58 del código penal.",
     izq: { accion: "Tribunal del humor.", remate: "Quiero saber quién se ríe cuando cree que nadie lo escucha.", efectos: { pueblo: -6, ejercito: 4, elite: 2 } },
     der: { accion: "Contar uno mejor.", remate: "El mejor chiste sobre un dictador es el que todos aplauden.", efectos: { pueblo: 5, ejercito: -3, elite: -2 } }
   },
@@ -450,7 +401,6 @@ const CARTAS = [
     id: "el_monumento", era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Excelencia, el Partido ha diseñado un monumento de cuarenta metros en su honor. Se verá desde todos los barrios y desde la costa.",
-    archivo: "En 1998, en Asjabad, el presidente turcomano Saparmurat Niyazov inauguró el Arco de la Neutralidad, coronado por una estatua dorada de doce metros que giraba para mirar siempre al sol.",
     izq: { accion: "Monumento colosal.", remate: "Me conmueve que el Pueblo me vea como a un padre.", efectos: { elite: 7, pueblo: -6, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
     der: { accion: "Monumento modesto.", remate: "El Pueblo no necesita mármol para saber quién lo protege.", efectos: { elite: -7, pueblo: 6 }, banderas: ["base.monumento_modesto"] }
   },
@@ -458,7 +408,6 @@ const CARTAS = [
     id: "pedestal", era: 3, tipo: "cola", titulo: "El pedestal", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Excelencia, el pedestal costó el doble de lo previsto y el bronce llegó incompleto: la estatua tiene un solo brazo.",
-    archivo: null,
     izq: { accion: "Terminar la estatua.", remate: "El Padre de la Patria no puede aparecer manco.", efectos: { elite: 5, pueblo: -6, crisis: 2 } },
     der: { accion: "Dejarla con un brazo.", remate: "Un gesto de humildad también educa al Pueblo.", efectos: { elite: -5, pueblo: 6, crisis: -1 } }
   },
@@ -466,7 +415,6 @@ const CARTAS = [
     id: "modestia_sospechosa", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.modestia_aparente"] }, titulo: "La modestia sospechosa", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Excelencia, su rechazo a los retratos se ha interpretado como falsa humildad. El Partido propone una gran demostración de lealtad.",
-    archivo: "En la China de 1966, el Pequeño Libro Rojo con citas de Mao Zedong se distribuyó en cientos de millones de ejemplares, y recitarlo y lucir sus chapas se volvió una prueba de lealtad casi obligatoria.",
     izq: { accion: "Aceptar la demostración.", remate: "No quiero contrariar al Pueblo en una muestra de cariño.", efectos: { elite: 6, ejercito: 3, pueblo: -5 } },
     der: { accion: "Insistir en la modestia.", remate: "La lealtad verdadera no necesita tantas ceremonias.", efectos: { elite: -6, ejercito: -3, pueblo: 5 } }
   },
@@ -474,7 +422,6 @@ const CARTAS = [
     id: "desfile_anual", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.desfile_militar"] }, titulo: "El desfile del año", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Excelencia, el Ejército espera un desfile mayor que el del año pasado: más tanques, más soldados y, por tradición, caballería.",
-    archivo: "Hasta 1990, el 7 de noviembre se celebraba en la Plaza Roja de Moscú un desfile militar por el aniversario de la Revolución rusa de 1917, con los dirigentes saludando desde el mausoleo de Lenin.",
     izq: { accion: "Desfile aún mayor.", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 8, elite: 3, pueblo: -7, crisis: 2 } },
     der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -8, elite: -3, pueblo: 7 } }
   },
@@ -482,7 +429,6 @@ const CARTAS = [
     id: "satelites", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Excelencia, nuestros satélites siguen contando sus misiles y pedimos una inspección. Aceptarla evitaría un incidente mayor.",
-    archivo: "Los vuelos de reconocimiento U-2 sobre Cuba, en octubre de 1962, fotografiaron los emplazamientos de misiles soviéticos. El 27 de octubre un U-2 fue derribado sobre la isla.",
     izq: { accion: "Permitir la inspección.", remate: "Que inspeccionen; para entonces ya habremos hecho el cambio.", efectos: { potencias: 8, ejercito: -7, elite: 2 } },
     der: { accion: "Negarse.", remate: "La soberanía no se inspecciona.", efectos: { potencias: -8, ejercito: 7, elite: -2, crisis: 1 } }
   },
@@ -490,7 +436,6 @@ const CARTAS = [
     id: "aliado_enfadado", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Excelencia, nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
-    archivo: "En 1960, en plena ruptura chino-soviética, la Unión Soviética retiró a sus asesores técnicos de China y suspendió numerosos proyectos conjuntos.",
     izq: { accion: "Pedir disculpas.", remate: "Una amistad duradera también exige saber pedir perdón.", efectos: { potencias: 8, pueblo: -6, ejercito: -2 } },
     der: { accion: "Buscar otro proveedor.", remate: "El petróleo no tiene ideología, solo precio.", efectos: { potencias: -8, pueblo: 6, ejercito: 2, crisis: 1 } }
   },
@@ -498,7 +443,6 @@ const CARTAS = [
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Excelencia, mi unidad especial necesita su propio batallón, su propia cárcel y un presupuesto que no figure en ningún presupuesto.",
-    archivo: "Erich Mielke dirigió el Ministerio para la Seguridad del Estado de la República Democrática Alemana, la Stasi, de 1957 a 1989. En 1989 la organización contaba con unos noventa mil empleados.",
     izq: { accion: "Autorizar el batallón.", remate: "Quiero que tengan todo lo necesario para proteger la Revolución.", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.estado_policial"] },
     der: { accion: "Recortarle el presupuesto.", remate: "Que vigilen al Pueblo sin crear un gobierno dentro del Gobierno.", efectos: { ejercito: -8, elite: 5, pueblo: 4 } }
   },
@@ -506,7 +450,6 @@ const CARTAS = [
     id: "aulas_vacias", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estudiantes_reprimidos", "base.huelga_reprimida"] }, titulo: "Las aulas vacías", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Excelencia, la universidad sigue vacía y circulan apuntes clandestinos. Algunos profesores enseñan historia sin citarle a usted.",
-    archivo: "En 1989, estudiantes ocuparon durante semanas la plaza de Tiananmén, en Pekín. Los días 3 y 4 de junio el ejército la despejó.",
     izq: { accion: "Exigir lealtad a profesores.", remate: "Las notas medirán tanto los conocimientos como la lealtad.", efectos: { elite: 5, ejercito: 3, pueblo: -6 } },
     der: { accion: "Reabrir las facultades.", remate: "La Revolución necesita aulas llenas, no héroes universitarios.", efectos: { pueblo: 6, elite: -5, ejercito: -3 } }
   },
@@ -514,7 +457,6 @@ const CARTAS = [
     id: "titulares", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.periodista_oficial"] }, titulo: "Los titulares", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Excelencia, el periódico oficial pide titulares más generosos con usted. Ayer solo le dedicó tres páginas.",
-    archivo: "En la Rumanía de Ceaușescu, el diario del Partido, Scînteia, dedicaba su portada casi a diario a los discursos y las visitas del dirigente.",
     izq: { accion: "Seis páginas diarias.", remate: "El Pueblo merece seis páginas diarias de buenas noticias.", efectos: { elite: 6, ejercito: 2, pueblo: -5 } },
     der: { accion: "Tres páginas bastan.", remate: "El Pueblo ya conoce mi obra; no hace falta repetirla tanto.", efectos: { elite: -6, ejercito: -2, pueblo: 5 } }
   },
@@ -522,7 +464,6 @@ const CARTAS = [
     id: "presos_agenda", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.criticos_detenidos"] }, titulo: "Los presos en la agenda", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Excelencia, una organización extranjera publica la lista de sus presos políticos. Nuestro país pide su liberación como gesto de buena voluntad.",
-    archivo: "En 1975 se firmaron los Acuerdos de Helsinki, que incluían compromisos sobre derechos humanos. En 1977 Amnistía Internacional recibió el Premio Nobel de la Paz por su trabajo con los presos de conciencia.",
     izq: { accion: "Liberar a algunos.", remate: "Liberemos a los más ancianos para no gastar en entierros.", efectos: { potencias: 8, ejercito: -6, elite: -2 } },
     der: { accion: "Negar que existan.", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -8, ejercito: 6, elite: 2 } }
   },
@@ -530,7 +471,6 @@ const CARTAS = [
     id: "acreedor_favores", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Excelencia, el acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.",
-    archivo: "En 1982, México anunció que no podía pagar su deuda externa y abrió la crisis de la deuda latinoamericana. Los préstamos posteriores llegaron con condiciones de ajuste exigidas por el Fondo Monetario Internacional.",
     izq: { accion: "Vender nuestro voto.", remate: "La diplomacia también sirve para pagar deudas.", efectos: { potencias: 8, elite: 3, pueblo: -5, crisis: -2 } },
     der: { accion: "Pagar con lo que haya.", remate: "La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.", efectos: { potencias: -8, elite: -3, pueblo: 5, crisis: 2 } }
   },
@@ -538,7 +478,6 @@ const CARTAS = [
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Excelencia, el mercado paralelo vende más que las tiendas del Estado. Algunos funcionarios ya cobran en especie y otros, en dólares.",
-    archivo: "En la Unión Soviética de los años setenta y ochenta, una parte importante de los bienes y servicios circulaba por canales no oficiales, y la escasez alimentaba el mercado negro.",
     izq: { accion: "Legalizar el mercado.", remate: "Si el Pueblo compra allí, será mejor que tribute aquí.", efectos: { pueblo: 6, elite: -4, ejercito: -2, crisis: -1 } },
     der: { accion: "Perseguir a los vendedores.", remate: "La escasez también debe tener licencia.", efectos: { pueblo: -6, elite: 4, ejercito: 2, crisis: 1 } }
   },
@@ -547,7 +486,6 @@ const CARTAS = [
     id: "ciudad_con_nombre", era: 3, tipo: "sorteo", peso: 10, titulo: "La ciudad con su nombre", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Excelencia, la capital merece un nombre a su altura. El Partido propone sustituir el actual por el suyo, con avenida incluida.",
-    archivo: "En 1936, Santo Domingo, la capital de la República Dominicana, fue rebautizada como Ciudad Trujillo en honor del dictador Rafael Trujillo. Recuperó su nombre en 1961.",
     izq: { accion: "Rebautizar la capital.", remate: "Que el Pueblo pueda pronunciar mi nombre al pedir una dirección.", efectos: { elite: 6, pueblo: -5, ejercito: 2 }, banderas: ["base.capital_rebautizada"] },
     der: { accion: "Solo una avenida.", remate: "Una avenida recuerda a un hombre; una capital pertenece al Pueblo.", efectos: { elite: -6, pueblo: 5, ejercito: -2 } }
   },
@@ -555,7 +493,6 @@ const CARTAS = [
     id: "himno_nuevo", era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Excelencia, el himno nacional no le menciona. Proponemos una versión con cuarenta estrofas, treinta sobre usted.",
-    archivo: "El himno de la Unión Soviética adoptado en 1944 incluía versos de alabanza a Stalin. Tras su muerte se dejó sin letra, y en 1977 se estrenó una nueva letra sin su nombre.",
     izq: { accion: "Himno de cuarenta estrofas.", remate: "El Pueblo necesita tiempo para aprender a agradecer.", efectos: { elite: 5, ejercito: 3, pueblo: -6 } },
     der: { accion: "Solo el estribillo.", remate: "Mi nombre en el estribillo bastará para que nadie lo olvide.", efectos: { elite: -5, ejercito: -3, pueblo: 6 } }
   },
@@ -563,7 +500,6 @@ const CARTAS = [
     id: "libro_texto", era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Excelencia, proponemos un libro con su vida y sus pensamientos, obligatorio en todas las escuelas y para obtener el carné de conducir.",
-    archivo: "En Turkmenistán, el libro Ruhnama, firmado por el presidente Niyazov en 2001, fue lectura obligatoria en las escuelas y se examinaba también en las pruebas para obtener el carné de conducir.",
     izq: { accion: "Libro obligatorio.", remate: "Quien no lo apruebe no sabrá de qué le acusan.", efectos: { elite: 5, ejercito: 3, pueblo: -6 }, banderas: ["base.libro_obligatorio"] },
     der: { accion: "Libro opcional.", remate: "Si es bueno, se leerá; y si no, también.", efectos: { elite: -5, ejercito: -3, pueblo: 6 } }
   },
@@ -571,7 +507,6 @@ const CARTAS = [
     id: "cumpleanos", era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Excelencia, el Partido propone declarar fiesta nacional el día de su cumpleaños, con desfile, discursos y un día libre para todos.",
-    archivo: "El 21 de diciembre de 1949, el 70.º cumpleaños de Stalin se celebró en la Unión Soviética y en todo el bloque con actos, regalos y homenajes oficiales.",
     izq: { accion: "Fiesta nacional.", remate: "Un día al año para que el Pueblo celebre a quien lo protege.", efectos: { pueblo: 6, elite: 3, ejercito: -3, crisis: 2 } },
     der: { accion: "Cumpleaños privado.", remate: "Prefiero que el Pueblo celebre nuestras conquistas, no mi cumpleaños.", efectos: { pueblo: -6, elite: -3, ejercito: 3, crisis: -1 } }
   },
@@ -579,7 +514,6 @@ const CARTAS = [
     id: "biografia", era: 3, tipo: "sorteo", peso: 10, titulo: "La biografía oficial", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Excelencia, algunos historiadores dicen que usted no hizo la Revolución, sino que llegó al final. La biografía oficial está lista.",
-    archivo: "En 1938 se publicó el Breve curso de historia del Partido Comunista de la URSS, un manual oficial en el que Stalin intervino personalmente y cuya lectura fue obligatoria durante años.",
     izq: { accion: "Reescribir la biografía.", remate: "La Historia la escriben los vencedores, y nosotros vencimos.", efectos: { elite: 5, pueblo: -5, ejercito: 2 } },
     der: { accion: "Dejarla como está.", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -5, pueblo: 5, ejercito: -2 } }
   },
@@ -587,7 +521,6 @@ const CARTAS = [
     id: "mausoleo", era: 3, tipo: "sorteo", peso: 8, titulo: "El mausoleo", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Excelencia, el Partido ruega prever un mausoleo para cuando le llegue la hora. Los embalsamadores ya están en nómina.",
-    archivo: "Tras la muerte de Lenin, en 1924, su cuerpo fue embalsamado y expuesto en un mausoleo en la Plaza Roja de Moscú, donde permanece abierto al público.",
     izq: { accion: "Construir el mausoleo.", remate: "La Historia merece un lugar donde visitarme.", efectos: { elite: 5, pueblo: -5, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
     der: { accion: "Sepultura sencilla.", remate: "No hace falta pensar en mi tumba mientras sigo dando órdenes.", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
   },
@@ -595,7 +528,6 @@ const CARTAS = [
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Excelencia, el nuevo palacio costará cinco años de presupuesto y exige derribar tres barrios enteros.",
-    archivo: "En 1984 comenzó en Bucarest la construcción de la Casa del Pueblo, hoy Palacio del Parlamento, para lo cual se demolió una parte importante del centro histórico de la ciudad.",
     izq: { accion: "Derribar los barrios.", remate: "Una gran Revolución necesita un palacio a su altura.", efectos: { elite: 6, ejercito: 2, pueblo: -8, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
     der: { accion: "Buscar otro solar.", remate: "El palacio puede esperar; los vecinos viven ahí.", efectos: { elite: -6, ejercito: -2, pueblo: 8, crisis: -1 } }
   },
@@ -603,7 +535,6 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 3, tipo: "sorteo", peso: 10, titulo: "La zafra de los diez millones", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Excelencia, para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.",
-    archivo: "En 1970 Cuba se propuso una zafra de diez millones de toneladas de azúcar. Movilizó a media población y logró unos ocho millones y medio, la mayor de su historia, a costa de desorganizar el resto de la economía.",
     izq: { accion: "Todos a la zafra.", remate: "El que corta caña no conspira.", efectos: { pueblo: -6, ejercito: 3, elite: 3, crisis: -1 } },
     der: { accion: "Contratar jornaleros.", remate: "La Revolución también puede pagar a quien trabaja.", efectos: { pueblo: 6, ejercito: -3, elite: -3, crisis: 1 } }
   },
@@ -611,7 +542,6 @@ const CARTAS = [
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Excelencia, el Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros empezarán a designarse solos.",
-    archivo: "En octubre de 1980, el VI Congreso del Partido del Trabajo de Corea mostró en público a Kim Jong-il como sucesor de su padre, Kim Il-sung.",
     izq: { accion: "Designar sucesor.", remate: "El sucesor debe aprender a esperar; yo tuve que hacerlo.", efectos: { elite: 6, ejercito: -5, potencias: 2 }, banderas: ["base.sucesor_designado"] },
     der: { accion: "Sin sucesor.", remate: "Un líder eterno no necesita explicar quién viene después.", efectos: { elite: -6, ejercito: 5, potencias: -2 } }
   },
@@ -619,7 +549,6 @@ const CARTAS = [
     id: "beso_fraterno", era: 3, tipo: "sorteo", peso: 8, titulo: "El beso fraterno", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Excelencia, nuestro máximo dirigente desea un abrazo fraternal con usted ante las cámaras. Será una foto para la Historia.",
-    archivo: "En octubre de 1979, durante el 30.º aniversario de la República Democrática Alemana, Leonid Brézhnev y Erich Honecker se besaron en la boca. La foto, de Régis Bossu, fue pintada en 1990 en el Muro de Berlín.",
     izq: { accion: "Abrazo y beso.", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 7, pueblo: -5, elite: -2 } },
     der: { accion: "Apretón de manos.", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -7, pueblo: 5, elite: 2 } }
   },
@@ -627,7 +556,6 @@ const CARTAS = [
     id: "viaje_oficial", era: 3, tipo: "sorteo", peso: 8, titulo: "El viaje oficial", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Excelencia, nuestro presidente le invita a una visita oficial de dos semanas, con cenas, desfiles y un acuerdo comercial preparado.",
-    archivo: "En marzo de 1970, el príncipe Norodom Sihanouk, jefe del Estado de Camboya, fue depuesto por un golpe mientras viajaba por el extranjero.",
     izq: { accion: "Aceptar el viaje.", remate: "Dos semanas de aplausos extranjeros valen un par de riesgos.", efectos: { potencias: 8, elite: 3, ejercito: -7 } },
     der: { accion: "Quedarse en el país.", remate: "El Pueblo no puede pasar dos semanas sin escucharme.", efectos: { potencias: -8, elite: -3, ejercito: 7 } }
   },
@@ -635,7 +563,6 @@ const CARTAS = [
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Excelencia, una bomba ha estallado cerca del palacio, sin heridos. Podemos investigarla o culpar a la oposición.",
-    archivo: "El asesinato de Serguéi Kírov, jefe del Partido en Leningrado, el 1 de diciembre de 1934, fue seguido de leyes de excepción y de detenciones masivas que abrieron paso a la Gran Purga.",
     izq: { accion: "Culpar a la oposición.", remate: "La Revolución no desperdicia una buena conspiración.", efectos: { ejercito: 8, pueblo: -6, potencias: -2 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
     der: { accion: "Investigar de verdad.", remate: "Una investigación honesta podría dejarnos sin culpables.", efectos: { ejercito: -8, pueblo: 6, potencias: 2 }, banderas: ["base.atentado_investigado"] }
   },
@@ -643,7 +570,6 @@ const CARTAS = [
     id: "la_investigacion", era: 3, tipo: "cola", titulo: "La investigación", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Excelencia, los detenidos por el atentado lo niegan. Dos tienen coartada y uno, incluso, certificado de defunción.",
-    archivo: null,
     izq: { accion: "Mantener la acusación.", remate: "Los certificados de defunción también confiesan.", efectos: { ejercito: 6, pueblo: -5, potencias: -3 } },
     der: { accion: "Liberar a los acusados.", remate: "Liberarlos sería reconocer un error, y la Revolución no se equivoca.", efectos: { ejercito: -6, pueblo: 5, potencias: 3 } }
   },
@@ -652,7 +578,6 @@ const CARTAS = [
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Padre de la Patria, un periódico al que usted dejó publicar ha destapado las cuentas del palacio. Se vende en todos los quioscos.",
-    archivo: "Entre 1972 y 1974, las informaciones del Washington Post sobre el caso Watergate acabaron con la dimisión del presidente estadounidense Richard Nixon.",
     izq: { accion: "Cerrar el periódico.", remate: "La libertad de prensa también tiene horario de cierre.", efectos: { pueblo: -7, ejercito: 4, potencias: -5 } },
     der: { accion: "Despedir a un ministro.", remate: "Alguien tendrá que haber firmado esas cuentas.", efectos: { pueblo: 7, elite: -6, potencias: 4 } }
   },
@@ -660,7 +585,6 @@ const CARTAS = [
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Padre de la Patria, el general Cienfuegos ha vuelto de su embajada. Los descontentos lo reciben en el aeropuerto como a un candidato.",
-    archivo: "El 20 de junio de 1973, el regreso de Juan Domingo Perón a Argentina tras dieciocho años de exilio reunió a una multitud en Ezeiza, y la jornada terminó en enfrentamientos armados.",
     izq: { accion: "Recibirlo en palacio.", remate: "Dos viejos generales; solo uno tiene palacio.", efectos: { ejercito: 7, pueblo: 4, elite: -6 } },
     der: { accion: "Devolverlo al avión.", remate: "Su embajada le echaba mucho de menos.", efectos: { ejercito: -7, pueblo: -4, elite: 6 } }
   },
@@ -668,7 +592,6 @@ const CARTAS = [
     id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Padre de la Patria, su sucesor ya recibe a los embajadores en su despacho y ha encargado retratos suyos para las escuelas.",
-    archivo: "Lin Biao, designado sucesor de Mao Zedong en 1969, murió en 1971 al estrellarse en Mongolia el avión en el que huía, tras un supuesto intento de golpe.",
     izq: { accion: "Recordarle quién manda.", remate: "La paciencia también es un mérito revolucionario.", efectos: { elite: -7, ejercito: 5, potencias: -3 } },
     der: { accion: "Dejarle hacer.", remate: "Que aprenda; algún día tendrá que hacerlo sin mí.", efectos: { elite: 7, ejercito: -5, potencias: 3 } }
   },
@@ -676,7 +599,6 @@ const CARTAS = [
     id: "los_inocentes", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.oposicion_culpada"] }, titulo: "Los inocentes", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Padre de la Patria, nuestro país tiene pruebas de que la oposición no puso aquella bomba. Pedimos que se revise el caso.",
-    archivo: "Marinus van der Lubbe fue ejecutado en 1934 por el incendio del Reichstag de Berlín. En 2008 la justicia alemana anuló su condena.",
     izq: { accion: "Revisar el caso.", remate: "Que se revise; la sentencia, que no se mueva.", efectos: { potencias: 7, pueblo: 4, ejercito: -6 } },
     der: { accion: "Asunto cerrado.", remate: "La Historia ya dictó sentencia; yo solo la firmé.", efectos: { potencias: -7, pueblo: -4, ejercito: 6 } }
   },
@@ -684,7 +606,6 @@ const CARTAS = [
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Padre de la Patria, el mausoleo necesita mantenimiento y usted aún no lo ha estrenado. Los embalsamadores piden un aumento.",
-    archivo: "Desde 1924, un laboratorio especializado de Moscú se ocupa de conservar el cuerpo de Lenin, con tratamientos periódicos.",
     izq: { accion: "Pagar el aumento.", remate: "La eternidad no se recorta.", efectos: { elite: 5, pueblo: -5, crisis: 2 } },
     der: { accion: "Alquilarlo para actos.", remate: "Mientras tanto, que dé beneficios.", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
   },
@@ -692,7 +613,6 @@ const CARTAS = [
     id: "palacio_sin_terminar", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Padre de la Patria, el palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
-    archivo: "Cuando cayó Nicolae Ceaușescu, en diciembre de 1989, la Casa del Pueblo de Bucarest seguía sin terminar. Hoy alberga el Parlamento rumano.",
     izq: { accion: "Terminarlo como sea.", remate: "Que mis sucesores tengan dónde aburrirse.", efectos: { elite: 6, pueblo: -7, crisis: 3 } },
     der: { accion: "Convertirlo en museo.", remate: "Un museo de lo que pudo haber sido.", efectos: { elite: -6, pueblo: 7, crisis: -1 } }
   },
@@ -700,7 +620,6 @@ const CARTAS = [
     id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estado_policial", "base.jefe_poderoso"] }, titulo: "Dos ejércitos", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Padre de la Patria, la unidad del Interior ya tiene más tanques que el Ejército. Mis oficiales preguntan quién manda.",
-    archivo: "En 1934, Hitler ordenó eliminar a la cúpula de las SA, cuyo poder inquietaba al ejército regular, en la llamada Noche de los Cuchillos Largos.",
     izq: { accion: "Desarmar al batallón.", remate: "Un ejército basta; dos acaban discutiendo.", efectos: { ejercito: 8, elite: -4, pueblo: 3 } },
     der: { accion: "Más tanques al Ejército.", remate: "Si sobran tanques, que sobren en los dos lados.", efectos: { ejercito: -8, elite: 4, crisis: 2 } }
   },
@@ -709,7 +628,6 @@ const CARTAS = [
     id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Padre de la Patria, corren rumores sobre su salud. Proponemos que se le vea nadando en el río, como hacía de joven.",
-    archivo: "En julio de 1966, con 72 años, Mao Zedong nadó en el río Yangtsé ante las cámaras para desmentir los rumores sobre su salud.",
     izq: { accion: "Nadar en el río.", remate: "Que la corriente sepa quién manda.", efectos: { pueblo: 6, elite: 3, ejercito: -4 } },
     der: { accion: "Mandar a un doble.", remate: "Nadie notará la diferencia; yo tampoco.", efectos: { pueblo: -6, elite: -3, ejercito: 4 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
   },
@@ -717,7 +635,6 @@ const CARTAS = [
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Padre de la Patria, su doble ha empezado a dar discursos por su cuenta. Dicen que habla mejor que usted.",
-    archivo: null,
     izq: { accion: "Retirar al doble.", remate: "Solo hay sitio para un Padre de la Patria.", efectos: { ejercito: 6, pueblo: -5, elite: -2 } },
     der: { accion: "Dejarle los discursos.", remate: "Que hable él; yo descanso y escucho.", efectos: { ejercito: -6, pueblo: 5, elite: 2 } }
   },
@@ -725,7 +642,6 @@ const CARTAS = [
     id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Padre de la Patria, el Ejército quiere concederle su máxima condecoración. Sería la número ochenta y tres.",
-    archivo: "Leonid Brézhnev acumuló más de cien condecoraciones soviéticas y extranjeras, entre ellas cuatro títulos de Héroe de la Unión Soviética.",
     izq: { accion: "Aceptarla.", remate: "La modestia también necesita sitio en el pecho.", efectos: { ejercito: 6, pueblo: -4, elite: 2 } },
     der: { accion: "Rechazarla.", remate: "Ochenta y dos bastan para un hombre humilde.", efectos: { ejercito: -6, pueblo: 4, elite: -2 } }
   },
@@ -733,7 +649,6 @@ const CARTAS = [
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Padre de la Patria, el Partido propone un plebiscito para que el Pueblo diga si quiere que usted siga ocho años más.",
-    archivo: "En el plebiscito de 1988 en Chile, el 56 % votó «No» a que Augusto Pinochet siguiera en el poder, lo que abrió la transición a la democracia.",
     izq: { accion: "Convocar el plebiscito.", remate: "El Pueblo decidirá lo que ya está decidido.", efectos: { potencias: 6, pueblo: 4, ejercito: -5 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
     der: { accion: "No hace falta.", remate: "No pregunto lo que ya sé.", efectos: { potencias: -6, pueblo: -4, ejercito: 5 } }
   },
@@ -741,7 +656,6 @@ const CARTAS = [
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Padre de la Patria, el plebiscito ha salido mal: gana el «No». El escrutinio todavía no es oficial.",
-    archivo: null,
     izq: { accion: "Aceptar el resultado.", remate: "Que no se diga que no sé perder; solo que no me voy.", efectos: { pueblo: 9, potencias: 7, ejercito: -9, elite: -4 }, banderas: ["base.derrota_aceptada"] },
     der: { accion: "Recontar los votos.", remate: "Hasta que salgan bien.", efectos: { pueblo: -9, potencias: -7, ejercito: 9, elite: 4 }, banderas: ["base.recuento"] }
   },
@@ -749,7 +663,6 @@ const CARTAS = [
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Padre de la Patria, nuestro país atraviesa dificultades. El año que viene no podremos enviar petróleo, ni créditos, ni, quizá, embajador.",
-    archivo: "Tras la disolución de la Unión Soviética en 1991, Cuba perdió la mayor parte de su comercio exterior y entró en una grave crisis económica, el llamado «Período Especial».",
     izq: { accion: "Pedir un último envío.", remate: "Por los viejos tiempos y por los nuevos apagones.", efectos: { potencias: 5, pueblo: -5, crisis: 2 } },
     der: { accion: "Buscar nuevos amigos.", remate: "La amistad eterna también caduca.", efectos: { potencias: -5, pueblo: 5, elite: 3, crisis: 1 } }
   },
@@ -757,7 +670,6 @@ const CARTAS = [
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Padre de la Patria, nuestro país le ofrece una salida honrosa: elecciones libres, inmunidad y una casa en la costa.",
-    archivo: "En 1990 Augusto Pinochet entregó la presidencia de Chile a un gobierno elegido, pero siguió al frente del Ejército hasta 1998 y después fue senador vitalicio.",
     izq: { accion: "Negociar la salida.", remate: "Una casa en la costa, con vistas al palacio.", efectos: { potencias: 8, pueblo: 5, ejercito: -7, elite: -4 } },
     der: { accion: "Rechazar la oferta.", remate: "De aquí solo salgo en procesión.", efectos: { potencias: -8, pueblo: -5, ejercito: 7, elite: 4 } }
   },
@@ -765,7 +677,6 @@ const CARTAS = [
     id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Padre de la Patria, la editorial del Estado prepara sus memorias en doce tomos. Necesitamos saber qué recuerda usted.",
-    archivo: "Leonid Brézhnev publicó en 1978 una trilogía de memorias, escrita en realidad por periodistas, que recibió el Premio Lenin de Literatura en 1979.",
     izq: { accion: "Doce tomos.", remate: "Y un decimotercero con lo que no recuerdo.", efectos: { elite: 5, pueblo: -5, crisis: 1 } },
     der: { accion: "Un solo tomo.", remate: "Lo esencial cabe en una página: yo.", efectos: { elite: -5, pueblo: 5 } }
   },
@@ -773,7 +684,6 @@ const CARTAS = [
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Padre de la Patria, su hijo quiere la concesión del puerto. Dice que conoce el negocio porque ha visto llegar los barcos.",
-    archivo: "En 1990, Hutomo «Tommy» Mandala Putra, hijo del presidente indonesio Suharto, obtuvo el control del comercio del clavo de olor a través de un organismo creado para ello.",
     izq: { accion: "Darle la concesión.", remate: "La experiencia se hereda, como el apellido.", efectos: { elite: 6, pueblo: -6, potencias: -2 } },
     der: { accion: "Negársela.", remate: "Que empiece desde abajo: un ministerio pequeño.", efectos: { elite: -6, pueblo: 6, potencias: 2 } }
   },
@@ -781,7 +691,6 @@ const CARTAS = [
     id: "la_cuenta", era: 4, tipo: "sorteo", peso: 10, titulo: "La cuenta en el extranjero", ilustracion: null,
     personaje: "Ministro de Economía",
     texto: "Padre de la Patria, un banco extranjero pregunta de dónde salen los fondos de su cuenta personal. Quiere un papel firmado.",
-    archivo: "Tras la caída de Ferdinand Marcos en Filipinas, en 1986, salieron a la luz cuentas a su nombre en bancos suizos; Suiza devolvió después parte de esos fondos al Estado filipino.",
     izq: { accion: "Firmar cualquier cosa.", remate: "Mi firma vale más que su pregunta.", efectos: { potencias: 6, elite: 3, pueblo: -5 } },
     der: { accion: "Traer el dinero a casa.", remate: "Bajo el colchón del Estado no pregunta nadie.", efectos: { potencias: -6, elite: -3, pueblo: 5, crisis: -1 } }
   },
@@ -789,7 +698,6 @@ const CARTAS = [
     id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Padre de la Patria, los nietos de los que usted encarceló piden que los libros de texto cuenten lo que pasó.",
-    archivo: "En España, la Ley de Memoria Histórica de 2007 reconoció a las víctimas de la guerra civil y de la dictadura franquista.",
     izq: { accion: "Una página en el libro.", remate: "Breve, en letra pequeña y al final.", efectos: { pueblo: 6, potencias: 4, ejercito: -6 } },
     der: { accion: "Nada que contar.", remate: "La Historia ya está escrita; yo tengo la pluma.", efectos: { pueblo: -6, potencias: -4, ejercito: 6 } }
   },
@@ -797,7 +705,6 @@ const CARTAS = [
     id: "huelga_general", era: 4, tipo: "sorteo", peso: 10, titulo: "La huelga general", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Padre de la Patria, los sindicatos convocan una huelga general. Por primera vez se han puesto de acuerdo entre ellos.",
-    archivo: "En 1988 y 1989, una oleada de huelgas en Polonia llevó al gobierno a negociar con Solidaridad en la Mesa Redonda, que desembocó en elecciones parcialmente libres.",
     izq: { accion: "Subir los salarios.", remate: "Que celebren; la inflación los pondrá en su sitio.", efectos: { pueblo: 8, elite: -5, crisis: 2 } },
     der: { accion: "Declarar el estado de sitio.", remate: "Si no trabajan, que vigilen el toque de queda.", efectos: { pueblo: -8, ejercito: 6, potencias: -4 } }
   },
@@ -805,7 +712,6 @@ const CARTAS = [
     id: "el_concierto", era: 4, tipo: "sorteo", peso: 10, titulo: "El concierto", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Padre de la Patria, una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.",
-    archivo: "El 19 de julio de 1988, Bruce Springsteen tocó en Berlín Este ante unas trescientas mil personas, uno de los mayores conciertos de la historia de la República Democrática Alemana.",
     izq: { accion: "Que toquen.", remate: "Si cantan, no gritan.", efectos: { pueblo: 7, potencias: 4, ejercito: -5 } },
     der: { accion: "Prohibir el concierto.", remate: "La música extranjera también necesita visado.", efectos: { pueblo: -7, potencias: -4, ejercito: 5 } }
   },
@@ -813,7 +719,6 @@ const CARTAS = [
     id: "estatuas_caen", era: 4, tipo: "sorteo", peso: 10, titulo: "Las estatuas caen", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Padre de la Patria, en la televisión extranjera derriban estatuas de dirigentes como usted. El Pueblo lo está viendo.",
-    archivo: "En agosto de 1991, tras el fracaso del golpe contra Gorbachov, una multitud celebró en Moscú la retirada de la estatua de Félix Dzerzhinski, fundador de la policía política soviética.",
     izq: { accion: "Cortar la señal.", remate: "Lo que no se ve, no se derriba.", efectos: { pueblo: -6, ejercito: 5, potencias: -3 } },
     der: { accion: "Reforzar las estatuas.", remate: "Con hormigón y con guardia.", efectos: { pueblo: 3, ejercito: -5, elite: 3, crisis: 1 } }
   },
@@ -821,7 +726,6 @@ const CARTAS = [
     id: "la_sequia", era: 4, tipo: "sorteo", peso: 10, titulo: "La sequía", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Padre de la Patria, la sequía ha arruinado la cosecha. Los campesinos piden ayuda y los almacenes del Ejército están llenos.",
-    archivo: "En 1984, mientras la hambruna se extendía por Etiopía, el gobierno de Mengistu Haile Mariam celebró con grandes gastos el décimo aniversario de la Revolución.",
     izq: { accion: "Abrir los almacenes.", remate: "El Ejército comerá menos; por una vez.", efectos: { pueblo: 8, ejercito: -7 } },
     der: { accion: "Mantenerlos cerrados.", remate: "La reserva es para emergencias, no para el hambre.", efectos: { pueblo: -8, ejercito: 7 } }
   },
@@ -829,7 +733,6 @@ const CARTAS = [
     id: "los_turistas", era: 4, tipo: "sorteo", peso: 10, titulo: "Los turistas", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Padre de la Patria, proponemos abrir las playas al turismo extranjero. Traerán divisas, cámaras y malas costumbres.",
-    archivo: "En los años noventa, Cuba apostó por el turismo extranjero para conseguir divisas. Hasta 2008, los cubanos no podían alojarse en muchos de esos hoteles.",
     izq: { accion: "Abrir las playas.", remate: "Las divisas no tienen ideología.", efectos: { potencias: 6, elite: 4, pueblo: -4, crisis: -2 } },
     der: { accion: "Mantenerlas cerradas.", remate: "Las playas, para el Pueblo; el Pueblo, en su casa.", efectos: { potencias: -6, elite: -4, pueblo: 4, crisis: 1 } }
   },
@@ -837,7 +740,6 @@ const CARTAS = [
     id: "el_parte_medico", era: 4, tipo: "ancla", ventana: [5, 8], titulo: "El parte médico", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Padre de la Patria, los médicos recomiendan reposo absoluto. El Partido pregunta quién firmará los decretos mientras tanto.",
-    archivo: "Francisco Franco agonizó durante más de un mes en 1975 y murió el 20 de noviembre. Durante semanas se publicaron partes médicos diarios.",
     izq: { accion: "Firmarlos desde la cama.", remate: "Gobierno mejor tumbado: me cuesta menos sonreír.", efectos: { ejercito: 6, elite: -6, pueblo: -3 } },
     der: { accion: "Delegar en el Consejo.", remate: "Que firmen; luego revisaré quién firmó qué.", efectos: { ejercito: -6, elite: 6, pueblo: 3 } }
   }
@@ -867,7 +769,6 @@ const FICHAS = {
     historia: "Sonríe con todos los dientes, sobre todo cuando trae malas noticias. Su país respeta siempre la soberanía ajena, salvo cuando no." }
 };
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
-const ARCHIVABLES = CARTAS.filter(c => c.archivo);
 
 const FINALES = {
   pueblo_0:     { titulo: "Revolución popular",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },

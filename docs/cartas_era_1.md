@@ -18,8 +18,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
 
-**Archivo histórico:** En 1959, tras el triunfo de la Revolución cubana, se celebraron juicios públicos contra antiguos miembros del gobierno y las fuerzas de seguridad, con ejecuciones que provocaron críticas en el exterior. Muchos cambios de régimen del siglo XX se enfrentaron a la misma disyuntiva entre juzgar y dejar partir.
-
 ### 2. La casa del tirano
 
 **Personaje:** Ministra de Cultura  
@@ -29,8 +27,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 - **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6
-
-**Archivo histórico:** En Cuba, el antiguo Palacio Presidencial de La Habana, sede del gobierno de Batista, se convirtió en 1974 en el Museo de la Revolución. Otros regímenes hicieron lo contrario: sus nuevos líderes ocuparon las residencias de los anteriores.
 
 ### 3. Las arcas vacías
 
@@ -46,8 +42,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 
-**Archivo histórico:** En la madrugada del 1 de enero de 1959, Fulgencio Batista huyó de Cuba a la República Dominicana; se le acusó de llevarse grandes sumas del Estado. Muchos dictadores en fuga se marcharon con las reservas del país.
-
 ### 4. El general querido
 
 **Personaje:** Ministro del Interior  
@@ -61,8 +55,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 35.
 
 **Consecuencia futura de `general_apartado`:** Cienfuegos regresa como candidato de los descontentos.
-
-**Archivo histórico:** En Egipto, tras el derrocamiento de la monarquía en 1952, el general Muhammad Naguib, muy popular, presidió el nuevo régimen. En 1954 fue apartado del poder por Gamal Abdel Nasser, que acabó al frente del país.
 
 ### 5. Las refinerías
 
@@ -78,8 +70,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 
-**Archivo histórico:** En Cuba, en 1960, las refinerías de empresas estadounidenses y británicas se negaron a procesar crudo soviético y el gobierno las nacionalizó. En 1951, Irán nacionalizó la Anglo-Iranian Oil Company.
-
 ### 6. El visitante del bloque oriental
 
 **Personaje:** Embajador del bloque oriental  
@@ -94,8 +84,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `no_alineado`:** La potencia del norte se acerca y el aislamiento económico se agrava.
 
-**Archivo histórico:** En 1960 Cuba firmó acuerdos con la Unión Soviética para venderle azúcar y recibir petróleo. En 1955, Egipto anunció la compra de armas a Checoslovaquia tras ser rechazado por proveedores occidentales.
-
 ### 7. El embargo
 
 **Personaje:** Embajador de la potencia del norte  
@@ -109,8 +97,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
 **Consecuencia futura de `compensaciones`:** Una deuda que alimenta una carta de crisis.
-
-**Archivo histórico:** Estados Unidos impuso restricciones comerciales a Cuba en 1960 y un embargo más amplio en 1962. En 1951, tras la nacionalización petrolera de Irán, el Reino Unido organizó un boicot al petróleo iraní, y en 1953 un golpe derrocó al primer ministro Mosaddeq.
 
 ### 8. La lista *(borrador)*
 
@@ -136,8 +122,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
-**Archivo histórico:** La Ley de Reforma Agraria de Cuba (1959) y la del Perú bajo el gobierno militar de Velasco (1969) repartieron grandes propiedades. Ambas afectaron a intereses extranjeros y locales, y obligaron a replantear la producción agrícola.
-
 ### 10. Los periódicos
 
 **Personaje:** Ministra de Cultura  
@@ -151,8 +135,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Consecuencia futura de `prensa_libre`:** Un reportaje destapa un escándalo.
 
 **Consecuencia futura de `censura_previa`:** Aparecen el periodista oficial y los rumores.
-
-**Archivo histórico:** La Ley de Prensa española de 1938 estableció la censura previa de publicaciones. Muchos regímenes del siglo XX combinaron el control de la prensa con la propaganda oficial.
 
 ### 11. Las urnas prometidas
 
@@ -168,8 +150,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `elecciones_aplazadas`:** Protestas estudiantiles.
 
-**Archivo histórico:** Muchos regímenes surgidos de una Revolución o un golpe prometieron elecciones y las pospusieron. En Cuba, tras 1959, las elecciones que se habían anunciado no llegaron a celebrarse en los años siguientes.
-
 ### 12. Las mil flores
 
 **Personaje:** Ministra de Cultura  
@@ -181,8 +161,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 - **B. La Revolución no se cuestiona** Pueblo −8 · Ejército +4 · Élite +4
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
-
-**Archivo histórico:** En China, la Campaña de las Cien Flores (1956-1957) invitó a criticar al Partido. En 1957, la Campaña Antiderechista persiguió a muchos de quienes habían hablado.
 
 ### 13. Los oficiales de antes
 
@@ -198,8 +176,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `purga_inicial`:** El Ministro del Interior pide más poder.
 
-**Archivo histórico:** En la Unión Soviética, entre 1937 y 1938, la Gran Purga alcanzó al Ejército Rojo. Altos mandos como Tujachevski fueron juzgados y ejecutados, y buena parte del cuerpo de oficiales fue depurado.
-
 ### 14. El puerto parado
 
 **Personaje:** Ministro de Trabajo  
@@ -213,8 +189,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Consecuencia futura de `sindicato_libre`:** Nuevas huelgas cuando la crisis sube.
 
 **Consecuencia futura de `huelga_reprimida`:** Malestar en las universidades.
-
-**Archivo histórico:** En Polonia, las huelgas de los astilleros de Gdansk en 1980 dieron origen a Solidaridad, el primer sindicato independiente del bloque oriental. En 1981 el gobierno declaró la ley marcial.
 
 ### 15. Los ojos del barrio
 
@@ -230,8 +204,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `policia_tradicional`:** La oposición se organiza con más facilidad.
 
-**Archivo histórico:** En la República Democrática Alemana, el Ministerio para la Seguridad del Estado (Stasi), creado en 1950, construyó una extensa red de informantes. En Cuba, los Comités de Defensa de la Revolución se crearon en 1960.
-
 ### 16. El retrato
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
@@ -246,8 +218,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `modestia_aparente`:** El Partido exige otros símbolos de lealtad.
 
-**Archivo histórico:** En Turkmenistán, en 2002, el presidente Saparmurat Niyazov rebautizó los meses del año, y dio a enero su propio título y a abril el nombre de su madre. Muchos regímenes del siglo XX levantaron monumentos y retratos de sus líderes.
-
 ### 17. Los que se marchan
 
 **Personaje:** Ministro del Interior  
@@ -261,8 +231,6 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Consecuencia futura de `exodo_elite`:** Faltan técnicos y gestores.
 
 **Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
-
-**Archivo histórico:** Entre 1949 y 1961, millones de personas abandonaron la República Democrática Alemana rumbo a Berlín Occidental y la República Federal. En agosto de 1961 se levantó el Muro de Berlín.
 
 ### 18. La factura *(borrador)*
 

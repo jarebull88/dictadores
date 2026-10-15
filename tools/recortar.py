@@ -41,9 +41,7 @@ LADO_DIBUJO = 256         # los dibujos a bolígrafo/lápiz llevan más detalle 
 LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
 
 # Orden de los iconos en cada hoja: filas de arriba abajo, cada fila de izquierda a derecha.
-HOJAS = {
-    "hoja-archivo": [["archivo", "bloqueado"]],
-}
+HOJAS = {}   # 15 oct: la hoja del archivo (archivo y candado) se borró con el archivo histórico
 
 
 def alfa_croma(a, isla_min):

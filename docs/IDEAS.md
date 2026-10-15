@@ -14,3 +14,11 @@ Recordatorio de las reglas: dentro de las cartas no se nombra ningún país real
 
 | Hecho | Fuente | Dónde podría ir | Estado |
 |---|---|---|---|
+
+## Fotos del archivo
+
+Fotos reales para el hueco de la carta grande del archivo histórico. Van en `assets/archivo/<id>.jpg` (ver `assets/archivo/LEEME.md`). Antes de ponerlas, mirar la licencia en Wikimedia Commons (si pide atribución, se añade el crédito bajo la foto).
+
+| Carta (id) | Foto | Estado |
+|---|---|---|
+| La casa vacía (`casa_vacia`) | [Juicio de los aviadores](https://upload.wikimedia.org/wikipedia/commons/9/9a/Juicio_de_los_aviadores.jpg) (Wikimedia Commons) | Pendiente de descargar: la red de esta sesión no deja entrar en Wikimedia |

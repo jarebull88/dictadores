@@ -504,11 +504,11 @@ function pintarRanuras() {
 
 let temporizadorPopup = null;
 /* Color pastel claro de cada ventana: uno por fuerza; los estados, su cartulina aclarada */
-const COLOR_POPUP = { pueblo: "#F7DCCB", ejercito: "#DCE8CC", elite: "#E6DAF2", potencias: "#D3E7F4" };
+const COLOR_POPUP = { pueblo: "#FBEBDF", ejercito: "#EBF2E2", elite: "#F1EAF8", potencias: "#E4F0F8" };   // muy claros: se lee mejor
 function colorPopup(clave) {
   const [tipo, id] = clave.split("-");
   if (tipo === "fuerza") return COLOR_POPUP[id];
-  if (tipo === "estado" && FONDO_ESTADO[id]) return `color-mix(in srgb, ${FONDO_ESTADO[id]} 30%, #FBF8F0)`;
+  if (tipo === "estado" && FONDO_ESTADO[id]) return `color-mix(in srgb, ${FONDO_ESTADO[id]} 16%, #FBF8F0)`;
   return "";
 }
 function abrirPopup(clave, html, ancla, autocierre) {

@@ -496,10 +496,15 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Ventana emergente: explica una fuerza de arriba o un estado de abajo (15 oct). Un mini cartón pegado:
    esquinas redondeadas, color pastel claro (uno por fuerza o estado, --pop-color) × la pulpa de papel, sombra corta y bisel. */
 .popup {
-  position: absolute; z-index: 7; color: var(--tinta);
-  background: var(--pop-color, #F3EEDF) var(--tex-cartulina5) 40% 60% / 640px auto; background-blend-mode: multiply;
+  position: absolute; z-index: 7; color: var(--tinta); isolation: isolate;
+  background: var(--pop-color, #F6F2E6);
   border-radius: 14px; padding: 14px 16px;
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
+}
+/* La pulpa, a media fuerza (15 oct): se nota el papel sin restar legibilidad */
+.popup::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: var(--tex-cartulina5) 40% 60% / 640px auto; mix-blend-mode: multiply; opacity: .4;
 }
 .popup .etiqueta-pop { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); margin-bottom: 2px; }
 .popup b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: 21px; margin-bottom: 4px; }

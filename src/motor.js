@@ -160,6 +160,7 @@ const icono = (id, clase = "") => {
 /* 15 oct: animaciones de los personajes apagadas (solo se mueven los ojos). El código y la posición del puro se
    quedan para retomarlas: basta con poner esto a true. */
 const ANIMAR_PERSONAJES = false;
+const HUMO_TAM = [[29,41],[61,119],[175,158],[240,272],[329,323],[328,314],[286,300],[236,162]];   // ancho y alto de cada fase del humo de tela (px del recorte)
 const ANIMACION = {
   // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
   // 14 oct (prueba): una bola de papel arrugado cada 10 s; sale pequeña de la punta del puro, sube rodando, crece como
@@ -173,6 +174,17 @@ const ANIMACION = {
       `<g class="bola-mov" filter="url(#sombra-bola)"><g class="bola-giro">` +
       fases.map((f, k) => `<image class="bola-fase f${k + 1}" href="${f.src}" x="-130" y="-130" width="260" height="260" preserveAspectRatio="xMidYMid meet"/>`).join("") +
       `</g></g>`;
+  },
+  // 15 oct (prueba): bocanada de tela en stop motion: 8 fases fotografiadas por Jorge (humo-1…8), una tras otra a saltos
+  // (0,2 s cada una) mientras sube desde la punta del puro; luego, pausa. Tamaño real del recorte: se ve la artesanía.
+  tela: () => {
+    const fases = [1, 2, 3, 4, 5, 6, 7, 8].map(k => IMG["icono_humo-" + k]).filter(Boolean);
+    if (fases.length < 8) return ANIMACION.bocanadas();
+    const sube = [0, 10, 25, 45, 70, 100, 130, 160];
+    return fases.map((f, k) => {
+      const [w, h] = HUMO_TAM[k];
+      return `<image class="humo-f" href="${f.src}" x="${(-0.12 * w).toFixed(0)}" y="${-h - sube[k]}" width="${w}" height="${h}" style="animation-delay:${(k * 0.2).toFixed(1)}s"/>`;
+    }).join("");
   },
   bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
 };

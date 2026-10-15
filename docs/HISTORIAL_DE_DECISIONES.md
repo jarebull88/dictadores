@@ -280,6 +280,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Rotulador al 90 %.** El negro del rotulador (títulos de ventanas, cintas, expediente) baja al 90 % porque pesaba demasiado. «Sigues en el poder» y «¡Has caído!» pasan a rotulador rojo, también al 90 %.
 
+**15 oct — Humo de tela en stop motion (prueba).** Jorge trae 8 fotos de una bocanada de humo hecha con tela (de la chispa a los jirones). Se recortan (`assets/iconos/originales/humo-tela.jpg` → `humo-1…8.webp`) y se montan como animación `tela`: cada fase 0,2 s a saltos, subiendo desde la punta del puro, a tamaño grande para que se vea la manualidad; se repite cada 6 s. Asignada al dictador joven y a Fuerzas Armadas, pero las animaciones siguen apagadas (`ANIMAR_PERSONAJES = false`) hasta que Jorge la apruebe.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

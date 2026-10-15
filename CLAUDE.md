@@ -23,7 +23,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - `assets/logo/` — el logo de la portada (`originales/` con croma, `recortados/logo.webp`).
 - `assets/personajes/` — `originales/` (Gemini, con croma), `recortados/` (WebP con transparencia) y `personajes.json` (ojos, Noir, extras). `assets/iconos/` — igual, para los iconos (`originales/dibujo-*.jpeg` son los dibujos a mano: `python3 tools/recortar.py dibujos` quita el papel blanco y deja tinta con transparencia; los recortes de papel de antes siguen ahí). **Antes de tocar personajes o iconos, lee `docs/PIPELINE_PERSONAJES.md`.**
 - El arte antiguo (lápiz de cera, fotos de prensa, papel recortado con ojos, pegatinas) se borró; solo queda en el historial de git. No lo recuperes sin preguntar.
-- `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md`, `brief_claude_design.md` y `COPIA_RESPUESTAS_CON_REMATE.md`.
+- `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md`, `brief_claude_design.md`, `COPIA_RESPUESTAS_CON_REMATE.md` e `IDEAS.md` (15 oct: cuaderno de frases y hechos reales que Jorge va encontrando; se apuntan ahí antes de decidir dónde usarlos).
 - `tools/` — `recortar.py` (croma de personajes e iconos), build, simulación y exportación. `tests/` — pruebas.
 
 ## Reglas de contenido (no negociables)

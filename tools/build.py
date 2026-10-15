@@ -35,7 +35,8 @@ def fuentes():
     css = ""
     for familia, archivo, peso in (("Courier Prime", "courier-prime-latin-400-normal", 400),   # 14 oct: se probó Iosevka y se volvió a estas
                                    ("Courier Prime", "courier-prime-latin-700-normal", 700),
-                                   ("Special Elite", "special-elite-latin-400-normal", 400)):
+                                   ("Special Elite", "special-elite-latin-400-normal", 400),
+                                   ("Gochi Hand", "gochi-hand-latin-400-normal", 400)):   # 15 oct: letra a boli para títulos y cintas
         datos = base64.b64encode((RAIZ / f"assets/fuentes/{archivo}.woff2").read_bytes()).decode()
         css += ('@font-face { font-family: "%s"; font-style: normal; font-weight: %d; font-display: swap; '
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))

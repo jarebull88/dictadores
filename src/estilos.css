@@ -10,7 +10,7 @@
   color-scheme: light;
   --fuente: "Courier Prime", "Courier New", Courier, monospace;
   --fuente-titulo: "Special Elite", "Courier Prime", "Courier New", monospace;
-  --fuente-mano: "Gochi Hand", "Special Elite", cursive;   /* 15 oct: escrito a mano con boli: títulos de ventanas, cintas, expediente */
+  --fuente-mano: "Permanent Marker", "Special Elite", cursive;   /* 15 oct: escrito a mano (rotulador): títulos de ventanas, cintas, expediente */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 

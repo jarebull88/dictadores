@@ -274,6 +274,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Letra a mano: Gochi Hand.** Se probaron diez letras «escritas con boli» de Google Fonts (Patrick Hand, Kalam, Gochi Hand, Caveat, Shadows Into Light Two, Nanum Pen Script, Covered By Your Grace, Reenie Beanie, Just Another Hand, Indie Flower; Nanum y Shadows no tienen bien las tildes o la ¡). Jorge elige Gochi Hand para los títulos de las ventanas, las cintas (nombre del estado, efecto, instrucciones del tutorial) y el nombre del expediente. La máquina de escribir sigue para el texto y los títulos de pantalla.
 
+**15 oct — Permanent Marker en vez de Gochi Hand.** La letra a mano de títulos de ventanas, cintas y expediente pasa a ser Permanent Marker (rotulador, en mayúsculas). LiebeHeide se descartó: es de pago y no está disponible.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

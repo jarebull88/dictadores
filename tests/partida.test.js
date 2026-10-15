@@ -71,7 +71,7 @@ test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el di
   assert.equal(j.w.eval("E.era"), 2);
 });
 
-test("portada: el logo y tres opciones; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
+test("portada: el logo y dos opciones; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
   const j = cargar();
   assert.ok(j.d.querySelector("#logo img"), "falta el logo en la portada");
   assert.ok(!j.d.querySelector("#screen-start .carta"), "la portada ya no lleva carta");
@@ -91,3 +91,38 @@ test("portada: el logo y tres opciones; el nombre se elige en una carta (derecha
   j.$("btn-portada-archivo").click();
   assert.ok(j.visible("screen-archive"));
 });
+
+test("tutorial «La víspera»: seis pasos, girar la carta es obligatorio, entra «Luna de miel» y acaba en el nombre", () => {
+  const j = cargar();
+  j.w.eval("empezarTutorial()");
+  assert.ok(j.visible("screen-game"));
+  assert.ok(j.$("barras").classList.contains("apagadas"), "las fuerzas empiezan apagadas");
+  assert.equal(j.$("btn-salir").textContent, "Saltar tutorial");
+  j.tecla(1);                                                        // 1: deslizar
+  assert.equal(j.w.eval("E.tutorial.i"), 1);
+  j.tecla(1);                                                        // 2: sin girar la carta, no avanza
+  assert.equal(j.w.eval("E.tutorial.i"), 1, "hay que girar la carta antes de seguir");
+  j.w.eval("voltear(); voltear();");
+  j.tecla(1);
+  assert.equal(j.w.eval("E.tutorial.i"), 2);
+  j.tecla(1); j.tecla(1);                                            // 3: fuerzas · 4: pistas
+  assert.equal(j.w.eval("E.tutorial.i"), 4);
+  assert.ok(j.w.eval("modoEstado"), "entra la carta de «Luna de miel»");
+  j.w.eval("recogerEstado()");
+  assert.equal(j.w.eval("E.tutorial.i"), 5);
+  j.tecla(1);                                                        // 6: fin → nombre
+  assert.ok(j.visible("screen-name"));
+  j.$("input-nombre").value = "aureliano"; j.w.eval("decidirNombre(1)");
+  assert.ok(j.visible("screen-game"));
+  assert.equal(j.w.eval("E.estados.length"), 0, "la luna de miel no pasa a la partida");
+  assert.equal(j.w.eval("E.barras.pueblo"), 50);
+  assert.equal(j.$("btn-salir").textContent, "Abandonar partida");
+});
+
+test("«Saltar tutorial» lleva directo al nombre", () => {
+  const j = cargar();
+  j.w.eval("empezarTutorial()");
+  j.$("btn-salir").click();
+  assert.ok(j.visible("screen-name"));
+});
+

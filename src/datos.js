@@ -930,3 +930,28 @@ const FUTURO = {
   "base.palacio_del_pueblo": "Las deudas del palacio siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldos y más cárceles."
 };
+
+/* =====================================================
+   TUTORIAL (15 oct): «La víspera». El general Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
+   que entran en la capital. Cada carta enseña una sola cosa; las decisiones no cuentan para la partida.
+   - paso: deslizar · girar (no se puede decidir hasta volver a girarla) · fuerzas (se encienden las barras)
+           · pistas (puntos rojos y una barra en peligro) · estado (entra «Luna de miel») · fin
+   - pista: la instrucción que sale abajo, donde irá el nombre del dictador
+   ===================================================== */
+const TUTORIAL = [
+  { paso: "deslizar", texto: "La capital es nuestra, Comandante. El Pueblo nos espera en la plaza. ¿Entramos?",
+    izq: "¡Adelante!", der: "¡Pues adelante!", pista: "Arrastra la carta a un lado o al otro" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy? Toque la carta y lea mi expediente.",
+    izq: "Vamos, Domingo", der: "Vamos, general", pista: "Toca la carta para darle la vuelta" },
+  { paso: "fuerzas", texto: "Ahí fuera le esperan cuatro fuerzas: el Pueblo, el Ejército, la Élite y las Potencias.",
+    izq: "Las cuidaré", der: "A todas, sí", pista: "Arriba, las cuatro fuerzas. Tócalas para saber más" },
+  { paso: "pistas", texto: "Cada decisión contenta a unos y enfada a otros. Si una fuerza se vacía o se harta, usted cae.",
+    izq: "Entendido", der: "Lo tendré en cuenta", pista: "Al arrastrar, los puntos rojos dicen cuánto cambia cada fuerza",
+    efectos: { izq: { pueblo: 8, elite: -6, potencias: -4 }, der: { ejercito: 7, pueblo: -4 } } },
+  { paso: "estado", pista: "Toca la carta para guardarla en su casilla" },
+  { paso: "fin", texto: "Ya sabe todo lo que hay que saber. Ahora el Pueblo quiere conocer su nombre.",
+    izq: "¡Vamos allá!", der: "¡A la plaza!", pista: "Las casillas de abajo guardan los estados. Tócalas para verlos" }
+];
+/* Lo que se dice de cada fuerza cuando se enciende en el tutorial */
+const NOTA_FUERZA_TUTORIAL = { pueblo: "Te aclama", ejercito: "Te sigue", elite: "Desconfía", potencias: "Te observa" };
+

@@ -14,3 +14,4 @@ Hay cuatro ranuras. Al entrar un quinto estado, sale el más antiguo. Los valore
 | Frontera cerrada (`frontera`) | 🧱 | Nadie entra ni sale, y el Ejército vigila la frontera. | El Ejército sube, Potencias baja y nadie se marcha. | Ejército +2 · Potencias −2 | 2 | hasta que otro lo desplace |
 | Nacionalizaciones (`nacionalizado`) | 🏭 | Lo que era privado ahora es tuyo, y las cuentas también. | La Élite baja y la crisis crece. | Élite −2 | 2 | hasta que otro lo desplace |
 | Deuda externa (`deuda`) | 💸 | El acreedor llama cada mes. | Potencias sube, pero la crisis crece. | Potencias +2 | 2 | hasta que otro lo desplace |
+| Luna de miel (`luna`) | 🍯 | El Pueblo te quiere sin motivo. Dura lo que dura este paseo. | El Pueblo sube cada año, mientras dure. | Pueblo +2 | 1 | 1 años |

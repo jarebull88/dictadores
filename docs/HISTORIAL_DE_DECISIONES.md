@@ -244,6 +244,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Panel y pistas más suaves.** El panel con la respuesta y los puntos de pista iban tan pegados al dedo que parecía que aparecían; ahora siguen el arrastre con una transición de 0,32 s que frena al final, y se ven deslizar.
 
+**15 oct — Tutorial «La víspera».** «Cómo se juega» deja de ser una ventana de texto y se convierte en el principio de la partida. La primera vez, el general Domingo Cuesta acompaña al Comandante el día que entran en la capital, en 6 cartas: deslizar, girar la carta, las cuatro fuerzas (que se encienden una a una), los puntos rojos y la caída, un estado («Luna de miel», solo del tutorial: dura lo que dura el paseo) y el final, que lleva a la carta del nombre. Se puede saltar en cualquier momento. En la portada, «Comenzar partida» y «Archivo histórico» con el mismo estilo, y «Repasar cómo se juega» tras la primera vez. Falta el arte definitivo de «Luna de miel».
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

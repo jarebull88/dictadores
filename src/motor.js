@@ -46,7 +46,7 @@ const icoUI = n => `<svg class="ico" viewBox="0 -960 960 960" aria-hidden="true"
 /* Emojis de los estados: ya no se ven en el juego (se usan iconos de papel); solo los usan los documentos generados */
 const EMOJI_ESTADO = {
   censura: "🤐", vigilancia: "👁️", culto: "🖼️", alineado: "🤝",
-  embargo: "🚫", frontera: "🧱", nacionalizado: "🏭", deuda: "💸"
+  embargo: "🚫", frontera: "🧱", nacionalizado: "🏭", deuda: "💸", luna: "🍯"
 };
 const ESTADOS = {
   censura: {
@@ -88,9 +88,16 @@ const ESTADOS = {
     nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,
     descripcion: "El acreedor llama cada mes.",
     deriva: { potencias: 1 }, cada: 2, crisis: 1
+  },
+  // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
+  luna: {
+    nombre: "Luna de miel", bandera: null, duracion: 1, soloTutorial: true,
+    descripcion: "El Pueblo te quiere sin motivo. Dura lo que dura este paseo.",
+    deriva: { pueblo: 1 }, cada: 1
   }
 };
 const RESUMEN = {
+  luna: "El Pueblo sube cada año, mientras dure.",
   censura: "El Pueblo se enfría cada año.",
   vigilancia: "El Ejército sube y el Pueblo baja.",
   culto: "El Pueblo sube, pero la crisis crece.",
@@ -651,7 +658,12 @@ function voltear() {
   if (modoEstado) { recogerEstado(); return; }
   if (ocupado) return;
   pintarEleccion(0);
-  $("carta").classList.toggle("volteada");
+  const volteada = $("carta").classList.toggle("volteada");
+  const t = E && E.tutorial;
+  if (t && TUTORIAL[t.i].paso === "girar") {               // tutorial: hay que darle la vuelta y volver a girarla
+    if (volteada) { t.vista = true; pistaTutorial("Otro toque la devuelve a su sitio"); }
+    else if (t.vista) { t.girada = true; pistaTutorial("Ya puedes arrastrarla"); }
+  }
 }
 
 /* La respuesta cabe siempre en 2 líneas: si es larga, la letra baja (de 21 px hasta 14 px).
@@ -684,6 +696,8 @@ function pintarEleccion(dir) {
 function empezar() {
   nuevaPartida();
   construirBarras();
+  $("barras").classList.remove("apagadas");
+  $("btn-salir").textContent = "Abandonar partida";
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
@@ -783,7 +797,7 @@ function repartir() {
 
 function decidir(dir) {
   if (modoEstado) { recogerEstado(); return; }
-  if (ocupado || panelAbierto) return;
+  if (ocupado || panelAbierto || tutorialBloquea()) return;
   ocupado = true;
   ocultarInfo();
   const carta = $("carta");
@@ -798,6 +812,7 @@ function decidir(dir) {
 }
 
 function resolver(dir) {
+  if (E.tutorial) { pintarEleccion(0); bajarPistas(0); pasoTutorial(E.tutorial.i + 1); return; }   // en el tutorial no cuenta
   const c = E.actual;
   const op = opcionDe(dir);
   E.ultimaDecision = op.accion;
@@ -889,6 +904,7 @@ function mostrarAvisoPendiente() {
 let modoEstado = false;
 /* Frase de cada estado (de Jorge): sale arriba, donde va la pregunta, cuando su carta aparece. */
 const FRASE_ESTADO = {
+  luna: "El Pueblo te quiere sin motivo. Disfrútalo: no dura.",
   nacionalizado: "Ahora todo es del Pueblo. Y el Pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
   deuda: "La Revolución se pagará en cómodos plazos.",
@@ -898,7 +914,7 @@ const FRASE_ESTADO = {
   frontera: "El imperialismo lleva años intentando llevarse a nuestros mejores talentos.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
 };
-const FONDO_ESTADO = { censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",
+const FONDO_ESTADO = { luna: "#F28FA6", censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",
   embargo: "#5BA8DC", frontera: "#7CC67A", nacionalizado: "#7CC6EE", deuda: "#A5D867" };
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
@@ -965,6 +981,7 @@ function recogerEstado() {
 }
 
 function siguiente() {
+  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras guardar «Luna de miel» en su casilla
   pintarCabecera();
   if (E.estadoNuevo) { mostrarCartaEstado(); return; }
   const nueva = siguienteCarta();
@@ -1197,6 +1214,77 @@ function atrasArchivo() {
 function actualizarVistaNombre() {
   $("nombre-error").textContent = /\s/.test($("input-nombre").value.trim()) ? "Una sola palabra: Aureliano, Anselmo, Esteban…" : "";
 }
+/* =====================================================
+   TUTORIAL «La víspera» (15 oct): la primera vez, «Comenzar partida» lleva aquí. Usa la carta, el arrastre, las
+   barras y las casillas de la partida; las decisiones no cuentan. «Saltar tutorial» (abajo) lleva al nombre.
+   ===================================================== */
+const CLAVE_TUTORIAL = "comandante.tutorial";
+function tutorialVisto() { try { return localStorage.getItem(CLAVE_TUTORIAL) === "1"; } catch (e) { return true; } }   // sin almacenamiento (pruebas): como visto
+function marcarTutorial() { try { localStorage.setItem(CLAVE_TUTORIAL, "1"); } catch (e) {} $("btn-repasar").classList.remove("hidden"); }
+const tutorialBloquea = () => !!(E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "girar" && !E.tutorial.girada);
+function pistaTutorial(texto) { $("pista-tutorial").textContent = texto; $("pista-tutorial").classList.toggle("hidden", !texto); }
+function empezarTutorial() {
+  nuevaPartida();
+  E.tutorial = { i: 0 };
+  construirBarras();
+  $("barras").classList.add("apagadas");               // las fuerzas, apagadas hasta que se presentan
+  mostrar("screen-game");
+  colorReverso(1);
+  medirCartaJuego();
+  pintarBarras(); pintarRanuras();
+  $("btn-salir").textContent = "Saltar tutorial";
+  $("carta").classList.remove("hidden", "listo", "volteada");
+  panelAbierto = false;
+  if (animar()) { pasoTutorial(0, true); repartir(); } else pasoTutorial(0);
+}
+function pasoTutorial(i, sinEntrada) {
+  const t = E.tutorial;
+  if (i >= TUTORIAL.length) { terminarTutorial(); return; }
+  t.i = i; t.vista = t.girada = false;
+  const p = TUTORIAL[i];
+  $("nombre-dictador").textContent = "La víspera";
+  $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
+  pistaTutorial(p.pista || "");
+  if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
+    E.estados = [{ id: "luna", edad: 0 }];
+    E.estadoNuevo = { id: "luna", sale: "" };
+    mostrarCartaEstado();
+    pistaTutorial(p.pista);
+    return;
+  }
+  const ef = p.efectos || {};
+  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: p.texto,
+    izq: { accion: p.izq, efectos: ef.izq || {} }, der: { accion: p.der, efectos: ef.der || {} } };
+  E.actual = c;
+  barajarLados();
+  const carta = $("carta");
+  carta.classList.remove("hidden", "listo", "volteada");
+  pintarCarta(c);
+  if (!sinEntrada) entrarCarta(carta);
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  if (p.paso === "fuerzas") encenderFuerzas();
+  else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
+  if (p.paso === "pistas") { E.barras.pueblo = 12; pintarBarras(); }   // una barra en peligro, de mentira
+  if (p.paso === "fin") { E.barras.pueblo = 50; pintarBarras(); }
+  ocupado = false;
+  pintarEleccion(0);
+}
+/* Las cuatro fuerzas se encienden una a una, cada una con su nota */
+function encenderFuerzas() {
+  const barras = [...$("barras").querySelectorAll(".barra")];
+  barras.forEach((b, k) => setTimeout(() => {
+    b.classList.add("encendida");
+    b.dataset.nota = NOTA_FUERZA_TUTORIAL[b.dataset.b] || "";
+  }, 350 + k * 450));
+}
+function terminarTutorial() {
+  marcarTutorial();
+  pistaTutorial("");
+  E = null; modoEstado = false; ocupado = false;
+  $("barras").classList.remove("apagadas");
+  $("btn-salir").textContent = "Abandonar partida";
+  irANombre();
+}
 function irANombre() {
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
@@ -1287,7 +1375,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, fija: () => modoEstado, mostrar: pintarEleccion, decidir, toque: voltear });
+arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, fija: () => modoEstado || tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */
@@ -1410,8 +1498,9 @@ document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
 });
 
-$("btn-salir").addEventListener("click", () => mostrar("screen-start"));
-$("btn-comenzar").addEventListener("click", irANombre);
+$("btn-salir").addEventListener("click", () => { if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-comenzar").addEventListener("click", () => { if (tutorialVisto()) irANombre(); else empezarTutorial(); });
+$("btn-repasar").addEventListener("click", empezarTutorial);
 $("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
 $("input-nombre").addEventListener("input", actualizarVistaNombre);
 $("aviso-archivo").addEventListener("click", ev => {
@@ -1435,9 +1524,9 @@ function abrirComoJugar() {
   caja.scrollTop = 0; caja.focus({ preventScroll: true });
 }
 function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
-$("btn-como-jugar").addEventListener("click", abrirComoJugar);
 $("btn-portada-archivo").addEventListener("click", () => abrirArchivo("screen-start"));
 if (IMG.logo) $("logo").insertAdjacentHTML("afterbegin", `<img src="${IMG.logo.src}" alt="" draggable="false">`);
 $("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
 $("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
+if (tutorialVisto()) $("btn-repasar").classList.remove("hidden");
 mostrar("screen-start");

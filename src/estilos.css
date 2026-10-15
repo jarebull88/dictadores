@@ -302,8 +302,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
    enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
+/* Como la cinta: el de la cara que se va se esconde al instante y el de la que llega aparece cuando ya mira de frente
+   (con visibility, no opacity, para no pisar el parpadeo) */
 .icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
-.carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; }
+.carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; transition: visibility 0s; }
 #screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; }
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
@@ -368,6 +370,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
 .etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: min(24px, 6.4vw); line-height: 1.1; }   /* título a máquina */
+.etiqueta-boli.larga b { font-size: min(19px, 5vw); }   /* una palabra muy larga («Nacionalizaciones») no cabe a 24 px */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
 .carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
 .carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }

@@ -260,6 +260,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Las cartas de estado se guardan solas.** Si nadie toca una carta de estado, a los 7 s vuela sola a su casilla, en la partida y en el tutorial (que tenía 5 s).
 
+**15 oct — Retoques.** «afectará» en la cinta de los puntos. El 360 se esconde al instante al girar la carta (como la cinta) y aparece en la otra cara al terminar la vuelta. En la cinta de las cartas de estado, un nombre de una sola palabra muy larga («Nacionalizaciones») va con letra más pequeña.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

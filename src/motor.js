@@ -944,7 +944,7 @@ function mostrarCartaEstado() {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     (svgEscena(n.id) || `<div class="icono-grande">${icono(n.id)}</div>`) +
-    `<div class="etiqueta-boli"><b>${esc(d.nombre)}</b></div>` +
+    `<div class="etiqueta-boli${d.nombre.split(" ").some(w => w.length > 12) ? " larga" : ""}"><b>${esc(d.nombre)}</b></div>` +
     `<div class="respuesta" id="respuesta"></div></div></div></div>`;
   entrarCarta(carta);
   pintarRanuras();

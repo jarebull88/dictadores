@@ -321,8 +321,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
    enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
+/* Como la cinta: el de la cara que se va se esconde al instante y el de la que llega aparece cuando ya mira de frente
+   (con visibility, no opacity, para no pisar el parpadeo) */
 .icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
-.carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; }
+.carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; transition: visibility 0s; }
 #screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; }
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
@@ -387,6 +389,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
 .etiqueta-boli b { display: block; font-family: var(--fuente-titulo); font-weight: 400; font-size: min(24px, 6.4vw); line-height: 1.1; }   /* título a máquina */
+.etiqueta-boli.larga b { font-size: min(19px, 5vw); }   /* una palabra muy larga («Nacionalizaciones») no cabe a 24 px */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
 .carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
 .carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
@@ -1776,7 +1779,7 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
   { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, general" },
   { paso: "fuerzas", texto: "Pueblo, Ejército, Élite y Potencias deben mantenerse bajo control. Si alguno llega al límite, su gobierno caerá.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
-  { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afecta tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
+  { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
   { paso: "guardar", texto: "Esa carta aumenta el apoyo popular. Las lunas de miel son estupendas hasta que dejan de serlo.", cinta: "Toca la casilla de abajo para saber más.", izq: "Ya veo", der: "Entendido" },
@@ -2730,7 +2733,7 @@ function mostrarCartaEstado() {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     (svgEscena(n.id) || `<div class="icono-grande">${icono(n.id)}</div>`) +
-    `<div class="etiqueta-boli"><b>${esc(d.nombre)}</b></div>` +
+    `<div class="etiqueta-boli${d.nombre.split(" ").some(w => w.length > 12) ? " larga" : ""}"><b>${esc(d.nombre)}</b></div>` +
     `<div class="respuesta" id="respuesta"></div></div></div></div>`;
   entrarCarta(carta);
   pintarRanuras();

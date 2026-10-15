@@ -494,7 +494,7 @@ function pintarBarras() {
 
 function pintarCabecera() {
   const n = anios();
-  $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} en el poder`;
+  $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} al poder`;   // 15 oct: más corto, para que quepa
 }
 
 function pintarRanuras() {
@@ -582,12 +582,62 @@ function fichaPersonaje(cargo) {
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
 const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z"/></svg>';
+/* Partición de palabras en las preguntas (15 oct): se meten guiones blandos (U+00AD) en los límites de sílaba según
+   las reglas del español, y el navegador pone «-» solo si la palabra se corta al final de la línea. Nunca deja menos
+   de 2 letras a un lado del corte, ni corta palabras de menos de 6 letras. */
+const VOCALES = "aeiouáéíóúü", FUERTES = "aeoáéíóú";   // í y ú acentuadas cuentan como fuertes (hacen hiato)
+const GRUPOS = ["bl", "br", "cl", "cr", "dr", "fl", "fr", "gl", "gr", "kl", "kr", "pl", "pr", "tr", "tl", "ch", "ll", "rr"];
+function silabas(palabra) {
+  const w = palabra.toLowerCase(), n = w.length;
+  // Tipo de cada letra: v (vocal) o c (consonante); la «u» muda de que/qui/gue/gui va con la consonante; «y» final, vocal
+  const t = [...w].map((ch, i) => {
+    if (ch === "u" && i > 0 && "qg".includes(w[i - 1]) && "eéií".includes(w[i + 1] || "")) return "c";
+    if (ch === "y") return i === n - 1 ? "v" : "c";
+    return VOCALES.includes(ch) ? "v" : "c";
+  });
+  const cortes = [];
+  let i = 0;
+  while (i < n && t[i] === "c") i++;                 // consonantes iniciales: van con la primera sílaba
+  while (i < n) {
+    // núcleo vocálico: se parte solo si hay hiato (dos fuertes seguidas)
+    let j = i + 1;
+    while (j < n && t[j] === "v") {
+      const a = w[j - 1], b = w[j];
+      if (FUERTES.includes(a) && FUERTES.includes(b)) { cortes.push(j); }
+      j++;
+    }
+    let k = j;
+    while (k < n && t[k] === "c") k++;
+    if (k >= n) break;                                // consonantes finales: con la última sílaba
+    // «gu»/«qu» con la u muda cuentan como una sola consonante (per-se-guir, no per-seg-uir)
+    const muda = k - j >= 2 && w[k - 1] === "u" ? 1 : 0;
+    const cons = w.slice(j, k - muda), m = cons.length;
+    let corte;
+    if (m === 1) corte = j;
+    else if (m === 2) corte = GRUPOS.includes(cons) ? j : j + 1;
+    else if (m === 3) corte = GRUPOS.includes(cons.slice(1)) ? j + 1 : j + 2;
+    else corte = j + 2;
+    // «ch», «ll» y «rr» no se separan aunque vayan tras otra consonante
+    if (["ch", "ll", "rr"].includes(w.slice(corte - 1, corte + 1))) corte--;
+    cortes.push(corte);
+    i = k;
+  }
+  return cortes;
+}
+function partirTexto(texto) {
+  return texto.replace(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{6,}/g, palabra => {
+    const cortes = silabas(palabra).filter(c => c >= 2 && palabra.length - c >= 2);
+    let out = "", prev = 0;
+    cortes.forEach(c => { out += palabra.slice(prev, c) + "\u00AD"; prev = c; });
+    return out + palabra.slice(prev);
+  });
+}
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
-  $("mensaje").textContent = c.texto;
+  $("mensaje").textContent = partirTexto(c.texto);    // con guiones de partición (solo en las preguntas)
   ajustarMensaje();
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */

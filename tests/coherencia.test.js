@@ -68,8 +68,8 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
   for (const c of cartas) {
     const era = c.era || 1, saludo = era >= 4 ? "Padre de la Patria," : era >= 3 ? "Excelencia," : "Comandante,";
     assert.ok(c.texto.length <= 150, `«${c.id}»: el mensaje tiene ${c.texto.length} caracteres (máx. 150)`);
-    // Era 1 en prueba (12 oct): las preguntas van sin saludo
-    if (era === 1) assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: en la era 1 la pregunta va sin «Comandante,»`);
+    // Eras 1 y 2 (12 y 15 oct): las preguntas van sin «Comandante,»; las eras 3 y 4 siguen con su tratamiento
+    if (era <= 2) assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: en las eras 1 y 2 la pregunta va sin «Comandante,»`);
     else assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
     for (const l of ["izq", "der"]) {
       const maxAccion = era === 1 ? 30 : 28;   // era 1: la letra se ajusta a 2 líneas, cabe algo más

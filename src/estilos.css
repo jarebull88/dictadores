@@ -290,6 +290,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   fill: color-mix(in oklab, var(--fondo-escena, #888) 72%, #000); }   /* del color de la cartulina, algo más intenso (como el dibujo del reverso) */
 /* En la ficha (el otro lado), en la misma esquina y con el mismo principio: el blanco de la hoja, algo más oscuro */
 .dorso .hoja { position: relative; --fondo-escena: #F8F6F0; }
+/* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
+   enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
+.icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
+.carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; }
+#screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; }
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
 @keyframes amago {

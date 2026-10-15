@@ -240,6 +240,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — La respuesta y las pistas bajan con el dedo.** El texto de la respuesta ya no aparece de golpe en el umbral: va dentro del panel semitransparente y baja con él desde que empiezas a arrastrar. Los puntos rojos de pista pasan encima de los iconos y bajan desde fuera de la pantalla al mismo ritmo; si la carta vuelve a su sitio, suben y desaparecen.
 
+**15 oct — Sin «Comandante,», guiones y pie más corto.** Se quita «Comandante,» del principio de las 26 preguntas de la era 2 (la 1 ya iba sin él; las eras 3 y 4 conservan «Excelencia,» y «Padre de la Patria,»). Las preguntas parten palabras con guion a final de línea según la silabación del español (grupos inseparables, diptongos e hiatos, «gu»/«qu» con u muda; nunca deja menos de 2 letras a un lado). Abajo pone «N años al poder». Se corrige el 360 duplicado en la ficha (en el móvil se veían los dos). Jorge pide que se le pregunte antes de grabar vídeos.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

@@ -47,10 +47,10 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «El General Cienfuegos es muy popular y quiere ser Ministro de las Fuerzas Armadas.»
+**Carta:** «El general Cienfuegos es muy popular y quiere ser jefe del Estado Mayor.»
 
-- **A. Que sea Ministro** Ejército +9 · Élite −4 · Bandera: `general_popular`
-- **B. Mejor lejos de Embajador** Ejército −9 · Élite +4 · Bandera: `general_apartado`
+- **A. Denle el Estado Mayor** Ejército +9 · Élite −4 · Bandera: `general_popular`
+- **B. Embajador donde haga frío** Ejército −9 · Élite +4 · Bandera: `general_apartado`
 
 **Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 35.
 

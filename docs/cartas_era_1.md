@@ -289,7 +289,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
 
-**Carta:** «Las tiendas están vacías. ¿Racionamos o toleramos el mercado negro?»
+**Carta:** «Las tiendas están vacías y en el mercado negro hay de todo, a precio de oro.»
 
 - **A. Escasez, pero justa** Pueblo −8 · Ejército +4 · Élite −5 · Crisis −3
 - **B. Ojos que no ven** Pueblo +8 · Élite +5 · Potencias −4 · Crisis −3 · Bandera: `mercado_paralelo`

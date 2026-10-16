@@ -328,6 +328,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — La era 1 dura 8–10 cartas (antes 6–8).** A Jorge le parecía fácil pasarla. En 4000 partidas simuladas: al azar la supera el 18 % (antes el 30 %); con cabeza («omnisciente»), el 96 % (antes el 98 %). Sin huecos ni cartas repetidas en la era 1.
 
+- **16 oct — Giro histórico: la Revolución cubana como columna vertebral.** El juego seguirá el mandato de Fidel Castro (1959–2006) en cuatro eras: La Revolución (1959–62), La purga revolucionaria (1963–70), El culto al Comandante (1971–85) y La supervivencia (1986–2006). La regla 1 sigue: nada de nombres reales; los hechos van disfrazados. La revisión carta por carta está en `docs/REVISION_HISTORICA.md` (cambios de era, cartas no cubanas y momentos que faltan); la edición la hace la sesión de textos. Quedan por decidir los meses por carta según la era, si se muestra el año y el tratamiento.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

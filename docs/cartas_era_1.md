@@ -115,10 +115,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
 
-**Carta:** «Proponemos repartir las tierras entre los campesinos, pero los terratenientes protestarán.»
+**Carta:** «Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.»
 
-- **A. Mejor no** Pueblo −10 · Élite +8
-- **B. Repártanla** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
+- **A. Respeten la propiedad todavía** Pueblo −10 · Élite +8
+- **B. La tierra es de quien la merece** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 

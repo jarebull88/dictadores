@@ -371,8 +371,8 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 
 **Carta:** «Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.»
 
-- **A. Hablar con delegados** Pueblo +5 · Ejército −4 · Élite −1
-- **B. Desalojar la universidad** Pueblo −6 · Ejército +4 · Potencias −3 · Bandera: `estudiantes_reprimidos`
+- **A. Habrá elecciones, universitarias** Pueblo +5 · Ejército −4 · Élite −1
+- **B. ¿Elecciones para qué?** Pueblo −6 · Ejército +4 · Potencias −3 · Bandera: `estudiantes_reprimidos`
 
 **Consecuencia futura de `estudiantes_reprimidos`:** La universidad se convierte en foco de oposición.
 

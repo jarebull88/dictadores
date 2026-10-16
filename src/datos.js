@@ -216,9 +216,9 @@ const CARTAS = [
   {
     id: "mano_norte", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país le ofrece créditos y comercio, aunque no pertenezca a ningún bloque. Solo pedimos buenas maneras y auditorías.",
-    izq: { accion: "Aceptar los créditos.", remate: "El dinero extranjero siempre llega con una bandera escondida.", efectos: { potencias: 8, elite: 5, pueblo: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
-    der: { accion: "Seguir sin bloque.", remate: "La Revolución no necesita que nadie le enseñe a gobernar.", efectos: { potencias: -8, pueblo: 6, elite: -4 } }
+    texto: "Le daremos créditos y comercio si se porta bien y nos deja auditarle.",
+    izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: 5, pueblo: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
+    der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 6, elite: -4 } }
   },
 
   {

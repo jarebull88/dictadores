@@ -47,10 +47,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `no_alineado`.
 
-**Carta:** «Nuestro país le ofrece créditos y comercio, aunque no pertenezca a ningún bloque. Solo pedimos buenas maneras y auditorías.»
+**Carta:** «Le daremos créditos y comercio si se porta bien y nos deja auditarle.»
 
-- **A. Aceptar los créditos.** *El dinero extranjero siempre llega con una bandera escondida.* Potencias +8 · Élite +5 · Pueblo −5 · Crisis +1 · Bandera: `deuda_externa`
-- **B. Seguir sin bloque.** *La Revolución no necesita que nadie le enseñe a gobernar.* Potencias −8 · Pueblo +6 · Élite −4
+- **A. Será un honor rendir cuentas** Potencias +8 · Élite +5 · Pueblo −5 · Crisis +1 · Bandera: `deuda_externa`
+- **B. Aquí solo audita el Pueblo** Potencias −8 · Pueblo +6 · Élite −4
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 

@@ -11,7 +11,9 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - Cuando encaje, usa frases históricas o guiños a declaraciones reales de dictadores, adaptados al universo ficticio (en `docs/IDEAS.md` hay un cuaderno de frases y hechos).
 - Países, potencias y bloques son ficticios, aunque se inspiren en potencias históricas (Estados Unidos, la URSS). **Sin gentilicios, apodos ni términos propios de esos países** («gringo», «camarada»…).
 - Evita tópicos y frases previsibles: ocurrencias originales, mordaces y naturales.
-- **Nada de redacción típica de IA:** ni dos frases cortas contrapuestas («Aceptamos el dinero. Ya veremos las condiciones.»), ni «No es X. Es Y.», ni frases telegráficas que yuxtaponen conceptos para sonar ingeniosas. Oraciones seguidas.
+- **Nada de redacción típica de IA:** ni dos frases cortas contrapuestas («Aceptamos el dinero. Ya veremos las condiciones.»), ni «No es X. Es Y.», ni frases telegráficas que yuxtaponen conceptos para sonar ingeniosas. **Tampoco partir la idea con comas** («Seré un ángel, con comisión», «Por créditos, hasta rezo»): una sola oración que fluya.
+- Usa de vez en cuando la **retórica revolucionaria** para el humor («Ni un auditor imperialista», «Aquí solo audita el Pueblo»).
+- La **sumisión se disfraza de lenguaje político**: cuando el Comandante cede ante una potencia, lo presenta como algo bueno, con el cinismo de un negociante que sabe que portarse bien le sale a cuenta («Será un honor rendir cuentas»).
 - El humor sale de la decisión, de la lógica absurda del régimen o de sus contradicciones; no de añadir palabras grandilocuentes.
 
 ## La pregunta (el texto de la carta)

@@ -69,14 +69,16 @@ DESPILL_FUERTE = {"comercio"}
 PROTEGER = {"economia": [(540, 845, 665, 960)]}
 
 
-def alfa_tono(a, tono_max=175, sat_min=0.30):
-    """Alfa (0-1): 0 en lo que tiene tono verde-turquesa (95°-tono_max) y saturación alta."""
+def alfa_tono(a, tono_max=175, croma_min=28):
+    """Alfa (0-1): 0 en lo que tiene tono verde-turquesa (95°-tono_max) y bastante color. Se mide el croma absoluto
+    (máximo - mínimo), no la saturación: así el pelo negro con reflejos verdosos (poco croma) no se agujerea, y el
+    fondo, incluso en sombra, sí se va."""
     mx, mn = a.max(-1), a.min(-1)
-    sat = (mx - mn) / np.maximum(mx, 1)
+    croma = mx - mn
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
     tono = np.degrees(np.arctan2(np.sqrt(3) * (g - b), 2 * r - g - b)) % 360
     en_tono = np.clip(1 - np.maximum(95 - tono, tono - tono_max) / 12, 0, 1)
-    fondo = en_tono * np.clip((sat - sat_min) / 0.15, 0, 1)
+    fondo = en_tono * np.clip((croma - croma_min) / 15, 0, 1)
     return 1 - fondo
 
 
@@ -143,7 +145,7 @@ def recortar_personaje(entrada, salida):
         g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6)
     if entrada.stem in DESPILL_FUERTE:
         zona = np.arange(H)[:, None] < H * 0.44                            # solo en la cabeza: la camisa tiene azules
-        alpha = np.where(zona, np.minimum(alpha, alfa_tono(a, 205, 0.22)), alpha)   # fuera la sombra verde azulada entre los rizos
+        alpha = np.where(zona, np.minimum(alpha, alfa_tono(a, 205, 13)), alpha)   # fuera la sombra verde azulada entre los rizos
         hueco = ndi.binary_fill_holes(alpha > 0.5) & (alpha <= 0.5) & zona  # y se tapan los agujeritos que deja dentro del pelo
         lab, n = ndi.label(hueco)
         tam = ndi.sum(hueco, lab, range(1, n + 1))

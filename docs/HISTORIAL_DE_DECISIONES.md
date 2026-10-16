@@ -308,6 +308,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Relieve al inclinar el móvil (en prueba).** Inspirado en las escenas espaciales del iPhone: el giroscopio mueve un poco las capas de la carta del personaje (cartulina poco, personaje más, la sombra al revés), como un collage con las piezas a distintas alturas. Solo cartas de personaje de momento; si convence, se extiende a las demás. Se para al arrastrar y con «reducir movimiento».
 
+- **16 oct — Recortes de pelo arreglados.** Las trenzas de Hortensia tenían agujeros (el hilo negro tiene reflejos verdosos y el croma por tono se los comía) y los rizos de Neto quedaban deshilachados con sombras verdes. El croma por tono ahora mide el croma absoluto del color en vez de la saturación: el pelo oscuro se conserva y el fondo verde, incluso en sombra, se va. No ha hecho falta cambiar los peinados.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

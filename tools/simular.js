@@ -7,7 +7,9 @@ w.eval(`
   const mag=o=>Object.entries(o.efectos).filter(([k])=>k!=='crisis').reduce((a,[,v])=>a+Math.abs(v),0);
   const sd=(op)=>{ const b={...E.barras}; for(const k in op.efectos){ if(k==='crisis') continue; b[k]=Math.max(0,Math.min(100,b[k]+op.efectos[k])); } return Math.max(...Object.values(b).map(v=>Math.abs(v-50))); };
   // azar: no sabe nada. cauto: elige la opción con puntos más pequeños. omnisciente: conoce los efectos y evita los extremos.
-  const ESTR={ azar:()=>Math.random()<.5?-1:1, cauto:()=>mag(E.lados.izq)<=mag(E.lados.der)?-1:1, omnisciente:()=>sd(E.lados.izq)<=sd(E.lados.der)?-1:1 };
+  // humano: acierta como el omnisciente 4 de cada 5 veces (intuye el signo por el texto y los puntos) y la 5.ª elige al azar.
+  const ESTR={ azar:()=>Math.random()<.5?-1:1, cauto:()=>mag(E.lados.izq)<=mag(E.lados.der)?-1:1, omnisciente:()=>sd(E.lados.izq)<=sd(E.lados.der)?-1:1,
+    humano:()=>Math.random()<.8?ESTR.omnisciente():ESTR.azar() };
   window.__vistas={};
   function __sim(e){ mezclarLados=true; nuevaPartida(); E.actual=siguienteCarta(); barajarLados(); let nulos=0, ciclos=0;
     while(true){
@@ -26,12 +28,12 @@ w.eval(`
 `);
 const N = Number(process.argv[2]) || 4000;
 const NE = w.eval("ERAS.length");
-for (const e of ["azar", "cauto", "omnisciente"]) {
+for (const e of ["azar", "cauto", "humano", "omnisciente"]) {
   const r = w.__run(e, N);
   let vivos = N, tramos = [];
   for (let era = 1; era <= NE; era++) { const cae = r.cae[era] || 0; tramos.push(`supera la era ${era}: ${(((vivos - cae) / (vivos || 1)) * 100).toFixed(0)}%`); vivos -= cae; }
   console.log(`${e.padEnd(12)} ${tramos.join(" | ")} | gana todas: ${(r.gana / N * 100).toFixed(0)}% | huecos sin carta: ${r.nulos} | errores: ${r.errores} | años medios: ${(r.anios / N).toFixed(1)}`);
-  if (e === "azar") {
+  if (e === "azar" || e === "omnisciente") {
     for (let era = 1; era <= NE; era++) {
       const c = Object.entries(r.causas).filter(([k]) => k.startsWith(era + ":")), tot = c.reduce((a, [, v]) => a + v, 0) || 1;
       console.log(`   causas de caída en la era ${era}:`, c.sort((a, b) => b[1] - a[1]).map(([k, v]) => k.slice(2).replace("_100", " ↑").replace("_0", " ↓") + " " + (v / tot * 100).toFixed(0) + "%").join(" · "));

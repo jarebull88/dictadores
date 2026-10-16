@@ -23,7 +23,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - `assets/logo/` — el logo de la portada (`originales/` con croma, `recortados/logo.webp`).
 - `assets/personajes/` — `originales/` (Gemini, con croma), `recortados/` (WebP con transparencia) y `personajes.json` (ojos, Noir, extras). `assets/iconos/` — igual, para los iconos (`originales/dibujo-*.jpeg` son los dibujos a mano: `python3 tools/recortar.py dibujos` quita el papel blanco y deja tinta con transparencia; los recortes de papel de antes siguen ahí). **Antes de tocar personajes o iconos, lee `docs/PIPELINE_PERSONAJES.md`.**
 - El arte antiguo (lápiz de cera, fotos de prensa, papel recortado con ojos, pegatinas) se borró; solo queda en el historial de git. No lo recuperes sin preguntar.
-- `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md`, `brief_claude_design.md`, `COPIA_RESPUESTAS_CON_REMATE.md`, `ARCHIVO_HISTORICO_RETIRADO.md` (los textos del archivo histórico, quitado del juego el 15 oct) e `IDEAS.md` (15 oct: cuaderno de frases y hechos reales que Jorge va encontrando; se apuntan ahí antes de decidir dónde usarlos).
+- `docs/` — **generado** desde los datos (no se edita a mano) salvo `HISTORIAL_DE_DECISIONES.md`, `DISENO.md`, `brief_claude_design.md`, `COPIA_RESPUESTAS_CON_REMATE.md`, `GUIA_DE_REDACCION.md` (pautas de estilo de los textos), `ARCHIVO_HISTORICO_RETIRADO.md` (los textos del archivo histórico, quitado del juego el 15 oct) e `IDEAS.md` (15 oct: cuaderno de frases y hechos reales que Jorge va encontrando; se apuntan ahí antes de decidir dónde usarlos).
 - `tools/` — `recortar.py` (croma de personajes e iconos), build, simulación y exportación. `tests/` — pruebas.
 
 ## Reglas de contenido (no negociables)
@@ -37,6 +37,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 8. **El nombre del dictador es una sola palabra** y se muestra como «Comandante X».
 
 ## Cómo se escriben las cartas
+- **Antes de redactar o revisar textos, lee `docs/GUIA_DE_REDACCION.md`** (16 oct): las pautas de estilo de Jorge (tono, pregunta implícita, respuestas como órdenes de ≤5 palabras, nada de frases contrapuestas de IA, formato de entrega). Manda sobre lo de abajo si chocan.
 - **Límites (todas las eras, vigilados por un test):** mensaje ≤150 caracteres, acción ≤5 palabras y ≤28 caracteres, remate ≤75 caracteres. Más largo no cabe sobre la carta en móviles pequeños.
 - **Los embajadores hablan en primera persona** del país que representan («nuestro país considera…, aplicaremos…»), no en tercera.
 - Mensaje del personaje: ~20 palabras, serio y servil; sin saludo en las eras 1 y 2, «Excelencia,» en la 3 y «Padre de la Patria,» en la 4. **Sin partición de palabras** (15 oct, Jorge: se quitó; el código de `partirTexto()`/`silabas()` sigue, apagado con `PARTIR_PALABRAS = false`). Sin réplicas posteriores (se eliminaron).

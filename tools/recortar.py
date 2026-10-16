@@ -226,7 +226,8 @@ DIBUJO_AJUSTES = {"reverso": {"lado": 800}}   # el reverso de las cartas (14 oct
 # Iconos de estado (16 oct): se dibujan en carbón y aquí se tiñe la tinta de un color oscuro propio de cada estado
 # (el tono de su cartulina, mucho más oscuro). Nunca rojo: el rojo es para las alertas.
 COLOR_ESTADO = {"luna": "#8E2A5E", "censura": "#6B3A1E", "vigilancia": "#1F5F5B", "culto": "#8A6417",
-                "alineado": "#3D4F7A", "embargo": "#2F4858"}
+                "alineado": "#3D4F7A", "embargo": "#2F4858", "frontera": "#3E5B2A", "deuda": "#5C4A1C",
+                "nacionalizado": "#1F4E6B"}
 for _id, _c in COLOR_ESTADO.items():
     DIBUJO_AJUSTES[_id] = {"color": _c}
 
@@ -250,6 +251,7 @@ def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, c
     alfa = np.where(keep, alfa, 0)
     tinta = 1 - (1 - ratio) / np.maximum(alfa, 0.04)[..., None]
     if color:                                                          # tinta de un solo color: se tiñe toda igual
+        alfa = ndi.grey_dilation(alfa, size=(7, 7))                    # y el trazo engorda: en la casilla se ven a 40 px
         tinta = np.broadcast_to(np.array([int(color[i:i + 2], 16) for i in (1, 3, 5)]) / 255.0, tinta.shape)
     rgba = np.dstack([np.clip(tinta, 0, 1) * 255, np.clip(alfa * (2.2 if color else 1.35), 0, 1) * 255]).astype(np.uint8)   # teñidos: trazo con más cuerpo
     im = Image.fromarray(rgba, "RGBA")
@@ -282,7 +284,7 @@ def recortar_carton(entrada, salida):
 # hueco (en píxeles del original) y el giro del marco; el hueco visible se busca por color y se guarda como máscara.
 ANCHO_ESCENA = 900
 MARCOS = {
-    "nacionalizado": [((520, 1330), -11.5)],
+    "nacionalizado": [((684, 1303), 0)],   # 16 oct: escena nueva, el ingenio con el retrato en la fachada
     # 16 oct: escena nueva del culto, un tendedero de retratos y uno grande en medio (todos rectos)
     "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
               ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],

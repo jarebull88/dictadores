@@ -1127,7 +1127,7 @@ function ajustarCabeceraFin() {
 let finOcupada = false;
 /* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
    sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
-const FONDO_CAIDA = { ejercito_0: "#A9C3D9" };
+const FONDO_CAIDA = { ejercito_0: "#A9C3D9", pueblo_0: "#F5C77A" };
 let claveFin = "";
 function pintarCartaFin(titulo, clave = claveFin) {
   const carta = $("carta-fin");

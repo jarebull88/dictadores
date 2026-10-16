@@ -101,10 +101,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `censura_previa`.
 
-**Carta:** «Ya no circulan noticias, solo rumores. Propongo un periodista oficial que los desmienta cada mañana.»
+**Carta:** «Nadie cree los periódicos, pero sí los rumores. Propongo un periodista oficial que los desmienta.»
 
-- **A. Periodista oficial.** *Una sola voz evita muchas confusiones.* Pueblo −5 · Élite +5 · Ejército +3 · Bandera: `periodista_oficial`
-- **B. Dejar que corran.** *Mientras escuchen lo que yo diga, pueden hablar.* Pueblo +5 · Élite −5 · Ejército −3
+- **A. Nombren un Vocero de la Verdad** Pueblo −5 · Élite +5 · Ejército +3 · Bandera: `periodista_oficial`
+- **B. Apunten quién los repite** Pueblo +5 · Élite −5 · Ejército −3
 
 **Consecuencia futura de `periodista_oficial`:** La prensa del régimen exige titulares cada vez más generosos.
 

@@ -497,6 +497,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
 .ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; mix-blend-mode: multiply; }   /* pintados sobre el cartón del hueco */
+.ranura .icono.dibujo { mix-blend-mode: normal; }   /* 16 oct: los dibujos a rotulador, con su tinta tal cual (multiplicados se ensuciaban con el cartón) */
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
 @keyframes invierte { 0% { filter: brightness(1.55); } 100% { filter: none; } }

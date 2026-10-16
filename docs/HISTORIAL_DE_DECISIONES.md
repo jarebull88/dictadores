@@ -284,6 +284,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **15 oct — Humo de tela, aprobado.** Jorge da el visto bueno al vídeo: se enciende el humo de tela en el joven, el asentado, el culto y Fuerzas Armadas (la punta del puro del asentado y el culto habrá que recolocarla cuando lleguen sus imágenes nuevas).
 
+**16 oct — Fuera el humo; rotulador con vetas.** Jorge quita toda la animación del humo (el código, los recortes de la bola de papel y del humo de tela, y las posiciones del puro); solo se mueven los ojos. El rotulador pasa a la propuesta B: tinta con vetas horizontales algo más claras y mezclada con el papel (multiplicar), en vez de un color plano al 90 %.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

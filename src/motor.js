@@ -154,40 +154,6 @@ const icono = (id, clase = "") => {
   return img ? `<img class="${cl}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
-/* Mini animaciones de cada personaje: se dibujan en SVG encima de la imagen, en el punto (x, y) de
-   personajes.json ("animacion"). La colocación va en el grupo padre y el movimiento (CSS) en el hijo,
-   para que la animación no pise el atributo transform. */
-/* 15 oct: animaciones de los personajes apagadas (solo se mueven los ojos). El código y la posición del puro se
-   quedan para retomarlas: basta con poner esto a true. */
-const ANIMAR_PERSONAJES = true;    // 15 oct: vuelve solo el humo de tela (stop motion); lo demás sigue apagado
-const HUMO_TAM = [[29,41],[61,119],[175,158],[240,272],[329,323],[328,314],[286,300],[236,162]];   // ancho y alto de cada fase del humo de tela (px del recorte)
-const ANIMACION = {
-  // 14 oct: solo queda el humo del puro, en bocanadas suaves (nubecitas difuminadas que salen una tras otra, crecen y se desvanecen)
-  // 14 oct (prueba): una bola de papel arrugado cada 10 s; sale pequeña de la punta del puro, sube rodando, crece como
-  // una bola de nieve hasta un límite y, tras un trecho, se desvanece
-  humo: () => {
-    // 14 oct: una bola de papel cada 10 s: sale pequeña del puro, sube rodando, crece y se va abriendo (4 fases de la
-    // misma foto) con su sombra sobre la cartulina, y se desvanece. La sombra va en el grupo que no gira (luz de arriba).
-    const fases = [1, 2, 3, 4].map(k => IMG["icono_bola-" + k]).filter(Boolean);
-    if (fases.length < 4) return ANIMACION.bocanadas();
-    return `<filter id="sombra-bola" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="14" stdDeviation="9" flood-color="#000" flood-opacity=".35"/></filter>` +
-      `<g class="bola-mov" filter="url(#sombra-bola)"><g class="bola-giro">` +
-      fases.map((f, k) => `<image class="bola-fase f${k + 1}" href="${f.src}" x="-130" y="-130" width="260" height="260" preserveAspectRatio="xMidYMid meet"/>`).join("") +
-      `</g></g>`;
-  },
-  // 15 oct (prueba): bocanada de tela en stop motion: 8 fases fotografiadas por Jorge (humo-1…8), una tras otra a saltos
-  // (0,2 s cada una) mientras sube desde la punta del puro; luego, pausa. Tamaño real del recorte: se ve la artesanía.
-  tela: () => {
-    const fases = [1, 2, 3, 4, 5, 6, 7, 8].map(k => IMG["icono_humo-" + k]).filter(Boolean);
-    if (fases.length < 8) return ANIMACION.bocanadas();
-    const sube = [0, 10, 25, 45, 70, 100, 130, 160];
-    return fases.map((f, k) => {
-      const [w, h] = HUMO_TAM[k];
-      return `<image class="humo-f" href="${f.src}" x="${(-0.12 * w).toFixed(0)}" y="${-h - sube[k]}" width="${w}" height="${h}" style="animation-delay:${(k * 0.2).toFixed(1)}s"/>`;
-    }).join("");
-  },
-  bocanadas: () => `<g class="bocanadas">${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bocanada" r="${34 + (i % 3) * 8}" style="animation-delay:${(-i * 0.75).toFixed(2)}s"/>`).join("")}</g>`
-};
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */
 function cartonDe(carta, slug) {
@@ -201,12 +167,10 @@ const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fond
 function svgPersonaje(slug, nombre) {
   const p = RETRATOS[slug];
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const a = ANIMAR_PERSONAJES && p.animacion && ANIMACION[p.animacion.tipo]
-    ? `<g class="animacion anim-${p.animacion.tipo}" transform="translate(${p.animacion.x} ${p.animacion.y})">${ANIMACION[p.animacion.tipo]()}</g>` : "";
   const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo
   return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" style="aspect-ratio:${p.ancho} / ${p.alto - arriba}" role="img" aria-label="${esc(nombre || p.nombre)}">` +
-    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${a}` +
+    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>` +
     `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
 }
 
@@ -553,7 +517,7 @@ function ocultarInfo() {
 }
 function contenidoEstado(id, s, etiqueta) {
   const d = ESTADOS[id];
-  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto">Efecto: ${esc(RESUMEN[id] || "")}</span>`;   // el ritmo y la duración van en el efecto (15 oct)
+  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto"><span class="tinta">Efecto: ${esc(RESUMEN[id] || "")}</span></span>`;   // el ritmo y la duración van en el efecto (15 oct)
 }
 function mostrarInfo(i) {
   const s = E.estados[i];

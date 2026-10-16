@@ -1038,6 +1038,13 @@ const CARTAS = [
     der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { potencias: -5, pueblo: 5 } }
   },
   {
+    id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana", ilustracion: null,
+    personaje: "Ministro de Economía",
+    texto: "Propongo que los inquilinos paguen la mitad y que, en unos años, la casa sea suya.",
+    izq: { accion: "Alquiler a mitad de precio", efectos: { pueblo: 8, elite: -6 } },
+    der: { accion: "Que paguen lo que firmaron", efectos: { pueblo: -8, elite: 6 } }
+  },
+  {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",

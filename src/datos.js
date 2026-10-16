@@ -330,11 +330,11 @@ const CARTAS = [
   },
 
   {
-    id: "huelgas_crisis", tipo: "sorteo", peso: 8, cond: { requiere: ["base.sindicato_libre"], crisisMin: 2 }, titulo: "Huelga en el puerto", ilustracion: null,
+    id: "huelgas_crisis", tipo: "sorteo", peso: 8, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos", ilustracion: null,
     personaje: "Ministro de Trabajo",
-    texto: "Con la subida de precios el sindicato exige aumentos y amenaza con otra huelga en el puerto.",
-    izq: { accion: "Subir los salarios", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
-    der: { accion: "Prohibir la huelga", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
+    texto: "Los trabajadores eléctricos marchan hacia el palacio. Exigen elegir a sus dirigentes sin el Partido.",
+    izq: { accion: "La Revolución respeta sus votos", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
+    der: { accion: "Que marchen hasta la cárcel", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
   },
 
   {
@@ -854,7 +854,7 @@ const FUTURO = {
   "base.critica_abierta": "Depuración de críticos.",
   "base.viejos_oficiales": "Conspiración de oficiales retirados.",
   "base.purga_inicial": "El Ministro del Interior pide más poder.",
-  "base.sindicato_libre": "Nuevas huelgas cuando la crisis sube.",
+  "base.sindicato_libre": "Los sindicatos libres quieren elegir a sus dirigentes sin el Partido.",
   "base.huelga_reprimida": "Malestar en las universidades.",
   "base.comites_vigilancia": "Denuncias falsas entre vecinos.",
   "base.policia_tradicional": "La oposición se organiza con más facilidad.",

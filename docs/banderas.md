@@ -51,6 +51,6 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `purga_inicial` | Los oficiales de antes (B) | Los ojos del barrio; El jefe pide más; Denuncias falsas | El Ministro del Interior pide más poder. (era 2) |
 | `recuento` | El escrutinio (B) | — | — |
 | `reforma_agraria` | La tierra (B) | Los que se marchan; El hambre | Escasez de alimentos dos años después. (era 2) |
-| `sindicato_libre` | El puerto parado (A) | Huelga en el puerto | Nuevas huelgas cuando la crisis sube. (era 1) |
+| `sindicato_libre` | El puerto parado (A) | La marcha de los eléctricos | Los sindicatos libres quieren elegir a sus dirigentes sin el Partido. (era 1) |
 | `sucesor_designado` | La sucesión (A) | El delfín impaciente | El sucesor empieza a hacerse notar. (era 4) |
 | `viejos_oficiales` | Los oficiales de antes (A) | El club de ajedrez | Conspiración de oficiales retirados. (era 2) |

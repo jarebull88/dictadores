@@ -130,7 +130,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Carta:** «La prensa no para de criticar nuestros decretos.»
 
 - **A. Que publiquen** Pueblo +6 · Potencias +6 · Ejército −4 · Bandera: `prensa_libre`
-- **B. Censura no: revisión** Pueblo −6 · Élite +5 · Potencias −5 · Bandera: `censura_previa`
+- **B. Nacionalicen la imprenta** Pueblo −6 · Élite +5 · Potencias −5 · Bandera: `censura_previa`
 
 **Consecuencia futura de `prensa_libre`:** Un reportaje destapa un escándalo.
 

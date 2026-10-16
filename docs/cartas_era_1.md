@@ -61,7 +61,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Comercio  
 **Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
 
-**Carta:** «Las refinerías extranjeras nos cierran las puertas. ¿Negociamos o las tomamos?»
+**Carta:** «Las refinerías extranjeras nos cierran las puertas y amenazan con dejarnos sin gasolina.»
 
 - **A. Negociemos** Potencias +10 · Élite +6 · Pueblo −8 · Bandera: `negocio_refinerias`
 - **B. ¡Exprópiese!** Pueblo +8 · Élite −6 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años

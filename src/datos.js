@@ -57,7 +57,7 @@ const CARTAS = [
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías", ilustracion: null,
     personaje: "Ministro de Comercio",
-    texto: "Las refinerías extranjeras nos cierran las puertas. ¿Negociamos o las tomamos?",
+    texto: "Las refinerías extranjeras nos cierran las puertas y amenazan con dejarnos sin gasolina.",
     izq: { accion: "Negociemos", efectos: { potencias: 10, elite: 6, pueblo: -8 }, banderas: ["base.negocio_refinerias"] },
     der: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -6, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"],
            encolar: [{ carta: "embargo", min: 3, max: 8 }] }

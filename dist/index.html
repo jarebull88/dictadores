@@ -438,18 +438,25 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: .01em;
   transition: background-color .12s, color .12s;
 }
-/* Reverso: la ficha del personaje, como un expediente */
+/* Reverso: la ficha del personaje, como un expediente de la inteligencia (16 oct): foto de carné en blanco y negro,
+   nombre a rotulador del color de su grupo, cargo e informe. La pulpa del papel, suavizada con un velo para que se lea mejor. */
 .dorso .hoja {
-  flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px;
-  padding: 12px 12px; overflow: hidden; text-align: left; border-radius: var(--radio-pegado);
-  background: #F8F6F0 var(--tex-cartulina5) 60% 70% / 640px auto; background-blend-mode: multiply;
+  flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px;
+  padding: 12px 14px; overflow: hidden; text-align: left; border-radius: var(--radio-pegado);
+  background: linear-gradient(rgba(248, 246, 240, .55), rgba(248, 246, 240, .55)), #F8F6F0 var(--tex-cartulina5) 60% 70% / 640px auto;
+  background-blend-mode: normal, multiply;
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
 }
-.ficha-etiqueta { font-size: 12px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--tinta-suave); padding: 3px 10px; border: 1.5px dashed var(--carbon); }
-.ficha-nombre { font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: 26px; line-height: 1.05; }
-.ficha-cargo { font-size: 15px; font-weight: 700; padding-bottom: 10px; border-bottom: 4px double var(--carbon); }
-.ficha-historia { margin: 2px 0 0; font-size: 15px; line-height: 1.4; max-width: 30ch; }
-.ficha-pie { margin-top: 8px; font-size: 12px; color: var(--tinta-suave); }
+.ficha-foto {
+  flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 4 / 5; margin-bottom: 6px; overflow: hidden;
+  background: var(--fondo-escena, #CFCBC2); filter: grayscale(1) contrast(1.08);
+  border: 4px solid #FBFAF6; box-shadow: 0 1.5px 1px rgba(0, 0, 0, .55);   /* foto pegada: borde blanco y sombra corta */
+}
+.ficha-foto svg { display: block; width: 100%; height: 100%; }
+.ficha-foto .ojos-foto { fill: #161618; }
+.ficha-nombre { font-family: var(--fuente-mano); font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
+.ficha-cargo { font-size: var(--ficha-px, 15px); font-weight: 700; margin-bottom: 4px; }
+.ficha-historia { margin: 0; font-size: var(--ficha-px, 15px); line-height: 1.4; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
    cuanto se empieza a mover. Gira al revés que la carta (--giro), así su borde inferior queda siempre horizontal y el panel
@@ -591,12 +598,13 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 /* Rotulador con vetas (16 oct, propuesta B): la tinta no es plana; el relleno lleva vetas horizontales algo más claras,
    como un rotulador que pasa con más o menos tinta, y se mezcla con el papel de debajo (multiplicar) */
 #screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal,
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta {
+.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .ficha-nombre {
   background-image: var(--veta-marcador); background-size: 420px 160px;
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; mix-blend-mode: multiply;
 }
 #screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal { background-color: #B3261E; }
 .etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta { background-color: #23211E; }
+.ficha-nombre { background-color: var(--rotulador, #23211E); }   /* el rotulador de su grupo */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
 </style>
 </head>
@@ -1528,30 +1536,31 @@ const CARTAS = [
   }
 ];
 
-/* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo que se muestra e historia breve.
+/* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo que se muestra e historia breve,
+   escrita como un informe de la inteligencia del régimen que vigila a su propio gobierno (16 oct).
    16 oct: personajes por etapas. La clave es el cargo interno (une cada carta con su personaje y no cambia);
    «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
 const FICHAS = {
   "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
-    historia: "Vicepresidente del tirano y de los dos gobiernos anteriores. El día que entrasteis en la capital, os esperaba con café y las llaves de los ministerios. Nadie recuerda haberlo nombrado." },
+    historia: "Vicepresidente del tirano y de los dos gobiernos anteriores, recibió a la columna con café y con las llaves de los ministerios. Sus expedientes de los tres regímenes han desaparecido de los archivos." },
   "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Responsable de víveres",
-    historia: "Tenía una bodega al pie de la sierra y le fiaba a la guerrilla. La columna le debía tanto que se fue con ella para no perderla de vista. Aún no ha cobrado." },
+    historia: "Bodeguero que fió víveres a la columna y la siguió al monte para cobrar una deuda que sigue pendiente. Sus cuentas no cuadran nunca y este servicio aún no ha averiguado si es por torpeza." },
   "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta", cargo: "Abastecedor por mar",
-    historia: "Subía armas y cigarrillos a la guerrilla en una lancha prestada, y de paso le vendía ron al cuartel. Él dice que siempre estuvo del lado del cliente." },
+    historia: "Contrabandista que subía armas a la columna en una lancha prestada y en el mismo viaje vendía ron al cuartel. Se desconoce a quién pertenece hoy la lancha y a quién pertenece él." },
   "Ministra de Educación": { nombre: "Hortensia Lamadrid", cargo: "Maestra de la columna",
-    historia: "Maestra rural de diecinueve años. En la sierra enseñaba a leer a la luz de un farol y corregía las cartas que los guerrilleros mandaban a sus madres. La regla, de momento, es para subrayar." },
+    historia: "Maestra rural de diecinueve años que enseñó a leer a la tropa y conoce de memoria la letra de cada guerrillero. Corrige con regla todo lo que cae en sus manos, incluidos los informes de este servicio." },
   "Ministro de Trabajo": { nombre: "Eusebio Palmares", cargo: "Delegado del sindicato cañero",
-    historia: "Cortador de caña desde niño y líder de la gran huelga de la zafra. Subió al monte con medio pueblo detrás. Los plátanos del morral son, por ahora, para comer." },
+    historia: "Cortador de caña y cabecilla de la huelga de la zafra que arrastra a medio pueblo cada vez que habla. Se recomienda vigilar su popularidad y anotar el destino de los plátanos que lleva en el morral." },
   "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Locutora de Radio Machete",
-    historia: "Leía partes de guerra y poemas desde una cueva, y el país la escuchaba de noche, a escondidas. Cree que la palabra libera." },
+    historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas. Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
   "Ministro de las Fuerzas Armadas": { nombre: "Domingo Cuesta", cargo: "Capitán de columna",
-    historia: "Campesino de la sierra que aprendió a mandar a tiros. Es el que más cree en todo esto. Todavía no tiene medallas: dice que no las necesita." },
+    historia: "Campesino de la sierra que aprendió a mandar a tiros y al que la tropa seguiría a cualquier parte, lo que conviene tener presente. Hasta la fecha ha rechazado todas las medallas que se le han ofrecido." },
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
-    historia: "Oficinista de banco que pasaba listas de nombres a la guerrilla. En la sierra no disparaba: interrogaba. Lleva una libreta con los nombres de todos, incluidos los suyos." },
+    historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero. Este informe lo ha redactado él mismo." },
   "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Enviado especial (misión temporal)",
-    historia: "Acaba de llegar para una misión de seis meses. Trae abrigo de invierno, una maleta y un diccionario. Nadie le avisó del calor." },
+    historia: "Enviado del bloque oriental para una misión de seis meses. Ha deshecho la maleta a medias y estudia el diccionario con interés, sobre todo las palabras que oye en las reuniones del Consejo." },
   "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador de la potencia del norte",
-    historia: "Jugaba al golf con el tirano cada domingo. Se enteró de la Revolución en el hoyo nueve. Ahora presenta credenciales a quien le cerró el club." }
+    historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve. Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }
 };
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 
@@ -2193,12 +2202,37 @@ function ajustarMensaje() {
   while (m.scrollHeight > m.clientHeight + 1 && px > 15) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) ajustarMensaje(); });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); } });
+
+/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12 px */
+function ajustarFicha() {
+  const h = document.querySelector("#carta .dorso .hoja");
+  if (!h) return;
+  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
+  const sobra = () => h.scrollHeight > h.clientHeight + 1;
+  for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
+  for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
+}
+
+/* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
+const ROTULADOR_GRUPO = { ejercito: "#2E6B2E", elite: "#5B2C83", potencias: "#B5541C" };
+
+/* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
+   Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
+function fotoFicha(cargo) {
+  const slug = PERSONAJE_SLUG[cargo], p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
+  if (!p) return "";
+  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
+  return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
+    `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/><g class="ojos-foto"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></div>`;
+}
 
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
-    `<span class="ficha-cargo">${esc(f.cargo || cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
+  const color = ROTULADOR_GRUPO[GRUPO_DE[cargo]] || "#23211E";
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${fotoFicha(cargo)}<b class="ficha-nombre" style="--rotulador:${color}">${esc(f.nombre)}</b>` +
+    `<span class="ficha-cargo">${esc(f.cargo || cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p></div></div>`;
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
 const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z"/></svg>';
@@ -2272,6 +2306,7 @@ function pintarCarta(c) {
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
     `${c.cinta ? `<div class="etiqueta-boli cinta-tutorial"><span>${esc(c.cinta)}</span></div>` : ""}` +   // tutorial: la instrucción al jugador, en cinta de carrocero
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
+  ajustarFicha();
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {

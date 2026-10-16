@@ -555,12 +555,37 @@ function ajustarMensaje() {
   while (m.scrollHeight > m.clientHeight + 1 && px > 15) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) ajustarMensaje(); });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); } });
+
+/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12 px */
+function ajustarFicha() {
+  const h = document.querySelector("#carta .dorso .hoja");
+  if (!h) return;
+  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
+  const sobra = () => h.scrollHeight > h.clientHeight + 1;
+  for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
+  for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
+}
+
+/* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
+const ROTULADOR_GRUPO = { ejercito: "#2E6B2E", elite: "#5B2C83", potencias: "#B5541C" };
+
+/* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
+   Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
+function fotoFicha(cargo) {
+  const slug = PERSONAJE_SLUG[cargo], p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
+  if (!p) return "";
+  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
+  return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
+    `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/><g class="ojos-foto"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></div>`;
+}
 
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
-    `<span class="ficha-cargo">${esc(f.cargo || cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
+  const color = ROTULADOR_GRUPO[GRUPO_DE[cargo]] || "#23211E";
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${fotoFicha(cargo)}<b class="ficha-nombre" style="--rotulador:${color}">${esc(f.nombre)}</b>` +
+    `<span class="ficha-cargo">${esc(f.cargo || cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p></div></div>`;
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
 const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z"/></svg>';
@@ -634,6 +659,7 @@ function pintarCarta(c) {
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
     `${c.cinta ? `<div class="etiqueta-boli cinta-tutorial"><span>${esc(c.cinta)}</span></div>` : ""}` +   // tutorial: la instrucción al jugador, en cinta de carrocero
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
+  ajustarFicha();
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {

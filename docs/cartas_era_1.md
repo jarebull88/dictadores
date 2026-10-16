@@ -141,10 +141,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 2 de la era.
 
-**Carta:** «Usted prometió elecciones. ¿Cuándo piensa celebrarlas?»
+**Carta:** «En la sierra prometimos elecciones en dieciocho meses. Ya han pasado doce.»
 
-- **A. En seis meses** Pueblo +9 · Potencias +7 · Ejército −4 · Élite −4 · Bandera: `elecciones_prometidas`
-- **B. No hay prisa** Pueblo −9 · Potencias −7 · Ejército +4 · Élite +4 · Bandera: `elecciones_aplazadas`
+- **A. Elecciones en seis meses** Pueblo +9 · Potencias +7 · Ejército −4 · Élite −4 · Bandera: `elecciones_prometidas`
+- **B. La Revolución ya fue votada** Pueblo −9 · Potencias −7 · Ejército +4 · Élite +4 · Bandera: `elecciones_aplazadas`
 
 **Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
 

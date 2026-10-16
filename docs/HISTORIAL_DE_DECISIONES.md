@@ -330,6 +330,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Giro histórico: la Revolución cubana como columna vertebral.** El juego seguirá el mandato de Fidel Castro (1959–2006) en cuatro eras: La Revolución (1959–62), La purga revolucionaria (1963–70), El culto al Comandante (1971–85) y La supervivencia (1986–2006). La regla 1 sigue: nada de nombres reales; los hechos van disfrazados. La revisión carta por carta está en `docs/REVISION_HISTORICA.md` (cambios de era, cartas no cubanas y momentos que faltan); la edición la hace la sesión de textos. Quedan por decidir los meses por carta según la era, si se muestra el año y el tratamiento.
 
+- **16 oct — El tiempo sigue la Revolución.** Cada carta avanza un tiempo según la era: 5–6 meses en la 1, 12–16 en la 2, 22–30 en la 3 y 30–42 en la 4. En 2000 partidas simuladas, las eras acaban a los 4, 11, 27 y 48 años, cerca de 1962, 1970, 1985 y 2006. Se sigue mostrando «N años al poder». Las cartas de otras dictaduras se quedan si no contradicen la historia principal.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

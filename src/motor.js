@@ -386,7 +386,8 @@ function aplicar(c, op) {
   E.vistas.add(c.id);
   E.ultima[c.id] = E.turno;
   E.turno++;
-  E.meses += MESES_POR_CARTA[0] + Math.floor(Math.random() * (MESES_POR_CARTA[1] - MESES_POR_CARTA[0] + 1));
+  const [m0, m1] = MESES_POR_CARTA[E.era] || MESES_POR_CARTA[1];
+  E.meses += m0 + Math.floor(Math.random() * (m1 - m0 + 1));
   avanzarEstados();
 }
 
@@ -1023,7 +1024,9 @@ function siguiente() {
 }
 
 /* Cada carta es un año y medio, más o menos: así una partida entera da unos 40-50 años, como un dictador de verdad */
-const MESES_POR_CARTA = [12, 24];
+/* Meses que pasan con cada carta, según la era (16 oct): siguen la cronología de la Revolución (1959–2006).
+   Era 1 (8–10 cartas) ≈ 4 años · era 2 (6–8) ≈ 8 · era 3 ≈ 15 · era 4 ≈ 21: una partida entera, unos 48 años. */
+const MESES_POR_CARTA = { 1: [5, 6], 2: [12, 16], 3: [22, 30], 4: [30, 42] };
 function anios() { return Math.floor((E.meses || 0) / 12); }
 
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */

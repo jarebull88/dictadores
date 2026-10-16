@@ -17,7 +17,12 @@ Propuesta de Jorge: el juego sigue la **Revolución cubana y el mandato de Fidel
 | III | El culto al Comandante | 1971–1985 | 15 años | Burocracia, lealtad personal, aparato estatal, respaldo del aliado |
 | IV | La supervivencia | 1986–2006 | 21 años | Escasez, pérdida del aliado, concesiones económicas, resistencia |
 
-**Consecuencias en el motor (las hago yo cuando se decida):**
+**Decidido por Jorge (16 oct):**
+- **Meses por carta según la era: hecho.** Era 1, 5–6 meses (unos 4 años en total); era 2, 12–16 (unos 8); era 3, 22–30 (unos 15); era 4, 30–42 (unos 21). Una partida entera dura unos 48 años, de 1959 a 2006 (`MESES_POR_CARTA`).
+- **Se sigue mostrando «N años al poder»**, no el año del calendario.
+- **Las cartas de otras dictaduras se quedan** si no chocan con la historia principal, porque le dan vidilla exagerada. Solo se cambian las que la contradicen: las de la sección 2, incluidas las dos reescrituras de la era IV.
+
+**Lo que había en esta sección:**
 - **Meses por carta según la era.** Ahora toda carta vale 12–24 meses, así que la era I duraría unos 14 años en vez de 4. Propuesta: era I ≈ 5 meses por carta (9 cartas ≈ 4 años), II ≈ 12, III ≈ 24 y IV ≈ 30–36. Una partida entera daría unos 47 años, de 1959 a 2006.
 - **Mostrar el año** («1961») en vez de «N años al poder» sería lo más claro. Al ser un país sin nombre no rompe la regla 1, pero lo decide Jorge.
 - **Tratamiento.** Históricamente, «Comandante» y «Comandante en Jefe» todo el tiempo; nunca «Excelencia» ni «Padre de la Patria», que vienen de otras dictaduras. Opciones: mantener la escalada como sátira, o pasar a Comandante (I–II) y Comandante en Jefe (III–IV). Decide Jorge.

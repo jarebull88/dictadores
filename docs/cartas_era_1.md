@@ -359,10 +359,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 8; exige `negocio_refinerias`.
 
-**Carta:** «Las empresas exigen garantías: no más nacionalizaciones y que sus beneficios salgan del país.»
+**Carta:** «Las empresas extranjeras exigen garantías: no más nacionalizaciones y sacar sus beneficios del país.»
 
-- **A. Firmar las garantías** Potencias +6 · Élite +4 · Pueblo −5 · Crisis −1
-- **B. Negarse a firmar** Potencias −6 · Pueblo +4 · Élite −4 · Crisis +1
+- **A. Palabra de revolucionario** Potencias +6 · Élite +4 · Pueblo −5 · Crisis −1
+- **B. Sus beneficios son del Pueblo** Potencias −6 · Pueblo +4 · Élite −4 · Crisis +1
 
 ### 30. Estudiantes en la calle
 

@@ -118,7 +118,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Carta:** «Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.»
 
 - **A. Respeten la propiedad todavía** Pueblo −10 · Élite +8
-- **B. La tierra es de quien la merece** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
+- **B. La tierra para quien la merece** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
@@ -127,7 +127,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «La prensa critica nuestros decretos. ¿Toleramos o censuramos?»
+**Carta:** «La prensa no para de criticar nuestros decretos.»
 
 - **A. Que publiquen** Pueblo +6 · Potencias +6 · Ejército −4 · Bandera: `prensa_libre`
 - **B. Censura no: revisión** Pueblo −6 · Élite +5 · Potencias −5 · Bandera: `censura_previa`

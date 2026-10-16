@@ -979,12 +979,12 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.",
     izq: { accion: "Respeten la propiedad todavía", efectos: { pueblo: -10, elite: 8 } },
-    der: { accion: "La tierra es de quien la merece", largaAutorizada: true, efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
+    der: { accion: "La tierra para quien la merece", largaAutorizada: true, efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
   },
   {
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "La prensa critica nuestros decretos. ¿Toleramos o censuramos?",
+    texto: "La prensa no para de criticar nuestros decretos.",
     izq: { accion: "Que publiquen", efectos: { pueblo: 6, potencias: 6, ejercito: -4 }, banderas: ["base.prensa_libre"] },
     der: { accion: "Censura no: revisión", efectos: { pueblo: -6, elite: 5, potencias: -5 }, banderas: ["base.censura_previa"] }
   },

@@ -16,7 +16,7 @@ const BARRAS = [
   { id: "potencias", nombre: "Potencias" }
 ];
 const ERAS = [
-  { nombre: "Ascenso", min: 6, max: 8 },
+  { nombre: "Ascenso", min: 8, max: 10 },   // 16 oct: más larga (antes 6-8), al azar se pasaba demasiado fácil para Jorge
   { nombre: "Consolidación", min: 6, max: 8, factor: 0.7 },
   { nombre: "Culto", min: 6, max: 8, factor: 0.75 },
   { nombre: "Ocaso", min: 6, max: 8, factor: 0.8 }

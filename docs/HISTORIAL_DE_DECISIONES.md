@@ -326,6 +326,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Respuestas más anchas en el panel.** El texto de la respuesta solo podía ocupar el 62 % del panel y las largas bajaban hasta 16 px con medio panel vacío. Ahora ocupa hasta el 88 %: en 390 px ninguna de las 202 respuestas baja de 21 px; en 360 px, 10 bajan un poco.
 
+- **16 oct — La era 1 dura 8–10 cartas (antes 6–8).** A Jorge le parecía fácil pasarla. En 4000 partidas simuladas: al azar la supera el 18 % (antes el 30 %); con cabeza («omnisciente»), el 96 % (antes el 98 %). Sin huecos ni cartas repetidas en la era 1.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

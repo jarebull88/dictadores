@@ -1469,6 +1469,45 @@ document.addEventListener("click", e => {
 
 $("btn-salir").addEventListener("click", () => { if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
 $("btn-comenzar").addEventListener("click", () => { if (tutorialVisto()) irANombre(); else empezarTutorial(); });
+
+/* =====================================================
+   RELIEVE (16 oct, en prueba): como las «escenas espaciales» del iPhone. Al inclinar el móvil, las capas de la carta
+   del personaje se mueven a distinta velocidad (la cartulina poco, el personaje más) y la sombra se corre al revés,
+   como un collage con las piezas a distintas alturas. Solo en las cartas de personaje; quieto mientras se arrastra
+   y con «reducir movimiento». Safari pide permiso para el giroscopio: se pide en el primer toque. En el ordenador,
+   con el ratón.
+   ===================================================== */
+const RELIEVE = { grados: 18, centrado: 0.02 };   // inclinación que da el máximo; lo que la posición de reposo sigue al móvil
+const relieve = { x: 0, y: 0, ox: 0, oy: 0, b0: null, g0: null, activo: false };
+function moverRelieve() {
+  const fx = arrastrando ? 0 : relieve.ox, fy = arrastrando ? 0 : relieve.oy;
+  relieve.x += (fx - relieve.x) * 0.15; relieve.y += (fy - relieve.y) * 0.15;   // suavizado
+  const raiz = document.documentElement.style;
+  raiz.setProperty("--rx", relieve.x.toFixed(3)); raiz.setProperty("--ry", relieve.y.toFixed(3));
+  requestAnimationFrame(moverRelieve);
+}
+function activarRelieve() {
+  if (relieve.activo || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  relieve.activo = true;
+  document.documentElement.classList.add("relieve");
+  const lim = v => Math.max(-1, Math.min(1, v));
+  window.addEventListener("deviceorientation", e => {
+    if (e.beta == null || e.gamma == null) return;
+    if (relieve.b0 == null) { relieve.b0 = e.beta; relieve.g0 = e.gamma; }
+    relieve.b0 += (e.beta - relieve.b0) * RELIEVE.centrado; relieve.g0 += (e.gamma - relieve.g0) * RELIEVE.centrado;   // el reposo es como lo sujetas
+    relieve.ox = lim((e.gamma - relieve.g0) / RELIEVE.grados); relieve.oy = lim((e.beta - relieve.b0) / RELIEVE.grados);
+  });
+  if (matchMedia("(pointer: fine)").matches) window.addEventListener("mousemove", e => {
+    relieve.ox = lim((e.clientX / innerWidth - 0.5) * 2); relieve.oy = lim((e.clientY / innerHeight - 0.5) * 2);
+  });
+  requestAnimationFrame(moverRelieve);
+}
+function pedirRelieve() {
+  const D = window.DeviceOrientationEvent;
+  if (D && typeof D.requestPermission === "function") D.requestPermission().then(r => { if (r === "granted") activarRelieve(); }).catch(() => {});
+  else activarRelieve();
+}
+document.addEventListener("click", pedirRelieve, { once: true });
 $("btn-repasar").addEventListener("click", empezarTutorial);
 $("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
 $("input-nombre").addEventListener("input", actualizarVistaNombre);

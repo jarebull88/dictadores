@@ -306,6 +306,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Estados completos y segunda caída.** Escenas e iconos nuevos de Frontera (muro con alambre y aviones de papel estrellados; icono: el muro solo, sin avión, porque a 40 px no se leía), Deuda (hucha con grillete y rollo de recibos; icono: bola y cadena) y Nacionalizaciones (el ingenio con tu retrato, rehecho con materiales variados; icono: fábrica). Ya no queda ningún icono de cartón. Los iconos teñidos llevan el trazo más grueso para leerse en la casilla. Caída «Revolución popular» con escena (las botas de la estatua en el pedestal, rehecha para que se note la manualidad).
 
+- **16 oct — Relieve al inclinar el móvil (en prueba).** Inspirado en las escenas espaciales del iPhone: el giroscopio mueve un poco las capas de la carta del personaje (cartulina poco, personaje más, la sombra al revés), como un collage con las piezas a distintas alturas. Solo cartas de personaje de momento; si convence, se extiende a las demás. Se para al arrastrar y con «reducir movimiento».
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

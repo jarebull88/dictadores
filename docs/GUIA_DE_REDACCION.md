@@ -40,6 +40,8 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 ## Cómo se entregan las propuestas
 Al revisar una carta que ya existe, primero la **original** (pregunta y respuestas) y debajo la propuesta, para que Jorge compruebe que se mantiene el sentido. **No se resume tanto que se pierda lo que se pide** («La mano del norte» pide auditorías, controlar el país; reducirlo a «algún favor» lo desvirtúa).
 
+**Siempre varias opciones: al menos 3 preguntas, 3 respuestas A y 3 respuestas B** (Jorge elige y combina).
+
 La propuesta, solo la pregunta y las dos respuestas, listas para copiar y pegar:
 
 ```

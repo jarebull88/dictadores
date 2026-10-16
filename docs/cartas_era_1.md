@@ -153,42 +153,42 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 ### 12. La campaña de alfabetización
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 6.
 
 **Carta:** «Propongo una campaña de alfabetización: que en un año todo el Pueblo sepa leer.»
 
-- **A. Un Pueblo culto y agradecido** Pueblo +8 · Élite −6
-- **B. Un Pueblo que lee pregunta** Pueblo −8 · Élite +6
+- **A. Un Pueblo culto y agradecido** Pueblo +10 · Élite −8
+- **B. Un Pueblo que lee pregunta** Pueblo −10 · Élite +8
 
 ### 13. Las escuelas para todos
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 6.
 
 **Carta:** «Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas y gratuitas.»
 
-- **A. Que todos aprendan lo mismo** Pueblo +5 · Élite −6 · Potencias −4
-- **B. Algunos son más iguales que otros** Pueblo −5 · Élite +6 · Potencias +4
+- **A. Que todos aprendan lo mismo** Pueblo +7 · Élite −8 · Potencias −6
+- **B. Algunos son más iguales que otros** Pueblo −7 · Élite +8 · Potencias +6
 
 ### 14. Los asesores
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** sorteo con peso 8; a partir del año 2 de la era.
+**Condición:** sorteo con peso 6; a partir del año 2 de la era.
 
 **Carta:** «Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.»
 
-- **A. Aprenderemos de los mejores** Potencias +7 · Ejército +4 · Élite −5
-- **B. Ya vamos bien sin ustedes** Potencias −7 · Ejército −4 · Élite +5
+- **A. Aprenderemos de los mejores** Potencias +9 · Ejército +6 · Élite −7
+- **B. Ya vamos bien sin ustedes** Potencias −9 · Ejército −6 · Élite +7
 
 ### 15. El club de golf
 
 **Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 6.
 
 **Carta:** «Reconoceremos su gobierno si respeta nuestras propiedades… sobre todo el club de golf.»
 
-- **A. Le reservo el hoyo nueve** Potencias +7 · Pueblo −6
-- **B. Sembraremos caña en el green** Potencias −7 · Pueblo +6
+- **A. Le reservo el hoyo nueve** Potencias +9 · Pueblo −8
+- **B. Sembraremos caña en el green** Potencias −9 · Pueblo +8
 
 ### 16. Las mil flores
 

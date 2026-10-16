@@ -956,32 +956,32 @@ const CARTAS = [
     der: { accion: "No hay prisa", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
-    id: "alfabetizacion", tipo: "sorteo", peso: 8, titulo: "La campaña de alfabetización", ilustracion: null,
+    id: "alfabetizacion", tipo: "sorteo", peso: 6, titulo: "La campaña de alfabetización", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Propongo una campaña de alfabetización: que en un año todo el Pueblo sepa leer.",
-    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 8, elite: -6 } },
-    der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -8, elite: 6 } }
+    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10, elite: -8 } },
+    der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -10, elite: 8 } }
   },
   {
-    id: "escuelas", tipo: "sorteo", peso: 8, titulo: "Las escuelas para todos", ilustracion: null,
+    id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas y gratuitas.",
-    izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 5, elite: -6, potencias: -4 } },
-    der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -5, elite: 6, potencias: 4 } }
+    izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: -8, potencias: -6 } },
+    der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -7, elite: 8, potencias: 6 } }
   },
   {
-    id: "asesores", tipo: "sorteo", peso: 8, cond: { turnoMin: 2 }, titulo: "Los asesores", ilustracion: null,
+    id: "asesores", tipo: "sorteo", peso: 6, cond: { turnoMin: 2 }, titulo: "Los asesores", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.",
-    izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 7, ejercito: 4, elite: -5 } },
-    der: { accion: "Ya vamos bien sin ustedes", efectos: { potencias: -7, ejercito: -4, elite: 5 } }
+    izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 9, ejercito: 6, elite: -7 } },
+    der: { accion: "Ya vamos bien sin ustedes", efectos: { potencias: -9, ejercito: -6, elite: 7 } }
   },
   {
-    id: "club_golf", tipo: "sorteo", peso: 8, titulo: "El club de golf", ilustracion: null,
+    id: "club_golf", tipo: "sorteo", peso: 6, titulo: "El club de golf", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Reconoceremos su gobierno si respeta nuestras propiedades… sobre todo el club de golf.",
-    izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 7, pueblo: -6 } },
-    der: { accion: "Sembraremos caña en el green", efectos: { potencias: -7, pueblo: 6 } }
+    izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 9, pueblo: -8 } },
+    der: { accion: "Sembraremos caña en el green", efectos: { potencias: -9, pueblo: 8 } }
   },
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,

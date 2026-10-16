@@ -358,3 +358,5 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - En camino: el logo definitivo como pancarta de manifestación (cartón pintado a mano en un palo), independiente de la ilustración de portada, que recrea la foto de la entrada en la capital (dictador joven con el fusil en alto entre siluetas de tela y papel).
 - Fondo de la página: fuera la textura de cartulina; color plano `#DFD9D0`, el beige que predominaba en la textura (medido en pantalla). Las cartas y ventanas conservan sus texturas.
 - Portada: «Comenzar partida» baja de 28 a 23 px (Jorge); sin texto de contexto bajo el logo por ahora.
+
+- **16 oct — Era 1 revisada entera** con Jorge (textos), siguiendo la guía de redacción y la cronología: preguntas sin pregunta explícita y de ≤100 caracteres, respuestas como órdenes. Cambios con base histórica: la huelga del puerto pasa a ser **la marcha de los eléctricos** (1960); «¿Elecciones para qué?» en los estudiantes; los periódicos acaban con «Nacionalicen la imprenta»; la crisis de la factura **congela los precios por decreto** en vez de subirlos. También revisadas las cartas de crisis y coalición.

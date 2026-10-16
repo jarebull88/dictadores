@@ -314,7 +314,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Carta:** «Los empresarios se reúnen con los embajadores. Si se alían, nos asfixian.»
 
 - **A. Mimen a los empresarios** Élite +9 · Pueblo −8 · Crisis +2
-- **B. Intervenir sus empresas** Potencias −8 · Pueblo +8 · Élite −9
+- **B. Intervengan sus empresas** Potencias −8 · Pueblo +8 · Élite −9
 
 ### 26. Los nuevos vecinos
 

@@ -314,6 +314,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Las ocho caídas con escena.** Pan para hoy, Junta militar, Junta de accionistas, El «puesto a dedo» (al final, un florero literal en el sitio del presidente, tras descartar el maniquí y el busto), Embargo e invasión y Presidente desechable (hoja de recortables, porque la caja de juguete salía en 3D). «Extracción nocturna» pasa a tener una imagen por etapa, generada editando la escena con la cabeza de cada dictador (sin gorra y con la boca cambiada), en vez de las tres capas, que quedan en el código como solución genérica. Las escenas de caída van pegadas abajo en la carta. Lecciones para los prompts: fondo de croma sin degradado, materiales que imitan (no objetos reales), todo plano, y vigilar colores que formen banderas (una banda azul y amarilla).
 
+- **16 oct — Nombres de una palabra.** Caídas: Re-Revolución (antes Revolución popular), Populismo (Pan para hoy), Abducción (Extracción nocturna), Tutela (Junta militar; se descartaron Gorilato, Cuartelazo, Galones e Intervenido), Liquidación (Junta de accionistas), Florero (El «puesto a dedo»), Invasión (Embargo e invasión) y Recambio (Presidente desechable). Estados: Idilio (Luna de miel), Frontera (Frontera cerrada) y Deuda (Deuda externa). Las claves internas no cambian.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

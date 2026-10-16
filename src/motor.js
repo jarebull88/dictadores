@@ -64,7 +64,7 @@ const ESTADOS = {
     deriva: { potencias: -1 }, cada: 2, multCrisis: 2
   },
   frontera: {
-    nombre: "Frontera cerrada", bandera: "base.frontera_cerrada", duracion: null,
+    nombre: "Frontera", bandera: "base.frontera_cerrada", duracion: null,
     descripcion: "El imperialismo pretende robarnos a nuestros médicos, ingenieros y científicos. Después de todo lo que el Estado ha invertido en ellos, lo mínimo es que se queden.",
     deriva: { ejercito: 1, potencias: -1 }, cada: 2, pesos: { marchan: 0 }
   },
@@ -74,13 +74,13 @@ const ESTADOS = {
     deriva: { elite: -1 }, cada: 2, crisis: 1
   },
   deuda: {
-    nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,
+    nombre: "Deuda", bandera: "base.deuda_externa", duracion: null,
     descripcion: "Para preservar la soberanía económica, se ha solicitado financiación a los mercados internacionales.",
     deriva: { potencias: 1 }, cada: 2, crisis: 1
   },
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
   luna: {
-    nombre: "Luna de miel", bandera: null, duracion: 1, soloTutorial: true,
+    nombre: "Idilio", bandera: null, duracion: 1, soloTutorial: true,
     descripcion: "Todos te quieren, por ahora. Especialmente el Pueblo.",
     deriva: { pueblo: 1 }, cada: 1
   }
@@ -989,7 +989,7 @@ function recogerEstado() {
 }
 
 function siguiente() {
-  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras guardar «Luna de miel» en su casilla
+  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras guardar «Idilio» en su casilla
   pintarCabecera();
   if (E.estadoNuevo) { mostrarCartaEstado(); return; }
   const nueva = siguienteCarta();
@@ -1137,7 +1137,7 @@ function pintarCartaFin(titulo, clave = claveFin) {
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "");
-  // Una escena por etapa si la hay («Extracción nocturna»: el dictador de cada era), si no, la de la caída
+  // Una escena por etapa si la hay («Abducción»: el dictador de cada era), si no, la de la caída
   const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
   const escena = clave && svgEscena(idEscena, titulo);
   carta.innerHTML = escena
@@ -1204,7 +1204,7 @@ function pasoTutorial(i, sinEntrada) {
   const p = TUTORIAL[i];
   $("nombre-dictador").textContent = "La víspera";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
-  if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
+  if (p.paso === "estado") {                           // entra un estado de verdad: «Idilio»
     E.estados = [{ id: "luna", edad: 0 }];
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
@@ -1223,7 +1223,7 @@ function pasoTutorial(i, sinEntrada) {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
   carta.classList.toggle("giro-destacado", p.paso === "girar");
-  $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
+  $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Idilio» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira

@@ -820,14 +820,14 @@ const FICHAS = {
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 
 const FINALES = {
-  pueblo_0:     { titulo: "Revolución popular",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
-  pueblo_100:   { titulo: "Pan para hoy",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
-  ejercito_0:   { titulo: "Extracción nocturna",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
-  ejercito_100: { titulo: "Junta militar",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
-  elite_0:      { titulo: "Junta de accionistas", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
-  elite_100:    { titulo: "El «puesto a dedo»",                texto: "Fuiste cediendo poder al Partido hasta acabar convertido en su presidente títere." },
-  potencias_0:  { titulo: "Embargo e invasión",               texto: "Sin aliados ni comercio, el país queda solo frente a sus adversarios." },
-  potencias_100:{ titulo: "Presidente desechable",           texto: "Le entregaste las llaves del país a tu protector y ahora buscan alguien que obedezca mejor." }
+  pueblo_0:     { titulo: "Re-Revolución",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
+  pueblo_100:   { titulo: "Populismo",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
+  ejercito_0:   { titulo: "Abducción",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
+  ejercito_100: { titulo: "Tutela",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
+  elite_0:      { titulo: "Liquidación", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
+  elite_100:    { titulo: "Florero",                texto: "Fuiste cediendo poder al Partido hasta acabar convertido en su presidente títere." },
+  potencias_0:  { titulo: "Invasión",               texto: "Sin aliados ni comercio, el país queda solo frente a sus adversarios." },
+  potencias_100:{ titulo: "Recambio",           texto: "Le entregaste las llaves del país a tu protector y ahora buscan alguien que obedezca mejor." }
 };
 
 const LINEAS_BARRA = {
@@ -886,7 +886,7 @@ const FUTURO = {
    TUTORIAL (15 oct): «La víspera». El capitán Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
    que entran en la capital. Cada carta enseña una sola cosa; las decisiones no cuentan para la partida.
    - paso: deslizar · girar (no se puede decidir hasta volver a girarla) · fuerzas (se encienden las barras)
-           · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Luna de miel») · guardar · fin
+           · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Idilio») · guardar · fin
    - arriba habla Cuesta (de usted); la instrucción al jugador va en la cinta (de tú)
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita

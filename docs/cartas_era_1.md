@@ -23,7 +23,7 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Cultura  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «El palacio del tirano tiene piscina, cine y 20 habitaciones. ¿Lo convertimos en museo o se muda usted?»
+**Carta:** «El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?»
 
 - **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6
@@ -33,7 +33,7 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Economía  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.»
+**Carta:** «El tirano huyó con la reserva del banco nacional. No hay con qué pagar los sueldos de este mes.»
 
 - **A. Impriman billetes** Pueblo +5 · Élite −4 · Potencias −4 · Bandera: `mercado_paralelo`
 - **B. Pidan un préstamo** Pueblo −5 · Élite +4 · Potencias +4 · Bandera: `deuda_externa`
@@ -115,10 +115,10 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
 
-**Carta:** «Proponemos repartir las tierras entre los campesinos.»
+**Carta:** «Proponemos repartir las tierras entre los campesinos, pero los terratenientes protestarán.»
 
-- **A. La propiedad todavia se respeta** Pueblo −10 · Élite +8
-- **B. La tierra para quien la trabaja** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
+- **A. Mejor no** Pueblo −10 · Élite +8
+- **B. Repártanla** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 

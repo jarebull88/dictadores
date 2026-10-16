@@ -293,12 +293,9 @@ MARCOS = {
     # 16 oct: escena nueva del culto, un tendedero de retratos y uno grande en medio (todos rectos)
     "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
               ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],
-    # 16 oct: cartas de caída. «Extracción nocturna»: la cabeza (óvalo crema) queda partida en dos por el antifaz; los
-    # dos trozos son un solo marco. «cabeza»: en vez de un retrato dentro del marco, el hueco se vacía y el juego pone la
-    # cabeza recortada del dictador (contorno «cabeza» de personajes.json) y, encima, lo que en la escena tapa la cabeza
-    # (antifaz, cascos: máscara «-encima»). «ancho» = ancho del óvalo en distancias entre ojos; «ojo» = altura de los
-    # ojos dentro del marco (0 arriba, 1 abajo), para que caigan bajo el antifaz.
-    "caida-ejercito_0": [([(890, 154), (888, 592)], 0, {"cabeza": True, "ancho": 2.35, "ojo": 0.385})],
+    # 16 oct: el mecanismo de «cabeza» (abajo) se probó con «Extracción nocturna»; ahora esa caída tiene una imagen por
+    # etapa (escena-caida-ejercito_0-<era>.jpg) y no lo usa. Para usarlo: un óvalo crema en la escena y aquí
+    # "<id>": [([(x, y), ...], 0, {"cabeza": True, "ancho": 2.35, "ojo": 0.385})] (ver svgEscena en motor.js).
 }
 
 def recortar_escena(entrada, salida, marcos):

@@ -962,7 +962,7 @@ function svgEscena(id, etiqueta) {
         `<image href="${img.src}" width="${e.ancho}" height="${e.alto}" mask="url(#encima-${id})"/>`
       : "");
   }
-  return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}" role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
+  return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}"${id.startsWith("caida-") ? ' preserveAspectRatio="xMidYMax meet"' : ""} role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
     `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}${cabezas}</svg>`;
 }
 /* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
@@ -1127,7 +1127,8 @@ function ajustarCabeceraFin() {
 let finOcupada = false;
 /* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
    sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
-const FONDO_CAIDA = { ejercito_0: "#A9C3D9", pueblo_0: "#F5C77A" };
+const FONDO_CAIDA = { ejercito_0: "#A9C3D9", pueblo_0: "#F5C77A", pueblo_100: "#F7D78C", ejercito_100: "#C9B8E8",
+  elite_0: "#9FD8D0", elite_100: "#F2B8C6", potencias_0: "#A9D6F2", potencias_100: "#F7C59F" };
 let claveFin = "";
 function pintarCartaFin(titulo, clave = claveFin) {
   const carta = $("carta-fin");
@@ -1136,7 +1137,9 @@ function pintarCartaFin(titulo, clave = claveFin) {
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "");
-  const escena = clave && svgEscena("caida-" + clave, titulo);
+  // Una escena por etapa si la hay («Extracción nocturna»: el dictador de cada era), si no, la de la caída
+  const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
+  const escena = clave && svgEscena(idEscena, titulo);
   carta.innerHTML = escena
     ? `<div class="giro"><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
       `${escena}<div class="etiqueta-boli${titulo.split(" ").some(w => w.length > 12) ? " larga" : ""}"><b>${esc(titulo)}</b></div><div class="respuesta"></div></div></div></div>`

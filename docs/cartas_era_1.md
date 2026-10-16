@@ -301,10 +301,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
 
-**Carta:** «Hay oficiales reuniéndose con los manifestantes. Si se unen, caemos. ¿Los compramos o los cortamos?»
+**Carta:** «Hay oficiales reuniéndose con los manifestantes. Si se unen, caemos.»
 
-- **A. Ascender oficiales** Ejército +12 · Élite −6 · Crisis +2
-- **B. Detener cabecillas** Pueblo −6 · Ejército +8 · Potencias −6
+- **A. Asciendan a los indecisos** Ejército +12 · Élite −6 · Crisis +2
+- **B. Detengan a los cabecillas** Pueblo −6 · Ejército +8 · Potencias −6
 
 ### 25. El dinero se va *(borrador)*
 

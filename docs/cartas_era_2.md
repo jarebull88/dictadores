@@ -69,10 +69,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `exiliados_vocales`.
 
-**Carta:** «Los exiliados emiten por radio y ya los escucha media capital. Dicen que el palacio tiene goteras.»
+**Carta:** «Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.»
 
-- **A. Interferir la emisora.** *La mentira también necesita permiso para entrar en la Patria.* Pueblo −6 · Ejército +4 · Élite +3
-- **B. Contestar por radio.** *Que hablen; el Pueblo sabrá quién defiende la Revolución.* Pueblo +5 · Potencias +4 · Élite −3
+- **A. Apagón donde llegue la señal** Pueblo −6 · Ejército +4 · Élite +3
+- **B. Son agentes del imperialismo** Pueblo +5 · Potencias +4 · Élite −3
 
 ### 7. El general murmura
 

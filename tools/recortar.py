@@ -287,9 +287,11 @@ MARCOS = {
     "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
               ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],
     # 16 oct: cartas de caída. «Extracción nocturna»: la cabeza (óvalo crema) queda partida en dos por el antifaz; los
-    # dos trozos son un solo marco. La cara se encaja al óvalo: «ancho» = ancho de la cara en distancias entre ojos,
-    # «ojo» = altura de los ojos dentro del marco (0 arriba, 1 abajo), para que caigan bajo el antifaz.
-    "caida-ejercito_0": [([(890, 154), (888, 592)], 0, {"ancho": 2.5, "ojo": 0.37})],
+    # dos trozos son un solo marco. «cabeza»: en vez de un retrato dentro del marco, el hueco se vacía y el juego pone la
+    # cabeza recortada del dictador (contorno «cabeza» de personajes.json) y, encima, lo que en la escena tapa la cabeza
+    # (antifaz, cascos: máscara «-encima»). «ancho» = ancho del óvalo en distancias entre ojos; «ojo» = altura de los
+    # ojos dentro del marco (0 arriba, 1 abajo), para que caigan bajo el antifaz.
+    "caida-ejercito_0": [([(890, 154), (888, 592)], 0, {"cabeza": True, "ancho": 2.35, "ojo": 0.385})],
 }
 
 def recortar_escena(entrada, salida, marcos):
@@ -325,7 +327,7 @@ def recortar_escena(entrada, salida, marcos):
     crema = ndi.binary_opening(crema, iterations=3)
     lab, _ = ndi.label(crema)
     hueco = np.zeros_like(crema)
-    datos = []
+    datos, mascaras = [], []
     for punto, giro, *extra in marcos:
         puntos = punto if isinstance(punto, list) else [punto]       # varios puntos = un solo marco partido en trozos
         m = np.zeros_like(crema)
@@ -334,6 +336,7 @@ def recortar_escena(entrada, salida, marcos):
             if not n:
                 raise SystemExit(f"{entrada.name}: el punto {(x, y)} no cae en papel crema")
             m |= ndi.binary_fill_holes(lab == n)
+        mascaras.append(m)
         hueco |= m
         # Rectángulo del hueco visible en los ejes del marco (girado)
         ys, xs = np.nonzero(m)
@@ -344,6 +347,23 @@ def recortar_escena(entrada, salida, marcos):
         uc, vc = (u0 + u1) / 2, (v0 + v1) / 2
         cx, cy = uc * np.cos(t) - vc * np.sin(t), uc * np.sin(t) + vc * np.cos(t)
         datos.append({"x": round(cx * k, 1), "y": round(cy * k, 1), "w": round((u1 - u0) * k, 1), "h": round((v1 - v0) * k, 1), "giro": giro, **(extra[0] if extra else {})})
+    cabezas = [m for m, (_, _, *ex) in zip(mascaras, marcos) if ex and ex[0].get("cabeza")]
+    if cabezas:
+        # Capa 1: la escena con la cabeza en blanco hecha hueco. Capa 3 (máscara «-encima»): lo que en la escena está
+        # sobre la cabeza (todo lo que no es crema dentro de su caja, ensanchada a los lados y hasta arriba del todo).
+        vacia = np.zeros_like(crema)
+        encima = np.zeros_like(crema)
+        for mc in cabezas:
+            vacia |= ndi.binary_dilation(mc, iterations=3)
+            ys, xs = np.nonzero(mc)
+            x0, x1 = xs.min(), xs.max(); ancho = x1 - x0
+            caja = np.zeros_like(crema)
+            caja[:ys.max() + 1, max(0, x0 - ancho // 2):x1 + ancho // 2] = True
+            encima |= caja & (alpha > 0.5) & ~vacia
+        rgba[..., 3] = np.where(vacia, 0, rgba[..., 3])
+        Image.fromarray(rgba).resize(out.size, Image.LANCZOS).save(salida, "WEBP", quality=86, method=6)
+        Image.fromarray((encima * 255).astype(np.uint8)).resize(out.size, Image.LANCZOS).save(
+            salida.with_name(salida.stem.replace("-escena", "-encima") + ".webp"), "WEBP", quality=80, method=6)
     hueco = ndi.binary_dilation(hueco, iterations=2)
     mascara = Image.fromarray((hueco * 255).astype(np.uint8)).resize(out.size, Image.LANCZOS)
     mascara.save(salida.with_name(salida.stem.replace("-escena", "-huecos") + ".webp"), "WEBP", quality=80, method=6)

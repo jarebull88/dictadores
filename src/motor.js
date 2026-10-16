@@ -926,29 +926,44 @@ const dictadorDeEra = era => DICTADOR_ERA[era] || "dictador-joven";
 function svgEscena(id, etiqueta) {
   const e = typeof ESCENAS !== "undefined" && ESCENAS[id], img = IMG["icono_" + id + "-escena"];
   if (!e || !img) return "";
-  let caras = "";
-  const huecos = IMG["icono_" + id + "-huecos"];
-  if (e.marcos.length && huecos) {
-    const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
-    const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-    const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
+  const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
+  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+  const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
+  let caras = "", cabezas = "";
+  const huecos = IMG["icono_" + id + "-huecos"], encima = IMG["icono_" + id + "-encima"];
+  const marcos = e.marcos.filter(m => !m.cabeza), huecosCabeza = e.marcos.filter(m => m.cabeza);
+  if (marcos.length && huecos) {
     const vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;     // cabeza y hombros
-    // En las caídas la cara llena la cabeza (óvalo): «ancho» (en distancias entre ojos) y «ojo» (altura de los ojos en el marco)
-    const vistaDe = m => {
-      if (!m.ancho) return vista;
-      const w = m.ancho * d, h = w * m.h / m.w;
-      return `${ex - w / 2} ${ey - m.ojo * h} ${w} ${h}`;
-    };
-    const retrato = (m, i) => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
-      `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vistaDe(m)}" preserveAspectRatio="xMidYMid slice">` +
-      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${m.ancho ? p.piel || p.fondo : p.fondo}"/>` +   // en las caídas, lo que no tapa la cara es piel (la cabeza)
+    const retrato = m => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
+      `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vista}" preserveAspectRatio="xMidYMid slice">` +
+      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>` +
       `<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
       `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></g>`;
     caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
-      `<g mask="url(#huecos-${id})">${e.marcos.map(retrato).join("")}</g>`;
+      `<g mask="url(#huecos-${id})">${marcos.map(retrato).join("")}</g>`;
+  }
+  /* Cabeza en blanco (16 oct, caídas): tres capas. La escena trae la cabeza hecha hueco; encima va la cabeza recortada
+     del dictador de la etapa (contorno «cabeza» de personajes.json, en distancias entre ojos); y encima de todo, lo que
+     en la escena tapa la cabeza (antifaz, cascos), con la máscara «-encima». */
+  if (huecosCabeza.length && p.cabeza) {
+    const contorno = p.cabeza.map(([x, y]) => `${(ex + x * d).toFixed(1)},${(ey + y * d).toFixed(1)}`).join(" ");
+    const cabeza = m => {
+      const s = m.w / (m.ancho * d), ojoY = m.y - m.h / 2 + m.ojo * m.h;
+      return `<g transform="translate(${m.x} ${ojoY}) scale(${s.toFixed(4)}) translate(${-ex} ${-ey})">` +
+        `<clipPath id="cabeza-${id}"><polygon points="${contorno}"/></clipPath>` +
+        `<g clip-path="url(#cabeza-${id})"><image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
+        `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></g></g>`;
+    };
+    // Debajo de la cabeza, el hueco se rellena de piel: si la barba no llega al cuello, se ve cuello y no un agujero
+    const piel = huecos ? `<mask id="piel-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
+      `<rect width="${e.ancho}" height="${e.alto}" fill="${p.piel || "#D19769"}" mask="url(#piel-${id})"/>` : "";
+    cabezas = piel + `<g class="cabeza-escena">${huecosCabeza.map(cabeza).join("")}</g>` + (encima
+      ? `<mask id="encima-${id}"><image href="${encima.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
+        `<image href="${img.src}" width="${e.ancho}" height="${e.alto}" mask="url(#encima-${id})"/>`
+      : "");
   }
   return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}" role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
-    `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}</svg>`;
+    `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}${cabezas}</svg>`;
 }
 /* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
 function recogerEstado() {

@@ -290,6 +290,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 **16 oct — Los cuatro dictadores nuevos.** Jorge rehace el joven, el asentado, el culto y el viejo encadenando ediciones (cada etapa sale de la anterior): bocas y rasgos en rotulador azul oscuro, relojes de oro de manualidad, chapas y charreteras de lata, medallas de latón prendidas, y el viejo en chándal de retales con gafas de papel. Recortados y con los ojos recolocados bajo las cejas de cada uno.
 
+**16 oct — Personajes que evolucionan.** Cada personaje tendrá 4 etapas (una por era): de joven de la sierra a corrupto. Rasgos en rotulador de un color por grupo (dictador azul, militares verde, gabinete morado, embajadores naranja oscuro); cara de una sola pieza de papel. Solo el Comandante fuma puros. La regla de «nunca ropa de obrero» vale desde la etapa 2. Etapa 1 en marcha: Cuesta (capitán de la sierra), Sarria (el enlace) y Palmares (el cañero).
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

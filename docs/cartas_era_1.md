@@ -23,7 +23,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?»
+**Carta:** «La mansión del tirano tiene piscina, cine y veinte habitaciones. Podría ser un museo o su casa.»
 
 - **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6

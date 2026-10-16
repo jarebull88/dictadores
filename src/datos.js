@@ -36,7 +36,7 @@ const CARTAS = [
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "El palacio del tirano tiene piscina, cine y veinte habitaciones. ¿Lo convertimos en museo o se muda usted?",
+    texto: "La mansión del tirano tiene piscina, cine y veinte habitaciones. Podría ser un museo o su casa.",
     izq: { accion: "Museo del Pueblo", efectos: { pueblo: 8, elite: -6 } },
     der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
   },

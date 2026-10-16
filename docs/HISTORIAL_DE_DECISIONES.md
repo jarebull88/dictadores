@@ -356,3 +356,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 ## 16 oct — Logo provisional a rotulador
 - El logo de letras de materiales mezclados no convencía (parecía una nota de rescate). Provisionalmente, la portada escribe el título con la letra de rotulador del juego (Permanent Marker con vetas): «Comandante,» arriba, pequeño, y **«¡ORDENE!»** abajo, grande, con los signos en amarillo mostaza. La energía va en la orden (Jorge). La imagen `assets/logo/recortados/logo.webp` queda en el repo, sin usar.
 - En camino: el logo definitivo como pancarta de manifestación (cartón pintado a mano en un palo), independiente de la ilustración de portada, que recrea la foto de la entrada en la capital (dictador joven con el fusil en alto entre siluetas de tela y papel).
+- Fondo de la página: fuera la textura de cartulina; color plano `#DFD9D0`, el beige que predominaba en la textura (medido en pantalla). Las cartas y ventanas conservan sus texturas.

@@ -148,8 +148,8 @@ const GRUPO_DE = {
 /* Iconos: si hay versión dibujada a mano (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), se usa esa en todo el
    juego; si no, el recorte de papel. Los dibujos van sin sombra: están pintados en la cartulina. */
 const icono = (id, clase = "") => {
-  // Prioridad: icono de cartón (estados, 13 oct) > dibujo a mano > recorte de papel antiguo
-  const dib = IMG["icono_" + id + "-carton"] || IMG["icono_" + id + "-dibujo"], img = dib || IMG["icono_" + id];
+  // Prioridad: dibujo a rotulador (16 oct, también los estados) > icono de cartón (13 oct) > recorte de papel antiguo
+  const dib = IMG["icono_" + id + "-dibujo"] || IMG["icono_" + id + "-carton"], img = dib || IMG["icono_" + id];
   const cl = ["icono", dib ? "dibujo" : "", clase].filter(Boolean).join(" ");
   return img ? `<img class="${cl}" src="${img.src}" alt="" draggable="false">` : "";
 };

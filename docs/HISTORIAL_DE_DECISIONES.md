@@ -298,6 +298,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — «Nota:» en los expedientes y retoques de recorte.** Cada expediente separa el retrato de la observación, que va aparte tras «Nota:» (`nota` en `FICHAS`); irán evolucionando por etapas. Neto: fuera las sombras verdes del croma entre los rizos (solo en la cabeza; la camisa tiene azules). Rigoberto: los brillos de los frijoles del cucurucho ya no se recortan.
 
+- **16 oct — Estados: escenas libres e iconos a rotulador.** La carta de estado ya no es el icono ampliado: cada una lleva una escena de papel propia, y el icono, aparte, es un dibujo a rotulador como los de las fuerzas, en un solo color, carbón oscuro, para no confundirse con ellas. Hechos: Luna de miel, Censura, Vigilancia, Culto (nueve retratos en tendedero y marco grande, con la cara del dictador de la etapa en curso), Alineado y Embargo. Faltan Deuda, Frontera y Nacionalizaciones, que siguen con lo de antes.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

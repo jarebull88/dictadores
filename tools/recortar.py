@@ -268,13 +268,16 @@ def recortar_carton(entrada, salida):
     lienzo.save(salida, "WEBP", quality=86, method=6)
 
 
-# Escenas de las cartas de estado (14 oct): collage de papel alrededor del icono, 3:4, sobre croma.
+# Escenas de las cartas de estado (14 oct): collage de papel, 3:4, sobre croma. Desde el 16 oct son escenas libres
+# (ya no el icono ampliado): el icono, dibujado a rotulador, va aparte.
 # Los marcos vacíos (papel crema) llevan dentro la cara del dictador de la etapa: aquí se da un punto de cada
 # hueco (en píxeles del original) y el giro del marco; el hueco visible se busca por color y se guarda como máscara.
 ANCHO_ESCENA = 900
 MARCOS = {
     "nacionalizado": [((520, 1330), -11.5)],
-    "culto": [((600, 500), -10.5), ((1300, 500), 8), ((420, 1000), -12), ((1300, 1000), 12), ((1500, 1200), 9)],
+    # 16 oct: escena nueva del culto, un tendedero de retratos y uno grande en medio (todos rectos)
+    "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
+              ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],
 }
 
 def recortar_escena(entrada, salida, marcos):

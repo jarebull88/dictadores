@@ -104,7 +104,7 @@ const CARTAS = [
   {
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "En la sierra prometimos elecciones en dieciocho meses. Ya han pasado doce.",
+    texto: "Prometimos elecciones en dieciocho meses. Ya han pasado doce.",
     izq: { accion: "Elecciones en seis meses", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
   },
@@ -139,8 +139,8 @@ const CARTAS = [
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "¿Y si dejamos que el Pueblo critique al gobierno libremente?",
-    izq: { accion: "Que hablen", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
+    texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",
+    izq: { accion: "Que critiquen", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
     der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, ejercito: 4, elite: 4 } }
   },

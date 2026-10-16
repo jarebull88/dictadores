@@ -141,7 +141,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 2 de la era.
 
-**Carta:** «En la sierra prometimos elecciones en dieciocho meses. Ya han pasado doce.»
+**Carta:** «Prometimos elecciones en dieciocho meses. Ya han pasado doce.»
 
 - **A. Elecciones en seis meses** Pueblo +9 · Potencias +7 · Ejército −4 · Élite −4 · Bandera: `elecciones_prometidas`
 - **B. La Revolución ya fue votada** Pueblo −9 · Potencias −7 · Ejército +4 · Élite +4 · Bandera: `elecciones_aplazadas`
@@ -195,9 +195,9 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «¿Y si dejamos que el Pueblo critique al gobierno libremente?»
+**Carta:** «Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.»
 
-- **A. Que hablen** Pueblo +8 · Élite −4 · Ejército −4 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
+- **A. Que critiquen** Pueblo +8 · Élite −4 · Ejército −4 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
 - **B. La Revolución no se cuestiona** Pueblo −8 · Ejército +4 · Élite +4
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.

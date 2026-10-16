@@ -137,6 +137,13 @@ const CARTAS = [
     der: { accion: "Sembraremos caña en el green", efectos: { potencias: -9, pueblo: 8 } }
   },
   {
+    id: "la_bahia", tipo: "ancla", ventana: [5, 7], titulo: "La bahía", ilustracion: null,
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.",
+    izq: { accion: "Cámbienlos por compotas", efectos: { potencias: 6, pueblo: 3, ejercito: -5 } },
+    der: { accion: "Juicio televisado y paredón", efectos: { potencias: -6, pueblo: -3, ejercito: 5 } }
+  },
+  {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",

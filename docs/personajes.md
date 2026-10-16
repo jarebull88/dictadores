@@ -11,8 +11,8 @@ Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército
 | Ministra de Cultura | elite | 13 (3/3) | papel recortado | `assets/personajes/recortados/cultura.webp` |
 | Ministro de Economía | elite | 12 (3/2) | papel recortado | `assets/personajes/recortados/economia.webp` |
 | Embajador de la potencia del norte | potencias | 10 (3/3) | papel recortado | `assets/personajes/recortados/embajador-occidental.webp` |
+| Ministro de las Fuerzas Armadas | ejercito | 8 (4/1) | papel recortado | `assets/personajes/recortados/fuerzas-armadas.webp` |
 | Ministro de Trabajo | elite | 8 (3/3) | papel recortado | `assets/personajes/recortados/trabajo.webp` |
-| Ministro de las Fuerzas Armadas | ejercito | 7 (3/1) | papel recortado | `assets/personajes/recortados/fuerzas-armadas.webp` |
 | Ministro de Comercio | elite | 7 (4/0) | papel recortado | `assets/personajes/recortados/comercio.webp` |
 | Ministra de Educación | elite | 7 (3/1) | papel recortado | `assets/personajes/recortados/educacion.webp` |
 | Embajador del bloque oriental | potencias | 6 (3/1) | papel recortado | `assets/personajes/recortados/embajador-oriental.webp` |

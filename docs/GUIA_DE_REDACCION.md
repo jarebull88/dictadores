@@ -1,6 +1,10 @@
 # Guía de redacción de las cartas
 
-Pautas de Jorge para escribir preguntas y respuestas (desde el 16 oct, empezando por la era 2). Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra indicación de estilo. Las reglas de contenido (sin países reales, quién habla, tratamiento…) siguen en `CLAUDE.md`.
+Pautas de Jorge (16 oct) para los textos de **todas las eras**, presentes y futuras. Sirve para dos cosas:
+- **Redactar:** las primeras propuestas de cartas nuevas (una era 5, por ejemplo) se escriben cumpliendo ya todo lo de aquí.
+- **Revisar y editar:** cada texto que ya está en el juego se repasa con la lista del final.
+
+Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra indicación de estilo. Las reglas de contenido (sin países reales, quién habla, tratamiento…) siguen en `CLAUDE.md`.
 
 ## Tono y estilo
 - Busca siempre el golpe irónico: humor negro, cinismo y el absurdo propio de las dictaduras.
@@ -35,3 +39,12 @@ B. Respuesta
 ```
 
 Sin títulos, explicaciones, análisis, efectos ni propuestas adicionales. Si se piden variantes, solo las variantes. Cada corrección de Jorge se aplica también a las cartas siguientes y se apunta aquí.
+
+## Lista de revisión
+Para cada carta, antes de proponerla o al revisarla:
+1. ¿La pregunta deja claro entre qué fuerzas se elige, sin acabar en una pregunta explícita?
+2. ¿La pregunta tiene 100 caracteres o menos y habla como su personaje (embajador en primera persona, ministro sobre asuntos internos)?
+3. ¿Cada respuesta tiene 5 palabras o menos, 30 caracteres o menos, sin remate ni punto final?
+4. ¿Es una orden o resolución del Comandante, clara, propia de esta carta y distinta de la otra?
+5. ¿La ironía está dentro de la decisión, sin explicar el chiste ni frases contrapuestas o telegráficas?
+6. ¿Hay algún país real, gentilicio o término propio de una potencia real («gringo», «camarada»)?

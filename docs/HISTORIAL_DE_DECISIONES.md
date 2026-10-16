@@ -318,6 +318,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — `?cero` para empezar como la primera vez.** Abrir el juego con `?cero` borra lo guardado (nombre y tutorial visto). Para saltarse también la caché, añadir otro parámetro que cambie cada vez (`?cero&v=2`, `v=3`…).
 
+- **16 oct — Informe de inteligencia detrás de la carta del dictador.** En «Sigues en el poder» solo caben unos 100 caracteres arriba (el párrafo de 223 a 400 se cortaba). Arriba queda una frase (provisional, la editará Jorge) y, al tocar la carta del dictador, se gira y enseña el informe de la era con el mismo formato que las fichas: situación, fuerza más tensa y, en la «Nota:», lo que te espera. En el tutorial, la cinta de la carta de girar añade «Al cambiar de etapa, la tuya esconde un informe».
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

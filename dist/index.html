@@ -1772,7 +1772,7 @@ const FUTURO = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla. Al cambiar de etapa, la tuya esconde un informe.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.
@@ -2344,8 +2344,8 @@ function ajustarMensaje() {
 window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); } });
 
 /* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12 px */
-function ajustarFicha() {
-  const h = document.querySelector("#carta .dorso .hoja");
+function ajustarFicha(carta = $("carta")) {
+  const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
   h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
@@ -2358,8 +2358,9 @@ const ROTULADOR_GRUPO = { ejercito: "#2E6B2E", elite: "#5B2C83", potencias: "#B5
 
 /* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
    Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
-function fotoFicha(cargo) {
-  const slug = PERSONAJE_SLUG[cargo], p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
+function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
+function fotoDe(slug) {
+  const p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
   if (!p) return "";
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
   const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
@@ -2369,9 +2370,11 @@ function fotoFicha(cargo) {
 
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  const color = ROTULADOR_GRUPO[GRUPO_DE[cargo]] || "#23211E";
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${fotoFicha(cargo)}<b class="ficha-nombre" style="--rotulador:${color}">${esc(f.nombre)}</b>` +
-    `<span class="ficha-cargo">${esc(f.cargo || cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
+  return dorsoFicha({ foto: fotoFicha(cargo), nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
+}
+function dorsoFicha(f) {
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${f.foto || ""}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+    `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
@@ -2798,10 +2801,17 @@ const MESES_POR_CARTA = [12, 24];
 function anios() { return Math.floor((E.meses || 0) / 12); }
 
 /* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
+/* «Sigues en el poder» (16 oct): arriba solo cabe una frase (≤100 caracteres; provisional, la editará Jorge); el resto va
+   en el informe de inteligencia, detrás de la carta del dictador (al tocarla se gira, como las de los ministros) */
 const TEXTO_FIN_ERA = {
-  1: "Has conquistado el poder. Ahora toca aferrarse a él. Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de tus fronteras crece la oposición y, dentro, aún quedan voces que silenciar. La Revolución debe resistir.",
-  2: "La Revolución ya es costumbre y desde hoy serás Excelencia. Llega el culto a tu persona, y alguien tendrá que pagarlo.",
-  3: "Ya eres Padre de la Patria y los médicos te visitan cada semana. Aguanta y morirás en tu cama, en el poder."
+  1: "Has conquistado el poder. Ahora toca aferrarse a él.",
+  2: "La Revolución ya es costumbre y desde hoy serás Excelencia.",
+  3: "Ya eres Padre de la Patria. Aguanta y morirás en tu cama, en el poder."
+};
+const INFORME_ERA = {
+  1: "Sus decisiones pasadas empiezan a volverse en su contra. Fuera de las fronteras crece la oposición y, dentro, aún quedan voces que silenciar.",
+  2: "Llega el culto a su persona, y alguien tendrá que pagarlo.",
+  3: "Los médicos le visitan cada semana."
 };
 /* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
 const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador-viejo" };
@@ -3182,18 +3192,23 @@ if (window.ResizeObserver) new ResizeObserver(() => {
 }).observe($("carta-nombre"));
 
 /* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
-function parrafoEra() {
+/* Informe de inteligencia de la era (detrás de la carta del dictador): la situación, la fuerza más tensa y, en la nota,
+   hasta dos cosas que te esperan en la era siguiente */
+function informeEra() {
   const masTensa = BARRAS.map(b => ({ id: b.id, v: E.barras[b.id] })).sort((a, b) => Math.abs(b.v - 50) - Math.abs(a.v - 50))[0];
   const estado = Math.abs(masTensa.v - 50) >= 10 ? LINEAS_BARRA[masTensa.id][masTensa.v > 50 ? "alto" : "bajo"] : "";
-  const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2)
-    .map(b => FUTURO[b].replace(/\.$/, "")).map(t => t.charAt(0).toLowerCase() + t.slice(1));
-  return [TEXTO_FIN_ERA[E.era], estado, espera.length ? `Te espera: ${espera.join("; ")}.` : ""].filter(Boolean).join(" ");
+  const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2).map(b => FUTURO[b].replace(/\.$/, ""));
+  return {
+    foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1F2A5C", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
+    historia: [INFORME_ERA[E.era], estado].filter(Boolean).join(" "),
+    nota: espera.length ? `Se espera: ${espera.map(t => t.charAt(0).toLowerCase() + t.slice(1)).join("; ")}.` : ""
+  };
 }
 function mostrarEra() {
   panelAbierto = false; ocupado = false;
   const n = anios();
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
-  $("era-texto").textContent = parrafoEra();
+  $("era-texto").textContent = TEXTO_FIN_ERA[E.era];
   const slug = DICTADOR_ERA[E.era + 1];
   const carta = $("carta-era");
   eraOcupada = false;
@@ -3201,9 +3216,12 @@ function mostrarEra() {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, slug);
   carta.innerHTML = slug
-    ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}<div class="respuesta"></div></div></div></div>` : "";
+    ? `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slug)}>${svgPersonaje(slug, "El dictador")}<div class="respuesta"></div></div></div>` +
+      `${dorsoFicha(informeEra())}</div>` : "";
+  carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";
   mostrar("screen-era");
+  ajustarFicha(carta);
 }
 /* Seguir o retirarse, con frases de cada paso de era (la clave es la era que empieza) */
 const FRASES_ERA = {
@@ -3231,7 +3249,8 @@ function decidirEra(dir) {
   carta.style.opacity = "0";
   setTimeout(() => { if (dir > 0) continuarEra(); else mostrar("screen-start"); }, 240);
 }
-arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra });
+arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra,
+  toque: () => { $("carta-era").classList.toggle("volteada"); eleccionEra(0); } });   // al tocarla se gira: detrás, el informe
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {

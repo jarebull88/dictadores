@@ -891,7 +891,7 @@ const FUTURO = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla. Al cambiar de etapa, la tuya esconde un informe.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.

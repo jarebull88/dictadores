@@ -745,28 +745,30 @@ const CARTAS = [
   }
 ];
 
-/* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo e historia breve. */
+/* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo que se muestra e historia breve.
+   16 oct: personajes por etapas. La clave es el cargo interno (une cada carta con su personaje y no cambia);
+   «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
 const FICHAS = {
-  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones",
-    historia: "Ha sido vicepresidente de tres gobiernos y ha sobrevivido a todos sin que nadie recuerde una sola decisión suya. Contesta el teléfono antes de que suene." },
-  "Ministro de Economía": { nombre: "Rigoberto Peña",
-    historia: "Doctor en economía por correspondencia. Sus gráficos siempre suben, sobre todo los que dibuja él. Nunca ha pisado un mercado, pero los ha cerrado casi todos." },
-  "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta",
-    historia: "Firma contratos con los dos bloques a la vez y con la misma pluma de oro. El reloj se lo regaló un cliente; del cliente no se ha vuelto a saber." },
-  "Ministra de Educación": { nombre: "Hortensia Lamadrid",
-    historia: "Treinta años de directora de escuela y nunca ha dejado de corregir a nadie. Siempre lleva El Príncipe: dice que es un manual de buenas maneras." },
-  "Ministro de Trabajo": { nombre: "Eusebio Palmares",
-    historia: "Defiende a los trabajadores desde un despacho con aire acondicionado. Desde que absorbió Agricultura, lleva plátanos a todas partes: dice que son de su finca." },
-  "Ministra de Cultura": { nombre: "Mirta Albear",
-    historia: "Poeta premiada por un jurado que presidía ella misma. Tiene un sello para cada cosa, pero el que más usa es el de «Prohibido»." },
-  "Ministro de las Fuerzas Armadas": { nombre: "General Domingo Cuesta",
-    historia: "Bajó de la sierra con el Comandante y no se ha vuelto a quitar la boina. Fuma puros que no paga y lleva balas que todavía no ha disparado." },
-  "Ministro del Interior": { nombre: "Octavio Sarria",
-    historia: "Siempre sonríe, pero nunca con los ojos. Guarda un expediente de cada ministro, incluido el suyo, por si acaso. Del guante negro nadie pregunta." },
-  "Embajador del bloque oriental": { nombre: "Pavel Strenko",
-    historia: "Llegó para una misión de seis meses hace once años. Suda incluso en invierno, lo que en su país sería motivo de sospecha." },
-  "Embajador de la potencia del norte": { nombre: "Chester Whitlow",
-    historia: "Sonríe con todos los dientes, sobre todo cuando trae malas noticias. Su país respeta siempre la soberanía ajena, salvo cuando no." }
+  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
+    historia: "Vicepresidente del tirano y de los dos gobiernos anteriores. El día que entrasteis en la capital, os esperaba con café y las llaves de los ministerios. Nadie recuerda haberlo nombrado." },
+  "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Responsable de víveres",
+    historia: "Tenía una bodega al pie de la sierra y le fiaba a la guerrilla. La columna le debía tanto que se fue con ella para no perderla de vista. Aún no ha cobrado." },
+  "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta", cargo: "Abastecedor por mar",
+    historia: "Subía armas y cigarrillos a la guerrilla en una lancha prestada, y de paso le vendía ron al cuartel. Él dice que siempre estuvo del lado del cliente." },
+  "Ministra de Educación": { nombre: "Hortensia Lamadrid", cargo: "Maestra de la columna",
+    historia: "Maestra rural de diecinueve años. En la sierra enseñaba a leer a la luz de un farol y corregía las cartas que los guerrilleros mandaban a sus madres. La regla, de momento, es para subrayar." },
+  "Ministro de Trabajo": { nombre: "Eusebio Palmares", cargo: "Delegado del sindicato cañero",
+    historia: "Cortador de caña desde niño y líder de la gran huelga de la zafra. Subió al monte con medio pueblo detrás. Los plátanos del morral son, por ahora, para comer." },
+  "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Locutora de Radio Machete",
+    historia: "Leía partes de guerra y poemas desde una cueva, y el país la escuchaba de noche, a escondidas. Cree que la palabra libera." },
+  "Ministro de las Fuerzas Armadas": { nombre: "Domingo Cuesta", cargo: "Capitán de columna",
+    historia: "Campesino de la sierra que aprendió a mandar a tiros. Es el que más cree en todo esto. Todavía no tiene medallas: dice que no las necesita." },
+  "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
+    historia: "Oficinista de banco que pasaba listas de nombres a la guerrilla. En la sierra no disparaba: interrogaba. Lleva una libreta con los nombres de todos, incluidos los suyos." },
+  "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Enviado especial (misión temporal)",
+    historia: "Acaba de llegar para una misión de seis meses. Trae abrigo de invierno, una maleta y un diccionario. Nadie le avisó del calor." },
+  "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador de la potencia del norte",
+    historia: "Jugaba al golf con el tirano cada domingo. Se enteró de la Revolución en el hoyo nueve. Ahora presenta credenciales a quien le cerró el club." }
 };
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 
@@ -833,7 +835,7 @@ const FUTURO = {
 };
 
 /* =====================================================
-   TUTORIAL (15 oct): «La víspera». El general Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
+   TUTORIAL (15 oct): «La víspera». El capitán Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
    que entran en la capital. Cada carta enseña una sola cosa; las decisiones no cuentan para la partida.
    - paso: deslizar · girar (no se puede decidir hasta volver a girarla) · fuerzas (se encienden las barras)
            · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Luna de miel») · guardar · fin
@@ -841,7 +843,7 @@ const FUTURO = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, general" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.

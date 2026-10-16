@@ -393,6 +393,17 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
+/* Brillo del farol (16 oct): la luz respira y parpadea un poco, como una llama */
+.personaje .brillo { mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; animation: llama 2.6s ease-in-out infinite; }
+@keyframes llama {
+  0%, 100% { opacity: .55; transform: scale(.92); }
+  18%      { opacity: .85; transform: scale(1.04); }
+  31%      { opacity: .7;  transform: scale(.98); }
+  52%      { opacity: 1;   transform: scale(1.08); }
+  70%      { opacity: .65; transform: scale(.95); }
+}
+.personaje .brillo.halo { mix-blend-mode: normal; animation-delay: -.4s; }   /* la luz que cae alrededor: tiñe de amarillo también lo blanco */
+@media (prefers-reduced-motion: reduce) { .personaje .brillo { animation: none; opacity: .75; } }
 .personaje .ojos { fill: var(--ojo, #161618); animation: mirar 7s ease-in-out infinite; }
 @keyframes mirar {
   0%, 14%   { transform: translate(0, 0); }

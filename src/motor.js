@@ -171,7 +171,21 @@ function svgPersonaje(slug, nombre) {
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo
   return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" style="aspect-ratio:${p.ancho} / ${p.alto - arriba}" role="img" aria-label="${esc(nombre || p.nombre)}">` +
     `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>` +
+    (p.brillo ? svgBrillo(slug, p.brillo) : "") +
     `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
+}
+
+/* Brillo que late sobre una luz del dibujo (16 oct: solo el farol de Hortensia). En personajes.json:
+   "brillo": {"x", "y", "r"} en coordenadas del recorte; un halo cálido en «trama» que respira. */
+function svgBrillo(slug, b) {
+  const id = "brillo-" + slug;
+  return `<defs><radialGradient id="${id}"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/>` +
+    `<stop offset=".18" stop-color="#FFE27A" stop-opacity=".85"/><stop offset=".45" stop-color="#FFC24A" stop-opacity=".35"/>` +
+    `<stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>` +
+    `<radialGradient id="${id}-halo"><stop offset="0" stop-color="#FFD25A" stop-opacity=".55"/><stop offset=".5" stop-color="#FFC03A" stop-opacity=".22"/>` +
+    `<stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient></defs>` +
+    `<circle class="brillo halo" cx="${b.x}" cy="${b.y}" r="${Math.round(b.r * 1.7)}" fill="url(#${id}-halo)"/>` +
+    `<circle class="brillo" cx="${b.x}" cy="${b.y}" r="${b.r}" fill="url(#${id})"/>`;
 }
 
 /* =====================================================
@@ -546,7 +560,7 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
   return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<small class="ficha-etiqueta">Expediente</small><b class="ficha-nombre">${esc(f.nombre)}</b>` +
-    `<span class="ficha-cargo">${esc(cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
+    `<span class="ficha-cargo">${esc(f.cargo || cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p><small class="ficha-pie">Toca la carta para volver</small></div></div>`;
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
 const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z"/></svg>';

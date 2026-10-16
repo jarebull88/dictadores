@@ -58,6 +58,22 @@ def alfa_croma(a, isla_min):
     return alpha, g2
 
 
+# Croma por tono (16 oct): algunos fondos salen verde azulado y en degradado (oscuro abajo), y «cuánto domina el verde»
+# no basta. Aquí también se quita lo que tenga tono verde-turquesa y bastante saturación. Solo en estos personajes.
+CROMA_TONO = {"economia", "educacion"}
+
+
+def alfa_tono(a):
+    """Alfa (0-1): 0 en lo que tiene tono verde-turquesa (95°-175°) y saturación alta."""
+    mx, mn = a.max(-1), a.min(-1)
+    sat = (mx - mn) / np.maximum(mx, 1)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    tono = np.degrees(np.arctan2(np.sqrt(3) * (g - b), 2 * r - g - b)) % 360
+    en_tono = np.clip(1 - np.maximum(95 - tono, tono - 175) / 12, 0, 1)
+    fondo = en_tono * np.clip((sat - 0.30) / 0.15, 0, 1)
+    return 1 - fondo
+
+
 def a_lab(rgb):
     """sRGB (0-255, forma [...,3]) -> Lab."""
     c = rgb / 255.0
@@ -106,6 +122,14 @@ def recortar_personaje(entrada, salida):
     W, H = im.size
     a = np.array(im).astype(float)
     alpha, g2 = alfa_croma(a, 8000)
+    if entrada.stem in CROMA_TONO:
+        alpha = np.minimum(alpha, alfa_tono(a))
+        fg = alpha > 0.5
+        lab, n = ndi.label(fg)
+        tam = ndi.sum(fg, lab, range(1, n + 1))
+        keep = np.isin(lab, [i + 1 for i, t in enumerate(tam) if t > 8000])
+        alpha = np.where(ndi.binary_dilation(keep, iterations=3), alpha, 0)
+        g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6)
     rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
     out = Image.fromarray(rgba).resize((ANCHO_PERSONAJE, int(H * ANCHO_PERSONAJE / W)), Image.LANCZOS)
     out = texturizar_piel(out, entrada.stem)

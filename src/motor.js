@@ -1523,7 +1523,8 @@ function abrirComoJugar() {
   caja.scrollTop = 0; caja.focus({ preventScroll: true });
 }
 function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
-if (IMG.logo) $("logo").insertAdjacentHTML("afterbegin", `<img src="${IMG.logo.src}" alt="" draggable="false">`);
+// 16 oct: el logo, provisional, escrito a rotulador (la imagen de letras recortadas queda en assets/logo/, sin usar)
+$("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span><i>¡</i>ordene<i>!</i></span></span>`);
 $("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
 $("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
 if (tutorialVisto()) $("btn-repasar").classList.remove("hidden");

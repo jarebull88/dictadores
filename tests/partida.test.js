@@ -73,7 +73,7 @@ test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el di
 
 test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
   const j = cargar();
-  assert.ok(j.d.querySelector("#logo img"), "falta el logo en la portada");
+  assert.ok(j.d.querySelector("#logo .logo-texto"), "falta el logo en la portada");
   assert.ok(!j.d.querySelector("#screen-start .carta"), "la portada ya no lleva carta");
   j.$("btn-comenzar").click();
   assert.ok(j.visible("screen-name"));

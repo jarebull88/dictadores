@@ -165,6 +165,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Portada: el logo y, debajo, las tres opciones como texto */
 .portada { justify-content: center; align-items: center; gap: 34px; text-align: center; }
 .portada .logo { margin: 0; width: min(100%, 400px); }
+.logo-texto { display: grid; justify-items: center; font-family: var(--fuente-mano); font-weight: 400; text-transform: uppercase; line-height: 1; transform: rotate(-3deg); }
+.logo-texto > span { font-size: min(46px, 10vw); }
+.logo-texto > span + span { font-size: min(92px, 20vw); }   /* la orden manda: «¡ORDENE!» va más grande */
+.logo-texto i { font-style: normal; }
 .portada .logo img { display: block; width: 100%; height: auto; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .3)); }
 .menu-portada { display: grid; justify-items: center; gap: 6px; }
 .opcion-portada {
@@ -580,11 +584,13 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 /* Rotulador con vetas (16 oct, propuesta B): la tinta no es plana; el relleno lleva vetas horizontales algo más claras,
    como un rotulador que pasa con más o menos tinta, y se mezcla con el papel de debajo (multiplicar) */
 #screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal,
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .ficha-nombre {
+.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .ficha-nombre, .logo-texto > span, .logo-texto i {
   background-image: var(--veta-marcador); background-size: 420px 160px;
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; mix-blend-mode: multiply;
 }
 #screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal { background-color: #B3261E; }
 .etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta { background-color: #23211E; }
-.ficha-nombre { background-color: var(--rotulador, #23211E); }   /* el rotulador de su grupo */
+.ficha-nombre { background-color: var(--rotulador, #23211E); }
+.logo-texto > span { background-color: #23211E; }
+.logo-texto i { background-color: #D9A21B; }   /* los signos, en amarillo mostaza */   /* el rotulador de su grupo */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */

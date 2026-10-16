@@ -226,7 +226,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 - **A. Sindicato concedido** Pueblo +10 · Élite −7 · Ejército −4 · Crisis +1 · Bandera: `sindicato_libre`
 - **B. Manden al ejército** Pueblo −10 · Élite +7 · Ejército +4 · Potencias −4 · Bandera: `huelga_reprimida`
 
-**Consecuencia futura de `sindicato_libre`:** Nuevas huelgas cuando la crisis sube.
+**Consecuencia futura de `sindicato_libre`:** Los sindicatos libres quieren elegir a sus dirigentes sin el Partido.
 
 **Consecuencia futura de `huelga_reprimida`:** Malestar en las universidades.
 
@@ -376,15 +376,15 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `estudiantes_reprimidos`:** La universidad se convierte en foco de oposición.
 
-### 31. Huelga en el puerto
+### 31. La marcha de los eléctricos
 
 **Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 8; exige `sindicato_libre`; solo si la crisis oculta llega a 2.
+**Condición:** sorteo con peso 8; exige `sindicato_libre`.
 
-**Carta:** «Con la subida de precios el sindicato exige aumentos y amenaza con otra huelga en el puerto.»
+**Carta:** «Los trabajadores eléctricos marchan hacia el palacio. Exigen elegir a sus dirigentes sin el Partido.»
 
-- **A. Subir los salarios** Pueblo +6 · Élite −4 · Crisis +2
-- **B. Prohibir la huelga** Pueblo −6 · Ejército +4 · Élite +4
+- **A. La Revolución respeta sus votos** Pueblo +6 · Élite −4 · Crisis +2
+- **B. Que marchen hasta la cárcel** Pueblo −6 · Ejército +4 · Élite +4
 
 ### 32. Embargo total
 

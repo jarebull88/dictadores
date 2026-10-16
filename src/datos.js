@@ -175,9 +175,9 @@ const CARTAS = [
   {
     id: "marchan", tipo: "sorteo", peso: 10, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Cada vez se van más ricos. ¿Los dejamos escapar o les prohibimos salir?",
+    texto: "Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.",
     izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, elite: -7, potencias: -4, crisis: -1 }, banderas: ["base.exodo_elite"] },
-    der: { accion: "Frontera cerrada", efectos: { ejercito: 6, elite: 7, pueblo: -7, potencias: -8 }, banderas: ["base.frontera_cerrada"] }
+    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, elite: 7, pueblo: -7, potencias: -8 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */

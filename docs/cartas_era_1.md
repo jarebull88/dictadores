@@ -263,10 +263,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
 
-**Carta:** «Cada vez se van más ricos. ¿Los dejamos escapar o les prohibimos salir?»
+**Carta:** «Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.»
 
 - **A. Que se vayan, sin el dinero** Pueblo +7 · Élite −7 · Potencias −4 · Crisis −1 · Bandera: `exodo_elite`
-- **B. Frontera cerrada** Ejército +6 · Élite +7 · Pueblo −7 · Potencias −8 · Bandera: `frontera_cerrada`
+- **B. Nadie sale sin permiso** Ejército +6 · Élite +7 · Pueblo −7 · Potencias −8 · Bandera: `frontera_cerrada`
 
 **Consecuencia futura de `exodo_elite`:** Faltan técnicos y gestores.
 

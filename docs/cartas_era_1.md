@@ -33,7 +33,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Economía  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «El tirano huyó con la reserva del banco nacional. No hay con qué pagar los sueldos de este mes.»
+**Carta:** «El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.»
 
 - **A. Impriman billetes** Pueblo +5 · Élite −4 · Potencias −4 · Bandera: `mercado_paralelo`
 - **B. Pidan un préstamo** Pueblo −5 · Élite +4 · Potencias +4 · Bandera: `deuda_externa`
@@ -235,7 +235,7 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 8; exige alguna de `purga_inicial`, `censura_previa`.
 
-**Carta:** «¿Y si creamos Comités de Vigilancia Revolucionaria para vigilar los barrios?»
+**Carta:** «Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.»
 
 - **A. La Revolución somos todos** Ejército +6 · Élite +3 · Pueblo −7 · Bandera: `comites_vigilancia`
 - **B. No necesitamos chivatos** Pueblo +7 · Ejército −6 · Élite −3 · Bandera: `policia_tradicional`

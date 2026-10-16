@@ -43,7 +43,7 @@ const CARTAS = [
   {
     id: "arcas_vacias", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Las arcas vacías", ilustracion: null,
     personaje: "Ministro de Economía",
-    texto: "El tirano huyó con la reserva del banco nacional. No hay con qué pagar los sueldos de este mes.",
+    texto: "El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.",
     izq: { accion: "Impriman billetes", efectos: { pueblo: 5, elite: -4, potencias: -4 }, banderas: ["base.mercado_paralelo"] },
     der: { accion: "Pidan un préstamo", efectos: { pueblo: -5, elite: 4, potencias: 4 }, banderas: ["base.deuda_externa"] }
   },
@@ -161,7 +161,7 @@ const CARTAS = [
   {
     id: "ojos_barrio", tipo: "sorteo", peso: 8, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "¿Y si creamos Comités de Vigilancia Revolucionaria para vigilar los barrios?",
+    texto: "Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.",
     izq: { accion: "La Revolución somos todos", efectos: { ejercito: 6, elite: 3, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
     der: { accion: "No necesitamos chivatos", efectos: { pueblo: 7, ejercito: -6, elite: -3 }, banderas: ["base.policia_tradicional"] }
   },

@@ -26,6 +26,7 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Y caben en dos líneas (≤30 caracteres), sin punto final.
 - **Sin remate, en ninguna era** (16 oct): la respuesta es todo lo que se lee.
 - Una decisión clara: el jugador tiene que entender qué está eligiendo. No sacrifiques la claridad por el ingenio (negar que existen unos misiles no deja claro que los retiras).
+- **Si habla un embajador, la respuesta va dirigida a él** («Se irán como nunca vinieron», «Tranquilo, los retiraremos»), no como una orden a tu gente.
 - Como **órdenes, instrucciones o resoluciones del Comandante**, no como explicaciones de lo que pasará ni descripciones de las consecuencias. Ejemplos: «Que se les asignen abogados», «No aceptamos injerencias», «Concedan los créditos», «Retiren los misiles», «Conviertan su emisora en estática».
 - La ironía va dentro de la propia decisión. En las opciones de humor negro se puede sugerir corrupción, juicios amañados, propaganda, represión o burocracia autoritaria **sin explicar el chiste**.
 - Nada genérico que sirviera para cualquier carta: cada opción responde al conflicto concreto.
@@ -33,7 +34,9 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - Las dos llevan humor, también la opción «sensata». Funciona muy bien el **doble sentido** («Nuestro misil es el Pueblo»: el Pueblo como arma y como rehén).
 
 ## Cómo se entregan las propuestas
-Solo la pregunta y las dos respuestas, listas para copiar y pegar:
+Al revisar una carta que ya existe, primero la **original** (pregunta y respuestas) y debajo la propuesta, para que Jorge compruebe que se mantiene el sentido. **No se resume tanto que se pierda lo que se pide** («La mano del norte» pide auditorías, controlar el país; reducirlo a «algún favor» lo desvirtúa).
+
+La propuesta, solo la pregunta y las dos respuestas, listas para copiar y pegar:
 
 ```
 Texto de la carta.

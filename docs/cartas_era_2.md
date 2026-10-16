@@ -35,10 +35,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Nuestro país exige la retirada inmediata de los misiles. De lo contrario, impondremos un bloqueo naval.»
+**Carta:** «Nuestros barcos rodearán su costa hasta que retire los misiles.»
 
-- **A. Mantener los misiles.** *Si cedemos hoy, mañana nos pedirán el palacio.* Ejército +8 · Potencias −9 · Pueblo −4 · Crisis +2 · Bandera: `embargo_en_marcha`
-- **B. Retirarlos.** *La Revolución también sabe cuándo hacer desaparecer una prueba.* Ejército −8 · Potencias +9 · Pueblo +4 · Crisis −1
+- **A. Que disfruten de la vista** Ejército +8 · Potencias −9 · Pueblo −4 · Crisis +2 · Bandera: `embargo_en_marcha`
+- **B. Se irán como nunca vinieron** Ejército −8 · Potencias +9 · Pueblo +4 · Crisis −1
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 

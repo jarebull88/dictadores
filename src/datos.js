@@ -208,9 +208,9 @@ const CARTAS = [
   {
     id: "ultimatum", era: 2, tipo: "cola", titulo: "El ultimátum", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país exige la retirada inmediata de los misiles. De lo contrario, impondremos un bloqueo naval.",
-    izq: { accion: "Mantener los misiles.", remate: "Si cedemos hoy, mañana nos pedirán el palacio.", efectos: { ejercito: 8, potencias: -9, pueblo: -4, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Retirarlos.", remate: "La Revolución también sabe cuándo hacer desaparecer una prueba.", efectos: { ejercito: -8, potencias: 9, pueblo: 4, crisis: -1 } }
+    texto: "Nuestros barcos rodearán su costa hasta que retire los misiles.",
+    izq: { accion: "Que disfruten de la vista", efectos: { ejercito: 8, potencias: -9, pueblo: -4, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
+    der: { accion: "Se irán como nunca vinieron", efectos: { ejercito: -8, potencias: 9, pueblo: 4, crisis: -1 } }
   },
 
   {

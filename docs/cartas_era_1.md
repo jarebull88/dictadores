@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
+Duración: entre 6 y 8 años. 24 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
 
 ### 1. La casa vacía
 
@@ -170,7 +170,17 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 - **A. Que todos aprendan lo mismo** Pueblo +5 · Élite −6 · Potencias −4
 - **B. Algunos son más iguales que otros** Pueblo −5 · Élite +6 · Potencias +4
 
-### 14. Las mil flores
+### 14. Los asesores
+
+**Personaje:** Embajador del bloque oriental  
+**Condición:** sorteo con peso 8; a partir del año 2 de la era.
+
+**Carta:** «Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.»
+
+- **A. Aprenderemos de los mejores** Potencias +7 · Ejército +4 · Élite −5
+- **B. Ya vamos bien sin ustedes** Potencias −7 · Ejército −4 · Élite +5
+
+### 15. Las mil flores
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
@@ -182,7 +192,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 
-### 15. Los oficiales de antes
+### 16. Los oficiales de antes
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -196,7 +206,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `purga_inicial`:** El Ministro del Interior pide más poder.
 
-### 16. El puerto parado
+### 17. El puerto parado
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8; a partir del año 3 de la era.
@@ -210,7 +220,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `huelga_reprimida`:** Malestar en las universidades.
 
-### 17. Los ojos del barrio
+### 18. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 8; exige alguna de `purga_inicial`, `censura_previa`.
@@ -224,7 +234,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `policia_tradicional`:** La oposición se organiza con más facilidad.
 
-### 18. El retrato
+### 19. El retrato
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 6; a partir del año 4 de la era.
@@ -238,7 +248,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `modestia_aparente`:** El Partido exige otros símbolos de lealtad.
 
-### 19. Los que se marchan
+### 20. Los que se marchan
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
@@ -252,7 +262,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
 
-### 20. La factura *(borrador)*
+### 21. La factura *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -264,7 +274,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 
-### 21. Las tiendas vacías *(borrador)*
+### 22. Las tiendas vacías *(borrador)*
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -276,7 +286,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
-### 22. La calle y los cuarteles *(borrador)*
+### 23. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -286,7 +296,7 @@ Duración: entre 6 y 8 años. 23 cartas. Los efectos están en la escala pequeñ
 - **A. Ascender oficiales** Ejército +12 · Élite −6 · Crisis +2
 - **B. Detener cabecillas** Pueblo −6 · Ejército +8 · Potencias −6
 
-### 23. El dinero se va *(borrador)*
+### 24. El dinero se va *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).

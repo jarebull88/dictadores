@@ -123,6 +123,13 @@ const CARTAS = [
     der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -5, elite: 6, potencias: 4 } }
   },
   {
+    id: "asesores", tipo: "sorteo", peso: 8, cond: { turnoMin: 2 }, titulo: "Los asesores", ilustracion: null,
+    personaje: "Embajador del bloque oriental",
+    texto: "Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.",
+    izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 7, ejercito: 4, elite: -5 } },
+    der: { accion: "Ya vamos bien sin ustedes", efectos: { potencias: -7, ejercito: -4, elite: 5 } }
+  },
+  {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "¿Y si dejamos que el Pueblo critique al gobierno libremente?",

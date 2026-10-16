@@ -15,4 +15,4 @@ Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército
 | Ministro de las Fuerzas Armadas | ejercito | 7 (2/2) | papel recortado | `assets/personajes/recortados/fuerzas-armadas.webp` |
 | Ministro de Comercio | elite | 7 (2/2) | papel recortado | `assets/personajes/recortados/comercio.webp` |
 | Ministra de Educación | elite | 7 (2/2) | papel recortado | `assets/personajes/recortados/educacion.webp` |
-| Embajador del bloque oriental | potencias | 5 (1/1) | papel recortado | `assets/personajes/recortados/embajador-oriental.webp` |
+| Embajador del bloque oriental | potencias | 6 (2/1) | papel recortado | `assets/personajes/recortados/embajador-oriental.webp` |

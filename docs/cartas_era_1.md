@@ -75,10 +75,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
 
-**Carta:** «Le ofrecemos ayuda económica y militar. A cambio queremos lealtad.»
+**Carta:** «Nuestro país le ofrece ayuda económica y militar. A cambio, solo pedimos su lealtad.»
 
-- **A. Trato hecho** Potencias +9 · Pueblo +5 · Élite −6 · Crisis +2 · Bandera: `alineado_bloque_oriental`
-- **B. No gracias** Élite +6 · Potencias −9 · Pueblo −5 · Crisis +1 · Bandera: `no_alineado`
+- **A. Lealtad a cambio de petróleo** Potencias +9 · Pueblo +5 · Élite −6 · Crisis +2 · Bandera: `alineado_bloque_oriental`
+- **B. La Revolución no tiene dueño** Élite +6 · Potencias −9 · Pueblo −5 · Crisis +1 · Bandera: `no_alineado`
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 

@@ -300,6 +300,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Estados: escenas libres e iconos a rotulador.** La carta de estado ya no es el icono ampliado: cada una lleva una escena de papel propia, y el icono, aparte, es un dibujo a rotulador como los de las fuerzas, en un solo color, carbón oscuro, para no confundirse con ellas. Hechos: Luna de miel, Censura, Vigilancia, Culto (nueve retratos en tendedero y marco grande, con la cara del dictador de la etapa en curso), Alineado y Embargo. Faltan Deuda, Frontera y Nacionalizaciones, que siguen con lo de antes.
 
+- **16 oct — Un color por icono de estado.** Los dibujos de los estados se generan en carbón y el recorte tiñe la tinta de un color oscuro propio (`COLOR_ESTADO` en `recortar.py`): Luna de miel magenta oscuro, Censura marrón óxido, Vigilancia verde azulado, Culto ocre dorado, Alineado azul pizarra, Embargo azul acero. Nunca rojo. En las casillas ya no se multiplican con el cartón.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

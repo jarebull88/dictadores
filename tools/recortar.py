@@ -223,9 +223,15 @@ def aligerar_fondos(carpeta):
 # Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
 # «principal» = quedarse solo con los trazos grandes (fuera garabatos sueltos de las esquinas).
 DIBUJO_AJUSTES = {"reverso": {"lado": 800}}   # el reverso de las cartas (14 oct) ocupa la carta entera: más resolución
+# Iconos de estado (16 oct): se dibujan en carbón y aquí se tiñe la tinta de un color oscuro propio de cada estado
+# (el tono de su cartulina, mucho más oscuro). Nunca rojo: el rojo es para las alertas.
+COLOR_ESTADO = {"luna": "#8E2A5E", "censura": "#6B3A1E", "vigilancia": "#1F5F5B", "culto": "#8A6417",
+                "alineado": "#3D4F7A", "embargo": "#2F4858"}
+for _id, _c in COLOR_ESTADO.items():
+    DIBUJO_AJUSTES[_id] = {"color": _c}
 
 
-def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None):
+def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, color=None):
     """Dibujo sobre papel blanco -> tinta con transparencia, para que parezca pintado en la cartulina.
     Se mide cuánto oscurece cada píxel respecto al papel (alfa) y se recupera el color de la tinta bajo esa alfa;
     así los trazos finos de bolígrafo quedan sólidos y el lápiz de color queda translúcido, como en el papel."""
@@ -243,7 +249,9 @@ def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None):
     keep = np.isin(lab, [i + 1 for i, s in enumerate(tam) if s > minimo])   # fuera las motas del papel (y los garabatos)
     alfa = np.where(keep, alfa, 0)
     tinta = 1 - (1 - ratio) / np.maximum(alfa, 0.04)[..., None]
-    rgba = np.dstack([np.clip(tinta, 0, 1) * 255, np.clip(alfa * 1.35, 0, 1) * 255]).astype(np.uint8)
+    if color:                                                          # tinta de un solo color: se tiñe toda igual
+        tinta = np.broadcast_to(np.array([int(color[i:i + 2], 16) for i in (1, 3, 5)]) / 255.0, tinta.shape)
+    rgba = np.dstack([np.clip(tinta, 0, 1) * 255, np.clip(alfa * (2.2 if color else 1.35), 0, 1) * 255]).astype(np.uint8)   # teñidos: trazo con más cuerpo
     im = Image.fromarray(rgba, "RGBA")
     im = im.crop(im.getbbox())
     esc = (lado or LADO_DIBUJO) / max(im.size)

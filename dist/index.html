@@ -1031,6 +1031,13 @@ const CARTAS = [
     der: { accion: "Juicio televisado y paredón", efectos: { potencias: -6, pueblo: -3, ejercito: 5 } }
   },
   {
+    id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van", ilustracion: null,
+    personaje: "Ministra de Educación",
+    texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
+    izq: { accion: "Menos bocas que alimentar", efectos: { potencias: 5, pueblo: -5 } },
+    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { potencias: -5, pueblo: 5 } }
+  },
+  {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",

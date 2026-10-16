@@ -324,6 +324,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — La pregunta no encoge en los móviles altos.** El hueco de la pregunta era de 4 líneas fijas, y un tercio de las cartas bajaban la letra hasta 15 px mientras la carta tenía cartulina de sobra arriba. Ahora, si la carta es más alta de lo que pide el personaje, el hueco crece a 5 o 6 líneas (el mismo en todas las cartas). En 390×844 y 430×932 ninguna carta baja de 19 px; en los móviles pequeños (360×640, 375×667) no hay sitio de sobra y siguen bajando cuando hace falta.
 
+- **16 oct — Respuestas más anchas en el panel.** El texto de la respuesta solo podía ocupar el 62 % del panel y las largas bajaban hasta 16 px con medio panel vacío. Ahora ocupa hasta el 88 %: en 390 px ninguna de las 202 respuestas baja de 21 px; en 360 px, 10 bajan un poco.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

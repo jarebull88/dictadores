@@ -476,7 +476,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
-.texto-respuesta strong, .texto-respuesta span { max-width: 62%; overflow-wrap: break-word; }
+.texto-respuesta strong, .texto-respuesta span { max-width: 88%; overflow-wrap: break-word; }   /* 16 oct: antes 62 %, y las respuestas largas bajaban a 16 px con medio panel vacío */
 .respuesta[data-dir="1"] .texto-respuesta { align-items: flex-start; text-align: left; }
 .respuesta[data-dir="-1"] .texto-respuesta { align-items: flex-end; text-align: right; }
 .texto-respuesta strong { display: block; font-weight: 700; font-size: 21px; line-height: 1.15; }

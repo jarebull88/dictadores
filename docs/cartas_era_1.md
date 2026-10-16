@@ -221,10 +221,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8; a partir del año 3 de la era.
 
-**Carta:** «Los estibadores están en huelga. Exigen más sueldo y autonomía sindical.»
+**Carta:** «El puerto está parado. Los estibadores exigen un sindicato que no dependa del Partido.»
 
-- **A. Sindicato concedido** Pueblo +10 · Élite −7 · Ejército −4 · Crisis +1 · Bandera: `sindicato_libre`
-- **B. Manden al ejército** Pueblo −10 · Élite +7 · Ejército +4 · Potencias −4 · Bandera: `huelga_reprimida`
+- **A. Que se organicen libremente** Pueblo +10 · Élite −7 · Ejército −4 · Crisis +1 · Bandera: `sindicato_libre`
+- **B. Hacer huelga es sabotaje** Pueblo −10 · Élite +7 · Ejército +4 · Potencias −4 · Bandera: `huelga_reprimida`
 
 **Consecuencia futura de `sindicato_libre`:** Los sindicatos libres quieren elegir a sus dirigentes sin el Partido.
 

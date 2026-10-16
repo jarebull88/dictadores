@@ -103,10 +103,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Ya sabemos quiénes nos critican. ¿Cómo procedemos?»
+**Carta:** «Ya sabemos quiénes nos critican. Sus vecinos han sido muy colaboradores.»
 
-- **A. Es su derecho** Pueblo +8 · Ejército −5 · Potencias +5
-- **B. Deténganlos** Pueblo −8 · Ejército +5 · Élite +4 · Potencias −5 · Bandera: `criticos_detenidos`
+- **A. Que critiquen con moderación** Pueblo +8 · Ejército −5 · Potencias +5
+- **B. A la cárcel por orden alfabético** Pueblo −8 · Ejército +5 · Élite +4 · Potencias −5 · Bandera: `criticos_detenidos`
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
 

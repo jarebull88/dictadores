@@ -144,8 +144,11 @@ def recortar_personaje(entrada, salida):
             alpha[y0:y1, x0:x1] = np.maximum(alpha[y0:y1, x0:x1], lleno)
         g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6)
     if entrada.stem in DESPILL_FUERTE:
-        zona = np.arange(H)[:, None] < H * 0.44                            # solo en la cabeza: la camisa tiene azules
-        alpha = np.where(zona, np.minimum(alpha, alfa_tono(a, 205, 13)), alpha)   # fuera la sombra verde azulada entre los rizos
+        fila = np.arange(H)[:, None]
+        zona = fila < H * 0.44                                             # la cabeza: fuera la sombra verde azulada de los rizos
+        hombros = (fila >= H * 0.44) & (fila < H * 0.62)                   # cuello y hombros: solo verdes (la camisa tiene azules)
+        alpha = np.where(zona, np.minimum(alpha, alfa_tono(a, 205, 13)), alpha)
+        alpha = np.where(hombros, np.minimum(alpha, alfa_tono(a, 170, 13)), alpha)
         hueco = ndi.binary_fill_holes(alpha > 0.5) & (alpha <= 0.5) & zona  # y se tapan los agujeritos que deja dentro del pelo
         lab, n = ndi.label(hueco)
         tam = ndi.sum(hueco, lab, range(1, n + 1))

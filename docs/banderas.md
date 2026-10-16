@@ -6,6 +6,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 
 | Bandera | La concede | La exigen | Consecuencia (era) |
 | --- | --- | --- | --- |
+| `accidente_cienfuegos` | El general murmura (B) | — | El Pueblo no olvida el accidente de Cienfuegos. (era 3) |
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | Los nuevos vecinos | El aliado exige concesiones y armamento. (era 2) |
 | `atentado_investigado` | El atentado (B) | — | — |
 | `capital_rebautizada` | La ciudad con su nombre (A) | — | — |
@@ -27,7 +28,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
 | `frontera_cerrada` | Los que se marchan (B) | Intentos de fuga | Intentos de fuga. (era 2) |
 | `general_apartado` | El general querido (B) | Cienfuegos vuelve | Cienfuegos regresa como candidato de los descontentos. (era 4) |
-| `general_popular` | El general querido (A) | El general murmura | Cienfuegos conspira si el Ejército baja de 35. (era 2) |
+| `general_popular` | El general querido (A) | El general murmura | Cienfuegos conspira si el Ejército baja de 40. (era 2) |
 | `huelga_reprimida` | El puerto parado (B) | Panfletos en la universidad; Las aulas vacías | Malestar en las universidades. (era 2) |
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable; Dos ejércitos | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |

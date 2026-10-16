@@ -52,7 +52,7 @@ Duración: entre 6 y 8 años. 21 cartas. Los efectos están en la escala pequeñ
 - **A. Denle el Estado Mayor** Ejército +9 · Élite −4 · Bandera: `general_popular`
 - **B. Embajador donde haga frío** Ejército −9 · Élite +4 · Bandera: `general_apartado`
 
-**Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 35.
+**Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 40.
 
 **Consecuencia futura de `general_apartado`:** Cienfuegos regresa como candidato de los descontentos.
 

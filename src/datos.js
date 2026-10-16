@@ -241,8 +241,8 @@ const CARTAS = [
     id: "general_murmura", era: 2, tipo: "sorteo", peso: 18, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.",
-    izq: { accion: "Asciendan a sus invitados", efectos: { ejercito: 9, elite: -4, crisis: 1 } },
-    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -9, pueblo: -5, potencias: -4 } }
+    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: 9, elite: -5 } },
+    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -9, pueblo: -5, potencias: -4, elite: 5 }, banderas: ["base.accidente_cienfuegos"] }
   },
 
   {
@@ -802,11 +802,12 @@ const LINEAS_BARRA = {
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                        bajo: "En el exterior nadie te quiere, salvo quien te teme." }
 };
 
-const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.deuda_externa": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.misiles_instalados": 3, "base.misiles_rechazados": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.deuda_externa": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.misiles_instalados": 3, "base.misiles_rechazados": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 3};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
-  "base.general_popular": "Cienfuegos conspira si el Ejército baja de 35.",
+  "base.general_popular": "Cienfuegos conspira si el Ejército baja de 40.",
+  "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Cienfuegos.",
   "base.general_apartado": "Cienfuegos regresa como candidato de los descontentos.",
   "base.reforma_agraria": "Escasez de alimentos dos años después.",
   "base.prensa_libre": "Un reportaje destapa un escándalo.",

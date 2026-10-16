@@ -81,8 +81,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 
 **Carta:** «Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.»
 
-- **A. Asciendan a sus invitados** Ejército +9 · Élite −4 · Crisis +1
-- **B. Que tenga un accidente heroico** Ejército −9 · Pueblo −5 · Potencias −4
+- **A. Pregúntenle por sus hijos** Ejército +9 · Élite −5
+- **B. Que tenga un accidente heroico** Ejército −9 · Pueblo −5 · Potencias −4 · Élite +5 · Bandera: `accidente_cienfuegos`
+
+**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Cienfuegos.
 
 ### 8. El hambre
 

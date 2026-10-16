@@ -34,7 +34,9 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
   assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
   assert.equal(j.$("fin-titulo").textContent, "Extracción nocturna");
   assert.match(j.$("fin-texto").textContent, /^El ejército llegó al mínimo\. /);
-  assert.ok(j.d.querySelector("#carta-fin .titulo-caida"), "la causa va en una carta");
+  // 16 oct: con escena, la causa va en la cinta de carrocero de la carta; sin escena, como título sobre el cartón
+  const enCarta = j.d.querySelector("#carta-fin .titulo-caida, #carta-fin .etiqueta-boli");
+  assert.ok(enCarta && enCarta.textContent === "Extracción nocturna", "la causa va en una carta");
 });
 
 test("al pasar de era sale «Sigues en el poder» y al sobrevivir a la última, «¡Has ganado!»", () => {

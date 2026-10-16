@@ -14,10 +14,11 @@ Pautas de Jorge para escribir preguntas y respuestas (desde el 16 oct, empezando
 - La pregunta va **implícita**: se presenta la situación, la exigencia o el problema de forma natural y las opciones responden a ella. No se termina por sistema con «¿Qué decide?» o «¿Aceptamos?».
 - **Debe dejar claro entre qué fuerzas se elige** (a quién vas a mimar y a quién a disgustar), para que la respuesta tenga sentido para el jugador.
 - Respeta a quien habla: el **embajador** habla en nombre de su país (primera persona) y plantea sus exigencias o intereses; el **ministro** habla de asuntos internos, y quien decide es el Comandante.
-- Concisa y con personalidad (≤150 caracteres; sin «Comandante,» delante en las eras 1 y 2).
+- Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). Sin «Comandante,» delante en las eras 1 y 2.
 
 ## Las respuestas A y B
-- **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Y caben en dos líneas (≤30 caracteres), sin remate ni punto final.
+- **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Y caben en dos líneas (≤30 caracteres), sin punto final.
+- **Sin remate, en ninguna era** (16 oct): la respuesta es todo lo que se lee.
 - Una decisión clara: el jugador tiene que entender qué está eligiendo. No sacrifiques la claridad por el ingenio (negar que existen unos misiles no deja claro que los retiras).
 - Como **órdenes, instrucciones o resoluciones del Comandante**, no como explicaciones de lo que pasará ni descripciones de las consecuencias. Ejemplos: «Que se les asignen abogados», «No aceptamos injerencias», «Concedan los créditos», «Retiren los misiles», «Conviertan su emisora en estática».
 - La ironía va dentro de la propia decisión. En las opciones de humor negro se puede sugerir corrupción, juicios amañados, propaganda, represión o burocracia autoritaria **sin explicar el chiste**.

@@ -436,6 +436,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .ficha-foto .ojos-foto { fill: #161618; }
 .ficha-nombre { font-family: var(--fuente-mano); font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
 .ficha-cargo { font-size: var(--ficha-px, 15px); font-weight: 700; margin-bottom: 4px; }
+.ficha-nota b { font-weight: 700; }
 .ficha-historia { margin: 0; font-size: var(--ficha-px, 15px); line-height: 1.4; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en

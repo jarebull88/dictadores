@@ -61,16 +61,22 @@ def alfa_croma(a, isla_min):
 # Croma por tono (16 oct): algunos fondos salen verde azulado y en degradado (oscuro abajo), y «cuánto domina el verde»
 # no basta. Aquí también se quita lo que tenga tono verde-turquesa y bastante saturación. Solo en estos personajes.
 CROMA_TONO = {"economia", "educacion"}
+# Despill fuerte (16 oct): el verde que queda se lleva del todo a gris. Comercio: las sombras verdes entre los rizos
+# del pelo pasan a sombra gris oscura, que se lee como pelo.
+DESPILL_FUERTE = {"comercio"}
+# Zonas que el croma por tono no debe agujerear (x0, y0, x1, y1 en coordenadas del recorte de 900 px): dentro se rellenan
+# los huecos de la silueta. Economía: los brillos de los frijoles del cucurucho, que reflejan el verde.
+PROTEGER = {"economia": [(540, 845, 665, 960)]}
 
 
-def alfa_tono(a):
-    """Alfa (0-1): 0 en lo que tiene tono verde-turquesa (95°-175°) y saturación alta."""
+def alfa_tono(a, tono_max=175, sat_min=0.30):
+    """Alfa (0-1): 0 en lo que tiene tono verde-turquesa (95°-tono_max) y saturación alta."""
     mx, mn = a.max(-1), a.min(-1)
     sat = (mx - mn) / np.maximum(mx, 1)
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
     tono = np.degrees(np.arctan2(np.sqrt(3) * (g - b), 2 * r - g - b)) % 360
-    en_tono = np.clip(1 - np.maximum(95 - tono, tono - 175) / 12, 0, 1)
-    fondo = en_tono * np.clip((sat - 0.30) / 0.15, 0, 1)
+    en_tono = np.clip(1 - np.maximum(95 - tono, tono - tono_max) / 12, 0, 1)
+    fondo = en_tono * np.clip((sat - sat_min) / 0.15, 0, 1)
     return 1 - fondo
 
 
@@ -129,7 +135,20 @@ def recortar_personaje(entrada, salida):
         tam = ndi.sum(fg, lab, range(1, n + 1))
         keep = np.isin(lab, [i + 1 for i, t in enumerate(tam) if t > 8000])
         alpha = np.where(ndi.binary_dilation(keep, iterations=3), alpha, 0)
+        k = W / ANCHO_PERSONAJE
+        for x0, y0, x1, y1 in PROTEGER.get(entrada.stem, []):
+            y0, y1, x0, x1 = int(y0 * k), int(y1 * k), int(x0 * k), int(x1 * k)
+            lleno = ndi.binary_fill_holes(alpha[y0:y1, x0:x1] > 0.5)
+            alpha[y0:y1, x0:x1] = np.maximum(alpha[y0:y1, x0:x1], lleno)
         g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6)
+    if entrada.stem in DESPILL_FUERTE:
+        zona = np.arange(H)[:, None] < H * 0.44                            # solo en la cabeza: la camisa tiene azules
+        alpha = np.where(zona, np.minimum(alpha, alfa_tono(a, 205, 0.22)), alpha)   # fuera la sombra verde azulada entre los rizos
+        hueco = ndi.binary_fill_holes(alpha > 0.5) & (alpha <= 0.5) & zona  # y se tapan los agujeritos que deja dentro del pelo
+        lab, n = ndi.label(hueco)
+        tam = ndi.sum(hueco, lab, range(1, n + 1))
+        alpha = np.where(np.isin(lab, [i + 1 for i, t in enumerate(tam) if t < 60]), 1, alpha)
+        g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]))
     rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
     out = Image.fromarray(rgba).resize((ANCHO_PERSONAJE, int(H * ANCHO_PERSONAJE / W)), Image.LANCZOS)
     out = texturizar_piel(out, entrada.stem)

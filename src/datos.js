@@ -746,30 +746,41 @@ const CARTAS = [
 ];
 
 /* Ficha de cada portavoz: el reverso de la carta (al tocarla, se voltea). Nombre propio, cargo que se muestra e historia breve,
-   escrita como un informe de la inteligencia del régimen que vigila a su propio gobierno (16 oct).
+   escrita como un informe de la inteligencia del régimen que vigila a su propio gobierno (16 oct): el retrato
+   y, aparte, la «Nota:» con la observación. Los expedientes irán evolucionando por etapas.
    16 oct: personajes por etapas. La clave es el cargo interno (une cada carta con su personaje y no cambia);
    «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
 const FICHAS = {
   "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
-    historia: "Vicepresidente del tirano y de los dos gobiernos anteriores, recibió a la columna con café y con las llaves de los ministerios. Sus expedientes de los tres regímenes han desaparecido de los archivos." },
+    historia: "Vicepresidente del tirano y de los dos gobiernos anteriores, recibió a la columna con café y con las llaves de los ministerios.",
+    nota: "Sus expedientes de los tres regímenes han desaparecido de los archivos." },
   "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Responsable de víveres",
-    historia: "Bodeguero que fió víveres a la columna y la siguió al monte para cobrar una deuda que sigue pendiente. Sus cuentas no cuadran nunca y este servicio aún no ha averiguado si es por torpeza." },
+    historia: "Bodeguero que fió víveres a la columna y la siguió al monte para cobrar una deuda que sigue pendiente.",
+    nota: "Sus cuentas no cuadran nunca y este servicio aún no ha averiguado si es por torpeza." },
   "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta", cargo: "Abastecedor por mar",
-    historia: "Contrabandista que subía armas a la columna en una lancha prestada y en el mismo viaje vendía ron al cuartel. Se desconoce a quién pertenece hoy la lancha y a quién pertenece él." },
+    historia: "Contrabandista que subía armas a la columna en una lancha prestada y en el mismo viaje vendía ron al cuartel.",
+    nota: "Se desconoce a quién pertenece hoy la lancha y a quién pertenece él." },
   "Ministra de Educación": { nombre: "Hortensia Lamadrid", cargo: "Maestra de la columna",
-    historia: "Maestra rural de diecinueve años que enseñó a leer a la tropa y conoce de memoria la letra de cada guerrillero. Corrige con regla todo lo que cae en sus manos, incluidos los informes de este servicio." },
+    historia: "Maestra rural de diecinueve años que enseñó a leer a la tropa y conoce de memoria la letra de cada guerrillero.",
+    nota: "Corrige con regla todo lo que cae en sus manos, incluidos los informes de este servicio." },
   "Ministro de Trabajo": { nombre: "Eusebio Palmares", cargo: "Delegado del sindicato cañero",
-    historia: "Cortador de caña y cabecilla de la huelga de la zafra que arrastra a medio pueblo cada vez que habla. Se recomienda vigilar su popularidad y anotar el destino de los plátanos que lleva en el morral." },
+    historia: "Cortador de caña y cabecilla de la huelga de la zafra que arrastra a medio pueblo cada vez que habla.",
+    nota: "Se recomienda vigilar su popularidad y anotar el destino de los plátanos que lleva en el morral." },
   "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Locutora de Radio Machete",
-    historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas. Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
+    historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas.",
+    nota: "Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
   "Ministro de las Fuerzas Armadas": { nombre: "Domingo Cuesta", cargo: "Capitán de columna",
-    historia: "Campesino de la sierra que aprendió a mandar a tiros y al que la tropa seguiría a cualquier parte, lo que conviene tener presente. Hasta la fecha ha rechazado todas las medallas que se le han ofrecido." },
+    historia: "Campesino de la sierra que aprendió a mandar a tiros y al que la tropa seguiría a cualquier parte, lo que conviene tener presente.",
+    nota: "Hasta la fecha ha rechazado todas las medallas que se le han ofrecido." },
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
-    historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero. Este informe lo ha redactado él mismo." },
+    historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",
+    nota: "Este informe lo ha redactado él mismo." },
   "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Enviado especial (misión temporal)",
-    historia: "Enviado del bloque oriental para una misión de seis meses. Ha deshecho la maleta a medias y estudia el diccionario con interés, sobre todo las palabras que oye en las reuniones del Consejo." },
+    historia: "Enviado del bloque oriental para una misión de seis meses.",
+    nota: "Ha deshecho la maleta a medias y estudia el diccionario con interés, sobre todo las palabras que oye en las reuniones del Consejo." },
   "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador de la potencia del norte",
-    historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve. Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }
+    historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve.",
+    nota: "Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }
 };
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 

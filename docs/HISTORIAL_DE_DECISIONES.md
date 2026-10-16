@@ -296,6 +296,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Ficha del personaje rediseñada.** Arriba, una foto pequeña en blanco y negro de su etapa 1 (se mantendrá en todas las etapas para recordar quién es); el nombre, a rotulador del color de su grupo (verde el mando militar, morado el gabinete, naranja los embajadores); el cargo y el informe. Se quitan «Expediente» con su recuadro de puntos, el divisor y «Toca la carta para volver», y se suaviza la textura del papel para que se lea mejor. Las historias se reescriben como **informes de la inteligencia del régimen vigilando a su propio gobierno** (Sarria: «Este informe lo ha redactado él mismo»).
 
+- **16 oct — «Nota:» en los expedientes y retoques de recorte.** Cada expediente separa el retrato de la observación, que va aparte tras «Nota:» (`nota` en `FICHAS`); irán evolucionando por etapas. Neto: fuera las sombras verdes del croma entre los rizos (solo en la cabeza; la camisa tiene azules). Rigoberto: los brillos de los frijoles del cucurucho ya no se recortan.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

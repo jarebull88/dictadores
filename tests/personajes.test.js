@@ -29,7 +29,7 @@ test("cada portavoz tiene ficha (nombre e historia) para el reverso de la carta"
   const fichas = j.w.eval("FICHAS"), cargos = new Set(j.w.eval("CARTAS.map(c => c.personaje)"));
   for (const cargo of cargos) {
     assert.ok(fichas[cargo] && fichas[cargo].nombre && fichas[cargo].historia, `«${cargo}» no tiene ficha`);
-    assert.ok(fichas[cargo].historia.length <= 220, `la historia de «${cargo}» es demasiado larga`);
+    assert.ok((fichas[cargo].historia + " " + (fichas[cargo].nota || "")).length <= 220, `la historia de «${cargo}» es demasiado larga`);
   }
 });
 

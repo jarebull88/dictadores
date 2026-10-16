@@ -322,6 +322,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Textos del informe y del tutorial, y la cara de Hortensia.** El informe de la era habla del Comandante en tercera persona (también las frases de cada fuerza) y lo que te espera se cuenta sin mecánica del juego (`PREVISION`, una frase por consecuencia; las de antes nombraban la crisis o umbrales como «si el Ejército baja de 40»). En el tutorial, al girar la carta de Cuesta, arriba dice: «Cada vez que cambie de etapa, inteligencia le preparará su propio expediente. Solo tendrá que girar su carta.»; la cinta vuelve a su texto corto. Pantalla del nombre: «Los libros de historia necesitan saber su nombre.» Carta de las escuelas: «…sean públicas.» (sin «y gratuitas»). Hortensia: la foto traía la barbilla en sombra; el recorte iguala la piel de la cara (`IGUALAR_CARA`).
 
+- **16 oct — La pregunta no encoge en los móviles altos.** El hueco de la pregunta era de 4 líneas fijas, y un tercio de las cartas bajaban la letra hasta 15 px mientras la carta tenía cartulina de sobra arriba. Ahora, si la carta es más alta de lo que pide el personaje, el hueco crece a 5 o 6 líneas (el mismo en todas las cartas). En 390×844 y 430×932 ninguna carta baja de 19 px; en los móviles pequeños (360×640, 375×667) no hay sitio de sobra y siguen bajando cuando hace falta.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

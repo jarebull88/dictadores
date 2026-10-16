@@ -248,7 +248,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   flex: none; height: var(--alto-mensaje); margin-top: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center; text-align: center;   /* centrada en vertical (2 o 4 líneas, mismo aire) y en horizontal */
   font-size: 19px; line-height: 1.28; font-weight: 400; padding: 2px 2px 0;
-  --alto-mensaje: calc(4 * 19px * 1.28 + 2px);   /* 4 líneas a 19 px; si no cabe, ajustarMensaje() baja la letra */
+  --alto-mensaje: calc(var(--lineas-mensaje, 4) * 19px * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
 }
 
 /* Escenario: la carta ocupa todo el alto libre (el que dejan el mensaje y la barra inferior) y el ancho de la ilustración, con el mazo detrás.
@@ -554,7 +554,7 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 .esquela ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15px; line-height: 1.4; }
 
 @media (max-height: 760px) {
-  .mensaje { font-size: 17px; --alto-mensaje: calc(4 * 17px * 1.28 + 2px); }
+  .mensaje { font-size: 17px; --alto-mensaje: calc(var(--lineas-mensaje, 4) * 17px * 1.28 + 2px); }
 }
 @media (max-height: 640px) {
   .par .icono-fuerza { height: 36px; }

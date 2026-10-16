@@ -268,7 +268,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   flex: none; height: var(--alto-mensaje); margin-top: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center; text-align: center;   /* centrada en vertical (2 o 4 líneas, mismo aire) y en horizontal */
   font-size: 19px; line-height: 1.28; font-weight: 400; padding: 2px 2px 0;
-  --alto-mensaje: calc(4 * 19px * 1.28 + 2px);   /* 4 líneas a 19 px; si no cabe, ajustarMensaje() baja la letra */
+  --alto-mensaje: calc(var(--lineas-mensaje, 4) * 19px * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
 }
 
 /* Escenario: la carta ocupa todo el alto libre (el que dejan el mensaje y la barra inferior) y el ancho de la ilustración, con el mazo detrás.
@@ -574,7 +574,7 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 .esquela ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15px; line-height: 1.4; }
 
 @media (max-height: 760px) {
-  .mensaje { font-size: 17px; --alto-mensaje: calc(4 * 17px * 1.28 + 2px); }
+  .mensaje { font-size: 17px; --alto-mensaje: calc(var(--lineas-mensaje, 4) * 17px * 1.28 + 2px); }
 }
 @media (max-height: 640px) {
   .par .icono-fuerza { height: 36px; }
@@ -2242,6 +2242,13 @@ function medirCartaJuego() {
   const oculta = g.classList.contains("hidden"), cartaOculta = c.classList.contains("hidden");
   if (oculta) { g.classList.remove("hidden"); g.style.position = "absolute"; g.style.inset = "0"; g.style.visibility = "hidden"; }
   c.classList.remove("hidden");
+  /* 16 oct: si la carta tiene más alto del que pide el personaje (móviles altos: manda el ancho), el hueco de la pregunta
+     crece a 5 o 6 líneas para que los textos largos no encojan la letra. Igual en todas las cartas, para que no salten. */
+  const raiz = document.documentElement.style;
+  raiz.setProperty("--lineas-mensaje", "4");
+  const linea = parseFloat(getComputedStyle($("mensaje")).fontSize) * 1.28 || 24;
+  const sobra = c.offsetHeight - c.offsetWidth * 1.32;              // 1,32 ≈ alto/ancho que necesita la ilustración con su marco
+  if (sobra > 0) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
   if (cartaOculta) c.classList.add("hidden");

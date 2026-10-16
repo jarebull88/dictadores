@@ -412,6 +412,13 @@ function medirCartaJuego() {
   const oculta = g.classList.contains("hidden"), cartaOculta = c.classList.contains("hidden");
   if (oculta) { g.classList.remove("hidden"); g.style.position = "absolute"; g.style.inset = "0"; g.style.visibility = "hidden"; }
   c.classList.remove("hidden");
+  /* 16 oct: si la carta tiene más alto del que pide el personaje (móviles altos: manda el ancho), el hueco de la pregunta
+     crece a 5 o 6 líneas para que los textos largos no encojan la letra. Igual en todas las cartas, para que no salten. */
+  const raiz = document.documentElement.style;
+  raiz.setProperty("--lineas-mensaje", "4");
+  const linea = parseFloat(getComputedStyle($("mensaje")).fontSize) * 1.28 || 24;
+  const sobra = c.offsetHeight - c.offsetWidth * 1.32;              // 1,32 ≈ alto/ancho que necesita la ilustración con su marco
+  if (sobra > 0) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
   if (cartaOculta) c.classList.add("hidden");

@@ -17,7 +17,7 @@ const SIM = `
     }
   };`;
 
-test("jugando al azar, la era 1 se supera entre el 15 % y el 45 % de las veces y nunca falta carta", () => {
+test("jugando al azar, la era 1 se supera entre el 2 % y el 15 % de las veces y nunca falta carta", () => {
   const j = cargar(); j.w.eval(SIM);
   const N = 3000; let supera = 0, nulos = 0, errores = 0;
   for (let i = 0; i < N; i++) {
@@ -28,5 +28,5 @@ test("jugando al azar, la era 1 se supera entre el 15 % y el 45 % de las veces y
   const p = supera / N;
   assert.equal(errores, 0);
   assert.equal(nulos, 0, "hubo huecos sin carta");
-  assert.ok(p > 0.15 && p < 0.45, `supervivencia a la era 1 al azar: ${(p * 100).toFixed(0)} % (esperado 15–45 %)`);
+  assert.ok(p > 0.02 && p < 0.15, `supervivencia a la era 1 al azar: ${(p * 100).toFixed(0)} % (esperado 2–15 %; 16 oct: era 1 ×1.25, ~6 %)`);
 });

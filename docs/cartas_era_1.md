@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
+Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.25.
 
 ### 1. La casa vacía
 
@@ -273,7 +273,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 23. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 8; exige alguna de `purga_inicial`, `censura_previa`.
+**Condición:** sorteo con peso 14; exige alguna de `purga_inicial`, `censura_previa`.
 
 **Carta:** «Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.»
 
@@ -301,7 +301,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 25. Los que se marchan
 
 **Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 10; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
+**Condición:** sorteo con peso 14; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
 
 **Carta:** «Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.»
 
@@ -385,7 +385,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 32. El general murmura
 
 **Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** sorteo con peso 8; exige `general_popular`; solo si Ejército está en 28 o menos.
+**Condición:** sorteo con peso 14; exige `general_popular`; solo si Ejército está en 40 o menos.
 
 **Carta:** «Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.»
 
@@ -397,7 +397,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 33. Las garantías
 
 **Personaje:** Ministro de Comercio  
-**Condición:** sorteo con peso 8; exige `negocio_refinerias`.
+**Condición:** sorteo con peso 14; exige `negocio_refinerias`.
 
 **Carta:** «Las empresas extranjeras exigen garantías: no más nacionalizaciones y sacar sus beneficios del país.»
 
@@ -407,7 +407,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 34. Estudiantes en la calle
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 8; exige `elecciones_aplazadas`.
+**Condición:** sorteo con peso 14; exige `elecciones_aplazadas`.
 
 **Carta:** «Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.»
 
@@ -419,7 +419,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 35. La marcha de los eléctricos
 
 **Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 8; exige `sindicato_libre`.
+**Condición:** sorteo con peso 14; exige `sindicato_libre`.
 
 **Carta:** «Los trabajadores eléctricos marchan hacia el palacio. Exigen elegir a sus dirigentes sin el Partido.»
 
@@ -429,7 +429,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 36. Embargo total
 
 **Personaje:** Ministro de Comercio  
-**Condición:** sorteo con peso 8; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.
+**Condición:** sorteo con peso 14; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.
 
 **Carta:** «El embargo ya es total: no entran comida, medicinas ni repuestos.»
 

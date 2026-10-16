@@ -16,7 +16,7 @@ const BARRAS = [
   { id: "potencias", nombre: "Potencias" }
 ];
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
-  { nombre: "La Revolución", min: 8, max: 10 },   // 16 oct: más larga (antes 6-8), al azar se pasaba demasiado fácil para Jorge
+  { nombre: "La Revolución", min: 8, max: 10, factor: 1.25 },   // 16 oct: más larga (antes 6-8) y más dura (×1.25): al azar se pasaba demasiado fácil para Jorge
   { nombre: "La Purga", min: 6, max: 8, factor: 0.7 },
   { nombre: "El Culto", min: 6, max: 8, factor: 0.75 },
   { nombre: "La Supervivencia", min: 6, max: 8, factor: 0.8 }
@@ -187,7 +187,7 @@ const CARTAS = [
     der: { accion: "Hacer huelga es sabotaje", efectos: { pueblo: -10, elite: 7, ejercito: 4, potencias: -4 }, banderas: ["base.huelga_reprimida"] }
   },
   {
-    id: "ojos_barrio", tipo: "sorteo", peso: 8, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio", ilustracion: null,
+    id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.",
     izq: { accion: "La Revolución somos todos", efectos: { ejercito: 6, elite: 3, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
@@ -201,7 +201,7 @@ const CARTAS = [
     der: { accion: "No necesito estatuas", efectos: { pueblo: -1, potencias: 2, elite: -6, ejercito: -4 }, banderas: ["base.modestia_aparente"] }
   },
   {
-    id: "marchan", tipo: "sorteo", peso: 10, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan", ilustracion: null,
+    id: "marchan", tipo: "sorteo", peso: 14, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.",
     izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, elite: -7, potencias: -4, crisis: -1 }, banderas: ["base.exodo_elite"] },
@@ -294,7 +294,7 @@ const CARTAS = [
   },
 
   {
-    id: "general_murmura", tipo: "sorteo", peso: 8, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 28 } }, titulo: "El general murmura", ilustracion: null,
+    id: "general_murmura", tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.",
     izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: 6, elite: -4 } },
@@ -318,7 +318,7 @@ const CARTAS = [
   },
 
   {
-    id: "garantias", tipo: "sorteo", peso: 8, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías", ilustracion: null,
+    id: "garantias", tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Las empresas extranjeras exigen garantías: no más nacionalizaciones y sacar sus beneficios del país.",
     izq: { accion: "Palabra de revolucionario", efectos: { potencias: 6, elite: 4, pueblo: -5, crisis: -1 } },
@@ -334,7 +334,7 @@ const CARTAS = [
   },
 
   {
-    id: "estudiantes_calle", tipo: "sorteo", peso: 8, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle", ilustracion: null,
+    id: "estudiantes_calle", tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
     izq: { accion: "Habrá elecciones, universitarias", efectos: { pueblo: 5, ejercito: -4, elite: -1 } },
@@ -358,7 +358,7 @@ const CARTAS = [
   },
 
   {
-    id: "huelgas_crisis", tipo: "sorteo", peso: 8, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos", ilustracion: null,
+    id: "huelgas_crisis", tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Los trabajadores eléctricos marchan hacia el palacio. Exigen elegir a sus dirigentes sin el Partido.",
     izq: { accion: "La Revolución respeta sus votos", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
@@ -406,7 +406,7 @@ const CARTAS = [
   },
 
   {
-    id: "embargo_total", tipo: "sorteo", peso: 8, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total", ilustracion: null,
+    id: "embargo_total", tipo: "sorteo", peso: 14, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran comida, medicinas ni repuestos.",
     izq: { accion: "Cartilla de racionamiento", efectos: { pueblo: -4, elite: -1, crisis: -1 } },

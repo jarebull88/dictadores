@@ -361,3 +361,9 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Era 1 revisada entera** con Jorge (textos), siguiendo la guía de redacción y la cronología: preguntas sin pregunta explícita y de ≤100 caracteres, respuestas como órdenes. Cambios con base histórica: la huelga del puerto pasa a ser **la marcha de los eléctricos** (1960); «¿Elecciones para qué?» en los estudiantes; los periódicos acaban con «Nacionalicen la imprenta»; la crisis de la factura **congela los precios por decreto** en vez de subirlos. También revisadas las cartas de crisis y coalición.
 - **16 oct — Cuatro cartas nuevas en la era 1** (de la revisión histórica): «La bahía» (ancla, cartas 5-7: los prisioneros de la invasión, «Cámbienlos por compotas» o «Juicio televisado y paredón»), «Los niños que se van», «La reforma urbana» y «Las milicias» (peso 6). La era 1 sigue en el 17 % de supervivencia al azar.
+
+## 16 oct — Equilibrio de la era 1 (con las cartas nuevas)
+- Antes: al azar se superaba el 17 %, pero un jugador que acierta 4 de cada 5 («humano», nuevo en `npm run simular`) la superaba el 80 % y el omnisciente el 98 %. Demasiado fácil.
+- **La era 1 pasa a ×1.25** (`factor` en `ERAS`). Las crisis y coaliciones, que salen en todas las eras, ya no usan el factor de la era 1 (antes lo heredaban sin querer). Las eras 2-4 no se tocan.
+- **Pesos:** las cartas de consecuencia de la era 1 que casi nunca salían (las garantías, los que marchan, los ojos del barrio, los estudiantes en la calle, el embargo total, las huelgas, el general murmura) suben a peso 14, como las de las otras eras: si tomas la decisión, la consecuencia llega. «El general murmura» salta con el Ejército por debajo de 40 (antes 28), como dice su aviso.
+- Resultado (5000 partidas): era 1 al azar ~6 %, humano ~55 %, omnisciente ~80 %; las caídas se reparten entre las cuatro fuerzas. La prueba de dificultad pasa a exigir 2–15 % al azar.

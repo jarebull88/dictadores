@@ -102,13 +102,14 @@ const RESUMEN = {
    Los efectos de las cartas se escriben en una escala pequeña (±4 a ±12) y se multiplican al cargar.
    Cada fuerza tiene su propio factor porque no se toca con la misma frecuencia (el Pueblo aparece en casi
    todas las cartas y el Ejército en pocas). Con estos valores, jugando al azar se sobrevive a la era 1
-   alrededor del 28 % de las veces (jugar siempre hacia el mismo lado es lo mismo que jugar al azar, porque los
+   alrededor del 6 % de las veces (16 oct: era 1 ×1.25) (jugar siempre hacia el mismo lado es lo mismo que jugar al azar, porque los
    lados se mezclan), y las caídas se reparten entre las cuatro fuerzas, por arriba y por abajo. */
 const FACTOR_EFECTOS = { pueblo: 2.2, ejercito: 3.5, elite: 2.7, potencias: 2.5 };
 const FACTOR_DERIVA = 2;
 CARTAS.forEach(c => ["izq", "der"].forEach(l => {
   const e = c[l].efectos;
-  const fe = ERAS[(c.era || 1) - 1].factor || 1;           // cada era puede ajustar su propia dureza
+  const comun = c.tipo === "crisis" || c.tipo === "coalicion";   // crisis y coaliciones salen en todas las eras: sin factor de era
+  const fe = comun ? 1 : ERAS[(c.era || 1) - 1].factor || 1;     // cada era puede ajustar su propia dureza
   for (const k in e) if (k !== "crisis") e[k] = Math.round(e[k] * FACTOR_EFECTOS[k] * fe);
 }));
 for (const id in ESTADOS) {

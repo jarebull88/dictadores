@@ -923,7 +923,7 @@ function mostrarCartaEstado() {
 /* Escena de la carta de estado (collage de papel alrededor de su icono). Los marcos vacíos llevan la cara del
    dictador de la etapa en curso; la máscara de huecos (papel crema visible) la recorta donde algo tapa el marco. */
 const dictadorDeEra = era => DICTADOR_ERA[era] || "dictador-joven";
-function svgEscena(id) {
+function svgEscena(id, etiqueta) {
   const e = typeof ESCENAS !== "undefined" && ESCENAS[id], img = IMG["icono_" + id + "-escena"];
   if (!e || !img) return "";
   let caras = "";
@@ -933,15 +933,21 @@ function svgEscena(id) {
     const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
     const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
     const vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;     // cabeza y hombros
+    // En las caídas la cara llena la cabeza (óvalo): «ancho» (en distancias entre ojos) y «ojo» (altura de los ojos en el marco)
+    const vistaDe = m => {
+      if (!m.ancho) return vista;
+      const w = m.ancho * d, h = w * m.h / m.w;
+      return `${ex - w / 2} ${ey - m.ojo * h} ${w} ${h}`;
+    };
     const retrato = (m, i) => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
-      `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vista}" preserveAspectRatio="xMidYMid slice">` +
-      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>` +
+      `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vistaDe(m)}" preserveAspectRatio="xMidYMid slice">` +
+      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${m.ancho ? p.piel || p.fondo : p.fondo}"/>` +   // en las caídas, lo que no tapa la cara es piel (la cabeza)
       `<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
       `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></g>`;
     caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
       `<g mask="url(#huecos-${id})">${e.marcos.map(retrato).join("")}</g>`;
   }
-  return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}" role="img" aria-label="${esc(ESTADOS[id].nombre)}">` +
+  return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}" role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
     `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}</svg>`;
 }
 /* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
@@ -1056,7 +1062,7 @@ function terminar(clave, transicion) {
     const [sujeto, verbo] = SUJETO_FUERZA[idF];
     $("fin-texto").innerHTML = `<b>${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.</b> ${esc(f.texto)}`;
     caja.textContent = ""; caja.classList.add("hidden");
-    pintarCartaFin(f.titulo);
+    pintarCartaFin(f.titulo, clave);
     $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta, como en «Sigues en el poder»
   } else if (victoria) {
     $("fin-principal").textContent = "¡Has ganado!";
@@ -1104,14 +1110,23 @@ function ajustarCabeceraFin() {
 
 /* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = volver a la portada ---------- */
 let finOcupada = false;
-function pintarCartaFin(titulo) {
+/* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
+   sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
+const FONDO_CAIDA = { ejercito_0: "#A9C3D9" };
+let claveFin = "";
+function pintarCartaFin(titulo, clave = claveFin) {
   const carta = $("carta-fin");
+  claveFin = clave;
   finOcupada = false;
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "");
-  carta.innerHTML = `<div class="giro"><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
-    `<div class="titulo-caida">${esc(titulo)}</div><div class="respuesta"></div></div></div></div>`;
+  const escena = clave && svgEscena("caida-" + clave, titulo);
+  carta.innerHTML = escena
+    ? `<div class="giro"><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
+      `${escena}<div class="etiqueta-boli${titulo.split(" ").some(w => w.length > 12) ? " larga" : ""}"><b>${esc(titulo)}</b></div><div class="respuesta"></div></div></div></div>`
+    : `<div class="giro"><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
+      `<div class="titulo-caida">${esc(titulo)}</div><div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
 }
 function eleccionFin(dir) {

@@ -286,6 +286,10 @@ MARCOS = {
     # 16 oct: escena nueva del culto, un tendedero de retratos y uno grande en medio (todos rectos)
     "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
               ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],
+    # 16 oct: cartas de caída. «Extracción nocturna»: la cabeza (óvalo crema) queda partida en dos por el antifaz; los
+    # dos trozos son un solo marco. La cara se encaja al óvalo: «ancho» = ancho de la cara en distancias entre ojos,
+    # «ojo» = altura de los ojos dentro del marco (0 arriba, 1 abajo), para que caigan bajo el antifaz.
+    "caida-ejercito_0": [([(890, 154), (888, 592)], 0, {"ancho": 2.5, "ojo": 0.37})],
 }
 
 def recortar_escena(entrada, salida, marcos):
@@ -294,7 +298,9 @@ def recortar_escena(entrada, salida, marcos):
     a = np.array(im).astype(float)
     # Aquí hay papel verde de verdad (hojas de laurel, casas menta): en vez de «cuánto domina el verde» se mide la
     # distancia al color del croma de esta imagen (medido en las esquinas), y el rebote solo se quita en el borde.
-    fondo = np.median(np.concatenate([a[:40, :40].reshape(-1, 3), a[:40, -40:].reshape(-1, 3), a[-40:, :40].reshape(-1, 3), a[-40:, -40:].reshape(-1, 3)]), 0)
+    esquinas = [a[:40, :40], a[:40, -40:], a[-40:, :40], a[-40:, -40:]]
+    verdes = [e for e in esquinas if np.median(e[..., 1]) > np.median(np.maximum(e[..., 0], e[..., 2])) + 40]
+    fondo = np.median(np.concatenate([e.reshape(-1, 3) for e in (verdes or esquinas)]), 0)   # solo las esquinas de croma (en las caídas, la figura llega a las esquinas)
     dist = np.sqrt(((a - fondo) ** 2).sum(-1))
     alpha = np.clip((dist - 70) / (130 - 70), 0, 1)
     # Las sombras sobre el croma son verde oscuro (lejos del color de fondo, pero casi solo verde): también fuera
@@ -320,11 +326,14 @@ def recortar_escena(entrada, salida, marcos):
     lab, _ = ndi.label(crema)
     hueco = np.zeros_like(crema)
     datos = []
-    for (x, y), giro in marcos:
-        n = lab[y, x]
-        if not n:
-            raise SystemExit(f"{entrada.name}: el punto {(x, y)} no cae en papel crema")
-        m = ndi.binary_fill_holes(lab == n)
+    for punto, giro, *extra in marcos:
+        puntos = punto if isinstance(punto, list) else [punto]       # varios puntos = un solo marco partido en trozos
+        m = np.zeros_like(crema)
+        for x, y in puntos:
+            n = lab[y, x]
+            if not n:
+                raise SystemExit(f"{entrada.name}: el punto {(x, y)} no cae en papel crema")
+            m |= ndi.binary_fill_holes(lab == n)
         hueco |= m
         # Rectángulo del hueco visible en los ejes del marco (girado)
         ys, xs = np.nonzero(m)
@@ -334,7 +343,7 @@ def recortar_escena(entrada, salida, marcos):
         u0, u1, v0, v1 = np.percentile(u, 0.5), np.percentile(u, 99.5), np.percentile(v, 0.5), np.percentile(v, 99.5)
         uc, vc = (u0 + u1) / 2, (v0 + v1) / 2
         cx, cy = uc * np.cos(t) - vc * np.sin(t), uc * np.sin(t) + vc * np.cos(t)
-        datos.append({"x": round(cx * k, 1), "y": round(cy * k, 1), "w": round((u1 - u0) * k, 1), "h": round((v1 - v0) * k, 1), "giro": giro})
+        datos.append({"x": round(cx * k, 1), "y": round(cy * k, 1), "w": round((u1 - u0) * k, 1), "h": round((v1 - v0) * k, 1), "giro": giro, **(extra[0] if extra else {})})
     hueco = ndi.binary_dilation(hueco, iterations=2)
     mascara = Image.fromarray((hueco * 255).astype(np.uint8)).resize(out.size, Image.LANCZOS)
     mascara.save(salida.with_name(salida.stem.replace("-escena", "-huecos") + ".webp"), "WEBP", quality=80, method=6)

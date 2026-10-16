@@ -302,6 +302,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — Un color por icono de estado.** Los dibujos de los estados se generan en carbón y el recorte tiñe la tinta de un color oscuro propio (`COLOR_ESTADO` en `recortar.py`): Luna de miel magenta oscuro, Censura marrón óxido, Vigilancia verde azulado, Culto ocre dorado, Alineado azul pizarra, Embargo azul acero. Nunca rojo. En las casillas ya no se multiplican con el cartón.
 
+- **16 oct — Primera carta de caída con escena: «Extracción nocturna».** Guiño a una captura real (sin nombrarla ni copiar la foto): el dictador en chándal de calcetín con costuras a la vista, cremallera de grapas, antifaz de fieltro, cascos de fieltro naranja y una botellita de agua de celofán con un botón por tapón, sujeto por dos guardias de bolsa de basura cortados por los lados. La cabeza es un óvalo en blanco y el juego pone dentro la cara del dictador de la etapa en que caes (joven, asentado, culto o viejo), con los ojos bajo el antifaz. Las otras siete caídas siguen provisionales. Aprendido para los prompts: pedir materiales de manualidad que imiten el objeto (no miniaturas de verdad), todo plano y sin líneas dibujadas.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

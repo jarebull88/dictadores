@@ -4,6 +4,21 @@
   "alto": 1205,
   "marcos": []
  },
+ "caida-ejercito_0": {
+  "ancho": 900,
+  "alto": 1205,
+  "marcos": [
+   {
+    "x": 445.2,
+    "y": 210.4,
+    "w": 209.4,
+    "h": 334.5,
+    "giro": 0,
+    "ancho": 2.5,
+    "ojo": 0.37
+   }
+  ]
+ },
  "censura": {
   "ancho": 900,
   "alto": 1205,

@@ -1365,6 +1365,13 @@ const CARTAS = [
     izq: { accion: "Mantener la acusación.", remate: "Los certificados de defunción también confiesan.", efectos: { ejercito: 6, pueblo: -5, potencias: -3 } },
     der: { accion: "Liberar a los acusados.", remate: "Liberarlos sería reconocer un error, y la Revolución no se equivoca.", efectos: { ejercito: -6, pueblo: 5, potencias: 3 } }
   },
+  {
+    id: "flores_mar", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar", ilustracion: null,
+    personaje: "Ministro del Interior",
+    texto: "Excelencia, cada año más gente tira flores al mar el día del accidente de Cienfuegos.",
+    izq: { accion: "Declaren la playa zona militar", efectos: { ejercito: 6, pueblo: -6 } },
+    der: { accion: "Encabezaré yo los homenajes", efectos: { pueblo: 6, ejercito: -6 } }
+  },
   /* ---------- Era 4 · Ocaso ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje", ilustracion: null,

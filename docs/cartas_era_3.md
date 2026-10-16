@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.75.
+Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.75.
 
 ### 1. El monumento
 
@@ -263,3 +263,13 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 
 - **A. Mantener la acusación.** *Los certificados de defunción también confiesan.* Ejército +6 · Pueblo −5 · Potencias −3
 - **B. Liberar a los acusados.** *Liberarlos sería reconocer un error, y la Revolución no se equivoca.* Ejército −6 · Pueblo +5 · Potencias +3
+
+### 26. Las flores en el mar
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
+
+**Carta:** «Excelencia, cada año más gente tira flores al mar el día del accidente de Cienfuegos.»
+
+- **A. Declaren la playa zona militar** Ejército +6 · Pueblo −6
+- **B. Encabezaré yo los homenajes** Pueblo +6 · Ejército −6

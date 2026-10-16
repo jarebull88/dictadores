@@ -6,7 +6,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 
 | Bandera | La concede | La exigen | Consecuencia (era) |
 | --- | --- | --- | --- |
-| `accidente_cienfuegos` | El general murmura (B) | — | El Pueblo no olvida el accidente de Cienfuegos. (era 3) |
+| `accidente_cienfuegos` | El general murmura (B) | Las flores en el mar | El Pueblo no olvida el accidente de Cienfuegos. (era 3) |
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | Los nuevos vecinos | El aliado exige concesiones y armamento. (era 2) |
 | `atentado_investigado` | El atentado (B) | — | — |
 | `capital_rebautizada` | La ciudad con su nombre (A) | — | — |

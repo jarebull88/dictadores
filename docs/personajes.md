@@ -6,7 +6,7 @@ Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército
 
 | Personaje | Grupo | Cartas (era 1 / era 2) | Ilustración | Archivo |
 | --- | --- | --- | --- | --- |
-| Ministro del Interior | ejercito | 15 (5/4) | papel recortado | `assets/personajes/recortados/interior.webp` |
+| Ministro del Interior | ejercito | 16 (5/4) | papel recortado | `assets/personajes/recortados/interior.webp` |
 | Vicepresidente del Consejo de Ministros | elite | 15 (2/2) | papel recortado | `assets/personajes/recortados/vicepresidente.webp` |
 | Ministra de Cultura | elite | 13 (3/4) | papel recortado | `assets/personajes/recortados/cultura.webp` |
 | Ministro de Economía | elite | 12 (3/3) | papel recortado | `assets/personajes/recortados/economia.webp` |

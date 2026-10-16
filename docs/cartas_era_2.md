@@ -79,10 +79,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 18; exige `general_popular`; solo si Ejército está en 40 o menos.
 
-**Carta:** «Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.»
+**Carta:** «Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.»
 
-- **A. Ascender a Cienfuegos.** *Un ascenso para que se calle.* Ejército +9 · Élite −4 · Crisis +1
-- **B. Detener a Cienfuegos.** *La Historia juzgará mis decisiones cuando nadie pueda discutirlas.* Ejército −9 · Pueblo −5 · Potencias −4
+- **A. Asciendan a sus invitados** Ejército +9 · Élite −4 · Crisis +1
+- **B. Que tenga un accidente heroico** Ejército −9 · Pueblo −5 · Potencias −4
 
 ### 8. El hambre
 

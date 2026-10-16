@@ -21,10 +21,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 2 a 4 de su era; exige `alineado_bloque_oriental`.
 
-**Carta:** «Nuestro país propone instalar misiles de alcance medio en su territorio. Sería una garantía frente a la potencia del norte.»
+**Carta:** «Nuestro país le ofrece misiles de alcance medio, instalados y apuntando a donde usted diga.»
 
-- **A. Aceptar los misiles.** *Nadie se mete con un país que puede borrar un barrio entero.* Ejército +8 · Potencias +7 · Pueblo −7 · Élite −4 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
-- **B. Declinar.** *La Patria no necesita armas con instrucciones ajenas.* Ejército −8 · Potencias −7 · Pueblo +7 · Élite +4 · Bandera: `misiles_rechazados`
+- **A. Ahora sí nos respetarán** Ejército +8 · Potencias +7 · Pueblo −7 · Élite −4 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
+- **B. Nuestro misil es el Pueblo** Ejército −8 · Potencias −7 · Pueblo +7 · Élite +4 · Bandera: `misiles_rechazados`
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 

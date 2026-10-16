@@ -16,7 +16,9 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 
 ## La pregunta (el texto de la carta)
 - La pregunta va **implícita**: se presenta la situación, la exigencia o el problema de forma natural y las opciones responden a ella. No se termina por sistema con «¿Qué decide?» o «¿Aceptamos?».
-- **Debe dejar claro entre qué fuerzas se elige** (a quién vas a mimar y a quién a disgustar), para que la respuesta tenga sentido para el jugador.
+- Cuando la carta es un **dilema entre fuerzas** («El aniversario»: tanques para el Ejército o ron para el Pueblo), la pregunta deja claro entre quiénes se elige, para que la respuesta tenga sentido.
+- Cuando es una **propuesta tentadora** («Los nuevos vecinos»: misiles regalados), el personaje solo la plantea y tú aceptas o rechazas. **No se avisa de las consecuencias** ni de cómo reaccionará cada fuerza: eso lo descubre el jugador.
+- Sin pistas del país real: nada de «su isla» y similares.
 - Respeta a quien habla: el **embajador** habla en nombre de su país (primera persona) y plantea sus exigencias o intereses; el **ministro** habla de asuntos internos, y quien decide es el Comandante.
 - Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). Sin «Comandante,» delante en las eras 1 y 2.
 
@@ -28,6 +30,7 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - La ironía va dentro de la propia decisión. En las opciones de humor negro se puede sugerir corrupción, juicios amañados, propaganda, represión o burocracia autoritaria **sin explicar el chiste**.
 - Nada genérico que sirviera para cualquier carta: cada opción responde al conflicto concreto.
 - A y B son decisiones realmente distintas.
+- Las dos llevan humor, también la opción «sensata». Funciona muy bien el **doble sentido** («Nuestro misil es el Pueblo»: el Pueblo como arma y como rehén).
 
 ## Cómo se entregan las propuestas
 Solo la pregunta y las dos respuestas, listas para copiar y pegar:

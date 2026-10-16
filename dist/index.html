@@ -972,9 +972,9 @@ const CARTAS = [
   {
     id: "nuevos_vecinos", era: 2, tipo: "ancla", ventana: [2, 4], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos", ilustracion: null,
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro país propone instalar misiles de alcance medio en su territorio. Sería una garantía frente a la potencia del norte.",
-    izq: { accion: "Aceptar los misiles.", remate: "Nadie se mete con un país que puede borrar un barrio entero.", efectos: { ejercito: 8, potencias: 7, pueblo: -7, elite: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
-    der: { accion: "Declinar.", remate: "La Patria no necesita armas con instrucciones ajenas.", efectos: { ejercito: -8, potencias: -7, pueblo: 7, elite: 4 }, banderas: ["base.misiles_rechazados"] }
+    texto: "Nuestro país le ofrece misiles de alcance medio, instalados y apuntando a donde usted diga.",
+    izq: { accion: "Ahora sí nos respetarán", efectos: { ejercito: 8, potencias: 7, pueblo: -7, elite: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
+    der: { accion: "Nuestro misil es el Pueblo", efectos: { ejercito: -8, potencias: -7, pueblo: 7, elite: 4 }, banderas: ["base.misiles_rechazados"] }
   },
 
   {

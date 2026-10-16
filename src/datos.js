@@ -192,9 +192,9 @@ const CARTAS = [
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Se cumplen los primeros años de la Revolución. Proponemos un gran desfile militar con tanques.",
-    izq: { accion: "Gran desfile.", remate: "El Pueblo debe recordar quién derrocó a los tiranos.", efectos: { ejercito: 8, elite: 4, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
-    der: { accion: "Fiesta popular.", remate: "La Revolución también sabe celebrar.", efectos: { pueblo: 7, ejercito: -8, elite: -4 } }
+    texto: "Para el aniversario de la Revolución, el Ejército pide tanques y el Pueblo ron. No hay para ambos.",
+    izq: { accion: "Que aplaudan a los tanques", efectos: { ejercito: 8, elite: 4, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
+    der: { accion: "Repartan ron en mi nombre", efectos: { pueblo: 7, ejercito: -8, elite: -4 } }
   },
 
   {

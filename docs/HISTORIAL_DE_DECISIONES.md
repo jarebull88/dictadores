@@ -297,3 +297,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - Verificar los **datos históricos** del archivo y los **nombres de los ministerios cubanos** (están de memoria).
 - Reforzar las cartas de coalición (hoy dos borradores) y repasar las 5 cartas borrador de la era 1.
 - Probar el juego en móviles reales (hasta ahora solo se ha mirado en Chromium a 360–430 px). Un fallo de iconos que Jorge vio en su móvil se atribuyó a Safari y se reforzó, pero no se pudo reproducir.
+
+## 16 oct · Textos: guía de redacción y era 2 sin remates
+- Nueva `docs/GUIA_DE_REDACCION.md` (todas las eras; para redactar y revisar): preguntas de ≤100 caracteres que dejan claro entre qué fuerzas se elige; respuestas como órdenes de ≤5 palabras (más, solo con permiso de Jorge), sin remate en ninguna era, sin frases contrapuestas de IA.
+- Los remates se quitan carta a carta; el test admite cartas con y sin remate mientras dura la revisión (las que no lo llevan, sin punto final).
+- «El aniversario»: «Para el aniversario de la Revolución, el Ejército pide tanques y el Pueblo ron. No hay para ambos.» → «Que aplaudan a los tanques» / «Repartan ron en mi nombre».

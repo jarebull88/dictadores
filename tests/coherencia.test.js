@@ -79,7 +79,9 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
         // en 2 líneas (ajustarRespuesta), así que el límite es de caracteres, no de palabras (ver el de arriba)
         assert.ok(!c[l].remate, `«${c.id}» ${l}: en la era 1 ya no hay remate`);
         assert.ok(!/[^.]\.$/.test(c[l].accion), `«${c.id}» ${l}: la respuesta no lleva punto final`);
-      } else assert.ok(c[l].remate.length <= 75, `«${c.id}» ${l}: el remate tiene ${c[l].remate.length} caracteres (máx. 75)`);
+      } else if (c[l].remate) assert.ok(c[l].remate.length <= 75, `«${c.id}» ${l}: el remate tiene ${c[l].remate.length} caracteres (máx. 75)`);
+      // 16 oct: los remates se quitan carta a carta en todas las eras; las ya reescritas van sin remate ni punto final
+      else assert.ok(!/[^.]\.$/.test(c[l].accion), `«${c.id}» ${l}: la respuesta no lleva punto final`);
     }
   }
 });

@@ -9,10 +9,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 2 de su era.
 
-**Carta:** «Se cumplen los primeros años de la Revolución. Proponemos un gran desfile militar con tanques.»
+**Carta:** «Para el aniversario de la Revolución, el Ejército pide tanques y el Pueblo ron. No hay para ambos.»
 
-- **A. Gran desfile.** *El Pueblo debe recordar quién derrocó a los tiranos.* Ejército +8 · Élite +4 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
-- **B. Fiesta popular.** *La Revolución también sabe celebrar.* Pueblo +7 · Ejército −8 · Élite −4
+- **A. Que aplaudan a los tanques** Ejército +8 · Élite +4 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
+- **B. Repartan ron en mi nombre** Pueblo +7 · Ejército −8 · Élite −4
 
 **Consecuencia futura de `desfile_militar`:** El Ejército espera cada año un desfile mayor.
 

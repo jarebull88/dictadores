@@ -175,7 +175,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   min-height: 44px; padding: 6px 14px; border: none; background: none; cursor: pointer; color: var(--tinta);
   font-family: var(--fuente); font-size: 19px; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px;
 }
-.opcion-portada.principal { font-family: var(--fuente-titulo); font-weight: 400; font-size: 28px; text-decoration: none; }
+.opcion-portada.principal { font-family: var(--fuente-titulo); font-weight: 400; font-size: 23px; text-decoration: none; }
 .opcion-portada.secundaria { font-size: 17px; margin-top: 10px; color: var(--tinta); }   /* «Repasar cómo se juega»: discreta pero visible */
 /* Tutorial: las fuerzas, apagadas hasta que se presentan; al encenderse, una nota corta debajo */
 #barras.apagadas .barra { opacity: .3; filter: grayscale(1); transition: opacity .4s, filter .4s; }

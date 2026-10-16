@@ -1040,9 +1040,9 @@ const CARTAS = [
   {
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre", ilustracion: null,
     personaje: "Ministro de Trabajo",
-    texto: "Los campesinos tienen tierra, pero no semillas, tractores ni crédito. La cosecha ha caído a la mitad.",
-    izq: { accion: "Racionar los alimentos.", remate: "El Pueblo tendrá lo necesario y aprenderá a agradecerlo.", efectos: { pueblo: -6, elite: 3, crisis: -1 } },
-    der: { accion: "Importar comida.", remate: "No importa de dónde venga el pan si lo reparte la Revolución.", efectos: { pueblo: 6, potencias: 5, crisis: 2 } }
+    texto: "Los campesinos tienen tierra, pero no semillas ni tractores. La cosecha ha caído a la mitad.",
+    izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -6, elite: 3, crisis: -1 } },
+    der: { accion: "Importen la canasta básica", efectos: { pueblo: 6, potencias: 5, crisis: 2 } }
   },
 
   {

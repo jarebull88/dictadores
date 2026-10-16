@@ -91,10 +91,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `reforma_agraria`.
 
-**Carta:** «Los campesinos tienen tierra, pero no semillas, tractores ni crédito. La cosecha ha caído a la mitad.»
+**Carta:** «Los campesinos tienen tierra, pero no semillas ni tractores. La cosecha ha caído a la mitad.»
 
-- **A. Racionar los alimentos.** *El Pueblo tendrá lo necesario y aprenderá a agradecerlo.* Pueblo −6 · Élite +3 · Crisis −1
-- **B. Importar comida.** *No importa de dónde venga el pan si lo reparte la Revolución.* Pueblo +6 · Potencias +5 · Crisis +2
+- **A. La culpa es del imperialismo** Pueblo −6 · Élite +3 · Crisis −1
+- **B. Importen la canasta básica** Pueblo +6 · Potencias +5 · Crisis +2
 
 ### 9. El periodista oficial
 

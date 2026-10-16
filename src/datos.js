@@ -232,9 +232,9 @@ const CARTAS = [
   {
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "Los exiliados emiten por radio y ya los escucha media capital. Dicen que el palacio tiene goteras.",
-    izq: { accion: "Interferir la emisora.", remate: "La mentira también necesita permiso para entrar en la Patria.", efectos: { pueblo: -6, ejercito: 4, elite: 3 } },
-    der: { accion: "Contestar por radio.", remate: "Que hablen; el Pueblo sabrá quién defiende la Revolución.", efectos: { pueblo: 5, potencias: 4, elite: -3 } }
+    texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
+    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 4, elite: 3 } },
+    der: { accion: "Son agentes del imperialismo", efectos: { pueblo: 5, potencias: 4, elite: -3 } }
   },
 
   {

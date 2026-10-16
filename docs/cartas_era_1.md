@@ -9,10 +9,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «Hemos tomado el palacio. ¿Qué hacemos con los ministros del gobierno anterior?»
+**Carta:** «Hemos tomado el palacio. Los ministros del tirano no huyeron a tiempo y el Pueblo pide justicia.»
 
-- **A. Juicio público** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
-- **B. Al exilio** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`
+- **A. Juicio público en el estadio** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
+- **B. Tienen 24 horas para irse** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
 

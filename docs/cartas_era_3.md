@@ -2,9 +2,39 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.75.
+Duración: entre 6 y 8 cartas. 24 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.75.
 
-### 1. El monumento
+### 1. Elecciones controladas
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 14; exige `elecciones_prometidas`.
+
+**Carta:** «Excelencia, las elecciones prometidas están a la vista. El Partido propone una lista única para evitar confusiones.»
+
+- **A. Lista única.** *El Pueblo no necesita elegir entre nosotros.* Pueblo −6 · Élite +5 · Ejército +3
+- **B. Varias listas.** *Que voten libremente. El resultado ya está claro.* Pueblo +6 · Potencias +5 · Élite −5 · Ejército −3
+
+### 2. Una carta con firmas
+
+**Personaje:** Ministra de Cultura  
+**Condición:** sorteo con peso 14; exige alguna de `policia_tradicional`, `exiliados_vocales`, `critica_abierta`.
+
+**Carta:** «Excelencia, intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.»
+
+- **A. Recibir a los firmantes.** *Quiero conocer a los que creen que eso depende de mí.* Pueblo +6 · Potencias +5 · Ejército −5 · Élite −3
+- **B. Prohibir la carta.** *No permitiré que cuatro firmas aparenten dividir al Pueblo.* Pueblo −6 · Ejército +5 · Potencias −5 · Élite +3
+
+### 3. El plan quinquenal
+
+**Personaje:** Ministro de Economía  
+**Condición:** sorteo con peso 8.
+
+**Carta:** «Excelencia, proponemos un plan quinquenal con metas para cada fábrica, granja y tienda.»
+
+- **A. Plan quinquenal.** *El éxito de la Revolución empieza por escribirlo.* Élite +5 · Pueblo −4 · Crisis +2
+- **B. Dejar al mercado.** *El mercado funciona mientras haga lo que se le dice.* Pueblo +4 · Potencias +4 · Élite −4
+
+### 4. El monumento
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 3 de su era; exige `culto_iniciado`.
@@ -14,7 +44,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Monumento colosal.** *Me conmueve que el Pueblo me vea como a un padre.* Élite +7 · Pueblo −6 · Crisis +2 · Bandera: `monumento_colosal` · Encola: `pedestal` en 2 a 3 años
 - **B. Monumento modesto.** *El Pueblo no necesita mármol para saber quién lo protege.* Élite −7 · Pueblo +6 · Bandera: `monumento_modesto`
 
-### 2. El pedestal
+### 5. El pedestal
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -24,7 +54,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Terminar la estatua.** *El Padre de la Patria no puede aparecer manco.* Élite +5 · Pueblo −6 · Crisis +2
 - **B. Dejarla con un brazo.** *Un gesto de humildad también educa al Pueblo.* Élite −5 · Pueblo +6 · Crisis −1
 
-### 3. La modestia sospechosa
+### 6. La modestia sospechosa
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14; exige `modestia_aparente`.
@@ -34,7 +64,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Aceptar la demostración.** *No quiero contrariar al Pueblo en una muestra de cariño.* Élite +6 · Ejército +3 · Pueblo −5
 - **B. Insistir en la modestia.** *La lealtad verdadera no necesita tantas ceremonias.* Élite −6 · Ejército −3 · Pueblo +5
 
-### 4. El desfile del año
+### 7. El desfile del año
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `desfile_militar`.
@@ -44,27 +74,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Desfile aún mayor.** *El Pueblo debe ver que la Revolución sigue fuerte.* Ejército +8 · Élite +3 · Pueblo −7 · Crisis +2
 - **B. El mismo desfile.** *La fuerza de la Revolución no se mide en tanques.* Ejército −8 · Élite −3 · Pueblo +7
 
-### 5. Los satélites
-
-**Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 14; exige `misiles_instalados`.
-
-**Carta:** «Excelencia, nuestros satélites siguen contando sus misiles y pedimos una inspección. Aceptarla evitaría un incidente mayor.»
-
-- **A. Permitir la inspección.** *Que inspeccionen; para entonces ya habremos hecho el cambio.* Potencias +8 · Ejército −7 · Élite +2
-- **B. Negarse.** *La soberanía no se inspecciona.* Potencias −8 · Ejército +7 · Élite −2 · Crisis +1
-
-### 6. El aliado enfadado
-
-**Personaje:** Embajador del bloque oriental  
-**Condición:** sorteo con peso 14; exige `misiles_rechazados`.
-
-**Carta:** «Excelencia, nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.»
-
-- **A. Pedir disculpas.** *Una amistad duradera también exige saber pedir perdón.* Potencias +8 · Pueblo −6 · Ejército −2
-- **B. Buscar otro proveedor.** *El petróleo no tiene ideología, solo precio.* Potencias −8 · Pueblo +6 · Ejército +2 · Crisis +1
-
-### 7. El jefe insaciable
+### 8. El jefe insaciable
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `jefe_poderoso`.
@@ -76,7 +86,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 **Consecuencia futura de `estado_policial`:** El batallón del Interior pide más sueldos y más cárceles.
 
-### 8. Las aulas vacías
+### 9. Las aulas vacías
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 14; exige alguna de `estudiantes_reprimidos`, `huelga_reprimida`.
@@ -86,7 +96,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Exigir lealtad a profesores.** *Las notas medirán tanto los conocimientos como la lealtad.* Élite +5 · Ejército +3 · Pueblo −6
 - **B. Reabrir las facultades.** *La Revolución necesita aulas llenas, no héroes universitarios.* Pueblo +6 · Élite −5 · Ejército −3
 
-### 9. Los titulares
+### 10. Los titulares
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `periodista_oficial`.
@@ -96,7 +106,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Seis páginas diarias.** *El Pueblo merece seis páginas diarias de buenas noticias.* Élite +6 · Ejército +2 · Pueblo −5
 - **B. Tres páginas bastan.** *El Pueblo ya conoce mi obra; no hace falta repetirla tanto.* Élite −6 · Ejército −2 · Pueblo +5
 
-### 10. Los presos en la agenda
+### 11. Los presos en la agenda
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `criticos_detenidos`.
@@ -105,16 +115,6 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 - **A. Liberar a algunos.** *Liberemos a los más ancianos para no gastar en entierros.* Potencias +8 · Ejército −6 · Élite −2
 - **B. Negar que existan.** *En mi país no hay presos políticos, solo ciudadanos confundidos.* Potencias −8 · Ejército +6 · Élite +2
-
-### 11. El acreedor pide favores
-
-**Personaje:** Ministro de Economía  
-**Condición:** sorteo con peso 14; exige `deuda_externa`.
-
-**Carta:** «Excelencia, el acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.»
-
-- **A. Vender nuestro voto.** *La diplomacia también sirve para pagar deudas.* Potencias +8 · Élite +3 · Pueblo −5 · Crisis −2
-- **B. Pagar con lo que haya.** *La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.* Potencias −8 · Élite −3 · Pueblo +5 · Crisis +2
 
 ### 12. El mercado mayor
 
@@ -200,17 +200,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 **Consecuencia futura de `palacio_del_pueblo`:** Las deudas del palacio siguen sin pagarse.
 
-### 20. La zafra de los diez millones
-
-**Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 10.
-
-**Carta:** «Excelencia, para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.»
-
-- **A. Todos a la zafra.** *El que corta caña no conspira.* Pueblo −6 · Ejército +3 · Élite +3 · Crisis −1
-- **B. Contratar jornaleros.** *La Revolución también puede pagar a quien trabaja.* Pueblo +6 · Ejército −3 · Élite −3 · Crisis +1
-
-### 21. La sucesión
+### 20. La sucesión
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 8.
@@ -222,7 +212,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 **Consecuencia futura de `sucesor_designado`:** El sucesor empieza a hacerse notar.
 
-### 22. El beso fraterno
+### 21. El beso fraterno
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 8.
@@ -232,7 +222,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Abrazo y beso.** *Que la Historia vea que la Revolución tiene amigos poderosos.* Potencias +7 · Pueblo −5 · Élite −2
 - **B. Apretón de manos.** *Una mano firme también puede estrecharse sin besar.* Potencias −7 · Pueblo +5 · Élite +2
 
-### 23. El viaje oficial
+### 22. El viaje oficial
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 8.
@@ -242,7 +232,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Aceptar el viaje.** *Dos semanas de aplausos extranjeros valen un par de riesgos.* Potencias +8 · Élite +3 · Ejército −7
 - **B. Quedarse en el país.** *El Pueblo no puede pasar dos semanas sin escucharme.* Potencias −8 · Élite −3 · Ejército +7
 
-### 24. El atentado
+### 23. El atentado
 
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 5 a 7 de su era.
@@ -254,7 +244,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 **Consecuencia futura de `oposicion_culpada`:** La oposición recuerda al acusado injusto.
 
-### 25. La investigación
+### 24. La investigación
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -263,13 +253,3 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 - **A. Mantener la acusación.** *Los certificados de defunción también confiesan.* Ejército +6 · Pueblo −5 · Potencias −3
 - **B. Liberar a los acusados.** *Liberarlos sería reconocer un error, y la Revolución no se equivoca.* Ejército −6 · Pueblo +5 · Potencias +3
-
-### 26. Las flores en el mar
-
-**Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
-
-**Carta:** «Excelencia, cada año más gente tira flores al mar el día del accidente de Cienfuegos.»
-
-- **A. Declaren la playa zona militar** Ejército +6 · Pueblo −6
-- **B. Encabezaré yo los homenajes** Pueblo +6 · Ejército −6

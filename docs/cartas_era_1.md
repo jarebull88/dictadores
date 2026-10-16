@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 25 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
+Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5.
 
 ### 1. La casa vacía
 
@@ -315,3 +315,83 @@ Duración: entre 8 y 10 cartas. 25 cartas. Los efectos están en la escala peque
 
 - **A. Mimen a los empresarios** Élite +9 · Pueblo −8 · Crisis +2
 - **B. Intervenir sus empresas** Potencias −8 · Pueblo +8 · Élite −9
+
+### 26. Los nuevos vecinos
+
+**Personaje:** Embajador del bloque oriental  
+**Condición:** ancla de los años 8 a 10 de su era; exige `alineado_bloque_oriental`.
+
+**Carta:** «Nuestro país le ofrece misiles de alcance medio, instalados y apuntando a donde usted diga.»
+
+- **A. Ahora sí nos respetarán** Ejército +6 · Potencias +5 · Pueblo −5 · Élite −3 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
+- **B. Nuestro misil es el Pueblo** Ejército −6 · Potencias −5 · Pueblo +5 · Élite +3 · Bandera: `misiles_rechazados`
+
+**Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
+
+**Consecuencia futura de `misiles_rechazados`:** El aliado recuerda tu negativa.
+
+### 27. El ultimátum
+
+**Personaje:** Embajador de la potencia del norte  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Nuestros barcos rodearán su costa hasta que retire los misiles.»
+
+- **A. Que disfruten de la vista** Ejército +6 · Potencias −6 · Pueblo −3 · Crisis +2 · Bandera: `embargo_en_marcha`
+- **B. Se irán como nunca vinieron** Ejército −6 · Potencias +6 · Pueblo +3 · Crisis −1
+
+**Consecuencia futura de `embargo_en_marcha`:** Embargo total.
+
+### 28. El general murmura
+
+**Personaje:** Ministro de las Fuerzas Armadas  
+**Condición:** sorteo con peso 8; exige `general_popular`; solo si Ejército está en 28 o menos.
+
+**Carta:** «Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.»
+
+- **A. Pregúntenle por sus hijos** Ejército +6 · Élite −4
+- **B. Que tenga un accidente heroico** Ejército −6 · Pueblo −4 · Potencias −3 · Élite +4 · Bandera: `accidente_cienfuegos`
+
+**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Cienfuegos.
+
+### 29. Las garantías
+
+**Personaje:** Ministro de Comercio  
+**Condición:** sorteo con peso 8; exige `negocio_refinerias`.
+
+**Carta:** «Las empresas exigen garantías: no más nacionalizaciones y que sus beneficios salgan del país.»
+
+- **A. Firmar las garantías** Potencias +6 · Élite +4 · Pueblo −5 · Crisis −1
+- **B. Negarse a firmar** Potencias −6 · Pueblo +4 · Élite −4 · Crisis +1
+
+### 30. Estudiantes en la calle
+
+**Personaje:** Ministra de Educación  
+**Condición:** sorteo con peso 8; exige `elecciones_aplazadas`.
+
+**Carta:** «Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.»
+
+- **A. Hablar con delegados** Pueblo +5 · Ejército −4 · Élite −1
+- **B. Desalojar la universidad** Pueblo −6 · Ejército +4 · Potencias −3 · Bandera: `estudiantes_reprimidos`
+
+**Consecuencia futura de `estudiantes_reprimidos`:** La universidad se convierte en foco de oposición.
+
+### 31. Huelga en el puerto
+
+**Personaje:** Ministro de Trabajo  
+**Condición:** sorteo con peso 8; exige `sindicato_libre`; solo si la crisis oculta llega a 2.
+
+**Carta:** «Con la subida de precios el sindicato exige aumentos y amenaza con otra huelga en el puerto.»
+
+- **A. Subir los salarios** Pueblo +6 · Élite −4 · Crisis +2
+- **B. Prohibir la huelga** Pueblo −6 · Ejército +4 · Élite +4
+
+### 32. Embargo total
+
+**Personaje:** Ministro de Comercio  
+**Condición:** sorteo con peso 8; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.
+
+**Carta:** «El embargo ya es total: no entran medicinas, repuestos ni, al parecer, nuestras quejas.»
+
+- **A. Racionar la escasez** Pueblo −4 · Élite −1 · Crisis −1
+- **B. Contrabando oficial** Pueblo +4 · Élite +1 · Potencias −3 · Crisis +1

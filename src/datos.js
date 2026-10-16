@@ -226,19 +226,19 @@ const CARTAS = [
   },
 
   {
-    id: "nuevos_vecinos", era: 2, tipo: "ancla", ventana: [2, 4], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos", ilustracion: null,
+    id: "nuevos_vecinos", tipo: "ancla", ventana: [8, 10], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos", ilustracion: null,
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país le ofrece misiles de alcance medio, instalados y apuntando a donde usted diga.",
-    izq: { accion: "Ahora sí nos respetarán", efectos: { ejercito: 8, potencias: 7, pueblo: -7, elite: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
-    der: { accion: "Nuestro misil es el Pueblo", efectos: { ejercito: -8, potencias: -7, pueblo: 7, elite: 4 }, banderas: ["base.misiles_rechazados"] }
+    izq: { accion: "Ahora sí nos respetarán", efectos: { ejercito: 6, potencias: 5, pueblo: -5, elite: -3, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
+    der: { accion: "Nuestro misil es el Pueblo", efectos: { ejercito: -6, potencias: -5, pueblo: 5, elite: 3 }, banderas: ["base.misiles_rechazados"] }
   },
 
   {
-    id: "ultimatum", era: 2, tipo: "cola", titulo: "El ultimátum", ilustracion: null,
+    id: "ultimatum", tipo: "cola", titulo: "El ultimátum", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros barcos rodearán su costa hasta que retire los misiles.",
-    izq: { accion: "Que disfruten de la vista", efectos: { ejercito: 8, potencias: -9, pueblo: -4, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Se irán como nunca vinieron", efectos: { ejercito: -8, potencias: 9, pueblo: 4, crisis: -1 } }
+    izq: { accion: "Que disfruten de la vista", efectos: { ejercito: 6, potencias: -6, pueblo: -3, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
+    der: { accion: "Se irán como nunca vinieron", efectos: { ejercito: -6, potencias: 6, pueblo: 3, crisis: -1 } }
   },
 
   {
@@ -266,11 +266,11 @@ const CARTAS = [
   },
 
   {
-    id: "general_murmura", era: 2, tipo: "sorteo", peso: 18, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura", ilustracion: null,
+    id: "general_murmura", tipo: "sorteo", peso: 8, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 28 } }, titulo: "El general murmura", ilustracion: null,
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.",
-    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: 9, elite: -5 } },
-    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -9, pueblo: -5, potencias: -4, elite: 5 }, banderas: ["base.accidente_cienfuegos"] }
+    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: 6, elite: -4 } },
+    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, potencias: -3, elite: 4 }, banderas: ["base.accidente_cienfuegos"] }
   },
 
   {
@@ -290,27 +290,27 @@ const CARTAS = [
   },
 
   {
-    id: "garantias", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías", ilustracion: null,
+    id: "garantias", tipo: "sorteo", peso: 8, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "Las empresas exigen garantías: no más nacionalizaciones y que sus beneficios salgan del país.",
-    izq: { accion: "Firmar las garantías.", remate: "La Revolución puede firmar cualquier cosa cuando lo necesita.", efectos: { potencias: 8, elite: 6, pueblo: -7, crisis: -1 } },
-    der: { accion: "Negarse a firmar.", remate: "Ninguna empresa extranjera pondrá condiciones en nuestra Patria.", efectos: { potencias: -8, pueblo: 6, elite: -5, crisis: 1 } }
+    izq: { accion: "Firmar las garantías", efectos: { potencias: 6, elite: 4, pueblo: -5, crisis: -1 } },
+    der: { accion: "Negarse a firmar", efectos: { potencias: -6, pueblo: 4, elite: -4, crisis: 1 } }
   },
 
   {
-    id: "elecciones_controladas", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas", ilustracion: null,
+    id: "elecciones_controladas", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Las elecciones prometidas están a la vista. El Partido propone una lista única para evitar confusiones.",
+    texto: "Excelencia, las elecciones prometidas están a la vista. El Partido propone una lista única para evitar confusiones.",
     izq: { accion: "Lista única.", remate: "El Pueblo no necesita elegir entre nosotros.", efectos: { pueblo: -6, elite: 5, ejercito: 3 } },
     der: { accion: "Varias listas.", remate: "Que voten libremente. El resultado ya está claro.", efectos: { pueblo: 6, potencias: 5, elite: -5, ejercito: -3 } }
   },
 
   {
-    id: "estudiantes_calle", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle", ilustracion: null,
+    id: "estudiantes_calle", tipo: "sorteo", peso: 8, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle", ilustracion: null,
     personaje: "Ministra de Educación",
     texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
-    izq: { accion: "Hablar con delegados.", remate: "Primero quiero saber quiénes son los que saben escribir.", efectos: { pueblo: 7, ejercito: -5, elite: -2 } },
-    der: { accion: "Desalojar la universidad.", remate: "La universidad es para estudiar, no para hacer política.", efectos: { pueblo: -8, ejercito: 6, potencias: -4 }, banderas: ["base.estudiantes_reprimidos"] }
+    izq: { accion: "Hablar con delegados", efectos: { pueblo: 5, ejercito: -4, elite: -1 } },
+    der: { accion: "Desalojar la universidad", efectos: { pueblo: -6, ejercito: 4, potencias: -3 }, banderas: ["base.estudiantes_reprimidos"] }
   },
 
   {
@@ -330,11 +330,11 @@ const CARTAS = [
   },
 
   {
-    id: "huelgas_crisis", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"], crisisMin: 2 }, titulo: "Huelga en el puerto", ilustracion: null,
+    id: "huelgas_crisis", tipo: "sorteo", peso: 8, cond: { requiere: ["base.sindicato_libre"], crisisMin: 2 }, titulo: "Huelga en el puerto", ilustracion: null,
     personaje: "Ministro de Trabajo",
     texto: "Con la subida de precios el sindicato exige aumentos y amenaza con otra huelga en el puerto.",
-    izq: { accion: "Subir los salarios.", remate: "El Pueblo puede soportar precios altos; lo que no puede es dudar.", efectos: { pueblo: 8, elite: -5, crisis: 2 } },
-    der: { accion: "Prohibir la huelga.", remate: "La Patria no se puede parar porque alguien esté descontento.", efectos: { pueblo: -8, ejercito: 5, elite: 5 } }
+    izq: { accion: "Subir los salarios", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
+    der: { accion: "Prohibir la huelga", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
   },
 
   {
@@ -354,9 +354,9 @@ const CARTAS = [
   },
 
   {
-    id: "oposicion_firma", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta"] }, titulo: "Una carta con firmas", ilustracion: null,
+    id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta"] }, titulo: "Una carta con firmas", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "Intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.",
+    texto: "Excelencia, intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.",
     izq: { accion: "Recibir a los firmantes.", remate: "Quiero conocer a los que creen que eso depende de mí.", efectos: { pueblo: 6, potencias: 5, ejercito: -5, elite: -3 } },
     der: { accion: "Prohibir la carta.", remate: "No permitiré que cuatro firmas aparenten dividir al Pueblo.", efectos: { pueblo: -6, ejercito: 5, potencias: -5, elite: 3 } }
   },
@@ -378,11 +378,11 @@ const CARTAS = [
   },
 
   {
-    id: "embargo_total", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total", ilustracion: null,
+    id: "embargo_total", tipo: "sorteo", peso: 8, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total", ilustracion: null,
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran medicinas, repuestos ni, al parecer, nuestras quejas.",
-    izq: { accion: "Racionar la escasez.", remate: "El Pueblo tendrá exactamente lo que la Patria pueda darle.", efectos: { pueblo: -6, elite: -2, crisis: -1 } },
-    der: { accion: "Contrabando oficial.", remate: "La soberanía también puede entrar por la puerta de atrás.", efectos: { pueblo: 6, elite: 2, potencias: -4, crisis: 1 } }
+    izq: { accion: "Racionar la escasez", efectos: { pueblo: -4, elite: -1, crisis: -1 } },
+    der: { accion: "Contrabando oficial", efectos: { pueblo: 4, elite: 1, potencias: -3, crisis: 1 } }
   },
 
   {
@@ -394,9 +394,9 @@ const CARTAS = [
   },
 
   {
-    id: "plan_quinquenal", era: 2, tipo: "sorteo", peso: 8, titulo: "El plan quinquenal", ilustracion: null,
+    id: "plan_quinquenal", era: 3, tipo: "sorteo", peso: 8, titulo: "El plan quinquenal", ilustracion: null,
     personaje: "Ministro de Economía",
-    texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda.",
+    texto: "Excelencia, proponemos un plan quinquenal con metas para cada fábrica, granja y tienda.",
     izq: { accion: "Plan quinquenal.", remate: "El éxito de la Revolución empieza por escribirlo.", efectos: { elite: 5, pueblo: -4, crisis: 2 } },
     der: { accion: "Dejar al mercado.", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, potencias: 4, elite: -4 } }
   },
@@ -454,16 +454,16 @@ const CARTAS = [
     der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -8, elite: -3, pueblo: 7 } }
   },
   {
-    id: "satelites", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites", ilustracion: null,
+    id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
-    texto: "Excelencia, nuestros satélites siguen contando sus misiles y pedimos una inspección. Aceptarla evitaría un incidente mayor.",
+    texto: "Nuestros satélites siguen contando sus misiles y pedimos una inspección. Aceptarla evitaría un incidente mayor.",
     izq: { accion: "Permitir la inspección.", remate: "Que inspeccionen; para entonces ya habremos hecho el cambio.", efectos: { potencias: 8, ejercito: -7, elite: 2 } },
     der: { accion: "Negarse.", remate: "La soberanía no se inspecciona.", efectos: { potencias: -8, ejercito: 7, elite: -2, crisis: 1 } }
   },
   {
-    id: "aliado_enfadado", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado", ilustracion: null,
+    id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado", ilustracion: null,
     personaje: "Embajador del bloque oriental",
-    texto: "Excelencia, nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
+    texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
     izq: { accion: "Pedir disculpas.", remate: "Una amistad duradera también exige saber pedir perdón.", efectos: { potencias: 8, pueblo: -6, ejercito: -2 } },
     der: { accion: "Buscar otro proveedor.", remate: "El petróleo no tiene ideología, solo precio.", efectos: { potencias: -8, pueblo: 6, ejercito: 2, crisis: 1 } }
   },
@@ -496,9 +496,9 @@ const CARTAS = [
     der: { accion: "Negar que existan.", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -8, ejercito: 6, elite: 2 } }
   },
   {
-    id: "acreedor_favores", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores", ilustracion: null,
+    id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores", ilustracion: null,
     personaje: "Ministro de Economía",
-    texto: "Excelencia, el acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.",
+    texto: "Padre de la Patria, el acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.",
     izq: { accion: "Vender nuestro voto.", remate: "La diplomacia también sirve para pagar deudas.", efectos: { potencias: 8, elite: 3, pueblo: -5, crisis: -2 } },
     der: { accion: "Pagar con lo que haya.", remate: "La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.", efectos: { potencias: -8, elite: -3, pueblo: 5, crisis: 2 } }
   },
@@ -560,9 +560,9 @@ const CARTAS = [
     der: { accion: "Buscar otro solar.", remate: "El palacio puede esperar; los vecinos viven ahí.", efectos: { elite: -6, ejercito: -2, pueblo: 8, crisis: -1 } }
   },
   {
-    id: "zafra_diez_millones", era: 3, tipo: "sorteo", peso: 10, titulo: "La zafra de los diez millones", ilustracion: null,
+    id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones", ilustracion: null,
     personaje: "Ministro de Trabajo",
-    texto: "Excelencia, para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.",
+    texto: "Para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.",
     izq: { accion: "Todos a la zafra.", remate: "El que corta caña no conspira.", efectos: { pueblo: -6, ejercito: 3, elite: 3, crisis: -1 } },
     der: { accion: "Contratar jornaleros.", remate: "La Revolución también puede pagar a quien trabaja.", efectos: { pueblo: 6, ejercito: -3, elite: -3, crisis: 1 } }
   },
@@ -602,9 +602,9 @@ const CARTAS = [
     der: { accion: "Liberar a los acusados.", remate: "Liberarlos sería reconocer un error, y la Revolución no se equivoca.", efectos: { ejercito: -6, pueblo: 5, potencias: 3 } }
   },
   {
-    id: "flores_mar", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar", ilustracion: null,
+    id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "Excelencia, cada año más gente tira flores al mar el día del accidente de Cienfuegos.",
+    texto: "Cada año más gente tira flores al mar el día del accidente de Cienfuegos.",
     izq: { accion: "Declaren la playa zona militar", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { pueblo: 6, ejercito: -6 } }
   },
@@ -837,7 +837,7 @@ const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de intel
   potencias: { alto: "Tiene aliados, y deudas con ellos.",                         bajo: "En el exterior nadie le quiere, salvo quien le teme." }
 };
 
-const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.deuda_externa": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.misiles_instalados": 3, "base.misiles_rechazados": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 3};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 1, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",

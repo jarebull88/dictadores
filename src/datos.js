@@ -158,6 +158,13 @@ const CARTAS = [
     der: { accion: "Que paguen lo que firmaron", efectos: { pueblo: -8, elite: 6 } }
   },
   {
+    id: "milicias", tipo: "sorteo", peso: 6, titulo: "Las milicias", ilustracion: null,
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "El Pueblo quiere defender la Revolución con sus propias manos. Proponemos repartir fusiles.",
+    izq: { accion: "Que el Pueblo sea el Ejército", largaAutorizada: true, efectos: { pueblo: 6, ejercito: -6 } },
+    der: { accion: "Que la defiendan con aplausos", efectos: { pueblo: -6, ejercito: 6 } }
+  },
+  {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",

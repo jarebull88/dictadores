@@ -49,7 +49,7 @@ const out = (f, t) => { fs.mkdirSync(path.join(RAIZ, "docs"), { recursive: true 
 // ---- cartas por era ----
 D.ERAS.forEach((era, i) => {
   const cartas = D.CARTAS.filter(c => (c.era || 1) === i + 1);
-  const cab = `# Cartas · Era ${i + 1}: ${era.nombre}\n\n${AUTO}Duración: entre ${era.min} y ${era.max} años. ${cartas.length} cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por ` +
+  const cab = `# Cartas · Era ${i + 1}: ${era.nombre}\n\n${AUTO}Duración: entre ${era.min} y ${era.max} cartas. ${cartas.length} cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por ` +
     Object.entries(juego.FACTOR_EFECTOS).map(([k, v]) => `${N[k]} ×${v}`).join(", ") + (era.factor ? ` y, en esta era, por ${era.factor}` : "") + ".\n\n";
   out(`cartas_era_${i + 1}.md`, cab + cartas.map((c, j) => bloque(c, j + 1)).join("\n"));
 });

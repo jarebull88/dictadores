@@ -332,6 +332,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 - **16 oct — El tiempo sigue la Revolución.** Cada carta avanza un tiempo según la era: 5–6 meses en la 1, 12–16 en la 2, 22–30 en la 3 y 30–42 en la 4. En 2000 partidas simuladas, las eras acaban a los 4, 11, 27 y 48 años, cerca de 1962, 1970, 1985 y 2006. Se sigue mostrando «N años al poder». Las cartas de otras dictaduras se quedan si no contradicen la historia principal.
 
+- **16 oct — Eras con nombre de la Revolución.** La Revolución, La Purga, El Culto y La Supervivencia. Se mantiene la escalada de títulos como sátira. El accidente de Cienfuegos pasa a la era I. El movimiento de las 17 cartas (`docs/REVISION_HISTORICA.md`, sección 2) se encarga a la sesión de textos.
+
 ## 8. Herramientas y flujo de trabajo
 - **Vigente.** Los documentos de cartas dejan de mantenerse a mano: se generan desde `src/datos.js` (`npm run docs`). Antes había que actualizar cuatro sitios por cada cambio.
 - **Vigente.** Un paquete para Claude Design (HTML, capturas, resumen) se montó a mano varias veces; ahora el resumen está en `docs/brief_claude_design.md`.

@@ -258,10 +258,10 @@ const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c
 const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
 /* El reverso de las cartas cambia de color con la etapa (base pastel y el dibujo, del mismo tono, más intenso) */
 const REVERSO_ERA = {
-  1: { base: "#A9D3A0", tinta: "#4E8A47" },   // Ascenso: verde guerrillero
-  2: { base: "#9EC8EA", tinta: "#3F7DB3" },   // Consolidación: azul
+  1: { base: "#A9D3A0", tinta: "#4E8A47" },   // La Revolución: verde guerrillero
+  2: { base: "#9EC8EA", tinta: "#3F7DB3" },   // La Purga: azul
   3: { base: "#F2C76E", tinta: "#B9832A" },   // Culto: dorado
-  4: { base: "#C9B1E4", tinta: "#7D5BAE" }    // Ocaso: lavanda
+  4: { base: "#C9B1E4", tinta: "#7D5BAE" }    // La Supervivencia: lavanda
 };
 function colorReverso(era) {
   const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;

@@ -20,6 +20,9 @@ Propuesta de Jorge: el juego sigue la **Revolución cubana y el mandato de Fidel
 **Decidido por Jorge (16 oct):**
 - **Meses por carta según la era: hecho.** Era 1, 5–6 meses (unos 4 años en total); era 2, 12–16 (unos 8); era 3, 22–30 (unos 15); era 4, 30–42 (unos 21). Una partida entera dura unos 48 años, de 1959 a 2006 (`MESES_POR_CARTA`).
 - **Se sigue mostrando «N años al poder»**, no el año del calendario.
+- **Tratamiento:** se mantiene la escalada como sátira (Comandante, Excelencia, Padre de la Patria). Las cartas que cambian de era ajustan su comienzo: en la era III empiezan por «Excelencia,» y en la I y la II van sin tratamiento.
+- **Cienfuegos:** su accidente pasa a la era I, como en la historia, y el homenaje anual a la II.
+- **Nombres de las eras: hecho.** La Revolución, La Purga, El Culto y La Supervivencia.
 - **Las cartas de otras dictaduras se quedan** si no chocan con la historia principal, porque le dan vidilla exagerada. Solo se cambian las que la contradicen: las de la sección 2, incluidas las dos reescrituras de la era IV.
 
 **Lo que había en esta sección:**

@@ -15,11 +15,11 @@ const BARRAS = [
   { id: "elite",     nombre: "Élite" },
   { id: "potencias", nombre: "Potencias" }
 ];
-const ERAS = [
-  { nombre: "Ascenso", min: 8, max: 10 },   // 16 oct: más larga (antes 6-8), al azar se pasaba demasiado fácil para Jorge
-  { nombre: "Consolidación", min: 6, max: 8, factor: 0.7 },
-  { nombre: "Culto", min: 6, max: 8, factor: 0.75 },
-  { nombre: "Ocaso", min: 6, max: 8, factor: 0.8 }
+const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
+  { nombre: "La Revolución", min: 8, max: 10 },   // 16 oct: más larga (antes 6-8), al azar se pasaba demasiado fácil para Jorge
+  { nombre: "La Purga", min: 6, max: 8, factor: 0.7 },
+  { nombre: "El Culto", min: 6, max: 8, factor: 0.75 },
+  { nombre: "La Supervivencia", min: 6, max: 8, factor: 0.8 }
 ];
 const ERA = ERAS[0];
 const UMBRAL_COALICION = 30;
@@ -216,7 +216,7 @@ const CARTAS = [
     der: { accion: "Intervenir sus empresas", efectos: { potencias: -8, pueblo: 8, elite: -9 } }
   },
 
-  /* ---------- Era 2 · Consolidación ---------- */
+  /* ---------- Era 2 · La Purga ---------- */
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario", ilustracion: null,
     personaje: "Vicepresidente del Consejo de Ministros",
@@ -608,7 +608,7 @@ const CARTAS = [
     izq: { accion: "Declaren la playa zona militar", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { pueblo: 6, ejercito: -6 } }
   },
-  /* ---------- Era 4 · Ocaso ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
+  /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje", ilustracion: null,
     personaje: "Ministra de Cultura",

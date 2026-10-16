@@ -89,7 +89,7 @@ test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (
   assert.ok(j.visible("screen-game"), "con nombre, a la derecha empieza");
 });
 
-test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, entra «Idilio» y acaba en el nombre", () => {
+test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {
   const j = cargar();
   j.w.eval("empezarTutorial()");
   assert.ok(j.visible("screen-game"));
@@ -110,7 +110,7 @@ test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, 
   assert.ok(j.d.querySelector("#carta .cinta-tutorial"), "la instrucción va en cinta");
   j.tecla(1); j.tecla(1);                                            // 3: fuerzas · 4: pistas
   assert.equal(j.w.eval("E.tutorial.i"), 4);
-  assert.ok(j.w.eval("modoEstado"), "entra la carta de «Idilio»");
+  assert.ok(j.w.eval("modoEstado"), "entra la carta de «Luna de miel»");
   j.w.eval("recogerEstado()");
   assert.equal(j.w.eval("E.tutorial.i"), 5);                         // 6: guardar
   j.tecla(1);

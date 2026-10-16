@@ -14,4 +14,4 @@ Hay cuatro ranuras. Al entrar un quinto estado, sale el más antiguo. Los valore
 | Frontera (`frontera`) | 🧱 | El imperialismo pretende robarnos a nuestros médicos, ingenieros y científicos. Después de todo lo que el Estado ha invertido en ellos, lo mínimo es que se queden. | El Ejército sube y las Potencias bajan cada 3 años. | Ejército +2 · Potencias −2 | 2 | hasta que otro lo desplace |
 | Nacionalizaciones (`nacionalizado`) | 🏭 | Ningún interés particular estará por encima del bienestar colectivo. Se nacionalizan empresas, comercios y pequeños negocios. | La Élite baja cada 3 años. | Élite −2 | 2 | hasta que otro lo desplace |
 | Deuda (`deuda`) | 💸 | Para preservar la soberanía económica, se ha solicitado financiación a los mercados internacionales. | Las Potencias suben cada 3 años. | Potencias +2 | 2 | hasta que otro lo desplace |
-| Idilio (`luna`) | 🍯 | Todos te quieren, por ahora. Especialmente el Pueblo. | El Pueblo sube cada año. | Pueblo +2 | 1 | 1 años |
+| Luna de miel (`luna`) | 🍯 | Todos te quieren, por ahora. Especialmente el Pueblo. | El Pueblo sube cada año. | Pueblo +2 | 1 | 1 años |

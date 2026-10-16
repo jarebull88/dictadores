@@ -886,7 +886,7 @@ const FUTURO = {
    TUTORIAL (15 oct): «La víspera». El capitán Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
    que entran en la capital. Cada carta enseña una sola cosa; las decisiones no cuentan para la partida.
    - paso: deslizar · girar (no se puede decidir hasta volver a girarla) · fuerzas (se encienden las barras)
-           · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Idilio») · guardar · fin
+           · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Luna de miel») · guardar · fin
    - arriba habla Cuesta (de usted); la instrucción al jugador va en la cinta (de tú)
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita

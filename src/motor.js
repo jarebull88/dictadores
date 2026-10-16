@@ -7,6 +7,8 @@ const limitar = v => Math.max(0, Math.min(100, v));
 
 const CLAVE_NOMBRE = "dictadores_nombre_v2";
 let nombreDictador = "";
+/* ?cero en la dirección: empezar como la primera vez (16 oct): se olvidan el nombre y el tutorial visto */
+if (/[?&]cero\b/.test(location.search)) { try { Object.keys(localStorage).filter(k => k.startsWith("dictadores_") || k.startsWith("comandante.")).forEach(k => localStorage.removeItem(k)); } catch (e) {} }
 try { nombreDictador = (localStorage.getItem(CLAVE_NOMBRE) || "").trim().split(/\s+/)[0] || ""; } catch (e) {}
 /* «Comandante» en las eras 1 y 2; «Excelencia» a partir de la era 3 (culto a la personalidad) */
 /* «Comandante» en las eras 1 y 2, «Excelencia» en la 3 y «Padre de la Patria» en la 4 (la última) */
@@ -80,7 +82,7 @@ const ESTADOS = {
   },
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
   luna: {
-    nombre: "Idilio", bandera: null, duracion: 1, soloTutorial: true,
+    nombre: "Luna de miel", bandera: null, duracion: 1, soloTutorial: true,
     descripcion: "Todos te quieren, por ahora. Especialmente el Pueblo.",
     deriva: { pueblo: 1 }, cada: 1
   }
@@ -989,7 +991,7 @@ function recogerEstado() {
 }
 
 function siguiente() {
-  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras guardar «Idilio» en su casilla
+  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras guardar «Luna de miel» en su casilla
   pintarCabecera();
   if (E.estadoNuevo) { mostrarCartaEstado(); return; }
   const nueva = siguienteCarta();
@@ -1204,7 +1206,7 @@ function pasoTutorial(i, sinEntrada) {
   const p = TUTORIAL[i];
   $("nombre-dictador").textContent = "La víspera";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
-  if (p.paso === "estado") {                           // entra un estado de verdad: «Idilio»
+  if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
     E.estados = [{ id: "luna", edad: 0 }];
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
@@ -1223,7 +1225,7 @@ function pasoTutorial(i, sinEntrada) {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
   carta.classList.toggle("giro-destacado", p.paso === "girar");
-  $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Idilio» parpadea hasta tocarla
+  $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira

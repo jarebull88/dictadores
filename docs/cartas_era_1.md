@@ -277,10 +277,10 @@ Duración: entre 8 y 10 cartas. 32 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Economía  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
 
-**Carta:** «Hemos prometido demasiado. ¿Subimos los precios o pedimos un préstamo?»
+**Carta:** «Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.»
 
-- **A. Suban los precios** Pueblo −10 · Élite +6 · Crisis −3
-- **B. Que paguen nuestros nietos** Potencias +8 · Élite +4 · Crisis −3 · Bandera: `deuda_externa`
+- **A. Precios congelados por decreto** Pueblo −10 · Élite +6 · Crisis −3
+- **B. Pidan prestado al que sea** Potencias +8 · Élite +4 · Crisis −3 · Bandera: `deuda_externa`
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 

@@ -1083,7 +1083,7 @@ const CARTAS = [
     id: "periodista_oficial", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.censura_previa"] }, titulo: "El periodista oficial", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "Nadie cree los periódicos, pero sí los rumores. Propongo un periodista oficial que los desmienta.",
-    izq: { accion: "Nombren un Vocero de la Verdad", efectos: { pueblo: -5, elite: 5, ejercito: 3 }, banderas: ["base.periodista_oficial"] },
+    izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -5, elite: 5, ejercito: 3 }, banderas: ["base.periodista_oficial"] },
     der: { accion: "Apunten quién los repite", efectos: { pueblo: 5, elite: -5, ejercito: -3 } }
   },
 

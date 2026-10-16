@@ -25,7 +25,7 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). Sin «Comandante,» delante en las eras 1 y 2.
 
 ## Las respuestas A y B
-- **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Y caben en dos líneas (≤30 caracteres), sin punto final.
+- **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Si lo autoriza, la opción lleva `largaAutorizada: true` en `datos.js` (si no, la prueba falla). Y caben en dos líneas (≤30 caracteres), sin punto final.
 - **Sin remate, en ninguna era** (16 oct): la respuesta es todo lo que se lee.
 - Una decisión clara: el jugador tiene que entender qué está eligiendo. No sacrifiques la claridad por el ingenio (negar que existen unos misiles no deja claro que los retiras).
 - **Si habla un embajador, la respuesta va dirigida a él** («Se irán como nunca vinieron», «Tranquilo, los retiraremos»), no como una orden a tu gente.

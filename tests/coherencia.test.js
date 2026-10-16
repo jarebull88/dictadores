@@ -55,7 +55,8 @@ test("cada carta se pinta con su imagen y su nombre", () => {
 test("las opciones son cortas (acción de 5 palabras o menos; en la era 1 manda el límite de caracteres)", () => {
   for (const c of cartas.filter(c => (c.era || 1) !== 1)) for (const l of ["izq", "der"]) {
     const n = c[l].accion.trim().split(/\s+/).length;
-    assert.ok(n <= 5, `«${c.id}» ${l}: la acción tiene ${n} palabras`);
+    // 16 oct: más de 5 palabras solo con permiso de Jorge (largaAutorizada: true en la opción)
+    if (!c[l].largaAutorizada) assert.ok(n <= 5, `«${c.id}» ${l}: la acción tiene ${n} palabras`);
   }
 });
 

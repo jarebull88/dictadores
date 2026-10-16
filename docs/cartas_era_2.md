@@ -59,10 +59,10 @@ Duración: entre 6 y 8 años. 26 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `juicios_publicos`.
 
-**Carta:** «Nuestro país pide garantías para los acusados que aún esperan sentencia en los juicios públicos.»
+**Carta:** «Nuestro país pide garantías para los acusados de sus juicios públicos que aún esperan sentencia.»
 
-- **A. Abogados de oficio.** *Que tengan abogado; la sentencia ya tiene otro dueño.* Potencias +7 · Pueblo −6 · Élite +3
-- **B. Asunto interno.** *La Patria no acepta lecciones sobre sus enemigos.* Potencias −7 · Ejército +5 · Élite −3
+- **A. Tendrán abogados «de confianza»** Potencias +7 · Pueblo −6 · Élite +3
+- **B. Los juicios son asunto nuestro** Potencias −7 · Ejército +5 · Élite −3
 
 ### 6. La voz del exilio
 

@@ -118,7 +118,7 @@ const CARTAS = [
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos", ilustracion: null,
     personaje: "Ministra de Educación",
-    texto: "Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas y gratuitas.",
+    texto: "Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas.",
     izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: -8, potencias: -6 } },
     der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -7, elite: 8, potencias: 6 } }
   },
@@ -830,11 +830,11 @@ const FINALES = {
   potencias_100:{ titulo: "Recambio",           texto: "Le entregaste las llaves del país a tu protector y ahora buscan alguien que obedezca mejor." }
 };
 
-const LINEAS_BARRA = {
-  pueblo:    { alto: "El Pueblo te aplaude, de momento.",                          bajo: "El Pueblo aprendió a no hacer demasiadas preguntas." },
-  ejercito:  { alto: "El ejército no te ha abandonado.",                           bajo: "El ejército te obedece, pero cuenta los días." },
-  elite:     { alto: "Las élites aprendieron a beneficiarse de tu gobierno.",      bajo: "Las élites miran hacia la salida." },
-  potencias: { alto: "Tienes aliados, y deudas con ellos.",                        bajo: "En el exterior nadie te quiere, salvo quien te teme." }
+const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de inteligencia donde salen
+  pueblo:    { alto: "El Pueblo le aplaude, de momento.",                          bajo: "El Pueblo ha aprendido a no hacer demasiadas preguntas." },
+  ejercito:  { alto: "El Ejército no le ha abandonado.",                           bajo: "El Ejército le obedece, pero cuenta los días." },
+  elite:     { alto: "Las élites han aprendido a beneficiarse de su gobierno.",    bajo: "Las élites miran hacia la salida." },
+  potencias: { alto: "Tiene aliados, y deudas con ellos.",                         bajo: "En el exterior nadie le quiere, salvo quien le teme." }
 };
 
 const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.deuda_externa": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.misiles_instalados": 3, "base.misiles_rechazados": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 3};   // era en la que llegan las consecuencias; el resto llega en la era 2
@@ -881,6 +881,52 @@ const FUTURO = {
   "base.palacio_del_pueblo": "Las deudas del palacio siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldos y más cárceles."
 };
+/* Lo que te espera, como lo cuenta el informe de inteligencia detrás de la carta del dictador al pasar de era (16 oct):
+   sin mecánica del juego (nada de crisis ni umbrales), en el tono del informe. FUTURO se queda para los documentos. */
+const PREVISION = {
+  "base.juicios_publicos": "Las potencias extranjeras toman nota de los juicios públicos.",
+  "base.exiliados_vocales": "Los exiliados hablan cada vez más alto desde fuera.",
+  "base.general_popular": "El general Cienfuegos recibe oficiales en su casa.",
+  "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del general Cienfuegos.",
+  "base.general_apartado": "El general Cienfuegos prepara su regreso.",
+  "base.reforma_agraria": "Las cosechas del reparto de tierras no llegarán a tiempo.",
+  "base.prensa_libre": "Hay periodistas que siguen haciendo preguntas.",
+  "base.censura_previa": "Circulan más rumores que periódicos.",
+  "base.negocio_refinerias": "Las empresas extranjeras quieren garantías por escrito.",
+  "base.nacionalizo_empresas": "La potencia del norte prepara sanciones.",
+  "base.elecciones_prometidas": "El Pueblo recuerda que se le prometieron elecciones.",
+  "base.elecciones_aplazadas": "Los estudiantes preguntan por las elecciones aplazadas.",
+  "base.critica_abierta": "Hay críticos que se han acostumbrado a hablar.",
+  "base.viejos_oficiales": "Los oficiales retirados se reúnen demasiado.",
+  "base.purga_inicial": "El ministro del Interior se ha quedado con ganas de más.",
+  "base.sindicato_libre": "El sindicato libre prepara nuevas huelgas.",
+  "base.huelga_reprimida": "En las universidades no se olvida la huelga.",
+  "base.comites_vigilancia": "Los vecinos se denuncian unos a otros.",
+  "base.policia_tradicional": "La oposición se organiza sin demasiadas molestias.",
+  "base.culto_iniciado": "Los monumentos al Comandante salen cada vez más caros.",
+  "base.modestia_aparente": "El Partido echa de menos algún monumento.",
+  "base.exodo_elite": "Faltan técnicos, ingenieros y gestores.",
+  "base.frontera_cerrada": "Hay quien intenta cruzar la frontera de noche.",
+  "base.alineado_bloque_oriental": "El aliado pasará la factura de su protección.",
+  "base.no_alineado": "La potencia del norte se acerca y el comercio se seca.",
+  "base.embargo_en_marcha": "El embargo amenaza con ser total.",
+  "base.compensaciones": "Las compensaciones han dejado una deuda pendiente.",
+  "base.criticos_detenidos": "Los presos políticos pesan en las relaciones exteriores.",
+  "base.deuda_externa": "El acreedor empieza a pedir favores.",
+  "base.mercado_paralelo": "El mercado negro crece más que la economía oficial.",
+  "base.desfile_militar": "El Ejército espera un desfile mayor cada año.",
+  "base.misiles_instalados": "Una potencia vecina vigila los misiles.",
+  "base.misiles_rechazados": "El aliado no ha olvidado la negativa de los misiles.",
+  "base.periodista_oficial": "La prensa oficial exige titulares cada vez más generosos.",
+  "base.estudiantes_reprimidos": "La universidad se ha convertido en un foco de oposición.",
+  "base.jefe_poderoso": "El ministro del Interior pide cada vez más poder.",
+  "base.sucesor_designado": "El sucesor empieza a hacerse notar.",
+  "base.oposicion_culpada": "La oposición recuerda al acusado injustamente.",
+  "base.mausoleo_construido": "El mausoleo cuesta una fortuna en mantenimiento.",
+  "base.palacio_del_pueblo": "Las deudas del Palacio del Pueblo siguen sin pagarse.",
+  "base.estado_policial": "El batallón del Interior pide más sueldo y más cárceles."
+};
+
 
 /* =====================================================
    TUTORIAL (15 oct): «La víspera». El capitán Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
@@ -891,7 +937,7 @@ const FUTURO = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", cinta: "Toca la carta para leer su expediente y vuelve a tocarla. Al cambiar de etapa, la tuya esconde un informe.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "Cada vez que cambie de etapa, inteligencia le preparará su propio expediente. Solo tendrá que girar su carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.

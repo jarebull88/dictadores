@@ -165,7 +165,7 @@ Duración: entre 6 y 8 años. 25 cartas. Los efectos están en la escala pequeñ
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas y gratuitas.»
+**Carta:** «Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas.»
 
 - **A. Que todos aprendan lo mismo** Pueblo +7 · Élite −8 · Potencias −6
 - **B. Algunos son más iguales que otros** Pueblo −7 · Élite +8 · Potencias +6

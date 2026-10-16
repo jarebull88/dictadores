@@ -678,6 +678,9 @@ function voltear() {
   if (t && TUTORIAL[t.i].paso === "girar") {               // tutorial: hay que darle la vuelta y volver a girarla
     if (volteada) t.vista = true;
     else if (t.vista) t.girada = true;
+    // 16 oct: con la carta girada, Cuesta avisa de que el Comandante también tendrá su expediente al cambiar de etapa
+    const paso = TUTORIAL[t.i];
+    if (paso.girada) { $("mensaje").innerHTML = conNegritas(volteada ? paso.girada : paso.texto); ajustarMensaje(); }
   }
 }
 
@@ -1279,7 +1282,7 @@ window.addEventListener("resize", ajustarIntro);
 function nombreValido() {
   let v = $("input-nombre").value.trim();
   if (!v) {
-    $("nombre-error").textContent = "Un dictador sin nombre no sale en los libros de historia.";
+    $("nombre-error").textContent = "Los libros de historia necesitan saber su nombre.";
     return false;
   }
   if (/\s/.test(v)) {
@@ -1413,11 +1416,11 @@ if (window.ResizeObserver) new ResizeObserver(() => {
 function informeEra() {
   const masTensa = BARRAS.map(b => ({ id: b.id, v: E.barras[b.id] })).sort((a, b) => Math.abs(b.v - 50) - Math.abs(a.v - 50))[0];
   const estado = Math.abs(masTensa.v - 50) >= 10 ? LINEAS_BARRA[masTensa.id][masTensa.v > 50 ? "alto" : "bajo"] : "";
-  const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2).map(b => FUTURO[b].replace(/\.$/, ""));
+  const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2).map(b => PREVISION[b] || FUTURO[b]);
   return {
     foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1F2A5C", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
     historia: [INFORME_ERA[E.era], estado].filter(Boolean).join(" "),
-    nota: espera.length ? `Se espera: ${espera.map(t => t.charAt(0).toLowerCase() + t.slice(1)).join("; ")}.` : ""
+    nota: espera.join(" ")
   };
 }
 function mostrarEra() {

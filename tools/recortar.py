@@ -107,6 +107,32 @@ def mascara_piel(rgba, ojos):
     return ndi.gaussian_filter(m, 0.8)
 
 
+# Caras con la luz desigual en la foto (16 oct: la barbilla de Hortensia salía sombreada): se iguala el brillo de la
+# piel de la cabeza al tono de la frente, para que la cara sea una sola pieza de papel liso.
+IGUALAR_CARA = {"educacion"}
+
+
+def igualar_cara(out, slug):
+    ruta = RAIZ / "assets/personajes/personajes.json"
+    ojos = json.loads(ruta.read_text(encoding="utf-8")).get(slug, {}).get("ojos")
+    if slug not in IGUALAR_CARA or not ojos:
+        return out
+    rgba = np.array(out).astype(float)
+    (xi, yi), (xd, yd) = ojos["izq"], ojos["der"]
+    d = xd - xi
+    m = mascara_piel(rgba, ojos)
+    caja = np.zeros(m.shape, bool)
+    caja[max(0, int(yi - 2.2 * d)):int(yi + 2.4 * d), max(0, int(xi - 1.3 * d)):int(xd + 1.3 * d)] = True
+    m = m * caja
+    lum = rgba[..., :3].mean(-1)
+    peso = ndi.gaussian_filter(m, 25)
+    lenta = ndi.gaussian_filter(lum * m, 25) / np.maximum(peso, 1e-3)        # el brillo de la piel, sin el grano
+    ref = np.median(lum[(m > 0.8) & (np.arange(m.shape[0])[:, None] < yi)])   # el de la frente
+    k = np.clip(ref / np.maximum(lenta, 1), 1, 1.35)
+    rgba[..., :3] = np.clip(rgba[..., :3] * (1 + m[..., None] * (k[..., None] - 1)), 0, 255)
+    return Image.fromarray(rgba.astype(np.uint8))
+
+
 def texturizar_piel(out, slug):
     """Suma el grano de cartulina1 a la piel del personaje (multiplicar suave sobre la máscara de piel)."""
     ruta = RAIZ / "assets/personajes/personajes.json"
@@ -156,6 +182,7 @@ def recortar_personaje(entrada, salida):
         g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]))
     rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
     out = Image.fromarray(rgba).resize((ANCHO_PERSONAJE, int(H * ANCHO_PERSONAJE / W)), Image.LANCZOS)
+    out = igualar_cara(out, entrada.stem)
     out = texturizar_piel(out, entrada.stem)
     out.save(salida, "WEBP", quality=88, method=6)
     anotar_arriba(salida.stem, out)

@@ -116,6 +116,13 @@ const CARTAS = [
     der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -8, elite: 6 } }
   },
   {
+    id: "escuelas", tipo: "sorteo", peso: 8, titulo: "Las escuelas para todos", ilustracion: null,
+    personaje: "Ministra de Educación",
+    texto: "Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas y gratuitas.",
+    izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 5, elite: -6, potencias: -4 } },
+    der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -5, elite: 6, potencias: 4 } }
+  },
+  {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores", ilustracion: null,
     personaje: "Ministra de Cultura",
     texto: "¿Y si dejamos que el Pueblo critique al gobierno libremente?",

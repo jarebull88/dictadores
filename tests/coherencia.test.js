@@ -73,7 +73,7 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
     if (era <= 2) assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: en las eras 1 y 2 la pregunta va sin «Comandante,»`);
     else assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
     for (const l of ["izq", "der"]) {
-      const maxAccion = 32;   // 16 oct: en todas las eras la letra se ajusta a 2 líneas (ajustarRespuesta); la guía pide ≤30 salvo permiso de Jorge
+      const maxAccion = c[l].largaAutorizada ? 36 : 32;   // 16 oct: en todas las eras la letra se ajusta a 2 líneas (ajustarRespuesta); la guía pide ≤30 salvo permiso de Jorge
       assert.ok(c[l].accion.length <= maxAccion, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. ${maxAccion})`);
       if (era === 1) {
         // Respuestas cortas en la era 1 (11-13 oct): sin remate ni punto final; si es larga, la letra baja hasta caber

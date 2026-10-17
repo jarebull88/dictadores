@@ -2997,7 +2997,8 @@ function actualizarVistaNombre() {
 const tutorialBloquea = () => {
   const t = E && E.tutorial; if (!t) return false;
   const paso = TUTORIAL[t.i].paso;
-  return (paso === "girar" && !t.girada) || (paso === "guardar" && !t.casilla);   // hay que girar la carta / tocar la casilla
+  return (paso === "girar" && !t.girada) || (paso === "guardar" && !t.casilla) ||
+    (paso === "fuerzas" && !t.fuerzaVista);   // hay que girar la carta / tocar la casilla / tocar un icono (17 oct)
 };
 
 function empezarTutorial() {

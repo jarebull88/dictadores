@@ -108,6 +108,10 @@ test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, 
   assert.equal(j.w.eval("E.tutorial.i"), 2);
   assert.ok(!j.d.querySelector("#carta").classList.contains("con-giro"), "después, el icono se va");
   assert.ok(j.d.querySelector("#carta .cinta-tutorial"), "la instrucción va en cinta");
+  j.tecla(1);
+  assert.equal(j.w.eval("E.tutorial.i"), 2, "hay que tocar un icono antes de seguir");
+  j.w.eval(`mostrarFuerza("pueblo", document.querySelector('.barra[data-b="pueblo"]')); ocultarInfo();`);
+  assert.ok(!j.d.querySelector("#barras").classList.contains("destacar"), "al tocar uno se apagan los avisos");
   j.tecla(1); j.tecla(1);                                            // 3: fuerzas · 4: pistas
   assert.equal(j.w.eval("E.tutorial.i"), 4);
   assert.ok(j.w.eval("modoEstado"), "entra la carta de «Luna de miel»");

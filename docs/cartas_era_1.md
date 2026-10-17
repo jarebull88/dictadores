@@ -207,8 +207,8 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.»
 
-- **A. Menos bocas que alimentar** Potencias +5 · Pueblo −5
-- **B. Nadie se lleva a nuestros niños** Potencias −5 · Pueblo +5
+- **A. Menos bocas que alimentar** Pueblo +5 · Ejército −4 · Potencias −3
+- **B. Nadie se lleva a nuestros niños** Pueblo −5 · Ejército +4 · Potencias +3
 
 ### 18. La reforma urbana
 
@@ -319,7 +319,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.»
 
-- **A. Precios congelados por decreto** Pueblo −10 · Élite +6 · Crisis −3
+- **A. Precios congelados por decreto** Pueblo +8 · Élite −6 · Crisis −3
 - **B. Pidan prestado al que sea** Potencias +8 · Élite +4 · Crisis −3 · Bandera: `deuda_externa`
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.

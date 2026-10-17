@@ -1008,8 +1008,8 @@ const CARTAS = [
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
     personaje: "Ministra de Educación",
     texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
-    izq: { accion: "Menos bocas que alimentar", efectos: { potencias: 5, pueblo: -5 } },
-    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { potencias: -5, pueblo: 5 } }
+    izq: { accion: "Menos bocas que alimentar", efectos: { pueblo: 5, ejercito: -4, potencias: -3 } },
+    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { pueblo: -5, ejercito: 4, potencias: 3 } }
   },
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",
@@ -1074,7 +1074,7 @@ const CARTAS = [
     id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura",
     personaje: "Ministro de Economía",
     texto: "Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.",
-    izq: { accion: "Precios congelados por decreto", efectos: { pueblo: -10, elite: 6, crisis: -3 } },
+    izq: { accion: "Precios congelados por decreto", efectos: { pueblo: 8, elite: -6, crisis: -3 } },
     der: { accion: "Pidan prestado al que sea", efectos: { potencias: 8, elite: 4, crisis: -3 }, banderas: ["base.deuda_externa"] }
   },
   {

@@ -281,6 +281,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .carta.revelando .dorso { visibility: hidden; }
+/* 17 oct: entrada de la pantalla del nombre: el título, el texto y el campo aparecen con fundido, uno tras otro */
+#screen-name.entrando .titulo, #screen-name.entrando .intro, #screen-name.entrando .campo { opacity: 0; animation: fundido .35s ease forwards; }
+#screen-name.entrando .titulo { animation-delay: .05s; }
+#screen-name.entrando .intro { animation-delay: .3s; }
+#screen-name.entrando .campo { animation-delay: 1.15s; }
+@keyframes fundido { to { opacity: 1; } }
 /* Icono «360» en la esquina de arriba a la derecha de la cartulina: la carta se puede girar */
 .icono-giro { position: absolute; top: 12px; right: 12px; z-index: 2; width: 13%; max-width: 40px; height: auto; pointer-events: none;
   fill: color-mix(in oklab, var(--fondo-escena, #888) 72%, #000); }   /* del color de la cartulina, algo más intenso (como el dibujo del reverso) */
@@ -3134,7 +3140,26 @@ function irANombre() {
   actualizarVistaNombre();
   mostrar("screen-name");
   ajustarIntro();
+  entrarNombre();
   vigilarNombre(REPOSO_MS);
+}
+/* 17 oct: al llegar a la pantalla del nombre, los textos entran con el fundido de la pregunta, uno tras otro, y la carta
+   del Comandante aparece boca abajo sobre el mazo y da la vuelta, como las cartas de la partida; al final, el campo */
+function entrarNombre() {
+  const pant = $("screen-name"), carta = $("carta-nombre");
+  if (!animar()) return;
+  colorReverso(1);
+  pant.classList.remove("entrando"); void pant.offsetWidth; pant.classList.add("entrando");
+  const giro = carta.querySelector(".giro");
+  giro.style.transition = "none";                     // boca abajo de golpe; la vuelta, después
+  carta.classList.add("revelando", "boca-abajo");
+  void carta.offsetWidth; giro.style.transition = "";
+  clearTimeout(carta._revela); clearTimeout(pant._entra);
+  carta._revela = setTimeout(() => {
+    carta.classList.remove("boca-abajo");
+    carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
+  }, 450);
+  pant._entra = setTimeout(() => pant.classList.remove("entrando"), 1800);
 }
 /* 17 oct: la carta del Comandante también hace el amago de deslizarse, para que se entienda que se arrastra:
    al poco de escribir el nombre (la gente lo escribía y no sabía qué hacer) y, si sigue quieta, cada pocos segundos */
@@ -3269,7 +3294,7 @@ function pintarCartaNombre() {
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "dictador-joven");
-  carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div>${dorsoFicha(fichaComandante())}</div>`;   // 17 oct: detrás, su expediente (al tocarla)
   carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";

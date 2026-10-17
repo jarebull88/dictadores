@@ -387,3 +387,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **Vuelve la confirmación del arrastre:** el umbral pasa a la mitad del recorrido (15 % del ancho de la carta; antes 7 %) y, al cruzarlo, la carta lleva un contorno de rotulador rojo gastado.
 - **El tutorial deja de ser obligatorio:** «Comenzar partida» va siempre al nombre; «Cómo se juega» está siempre en la portada y abre el tutorial.
 - **Expediente del Comandante joven** detrás de su carta en la pantalla del nombre (se gira al tocarla): «Jefe de la columna rebelde. Abogado sin clientes que subió al monte con doce hombres y hoy baja con un país detrás. Habla durante horas sin papeles. Nota: Informe del servicio del tirano, que lo dio por muerto tres veces y anoche huyó con el archivo.» El nombre es el que se va escribiendo.
+- Tutorial, textos de Jorge: paso 1, «¡Adelante!» / «Eso ni se pregunta»; paso 2, «Claro, Capitán Cuesta» / «¡Vas bien, Domingo!».

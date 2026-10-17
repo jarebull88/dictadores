@@ -1333,7 +1333,7 @@ function terminarTutorial() {
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
    (sustituye a «Sigues en el poder»: debajo de la carta ya dice cuántos años llevas) */
-let ERA_CON_NUMERO = true;
+let ERA_CON_NUMERO = false;   // 17 oct, Jorge: solo el nombre («La Purga»), sin «Era 2 –»
 const nombreEra = n => ERA_CON_NUMERO ? `Era ${n} – ${ERAS[n - 1].nombre}` : ERAS[n - 1].nombre;
 /* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
 function ajustarTituloEra(h) {

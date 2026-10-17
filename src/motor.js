@@ -1312,13 +1312,16 @@ function nombreValido() {
    op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
    op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
 /* Los puntos de pista bajan desde fuera de la pantalla al ritmo del arrastre (y vuelven a subir si la carta vuelve) */
-const bajarPistas = v => document.documentElement.style.setProperty("--bajada-pistas", v.toFixed ? v.toFixed(3) : v);
+// 17 oct: la variable va en las barras, no en la raíz: cambiarla en la raíz obligaba a recalcular los estilos de toda la página
+// en cada movimiento del dedo (y la raíz lleva las texturas incrustadas)
+const bajarPistas = v => $("barras").style.setProperty("--bajada-pistas", v.toFixed ? v.toFixed(3) : v);
 function arrastrable(carta, op) {
   let drag = null;
   // Distancia a partir de la cual se decide: es también la que muestra la respuesta, así que si se ve, soltar decide
   // 17 oct: el umbral pasa a la mitad del recorrido (15 % del ancho; antes 7 %): ahí la respuesta ya está entera,
   // la carta se marca con el contorno rojo y soltar decide
-  const umbral = () => Math.max(30, carta.offsetWidth * 0.15);
+  let ancho = 0;                                         // 17 oct: se mide al tocar, no en cada movimiento (forzaba recalcular)
+  const umbral = () => Math.max(30, (ancho || carta.offsetWidth) * 0.15);
   function marcarListo(listo) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);
@@ -1333,6 +1336,7 @@ function arrastrable(carta, op) {
   }
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
+    ancho = carta.offsetWidth;
     drag = { x: e.clientX, dx: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
@@ -1360,7 +1364,8 @@ function arrastrable(carta, op) {
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
-    mover(drag.dx, drag);
+    // un solo repintado por fotograma, aunque el dedo mande más eventos
+    if (!drag.cuadro) drag.cuadro = requestAnimationFrame(() => { if (drag) { drag.cuadro = 0; mover(drag.dx, drag); } });
   });
   function soltar(e) {
     if (!drag) return;

@@ -845,6 +845,12 @@ const FICHAS = {
     historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve.",
     nota: "Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }
 };
+/* 17 oct: el expediente del Comandante en la pantalla del nombre (detrás de su carta). Lo escribió la inteligencia del tirano. */
+const FICHA_COMANDANTE = {
+  sinNombre: "Nombre desconocido", cargo: "Jefe de la columna rebelde",
+  historia: "Abogado sin clientes que subió al monte con doce hombres y hoy baja con un país detrás. Habla durante horas sin papeles.",
+  nota: "Informe del servicio del tirano, que lo dio por muerto tres veces y anoche huyó con el archivo."
+};
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 
 const FINALES = {

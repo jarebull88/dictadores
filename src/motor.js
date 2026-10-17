@@ -1362,7 +1362,10 @@ function amagarNombre() {
   if (animar() && !arrastrando) { c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago"); setTimeout(() => c.classList.remove("amago"), 1300); }
   vigilarNombre(4000);
 }
-$("input-nombre").addEventListener("input", () => vigilarNombre($("input-nombre").value.trim() ? 1500 : REPOSO_MS));
+$("input-nombre").addEventListener("input", () => {
+  vigilarNombre($("input-nombre").value.trim() ? 1500 : REPOSO_MS);
+  const n = $("carta-nombre").querySelector(".dorso .ficha-nombre"); if (n) n.textContent = fichaComandante().nombre;   // el expediente, al día
+});
 $("carta-nombre").addEventListener("pointerdown", () => vigilarNombre(REPOSO_MS));
 /* El texto de la pantalla del nombre va a 19 px, como la pregunta; si no cabe en el hueco de arriba (móviles bajos), la letra baja hasta 14 px */
 function ajustarIntro() {
@@ -1477,7 +1480,8 @@ function pintarCartaNombre() {
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "dictador-joven");
   carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
-    `<div class="respuesta"></div></div></div></div>`;
+    `<div class="respuesta"></div></div></div>${dorsoFicha(fichaComandante())}</div>`;   // 17 oct: detrás, su expediente (al tocarla)
+  carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";
 }
 function eleccionNombre(dir) {
@@ -1505,7 +1509,18 @@ function decidirNombre(dir) {
   carta.style.opacity = "0";
   setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
-arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre });
+/* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js): el nombre es el que se está escribiendo */
+function fichaComandante() {
+  const v = $("input-nombre").value.trim().split(/\s+/)[0];
+  return { ...FICHA_COMANDANTE, foto: fotoDe("dictador-joven"), color: "#1F2A5C",
+    nombre: v ? `Comandante ${v.charAt(0).toUpperCase()}${v.slice(1)}` : FICHA_COMANDANTE.sinNombre };
+}
+arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre,
+  toque: () => {                                       // al tocarla se gira y enseña su expediente
+    const c = $("carta-nombre"), n = c.querySelector(".dorso .ficha-nombre");
+    if (n) n.textContent = fichaComandante().nombre;
+    c.classList.toggle("volteada"); eleccionNombre(0); ajustarFicha(c);
+  } });
 /* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
 if (window.ResizeObserver) new ResizeObserver(() => {
   const w = $("carta-nombre").offsetWidth;
@@ -1598,7 +1613,8 @@ document.addEventListener("click", e => {
 });
 
 $("btn-salir").addEventListener("click", () => { if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
-$("btn-comenzar").addEventListener("click", () => { if (tutorialVisto()) irANombre(); else empezarTutorial(); });
+// 17 oct: el tutorial ya no es obligatorio, ni la primera vez: «Cómo se juega» está siempre en la portada
+$("btn-comenzar").addEventListener("click", irANombre);
 
 $("btn-repasar").addEventListener("click", empezarTutorial);
 $("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });

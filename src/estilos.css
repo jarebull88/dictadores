@@ -17,20 +17,13 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 
-  --papel: #ECE9E1;          /* fondo: papel envejecido, algo grisáceo */
   --bloque: #F8F6F0;         /* bloques claros (carta, mensaje, botones) */
   --gris: #D9D5CB;           /* gris imprenta: bloques informativos y pistas vacías */
-  --gris-trazo: #9C988E;     /* contornos secundarios (ranuras vacías) */
   --carbon: #2B2A27;         /* contornos y rellenos */
   --tinta: #1C1B19;          /* texto */
   --tinta-suave: #55534D;    /* texto secundario (contraste AA sobre el papel) */
   --rojo: #B3261E;           /* solo alertas */
   --rojo-tinta: #9C221A;     /* 17 oct: el rojo de rotulador tal como se ve (títulos de era): puntos de pista y contorno de confirmación */
-  --rojo-claro: #F2DCD8;
-  --noche: #2F2E2B;          /* fondo oscuro: el de las cartas, la portada y la pantalla del nombre */
-  --rojo-noche: #E2453A;     /* el rojo del juego, algo más vivo para que se lea sobre el fondo oscuro */
-  --texto-noche: #F1EEE6;
-  --gris-noche: #B4B0A6;
   --trazo: 2px solid var(--carbon);
   --radio: 3px;
   --radio-carta: 18px;      /* esquinas de la carta de cartón */
@@ -56,7 +49,6 @@ body::before {
 #app { height: 100%; position: relative; }
 .titulo { font-family: var(--fuente-titulo); font-weight: 400; letter-spacing: 0; }
 .hidden { display: none !important; }
-.emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-style: normal; line-height: 1; }
 /* Iconos de papel recortado */
 .icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .35)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
 .icono.dibujo { filter: none; }   /* está dibujado en la cartulina: sin sombra de recorte */
@@ -68,20 +60,8 @@ body::before {
   padding: 12px 16px; display: flex; flex-direction: column;
 }
 
-/* Marcas de corte en las esquinas de un contenedor (se dibujan fuera de él) */
-.marcas::before {
-  content: ""; position: absolute; inset: -18px; pointer-events: none;
-  --m: var(--carbon);
-  background:
-    linear-gradient(var(--m), var(--m)) left top / 12px 1.5px, linear-gradient(var(--m), var(--m)) left top / 1.5px 12px,
-    linear-gradient(var(--m), var(--m)) right top / 12px 1.5px, linear-gradient(var(--m), var(--m)) right top / 1.5px 12px,
-    linear-gradient(var(--m), var(--m)) left bottom / 12px 1.5px, linear-gradient(var(--m), var(--m)) left bottom / 1.5px 12px,
-    linear-gradient(var(--m), var(--m)) right bottom / 12px 1.5px, linear-gradient(var(--m), var(--m)) right bottom / 1.5px 12px;
-  background-repeat: no-repeat;
-}
-
 /* ---------- Botones: contorno negro neto; el principal, en tinta ---------- */
-.modo, .enlace {
+.modo {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 48px; padding: 0 24px; border: none; border-radius: var(--radio); background: transparent;
   color: var(--tinta); font-family: var(--fuente); font-size: 16px; font-weight: 700; letter-spacing: .02em;
@@ -93,8 +73,7 @@ body::before {
 .modo.principal { background: var(--tinta); color: var(--bloque); border-color: var(--tinta); }
 .modo:active { background: var(--tinta); color: var(--bloque); }
 .modo.principal:active { background: var(--bloque); color: var(--tinta); }
-.modo:focus-visible, .enlace:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
-.enlace { min-height: 44px; padding: 0 12px; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
+.modo:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
 
 /* ---------- Pantallas de texto ---------- */
 .pantalla-texto { justify-content: flex-start; gap: 18px; overflow-y: auto; }
@@ -102,8 +81,6 @@ body::before {
 .pantalla-texto > :last-child { margin-bottom: auto; }
 .pantalla-texto h1 { font-size: clamp(38px, 11.4vw, 62px); line-height: 1; margin: 0; }
 .pantalla-texto h2 { font-size: clamp(30px, 9vw, 42px); line-height: 1.05; margin: 0; }
-.sub { margin: 0; font-size: 17px; line-height: 1.45; color: var(--tinta); }
-.nota { margin: 0; padding: 14px 16px; background: var(--gris); font-size: 16px; line-height: 1.45; color: var(--tinta); }
 .relato { margin: 0; font-size: 17px; line-height: 1.5; }
 .acciones { display: grid; gap: 10px; }
 
@@ -117,30 +94,6 @@ body::before {
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .error { min-height: 20px; margin: 0; font-size: 15px; color: var(--rojo); }
 
-.cuadro { margin: 0; padding: 2px 14px; border: var(--trazo); background: var(--bloque); font-size: 16px; }
-.cuadro .fila { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1.5px dotted var(--carbon); }
-.cuadro .fila:last-child { border-bottom: none; }
-.cuadro .fila span:first-child { color: var(--tinta-suave); }
-.cuadro .fila span:last-child { font-weight: 700; text-align: right; }
-.lineas { margin: 0; padding: 0; list-style: none; font-size: 16px; line-height: 1.45; color: var(--tinta-suave); }
-.lineas li { margin: 0 0 4px; }
-.pendiente:empty, .lineas:empty { display: none; }
-.pendiente { padding: 14px 16px; background: var(--gris); }
-.pendiente h3 { margin: 0 0 6px; font-weight: 700; font-size: 16px; }
-.pendiente ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.45; }
-
-/* ---------- Portada y pantalla del nombre: fondo oscuro, enlaces de texto ---------- */
-body.fondo-oscuro { background: var(--noche); }
-.oscura { color: var(--texto-noche); }
-.enlaces { display: grid; justify-items: center; gap: 2px; }
-.enlace-oscuro {
-  min-height: 44px; padding: 6px 14px; border: none; background: none; cursor: pointer;
-  color: var(--texto-noche); font-family: var(--fuente); font-size: 19px; font-weight: 700;
-  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px;
-}
-.enlace-oscuro span { font-weight: 400; color: var(--gris-noche); }
-.enlace-oscuro.secundario { font-size: 16px; font-weight: 400; color: var(--gris-noche); }
-.enlace-oscuro:hover, .enlace-oscuro:focus-visible { color: var(--rojo-noche); outline: none; }
 /* Pantallas con carta (portada y «Sigues en el poder»): la misma interfaz que el juego.
    Arriba, los textos (donde en el juego están las fuerzas y el mensaje); en medio, la carta; abajo, una acción. */
 .pantalla-carta { padding: 8px 12px 6px; }
@@ -149,24 +102,15 @@ body.carta-medida .pantalla-carta .cabecera-carta { height: var(--cabecera-h); o
 body.carta-medida .pantalla-carta .escenario { flex: none; min-height: 0; container-type: normal; }
 body.carta-medida .pantalla-carta .carta, body.carta-medida .pantalla-carta .pila { width: var(--carta-w); height: var(--carta-h); }
 body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por ahora el texto largo se corta por abajo */
-.pantalla-carta .boton-pie { margin-top: auto; }
+
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
 .cabecera-carta h1 { margin: 0; color: var(--rojo); font-size: clamp(30px, 9vw, 48px); line-height: 1; }
-.cabecera-carta .sub { justify-self: stretch; text-align: center; margin: 0; color: var(--tinta-suave); font-size: 16px; line-height: 1.35; font-weight: 400; }
 .era-anios, .fin-anios { flex: none; margin: 12px 0 0; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 22px; color: var(--tinta-suave); }   /* debajo de la carta */
 .cabecera-carta .era-texto { justify-self: stretch; text-align: center; margin: 0; font-size: 15px; line-height: 1.4; font-weight: 700; }   /* en negrita, como la pregunta */
 #screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1 { margin: 0; font-size: min(8.6vw, 46px); white-space: nowrap; }
 /* 15 oct: «Sigues en el poder» y «¡Has caído!», escritos con rotulador rojo (al 90 %, como el negro) */
 #screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); font-weight: 400; color: var(--rojo-marcador); }
-.carta-fija { cursor: default; }
-.boton-pie { flex: none; margin-top: 2px; }
-/* Cómo jugar: ventana con las instrucciones */
-.modal { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(10, 10, 10, .6); }
-.modal-caja { width: 100%; max-width: 420px; max-height: 88vh; overflow-y: auto; padding: 18px 18px 8px; background: var(--bloque); color: var(--tinta); border: 4px double var(--carbon); border-radius: var(--radio); }
-.modal-caja h2 { margin: 0 0 8px; font-size: 28px; }
-.modal-caja:focus { outline: none; }
-.modal-caja p { margin: 0 0 10px; font-size: 16px; line-height: 1.45; }
-.modal-caja .enlace { display: block; margin: 4px auto 0; }
+
 /* Pantalla del nombre: «Comandante» y el campo centrados, sin contorno, sobre papel beige */
 /* Portada: el logo y, debajo, las tres opciones como texto */
 .portada { justify-content: center; align-items: center; gap: 34px; text-align: center; }
@@ -186,7 +130,6 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   .escena-portada .escena-movil { display: none; }
   .escena-portada .escena-ancha { display: block; max-height: 45vh; }
 }
-.portada .logo img { display: block; width: 100%; height: auto; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .3)); }
 .menu-portada { display: grid; justify-items: center; gap: 0; }
 .opcion-portada {
   min-height: 44px; padding: 6px 14px; border: none; background: none; cursor: pointer; color: var(--tinta);
@@ -559,15 +502,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
-.popup .extremos { margin-top: 10px; display: grid; gap: 4px; font-size: 15px; line-height: 1.4; }
 .popup small { display: block; margin-top: 8px; font-size: 14px; color: var(--tinta-suave); }
 
 /* ---------- Pantalla final: el mensaje principal es lo más grande ---------- */
 #screen-end h1.fin-principal { font-size: clamp(52px, 16vw, 88px); line-height: .95; margin: 0; animation: golpe .55s cubic-bezier(.2, .9, .3, 1.2); }
 #screen-end.caida h1.fin-principal { color: var(--rojo); font-size: min(12vw, 56px); white-space: nowrap; animation: none; }
 #screen-end h2.fin-causa { font-size: clamp(26px, 8vw, 36px); line-height: 1.1; margin: 0; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
-.fin-fuerza { justify-self: stretch; text-align: center; margin: 0; font-size: 17px; font-weight: 700; }
-.fin-fuerza:empty { display: none; }
 /* Caída: cabecera en el hueco de las barras y la pregunta; sin título de la causa (va en la carta) ni divisor */
 .fin-escenario { display: none; }
 #screen-end.caida .fin-escenario { display: flex; }
@@ -580,7 +520,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { grid-template-columns: minmax(0, 1fr); }
 body.carta-medida #screen-era .cabecera-carta h1, body.carta-medida #screen-name .cabecera-carta h1 { font-size: min(calc(var(--carta-w) * .088), 46px); }
 body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(--carta-w) * .15), 56px); }
-#screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones, #screen-end.caida #fin-lineas { display: none; }
+#screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones { display: none; }
 #screen-end.caida .relato { justify-self: stretch; text-align: center; font-size: 15px; line-height: 1.35; }
 .carta-caida .ilustracion { align-items: center; justify-content: center; }
 .titulo-caida { padding: 0 10%; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--bloque); text-shadow: 0 1px 1px rgba(0, 0, 0, .5); }

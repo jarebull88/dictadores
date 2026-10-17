@@ -4,7 +4,7 @@
     python3 tools/build.py
 
 Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
-(assets/personajes/personajes.json), los iconos (assets/iconos/recortados/), el logo, las texturas de cartulina (assets/fondos/web/) y las fuentes
+(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), la escena de la portada, las texturas de cartulina (assets/fondos/web/) y las fuentes
 (Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
 import base64, json, pathlib, sys
@@ -25,10 +25,9 @@ def personajes():
     return mapa
 
 def iconos():
-    """Iconos de papel recortado y el logo de la portada (assets/logo/recortados/logo.webp)."""
+    """Dibujos a rotulador, escenas y sus máscaras (assets/iconos/recortados/)."""
     img = {f"icono_{f.stem}": {"src": datos_uri(f.relative_to(RAIZ), "image/webp")}
            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
-    img["logo"] = {"src": datos_uri("assets/logo/recortados/logo.webp", "image/webp")}
     return img
 
 def portada():

@@ -7,8 +7,7 @@
     "build": "python3 tools/build.py",
     "test": "python3 tools/build.py && node --test tests/*.test.js",
     "docs": "node tools/exportar_docs.js",
-    "simular": "node tools/simular.js",
-    "calibrar": "node tools/calibrar.js"
+    "simular": "node tools/simular.js"
   },
   "devDependencies": {
     "jsdom": "^26.0.0"

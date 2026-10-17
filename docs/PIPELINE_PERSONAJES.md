@@ -2,9 +2,7 @@
 
 Especificación del pipeline de personajes de *¡Comandante, ordene!*. Léela entera antes de tocar nada.
 
-> **Importante (10 oct 2026): el modo Noir se quitó del juego.** Las secciones sobre la paleta Noir y los filtros `#bw` quedan como referencia, pero ya no se usan; el campo `noir` de `personajes.json` también se quitó. La ilustración se muestra entera (`preserveAspectRatio="xMidYMax meet"`).
->
-> **Actualizado el 10 oct 2026** a lo que hay en el juego: los ojos ya no se mueven solos (siguen a la carta, ver «Ojos»), Agricultura se fusionó con Trabajo, el recorte lo hace `tools/recortar.py` y los iconos siguen el mismo proceso.
+> **Actualizado el 17 oct 2026** a lo que hay en el juego: sin modo Noir (se quitó el 10 oct), los ojos se mueven solos, la única animación es el brillo del farol de Hortensia, y el recorte lo hace `tools/recortar.py`.
 
 ## 1. Qué es cada personaje
 
@@ -36,34 +34,35 @@ assets/
   personajes/
     originales/        imágenes de Gemini con el croma (<slug>.jpg). No se publican: solo se incrusta el recorte.
     recortados/        WebP con transparencia, 900 px de ancho (<slug>.webp), generados por tools/recortar.py
-    personajes.json    metadatos: posición de los ojos, contraste en Noir, extras
+    personajes.json    metadatos: posición de los ojos, fondo de escena, cartón, brillo del farol
   iconos/
-    originales/        hoja-archivo (archivo y candado, con croma); dibujo-* (fuerzas, a bolígrafo); carton-* (estados); escena-* (cartas de estado). Los recortes de papel antiguos de fuerzas y estados se borraron el 14 oct (siguen en git)
-    recortados/        un WebP por icono (pueblo, ejercito, elite, potencias, censura, …, archivo, bloqueado)
+    originales/        dibujo-* (fuerzas y estados, a rotulador) y escena-* (cartas de estado y de caída), con croma
+    recortados/        <id>-dibujo.webp, <id>-escena.webp y las máscaras <id>-huecos.webp de los marcos con retrato
+    escenas.json       tamaño de cada escena y posición de sus marcos
+  portada/
+    originales/        las figuras de la escena del triunfo (con croma)
+    recortados/        escena-movil.webp y escena-ancha.webp; escena.json (ojos y farol)
 ```
 
-`python3 tools/recortar.py` regenera todos los recortes (o `personajes` / `iconos` por separado). Los iconos se
-nombran por su posición en la hoja; el orden está en `HOJAS`, dentro del script.
+`python3 tools/recortar.py` regenera todo, o por partes: `personajes`, `dibujos`, `escenas`, `fondos`, `portada`.
 
 `personajes.json`, una entrada por personaje:
 
 ```json
 {
-  "cultura": {
-    "nombre": "Ministra de Cultura",
-    "archivo": "cultura.webp",
-    "ancho": 900,
-    "alto": 1205,
-    "ojos": { "izq": [383, 487], "der": [545, 487], "r": 9.5 },
-    "noir": { "contraste": "duro" },
-    "extras": []
+  "educacion": {
+    "nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 900, "alto": 1205,
+    "ojos": { "izq": [387, 340], "der": [520, 340], "r": 11 }, "arriba": 71,
+    "fondo": "#F28FA6", "carton": "#F5E3A0", "carton_textura": 1,
+    "brillo": { "x": 326, "y": 1000, "r": 240 }
   }
 }
 ```
 
 - `ojos`: coordenadas en píxeles de la imagen recortada, no del original.
-- `noir`: `"duro"` por defecto; `"suave"` para personajes de ropa muy clara (Interior, Agricultura), que de otro modo se queman y pierden la textura del papel.
-- `extras`: `["humo"]` solo en Fuerzas Armadas, con `"humo": [x, y]`: la punta del puro, donde nace el humo.
+- `arriba`: fila donde empieza la cabeza (la escribe `recortar.py`); la carta recorta el aire de encima.
+- `fondo`: color de la cartulina de su escena; `carton` y `carton_textura` (1–3): el cartón de su carta.
+- `brillo`: solo Hortensia, el halo de su farol.
 
 ## 3. Recorte del croma
 
@@ -106,51 +105,15 @@ Después de recortar, abre la imagen sobre un fondo claro y otro oscuro y compru
 
 ## 4. Montaje del personaje
 
-El personaje es un `<svg>` con la imagen de fondo y los ojos encima. Nada de `<img>` suelto: los ojos tienen que ir en el mismo sistema de coordenadas que la imagen.
+El personaje es un `<svg>` con la imagen de fondo y los ojos encima (`svgPersonaje()` en `src/motor.js`). Nada de `<img>`
+suelto: los ojos tienen que ir en el mismo sistema de coordenadas que la imagen. La ilustración se muestra entera
+(`preserveAspectRatio="xMidYMax meet"`) y se recorta el aire de encima de la cabeza (`arriba` en `personajes.json`).
 
 ```html
-<svg class="personaje" viewBox="0 0 900 1205" xmlns="http://www.w3.org/2000/svg"
-     role="img" aria-label="Ministra de Cultura">
-  <defs>
-    <!-- Filtro blanco y negro de la paleta Noir -->
-    <filter id="bw" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix"
-        values=".33 .59 .11 0 0  .33 .59 .11 0 0  .33 .59 .11 0 0  0 0 0 1 0"/>
-      <feComponentTransfer>
-        <feFuncR type="linear" slope="1.75" intercept="-.41"/>
-        <feFuncG type="linear" slope="1.75" intercept="-.41"/>
-        <feFuncB type="linear" slope="1.75" intercept="-.41"/>
-      </feComponentTransfer>
-    </filter>
-    <!-- Variante suave, para personajes de ropa muy clara -->
-    <filter id="bw-suave" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix"
-        values=".33 .59 .11 0 0  .33 .59 .11 0 0  .33 .59 .11 0 0  0 0 0 1 0"/>
-      <feComponentTransfer>
-        <feFuncR type="table" tableValues="0 .07 .24 .5 .74 .88"/>
-        <feFuncG type="table" tableValues="0 .07 .24 .5 .74 .88"/>
-        <feFuncB type="table" tableValues="0 .07 .24 .5 .74 .88"/>
-      </feComponentTransfer>
-    </filter>
-  </defs>
-
-  <image id="base" href="assets/personajes/recortados/cultura.webp"
-         x="0" y="0" width="900" height="1205"/>
-
-  <g class="ojos">
-    <circle cx="383" cy="487" r="9.5"/>
-    <circle cx="545" cy="487" r="9.5"/>
-  </g>
+<svg class="personaje" viewBox="0 97 900 1108" role="img" aria-label="El Comandante">
+  <image class="base" href="(recorte incrustado)" x="0" y="0" width="900" height="1205"/>
+  <g class="ojos"><circle cx="409" cy="354" r="11"/><circle cx="522" cy="354" r="11"/></g>
 </svg>
-```
-
-**El filtro va en el SVG, no en CSS.** `filter: grayscale(1)` por CSS sobre un `<image>` dentro de un SVG lo ignoran algunos navegadores (Safari entre ellos) y el personaje se queda a color. Con `feColorMatrix` funciona en todos.
-
-Para activar Noir, pon el atributo en la imagen:
-
-```js
-base.setAttribute('filter', 'url(#bw)');   // noir
-base.removeAttribute('filter');            // vivo
 ```
 
 ### Ojos
@@ -162,50 +125,20 @@ azar (`animation-delay` negativo) para que no miren todos a la vez.
 **Cuidado con el `transform` en SVG:** una animación CSS de `transform` pisa el atributo `transform` del mismo
 elemento. Si un grupo necesita las dos cosas, pon la colocación en un grupo padre y la animación en el hijo.
 
-### Mini animaciones
+### Brillo del farol
 
-Cada personaje lleva una, dibujada en SVG encima de la imagen. En `personajes.json`:
-`"animacion": { "tipo": "humo", "x": 752, "y": 1128 }` — el tipo y el punto (en píxeles del recorte) donde se coloca.
-Los dibujos están en `ANIMACION` (`src/motor.js`) y el movimiento en `src/estilos.css`. Tipos: `humo` (puro),
-`timbre` (teléfono que suena), `flecha` (gráfico que sube), `destello`, `mosca`, `sello` («PROHIBIDO»),
-`piloto` (luz roja que parpadea) y `gota` (sudor). Para uno nuevo, añade su dibujo a `ANIMACION` y su `@keyframes`.
+La única animación de los personajes es el farol de Hortensia: `"brillo": {"x", "y", "r"}` en `personajes.json` (en
+píxeles del recorte); `svgBrillo()` pinta un halo que late como una llama (`.brillo`, `@keyframes llama`).
 
-## 5. Las dos paletas
-
-**Normal (vivo).** La imagen tal cual, sin filtro. Ojos `#161618`. El fondo de la escena es uno de los colores planos del juego: gris `#D9D5CB` (por defecto), papel `#F8F6F0` o carbón `#2B2A27`.
-
-**Noir.** Toda la imagen pasa por el filtro de blanco y negro con mucho contraste. En esta paleta solo hay tres colores posibles, y el jugador elige dos cosas:
-
-- **Fondo:** blanco `#f2f0ea`, negro `#0b0b0c` o rojo `#b3171f`.
-- **Ojos:** blancos `#f4f2ec`, negros `#0b0b0c` o rojos `#d3202a`.
-
-Por defecto, fondo negro y ojos blancos. El jugador lo elige en la portada (bloque «Estilo», con una muestra del Vicepresidente) y se recuerda en el navegador. Los controles de fondo de Normal se ocultan en Noir y se muestran estos dos grupos en su lugar. En Noir los iconos también pasan a gris (son `<img>` HTML, ahí el filtro CSS sí sirve).
-
-```js
-function setPaleta(nombre) {
-  const noir = nombre === 'noir';
-  const base = svg.querySelector('#base');
-  if (noir) base.setAttribute('filter', `url(#${suave ? 'bw-suave' : 'bw'})`);
-  else base.removeAttribute('filter');
-  svg.style.setProperty('--ojo', noir ? '#f4f2ec' : '#161618');
-  // mostrar u ocultar los grupos de botones correspondientes
-}
-```
-
-El rojo es el único acento de la paleta Noir. No metas ningún otro color: ni amarillos, ni verdes, ni destacados sueltos de la imagen. Si hace falta resaltar algo, se hace con el rojo o no se hace.
-
-## 6. Reglas al añadir un personaje nuevo
+## 5. Reglas al añadir un personaje nuevo
 
 1. Genera la imagen en Gemini con el prompt del personaje y súbela a `assets/personajes/originales/<slug>.jpg`.
 2. Ejecuta `python3 tools/recortar.py personajes`.
 3. Localiza el centro de cada ojo sobre la imagen recortada y anota las coordenadas en `personajes.json`. Añade el personaje a `PERSONAJE_SLUG` y `GRUPO_DE` en `src/motor.js` y ejecuta `npm test`. Los ojos van dentro de la montura si lleva gafas, a la altura donde estarían las cejas menos un tercio de la cara.
-4. Comprueba las dos paletas y los tres fondos de Noir. Si en Noir se pierde la textura del papel, cámbialo a `"suave"`.
-5. Comprueba que no hay halo verde en el borde sobre fondo claro.
+4. Comprueba que no hay halo verde en el borde sobre fondo claro.
 
-## 7. Lo que no hay que hacer
+## 6. Lo que no hay que hacer
 
 - No pintes los ojos en la imagen. Van siempre por código.
-- No uses filtros CSS para el blanco y negro.
-- No añadas colores a la paleta Noir más allá del rojo.
 - No subas al repo la imagen original con croma en el directorio que se publica; pesa de más y no se usa en el juego.
 - No cambies el tamaño de los personajes uno a uno: todos comparten el mismo encuadre, con la cabeza ocupando en torno al 40 % del alto y los hombros tocando los dos bordes laterales. Si uno se ve más pequeño que el resto, el fallo está en la imagen, no en el CSS.

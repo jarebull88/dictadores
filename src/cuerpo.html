@@ -7,16 +7,6 @@
       <button class="opcion-portada secundaria" id="btn-repasar" type="button">Cómo se juega</button>
     </nav>
     <div class="escena-portada" id="escena-portada" aria-hidden="true"></div>
-    <div class="modal hidden" id="como-jugar" role="dialog" aria-modal="true" aria-labelledby="como-jugar-titulo">
-      <div class="modal-caja" tabindex="-1">
-        <h2 class="titulo" id="como-jugar-titulo">Cómo se juega</h2>
-        <p>Cada carta te plantea una decisión. Arrástrala a la izquierda o a la derecha para elegir. Antes de soltarla, verás qué fuerzas se verán afectadas y cuánto cambiarán sus puntos.</p>
-        <p>Vigila a las cuatro fuerzas: Ejército <span data-icono="ejercito"></span>, Pueblo <span data-icono="pueblo"></span>, Élite <span data-icono="elite"></span> y Potencias <span data-icono="potencias"></span>. Si alguna llega al mínimo o al máximo, perderás el poder. Si su barra se pone roja, estás en peligro.</p>
-        <p>Las casillas de abajo muestran las consecuencias duraderas de tus decisiones. Toca los iconos para descubrir qué significan y la carta para conocer al personaje.</p>
-        <p>Hay cuatro eras. Sobrevive a todas y habrás ganado.</p>
-        <button class="enlace" id="btn-cerrar-como" type="button">Cerrar</button>
-      </div>
-    </div>
   </section>
 
   <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
@@ -68,7 +58,6 @@
     <div class="fin-cab">
       <h1 class="titulo fin-principal" id="fin-principal"></h1>
       <h2 class="titulo fin-causa" id="fin-titulo"></h2>
-      <p class="fin-fuerza" id="fin-fuerza"></p>
       <p class="relato" id="fin-texto"></p>
     </div>
     <!-- Al caer: la causa en una carta; derecha = jugar de nuevo, izquierda = volver a la portada -->
@@ -78,7 +67,6 @@
     </div>
     <p class="fin-anios" id="fin-anios"></p>
     <div class="esquela" id="fin-esquela"></div>
-    <ul class="lineas" id="fin-lineas"></ul>
     <div class="acciones" id="fin-acciones">
       <button class="modo principal" id="btn-repetir" type="button"><b>Jugar de nuevo</b></button>
     </div>

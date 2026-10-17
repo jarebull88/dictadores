@@ -7,10 +7,9 @@ const limitar = v => Math.max(0, Math.min(100, v));
 
 const CLAVE_NOMBRE = "dictadores_nombre_v2";
 let nombreDictador = "";
-/* ?cero en la dirección: empezar como la primera vez (16 oct): se olvidan el nombre y el tutorial visto */
+/* ?cero en la dirección: empezar como la primera vez (16 oct): se olvida el nombre guardado */
 if (/[?&]cero\b/.test(location.search)) { try { Object.keys(localStorage).filter(k => k.startsWith("dictadores_") || k.startsWith("comandante.")).forEach(k => localStorage.removeItem(k)); } catch (e) {} }
 try { nombreDictador = (localStorage.getItem(CLAVE_NOMBRE) || "").trim().split(/\s+/)[0] || ""; } catch (e) {}
-/* «Comandante» en las eras 1 y 2; «Excelencia» a partir de la era 3 (culto a la personalidad) */
 /* «Comandante» en las eras 1 y 2, «Excelencia» en la 3 y «Padre de la Patria» en la 4 (la última) */
 const tratamiento = () => (E && E.era >= 4 ? "Padre de la Patria" : E && E.era >= 3 ? "Excelencia" : "Comandante");
 const nombreCompleto = () => (E && E.era >= 4 ? `${nombreDictador}, Padre de la Patria` : tratamiento() + " " + nombreDictador);
@@ -27,12 +26,6 @@ function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch
    - duracion: cartas que dura (null = hasta que lo desplace otro)
    La descripción no da números: cuenta qué pasa, no cuánto.
    ===================================================== */
-/* Iconos de interfaz (Material Symbols de Google) */
-const UI = {
-  mas: "M479.86-160Q460-160 446-174.14t-14-34Q432-228 446.14-242t34-14Q500-256 514-241.86t14 34Q528-188 513.86-174t-34 14Zm0-272Q460-432 446-446.14t-14-34Q432-500 446.14-514t34-14Q500-528 514-513.86t14 34Q528-460 513.86-446t-34 14Zm0-272Q460-704 446-718.14t-14-34Q432-772 446.14-786t34-14Q500-800 514-785.86t14 34Q528-732 513.86-718t-34 14Z",
-  atras: "m274-450 248 248-42 42-320-320 320-320 42 42-248 248h526v60H274Z"
-};
-const icoUI = n => `<svg class="ico" viewBox="0 -960 960 960" aria-hidden="true"><path d="${UI[n]}"/></svg>`;
 
 /* Emojis de los estados: ya no se ven en el juego (se usan iconos de papel); solo los usan los documentos generados */
 const EMOJI_ESTADO = {
@@ -150,11 +143,9 @@ const GRUPO_DE = {
 /* Iconos de papel recortado (fuerzas y estados del régimen) */
 /* Iconos: si hay versión dibujada a mano (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), se usa esa en todo el
    juego; si no, el recorte de papel. Los dibujos van sin sombra: están pintados en la cartulina. */
-const icono = (id, clase = "") => {
-  // Prioridad: dibujo a rotulador (16 oct, también los estados) > icono de cartón (13 oct) > recorte de papel antiguo
-  const dib = IMG["icono_" + id + "-dibujo"] || IMG["icono_" + id + "-carton"], img = dib || IMG["icono_" + id];
-  const cl = ["icono", dib ? "dibujo" : "", clase].filter(Boolean).join(" ");
-  return img ? `<img class="${cl}" src="${img.src}" alt="" draggable="false">` : "";
+const icono = (id, clase = "") => {   // los iconos son dibujos a rotulador (16 oct: fuerzas y estados)
+  const img = IMG["icono_" + id + "-dibujo"];
+  return img ? `<img class="${["icono", "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
@@ -441,7 +432,6 @@ function mostrar(id) {
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
   if (id === "screen-name") pintarCartaNombre();
-  cerrarComoJugar();
 }
 
 function parBarra(id, esc = 1) {
@@ -608,61 +598,9 @@ function dorsoFicha(f) {
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
 const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z"/></svg>';
-/* Partición de palabras en las preguntas (15 oct): se meten guiones blandos (U+00AD) en los límites de sílaba según
-   las reglas del español, y el navegador pone «-» solo si la palabra se corta al final de la línea. Nunca deja menos
-   de 2 letras a un lado del corte, ni corta palabras de menos de 6 letras. */
-const VOCALES = "aeiouáéíóúü", FUERTES = "aeoáéíóú";   // í y ú acentuadas cuentan como fuertes (hacen hiato)
-const GRUPOS = ["bl", "br", "cl", "cr", "dr", "fl", "fr", "gl", "gr", "kl", "kr", "pl", "pr", "tr", "tl", "ch", "ll", "rr"];
-function silabas(palabra) {
-  const w = palabra.toLowerCase(), n = w.length;
-  // Tipo de cada letra: v (vocal) o c (consonante); la «u» muda de que/qui/gue/gui va con la consonante; «y» final, vocal
-  const t = [...w].map((ch, i) => {
-    if (ch === "u" && i > 0 && "qg".includes(w[i - 1]) && "eéií".includes(w[i + 1] || "")) return "c";
-    if (ch === "y") return i === n - 1 ? "v" : "c";
-    return VOCALES.includes(ch) ? "v" : "c";
-  });
-  const cortes = [];
-  let i = 0;
-  while (i < n && t[i] === "c") i++;                 // consonantes iniciales: van con la primera sílaba
-  while (i < n) {
-    // núcleo vocálico: se parte solo si hay hiato (dos fuertes seguidas)
-    let j = i + 1;
-    while (j < n && t[j] === "v") {
-      const a = w[j - 1], b = w[j];
-      if (FUERTES.includes(a) && FUERTES.includes(b)) { cortes.push(j); }
-      j++;
-    }
-    let k = j;
-    while (k < n && t[k] === "c") k++;
-    if (k >= n) break;                                // consonantes finales: con la última sílaba
-    // «gu»/«qu» con la u muda cuentan como una sola consonante (per-se-guir, no per-seg-uir)
-    const muda = k - j >= 2 && w[k - 1] === "u" ? 1 : 0;
-    const cons = w.slice(j, k - muda), m = cons.length;
-    let corte;
-    if (m === 1) corte = j;
-    else if (m === 2) corte = GRUPOS.includes(cons) ? j : j + 1;
-    else if (m === 3) corte = GRUPOS.includes(cons.slice(1)) ? j + 1 : j + 2;
-    else corte = j + 2;
-    // «ch», «ll» y «rr» no se separan aunque vayan tras otra consonante
-    if (["ch", "ll", "rr"].includes(w.slice(corte - 1, corte + 1))) corte--;
-    cortes.push(corte);
-    i = k;
-  }
-  return cortes;
-}
-/* Texto con *negritas* (y guiones de partición): el tutorial marca así sus instrucciones */
+/* Texto con *negritas*: el tutorial marca así sus instrucciones */
 function conNegritas(texto) {
-  return `<span>${texto.split("*").map((t, k) => k % 2 ? `<b>${esc(partirTexto(t))}</b>` : esc(partirTexto(t))).join("")}</span>`;   // un solo bloque: el mensaje es flex
-}
-const PARTIR_PALABRAS = false;   // 15 oct: sin partición de palabras (Jorge); el código sigue por si se vuelve
-function partirTexto(texto) {
-  if (!PARTIR_PALABRAS) return texto;
-  return texto.replace(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{6,}/g, palabra => {
-    const cortes = silabas(palabra).filter(c => c >= 2 && palabra.length - c >= 2);
-    let out = "", prev = 0;
-    cortes.forEach(c => { out += palabra.slice(prev, c) + "\u00AD"; prev = c; });
-    return out + palabra.slice(prev);
-  });
+  return `<span>${texto.split("*").map((t, k) => k % 2 ? `<b>${esc(t)}</b>` : esc(t)).join("")}</span>`;   // un solo bloque: el mensaje es flex
 }
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
@@ -961,9 +899,8 @@ function svgEscena(id, etiqueta) {
   const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
   const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
-  let caras = "", cabezas = "";
-  const huecos = IMG["icono_" + id + "-huecos"], encima = IMG["icono_" + id + "-encima"];
-  const marcos = e.marcos.filter(m => !m.cabeza), huecosCabeza = e.marcos.filter(m => m.cabeza);
+  let caras = "";
+  const huecos = IMG["icono_" + id + "-huecos"], marcos = e.marcos;
   if (marcos.length && huecos) {
     const vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;     // cabeza y hombros
     const retrato = m => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
@@ -974,28 +911,8 @@ function svgEscena(id, etiqueta) {
     caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
       `<g mask="url(#huecos-${id})">${marcos.map(retrato).join("")}</g>`;
   }
-  /* Cabeza en blanco (16 oct, caídas): tres capas. La escena trae la cabeza hecha hueco; encima va la cabeza recortada
-     del dictador de la etapa (contorno «cabeza» de personajes.json, en distancias entre ojos); y encima de todo, lo que
-     en la escena tapa la cabeza (antifaz, cascos), con la máscara «-encima». */
-  if (huecosCabeza.length && p.cabeza) {
-    const contorno = p.cabeza.map(([x, y]) => `${(ex + x * d).toFixed(1)},${(ey + y * d).toFixed(1)}`).join(" ");
-    const cabeza = m => {
-      const s = m.w / (m.ancho * d), ojoY = m.y - m.h / 2 + m.ojo * m.h;
-      return `<g transform="translate(${m.x} ${ojoY}) scale(${s.toFixed(4)}) translate(${-ex} ${-ey})">` +
-        `<clipPath id="cabeza-${id}"><polygon points="${contorno}"/></clipPath>` +
-        `<g clip-path="url(#cabeza-${id})"><image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
-        `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></g></g>`;
-    };
-    // Debajo de la cabeza, el hueco se rellena de piel: si la barba no llega al cuello, se ve cuello y no un agujero
-    const piel = huecos ? `<mask id="piel-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
-      `<rect width="${e.ancho}" height="${e.alto}" fill="${p.piel || "#D19769"}" mask="url(#piel-${id})"/>` : "";
-    cabezas = piel + `<g class="cabeza-escena">${huecosCabeza.map(cabeza).join("")}</g>` + (encima
-      ? `<mask id="encima-${id}"><image href="${encima.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
-        `<image href="${img.src}" width="${e.ancho}" height="${e.alto}" mask="url(#encima-${id})"/>`
-      : "");
-  }
   return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}"${id.startsWith("caida-") ? ' preserveAspectRatio="xMidYMax meet"' : ""} role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
-    `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}${cabezas}</svg>`;
+    `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}</svg>`;
 }
 /* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
 function recogerEstado() {
@@ -1095,19 +1012,18 @@ function continuarEra() {
 }
 
 const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
+/* Fin de la partida: caída (clave = fuerza y extremo) o victoria (sin clave). Al pasar de era, «Sigues…» va aparte. */
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
   panelAbierto = false;
   ocupado = false;
   const n = anios();
   const pantalla = $("screen-end");
-  const victoria = !clave && !transicion;
+  const victoria = !clave;
   pantalla.classList.toggle("caida", !!clave);
   pantalla.classList.toggle("victoria", victoria);
-  pantalla.classList.toggle("transicion", !!transicion);
-  const caja = $("fin-fuerza");
   pantalla.classList.toggle("pantalla-carta", !!clave);
-  pantalla.classList.toggle("pantalla-texto", !clave);
+  pantalla.classList.toggle("pantalla-texto", victoria);
   if (clave) {
     /* Caída: «¡Has caído!», qué fuerza cayó, el relato y la causa en una carta (derecha = jugar de nuevo, izquierda = volver a la portada) */
     const f = FINALES[clave];
@@ -1117,38 +1033,16 @@ function terminar(clave, transicion) {
     // Un solo párrafo para ahorrar sitio: «Las potencias llegaron al máximo.» en negrita y, seguido, el relato
     const [sujeto, verbo] = SUJETO_FUERZA[idF];
     $("fin-texto").innerHTML = `<b>${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.</b> ${esc(f.texto)}`;
-    caja.textContent = ""; caja.classList.add("hidden");
     pintarCartaFin(f.titulo, clave);
-    $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta, como en «Sigues en el poder»
-  } else if (victoria) {
+    $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta
+  } else {
     $("fin-principal").textContent = "¡Has ganado!";
     $("fin-titulo").textContent = "Moriste en tu cama, y en el poder";
     $("fin-texto").textContent = TEXTO_VICTORIA(n);
-    caja.classList.add("hidden");
-    caja.innerHTML = "";
-  } else {
-    $("fin-principal").textContent = "Sigues en el poder";
-    $("fin-titulo").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
-    $("fin-texto").textContent = TEXTO_FIN_ERA[E.era];
-    caja.classList.add("hidden");
-    caja.innerHTML = "";
   }
   $("fin-esquela").innerHTML = victoria
     ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
-  $("btn-repetir").classList.toggle("hidden", !!transicion);
-
-  const estadoPais = BARRAS.map(b => {
-    const v = E.barras[b.id], l = LINEAS_BARRA[b.id];
-    return v >= 60 ? l.alto : v <= 40 ? l.bajo : "";
-  }).filter(Boolean);
-  /* Al pasar de era, una sola lista breve: cómo está el país y lo que te espera en la siguiente */
-  const teEspera = transicion
-    ? E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).map(b => "Te espera: " + FUTURO[b].charAt(0).toLowerCase() + FUTURO[b].slice(1))
-    : [];
-  const lineas = transicion ? estadoPais.slice(0, 2).concat(teEspera).slice(0, 4) : estadoPais;
-  $("fin-lineas").innerHTML = clave || victoria ? "" : lineas.map(t => `<li>${esc(t)}</li>`).join("");
-
   mostrar("screen-end");
   if (clave) ajustarCabeceraFin();
 }
@@ -1212,12 +1106,9 @@ function actualizarVistaNombre() {
   $("nombre-error").textContent = /\s/.test($("input-nombre").value.trim()) ? "Una sola palabra: Aureliano, Anselmo, Esteban…" : "";
 }
 /* =====================================================
-   TUTORIAL «La víspera» (15 oct): la primera vez, «Comenzar partida» lleva aquí. Usa la carta, el arrastre, las
-   barras y las casillas de la partida; las decisiones no cuentan. «Saltar tutorial» (abajo) lleva al nombre.
+   TUTORIAL «La víspera» (15 oct): se abre con «Cómo se juega» (17 oct: ya no es obligatorio). Usa la carta, el arrastre,
+   las barras y las casillas de la partida; las decisiones no cuentan. «Saltar tutorial» (abajo) lleva al nombre.
    ===================================================== */
-const CLAVE_TUTORIAL = "comandante.tutorial";
-function tutorialVisto() { try { return localStorage.getItem(CLAVE_TUTORIAL) === "1"; } catch (e) { return true; } }   // sin almacenamiento (pruebas): como visto
-function marcarTutorial() { try { localStorage.setItem(CLAVE_TUTORIAL, "1"); } catch (e) {} $("btn-repasar").classList.remove("hidden"); }
 const tutorialBloquea = () => {
   const t = E && E.tutorial; if (!t) return false;
   const paso = TUTORIAL[t.i].paso;
@@ -1333,7 +1224,6 @@ function encenderFuerzas() {
   }, 350 + k * 450));
 }
 function terminarTutorial() {
-  marcarTutorial();
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar");
   clearTimeout(relojEstado);
@@ -1344,8 +1234,7 @@ function terminarTutorial() {
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
    (sustituye a «Sigues en el poder»: debajo de la carta ya dice cuántos años llevas) */
-let ERA_CON_NUMERO = false;   // 17 oct, Jorge: solo el nombre («La Purga»), sin «Era 2 –»
-const nombreEra = n => ERA_CON_NUMERO ? `Era ${n} – ${ERAS[n - 1].nombre}` : ERAS[n - 1].nombre;
+const nombreEra = n => ERAS[n - 1].nombre;   // 17 oct, Jorge: solo el nombre («La Purga»)
 /* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
 function ajustarTituloEra(h) {
   h.style.fontSize = "";
@@ -1603,8 +1492,7 @@ arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, d
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
-    if (!$("como-jugar").classList.contains("hidden")) cerrarComoJugar();
-    else ocultarInfo();
+    ocultarInfo();
     return;
   }
   if (!$("screen-era").classList.contains("hidden")) { if (e.key === "ArrowLeft") decidirEra(-1); if (e.key === "ArrowRight") decidirEra(1); return; }
@@ -1636,14 +1524,7 @@ $("btn-repetir").addEventListener("click", empezar);
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
 document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
-/* «Cómo jugar»: ventana con las instrucciones */
-function abrirComoJugar() {
-  $("como-jugar").classList.remove("hidden");
-  const caja = $("como-jugar").querySelector(".modal-caja");
-  caja.scrollTop = 0; caja.focus({ preventScroll: true });
-}
-function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
-// 16 oct: el logo, provisional, escrito a rotulador (la imagen de letras recortadas queda en assets/logo/, sin usar)
+// 16 oct: el logo, provisional, escrito a rotulador
 $("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span><i>¡</i>ordene<i>!</i></span></span>`);
 /* 17 oct: la escena del triunfo, abajo en la portada (como la foto de la entrada en la capital). Dos versiones:
    «movil» (más juntos) y «ancha» (en fila, para pantallas anchas); el CSS enseña la que toca. Los ojos miran a los
@@ -1657,9 +1538,4 @@ function svgEscenaPortada(v) {
     `<image href="${d.src}" x="0" y="0" width="${d.ancho}" height="${d.alto}"/>${svgBrillo("portada-" + v, d.brillo)}${ojos}</svg>`;
 }
 if (typeof PORTADA !== "undefined") $("escena-portada").innerHTML = svgEscenaPortada("movil") + svgEscenaPortada("ancha");
-$("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
-$("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
-if (tutorialVisto()) $("btn-repasar").classList.remove("hidden");
-/* «…/index.html?tutorial» vuelve a dejar el tutorial como no visto (para probarlo desde cero) */
-if (/[?&]tutorial\b/.test(location.search)) { try { localStorage.removeItem(CLAVE_TUTORIAL); } catch (e) {} }
 mostrar("screen-start");

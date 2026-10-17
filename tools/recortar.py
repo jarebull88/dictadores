@@ -1,24 +1,15 @@
 #!/usr/bin/env python3
-"""Recorta el croma verde de los personajes y de las hojas de iconos.
+"""Recorta el croma verde de los personajes, los dibujos, las escenas y la escena de la portada.
 
     python3 tools/recortar.py            # todo
-    python3 tools/recortar.py personajes
-    python3 tools/recortar.py iconos
-    python3 tools/recortar.py logo
-    python3 tools/recortar.py fondos
-    python3 tools/recortar.py dibujos
-    python3 tools/recortar.py carton
-    python3 tools/recortar.py escenas
-
-Entrada:  assets/personajes/originales/<slug>.jpg   y   assets/iconos/originales/hoja-*.jpg
-Entrada:  assets/logo/originales/logo.jpg (letras de papel y tela recortadas, para la portada)
-Salida:   assets/personajes/recortados/<slug>.webp  y   assets/iconos/recortados/<id>.webp
-          assets/logo/recortados/logo.webp
+    python3 tools/recortar.py personajes # assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp
+    python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp
+    python3 tools/recortar.py escenas    # assets/iconos/originales/escena-<id>.jpg -> recortados/<id>-escena.webp (+ escenas.json)
+    python3 tools/recortar.py fondos     # assets/fondos/*.jpg -> fondos/web/ (versiones ligeras)
+    python3 tools/recortar.py portada    # assets/portada/originales/ -> portada/recortados/ (+ escena.json)
 
 El recorte sigue docs/PIPELINE_PERSONAJES.md: alfa en rampa (no umbral binario), se descartan islas
-sueltas y se quita el rebote verde del borde. Las hojas de iconos se parten en piezas: cada grupo de
-recortes cercanos es un icono, y se nombran por su posición en la hoja (filas de arriba abajo, de
-izquierda a derecha). Necesita numpy, scipy y Pillow.
+sueltas y se quita el rebote verde del borde. Necesita numpy, scipy y Pillow.
 """
 import json, pathlib, sys
 import numpy as np
@@ -27,8 +18,6 @@ from scipy import ndimage as ndi
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ANCHO_PERSONAJE = 900
-# Personajes que se reflejan en horizontal al recortarlos (para que el gesto quede del mismo lado que en sus otras versiones)
-REFLEJAR = set()           # el dictador viejo antiguo se reflejaba; los cuatro nuevos (14 oct) ya vienen con el brazo en su sitio
 ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
 # Piel de papel: se le suma el grano de la cartulina 1. La piel se encuentra por color: se mide en la cara (entre los ojos,
 # bajo el puente de la nariz) y se marca todo lo que se le parece. D_PIEL_* = distancia de color (Lab) donde la máscara
@@ -36,12 +25,7 @@ ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta,
 D_PIEL_0, D_PIEL_1 = 9.0, 17.0
 FUERZA_PIEL = 1.4
 STD_PIEL_X, STD_PIEL_ANCHO = 1.8, 4.0   # la tela (lino, punto) tiene más trama que el papel: se excluye lo que supera X veces la trama de la cara (rampa de ANCHO)
-ANCHO_LOGO = 1000         # se muestra a ~400 px de ancho como mucho
 LADO_DIBUJO = 256         # los dibujos a bolígrafo/lápiz llevan más detalle fino que los recortes de papel
-LADO_ICONO = 192          # lado mayor de cada icono (se muestran a ~30 px; sobra para pantallas densas)
-
-# Orden de los iconos en cada hoja: filas de arriba abajo, cada fila de izquierda a derecha.
-HOJAS = {}   # 15 oct: la hoja del archivo (archivo y candado) se borró con el archivo histórico
 
 
 def alfa_croma(a, isla_min):
@@ -151,8 +135,6 @@ def texturizar_piel(out, slug):
 
 def recortar_personaje(entrada, salida):
     im = Image.open(entrada).convert("RGB")
-    if entrada.stem in REFLEJAR:
-        im = im.transpose(Image.FLIP_LEFT_RIGHT)
     W, H = im.size
     a = np.array(im).astype(float)
     alpha, g2 = alfa_croma(a, 8000)
@@ -200,46 +182,6 @@ def anotar_arriba(slug, imagen):
     filas = np.where((alfa > 128).sum(axis=1) > 3)[0]
     mapa[slug]["arriba"] = max(0, int(filas[0]) - 24) if len(filas) else 0
     ruta.write_text("{\n" + ",\n".join(f'  "{k}": ' + json.dumps(v, ensure_ascii=False) for k, v in mapa.items()) + "\n}\n", encoding="utf-8")
-
-
-def recortar_hoja(entrada, nombres, carpeta):
-    im = Image.open(entrada).convert("RGB")
-    a = np.array(im).astype(float)
-    alpha, g2 = alfa_croma(a, 1500)
-    rgba = np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8)
-    # agrupa recortes cercanos (el humo de la fábrica, las alas del billete…) en un solo icono
-    grupos, n = ndi.label(ndi.binary_dilation(alpha > 0.5, iterations=20))
-    cajas = [c for c in ndi.find_objects(grupos) if (c[0].stop - c[0].start) * (c[1].stop - c[1].start) > 20000]
-    esperados = sum(len(f) for f in nombres)
-    if len(cajas) != esperados:
-        raise SystemExit(f"{entrada.name}: encontré {len(cajas)} iconos y esperaba {esperados}")
-    # ordena por filas (centros verticales parecidos) y luego por columnas
-    cajas.sort(key=lambda c: (c[0].start + c[0].stop) / 2)
-    filas, i = [], 0
-    for f in nombres:
-        filas.append(sorted(cajas[i:i + len(f)], key=lambda c: c[1].start)); i += len(f)
-    hechos = []
-    for fila, nombres_fila in zip(filas, nombres):
-        for c, nombre in zip(fila, nombres_fila):
-            y0, y1, x0, x1 = c[0].start, c[0].stop, c[1].start, c[1].stop
-            pieza = Image.fromarray(rgba[y0:y1, x0:x1])
-            pieza = pieza.crop(pieza.getbbox())               # ajusta al contenido opaco real
-            esc = LADO_ICONO / max(pieza.size)
-            pieza = pieza.resize((max(1, round(pieza.width * esc)), max(1, round(pieza.height * esc))), Image.LANCZOS)
-            pieza.save(carpeta / f"{nombre}.webp", "WEBP", quality=86, method=6)
-            hechos.append(nombre)
-    return hechos
-
-
-def recortar_logo(entrada, salida):
-    """Como un personaje, pero ajustado al contenido: sin aire alrededor de las letras."""
-    a = np.array(Image.open(entrada).convert("RGB")).astype(float)
-    alpha, g2 = alfa_croma(a, 300)                      # islas pequeñas: la coma y los hilos del vaquero cuentan
-    rgba = Image.fromarray(np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8))
-    rgba = rgba.crop(rgba.getbbox())
-    out = rgba.resize((ANCHO_LOGO, round(rgba.height * ANCHO_LOGO / rgba.width)), Image.LANCZOS)
-    out.save(salida, "WEBP", quality=86, method=6)
-    return out.size
 
 
 def aligerar_fondos(carpeta):
@@ -294,22 +236,6 @@ def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, c
     return im.size
 
 
-LADO_CARTON = 512          # iconos de estado de cartón (13 oct): se ven pequeños en las casillas y grandes en su carta
-
-
-def recortar_carton(entrada, salida):
-    """Icono de cartón sobre croma verde -> recorte con transparencia, ajustado al contenido y centrado en un cuadrado."""
-    a = np.array(Image.open(entrada).convert("RGB")).astype(float)
-    alpha, g2 = alfa_croma(a, 600)
-    im = Image.fromarray(np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8))
-    im = im.crop(im.getbbox())
-    esc = LADO_CARTON / max(im.size)
-    im = im.resize((max(1, round(im.width * esc)), max(1, round(im.height * esc))), Image.LANCZOS)
-    lienzo = Image.new("RGBA", (LADO_CARTON, LADO_CARTON), (0, 0, 0, 0))
-    lienzo.alpha_composite(im, ((LADO_CARTON - im.width) // 2, (LADO_CARTON - im.height) // 2))
-    lienzo.save(salida, "WEBP", quality=86, method=6)
-
-
 # Escenas de las cartas de estado (14 oct): collage de papel, 3:4, sobre croma. Desde el 16 oct son escenas libres
 # (ya no el icono ampliado): el icono, dibujado a rotulador, va aparte.
 # Los marcos vacíos (papel crema) llevan dentro la cara del dictador de la etapa: aquí se da un punto de cada
@@ -320,9 +246,6 @@ MARCOS = {
     # 16 oct: escena nueva del culto, un tendedero de retratos y uno grande en medio (todos rectos)
     "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
               ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],
-    # 16 oct: el mecanismo de «cabeza» (abajo) se probó con «Extracción nocturna»; ahora esa caída tiene una imagen por
-    # etapa (escena-caida-ejercito_0-<era>.jpg) y no lo usa. Para usarlo: un óvalo crema en la escena y aquí
-    # "<id>": [([(x, y), ...], 0, {"cabeza": True, "ancho": 2.35, "ojo": 0.385})] (ver svgEscena en motor.js).
 }
 
 def recortar_escena(entrada, salida, marcos):
@@ -358,8 +281,8 @@ def recortar_escena(entrada, salida, marcos):
     crema = ndi.binary_opening(crema, iterations=3)
     lab, _ = ndi.label(crema)
     hueco = np.zeros_like(crema)
-    datos, mascaras = [], []
-    for punto, giro, *extra in marcos:
+    datos = []
+    for punto, giro in marcos:
         puntos = punto if isinstance(punto, list) else [punto]       # varios puntos = un solo marco partido en trozos
         m = np.zeros_like(crema)
         for x, y in puntos:
@@ -367,7 +290,6 @@ def recortar_escena(entrada, salida, marcos):
             if not n:
                 raise SystemExit(f"{entrada.name}: el punto {(x, y)} no cae en papel crema")
             m |= ndi.binary_fill_holes(lab == n)
-        mascaras.append(m)
         hueco |= m
         # Rectángulo del hueco visible en los ejes del marco (girado)
         ys, xs = np.nonzero(m)
@@ -377,24 +299,7 @@ def recortar_escena(entrada, salida, marcos):
         u0, u1, v0, v1 = np.percentile(u, 0.5), np.percentile(u, 99.5), np.percentile(v, 0.5), np.percentile(v, 99.5)
         uc, vc = (u0 + u1) / 2, (v0 + v1) / 2
         cx, cy = uc * np.cos(t) - vc * np.sin(t), uc * np.sin(t) + vc * np.cos(t)
-        datos.append({"x": round(cx * k, 1), "y": round(cy * k, 1), "w": round((u1 - u0) * k, 1), "h": round((v1 - v0) * k, 1), "giro": giro, **(extra[0] if extra else {})})
-    cabezas = [m for m, (_, _, *ex) in zip(mascaras, marcos) if ex and ex[0].get("cabeza")]
-    if cabezas:
-        # Capa 1: la escena con la cabeza en blanco hecha hueco. Capa 3 (máscara «-encima»): lo que en la escena está
-        # sobre la cabeza (todo lo que no es crema dentro de su caja, ensanchada a los lados y hasta arriba del todo).
-        vacia = np.zeros_like(crema)
-        encima = np.zeros_like(crema)
-        for mc in cabezas:
-            vacia |= ndi.binary_dilation(mc, iterations=3)
-            ys, xs = np.nonzero(mc)
-            x0, x1 = xs.min(), xs.max(); ancho = x1 - x0
-            caja = np.zeros_like(crema)
-            caja[:ys.max() + 1, max(0, x0 - ancho // 2):x1 + ancho // 2] = True
-            encima |= caja & (alpha > 0.5) & ~vacia
-        rgba[..., 3] = np.where(vacia, 0, rgba[..., 3])
-        Image.fromarray(rgba).resize(out.size, Image.LANCZOS).save(salida, "WEBP", quality=86, method=6)
-        Image.fromarray((encima * 255).astype(np.uint8)).resize(out.size, Image.LANCZOS).save(
-            salida.with_name(salida.stem.replace("-escena", "-encima") + ".webp"), "WEBP", quality=80, method=6)
+        datos.append({"x": round(cx * k, 1), "y": round(cy * k, 1), "w": round((u1 - u0) * k, 1), "h": round((v1 - v0) * k, 1), "giro": giro})
     hueco = ndi.binary_dilation(hueco, iterations=2)
     mascara = Image.fromarray((hueco * 255).astype(np.uint8)).resize(out.size, Image.LANCZOS)
     mascara.save(salida.with_name(salida.stem.replace("-escena", "-huecos") + ".webp"), "WEBP", quality=80, method=6)
@@ -487,22 +392,12 @@ def main():
         for f in sorted((RAIZ / "assets/personajes/originales").glob("*.jpg")):
             w, h = recortar_personaje(f, dst / f"{f.stem}.webp")
             print(f"personaje {f.stem}: {w}×{h}, {(dst / f'{f.stem}.webp').stat().st_size // 1024} KB")
-    if que in ("todo", "iconos"):
-        dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
-        for hoja, nombres in HOJAS.items():
-            print(f"{hoja}:", ", ".join(recortar_hoja(RAIZ / f"assets/iconos/originales/{hoja}.jpg", nombres, dst)))
     if que in ("todo", "dibujos"):
         dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for f in sorted((RAIZ / "assets/iconos/originales").glob("dibujo-*.jpeg")):
             nombre = f.stem[len("dibujo-"):] + "-dibujo"
             w, h = recortar_dibujo(f, dst / f"{nombre}.webp", **DIBUJO_AJUSTES.get(f.stem[len("dibujo-"):], {}))
             print(f"dibujo {nombre}: {w}×{h}, {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
-    if que in ("todo", "carton"):
-        dst = RAIZ / "assets/iconos/recortados"
-        for f in sorted((RAIZ / "assets/iconos/originales").glob("carton-*.jpg")):
-            nombre = f.stem[len("carton-"):] + "-carton"
-            recortar_carton(f, dst / f"{nombre}.webp")
-            print(f"cartón {nombre}: {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
     if que in ("todo", "escenas"):
         dst = RAIZ / "assets/iconos/recortados"
         info = {}
@@ -516,10 +411,6 @@ def main():
         aligerar_fondos(RAIZ / "assets/fondos")
     if que in ("todo", "portada"):
         componer_portada()
-    if que in ("todo", "logo"):
-        dst = RAIZ / "assets/logo/recortados"; dst.mkdir(parents=True, exist_ok=True)
-        w, h = recortar_logo(RAIZ / "assets/logo/originales/logo.jpg", dst / "logo.webp")
-        print(f"logo: {w}×{h}, {(dst / 'logo.webp').stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":

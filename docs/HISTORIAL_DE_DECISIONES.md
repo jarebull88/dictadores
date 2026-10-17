@@ -393,3 +393,9 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - El cartón de la carta de Domingo Cuesta pasa a la textura 1, como casi todos (tenía la 2, con motas). Siguen con la 2 Eusebio (Trabajo) y el Comandante «culto».
 - Cartón de Eusebio (Trabajo) también con la textura 1; solo el Comandante «culto» sigue con la 2.
 - Tutorial, paso de los puntos: la decisión mueve las barras de verdad (sin caer nunca): el ron sube al Ejército, que estaba en rojo; «Primero el Pueblo» sube aún más al Pueblo. Respuestas de Jorge.
+
+## 17 oct — Limpieza del código
+- Fuera lo que ya no se usaba: la partición de palabras (apagada desde el 15 oct), la cabeza en tres capas de las escenas (Abducción tiene una imagen por etapa), la ventana antigua de «Cómo se juega», el aviso de «tutorial visto» y `?tutorial`, las ramas muertas del final de partida (lista de «te espera», «Sigues en el poder» como pantalla final), `panelAbierto`, varios campos y parámetros sin lectura, unas 40 reglas de CSS y 7 variables huérfanas, y el campo `ilustracion: null` de las 105 cartas.
+- Herramientas: fuera las hojas de recortes, los iconos de cartón, el logo de letras y `calibrar` (lo cubre `simular`). Archivos borrados (siguen en git): el logo de letras recortadas, la fuente Iosevka y las fotos del humo del puro.
+- Código repetido unificado: `lanzarCarta()` (la carta sale volando, en las cuatro pantallas con carta) y `pintarPuntos()` (tamaño de los puntos de pista). Comentarios puestos al día. La guía de personajes ya no habla del modo Noir ni del humo.
+- El HTML baja unos 160 KB (el logo antiguo se incrustaba sin usarse). Se mantienen `barraMin` y `crisisMin` en las condiciones, aunque hoy ninguna carta las usa.

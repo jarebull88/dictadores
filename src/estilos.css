@@ -314,7 +314,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .dorso { transform: rotateY(180deg); }
-/* Cada carta, un cartón: textura (k1 a k3) y color (--c-base, ver cartonAleatorio) distintos */
+/* Cada carta, un cartón: textura (k1 a k3) y color (--c-base, ver cartonDe) distintos */
 .carta.k1 { --c-tex: var(--tex-cartulina1); }   /* cartón liso, claro */
 .carta.k2 { --c-tex: var(--tex-cartulina2); }   /* con motas */
 .carta.k3 { --c-tex: var(--tex-cartulina3); }   /* kraft */

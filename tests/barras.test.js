@@ -30,7 +30,7 @@ test("el relleno es horizontal y refleja el valor", () => {
 
 test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa", () => {
   const j = cargar(); j.empezar();
-  j.w.eval("E.ultimaDecision='Juicio público.'; terminar('ejercito_0')");
+  j.w.eval("terminar('ejercito_0')");
   assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
   assert.equal(j.$("fin-titulo").textContent, "Abducción");
   assert.match(j.$("fin-texto").textContent, /^El ejército llegó al mínimo\. /);

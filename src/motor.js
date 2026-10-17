@@ -27,7 +27,7 @@ function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch
    La descripción no da números: cuenta qué pasa, no cuánto.
    ===================================================== */
 
-/* Emojis de los estados: ya no se ven en el juego (se usan iconos de papel); solo los usan los documentos generados */
+/* Emojis de los estados: no se ven en el juego (allí van los dibujos a rotulador); solo los usan los documentos generados */
 const EMOJI_ESTADO = {
   censura: "🤐", vigilancia: "👁️", culto: "🖼️", alineado: "🤝",
   embargo: "🚫", frontera: "🧱", nacionalizado: "🏭", deuda: "💸", luna: "🍯"
@@ -75,7 +75,7 @@ const ESTADOS = {
   },
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
   luna: {
-    nombre: "Luna de miel", bandera: null, duracion: 1, soloTutorial: true,
+    nombre: "Luna de miel", bandera: null, duracion: 1,   // solo en el tutorial
     descripcion: "Todos te quieren, por ahora. Especialmente el Pueblo.",
     deriva: { pueblo: 1 }, cada: 1
   }
@@ -140,10 +140,9 @@ const GRUPO_DE = {
 };
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
-/* Iconos de papel recortado (fuerzas y estados del régimen) */
-/* Iconos: si hay versión dibujada a mano (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), se usa esa en todo el
-   juego; si no, el recorte de papel. Los dibujos van sin sombra: están pintados en la cartulina. */
-const icono = (id, clase = "") => {   // los iconos son dibujos a rotulador (16 oct: fuerzas y estados)
+/* Iconos de fuerzas y estados: dibujos a rotulador (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), sin sombra:
+   están pintados en la cartulina */
+const icono = (id, clase = "") => {
   const img = IMG["icono_" + id + "-dibujo"];
   return img ? `<img class="${["icono", "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
@@ -189,7 +188,7 @@ function svgBrillo(slug, b) {
 /* =====================================================
    LAS CUATRO FUERZAS: un icono, una barra horizontal debajo y los puntos de pista bajo la barra
    ===================================================== */
-/* Emojis de las fuerzas: solo para los documentos generados; en el juego se ven los iconos de papel */
+/* Emojis de las fuerzas: solo para los documentos generados; en el juego se ven los dibujos a rotulador */
 const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "🎩", potencias: "🌐" };
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
@@ -205,7 +204,6 @@ const FUERZAS = {
    ===================================================== */
 let E = null;
 let ocupado = false;
-let panelAbierto = false;
 
 /* Los lados se mezclan al azar en cada carta (como en Reigns), para que no se pueda aprender
    que "la opción valiente siempre está a la derecha". Cada opción conserva sus efectos. */
@@ -239,17 +237,15 @@ function nuevaPartida() {
     estados: [],
     eventos: [],
     derivaTurno: {},
-    aviso: null,
-    pistaVista: false,
     actual: null
   };
 }
 
-/* Una era dura entre 6 y 8 cartas (unos 9-12 años). Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
+/* Cada era dura entre min y max cartas (ERAS). Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
 const anioEra = () => E.turno - E.inicioEra + 1;
 const finEra = () => E.inicioEra + E.N - 1;
 const deEra = c => (c.era || 1) === E.era;
-const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= (c.descanso || 10))) && !grupoVisto(c);
+const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= 10)) && !grupoVisto(c);
 /* Cartas de un mismo «grupo» (p. ej. las tres cartas iniciales): solo sale una por partida, sorteada */
 const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
 /* El reverso de las cartas cambia de color con la etapa (base pastel y el dibujo, del mismo tono, más intenso) */
@@ -401,14 +397,13 @@ function comprobarCaida() {
 const PANTALLAS = ["screen-start", "screen-name", "screen-game", "screen-era", "screen-end"];
 /* Todas las cartas miden lo que la de la partida y están a la misma altura. Se mide la pantalla de juego (aunque
    esté oculta: se muestra un instante invisible) y se guardan --carta-w, --carta-h y --cabecera-h (lo que ocupan
-   arriba las barras y el mensaje). Las pantallas con carta (nombre, «Sigues en el poder») usan esas medidas. */
+   arriba las barras y el mensaje). Las pantallas con carta (nombre, paso de era, caída) usan esas medidas. */
 function medirCartaJuego() {
   const g = $("screen-game"), c = $("carta"), esc = c.parentElement;
   if (!$("barras").children.length) construirBarras();
   if (!$("ranuras").children.length) $("ranuras").innerHTML = '<div class="ranura"></div>'.repeat(MAX_RANURAS);
-  const oculta = g.classList.contains("hidden"), cartaOculta = c.classList.contains("hidden");
+  const oculta = g.classList.contains("hidden");
   if (oculta) { g.classList.remove("hidden"); g.style.position = "absolute"; g.style.inset = "0"; g.style.visibility = "hidden"; }
-  c.classList.remove("hidden");
   /* 16 oct: si la carta tiene más alto del que pide el personaje (móviles altos: manda el ancho), el hueco de la pregunta
      crece a 5 o 6 líneas para que los textos largos no encojan la letra. Igual en todas las cartas, para que no salten. */
   const raiz = document.documentElement.style;
@@ -418,7 +413,6 @@ function medirCartaJuego() {
   if (sobra > 0) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
-  if (cartaOculta) c.classList.add("hidden");
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
@@ -434,11 +428,11 @@ function mostrar(id) {
   if (id === "screen-name") pintarCartaNombre();
 }
 
-function parBarra(id, esc = 1) {
+function parBarra(id) {
   return `<div class="par">
-      <div class="icono-fuerza" style="height:${Math.round(32 * esc)}px" aria-hidden="true">${icono(id)}</div>
+      <div class="icono-fuerza" style="height:32px" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
-      <div class="nivel" aria-hidden="true" style="max-width:${Math.round(72 * esc)}px"><i class="relleno"></i></div>
+      <div class="nivel" aria-hidden="true" style="max-width:72px"><i class="relleno"></i></div>
     </div>`;
 }
 
@@ -534,15 +528,15 @@ function ocultarInfo() {
   pop.classList.add("hidden");
   delete pop.dataset.clave;
 }
-function contenidoEstado(id, s, etiqueta) {
+function contenidoEstado(id) {
   const d = ESTADOS[id];
-  return `${etiqueta ? `<small class="etiqueta-pop">${esc(etiqueta)}</small>` : ""}<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto"><span class="tinta">Efecto: ${esc(RESUMEN[id] || "")}</span></span>`;   // el ritmo y la duración van en el efecto (15 oct)
+  return `<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto"><span class="tinta">Efecto: ${esc(RESUMEN[id] || "")}</span></span>`;   // el ritmo y la duración van en el efecto (15 oct)
 }
 function mostrarInfo(i) {
   const s = E.estados[i];
-  const el = $("ranuras").querySelectorAll("button.ranura")[0] && $("ranuras").children[i];
+  const el = $("ranuras").children[i];
   if (!s || !el) { ocultarInfo(); return; }
-  abrirPopup("estado-" + s.id, contenidoEstado(s.id, s), el);
+  abrirPopup("estado-" + s.id, contenidoEstado(s.id), el);
   if (E.tutorial && TUTORIAL[E.tutorial.i].paso === "guardar") { E.tutorial.casilla = true; $("ranuras").classList.remove("destacar"); }
 }
 function mostrarFuerza(id, el) {
@@ -607,7 +601,7 @@ function pintarCarta(c) {
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
-  $("mensaje").innerHTML = conNegritas(c.texto);    // con guiones de partición (solo en las preguntas)
+  $("mensaje").innerHTML = conNegritas(c.texto);
   ajustarMensaje();
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
@@ -647,17 +641,19 @@ function ajustarRespuesta(r) {
 function pintarEleccion(dir) {
   if (modoEstado) return;                             // la carta de estado no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
-  const op = c && !panelAbierto && dir !== 0 ? opcionDe(dir) : null;
+  const op = c && dir !== 0 ? opcionDe(dir) : null;
   const r = $("respuesta");
   if (r) {
     if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
     // Sin lado (la carta vuelve a su sitio): el texto se queda en el panel y sube con él
   }
-  if (!op) return;                                    // los puntos tampoco cambian: suben fuera de la pantalla tal cual
+  if (op) pintarPuntos(op);                           // sin lado, los puntos no cambian: suben fuera de la pantalla tal cual
+}
+/* Puntos de pista: tres tamaños según cuánto mueve la opción cada fuerza (nunca el signo) */
+function pintarPuntos(op) {
   BARRAS.forEach(b => {
+    const e = Math.abs(op.efectos[b.id] || 0), d = e === 0 ? 0 : e <= 14 ? 8 : e <= 20 ? 13 : 18;
     const p = document.querySelector(`.barra[data-b="${b.id}"] .punto`);
-    const e = op ? Math.abs(op.efectos[b.id] || 0) : 0;
-    const d = e === 0 ? 0 : e <= 14 ? 8 : e <= 20 ? 13 : 18;
     p.style.width = p.style.height = d + "px";
   });
 }
@@ -687,7 +683,6 @@ function empezar() {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   void carta.offsetWidth;
   carta.style.transition = "";
-  panelAbierto = false;
   ocupado = false;
   pintarEleccion(0);
   if (animar()) repartir();
@@ -726,7 +721,7 @@ let reposo = null;
 function vigilarReposo() { clearTimeout(reposo); reposo = setTimeout(amagar, REPOSO_MS); }
 function amagar() {
   const c = $("carta");
-  const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !panelAbierto && !modoEstado &&
+  const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !modoEstado &&
     !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden");
   if (quieta) {
     c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago");
@@ -763,9 +758,15 @@ function repartir() {
   }, (N - 1) * PASO + DURA + 60);
 }
 
+/* La carta sale volando hacia el lado elegido (en todas las pantallas con carta) */
+function lanzarCarta(carta, dir) {
+  carta.style.transition = "";
+  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
+  carta.style.opacity = "0";
+}
 function decidir(dir) {
   if (modoEstado) { recogerEstado(); return; }
-  if (ocupado || panelAbierto || tutorialBloquea()) return;
+  if (ocupado || tutorialBloquea()) return;
   ocupado = true;
   ocultarInfo();
   const carta = $("carta");
@@ -773,9 +774,7 @@ function decidir(dir) {
   pintarEleccion(dir);
   carta.classList.add("listo");
   const rsp = $("respuesta"); if (rsp) rsp.classList.add("firme");
-  carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
-  carta.style.opacity = "0";
+  lanzarCarta(carta, dir);
   setTimeout(() => resolver(dir), 240);
 }
 
@@ -794,7 +793,6 @@ function resolver(dir) {
   }
   const c = E.actual;
   const op = opcionDe(dir);
-  E.ultimaDecision = op.accion;
   const turnoDecidido = E.turno;
   aplicar(c, op);
   pintarBarras();
@@ -956,14 +954,12 @@ function siguiente() {
   mostrarAvisoPendiente();
 }
 
-/* Cada carta es un año y medio, más o menos: así una partida entera da unos 40-50 años, como un dictador de verdad */
 /* Meses que pasan con cada carta, según la era (16 oct): siguen la cronología de la Revolución (1959–2006).
    Era 1 (8–10 cartas) ≈ 4 años · era 2 (6–8) ≈ 8 · era 3 ≈ 15 · era 4 ≈ 21: una partida entera, unos 48 años. */
 const MESES_POR_CARTA = { 1: [5, 6], 2: [12, 16], 3: [22, 30], 4: [30, 42] };
 function anios() { return Math.floor((E.meses || 0) / 12); }
 
-/* «Sigues en el poder»: qué ha pasado y cuál es el objetivo de la era siguiente */
-/* «Sigues en el poder» (16 oct): arriba solo cabe una frase (≤100 caracteres; provisional, la editará Jorge); el resto va
+/* Paso de era (16 oct): arriba solo cabe una frase (≤100 caracteres; provisional, la editará Jorge); el resto va
    en el informe de inteligencia, detrás de la carta del dictador (al tocarla se gira, como las de los ministros) */
 const TEXTO_FIN_ERA = {
   1: "Has conquistado el poder. Ahora toca aferrarse a él.",
@@ -975,7 +971,7 @@ const INFORME_ERA = {
   2: "Llega el culto a su persona, y alguien tendrá que pagarlo.",
   3: "Los médicos le visitan cada semana."
 };
-/* Ilustración del dictador en «Sigues en el poder», según la era que empieza */
+/* Ilustración del dictador al pasar de era, según la era que empieza */
 const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador-viejo" };
 /* Victoria: sobrevivir a la última era. El final al que aspira todo dictador: morir de viejo, en la cama y en el poder.
    La esquela cambia según lo que hayas decidido en la partida. */
@@ -1015,7 +1011,6 @@ const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejércit
 /* Fin de la partida: caída (clave = fuerza y extremo) o victoria (sin clave). Al pasar de era, «Sigues…» va aparte. */
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
-  panelAbierto = false;
   ocupado = false;
   const n = anios();
   const pantalla = $("screen-end");
@@ -1094,9 +1089,7 @@ function decidirFin(dir) {
   finOcupada = true;
   const carta = $("carta-fin");
   eleccionFin(dir);
-  carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
-  carta.style.opacity = "0";
+  lanzarCarta(carta, dir);
   setTimeout(() => { if (dir > 0) empezar(); else { mostrar("screen-start"); pintarCartaFin($("fin-titulo").textContent); } }, 240);
 }
 arrastrable($("carta-fin"), { activa: () => !finOcupada, mostrar: eleccionFin, decidir: decidirFin });
@@ -1126,7 +1119,6 @@ function empezarTutorial() {
   pintarBarras(); pintarRanuras();
   $("btn-salir").textContent = "Saltar tutorial";
   $("carta").classList.remove("hidden", "listo", "volteada");
-  panelAbierto = false;
   if (animar()) { pasoTutorial(0, true); repartir(); } else pasoTutorial(0);
 }
 function pasoTutorial(i, sinEntrada) {
@@ -1159,8 +1151,7 @@ function pasoTutorial(i, sinEntrada) {
   $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
-  if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira
-  if (p.paso === "pistas") ensenarPistas();
+  if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
   if (p.paso === "deslizar") demostrarArrastre();
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
   ocupado = false;
@@ -1208,12 +1199,7 @@ function demostrarArrastre() {
 /* 17 oct: en el paso de los puntos, los puntos bajan solos y se quedan quietos sin mover la carta; en cuanto el jugador
    la arrastra, vuelven a su comportamiento normal (bajan y suben con el dedo). */
 function ensenarPistas() {
-  const op = opcionDe(1);
-  BARRAS.forEach(b => {
-    const p = document.querySelector(`.barra[data-b="${b.id}"] .punto`);
-    const e = Math.abs(op.efectos[b.id] || 0), d = e === 0 ? 0 : e <= 14 ? 8 : e <= 20 ? 13 : 18;
-    p.style.width = p.style.height = d + "px";
-  });
+  pintarPuntos(opcionDe(1));
   setTimeout(() => { if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "pistas" && !arrastrando) bajarPistas(1); }, animar() ? 900 : 0);
 }
 /* Las cuatro fuerzas se encienden una a una, cada una con su nota */
@@ -1233,7 +1219,7 @@ function terminarTutorial() {
   irANombre();
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
-   (sustituye a «Sigues en el poder»: debajo de la carta ya dice cuántos años llevas) */
+   (17 oct: sustituye a «Sigues en el poder»; debajo de la carta ya dice cuántos años llevas) */
 const nombreEra = n => ERAS[n - 1].nombre;   // 17 oct, Jorge: solo el nombre («La Purga»)
 /* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
 function ajustarTituloEra(h) {
@@ -1263,6 +1249,7 @@ function amagarNombre() {
   vigilarNombre(4000);
 }
 $("input-nombre").addEventListener("input", () => {
+  actualizarVistaNombre();
   vigilarNombre($("input-nombre").value.trim() ? 1500 : REPOSO_MS);
   const n = $("carta-nombre").querySelector(".dorso .ficha-nombre"); if (n) n.textContent = fichaComandante().nombre;   // el expediente, al día
 });
@@ -1294,7 +1281,7 @@ function nombreValido() {
 }
 
 /* ---------- Gestos ---------- */
-/* Arrastrar una carta a izquierda o derecha. Se usa en el juego y en la pantalla del nombre.
+/* Arrastrar una carta a izquierda o derecha. Se usa en todas las cartas: partida, nombre, paso de era y caída.
    op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
    op.decidir(dir): suelta la carta hacia ese lado · op.toque(): un toque sin arrastrar (opcional) */
 /* Los puntos de pista bajan desde fuera de la pantalla al ritmo del arrastre (y vuelven a subir si la carta vuelve) */
@@ -1368,7 +1355,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado && !panelAbierto, fija: () => modoEstado || tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });
+arrastrable($("carta"), { activa: () => !ocupado, fija: () => modoEstado || tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */
@@ -1404,9 +1391,7 @@ function decidirNombre(dir) {
   nombreOcupada = true;
   const carta = $("carta-nombre");
   eleccionNombre(dir);
-  carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
-  carta.style.opacity = "0";
+  lanzarCarta(carta, dir);
   setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
 /* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js): el nombre es el que se está escribiendo */
@@ -1427,7 +1412,7 @@ if (window.ResizeObserver) new ResizeObserver(() => {
   if (w) $("screen-name").style.setProperty("--ancho-carta", w + "px");
 }).observe($("carta-nombre"));
 
-/* ---------- «Sigues en el poder»: el dictador de la era que empieza, en una carta, y un solo párrafo ---------- */
+/* ---------- Paso de era: el dictador de la era que empieza, en una carta, y una frase ---------- */
 /* Informe de inteligencia de la era (detrás de la carta del dictador): la situación, la fuerza más tensa y, en la nota,
    hasta dos cosas que te esperan en la era siguiente */
 function informeEra() {
@@ -1441,7 +1426,7 @@ function informeEra() {
   };
 }
 function mostrarEra() {
-  panelAbierto = false; ocupado = false;
+  ocupado = false;
   const n = anios();
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = TEXTO_FIN_ERA[E.era];
@@ -1481,9 +1466,7 @@ function decidirEra(dir) {
   eraOcupada = true;
   const carta = $("carta-era");
   eleccionEra(dir);
-  carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
-  carta.style.opacity = "0";
+  lanzarCarta(carta, dir);
   setTimeout(() => { if (dir > 0) continuarEra(); else mostrar("screen-start"); }, 240);
 }
 arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra,
@@ -1517,13 +1500,11 @@ $("btn-comenzar").addEventListener("click", irANombre);
 
 $("btn-repasar").addEventListener("click", empezarTutorial);
 $("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
-$("input-nombre").addEventListener("input", actualizarVistaNombre);
 $("btn-repetir").addEventListener("click", empezar);
 
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
-document.querySelectorAll("[data-icono]").forEach(el => { el.innerHTML = icono(el.dataset.icono, "en-linea"); });
 // 16 oct: el logo, provisional, escrito a rotulador
 $("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span><i>¡</i>ordene<i>!</i></span></span>`);
 /* 17 oct: la escena del triunfo, abajo en la portada (como la foto de la entrada en la capital). Dos versiones:

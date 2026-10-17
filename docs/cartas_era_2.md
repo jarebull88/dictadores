@@ -85,10 +85,10 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `purga_inicial`.
 
-**Carta:** «Solicito autorización para crear una unidad que investigue a la propia policía. Yo la dirigiría, por discreción.»
+**Carta:** «Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.»
 
-- **A. Autorizar la unidad.** *Quien vigila a todos debe saber que también lo vigilan.* Ejército +8 · Élite −5 · Pueblo −4 · Bandera: `jefe_poderoso`
-- **B. Denegar la unidad.** *Un hombre con tanto poder nunca debe sentirse cómodo.* Ejército −8 · Pueblo +4 · Élite +5
+- **A. Autorizo la unidad especial** Ejército +8 · Élite −5 · Pueblo −4 · Bandera: `jefe_poderoso`
+- **B. Denegado** Ejército −8 · Pueblo +4 · Élite +5
 
 **Consecuencia futura de `jefe_poderoso`:** El Ministro del Interior pide cada vez más poder.
 

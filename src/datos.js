@@ -351,9 +351,9 @@ const CARTAS = [
   {
     id: "jefe_poder", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.purga_inicial"] }, titulo: "El jefe pide más",
     personaje: "Ministro del Interior",
-    texto: "Solicito autorización para crear una unidad que investigue a la propia policía. Yo la dirigiría, por discreción.",
-    izq: { accion: "Autorizar la unidad.", remate: "Quien vigila a todos debe saber que también lo vigilan.", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Denegar la unidad.", remate: "Un hombre con tanto poder nunca debe sentirse cómodo.", efectos: { ejercito: -8, pueblo: 4, elite: 5 } }
+    texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
+    izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
+    der: { accion: "Denegado", efectos: { ejercito: -8, pueblo: 4, elite: 5 } }
   },
 
   {

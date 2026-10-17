@@ -373,3 +373,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - Las versiones con el puño en alto (y el Comandante con fusil y puño) son para la escena de la portada: `assets/portada/originales/`.
 - La carta del Comandante lleva un marco de metal que se degrada por etapas: oro (joven), plata (asentado); faltan bronce y óxido.
 - **Escena del triunfo en la portada:** el Comandante con el fusil y el puño en alto en el centro, Neto y Rigoberto a los lados, Hortensia (farol) y Mirta (micrófono) en los extremos; los de alrededor un 5 % más pequeños para que destaque él. Dos versiones: compacta en el móvil y en fila en pantallas anchas. El título y «Comenzar partida» quedan justo encima de la gente.
+
+## 17 oct — Tutorial más claro, preguntas en negrita y escena del móvil más grande
+- Tutorial: solo se puede girar la carta en el paso de girar; en el primer paso la carta se arrastra sola a cada lado para enseñar el gesto; en el de los puntos, los puntos bajan solos y se quedan fijos hasta que el jugador arrastra; la casilla que hay que tocar destella con una capa roja translúcida.
+- Las preguntas, en negrita: algunos jugadores no las leían porque la carta destaca mucho. Primer intento; si no basta, se probarán otras cosas.
+- Portada en el móvil: el Comandante sale del tamaño de su carta y los demás quedan cortados por los lados (siguen más pequeños que él).

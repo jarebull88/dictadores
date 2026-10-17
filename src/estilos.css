@@ -170,12 +170,13 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .logo-texto > span + span { font-size: min(92px, 20vw); }   /* la orden manda: «¡ORDENE!» va más grande */
 .logo-texto i { font-style: normal; }
 /* 17 oct: la escena del triunfo, pegada abajo y de lado a lado de la pantalla; logo y botón quedan centrados encima */
-.portada { justify-content: flex-end; padding-bottom: calc(min(49.5vw, 40vh) + 9vh); }   /* logo y botón, justo encima de la gente */
+.portada { justify-content: flex-end; padding-bottom: calc(min(var(--alto-escena, 96vw), 50vh) + 5vh); }   /* logo y botón, justo encima de la gente */
 .escena-portada { position: fixed; left: 0; right: 0; bottom: 0; pointer-events: none; }
-.escena-portada svg { display: block; width: 100%; height: auto; max-height: 40vh; }
+.escena-portada svg { display: block; width: 100%; height: auto; max-height: 50vh; }
 .escena-portada .escena-ancha { display: none; }
 @media (min-width: 700px) {
   .portada { padding-bottom: calc(min(39vw, 45vh) + 7vh); }
+  .escena-portada svg.escena-ancha { aspect-ratio: auto; }
   .escena-portada .escena-movil { display: none; }
   .escena-portada .escena-ancha { display: block; max-height: 45vh; }
 }
@@ -319,6 +320,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.con-giro .icono-giro { display: block; }
 .carta.giro-destacado .icono-giro { animation: parpadeo-giro 1.1s ease-in-out infinite; }
 #ranuras.destacar button.ranura { animation: parpadeo-giro 1.1s ease-in-out infinite; }
+/* 17 oct: y encima, una capa roja translúcida que destella, para que se vea que hay que tocarla */
+#ranuras.destacar button.ranura.llena { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }   /* la casilla no se desvanece: palpita, y destella el rojo */
+@keyframes latido-casilla { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 8px; background: rgba(179, 38, 30, .5);
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+@keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
    enseña por detrás lo que lleva z-index aunque la cara tenga backface-visibility: hidden) */
@@ -326,7 +333,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    (con visibility, no opacity, para no pisar el parpadeo) */
 .icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
 .carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; transition: visibility 0s; }
-#screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; }
+#screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; font-weight: 700; }   /* 17 oct: en negrita, para que la pregunta no pase desapercibida junto a la carta */
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
 @keyframes amago {

@@ -684,7 +684,7 @@ function pintarCarta(c) {
 function voltear() {
   if (modoEstado) { recogerEstado(); return; }
   if (ocupado) return;
-  if (E && E.tutorial && E.tutorial.i < TUTORIAL.findIndex(x => x.paso === "girar")) return;   // aún no toca girar
+  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso !== "girar") return;   // 17 oct: en el tutorial solo se gira en su paso
   pintarEleccion(0);
   const volteada = $("carta").classList.toggle("volteada");
   const t = E && E.tutorial;
@@ -1232,6 +1232,7 @@ function pasoTutorial(i, sinEntrada) {
   if (i >= TUTORIAL.length) { terminarTutorial(); return; }
   t.i = i; t.vista = t.girada = t.casilla = false;
   const p = TUTORIAL[i];
+  bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   $("nombre-dictador").textContent = "La víspera";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
@@ -1257,9 +1258,57 @@ function pasoTutorial(i, sinEntrada) {
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira
+  if (p.paso === "pistas") ensenarPistas();
+  if (p.paso === "deslizar") demostrarArrastre();
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }
   ocupado = false;
   pintarEleccion(0);
+}
+/* 17 oct: en el primer paso, la carta se arrastra sola a un lado y al otro (hasta que sale la respuesta) para enseñar
+   cómo se juega; se para en cuanto el jugador toca la carta. */
+function demostrarArrastre() {
+  const carta = $("carta"), t = E.tutorial, i = t.i;
+  if (!animar()) return;
+  let parar = false;
+  const tocar = () => { parar = true; };
+  carta.addEventListener("pointerdown", tocar, { once: true });
+  const sigue = () => !parar && E && E.tutorial === t && t.i === i && !arrastrando;
+  const esperar = ms => new Promise(r => setTimeout(r, ms));
+  const tramo = (de, a, ms) => new Promise(r => {
+    const t0 = performance.now(), estado = { lado: Math.sign(de) };
+    (function paso(ahora) {
+      if (!sigue()) return r(false);
+      const k = Math.min(1, (ahora - t0) / ms), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;   // suave al salir y al llegar
+      carta.style.transition = "none";
+      carta._mover(de + (a - de) * e, estado);
+      if (k < 1) requestAnimationFrame(paso); else r(true);
+    })(t0);
+  });
+  (async () => {
+    while (sigue() && (ocupado || carta.classList.contains("revelando"))) await esperar(150);   // tras el reparto y la vuelta
+    await esperar(700);
+    const d = Math.min(carta.offsetWidth * .32, carta._umbral() * 2.2);
+    for (const lado of [1, -1]) {
+      if (!sigue() || !await tramo(0, lado * d, 650)) break;
+      await esperar(1100);
+      if (!sigue() || !await tramo(lado * d, 0, 450)) break;
+      carta._volver();
+      await esperar(500);
+    }
+    if (!parar && E && E.tutorial === t) { carta.style.transition = ""; if (!arrastrando) carta._volver(); }
+    carta.removeEventListener("pointerdown", tocar);
+  })();
+}
+/* 17 oct: en el paso de los puntos, los puntos bajan solos y se quedan quietos sin mover la carta; en cuanto el jugador
+   la arrastra, vuelven a su comportamiento normal (bajan y suben con el dedo). */
+function ensenarPistas() {
+  const op = opcionDe(1);
+  BARRAS.forEach(b => {
+    const p = document.querySelector(`.barra[data-b="${b.id}"] .punto`);
+    const e = Math.abs(op.efectos[b.id] || 0), d = e === 0 ? 0 : e <= 14 ? 8 : e <= 20 ? 13 : 18;
+    p.style.width = p.style.height = d + "px";
+  });
+  setTimeout(() => { if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "pistas" && !arrastrando) bajarPistas(1); }, animar() ? 900 : 0);
 }
 /* Las cuatro fuerzas se encienden una a una, cada una con su nota */
 function encenderFuerzas() {
@@ -1340,23 +1389,28 @@ function arrastrable(carta, op) {
     carta.style.transition = "none";
     ocultarInfo();
   });
+  // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)
+  function mover(dx, estado) {
+    carta.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+    carta.style.setProperty("--giro", `${dx / 18}deg`);
+    // El panel baja desde el primer píxel, al ritmo del arrastre; llega abajo justo en el umbral, cuando sale el texto
+    const bajada = Math.min(1, Math.abs(dx) / umbral());
+    carta.style.setProperty("--bajada", bajada.toFixed(3));
+    bajarPistas(bajada);
+    // El texto de la respuesta va dentro del panel y baja con él desde el primer píxel; se decide al llegar al umbral
+    const lado = Math.sign(dx), dir = Math.abs(dx) > umbral() ? lado : 0;
+    if (lado !== estado.lado) { estado.lado = lado; op.mostrar(lado); }
+    estado.dir = dir;
+    marcarListo(dir !== 0);
+  }
+  carta._mover = mover; carta._volver = volver; carta._umbral = umbral;
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
-    carta.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
-    carta.style.setProperty("--giro", `${drag.dx / 18}deg`);
-    // El panel baja desde el primer píxel, al ritmo del arrastre; llega abajo justo en el umbral, cuando sale el texto
-    const bajada = Math.min(1, Math.abs(drag.dx) / umbral());
-    carta.style.setProperty("--bajada", bajada.toFixed(3));
-    bajarPistas(bajada);
-    // El texto de la respuesta va dentro del panel y baja con él desde el primer píxel; se decide al llegar al umbral
-    const lado = Math.sign(drag.dx), dir = Math.abs(drag.dx) > umbral() ? lado : 0;
-    if (lado !== drag.lado) { drag.lado = lado; op.mostrar(lado); }
-    drag.dir = dir;
-    marcarListo(dir !== 0);
+    mover(drag.dx, drag);
   });
   function soltar(e) {
     if (!drag) return;
@@ -1536,8 +1590,9 @@ $("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden
 function svgEscenaPortada(v) {
   const d = PORTADA[v];
   const ojos = d.ojos.map(o => `<g transform="translate(${o.x} ${o.y}) scale(${o.k})"><g class="ojos" style="animation-delay:${-(Math.random() * 7).toFixed(2)}s">` +
-    `<circle cx="${o.izq[0]}" cy="${o.izq[1]}" r="${o.r}"/><circle cx="${o.der[0]}" cy="${o.der[1]}" r="${o.r}"/></g></g>`).join("");
-  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" preserveAspectRatio="xMidYMax meet">` +
+    [o.izq, o.der].filter(Boolean).map(e => `<circle cx="${e[0]}" cy="${e[1]}" r="${o.r}"/>`).join("") + `</g></g>`).join("");   // sin los ojos tapados
+  // la «ventana» es el trozo central que se ve (en el móvil, los de los lados se cortan): «slice» llena la caja y recorta
+  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" preserveAspectRatio="xMidYMin slice" style="aspect-ratio:${d.ventana} / ${d.alto}">` +
     `<image href="${d.src}" x="0" y="0" width="${d.ancho}" height="${d.alto}"/>${svgBrillo("portada-" + v, d.brillo)}${ojos}</svg>`;
 }
 if (typeof PORTADA !== "undefined") $("escena-portada").innerHTML = svgEscenaPortada("movil") + svgEscenaPortada("ancha");

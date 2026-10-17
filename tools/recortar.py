@@ -411,10 +411,13 @@ PORTADA = {
     "ancha": ((3400, 1500), [("educacion-puno", "educacion", 0.513, 500, 80), ("cultura-puno", "cultura", 0.513, 2900, 80),
                              ("comercio-puno", "comercio", 0.532, 1110, 60), ("economia-puno", "economia", 0.532, 2280, 60),
                              ("dictador-joven-fusil", None, 0.68, 1700, 70)]),
-    "movil": ((2600, 1500), [("educacion-puno", "educacion", 0.47, 400, 40), ("cultura-puno", "cultura", 0.47, 2200, 40),
-                             ("comercio-puno", "comercio", 0.50, 790, 70), ("economia-puno", "economia", 0.50, 1860, 70),
-                             ("dictador-joven-fusil", None, 0.66, 1320, 70)]),
+    "movil": ((2400, 1500), [("educacion-puno", "educacion", 0.47, 520, 40), ("cultura-puno", "cultura", 0.47, 1880, 40),
+                             ("comercio-puno", "comercio", 0.50, 690, 70), ("economia-puno", "economia", 0.50, 1710, 70),
+                             ("dictador-joven-fusil", None, 0.66, 1200, 70)]),
 }
+# 17 oct: en el móvil solo se ve el centro («ventana», en px del lienzo compuesto) y los de los lados quedan cortados: así el
+# Comandante sale del tamaño de su carta (la carta enseña el dibujo a un 80 % del ancho de la pantalla).
+VENTANA_PORTADA = {"movil": 1344}
 ESCALA_PORTADA = 0.5   # el lienzo se compone a tamaño grande y se guarda a la mitad
 
 
@@ -439,7 +442,7 @@ def componer_portada():
     info = {}
     for version, ((W, H), lista) in PORTADA.items():
         lienzo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        ojos, brillo = [], None
+        ojos, brillo, capas = [], None, []
         for nombre, slug, s, cx, bajo in lista:
             im = figs[nombre]
             t = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
@@ -448,6 +451,7 @@ def componer_portada():
             k = s * im.width / 900                       # de coordenadas de carta (900 de ancho) al lienzo
             o = mapa[slug]["ojos"] if slug else OJOS_FUSIL
             ojos.append({"x": x0, "y": y0, "k": k, "ojos": o})
+            capas.append((np.array(t)[..., 3], x0, y0))
             if slug == "educacion":                      # el farol: su luz amarilla, buscada por color
                 px = np.array(t).astype(int)
                 m = (px[..., 0] > 200) & (px[..., 1] > 170) & (px[..., 2] < 120) & (px[..., 3] > 200)
@@ -456,12 +460,20 @@ def componer_portada():
             bb = Image.fromarray(np.array(t)[..., 3]).getbbox()
             if x0 + bb[0] < 0 or x0 + bb[2] > W:
                 print(f"  aviso: {nombre} se sale por un lado en «{version}»")
+        # un ojo tapado por una figura de delante no se pinta (si no, flotaría encima de la otra cara)
+        for i, o in enumerate(ojos):
+            for lado in ("izq", "der"):
+                ex, ey = o["x"] + o["ojos"][lado][0] * o["k"], o["y"] + o["ojos"][lado][1] * o["k"]
+                for al, ax, ay in capas[i + 1:]:
+                    yy, xx = int(ey - ay), int(ex - ax)
+                    if 0 <= yy < al.shape[0] and 0 <= xx < al.shape[1] and al[yy, xx] > 128:
+                        o["ojos"] = {**o["ojos"], lado: None}; break
         arriba = max(0, lienzo.getbbox()[1] - 30)        # fuera el aire de encima del fusil
         lienzo = lienzo.crop((0, arriba, W, H))
         e = ESCALA_PORTADA
         out = lienzo.resize((round(W * e), round((H - arriba) * e)), Image.LANCZOS)
         out.save(dst / f"escena-{version}.webp", "WEBP", quality=86, method=6)
-        info[version] = {"ancho": out.width, "alto": out.height,
+        info[version] = {"ancho": out.width, "alto": out.height, "ventana": round(VENTANA_PORTADA.get(version, W) * e),
                          "ojos": [{"x": round(o["x"] * e, 1), "y": round((o["y"] - arriba) * e, 1), "k": round(o["k"] * e, 4), **o["ojos"]} for o in ojos],
                          "brillo": {"x": round(brillo["x"] * e), "y": round((brillo["y"] - arriba) * e), "r": round(brillo["r"] * e)}}
         print(f"portada {version}: {out.width}×{out.height}, {(dst / f'escena-{version}.webp').stat().st_size // 1024} KB")

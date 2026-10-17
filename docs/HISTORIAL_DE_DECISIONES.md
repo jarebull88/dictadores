@@ -378,3 +378,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - Tutorial: solo se puede girar la carta en el paso de girar; en el primer paso la carta se arrastra sola a cada lado para enseñar el gesto; en el de los puntos, los puntos bajan solos y se quedan fijos hasta que el jugador arrastra; la casilla que hay que tocar destella con una capa roja translúcida.
 - Las preguntas, en negrita: algunos jugadores no las leían porque la carta destaca mucho. Primer intento; si no basta, se probarán otras cosas.
 - Portada en el móvil: el Comandante sale del tamaño de su carta y los demás quedan cortados por los lados (siguen más pequeños que él).
+- **Nombres (17 oct):** vuelve «Deuda externa» (antes «Deuda»); «Luna de miel» se queda; la caída del Ejército al máximo pasa a «Marioneta» (antes «Tutela», y antes «Junta militar»); el estado «Frontera» pasa a «Jaula». Son los únicos nombres de más de una palabra: «Luna de miel» y «Deuda externa».

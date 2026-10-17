@@ -851,7 +851,7 @@ const FINALES = {
   pueblo_0:     { titulo: "Re-Revolución",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
   pueblo_100:   { titulo: "Populismo",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
   ejercito_0:   { titulo: "Abducción",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
-  ejercito_100: { titulo: "Tutela",                    texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
+  ejercito_100: { titulo: "Marioneta",                 texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
   elite_0:      { titulo: "Liquidación", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
   elite_100:    { titulo: "Florero",                texto: "Fuiste cediendo poder al Partido hasta acabar convertido en su presidente títere." },
   potencias_0:  { titulo: "Invasión",               texto: "Sin aliados ni comercio, el país queda solo frente a sus adversarios." },

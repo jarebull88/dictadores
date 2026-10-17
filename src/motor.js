@@ -66,7 +66,7 @@ const ESTADOS = {
     deriva: { potencias: -1 }, cada: 2, multCrisis: 2
   },
   frontera: {
-    nombre: "Frontera", bandera: "base.frontera_cerrada", duracion: null,
+    nombre: "Jaula", bandera: "base.frontera_cerrada", duracion: null,
     descripcion: "El imperialismo pretende robarnos a nuestros médicos, ingenieros y científicos. Después de todo lo que el Estado ha invertido en ellos, lo mínimo es que se queden.",
     deriva: { ejercito: 1, potencias: -1 }, cada: 2, pesos: { marchan: 0 }
   },
@@ -76,7 +76,7 @@ const ESTADOS = {
     deriva: { elite: -1 }, cada: 2, crisis: 1
   },
   deuda: {
-    nombre: "Deuda", bandera: "base.deuda_externa", duracion: null,
+    nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,
     descripcion: "Para preservar la soberanía económica, se ha solicitado financiación a los mercados internacionales.",
     deriva: { potencias: 1 }, cada: 2, crisis: 1
   },

@@ -251,7 +251,7 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Tenemos el resultado de la investigación: la bomba salió del Ministerio del Interior.»
 
-- **A. Que Sarria explique la bomba** Ejército −6 · Pueblo +5 · Potencias +3
+- **A. Sarria tendrá una explicación** Ejército −6 · Pueblo +5 · Potencias +3
 - **B. Archiven la investigación** Ejército +6 · Pueblo −5 · Potencias −3
 
 ### 26. El parte médico

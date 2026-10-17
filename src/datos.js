@@ -851,7 +851,7 @@ const FINALES = {
   pueblo_0:     { titulo: "Re-Revolución",               texto: "Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae." },
   pueblo_100:   { titulo: "Populismo",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
   ejercito_0:   { titulo: "Abducción",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
-  ejercito_100: { titulo: "Marioneta",                 texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
+  ejercito_100: { titulo: "Junta militar",             texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
   elite_0:      { titulo: "Liquidación", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
   elite_100:    { titulo: "Florero",                texto: "Fuiste cediendo poder al Partido hasta acabar convertido en su presidente títere." },
   potencias_0:  { titulo: "Invasión",               texto: "Sin aliados ni comercio, el país queda solo frente a sus adversarios." },
@@ -965,7 +965,7 @@ const PREVISION = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "¡Pues adelante!" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "Cada vez que cambie de etapa, inteligencia le preparará su propio expediente. Solo tendrá que girar su carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "Cada vez que cambie de etapa, inteligencia preparará un expediente. Solo tendrá que girar su carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Vas bien, Domingo", der: "Vamos, capitán" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.

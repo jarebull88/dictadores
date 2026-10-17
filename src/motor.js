@@ -1285,8 +1285,12 @@ function demostrarArrastre() {
     })(t0);
   });
   (async () => {
-    while (sigue() && (ocupado || carta.classList.contains("revelando"))) await esperar(150);   // tras el reparto y la vuelta
-    await esperar(700);
+    // 17 oct: primero llega la carta (reparto y vuelta), se espera un segundo y entonces se arrastra sola
+    const llegando = () => ocupado || carta.classList.contains("revelando") || carta.classList.contains("boca-abajo") ||
+      !!document.querySelector("#screen-game .escenario.repartiendo");
+    await esperar(200);
+    while (sigue() && llegando()) await esperar(150);
+    await esperar(1000);
     const d = Math.min(carta.offsetWidth * .32, carta._umbral() * 2.2);
     for (const lado of [1, -1]) {
       if (!sigue() || !await tramo(0, lado * d, 650)) break;

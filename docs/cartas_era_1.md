@@ -117,7 +117,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.»
 
-- **A. Respeten la propiedad todavía** Pueblo −10 · Élite +8
+- **A. Respeten la propiedad privada** Pueblo −10 · Élite +8
 - **B. La tierra para quien la merece** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.

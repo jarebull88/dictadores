@@ -90,7 +90,7 @@ const CARTAS = [
     id: "tierra", tipo: "sorteo", peso: 12, titulo: "La tierra",
     personaje: "Ministro de Trabajo",
     texto: "Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.",
-    izq: { accion: "Respeten la propiedad todavía", efectos: { pueblo: -10, elite: 8 } },
+    izq: { accion: "Respeten la propiedad privada", efectos: { pueblo: -10, elite: 8 } },
     der: { accion: "La tierra para quien la merece", largaAutorizada: true, efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
   },
   {

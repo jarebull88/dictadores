@@ -33,6 +33,7 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - La ironía va dentro de la propia decisión. En las opciones de humor negro se puede sugerir corrupción, juicios amañados, propaganda, represión o burocracia autoritaria **sin explicar el chiste**.
 - **Medidas reales que resuelvan el problema del dictador**, con gracia: lo que haría de verdad un régimen (apagón donde llega la señal, acusar de agentes del imperialismo), no ocurrencias que no arreglan nada.
 - La pregunta presenta un problema con gancho y con sentido político (la radio del exilio denuncia censura y cárceles), no una anécdota sin fuerza («el palacio tiene goteras»).
+- **La metáfora no puede tapar la decisión**: si el juego de palabras no deja claro qué se hace, se dice explícito («Arresto domiciliario para todos», mejor que «Que jueguen solos en casa»).
 - Nada genérico que sirviera para cualquier carta: cada opción responde al conflicto concreto.
 - A y B son decisiones realmente distintas.
 - Las dos llevan humor, también la opción «sensata». Funciona muy bien el **doble sentido** («Nuestro misil es el Pueblo»: el Pueblo como arma y como rehén).

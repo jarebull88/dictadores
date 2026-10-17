@@ -343,9 +343,9 @@ const CARTAS = [
   {
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los oficiales jubilados fundaron un club de ajedrez. Se reúnen en secreto y no juegan al ajedrez.",
-    izq: { accion: "Disolver el club.", remate: "La Revolución no tiene paciencia para reuniones sin permiso.", efectos: { ejercito: -6, elite: 3, potencias: -3 } },
-    der: { accion: "Ofrecerles cargos.", remate: "Que conspiren dentro del gobierno; allí puedo vigilarlos.", efectos: { ejercito: 6, elite: -3, crisis: 1 } }
+    texto: "Los oficiales jubilados tienen un «club de ajedrez». No juegan al ajedrez.",
+    izq: { accion: "Arresto domiciliario para todos", efectos: { ejercito: -6, elite: 3, potencias: -3 } },
+    der: { accion: "Vigilen cada movimiento", efectos: { ejercito: 6, elite: -3, crisis: 1 } }
   },
 
   {

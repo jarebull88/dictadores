@@ -479,7 +479,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .dictador small { display: block; font-size: 12px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dictador small.hidden { display: none; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-.ranuras { display: flex; gap: 6px; flex-shrink: 0; }
+.ranuras { display: flex; gap: 6px; flex-shrink: 0; position: relative; }
+.ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */
 .ranura { width: 46px; height: 46px; border-radius: 9px; border: none; padding: 0; display: block; }
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
@@ -1728,7 +1729,7 @@ const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de intel
   potencias: { alto: "Tiene aliados, y deudas con ellos.",                         bajo: "En el exterior nadie le quiere, salvo quien le teme." }
 };
 
-const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 1, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
@@ -2313,15 +2314,41 @@ function pintarCabecera() {
   $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} al poder`;   // 15 oct: más corto, para que quepa
 }
 
+function moverRanuras(cont, antes) {
+  const base = cont.getBoundingClientRect();
+  const quedan = new Set([...cont.querySelectorAll("button.ranura[data-id]")].map(b => b.dataset.id));
+  let sale = false;
+  for (const id in antes) {
+    if (quedan.has(id)) continue;
+    sale = true;                                         // el que se va: una copia en su sitio que sube y se desvanece
+    const { r, b } = antes[id];
+    b.classList.add("ranura-sale");
+    b.style.left = (r.left - base.left) + "px"; b.style.top = (r.top - base.top) + "px";
+    cont.appendChild(b);
+    b.animate([{ transform: "none", opacity: 1 }, { transform: "translateY(-26px) scale(.7)", opacity: 0 }],
+      { duration: 380, easing: "ease-in", fill: "forwards" }).onfinish = () => b.remove();
+  }
+  cont.querySelectorAll("button.ranura[data-id]").forEach(b => {
+    const a = antes[b.dataset.id]; if (!a) return;
+    const dx = a.r.left - b.getBoundingClientRect().left;
+    if (Math.abs(dx) > 1) b.animate([{ transform: `translateX(${dx}px)` }, { transform: "none" }],
+      { duration: 420, delay: sale ? 260 : 0, easing: "cubic-bezier(.3, .7, .3, 1)", fill: "backwards" });
+  });
+}
 function pintarRanuras() {
   const cont = $("ranuras");
+  // 17 oct: si un estado se va o cambia de casilla, se anima (FLIP): el que sale se levanta y desaparece, y los demás
+  // se corren hasta su nuevo hueco. Así, con las cuatro llenas, el primero se va y el nuevo llega a la derecha.
+  const antes = {};
+  if (animar()) cont.querySelectorAll("button.ranura[data-id]").forEach(b => { antes[b.dataset.id] = { r: b.getBoundingClientRect(), b: b.cloneNode(true) }; });
   cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
     const s = E.estados[i];
     const fuera = E.estadoNuevo && s && s.id === E.estadoNuevo.id;     // su carta aún no ha bajado
     return s && !fuera
-      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
+      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" data-id="${s.id}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
       : `<div class="ranura"></div>`;
   }).join("");
+  if (Object.keys(antes).length) moverRanuras(cont, antes);
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
   cont.querySelectorAll("button.ranura").forEach(b =>
     b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })
@@ -2819,6 +2846,7 @@ const EPITAFIO = [
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],
   ["base.capital_rebautizada", "La capital lleva tu nombre. De momento."],
   ["base.monumento_colosal", "Tu estatua de cuarenta metros se ve desde la costa."],
+  ["base.monumento_modesto", "Un busto pequeño que nadie limpia."],
   ["base.palacio_del_pueblo", "El palacio del Pueblo sigue sin terminar."],
   ["base.libro_obligatorio", "Tu libro sigue siendo obligatorio para sacarse el carné de conducir."],
   ["base.derrota_aceptada", "Perdiste un plebiscito y aun así moriste en el poder. Los historiadores no se ponen de acuerdo."],

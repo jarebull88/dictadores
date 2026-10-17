@@ -457,7 +457,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .dictador small { display: block; font-size: 12px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dictador small.hidden { display: none; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-.ranuras { display: flex; gap: 6px; flex-shrink: 0; }
+.ranuras { display: flex; gap: 6px; flex-shrink: 0; position: relative; }
+.ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */
 .ranura { width: 46px; height: 46px; border-radius: 9px; border: none; padding: 0; display: block; }
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }

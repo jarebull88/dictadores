@@ -475,15 +475,41 @@ function pintarCabecera() {
   $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} al poder`;   // 15 oct: más corto, para que quepa
 }
 
+function moverRanuras(cont, antes) {
+  const base = cont.getBoundingClientRect();
+  const quedan = new Set([...cont.querySelectorAll("button.ranura[data-id]")].map(b => b.dataset.id));
+  let sale = false;
+  for (const id in antes) {
+    if (quedan.has(id)) continue;
+    sale = true;                                         // el que se va: una copia en su sitio que sube y se desvanece
+    const { r, b } = antes[id];
+    b.classList.add("ranura-sale");
+    b.style.left = (r.left - base.left) + "px"; b.style.top = (r.top - base.top) + "px";
+    cont.appendChild(b);
+    b.animate([{ transform: "none", opacity: 1 }, { transform: "translateY(-26px) scale(.7)", opacity: 0 }],
+      { duration: 380, easing: "ease-in", fill: "forwards" }).onfinish = () => b.remove();
+  }
+  cont.querySelectorAll("button.ranura[data-id]").forEach(b => {
+    const a = antes[b.dataset.id]; if (!a) return;
+    const dx = a.r.left - b.getBoundingClientRect().left;
+    if (Math.abs(dx) > 1) b.animate([{ transform: `translateX(${dx}px)` }, { transform: "none" }],
+      { duration: 420, delay: sale ? 260 : 0, easing: "cubic-bezier(.3, .7, .3, 1)", fill: "backwards" });
+  });
+}
 function pintarRanuras() {
   const cont = $("ranuras");
+  // 17 oct: si un estado se va o cambia de casilla, se anima (FLIP): el que sale se levanta y desaparece, y los demás
+  // se corren hasta su nuevo hueco. Así, con las cuatro llenas, el primero se va y el nuevo llega a la derecha.
+  const antes = {};
+  if (animar()) cont.querySelectorAll("button.ranura[data-id]").forEach(b => { antes[b.dataset.id] = { r: b.getBoundingClientRect(), b: b.cloneNode(true) }; });
   cont.innerHTML = Array.from({ length: MAX_RANURAS }, (_, i) => {
     const s = E.estados[i];
     const fuera = E.estadoNuevo && s && s.id === E.estadoNuevo.id;     // su carta aún no ha bajado
     return s && !fuera
-      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
+      ? `<button class="ranura llena${s.nuevo ? " nueva" : s.actuo ? " actua" : ""}" type="button" data-i="${i}" data-id="${s.id}" aria-label="${esc(ESTADOS[s.id].nombre)}">${icono(s.id)}</button>`
       : `<div class="ranura"></div>`;
   }).join("");
+  if (Object.keys(antes).length) moverRanuras(cont, antes);
   E.estados.forEach(s => { s.nuevo = false; s.actuo = false; });
   cont.querySelectorAll("button.ranura").forEach(b =>
     b.addEventListener("click", ev => { ev.stopPropagation(); mostrarInfo(+b.dataset.i); })
@@ -981,6 +1007,7 @@ const EPITAFIO = [
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],
   ["base.capital_rebautizada", "La capital lleva tu nombre. De momento."],
   ["base.monumento_colosal", "Tu estatua de cuarenta metros se ve desde la costa."],
+  ["base.monumento_modesto", "Un busto pequeño que nadie limpia."],
   ["base.palacio_del_pueblo", "El palacio del Pueblo sigue sin terminar."],
   ["base.libro_obligatorio", "Tu libro sigue siendo obligatorio para sacarse el carné de conducir."],
   ["base.derrota_aceptada", "Perdiste un plebiscito y aun así moriste en el poder. Los historiadores no se ponen de acuerdo."],

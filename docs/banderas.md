@@ -13,7 +13,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `censura_previa` | Los periódicos (B) | Los ojos del barrio; El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
 | `comites_vigilancia` | Los ojos del barrio (A) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |
 | `compensaciones` | El embargo (B) | La deuda llama | Una deuda que alimenta una carta de crisis. (era 2) |
-| `critica_abierta` | Las mil flores (A) | Una carta con firmas | Depuración de críticos. (era 1) |
+| `critica_abierta` | Las mil flores (A) | Una carta con firmas | Depuración de críticos. (era 3) |
 | `criticos_detenidos` | La lista (B) | Denuncias falsas; Intentos de fuga; Los presos en la agenda | Presos políticos que pesan en tus relaciones exteriores. (era 3) |
 | `culto_iniciado` | El retrato (A) | El monumento | Tratamiento de Excelencia y monumentos cada vez más costosos. (era 3) |
 | `derrota_aceptada` | El escrutinio (A) | — | — |

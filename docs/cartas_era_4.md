@@ -194,15 +194,15 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Una página en el libro.** *Breve, en letra pequeña y al final.* Pueblo +6 · Potencias +4 · Ejército −6
 - **B. Nada que contar.** *La Historia ya está escrita; yo tengo la pluma.* Pueblo −6 · Potencias −4 · Ejército +6
 
-### 20. La huelga general
+### 20. La revuelta
 
-**Personaje:** Ministro de Trabajo  
+**Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Los sindicatos convocan una huelga general. Por primera vez se han puesto de acuerdo entre ellos.»
+**Carta:** «Miles de personas han salido al paseo marítimo gritando contra usted.»
 
-- **A. Subir los salarios.** *Que celebren; la inflación los pondrá en su sitio.* Pueblo +8 · Élite −5 · Crisis +2
-- **B. Declarar el estado de sitio.** *Si no trabajan, que vigilen el toque de queda.* Pueblo −8 · Ejército +6 · Potencias −4
+- **A. Bajaré yo mismo a calmarlos** Pueblo +8 · Élite −5 · Crisis +2
+- **B. Manden a las tropas especiales** Pueblo −8 · Ejército +6 · Potencias −4
 
 ### 21. El concierto
 

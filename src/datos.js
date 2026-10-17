@@ -764,11 +764,11 @@ const CARTAS = [
     der: { accion: "Nada que contar.", remate: "La Historia ya está escrita; yo tengo la pluma.", efectos: { pueblo: -6, potencias: -4, ejercito: 6 } }
   },
   {
-    id: "huelga_general", era: 4, tipo: "sorteo", peso: 10, titulo: "La huelga general",
-    personaje: "Ministro de Trabajo",
-    texto: "Los sindicatos convocan una huelga general. Por primera vez se han puesto de acuerdo entre ellos.",
-    izq: { accion: "Subir los salarios.", remate: "Que celebren; la inflación los pondrá en su sitio.", efectos: { pueblo: 8, elite: -5, crisis: 2 } },
-    der: { accion: "Declarar el estado de sitio.", remate: "Si no trabajan, que vigilen el toque de queda.", efectos: { pueblo: -8, ejercito: 6, potencias: -4 } }
+    id: "huelga_general", era: 4, tipo: "sorteo", peso: 10, titulo: "La revuelta",
+    personaje: "Ministro del Interior",
+    texto: "Miles de personas han salido al paseo marítimo gritando contra usted.",
+    izq: { accion: "Bajaré yo mismo a calmarlos", efectos: { pueblo: 8, elite: -5, crisis: 2 } },
+    der: { accion: "Manden a las tropas especiales", efectos: { pueblo: -8, ejercito: 6, potencias: -4 } }
   },
   {
     id: "el_concierto", era: 4, tipo: "sorteo", peso: 10, titulo: "El concierto",

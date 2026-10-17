@@ -67,11 +67,11 @@ test("ninguna carta nombra un país real", () => {
 
 test("todas las cartas respetan los límites de longitud y el tratamiento de su era", () => {
   for (const c of cartas) {
-    const era = c.era || 1, saludo = era >= 4 ? "Padre de la Patria," : era >= 3 ? "Excelencia," : "Comandante,";
+    const era = c.era || 1;
     assert.ok(c.texto.length <= 150, `«${c.id}»: el mensaje tiene ${c.texto.length} caracteres (máx. 150)`);
     // Eras 1 y 2 (12 y 15 oct): las preguntas van sin «Comandante,»; las eras 3 y 4 siguen con su tratamiento
-    if (era <= 2) assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: en las eras 1 y 2 la pregunta va sin «Comandante,»`);
-    else assert.ok(c.texto.startsWith(saludo), `«${c.id}»: debe empezar por «${saludo}»`);
+    // 17 oct (Jorge): en ninguna era la pregunta empieza por el tratamiento («Comandante», «Excelencia», «Padre de la Patria»)
+    assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: la pregunta va sin tratamiento delante`);
     for (const l of ["izq", "der"]) {
       const maxAccion = c[l].largaAutorizada ? 36 : 32;   // 16 oct: en todas las eras la letra se ajusta a 2 líneas (ajustarRespuesta); la guía pide ≤30 salvo permiso de Jorge
       assert.ok(c[l].accion.length <= maxAccion, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. ${maxAccion})`);

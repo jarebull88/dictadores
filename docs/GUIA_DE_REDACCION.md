@@ -22,7 +22,7 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - Cuando es una **propuesta tentadora** («Los nuevos vecinos»: misiles regalados), el personaje solo la plantea y tú aceptas o rechazas. **No se avisa de las consecuencias** ni de cómo reaccionará cada fuerza: eso lo descubre el jugador.
 - Sin pistas del país real: nada de «su isla» y similares.
 - Respeta a quien habla: el **embajador** habla en nombre de su país (primera persona) y plantea sus exigencias o intereses; el **ministro** habla de asuntos internos, y quien decide es el Comandante.
-- Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). Sin «Comandante,» delante en las eras 1 y 2.
+- Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). **Sin tratamiento delante en ninguna era** (17 oct): ni «Comandante,» ni «Excelencia,» ni «Padre de la Patria,».
 
 ## Las respuestas A y B
 - **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Si lo autoriza, la opción lleva `largaAutorizada: true` en `datos.js` (si no, la prueba falla). Y caben en dos líneas (≤30 caracteres), sin punto final.

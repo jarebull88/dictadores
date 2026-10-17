@@ -8,7 +8,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | --- | --- | --- | --- |
 | `accidente_cienfuegos` | El general murmura (B) | Las flores en el mar | El Pueblo no olvida el accidente de Cienfuegos. (era 2) |
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | Los nuevos vecinos | El aliado exige concesiones y armamento. (era 1) |
-| `atentado_investigado` | El atentado (B) | — | — |
+| `atentado_investigado` | El atentado (B) | La bomba de dentro | La investigación del atentado señala al Ministerio del Interior. (era 4) |
 | `capital_rebautizada` | La ciudad con su nombre (A) | — | — |
 | `censura_previa` | Los periódicos (B) | Los ojos del barrio; El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
 | `comites_vigilancia` | Los ojos del barrio (A) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |

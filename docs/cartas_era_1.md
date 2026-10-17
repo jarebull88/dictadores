@@ -36,7 +36,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Carta:** «El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.»
 
 - **A. Impriman billetes** Pueblo +5 · Élite −4 · Potencias −4 · Bandera: `mercado_paralelo`
-- **B. Pidan un préstamo** Pueblo −5 · Élite +4 · Potencias +4 · Bandera: `deuda_externa`
+- **B. Préstamo y recortes** Pueblo −5 · Élite +4 · Potencias +4 · Bandera: `deuda_externa`
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 

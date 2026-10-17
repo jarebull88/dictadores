@@ -44,7 +44,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.",
     izq: { accion: "Impriman billetes", efectos: { pueblo: 5, elite: -4, potencias: -4 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Pidan un préstamo", efectos: { pueblo: -5, elite: 4, potencias: 4 }, banderas: ["base.deuda_externa"] }
+    der: { accion: "Préstamo y recortes", efectos: { pueblo: -5, elite: 4, potencias: 4 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido",

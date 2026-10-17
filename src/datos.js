@@ -36,7 +36,7 @@ const CARTAS = [
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano", ilustracion: null,
     personaje: "Ministra de Cultura",
-    texto: "La mansión del tirano tiene piscina, cine y veinte habitaciones. Podría ser un museo o su casa.",
+    texto: "La mansión del tirano tiene piscina, cine y 20 habitaciones. ¿Museo del Pueblo o residencia del Comandante?",
     izq: { accion: "Museo del Pueblo", efectos: { pueblo: 8, elite: -6 } },
     der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
   },
@@ -360,8 +360,8 @@ const CARTAS = [
   {
     id: "huelgas_crisis", tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos", ilustracion: null,
     personaje: "Ministro de Trabajo",
-    texto: "Los trabajadores eléctricos marchan hacia el palacio. Exigen elegir a sus dirigentes sin el Partido.",
-    izq: { accion: "La Revolución respeta sus votos", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
+    texto: "Los electricistas marchan hacia el palacio. Exigen un sindicato independiente del Partido.",
+    izq: { accion: "La Revolución respeta sus deseos", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
     der: { accion: "Que marchen hasta la cárcel", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
   },
 

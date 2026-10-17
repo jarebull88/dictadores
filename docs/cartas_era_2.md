@@ -75,10 +75,10 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `viejos_oficiales`.
 
-**Carta:** «Los oficiales jubilados fundaron un club de ajedrez. Se reúnen en secreto y no juegan al ajedrez.»
+**Carta:** «Los oficiales jubilados tienen un «club de ajedrez». No juegan al ajedrez.»
 
-- **A. Disolver el club.** *La Revolución no tiene paciencia para reuniones sin permiso.* Ejército −6 · Élite +3 · Potencias −3
-- **B. Ofrecerles cargos.** *Que conspiren dentro del gobierno; allí puedo vigilarlos.* Ejército +6 · Élite −3 · Crisis +1
+- **A. Arresto domiciliario para todos** Ejército −6 · Élite +3 · Potencias −3
+- **B. Vigilen cada movimiento** Ejército +6 · Élite −3 · Crisis +1
 
 ### 8. El jefe pide más
 

@@ -47,6 +47,7 @@
   --tinta: #1C1B19;          /* texto */
   --tinta-suave: #55534D;    /* texto secundario (contraste AA sobre el papel) */
   --rojo: #B3261E;           /* solo alertas */
+  --rojo-tinta: #9C221A;     /* 17 oct: el rojo de rotulador tal como se ve (títulos de era): puntos de pista y contorno de confirmación */
   --rojo-claro: #F2DCD8;
   --noche: #2F2E2B;          /* fondo oscuro: el de las cartas, la portada y la pantalla del nombre */
   --rojo-noche: #E2453A;     /* el rojo del juego, algo más vivo para que se lea sobre el fondo oscuro */
@@ -171,9 +172,9 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .cabecera-carta .sub { justify-self: stretch; text-align: center; margin: 0; color: var(--tinta-suave); font-size: 16px; line-height: 1.35; font-weight: 400; }
 .era-anios, .fin-anios { flex: none; margin: 12px 0 0; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 22px; color: var(--tinta-suave); }   /* debajo de la carta */
 .cabecera-carta .era-texto { justify-self: stretch; text-align: center; margin: 0; font-size: 15px; line-height: 1.4; }
-#screen-era .cabecera-carta h1 { font-size: min(8.6vw, 46px); white-space: nowrap; }
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1 { margin: 0; font-size: min(8.6vw, 46px); white-space: nowrap; }
 /* 15 oct: «Sigues en el poder» y «¡Has caído!», escritos con rotulador rojo (al 90 %, como el negro) */
-#screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); font-weight: 400; color: var(--rojo-marcador); }
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); font-weight: 400; color: var(--rojo-marcador); }
 .carta-fija { cursor: default; }
 .boton-pie { flex: none; margin-top: 2px; }
 /* Cómo jugar: ventana con las instrucciones */
@@ -258,7 +259,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .barra .punto-zona { height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
 /* Arriba del todo, encima de los iconos: bajan desde fuera de la pantalla al ritmo del arrastre */
 #screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .32s cubic-bezier(.25, .8, .3, 1); }   /* al ritmo del panel */
-.barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo); transition: width .12s, height .12s; }
+.barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--rojo-tinta); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
    Al entrar en la zona crítica el móvil vibra (motor.js). */
@@ -397,6 +398,17 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.oro .cara { background-color: #FFF; background-image: var(--tex-oro); background-size: cover; background-position: center; }
 .carta.plata .cara { background-color: #FFF; background-image: var(--tex-plata); background-size: cover; background-position: center; }
 .carta:active { cursor: grabbing; }
+/* 17 oct: vuelve la confirmación. Al pasar el umbral (soltar decide), la carta lleva un contorno de rotulador rojo,
+   gastado como las letras (las mismas vetas): un anillo que solo pinta el borde (máscara borde − relleno) */
+.carta::after {
+  content: ""; position: absolute; inset: -4px; z-index: 6; pointer-events: none; border-radius: calc(var(--radio-carta) + 4px);
+  border: 5px solid transparent;
+  background: var(--veta-marcador) 0 0 / 420px 160px border-box, linear-gradient(var(--rojo-tinta), var(--rojo-tinta)) border-box;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0) border-box; -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0) border-box;
+  opacity: 0; transition: opacity .1s ease;
+}
+.carta.listo:not(.volteada)::after { opacity: 1; }
 .ilustracion {
   flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column;
   border-radius: var(--radio-pegado);
@@ -583,7 +595,7 @@ body.carta-medida #screen-end.caida .fin-cab { height: var(--cabecera-h); overfl
 /* Los textos de arriba, del ancho de la carta (como en la partida) */
 body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { width: var(--carta-w); max-width: 100%; margin-left: auto; margin-right: auto; box-sizing: border-box; }
 body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { grid-template-columns: minmax(0, 1fr); }
-body.carta-medida #screen-era .cabecera-carta h1 { font-size: min(calc(var(--carta-w) * .088), 46px); }
+body.carta-medida #screen-era .cabecera-carta h1, body.carta-medida #screen-name .cabecera-carta h1 { font-size: min(calc(var(--carta-w) * .088), 46px); }
 body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(--carta-w) * .15), 56px); }
 #screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones, #screen-end.caida #fin-lineas { display: none; }
 #screen-end.caida .relato { justify-self: stretch; text-align: center; font-size: 15px; line-height: 1.35; }
@@ -626,12 +638,12 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 
 /* Rotulador con vetas (16 oct, propuesta B): la tinta no es plana; el relleno lleva vetas horizontales algo más claras,
    como un rotulador que pasa con más o menos tinta, y se mezcla con el papel de debajo (multiplicar) */
-#screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal,
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal,
 .etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .ficha-nombre, .logo-texto > span, .logo-texto i {
   background-image: var(--veta-marcador); background-size: 420px 160px;
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; mix-blend-mode: multiply;
 }
-#screen-era .cabecera-carta h1, #screen-end.caida h1.fin-principal { background-color: #B3261E; }
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { background-color: #B3261E; }
 .etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta { background-color: #23211E; }
 .ficha-nombre { background-color: var(--rotulador, #23211E); }
 .logo-texto > span { background-color: #23211E; }
@@ -663,7 +675,8 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 
   <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
     <div class="cabecera-carta">
-      <p class="intro">Has derrocado al tirano. La Revolución empieza ahora: será una empresa dura y llena de peligros, pero promete un futuro mejor para todos. El Pueblo confía en ti, Comandante.</p>
+      <h1 class="titulo" id="nombre-era-1"></h1>
+      <p class="intro">Has derrocado al tirano. La Revolución será dura y peligrosa, pero promete un futuro mejor. El Pueblo confía en ti, Comandante.</p>
     </div>
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa"></div></div>
@@ -695,7 +708,7 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 
   <section id="screen-era" class="screen pantalla-carta hidden">
     <div class="cabecera-carta">
-      <h1 class="titulo" id="era-titulo">Sigues en el poder</h1>
+      <h1 class="titulo" id="era-titulo"></h1>
       <p class="era-texto" id="era-texto"></p>
     </div>
     <div class="escenario">
@@ -3220,7 +3233,21 @@ function terminarTutorial() {
   $("btn-salir").textContent = "Abandonar partida";
   irANombre();
 }
+/* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
+   (sustituye a «Sigues en el poder»: debajo de la carta ya dice cuántos años llevas) */
+let ERA_CON_NUMERO = true;
+const nombreEra = n => ERA_CON_NUMERO ? `Era ${n} – ${ERAS[n - 1].nombre}` : ERAS[n - 1].nombre;
+/* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
+function ajustarTituloEra(h) {
+  h.style.fontSize = "";
+  let px = parseFloat(getComputedStyle(h).fontSize) || 30;
+  if (!h.firstElementChild) h.innerHTML = `<span>${esc(h.textContent)}</span>`;   // el texto, en un span: así se mide su ancho
+  const ancho = () => h.firstElementChild.getBoundingClientRect().width;
+  const caja = h.parentElement.clientWidth;          // el h1 se ajusta a su texto: el límite es la cabecera
+  while (ancho() > caja * .94 && px > 22) { px -= 1; h.style.fontSize = px + "px"; }   // margen: el rotulador sobresale de la letra
+}
 function irANombre() {
+  $("nombre-era-1").textContent = nombreEra(1); requestAnimationFrame(() => ajustarTituloEra($("nombre-era-1")));
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
   mostrar("screen-name");
@@ -3274,7 +3301,9 @@ const bajarPistas = v => document.documentElement.style.setProperty("--bajada-pi
 function arrastrable(carta, op) {
   let drag = null;
   // Distancia a partir de la cual se decide: es también la que muestra la respuesta, así que si se ve, soltar decide
-  const umbral = () => Math.max(20, carta.offsetWidth * 0.07);      // casi en cuanto empieza a inclinarse
+  // 17 oct: el umbral pasa a la mitad del recorrido (15 % del ancho; antes 7 %): ahí la respuesta ya está entera,
+  // la carta se marca con el contorno rojo y soltar decide
+  const umbral = () => Math.max(30, carta.offsetWidth * 0.15);
   function marcarListo(listo) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);
@@ -3403,6 +3432,7 @@ function mostrarEra() {
   const n = anios();
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = TEXTO_FIN_ERA[E.era];
+  $("era-titulo").textContent = E.era < ERAS.length ? nombreEra(E.era + 1) : ""; requestAnimationFrame(() => ajustarTituloEra($("era-titulo")));
   const slug = DICTADOR_ERA[E.era + 1];
   const carta = $("carta-era");
   eraOcupada = false;

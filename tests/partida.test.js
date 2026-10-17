@@ -57,12 +57,12 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
   assert.match(j.$("fin-esquela").textContent, /mausoleo/);
 });
 
-test("«Sigues en el poder»: pantalla propia con los años, un párrafo y el dictador de la era que empieza en una carta", () => {
+test("al pasar de era: pantalla propia con el nombre de la era, con los años, un párrafo y el dictador de la era que empieza en una carta", () => {
   const j = cargar();
   j.empezar();
   j.w.eval("E.turno=finEra()+1; finDeEra();");
   assert.ok(j.visible("screen-era"));
-  assert.equal(j.$("era-titulo").textContent, "Sigues en el poder");
+  assert.match(j.$("era-titulo").textContent, /La Purga$/);   // 17 oct: el nombre de la era que empieza, en vez de «Sigues en el poder»
   assert.match(j.$("era-anios").textContent, /^Has gobernado \d+ años?$/);
   assert.ok(j.$("era-texto").textContent.length > 40, "falta el párrafo");
   assert.ok(j.d.querySelector("#carta-era svg.personaje"), "falta el dictador en la carta");

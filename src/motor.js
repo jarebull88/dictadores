@@ -1331,7 +1331,21 @@ function terminarTutorial() {
   $("btn-salir").textContent = "Abandonar partida";
   irANombre();
 }
+/* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
+   (sustituye a «Sigues en el poder»: debajo de la carta ya dice cuántos años llevas) */
+let ERA_CON_NUMERO = true;
+const nombreEra = n => ERA_CON_NUMERO ? `Era ${n} – ${ERAS[n - 1].nombre}` : ERAS[n - 1].nombre;
+/* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
+function ajustarTituloEra(h) {
+  h.style.fontSize = "";
+  let px = parseFloat(getComputedStyle(h).fontSize) || 30;
+  if (!h.firstElementChild) h.innerHTML = `<span>${esc(h.textContent)}</span>`;   // el texto, en un span: así se mide su ancho
+  const ancho = () => h.firstElementChild.getBoundingClientRect().width;
+  const caja = h.parentElement.clientWidth;          // el h1 se ajusta a su texto: el límite es la cabecera
+  while (ancho() > caja * .94 && px > 22) { px -= 1; h.style.fontSize = px + "px"; }   // margen: el rotulador sobresale de la letra
+}
 function irANombre() {
+  $("nombre-era-1").textContent = nombreEra(1); requestAnimationFrame(() => ajustarTituloEra($("nombre-era-1")));
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
   mostrar("screen-name");
@@ -1385,7 +1399,9 @@ const bajarPistas = v => document.documentElement.style.setProperty("--bajada-pi
 function arrastrable(carta, op) {
   let drag = null;
   // Distancia a partir de la cual se decide: es también la que muestra la respuesta, así que si se ve, soltar decide
-  const umbral = () => Math.max(20, carta.offsetWidth * 0.07);      // casi en cuanto empieza a inclinarse
+  // 17 oct: el umbral pasa a la mitad del recorrido (15 % del ancho; antes 7 %): ahí la respuesta ya está entera,
+  // la carta se marca con el contorno rojo y soltar decide
+  const umbral = () => Math.max(30, carta.offsetWidth * 0.15);
   function marcarListo(listo) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);
@@ -1514,6 +1530,7 @@ function mostrarEra() {
   const n = anios();
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = TEXTO_FIN_ERA[E.era];
+  $("era-titulo").textContent = E.era < ERAS.length ? nombreEra(E.era + 1) : ""; requestAnimationFrame(() => ajustarTituloEra($("era-titulo")));
   const slug = DICTADOR_ERA[E.era + 1];
   const carta = $("carta-era");
   eraOcupada = false;

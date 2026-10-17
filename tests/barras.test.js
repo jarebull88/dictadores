@@ -39,11 +39,11 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
   assert.ok(enCarta && enCarta.textContent === "Abducción", "la causa va en una carta");
 });
 
-test("al pasar de era sale «Sigues en el poder» y al sobrevivir a la última, «¡Has ganado!»", () => {
+test("al pasar de era sale el nombre de la era que empieza y al sobrevivir a la última, «¡Has ganado!»", () => {
   const j = cargar(); j.empezar();
   j.w.eval("empezar(); terminar(null, true)");
   assert.ok(j.visible("screen-era"));
-  assert.equal(j.$("era-titulo").textContent, "Sigues en el poder");
+  assert.match(j.$("era-titulo").textContent, /La Purga$/);
   j.w.eval("empezar(); terminar(null)");
   assert.equal(j.$("fin-principal").textContent, "¡Has ganado!");
   assert.ok(!j.$("screen-end").classList.contains("caida"));

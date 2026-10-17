@@ -382,3 +382,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - La caída del Ejército al máximo vuelve a llamarse **«Junta militar»** («Marioneta» chocaba con la marioneta del estado Alineado). En el tutorial, la demostración del arrastre espera a que la carta llegue y se descubra, y un segundo más. Texto nuevo al girar: «Cada vez que cambie de etapa, inteligencia preparará un expediente. Solo tendrá que girar su carta.»
 - Portada: «Repasar cómo se juega» pasa a «Cómo se juega»; las dos opciones iguales (Special Elite, 23 px), subrayadas y más juntas.
 - Pantalla del nombre: la carta del Comandante hace el amago de deslizarse 1,5 s después de escribir el nombre y cada pocos segundos si sigue quieta.
+- El nombre de la era sale encima del texto: «Era 1 – La Revolución» en la pantalla del nombre (con el texto acortado por Jorge) y «Era 2 – La Purga», «Era 3 – El Culto», «Era 4 – La Supervivencia» bajo «Sigues en el poder».

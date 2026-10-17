@@ -1530,6 +1530,17 @@ function abrirComoJugar() {
 function cerrarComoJugar() { $("como-jugar").classList.add("hidden"); }
 // 16 oct: el logo, provisional, escrito a rotulador (la imagen de letras recortadas queda en assets/logo/, sin usar)
 $("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span><i>¡</i>ordene<i>!</i></span></span>`);
+/* 17 oct: la escena del triunfo, abajo en la portada (como la foto de la entrada en la capital). Dos versiones:
+   «movil» (más juntos) y «ancha» (en fila, para pantallas anchas); el CSS enseña la que toca. Los ojos miran a los
+   lados como en las cartas y el farol de Hortensia late (PORTADA sale de tools/recortar.py portada). */
+function svgEscenaPortada(v) {
+  const d = PORTADA[v];
+  const ojos = d.ojos.map(o => `<g transform="translate(${o.x} ${o.y}) scale(${o.k})"><g class="ojos" style="animation-delay:${-(Math.random() * 7).toFixed(2)}s">` +
+    `<circle cx="${o.izq[0]}" cy="${o.izq[1]}" r="${o.r}"/><circle cx="${o.der[0]}" cy="${o.der[1]}" r="${o.r}"/></g></g>`).join("");
+  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" preserveAspectRatio="xMidYMax meet">` +
+    `<image href="${d.src}" x="0" y="0" width="${d.ancho}" height="${d.alto}"/>${svgBrillo("portada-" + v, d.brillo)}${ojos}</svg>`;
+}
+if (typeof PORTADA !== "undefined") $("escena-portada").innerHTML = svgEscenaPortada("movil") + svgEscenaPortada("ancha");
 $("btn-cerrar-como").addEventListener("click", cerrarComoJugar);
 $("como-jugar").addEventListener("click", e => { if (e.target === $("como-jugar")) cerrarComoJugar(); });
 if (tutorialVisto()) $("btn-repasar").classList.remove("hidden");

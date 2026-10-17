@@ -169,6 +169,16 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .logo-texto > span { font-size: min(46px, 10vw); }
 .logo-texto > span + span { font-size: min(92px, 20vw); }   /* la orden manda: «¡ORDENE!» va más grande */
 .logo-texto i { font-style: normal; }
+/* 17 oct: la escena del triunfo, pegada abajo y de lado a lado de la pantalla; logo y botón quedan centrados encima */
+.portada { justify-content: flex-end; padding-bottom: calc(min(49.5vw, 40vh) + 9vh); }   /* logo y botón, justo encima de la gente */
+.escena-portada { position: fixed; left: 0; right: 0; bottom: 0; pointer-events: none; }
+.escena-portada svg { display: block; width: 100%; height: auto; max-height: 40vh; }
+.escena-portada .escena-ancha { display: none; }
+@media (min-width: 700px) {
+  .portada { padding-bottom: calc(min(39vw, 45vh) + 7vh); }
+  .escena-portada .escena-movil { display: none; }
+  .escena-portada .escena-ancha { display: block; max-height: 45vh; }
+}
 .portada .logo img { display: block; width: 100%; height: auto; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .3)); }
 .menu-portada { display: grid; justify-items: center; gap: 6px; }
 .opcion-portada {

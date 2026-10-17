@@ -31,6 +31,13 @@ def iconos():
     img["logo"] = {"src": datos_uri("assets/logo/recortados/logo.webp", "image/webp")}
     return img
 
+def portada():
+    """Escena del triunfo de la portada (17 oct): versión ancha y de móvil, con la posición de ojos y farol."""
+    info = json.loads(leer("assets/portada/escena.json"))
+    for v, d in info.items():
+        d["src"] = datos_uri(f"assets/portada/recortados/escena-{v}.webp", "image/webp")
+    return info
+
 def fuentes():
     css = ""
     for familia, archivo, peso in (("Courier Prime", "courier-prime-latin-400-normal", 400),   # 14 oct: se probó Iosevka y se volvió a estas
@@ -60,7 +67,8 @@ def main():
     activos = ('<script>\n/* Personajes e iconos de papel recortado (WebP con transparencia, incrustados) */\nconst RETRATOS = '
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
-               + leer("assets/iconos/escenas.json").strip() + ';\n</script>\n')
+               + leer("assets/iconos/escenas.json").strip() + ';\nconst PORTADA = '
+               + json.dumps(portada(), ensure_ascii=False) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

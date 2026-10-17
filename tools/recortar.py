@@ -401,6 +401,73 @@ def recortar_escena(entrada, salida, marcos):
     return out.size, datos
 
 
+# 17 oct: la escena del triunfo de la portada (como la foto de la entrada en la capital). Las figuras con el puño en
+# alto están en assets/portada/originales/; se recortan por croma y se componen en dos versiones: «ancha» (escritorio,
+# los cinco en fila) y «movil» (más juntos). Los ojos y el brillo del farol no se pintan: van en escena.json para que
+# el juego los ponga por encima (los ojos miran a los lados como en las cartas).
+# Cada figura: (archivo, slug de personajes.json para los ojos o None, escala, centro x, borde de abajo); orden = de atrás a delante.
+OJOS_FUSIL = {"izq": [415, 261], "der": [505, 261], "r": 9}   # el Comandante con fusil, en coordenadas de 900 de ancho
+PORTADA = {
+    "ancha": ((3400, 1500), [("educacion-puno", "educacion", 0.513, 500, 80), ("cultura-puno", "cultura", 0.513, 2900, 80),
+                             ("comercio-puno", "comercio", 0.532, 1110, 60), ("economia-puno", "economia", 0.532, 2280, 60),
+                             ("dictador-joven-fusil", None, 0.68, 1700, 70)]),
+    "movil": ((2600, 1500), [("educacion-puno", "educacion", 0.47, 400, 40), ("cultura-puno", "cultura", 0.47, 2200, 40),
+                             ("comercio-puno", "comercio", 0.50, 790, 70), ("economia-puno", "economia", 0.50, 1860, 70),
+                             ("dictador-joven-fusil", None, 0.66, 1320, 70)]),
+}
+ESCALA_PORTADA = 0.5   # el lienzo se compone a tamaño grande y se guarda a la mitad
+
+
+def recortar_figura(f):
+    a = np.array(Image.open(f).convert("RGB")).astype(float)
+    alpha, _ = alfa_croma(a, 8000)
+    alpha = np.minimum(alpha, alfa_tono(a))
+    fg = alpha > 0.5
+    lab, n = ndi.label(fg)
+    tam = ndi.sum(fg, lab, range(1, n + 1))
+    keep = np.isin(lab, [i + 1 for i, t in enumerate(tam) if t > 8000])
+    alpha = np.where(ndi.binary_dilation(keep, iterations=3), alpha, 0)
+    g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6)
+    return Image.fromarray(np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8))
+
+
+def componer_portada():
+    org, dst = RAIZ / "assets/portada/originales", RAIZ / "assets/portada/recortados"
+    dst.mkdir(parents=True, exist_ok=True)
+    mapa = json.loads((RAIZ / "assets/personajes/personajes.json").read_text())
+    figs = {f.stem: recortar_figura(f) for f in sorted(org.glob("*.jpg"))}
+    info = {}
+    for version, ((W, H), lista) in PORTADA.items():
+        lienzo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ojos, brillo = [], None
+        for nombre, slug, s, cx, bajo in lista:
+            im = figs[nombre]
+            t = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+            x0, y0 = round(cx - t.width / 2), round(H + bajo - t.height)
+            lienzo.alpha_composite(t, (x0, y0)) if x0 >= 0 and y0 >= 0 else lienzo.paste(t, (x0, y0), t)
+            k = s * im.width / 900                       # de coordenadas de carta (900 de ancho) al lienzo
+            o = mapa[slug]["ojos"] if slug else OJOS_FUSIL
+            ojos.append({"x": x0, "y": y0, "k": k, "ojos": o})
+            if slug == "educacion":                      # el farol: su luz amarilla, buscada por color
+                px = np.array(t).astype(int)
+                m = (px[..., 0] > 200) & (px[..., 1] > 170) & (px[..., 2] < 120) & (px[..., 3] > 200)
+                ys, xs = np.nonzero(m)
+                brillo = {"x": x0 + xs.mean(), "y": y0 + ys.mean(), "r": 240 * k}
+            bb = Image.fromarray(np.array(t)[..., 3]).getbbox()
+            if x0 + bb[0] < 0 or x0 + bb[2] > W:
+                print(f"  aviso: {nombre} se sale por un lado en «{version}»")
+        arriba = max(0, lienzo.getbbox()[1] - 30)        # fuera el aire de encima del fusil
+        lienzo = lienzo.crop((0, arriba, W, H))
+        e = ESCALA_PORTADA
+        out = lienzo.resize((round(W * e), round((H - arriba) * e)), Image.LANCZOS)
+        out.save(dst / f"escena-{version}.webp", "WEBP", quality=86, method=6)
+        info[version] = {"ancho": out.width, "alto": out.height,
+                         "ojos": [{"x": round(o["x"] * e, 1), "y": round((o["y"] - arriba) * e, 1), "k": round(o["k"] * e, 4), **o["ojos"]} for o in ojos],
+                         "brillo": {"x": round(brillo["x"] * e), "y": round((brillo["y"] - arriba) * e), "r": round(brillo["r"] * e)}}
+        print(f"portada {version}: {out.width}×{out.height}, {(dst / f'escena-{version}.webp').stat().st_size // 1024} KB")
+    (RAIZ / "assets/portada/escena.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
     if que in ("todo", "personajes"):
@@ -435,6 +502,8 @@ def main():
         (RAIZ / "assets/iconos/escenas.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
     if que in ("todo", "fondos"):
         aligerar_fondos(RAIZ / "assets/fondos")
+    if que in ("todo", "portada"):
+        componer_portada()
     if que in ("todo", "logo"):
         dst = RAIZ / "assets/logo/recortados"; dst.mkdir(parents=True, exist_ok=True)
         w, h = recortar_logo(RAIZ / "assets/logo/originales/logo.jpg", dst / "logo.webp")

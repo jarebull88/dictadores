@@ -367,3 +367,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **La era 1 pasa a ×1.25** (`factor` en `ERAS`). Las crisis y coaliciones, que salen en todas las eras, ya no usan el factor de la era 1 (antes lo heredaban sin querer). Las eras 2-4 no se tocan.
 - **Pesos:** las cartas de consecuencia de la era 1 que casi nunca salían (las garantías, los que marchan, los ojos del barrio, los estudiantes en la calle, el embargo total, las huelgas, el general murmura) suben a peso 14, como las de las otras eras: si tomas la decisión, la consecuencia llega. «El general murmura» salta con el Ejército por debajo de 40 (antes 28), como dice su aviso.
 - Resultado (5000 partidas): era 1 al azar ~6 %, humano ~55 %, omnisciente ~80 %; las caídas se reparten entre las cuatro fuerzas. La prueba de dificultad pasa a exigir 2–15 % al azar.
+
+## 17 oct — Uniformes de la etapa 1 y marco de metal del Comandante
+- Los jóvenes de la sierra visten el uniforme de rebelde hecho a mano, cada uno con su carácter (Rigoberto, Neto, Hortensia, Mirta; Cuesta ya lo llevaba). Anselmo lleva uno recién comprado, con costura de máquina y etiquetas: el chaquetero. Sin uniforme: Sarria, Eusebio y los embajadores. Neto cambia el pelo de lana por ganchillo (sin huecos) y Mirta, la cara: sin rayas de rotulador.
+- Las versiones con el puño en alto (y el Comandante con fusil y puño) son para la escena de la portada: `assets/portada/originales/`.
+- La carta del Comandante lleva un marco de metal que se degrada por etapas: oro (joven), plata (asentado); faltan bronce y óxido.

@@ -159,10 +159,14 @@ const icono = (id, clase = "") => {
 
 /* Cada personaje tiene su cartón fijo: color («carton») y textura 1-3 («carton_textura») en personajes.json.
    (La textura 5, de pulpa, va encima de todos.) */
+/* 17 oct: la carta del Comandante lleva un marco de metal que se degrada con los años (oro el joven, plata el asentado;
+   vendrán bronce y óxido). Texturas en assets/fondos/ (oro.jpg, plata.jpg). */
+const METAL_DICTADOR = { "dictador-joven": "oro", "dictador-asentado": "plata" };
 function cartonDe(carta, slug) {
   const p = RETRATOS[slug] || {};
-  carta.classList.remove("k1", "k2", "k3", "purpurina");
+  carta.classList.remove("k1", "k2", "k3", "purpurina", "oro", "plata");
   carta.classList.add("k" + (p.carton_textura || 2));
+  if (METAL_DICTADOR[slug]) carta.classList.add(METAL_DICTADOR[slug]);
   carta.style.setProperty("--c-base", p.carton || "#D2AE7C");
 }
 /* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */

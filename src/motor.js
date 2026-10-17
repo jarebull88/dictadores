@@ -842,7 +842,18 @@ function decidir(dir) {
 }
 
 function resolver(dir) {
-  if (E.tutorial) { pintarEleccion(0); bajarPistas(0); pasoTutorial(E.tutorial.i + 1); return; }   // en el tutorial no cuenta
+  if (E.tutorial) {                                    // en el tutorial no se cae nunca…
+    const t = E.tutorial, op = opcionDe(dir);
+    pintarEleccion(0); bajarPistas(0);
+    // …pero en el paso de los puntos (17 oct) la decisión sí mueve las barras, para que se vea qué pasa (sin llegar al límite)
+    if (TUTORIAL[t.i].paso === "pistas") {
+      for (const k in op.efectos) if (k in E.barras) E.barras[k] = Math.max(8, Math.min(92, E.barras[k] + op.efectos[k]));
+      pintarBarras();
+      setTimeout(() => { if (E && E.tutorial === t) pasoTutorial(t.i + 1); }, animar() ? 1100 : 0);
+      return;
+    }
+    pasoTutorial(t.i + 1); return;
+  }
   const c = E.actual;
   const op = opcionDe(dir);
   E.ultimaDecision = op.accion;
@@ -1260,7 +1271,7 @@ function pasoTutorial(i, sinEntrada) {
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); }   // el Ejército en peligro, de mentira
   if (p.paso === "pistas") ensenarPistas();
   if (p.paso === "deslizar") demostrarArrastre();
-  if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }
+  if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
   ocupado = false;
   pintarEleccion(0);
 }

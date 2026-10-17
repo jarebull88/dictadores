@@ -23,7 +23,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «La mansión del tirano tiene piscina, cine y veinte habitaciones. Podría ser un museo o su casa.»
+**Carta:** «La mansión del tirano tiene piscina, cine y 20 habitaciones. ¿Museo del Pueblo o residencia del Comandante?»
 
 - **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6
@@ -421,9 +421,9 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `sindicato_libre`.
 
-**Carta:** «Los trabajadores eléctricos marchan hacia el palacio. Exigen elegir a sus dirigentes sin el Partido.»
+**Carta:** «Los electricistas marchan hacia el palacio. Exigen un sindicato independiente del Partido.»
 
-- **A. La Revolución respeta sus votos** Pueblo +6 · Élite −4 · Crisis +2
+- **A. La Revolución respeta sus deseos** Pueblo +6 · Élite −4 · Crisis +2
 - **B. Que marchen hasta la cárcel** Pueblo −6 · Ejército +4 · Élite +4
 
 ### 36. Embargo total

@@ -3225,7 +3225,20 @@ function irANombre() {
   actualizarVistaNombre();
   mostrar("screen-name");
   ajustarIntro();
+  vigilarNombre(REPOSO_MS);
 }
+/* 17 oct: la carta del Comandante también hace el amago de deslizarse, para que se entienda que se arrastra:
+   al poco de escribir el nombre (la gente lo escribía y no sabía qué hacer) y, si sigue quieta, cada pocos segundos */
+let relojNombre = null;
+function vigilarNombre(ms) { clearTimeout(relojNombre); relojNombre = setTimeout(amagarNombre, ms); }
+function amagarNombre() {
+  const c = $("carta-nombre");
+  if ($("screen-name").classList.contains("hidden") || nombreOcupada) return;
+  if (animar() && !arrastrando) { c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago"); setTimeout(() => c.classList.remove("amago"), 1300); }
+  vigilarNombre(4000);
+}
+$("input-nombre").addEventListener("input", () => vigilarNombre($("input-nombre").value.trim() ? 1500 : REPOSO_MS));
+$("carta-nombre").addEventListener("pointerdown", () => vigilarNombre(REPOSO_MS));
 /* El texto de la pantalla del nombre va a 19 px, como la pregunta; si no cabe en el hueco de arriba (móviles bajos), la letra baja hasta 14 px */
 function ajustarIntro() {
   const p = document.querySelector("#screen-name .intro"), caja = p && p.parentElement;

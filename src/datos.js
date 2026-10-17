@@ -815,8 +815,8 @@ const CARTAS = [
    «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
 const FICHAS = {
   "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
-    historia: "Vicepresidente del tirano y de los dos gobiernos anteriores, recibió a la columna con café y con las llaves de los ministerios.",
-    nota: "Sus expedientes de los tres regímenes han desaparecido de los archivos." },
+    historia: "Vicepresidente del tirano y del gobierno anterior. Recibió a la columna con café y con las llaves de los ministerios.",
+    nota: "Sus expedientes de los 2 regímenes anteriores han desaparecido de los archivos." },
   "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Responsable de víveres",
     historia: "Bodeguero que fió víveres a la columna y la siguió al monte para cobrar una deuda que sigue pendiente.",
     nota: "Sus cuentas no cuadran nunca y este servicio aún no ha averiguado si es por torpeza." },
@@ -825,9 +825,9 @@ const FICHAS = {
     nota: "Se desconoce a quién pertenece hoy la lancha y a quién pertenece él." },
   "Ministra de Educación": { nombre: "Hortensia Lamadrid", cargo: "Maestra de la columna",
     historia: "Maestra rural de diecinueve años que enseñó a leer a la tropa y conoce de memoria la letra de cada guerrillero.",
-    nota: "Corrige con regla todo lo que cae en sus manos, incluidos los informes de este servicio." },
+    nota: "Corrige con regla todo lo que pasa por sus manos. Incluidos estos informes." },
   "Ministro de Trabajo": { nombre: "Eusebio Palmares", cargo: "Delegado del sindicato cañero",
-    historia: "Cortador de caña y cabecilla de la huelga de la zafra que arrastra a medio pueblo cada vez que habla.",
+    historia: "Cortador de caña y cabecilla de la huelga de la zafra. Arrastra a medio pueblo cada vez que habla.",
     nota: "Se recomienda vigilar su popularidad y anotar el destino de los plátanos que lleva en el morral." },
   "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Locutora de Radio Machete",
     historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas.",
@@ -845,11 +845,11 @@ const FICHAS = {
     historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve.",
     nota: "Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }
 };
-/* 17 oct: el expediente del Comandante en la pantalla del nombre (detrás de su carta). Lo escribió la inteligencia del tirano. */
+/* 17 oct: el expediente del Comandante en la pantalla del nombre (detrás de su carta). Textos de Jorge. */
 const FICHA_COMANDANTE = {
   sinNombre: "Nombre desconocido", cargo: "Jefe de la columna rebelde",
-  historia: "Abogado sin clientes que subió al monte con doce hombres y hoy baja con un país detrás. Habla durante horas sin papeles.",
-  nota: "Informe del servicio del tirano, que lo dio por muerto tres veces y anoche huyó con el archivo."
+  historia: "Abogado sin clientes que subió al monte con 12 hombres y hoy baja con un país detrás. El tirano lo dio por muerto 3 veces.",
+  nota: "Puede hablar durante horas sin mirar un papel."
 };
 const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 
@@ -971,7 +971,7 @@ const PREVISION = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "Eso ni se pregunta" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "Cada vez que cambie de etapa, inteligencia preparará un expediente. Solo tendrá que girar su carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, Capitán Cuesta", der: "¡Vas bien, Domingo!" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada cambio de etapa, inteligencia preparará un expediente. Solo tiene que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, Capitán Cuesta", der: "¡Vas bien, Domingo!" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Las cuidaré", der: "A todas, sí" },
   { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Entendido", der: "Lo tendré en cuenta", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 5 s.

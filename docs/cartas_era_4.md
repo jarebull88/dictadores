@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.8.
+Duración: entre 6 y 8 cartas. 27 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.8.
 
 ### 1. El acreedor pide favores
 
@@ -254,7 +254,17 @@ Duración: entre 6 y 8 cartas. 26 cartas. Los efectos están en la escala peque�
 - **A. Sarria tendrá una explicación** Ejército −6 · Pueblo +5 · Potencias +3
 - **B. Archiven la investigación** Ejército +6 · Pueblo −5 · Potencias −3
 
-### 26. El parte médico
+### 26. El general héroe
+
+**Personaje:** Ministro del Interior  
+**Condición:** ancla de los años 1 a 3 de su era.
+
+**Carta:** «El general más condecorado está detenido por contrabando. El Pueblo lo adora.»
+
+- **A. Juicio en directo y paredón** Ejército −6 · Potencias +4 · Pueblo −3
+- **B. Retiro discreto en su finca** Ejército +6 · Potencias −4 · Pueblo +3
+
+### 27. El parte médico
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 5 a 8 de su era.

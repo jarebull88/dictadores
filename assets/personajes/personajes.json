@@ -1,5 +1,5 @@
 {
-  "vicepresidente": {"nombre": "Vicepresidente del Consejo de Ministros", "archivo": "vicepresidente.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [376, 392], "der": [533, 392], "r": 12}, "arriba": 106, "fondo": "#F6C453", "carton": "#A9C8E8", "carton_textura": 1},
+  "vicepresidente": {"nombre": "Vicepresidente del Consejo de Ministros", "archivo": "vicepresidente.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [376, 392], "der": [533, 392], "r": 12}, "arriba": 105, "fondo": "#F6C453", "carton": "#A9C8E8", "carton_textura": 1},
   "economia": {"nombre": "Ministro de Economía", "archivo": "economia.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [392, 420], "der": [518, 420], "r": 11}, "arriba": 100, "fondo": "#4FC3B8", "carton": "#F4C29A", "carton_textura": 1},
   "comercio": {"nombre": "Ministro de Comercio", "archivo": "comercio.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [388, 388], "der": [512, 388], "r": 11}, "arriba": 69, "fondo": "#F7A34B", "carton": "#A8D8CF", "carton_textura": 1},
   "educacion": {"nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [387, 340], "der": [520, 340], "r": 11}, "arriba": 71, "fondo": "#F28FA6", "carton": "#F5E3A0", "carton_textura": 1, "brillo": {"x": 326, "y": 1000, "r": 240}},

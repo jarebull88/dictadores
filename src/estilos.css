@@ -274,6 +274,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 @keyframes latido-casilla { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
 #ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 8px; background: rgba(179, 38, 30, .5);
   box-shadow: 0 0 0 3px rgba(179, 38, 30, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+/* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
+#barras.destacar .icono-fuerza { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }
+#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 8px; background: rgba(179, 38, 30, .5);
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 @keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces

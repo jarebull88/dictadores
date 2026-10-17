@@ -566,6 +566,7 @@ function mostrarInfo(i) {
   if (E.tutorial && TUTORIAL[E.tutorial.i].paso === "guardar") { E.tutorial.casilla = true; $("ranuras").classList.remove("destacar"); }
 }
 function mostrarFuerza(id, el) {
+  if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
   const f = FUERZAS[id];
   abrirPopup("fuerza-" + id,
     `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>`, el);
@@ -651,7 +652,13 @@ function voltear() {
     else if (t.vista) t.girada = true;
     // 16 oct: con la carta girada, Cuesta avisa de que el Comandante también tendrá su expediente al cambiar de etapa
     const paso = TUTORIAL[t.i];
-    if (paso.girada) { $("mensaje").innerHTML = conNegritas(volteada ? paso.girada : paso.texto); ajustarMensaje(); }
+    if (paso.girada) {                                     // 17 oct: el texto nuevo también entra con el fundido
+      const msg = $("mensaje");
+      clearTimeout(msg._revela);
+      msg.classList.add("oculto");
+      msg.innerHTML = conNegritas(volteada ? paso.girada : paso.texto); ajustarMensaje();
+      msg._revela = setTimeout(() => msg.classList.remove("oculto"), animar() ? 300 : 0);
+    }
   }
 }
 
@@ -1151,7 +1158,8 @@ function empezarTutorial() {
 function pasoTutorial(i, sinEntrada) {
   const t = E.tutorial;
   if (i >= TUTORIAL.length) { terminarTutorial(); return; }
-  t.i = i; t.vista = t.girada = t.casilla = false;
+  t.i = i; t.vista = t.girada = t.casilla = t.fuerzaVista = false;
+  $("barras").classList.remove("destacar");
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   $("nombre-dictador").textContent = "La víspera";
@@ -1232,13 +1240,17 @@ function ensenarPistas() {
 /* Las cuatro fuerzas se encienden una a una, cada una con su nota */
 function encenderFuerzas() {
   const barras = [...$("barras").querySelectorAll(".barra")];
+  const i = E.tutorial.i;
   barras.forEach((b, k) => setTimeout(() => {
     b.classList.add("encendida");
   }, 350 + k * 450));
+  // 17 oct: encendidas, los iconos destellan en rojo, como la casilla del paso «guardar», hasta que se toca uno
+  setTimeout(() => { if (E && E.tutorial && E.tutorial.i === i && !E.tutorial.fuerzaVista) $("barras").classList.add("destacar"); },
+    350 + barras.length * 450);
 }
 function terminarTutorial() {
   $("carta").classList.remove("con-giro", "giro-destacado");
-  $("ranuras").classList.remove("destacar");
+  $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");

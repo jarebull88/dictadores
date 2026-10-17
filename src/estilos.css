@@ -126,9 +126,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .escena-portada .escena-ancha { display: none; }
 @media (min-width: 700px) {
   .portada { padding-bottom: calc(min(39vw, 45vh) + 7vh); }
-  .escena-portada svg.escena-ancha { aspect-ratio: auto; }
   .escena-portada .escena-movil { display: none; }
-  .escena-portada .escena-ancha { display: block; max-height: 45vh; }
+  .escena-portada .escena-ancha { display: block; width: 100%; height: min(45vh, calc(100vw * 663 / 1700)); max-height: none; }   /* entera, centrada abajo */
 }
 .menu-portada { display: grid; justify-items: center; gap: 0; }
 .opcion-portada {

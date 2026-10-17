@@ -1547,7 +1547,9 @@ function svgEscenaPortada(v) {
   const ojos = d.ojos.map(o => `<g transform="translate(${o.x} ${o.y}) scale(${o.k})"><g class="ojos" style="animation-delay:${-(Math.random() * 7).toFixed(2)}s">` +
     [o.izq, o.der].filter(Boolean).map(e => `<circle cx="${e[0]}" cy="${e[1]}" r="${o.r}"/>`).join("") + `</g></g>`).join("");   // sin los ojos tapados
   // la «ventana» es el trozo central que se ve (en el móvil, los de los lados se cortan): «slice» llena la caja y recorta
-  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" preserveAspectRatio="xMidYMin slice" style="aspect-ratio:${d.ventana} / ${d.alto}">` +
+  // (la ancha, de escritorio, se ve siempre entera: «meet», centrada abajo aunque no llegue a los bordes)
+  const ajuste = v === "movil" ? `preserveAspectRatio="xMidYMin slice" style="aspect-ratio:${d.ventana} / ${d.alto}"` : `preserveAspectRatio="xMidYMax meet"`;
+  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" ${ajuste}>` +
     `<image href="${d.src}" x="0" y="0" width="${d.ancho}" height="${d.alto}"/>${svgBrillo("portada-" + v, d.brillo)}${ojos}</svg>`;
 }
 if (typeof PORTADA !== "undefined") $("escena-portada").innerHTML = svgEscenaPortada("movil") + svgEscenaPortada("ancha");

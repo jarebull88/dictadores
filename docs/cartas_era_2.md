@@ -97,10 +97,10 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 14; exige `huelga_reprimida`.
 
-**Carta:** «Aparecen panfletos en la universidad. Los hijos de los estibadores aún no han olvidado el puerto.»
+**Carta:** «Los hijos de los estibadores reparten panfletos en la universidad. Recuerdan lo del puerto.»
 
-- **A. Becas para todos.** *Una beca vale más que un panfleto.* Pueblo +6 · Élite −4 · Crisis +1
-- **B. Expulsar a los cabecillas.** *La universidad enseñará lo que la Revolución considere necesario.* Pueblo −6 · Ejército +5 · Potencias −3
+- **A. Sus compañeros los educarán** Pueblo +6 · Élite −4 · Crisis +1
+- **B. Expúlsenlos, a cortar caña** Pueblo −6 · Ejército +5 · Potencias −3
 
 ### 10. Denuncias falsas
 

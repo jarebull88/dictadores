@@ -920,17 +920,17 @@ const CARTAS = [
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
-    texto: "Las refinerías extranjeras nos cierran las puertas y amenazan con dejarnos sin gasolina.",
-    izq: { accion: "Negociemos", efectos: { potencias: 10, elite: 6, pueblo: -8 }, banderas: ["base.negocio_refinerias"] },
-    der: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -6, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"],
+    texto: "Las petroleras extranjeras exigen condiciones o cierran el grifo.",
+    izq: { accion: "Aceptemos sus condiciones", efectos: { potencias: 10, elite: -5, pueblo: -4 }, banderas: ["base.negocio_refinerias"] },
+    der: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: 5, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"],
            encolar: [{ carta: "embargo", min: 3, max: 8 }] }
   },
   {
     id: "visitante_oriental", tipo: "ancla", ventana: [4, 7], cond: { turnoMin: 4 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro país le ofrece ayuda económica y militar. A cambio, solo pedimos su lealtad.",
-    izq: { accion: "Lealtad a cambio de petróleo", efectos: { potencias: 9, pueblo: 5, elite: -6, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
-    der: { accion: "La Revolución no tiene dueño", efectos: { elite: 6, potencias: -9, pueblo: -5, crisis: 1 }, banderas: ["base.no_alineado"] }
+    texto: "Nuestro país le ofrece petróleo, armas y asesores. A cambio, solo pedimos su lealtad.",
+    izq: { accion: "Acepto su generosa ayuda", efectos: { potencias: 9, pueblo: 5, ejercito: 4, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
+    der: { accion: "La Revolución no tiene dueño", efectos: { potencias: -9, pueblo: -5, ejercito: -4, crisis: 1 }, banderas: ["base.no_alineado"] }
   },
 
   /* ---------- Cola ---------- */

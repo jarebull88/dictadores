@@ -16,6 +16,14 @@ Se escribe a mano (no la genera `npm run docs`) y manda sobre cualquier otra ind
 - La **sumisión se disfraza de lenguaje político**: cuando el Comandante cede ante una potencia, lo presenta como algo bueno, con el cinismo de un negociante que sabe que portarse bien le sale a cuenta («Será un honor rendir cuentas»).
 - El humor sale de la decisión, de la lógica absurda del régimen o de sus contradicciones; no de añadir palabras grandilocuentes.
 
+## Qué mide cada barra (21 oct)
+Cada barra mide el **peso político** de esa fuerza en el régimen, no lo contenta que está (ver `docs/ANALISIS_BARRAS.md`). Para puntuar una decisión, una sola pregunta: **¿quién gana poder (dinero, armas, cargos, voz o protección) con esta orden y quién lo pierde?** El jugador no ve los números, pero con inteligencia política tiene que poder deducir qué se mueve.
+- **Pueblo** (obreros, campesinos y estudiantes). Lo sube: darle derechos, ayudas o voz. Lo baja: quitárselos, controlarlo o reprimirlo.
+- **Ejército** (Fuerzas Armadas, policía y Seguridad del Estado). Lo sube: darle armas, mando o presupuesto (también encargarle la represión). Lo baja: recortarlo, controlarlo o repartir su poder con otros.
+- **Partido** (ministros, dirigentes y burócratas: los que mandan sin uniforme). Lo sube: darle cargos, privilegios o control (nacionalizar, racionar, censurar, organizar el culto). Lo baja: recortarlo, vigilarlo, gobernar sin él o aceptar condiciones de fuera. Los empresarios del antiguo régimen **no** son Partido: su peso está en sus protectores extranjeros.
+- **Potencias** (los países extranjeros, aliados y rivales). Lo sube: depender de ellos (ayuda, deuda, asesores, bases, condiciones). Lo baja: plantarles cara o prescindir de ellos. Lo que el extranjero **opina** (que le guste o no una decisión) no mueve la barra: si importa, llega después como carta.
+- Las dos opciones pueden ser malas para la misma fuerza (un coste común): no hace falta que una la beneficie. Lo que cuesta a largo plazo va en banderas y cartas futuras, no en la barra de hoy.
+
 ## La pregunta (el texto de la carta)
 - La pregunta va **implícita**: se presenta la situación, la exigencia o el problema de forma natural y las opciones responden a ella. No se termina por sistema con «¿Qué decide?» o «¿Aceptamos?».
 - Cuando la carta es un **dilema entre fuerzas** («El aniversario»: tanques para el Ejército o ron para el Pueblo), la pregunta deja claro entre quiénes se elige, para que la respuesta tenga sentido.

@@ -23,8 +23,8 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Le daremos créditos y comercio si se porta bien y nos deja auditarle.»
 
-- **A. Será un honor rendir cuentas** Potencias +8 · Élite +5 · Pueblo −5 · Crisis +1 · Bandera: `deuda_externa`
-- **B. Aquí solo audita el Pueblo** Potencias −8 · Pueblo +6 · Élite −4
+- **A. Será un honor rendir cuentas** Potencias +8 · Élite −5 · Pueblo −5 · Crisis +1 · Bandera: `deuda_externa`
+- **B. Aquí solo audita el Pueblo** Potencias −8 · Pueblo +6 · Élite +4
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 

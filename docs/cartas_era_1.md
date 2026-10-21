@@ -11,7 +11,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.»
 
-- **A. Juicio público en el estadio** Pueblo +8 · Ejército +4 · Potencias −5 · Bandera: `juicios_publicos`
+- **A. Juicio público en el estadio** Pueblo +8 · Ejército +4 · Bandera: `juicios_publicos`
 - **B. Tienen 24 horas para irse** Pueblo −8 · Ejército −4 · Potencias +5 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
@@ -50,7 +50,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Carta:** «El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.»
 
 - **A. Denle el Estado Mayor** Ejército +9 · Élite −4 · Bandera: `general_popular`
-- **B. Embajador, lejos del ejército** Ejército −9 · Élite +4 · Bandera: `general_apartado`
+- **B. Embajador, lejos del Ejército** Ejército −9 · Élite +4 · Bandera: `general_apartado`
 
 **Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 40.
 
@@ -77,7 +77,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Nuestro país le ofrece petróleo, armas y asesores. A cambio, solo pedimos su lealtad.»
 
-- **A. Acepto su generosa ayuda** Potencias +9 · Pueblo +5 · Ejército +4 · Crisis +2 · Bandera: `alineado_bloque_oriental`
+- **A. Acepto su generosa ayuda** Potencias +9 · Pueblo +2 · Ejército +4 · Crisis +2 · Bandera: `alineado_bloque_oriental`
 - **B. La Revolución no tiene dueño** Potencias −9 · Pueblo −5 · Ejército −4 · Crisis +1 · Bandera: `no_alineado`
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.

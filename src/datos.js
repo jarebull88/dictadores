@@ -29,7 +29,7 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.",
-    izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4, potencias: -5 }, banderas: ["base.juicios_publicos"] },
+    izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Tienen 24 horas para irse", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
   {
@@ -51,7 +51,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.",
     izq: { accion: "Denle el Estado Mayor", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
-    der: { accion: "Embajador, lejos del ejército", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
+    der: { accion: "Embajador, lejos del Ejército", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
   },
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",
@@ -65,7 +65,7 @@ const CARTAS = [
     id: "visitante_oriental", tipo: "ancla", ventana: [4, 7], cond: { turnoMin: 4 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país le ofrece petróleo, armas y asesores. A cambio, solo pedimos su lealtad.",
-    izq: { accion: "Acepto su generosa ayuda", efectos: { potencias: 9, pueblo: 5, ejercito: 4, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
+    izq: { accion: "Acepto su generosa ayuda", efectos: { potencias: 9, pueblo: 2, ejercito: 4, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
     der: { accion: "La Revolución no tiene dueño", efectos: { potencias: -9, pueblo: -5, ejercito: -4, crisis: 1 }, banderas: ["base.no_alineado"] }
   },
 
@@ -272,8 +272,8 @@ const CARTAS = [
     id: "mano_norte", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte",
     personaje: "Embajador de la potencia del norte",
     texto: "Le daremos créditos y comercio si se porta bien y nos deja auditarle.",
-    izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: 5, pueblo: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
-    der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 6, elite: -4 } }
+    izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: -5, pueblo: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
+    der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 6, elite: 4 } }
   },
 
   {
@@ -988,7 +988,7 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "Eso ni se pregunta" },
   { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada nueva etapa, Interior preparará un expediente. Solo tendrá que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, Capitán Cuesta", der: "¡Vas bien, Domingo!" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Contentaré a todos", der: "Mano firme" },
-  { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Primero el Pueblo, Capitán", der: "No les faltará el ron", efectos: { izq: { pueblo: 24, elite: -16, potencias: -6 }, der: { ejercito: 24, pueblo: -6, elite: 16 } } },
+  { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Primero el Pueblo, Capitán", der: "No les faltará el ron", efectos: { izq: { pueblo: 24, ejercito: -10 }, der: { ejercito: 24, pueblo: -10 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 7 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },

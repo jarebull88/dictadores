@@ -1119,8 +1119,8 @@ const CARTAS = [
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Para el aniversario de la Revolución, el Ejército pide tanques y el Pueblo ron. No hay para ambos.",
-    izq: { accion: "Que aplaudan a los tanques", efectos: { ejercito: 8, elite: 4, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
-    der: { accion: "Repartan ron en mi nombre", efectos: { pueblo: 7, ejercito: -8, elite: -4 } }
+    izq: { accion: "Que aplaudan a los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
+    der: { accion: "Repartan ron en mi nombre", efectos: { pueblo: 7, ejercito: -8 } }
   },
 
   {
@@ -1252,7 +1252,7 @@ const CARTAS = [
   },
 
   {
-    id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta"] }, titulo: "Una carta con firmas",
+    id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta", "base.campos_trabajo"] }, titulo: "Una carta con firmas",
     personaje: "Ministra de Cultura",
     texto: "Intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.",
     izq: { accion: "Recibir a los firmantes.", remate: "Quiero conocer a los que creen que eso depende de mí.", efectos: { pueblo: 6, potencias: 5, ejercito: -5, elite: -3 } },
@@ -1506,6 +1506,14 @@ const CARTAS = [
     izq: { accion: "Declaren la playa zona militar", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { pueblo: 6, ejercito: -6 } }
   },
+  {
+    // 21 oct, Jorge: las UMAP (1965-68), campos de trabajo militares para los «desviados»; el chiste va contra el eufemismo del régimen
+    id: "campos_trabajo", era: 2, tipo: "sorteo", peso: 14, titulo: "Los campos de trabajo",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.",
+    izq: { accion: "El trabajo les hará hombres", efectos: { ejercito: 6, pueblo: -7 }, banderas: ["base.campos_trabajo"] },
+    der: { accion: "Que lleven el pelo como quieran", largaAutorizada: true, efectos: { ejercito: -6, pueblo: 7 } }
+  },
   /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
@@ -1755,7 +1763,7 @@ const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de intel
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                         bajo: "En el exterior nadie te quiere, salvo quien te teme." }
 };
 
-const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.campos_trabajo": 3, "base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
@@ -1770,6 +1778,7 @@ const FUTURO = {
   "base.elecciones_prometidas": "Elecciones controladas.",
   "base.elecciones_aplazadas": "Protestas estudiantiles.",
   "base.critica_abierta": "Depuración de críticos.",
+  "base.campos_trabajo": "Intelectuales denuncian los campos de trabajo.",
   "base.viejos_oficiales": "Conspiración de oficiales retirados.",
   "base.purga_inicial": "El Ministro del Interior pide más poder.",
   "base.sindicato_libre": "Los sindicatos libres quieren elegir a sus dirigentes sin el Partido.",
@@ -1816,6 +1825,7 @@ const PREVISION = {
   "base.elecciones_prometidas": "El Pueblo recuerda que se le prometieron elecciones.",
   "base.elecciones_aplazadas": "Los estudiantes preguntan por las elecciones aplazadas.",
   "base.critica_abierta": "Hay críticos que se han acostumbrado a hablar.",
+  "base.campos_trabajo": "En el extranjero ya se habla de los campos de trabajo.",
   "base.viejos_oficiales": "Los oficiales retirados se reúnen demasiado.",
   "base.purga_inicial": "El ministro del Interior se ha quedado con ganas de más.",
   "base.sindicato_libre": "El sindicato libre prepara nuevas huelgas.",

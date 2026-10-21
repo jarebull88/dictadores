@@ -938,15 +938,15 @@ const CARTAS = [
     id: "embargo", tipo: "cola", titulo: "El embargo",
     personaje: "Embajador de la potencia del norte",
     texto: "Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.",
-    izq: { accion: "Que nos embarguen", efectos: { pueblo: 9, potencias: -9, elite: -5, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Pagaremos… algo", efectos: { potencias: 9, elite: 5, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
+    izq: { accion: "Aquí no se paga nada", efectos: { pueblo: 3, potencias: -9, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
+    der: { accion: "Pagar compensación", efectos: { potencias: 9, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
   },
   {
     id: "depuracion_criticos", tipo: "cola", borrador: true, titulo: "La lista",
     personaje: "Ministro del Interior",
-    texto: "Ya sabemos quiénes nos critican. Sus vecinos han sido muy colaboradores.",
-    izq: { accion: "Que critiquen con moderación", efectos: { pueblo: 8, ejercito: -5, potencias: 5 } },
-    der: { accion: "A la cárcel por orden alfabético", largaAutorizada: true, efectos: { pueblo: -8, ejercito: 5, elite: 4, potencias: -5 }, banderas: ["base.criticos_detenidos"] }
+    texto: "Ya sabemos quiénes nos critican, gracias a unos vecinos muy colaboradores.",
+    izq: { accion: "Que protesten, pero bajito", efectos: { pueblo: 8, ejercito: -5 } },
+    der: { accion: "A la cárcel por orden alfabético", largaAutorizada: true, efectos: { pueblo: -8, ejercito: 5 }, banderas: ["base.criticos_detenidos"] }
   },
 
   /* ---------- Sorteo ---------- */

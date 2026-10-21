@@ -146,15 +146,15 @@ const CARTAS = [
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
     personaje: "Ministra de Educación",
     texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
-    izq: { accion: "Menos bocas que alimentar", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
+    izq: { accion: "Buen viaje, niños", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
     der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
   },
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",
     personaje: "Ministro de Economía",
     texto: "Propongo que los inquilinos paguen la mitad y que, en unos años, la casa sea suya.",
-    izq: { accion: "Alquiler a mitad de precio", efectos: { pueblo: 8, elite: -6 } },
-    der: { accion: "Que paguen lo que firmaron", efectos: { pueblo: -8, elite: 6 } }
+    izq: { accion: "Alquiler a mitad de precio", efectos: { pueblo: 8, elite: 4 } },
+    der: { accion: "Que paguen lo que firmaron", efectos: { pueblo: -8, elite: -4 } }
   },
   {
     id: "milicias", tipo: "sorteo", peso: 6, titulo: "Las milicias",

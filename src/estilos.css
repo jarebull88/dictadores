@@ -30,7 +30,7 @@
   /* Bisel del papel, mínimo: filo claro arriba y un filo oscuro abajo (luz cenital; nada a los lados) */
   --bisel: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -1px 0 rgba(0, 0, 0, .12);
   --radio-pegado: 10px;     /* esquinas de la cartulina y la hoja pegadas encima */
-  --hueco-carton: #9C7A52 var(--tex-carton) center / cover;   /* 21 oct: el fondo de las perforaciones (barras, casillas, nombre), de cartón */
+  --hueco-carton: var(--tex-carton) center / cover;   /* 21 oct: el fondo de las perforaciones (barras, casillas, nombre), de cartón */
 }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
 html, body { height: 100%; margin: 0; }
@@ -142,7 +142,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
 .pantalla-nombre .campo input {
   height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
-  background: var(--hueco-carton); background-blend-mode: multiply;
+  background: var(--hueco-carton);
   box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .7);
 }
 .pantalla-nombre .campo input::placeholder { color: rgba(28, 27, 25, .55); }
@@ -165,7 +165,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {
-  position: relative; background: var(--hueco-carton); background-blend-mode: multiply;
+  position: relative; background: var(--hueco-carton);
   box-shadow: 0 1px 0 rgba(255, 255, 255, .7);
 }
 .nivel::after, .ranura::after {
@@ -341,7 +341,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.listo:not(.volteada)::after { opacity: 1; }
 .ilustracion {
   flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column;
-  border-radius: var(--radio-pegado);
+  border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte de cartulina */
   background: var(--fondo-escena, #2F2E2B);   /* 21 oct: cartulina de color liso */
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
 }
@@ -421,15 +421,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   border: 4px solid #FBFAF6; box-shadow: 0 1.5px 1px rgba(0, 0, 0, .55);   /* foto pegada: borde blanco y sombra corta */
 }
 .ficha-foto svg { display: block; width: 100%; height: 100%; }
-/* 21 oct: manualidad en el expediente: la foto de carné grapada a la hoja (dos grapas) y, en la esquina de abajo, un agujero
-   de perforadora con un hilo atado que se sale de la hoja */
+/* 21 oct: la foto de carné, pegada a la hoja con un trozo de cinta de carrocero (como la de las cartas de estado) */
 .foto-grapada { position: relative; flex: none; margin-bottom: 6px; transform: rotate(-1.5deg); }
 .foto-grapada .ficha-foto { margin-bottom: 0; }
-.grapa { position: absolute; top: 2px; left: -6px; width: 34px; height: 10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='9' viewBox='0 0 30 9'%3E%3Crect x='1' y='1.5' width='28' height='5' rx='1.6' fill='%23A7A6A1'/%3E%3Crect x='2.5' y='2.2' width='25' height='1.2' rx='.6' fill='%23E9E8E3'/%3E%3Crect x='1' y='5.4' width='28' height='1.2' rx='.6' fill='%23706F6A'/%3E%3Crect x='1' y='1.5' width='2.2' height='5' rx='1' fill='%23807F7A'/%3E%3Crect x='26.8' y='1.5' width='2.2' height='5' rx='1' fill='%23807F7A'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
-  transform: rotate(-38deg); filter: drop-shadow(0 1.5px .5px rgba(0, 0, 0, .55)) contrast(1.25) brightness(.9); }
-.grapa.g2 { left: auto; right: -6px; transform: rotate(38deg); }
-.hilo { position: absolute; right: -8px; bottom: -8px; width: 70px; height: 70px; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Ccircle cx='22' cy='22' r='7.5' fill='%23F8F6F0' stroke='%23C9C3B5' stroke-width='1.2'/%3E%3Ccircle cx='22' cy='22' r='4.6' fill='%238A6A44'/%3E%3Cpath d='M22 22c6 2 9 7 8 13s4 11 12 13 14 6 22 16' fill='none' stroke='%236E5A3A' stroke-width='2.6' stroke-linecap='round'/%3E%3Cpath d='M22 22c6 2 9 7 8 13s4 11 12 13 14 6 22 16' fill='none' stroke='%23C9AE7E' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M22 22c-5-4-10-3-12 1s2 6 6 3' fill='none' stroke='%236E5A3A' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M22 22c-5-4-10-3-12 1s2 6 6 3' fill='none' stroke='%23C9AE7E' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .4)); }
+.cinta-foto { position: absolute; top: -7px; left: 50%; width: 62%; height: 15px; translate: -50% 0; rotate: -4deg; opacity: .85;
+  background: #EFE3BE; filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .3));
+  clip-path: polygon(0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%, 0 100%, 3% 75%, 0 50%, 3% 25%); }
 .ficha-foto .ojos-foto { fill: #161618; }
 .ficha-nombre { font-family: var(--fuente-mano); font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
 .ficha-cargo { font-size: var(--ficha-px, 15px); font-weight: 700; margin-bottom: 4px; }
@@ -443,7 +440,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .respuesta {
   --alto-panel: 96px;
   position: absolute; left: -50%; width: 200%; height: 400%; bottom: calc(100% - var(--alto-panel)); z-index: 3;
-  background: rgba(0, 0, 0, .3); color: var(--bloque);   /* 21 oct: más transparente (antes, al 50 %) */
+  background: rgba(0, 0, 0, .25); color: var(--bloque);   /* 21 oct: más transparente (antes, al 50 %) */
   transform-origin: 50% 100%; transform: rotate(calc(-1 * var(--giro, 0deg)));
   /* Baja al ritmo del arrastre (--bajada de 0 a 1, ver arrastrable): empieza en cuanto la carta se mueve */
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */

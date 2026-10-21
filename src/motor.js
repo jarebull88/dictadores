@@ -619,9 +619,9 @@ function fichaPersonaje(cargo) {
   return dorsoFicha({ foto: fotoFicha(cargo), nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
 }
 function dorsoFicha(f) {
-  // 21 oct: el expediente, más de manualidad: la foto grapada y, en la esquina, un agujero con un hilo atado
-  const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="grapa"></i><i class="grapa g2"></i></div>` : "";
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<i class="hilo" aria-hidden="true"></i>${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+  // 21 oct: la foto de carné, pegada con un trozo de cinta de carrocero
+  const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="cinta-foto" aria-hidden="true"></i></div>` : "";
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }

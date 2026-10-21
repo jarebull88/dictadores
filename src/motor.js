@@ -190,11 +190,17 @@ function svgBrillo(slug, b) {
 const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "⭐", potencias: "🌐" };
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
+/* 21 oct: cada fuerza mide su peso en el régimen (ver docs/ANALISIS_BARRAS.md). La ventana dice quiénes son y, en
+   general, qué la sube y qué la baja: el jugador tiene que deducir el resto con inteligencia política. */
 const FUERZAS = {
-  pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Te aplauden o protestan según cómo viven." },
-  ejercito:  { nombre: "Ejército",  quien: "Las Fuerzas Armadas, la policía y el aparato de seguridad. Te protegen mientras se sientan respetados; si no, conspiran en los cuarteles." },
-  elite:     { nombre: "Partido",   quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido. Te apoyan mientras hagan negocio; si no, sacan su dinero o conspiran." },
-  potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos. Te ayudan o te castigan según les convenga." }
+  pueblo:    { nombre: "Pueblo",    quien: "Obreros, campesinos y estudiantes: la gente de la calle.",
+               sube: "Darle derechos, ayudas o voz.", baja: "Quitárselos, controlarlo o reprimirlo." },
+  ejercito:  { nombre: "Ejército",  quien: "Las Fuerzas Armadas, la policía y la Seguridad del Estado.",
+               sube: "Darle armas, mando o presupuesto.", baja: "Recortarlo, controlarlo o repartir su poder con otros." },
+  elite:     { nombre: "Partido",   quien: "Ministros, dirigentes y burócratas: los que mandan sin uniforme.",
+               sube: "Darle cargos, privilegios o control sobre el país.", baja: "Recortarlo, vigilarlo o gobernar sin él." },
+  potencias: { nombre: "Potencias", quien: "Los países extranjeros, aliados y rivales.",
+               sube: "Depender de ellos: de su ayuda, su dinero o sus condiciones.", baja: "Plantarles cara o prescindir de ellos." }
 };
 
 /* =====================================================
@@ -567,7 +573,8 @@ function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
   const f = FUERZAS[id];
   abrirPopup("fuerza-" + id,
-    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>`, el);
+    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>` +
+    `<span class="sube-baja"><em>Lo sube:</em> ${esc(f.sube)}</span><span class="sube-baja"><em>Lo baja:</em> ${esc(f.baja)}</span>`, el);
 }
 
 /* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);

@@ -499,6 +499,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .popup .etiqueta-pop { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); margin-bottom: 2px; }
 .popup b { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: 25px; line-height: 1.1; margin-bottom: 6px; }
 .popup span { display: block; font-size: 16px; line-height: 1.4; }
+.popup .sube-baja { margin-top: 8px; }   /* 21 oct: «Lo sube» y «Lo baja» de cada fuerza */
+.popup .sube-baja em { font-style: normal; font-weight: 700; }
 .popup .efecto {   /* el efecto, en cinta de carrocero (como el nombre en la carta del estado) */
   position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-size: 20px; line-height: 1.2; font-weight: 400;
   transform: rotate(-1deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));

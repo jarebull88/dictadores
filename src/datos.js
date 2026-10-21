@@ -119,19 +119,19 @@ const CARTAS = [
     personaje: "Ministra de Educación",
     texto: "Los colegios privados cobran por enseñar. Propongo que todas las escuelas sean del Estado.",
     izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: 5 } },
-    der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -7, elite: -5 } }
+    der: { accion: "Que cada familia elija su escuela", largaAutorizada: true, efectos: { pueblo: -7, elite: -5 } }
   },
   {
     id: "asesores", tipo: "sorteo", peso: 6, cond: { turnoMin: 2 }, titulo: "Los asesores",
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.",
-    izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 9, ejercito: 6, elite: -7 } },
-    der: { accion: "Ya vamos bien sin ustedes", efectos: { potencias: -9, ejercito: -6, elite: 7 } }
+    izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 9, ejercito: 5, elite: 5 } },
+    der: { accion: "Agradecemos, pero no hace falta", largaAutorizada: true, efectos: { potencias: -9, ejercito: -5, elite: -5 } }
   },
   {
     id: "club_golf", tipo: "sorteo", peso: 6, titulo: "El club de golf",
     personaje: "Embajador de la potencia del norte",
-    texto: "Reconoceremos su gobierno si respeta nuestras propiedades… sobre todo el club de golf.",
+    texto: "Nuestro país reconocerá su gobierno si respeta nuestras propiedades, empezando por el club de golf.",
     izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 9, pueblo: -8 } },
     der: { accion: "Sembraremos caña en el green", efectos: { potencias: -9, pueblo: 8 } }
   },

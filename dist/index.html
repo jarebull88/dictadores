@@ -967,9 +967,9 @@ const CARTAS = [
   {
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Prometimos elecciones en dieciocho meses. Ya han pasado doce.",
-    izq: { accion: "Elecciones en seis meses", efectos: { pueblo: 9, potencias: 7, ejercito: -4, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
-    der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, potencias: -7, ejercito: 4, elite: 4 }, banderas: ["base.elecciones_aplazadas"] }
+    texto: "El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.",
+    izq: { accion: "Elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
+    der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, elite: 5 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
     id: "alfabetizacion", tipo: "sorteo", peso: 6, titulo: "La campaña de alfabetización",

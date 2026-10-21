@@ -195,16 +195,16 @@ const CARTAS = [
   {
     id: "retrato", tipo: "sorteo", peso: 6, cond: { turnoMin: 4 }, titulo: "El retrato",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Quieren su retrato en cada aula y una estatua en la plaza. ¿Qué opina?",
-    izq: { accion: "Si insisten…", efectos: { pueblo: 1, elite: 6, ejercito: 4, crisis: 1 }, banderas: ["base.culto_iniciado"] },
-    der: { accion: "No necesito estatuas", efectos: { pueblo: -1, potencias: 2, elite: -6, ejercito: -4 }, banderas: ["base.modestia_aparente"] }
+    texto: "El Partido quiere su retrato en cada aula y una estatua en la plaza.",
+    izq: { accion: "Si insisten…", efectos: { pueblo: -3, elite: 6, crisis: 1 }, banderas: ["base.culto_iniciado"] },
+    der: { accion: "Los monumentos son para los mártires", largaAutorizada: true, efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
   },
   {
     id: "marchan", tipo: "sorteo", peso: 14, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan",
     personaje: "Ministro del Interior",
     texto: "Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.",
-    izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, elite: -7, potencias: -4, crisis: -1 }, banderas: ["base.exodo_elite"] },
-    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, elite: 7, pueblo: -7, potencias: -8 }, banderas: ["base.frontera_cerrada"] }
+    izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite"] },
+    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */

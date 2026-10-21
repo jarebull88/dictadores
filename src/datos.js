@@ -132,22 +132,22 @@ const CARTAS = [
     id: "club_golf", tipo: "sorteo", peso: 6, titulo: "El club de golf",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país reconocerá su gobierno si respeta nuestras propiedades, empezando por el club de golf.",
-    izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 9, pueblo: -8 } },
-    der: { accion: "Sembraremos caña en el green", efectos: { potencias: -9, pueblo: 8 } }
+    izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 9, pueblo: -8, elite: -4 } },
+    der: { accion: "Empezaremos nacionalizando el golf", largaAutorizada: true, efectos: { potencias: -9, pueblo: 8, elite: 4 } }
   },
   {
     id: "la_bahia", tipo: "ancla", ventana: [5, 7], titulo: "La bahía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.",
-    izq: { accion: "Cámbienlos por compotas", efectos: { potencias: 6, pueblo: 3, ejercito: -5 } },
-    der: { accion: "Juicio televisado y paredón", efectos: { potencias: -6, pueblo: -3, ejercito: 5 } }
+    izq: { accion: "Cámbienlos por compotas", efectos: { potencias: -6, pueblo: 2, ejercito: -4 } },
+    der: { accion: "Juicio televisado y paredón", efectos: { potencias: -3, pueblo: 5, ejercito: 5, crisis: 2 } }
   },
   {
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
     personaje: "Ministra de Educación",
     texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
-    izq: { accion: "Menos bocas que alimentar", efectos: { pueblo: 5, ejercito: -4, potencias: -3 } },
-    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { pueblo: -5, ejercito: 4, potencias: 3 } }
+    izq: { accion: "Menos bocas que alimentar", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
+    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
   },
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",

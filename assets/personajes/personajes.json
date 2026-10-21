@@ -12,5 +12,6 @@
   "dictador-joven": {"nombre": "El Comandante", "archivo": "dictador-joven.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [409, 354], "der": [522, 354], "r": 11}, "arriba": 97, "fondo": "#F08A5D", "carton": "#B5DEC4"},
   "dictador-asentado": {"nombre": "El Comandante en Jefe", "archivo": "dictador-asentado.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [404, 354], "der": [527, 354], "r": 11}, "arriba": 77, "fondo": "#4A90D9", "carton": "#F5DC9E"},
   "dictador-culto": {"nombre": "Su Excelencia", "archivo": "dictador-culto.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [404, 349], "der": [527, 349], "r": 11}, "arriba": 78, "fondo": "#E86A5C", "carton": "#EAD7B0"},
-  "dictador-viejo": {"nombre": "El Padre de la Patria", "archivo": "dictador-viejo.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [407, 331], "der": [532, 331], "r": 11}, "arriba": 74, "fondo": "#F7E07A", "carton": "#D3C2E8"}
+  "dictador-viejo": {"nombre": "El Padre de la Patria", "archivo": "dictador-viejo.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [407, 331], "der": [532, 331], "r": 11}, "arriba": 74, "fondo": "#F7E07A", "carton": "#D3C2E8"},
+  "dictador-joven-mural": {"nombre": "El Comandante", "archivo": "dictador-joven-mural.webp", "ancho": 900, "alto": 1205, "ojos": {"izq": [367, 367], "der": [522, 367], "r": 13}, "arriba": 17, "fondo": "#F08A5D"}
 }

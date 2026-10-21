@@ -1438,7 +1438,8 @@ function pintarCartaNombre() {
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "dictador-joven");
-  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
+  // 21 oct, de prueba: el estilo nuevo («periódico mural», collage pobre y cubista), solo en esta carta
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven-mural", "El Comandante")}` +
     `<div class="respuesta"></div></div></div>${dorsoFicha(fichaComandante())}</div>`;   // 17 oct: detrás, su expediente (al tocarla)
   carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";

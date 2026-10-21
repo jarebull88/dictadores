@@ -142,3 +142,16 @@ píxeles del recorte); `svgBrillo()` pinta un halo que late como una llama (`.br
 - No pintes los ojos en la imagen. Van siempre por código.
 - No subas al repo la imagen original con croma en el directorio que se publica; pesa de más y no se usa en el juego.
 - No cambies el tamaño de los personajes uno a uno: todos comparten el mismo encuadre, con la cabeza ocupando en torno al 40 % del alto y los hombros tocando los dos bordes laterales. Si uno se ve más pequeño que el resto, el fallo está en la imagen, no en el CSS.
+
+
+## Estilo nuevo en prueba: «el periódico mural» (21 oct)
+Collage pobre y cubista, hecho con lo que hay (periódico viejo, libreta cuadriculada, papel de saco, cartón de cajas, chapas, cinta amarillenta): caras partidas en dos planos de papeles distintos, formas grandes, rasgadas y mal alineadas, colores sucios y un solo toque de color fuerte. De momento solo lo usa la carta del Comandante de la pantalla del nombre (`dictador-joven-mural`). Plantilla del prompt (la del Comandante joven, de Gemini):
+
+```
+A crude cubist paper collage portrait, in the style of an early Picasso papier collé, made by poor neighbours for a revolutionary wall newspaper in a country where there is a shortage of everything. Only recycled, old and dirty materials: yellowed newspaper with grey smudged columns (no readable text), pages of a worn ration booklet, brown sugar-sack paper, cardboard from an old box, a cigar-box label, thin flour paste stains, ballpoint pen and an almost dry marker.
+[sujeto: medio cuerpo, centrado; cara partida en dos planos de papeles distintos; SIN ojos (se añaden luego); boca a rotulador del color de su grupo; un solo acento de color fuerte]
+Everything is rough, simple, out of proportion and slightly misaligned; many edges are torn by hand, not cut. Visible yellowed adhesive tape, glue stains, creases and pencil marks. Muted, dirty, faded colors.
+Flat view from straight above, flat even lighting, very short dark shadows under the paper pieces (glued flat). Vertical format 3:4. Solid chroma-key green background (#00B140), flat and even, with nothing else on it.
+Rules: no text, no letters, no flags, no stars, no real symbols or insignia. Nothing shiny, nothing new: no felt, no wool, no clean cardstock.
+```
+Pendiente de decidir: el brazo en alto a la izquierda (como el resto de etapas del dictador) y si el recorte de periódico de detrás forma parte del estilo.

@@ -892,9 +892,9 @@ const CARTAS = [
   {
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Hemos tomado el palacio. Los ministros del tirano no huyeron a tiempo y el Pueblo pide justicia.",
-    izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, elite: -7, potencias: -5 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Tienen 24 horas para irse", efectos: { pueblo: -8, elite: 7, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+    texto: "Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.",
+    izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4, potencias: -5 }, banderas: ["base.juicios_publicos"] },
+    der: { accion: "Tienen 24 horas para irse", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",

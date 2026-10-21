@@ -110,16 +110,16 @@ const CARTAS = [
   {
     id: "alfabetizacion", tipo: "sorteo", peso: 6, titulo: "La campaña de alfabetización",
     personaje: "Ministra de Educación",
-    texto: "Propongo una campaña de alfabetización: que en un año todo el Pueblo sepa leer.",
-    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10, elite: -8 } },
-    der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -10, elite: 8 } }
+    texto: "Propongo una campaña de alfabetización: brigadas de jóvenes enseñando a leer en cada rincón.",
+    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10 } },
+    der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -10 } }
   },
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",
     personaje: "Ministra de Educación",
-    texto: "Ningún niño debería pagar por aprender. Propongo que todas las escuelas sean públicas.",
-    izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: -8, potencias: -6 } },
-    der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -7, elite: 8, potencias: 6 } }
+    texto: "Los colegios privados cobran por enseñar. Propongo que todas las escuelas sean del Estado.",
+    izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: 5 } },
+    der: { accion: "Algunos son más iguales que otros", largaAutorizada: true, efectos: { pueblo: -7, elite: -5 } }
   },
   {
     id: "asesores", tipo: "sorteo", peso: 6, cond: { turnoMin: 2 }, titulo: "Los asesores",

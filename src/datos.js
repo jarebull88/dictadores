@@ -181,9 +181,9 @@ const CARTAS = [
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",
     personaje: "Ministro de Trabajo",
-    texto: "El puerto está parado. Los estibadores exigen un sindicato que no dependa del Partido.",
+    texto: "El puerto lleva tres días parado. Los estibadores no quieren que el Partido elija a sus líderes.",
     izq: { accion: "Que se organicen libremente", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
-    der: { accion: "Hacer huelga es sabotaje", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
+    der: { accion: "La huelga es contrarrevolución", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
   },
   {
     id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio",

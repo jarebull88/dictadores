@@ -174,7 +174,7 @@ const CARTAS = [
   {
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los oficiales del antiguo régimen siguen en sus puestos. ¿Qué hacemos?",
+    texto: "Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
     der: { accion: "¡Al paredón!", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
   },
@@ -183,7 +183,7 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "El puerto está parado. Los estibadores exigen un sindicato que no dependa del Partido.",
     izq: { accion: "Que se organicen libremente", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
-    der: { accion: "Hacer huelga es sabotaje", efectos: { pueblo: -10, elite: 7, ejercito: 4, potencias: -4 }, banderas: ["base.huelga_reprimida"] }
+    der: { accion: "Hacer huelga es sabotaje", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
   },
   {
     id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio",

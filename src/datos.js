@@ -359,9 +359,9 @@ const CARTAS = [
   {
     id: "huelgas_crisis", tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos",
     personaje: "Ministro de Trabajo",
-    texto: "Los electricistas amenazan con apagar la capital si no tienen un sindicato sin el Partido.",
+    texto: "Los electricistas amenazan con apagar la capital. Quieren un sindicato fuera del Partido.",
     izq: { accion: "Que tengan su sindicato", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
-    der: { accion: "Que marchen hasta la cárcel", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
+    der: { accion: "Fuera de la Revolución, nada", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
   },
 
   {

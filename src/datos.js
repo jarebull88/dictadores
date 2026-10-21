@@ -408,7 +408,7 @@ const CARTAS = [
     id: "embargo_total", tipo: "sorteo", peso: 14, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total",
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran comida, medicinas ni repuestos.",
-    izq: { accion: "Cartilla de racionamiento", efectos: { pueblo: -4, elite: 3, crisis: -1 } },
+    izq: { accion: "Racionen: una libreta por familia", largaAutorizada: true, efectos: { pueblo: -4, elite: 3, crisis: -1 } },
     der: { accion: "Compren por terceros países", efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
   },
 

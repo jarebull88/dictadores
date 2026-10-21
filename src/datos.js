@@ -297,7 +297,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.",
     izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: 6, elite: -4 } },
-    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, potencias: -3, elite: 4 }, banderas: ["base.accidente_cienfuegos"] }
+    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, elite: 3 }, banderas: ["base.accidente_cienfuegos"] }
   },
 
   {

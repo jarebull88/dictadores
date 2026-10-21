@@ -219,8 +219,8 @@ const CARTAS = [
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías",
     personaje: "Ministro de Comercio",
     texto: "No hay nada en las tiendas del Estado. En el mercado negro, de todo.",
-    izq: { accion: "Escasez, pero justa", efectos: { pueblo: -8, ejercito: 4, elite: 4, crisis: -3 } },
-    der: { accion: "Ojos que no ven", efectos: { pueblo: 3, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
+    izq: { accion: "Redadas en el mercado negro", efectos: { pueblo: -8, ejercito: 4, elite: 4, crisis: -3 } },
+    der: { accion: "Hagan la vista gorda", efectos: { pueblo: 3, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
   },
 
   /* ---------- Coalición (borrador) ---------- */

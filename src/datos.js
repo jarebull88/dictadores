@@ -212,8 +212,8 @@ const CARTAS = [
     id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura",
     personaje: "Ministro de Economía",
     texto: "Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.",
-    izq: { accion: "Precios congelados por decreto", efectos: { pueblo: 8, elite: -6, crisis: -3 } },
-    der: { accion: "Pidan prestado al que sea", efectos: { potencias: 8, elite: 4, crisis: -3 }, banderas: ["base.deuda_externa"] }
+    izq: { accion: "Precios congelados por decreto", efectos: { pueblo: 8, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] },
+    der: { accion: "Otro préstamo y ya veremos", efectos: { potencias: 8, pueblo: -3, crisis: -3 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías",

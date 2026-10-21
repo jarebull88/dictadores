@@ -20,7 +20,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `desfile_militar` | El aniversario (A) | El desfile del año | El Ejército espera cada año un desfile mayor. (era 3) |
 | `deuda_externa` | Las arcas vacías (B); La factura (B); La mano del norte (A) | La deuda llama; El acreedor pide favores | El acreedor empieza a pedir favores. (era 2) |
 | `elecciones_aplazadas` | Las urnas prometidas (B) | Estudiantes en la calle | Protestas estudiantiles. (era 1) |
-| `elecciones_prometidas` | Las urnas prometidas (A) | Elecciones controladas | Elecciones controladas. (era 3) |
+| `elecciones_prometidas` | Las urnas prometidas (A); Estudiantes en la calle (A) | Elecciones controladas | Elecciones controladas. (era 3) |
 | `embargo_en_marcha` | El embargo (A); El ultimátum (A) | Embargo total | Embargo total. (era 1) |
 | `estado_policial` | El jefe insaciable (A) | Dos ejércitos | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
 | `estudiantes_reprimidos` | Estudiantes en la calle (B) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
@@ -34,7 +34,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |
 | `libro_obligatorio` | El libro de texto (A) | — | — |
 | `mausoleo_construido` | El mausoleo (A) | El mausoleo vacío | Un edificio eterno que hay que mantener. (era 4) |
-| `mercado_paralelo` | Las arcas vacías (A); Las tiendas vacías (B) | El mercado mayor | Una economía que escapa a tu control. (era 3) |
+| `mercado_paralelo` | Las arcas vacías (A); La factura (A); Las tiendas vacías (B) | El mercado mayor | Una economía que escapa a tu control. (era 3) |
 | `misiles_instalados` | Los nuevos vecinos (A) | Los satélites | Una potencia vecina vigila tus misiles. (era 2) |
 | `misiles_rechazados` | Los nuevos vecinos (B) | El aliado enfadado | El aliado recuerda tu negativa. (era 2) |
 | `modestia_aparente` | El retrato (B) | La modestia sospechosa | El Partido exige otros símbolos de lealtad. (era 3) |

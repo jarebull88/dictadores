@@ -409,7 +409,7 @@ const CARTAS = [
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran comida, medicinas ni repuestos.",
     izq: { accion: "Racionen: una libreta por familia", largaAutorizada: true, efectos: { pueblo: -4, elite: 3, crisis: -1 } },
-    der: { accion: "Compren por terceros países", efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
+    der: { accion: "Que un país amigo nos lo revenda", largaAutorizada: true, efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
   },
 
   {

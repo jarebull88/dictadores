@@ -166,8 +166,8 @@ const CARTAS = [
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
-    texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",
-    izq: { accion: "Que critiquen", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
+    texto: "Los intelectuales preguntan hasta dónde pueden criticar a la Revolución.",
+    izq: { accion: "Que critiquen lo que quieran", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
     der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, elite: 5 } }
   },
@@ -175,8 +175,8 @@ const CARTAS = [
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del antiguo régimen siguen en sus puestos. ¿Qué hacemos?",
-    izq: { accion: "Jubílenlos", efectos: { ejercito: 7, elite: 4, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "¡Al paredón!", efectos: { ejercito: -7, potencias: -4 }, banderas: ["base.purga_inicial"] }
+    izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
+    der: { accion: "¡Al paredón!", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",

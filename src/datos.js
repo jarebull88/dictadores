@@ -336,8 +336,8 @@ const CARTAS = [
     id: "estudiantes_calle", tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle",
     personaje: "Ministra de Educación",
     texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
-    izq: { accion: "Habrá elecciones, universitarias", efectos: { pueblo: 5, ejercito: -4, elite: -1 } },
-    der: { accion: "¿Elecciones para qué?", efectos: { pueblo: -6, ejercito: 4, potencias: -3 }, banderas: ["base.estudiantes_reprimidos"] }
+    izq: { accion: "Habrá elecciones, universitarias", efectos: { pueblo: 3, elite: -3 } },
+    der: { accion: "¿Elecciones para qué?", efectos: { pueblo: -6, ejercito: 4 }, banderas: ["base.estudiantes_reprimidos"] }
   },
 
   {

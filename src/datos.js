@@ -49,9 +49,9 @@ const CARTAS = [
   {
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido",
     personaje: "Ministro del Interior",
-    texto: "El general Cienfuegos es muy popular y quiere ser jefe del Estado Mayor.",
+    texto: "El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.",
     izq: { accion: "Denle el Estado Mayor", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
-    der: { accion: "Embajador donde haga frío", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
+    der: { accion: "Embajador, lejos del ejército", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
   },
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",

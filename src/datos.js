@@ -230,8 +230,8 @@ const CARTAS = [
     titulo: "La calle y los cuarteles",
     personaje: "Ministro del Interior",
     texto: "Hay oficiales reuniéndose con los manifestantes. Si se unen, caemos.",
-    izq: { accion: "Asciendan a los indecisos", efectos: { ejercito: 12, elite: -6, crisis: 2 } },
-    der: { accion: "Detengan a los cabecillas", efectos: { pueblo: -6, ejercito: 8, potencias: -6 } }
+    izq: { accion: "Asciendan a los indecisos", efectos: { ejercito: 8, elite: -4, crisis: 2 } },
+    der: { accion: "Detengan a los cabecillas", efectos: { pueblo: -6, ejercito: 5 } }
   },
   {
     id: "coalicion_dinero_sale", tipo: "coalicion", repetible: true, borrador: true,

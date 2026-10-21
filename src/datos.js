@@ -319,9 +319,9 @@ const CARTAS = [
   {
     id: "garantias", tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías",
     personaje: "Ministro de Comercio",
-    texto: "Las empresas extranjeras exigen garantías: no más nacionalizaciones y sacar sus beneficios del país.",
+    texto: "Las empresas extranjeras quieren por escrito que no habrá más nacionalizaciones y que podrán llevarse sus ganancias.",
     izq: { accion: "Palabra de revolucionario", efectos: { potencias: 6, elite: -4, pueblo: -5, crisis: -1 } },
-    der: { accion: "Sus beneficios son del Pueblo", efectos: { potencias: -6, pueblo: 4, elite: 4, crisis: 1 } }
+    der: { accion: "Aquí no se firma nada", efectos: { potencias: -6, pueblo: 4, elite: 4, crisis: 1 } }
   },
 
   {

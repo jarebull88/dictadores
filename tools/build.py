@@ -49,7 +49,7 @@ def fuentes():
     return css
 
 def texturas():
-    """Texturas de cartulina como variables CSS (--tex-cartulina1…3): capa «multiplicar» de cartones y cartulinas."""
+    """Texturas de cartulina como variables CSS (--tex-cartulinablanca, oro, plata, purpurina): capa «multiplicar» de cartones y cartulinas."""
     css = ":root {\n"
     estilos = leer("src/estilos.css")
     for f in sorted((RAIZ / "assets/fondos/web").glob("*.jpg")):

@@ -53,7 +53,7 @@ assets/
   "educacion": {
     "nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 900, "alto": 1205,
     "ojos": { "izq": [387, 340], "der": [520, 340], "r": 11 }, "arriba": 71,
-    "fondo": "#F28FA6", "carton": "#F5E3A0", "carton_textura": 1,
+    "fondo": "#F28FA6", "carton": "#F5E3A0",
     "brillo": { "x": 326, "y": 1000, "r": 240 }
   }
 }
@@ -61,7 +61,7 @@ assets/
 
 - `ojos`: coordenadas en píxeles de la imagen recortada, no del original.
 - `arriba`: fila donde empieza la cabeza (la escribe `recortar.py`); la carta recorta el aire de encima.
-- `fondo`: color de la cartulina de su escena; `carton` y `carton_textura` (1–3): el cartón de su carta.
+- `fondo`: color de la cartulina de su escena; `carton`: el color del cartón de su carta (la textura es siempre `cartulinablanca`).
 - `brillo`: solo Hortensia, el halo de su farol.
 
 ## 3. Recorte del croma

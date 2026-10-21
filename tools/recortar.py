@@ -19,7 +19,7 @@ from scipy import ndimage as ndi
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ANCHO_PERSONAJE = 900
 ANCHO_FONDO = 700          # texturas de cartulina: se estiran sobre cada carta, sobra con 700 px
-# Piel de papel: se le suma el grano de la cartulina 1. La piel se encuentra por color: se mide en la cara (entre los ojos,
+# Piel de papel: se le suma el grano de cartulinablanca. La piel se encuentra por color: se mide en la cara (entre los ojos,
 # bajo el puente de la nariz) y se marca todo lo que se le parece. D_PIEL_* = distancia de color (Lab) donde la máscara
 # pasa de 1 a 0; FUERZA_PIEL = cuánto marca el grano (1 = la textura tal cual).
 D_PIEL_0, D_PIEL_1 = 9.0, 17.0
@@ -118,13 +118,13 @@ def igualar_cara(out, slug):
 
 
 def texturizar_piel(out, slug):
-    """Suma el grano de cartulina1 a la piel del personaje (multiplicar suave sobre la máscara de piel)."""
+    """Suma el grano de cartulinablanca a la piel del personaje (multiplicar suave sobre la máscara de piel)."""
     ruta = RAIZ / "assets/personajes/personajes.json"
     ojos = json.loads(ruta.read_text(encoding="utf-8")).get(slug, {}).get("ojos")
     if not ojos:
         return out
     rgba = np.array(out).astype(float)
-    tex = Image.open(RAIZ / "assets/fondos/cartulina1.jpg").convert("L").resize(out.size, Image.LANCZOS)
+    tex = Image.open(RAIZ / "assets/fondos/cartulinablanca.jpg").convert("L").resize(out.size, Image.LANCZOS)
     g = np.array(tex).astype(float)
     grano = g / np.maximum(ndi.gaussian_filter(g, 30), 1)          # solo el grano: sin viñeta ni manchas grandes
     k = 1 + FUERZA_PIEL * (grano - 1)

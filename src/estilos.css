@@ -411,7 +411,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    nombre a rotulador del color de su grupo, cargo e informe. La pulpa del papel, suavizada con un velo para que se lea mejor. */
 .dorso .hoja {
   flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px;
-  padding: 12px 14px; overflow: hidden; text-align: left; border-radius: var(--radio-pegado);
+  padding: 12px 14px; overflow: hidden; text-align: left; border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte */
   background: #F8F6F0;
   box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
 }

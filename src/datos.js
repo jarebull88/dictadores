@@ -272,24 +272,24 @@ const CARTAS = [
     id: "mano_norte", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte",
     personaje: "Embajador de la potencia del norte",
     texto: "Le daremos créditos y comercio si se porta bien y nos deja auditarle.",
-    izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: -5, pueblo: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
-    der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 6, elite: 4 } }
+    izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
+    der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 4, elite: 4 } }
   },
 
   {
     id: "potencias_enfadan", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.juicios_publicos"] }, titulo: "Las potencias se enfadan",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país pide garantías para los acusados de sus juicios públicos que aún esperan sentencia.",
-    izq: { accion: "Tendrán abogados «de confianza»", efectos: { potencias: 7, pueblo: -6, elite: 3 } },
-    der: { accion: "Los juicios son asunto nuestro", efectos: { potencias: -7, ejercito: 5, elite: -3 } }
+    izq: { accion: "Tendrán abogados «de confianza»", efectos: { potencias: 7, elite: -3 } },
+    der: { accion: "Los juicios son asunto nuestro", efectos: { potencias: -7, ejercito: 4, elite: 3 } }
   },
 
   {
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
     texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
-    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 4, elite: 3 } },
-    der: { accion: "Son agentes del imperialismo", efectos: { pueblo: 5, potencias: 4, elite: -3 } }
+    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 3, elite: 4 } },
+    der: { accion: "Son agentes del imperialismo", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
   {

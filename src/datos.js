@@ -11,7 +11,7 @@
 const BARRAS = [
   { id: "pueblo",    nombre: "Pueblo" },
   { id: "ejercito",  nombre: "Ejército" },
-  { id: "elite",     nombre: "Élite" },
+  { id: "elite",     nombre: "Partido" },
   { id: "potencias", nombre: "Potencias" }
 ];
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
@@ -871,17 +871,17 @@ const FINALES = {
   pueblo_100:   { titulo: "Populismo",           texto: "Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza." },
   ejercito_0:   { titulo: "Abducción",                  texto: "Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país." },
   ejercito_100: { titulo: "Junta militar",             texto: "Los militares controlan todo. Sigues en el palacio, pero ya no decides nada." },
-  elite_0:      { titulo: "Liquidación", texto: "Tus aliados más ricos han decidido que derrocarte sale más rentable que seguir manteniéndote." },
+  elite_0:      { titulo: "Liquidación", texto: "El Partido se reunió sin ti y votó por unanimidad que eras prescindible." },
   elite_100:    { titulo: "Florero",                texto: "Fuiste cediendo poder al Partido hasta acabar convertido en su presidente títere." },
   potencias_0:  { titulo: "Invasión",               texto: "Sin aliados ni comercio, el país queda solo frente a sus adversarios." },
   potencias_100:{ titulo: "Recambio",           texto: "Le entregaste las llaves del país a tu protector y ahora buscan alguien que obedezca mejor." }
 };
 
 const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de inteligencia donde salen
-  pueblo:    { alto: "El Pueblo le aplaude, de momento.",                          bajo: "El Pueblo ha aprendido a no hacer demasiadas preguntas." },
-  ejercito:  { alto: "El Ejército no le ha abandonado.",                           bajo: "El Ejército le obedece, pero cuenta los días." },
-  elite:     { alto: "Las élites han aprendido a beneficiarse de su gobierno.",    bajo: "Las élites miran hacia la salida." },
-  potencias: { alto: "Tiene aliados, y deudas con ellos.",                         bajo: "En el exterior nadie le quiere, salvo quien le teme." }
+  pueblo:    { alto: "El Pueblo te aplaude, de momento.",                          bajo: "El Pueblo ha aprendido a no hacer demasiadas preguntas." },
+  ejercito:  { alto: "El Ejército no te ha abandonado.",                           bajo: "El Ejército te obedece, pero cuenta los días." },
+  elite:     { alto: "El Partido ha aprendido a beneficiarse de tu gobierno.",    bajo: "El Partido empieza a reunirse sin ti." },
+  potencias: { alto: "Tienes aliados, y deudas con ellos.",                         bajo: "En el exterior nadie te quiere, salvo quien te teme." }
 };
 
 const FUTURO_ERA = {"base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2

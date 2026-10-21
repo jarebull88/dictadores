@@ -66,7 +66,7 @@ const ESTADOS = {
   nacionalizado: {
     nombre: "Nacionalizaciones", bandera: "base.nacionalizo_empresas", duracion: null,
     descripcion: "Ningún interés particular estará por encima del bienestar colectivo. Se nacionalizan empresas, comercios y pequeños negocios.",
-    deriva: { elite: -1 }, cada: 2, crisis: 1
+    deriva: { elite: 1 }, cada: 2, crisis: 1
   },
   deuda: {
     nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,
@@ -88,7 +88,7 @@ const RESUMEN = {
   alineado: "Las Potencias suben cada 3 años.",
   embargo: "Las Potencias bajan cada 3 años, durante unos 9.",
   frontera: "El Ejército sube y las Potencias bajan cada 3 años.",
-  nacionalizado: "La Élite baja cada 3 años.",
+  nacionalizado: "El Partido sube cada 3 años.",
   deuda: "Las Potencias suben cada 3 años."
 };
 /* DIFICULTAD
@@ -130,7 +130,7 @@ const PERSONAJE_SLUG = {
 };
 /* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Cienfuegos solo son mencionados.
    Grupo de cada personaje = fuerza a la que pertenece.
-   Élite: el gabinete civil. Ejército: Interior (policía y Seguridad del Estado) y Fuerzas Armadas. Potencias: el extranjero.
+   Partido (id «elite»): el gabinete civil. Ejército: Interior (policía y Seguridad del Estado) y Fuerzas Armadas. Potencias: el extranjero.
    Pueblo no tiene portavoz: sus problemas llegan a través de los ministros. */
 const GRUPO_DE = {
   "Ministro del Interior": "ejercito", "Ministro de las Fuerzas Armadas": "ejercito",
@@ -187,13 +187,13 @@ function svgBrillo(slug, b) {
    LAS CUATRO FUERZAS: un icono, una barra horizontal debajo y los puntos de pista bajo la barra
    ===================================================== */
 /* Emojis de las fuerzas: solo para los documentos generados; en el juego se ven los dibujos a rotulador */
-const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "🎩", potencias: "🌐" };
+const EMOJI_FUERZA = { pueblo: "✊", ejercito: "🪖", elite: "⭐", potencias: "🌐" };
 
 /* Qué es cada fuerza (ventana emergente al tocar su símbolo) */
 const FUERZAS = {
   pueblo:    { nombre: "Pueblo",    quien: "La población: obreros, campesinos y estudiantes. Te aplauden o protestan según cómo viven." },
   ejercito:  { nombre: "Ejército",  quien: "Las Fuerzas Armadas, la policía y el aparato de seguridad. Te protegen mientras se sientan respetados; si no, conspiran en los cuarteles." },
-  elite:     { nombre: "Élite",     quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido. Te apoyan mientras hagan negocio; si no, sacan su dinero o conspiran." },
+  elite:     { nombre: "Partido",   quien: "Empresarios, terratenientes, altos funcionarios y dirigentes del Partido. Te apoyan mientras hagan negocio; si no, sacan su dinero o conspiran." },
   potencias: { nombre: "Potencias", quien: "Los países extranjeros, tanto aliados como enemigos. Te ayudan o te castigan según les convenga." }
 };
 
@@ -998,9 +998,9 @@ const TEXTO_FIN_ERA = {
   3: "Ya eres Padre de la Patria. Aguanta y morirás en tu cama, en el poder."
 };
 const INFORME_ERA = {
-  1: "Sus decisiones pasadas empiezan a volverse en su contra. Fuera de las fronteras crece la oposición y, dentro, aún quedan voces que silenciar.",
-  2: "Llega el culto a su persona, y alguien tendrá que pagarlo.",
-  3: "Los médicos le visitan cada semana."
+  1: "Tus decisiones pasadas empiezan a volverse en tu contra. Fuera de las fronteras crece la oposición y, dentro, aún quedan voces que silenciar.",
+  2: "Llega el culto a tu persona, y alguien tendrá que pagarlo.",
+  3: "Los médicos te visitan cada semana."
 };
 /* Ilustración del dictador al pasar de era, según la era que empieza */
 const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador-viejo" };
@@ -1039,7 +1039,7 @@ function continuarEra() {
   siguiente();
 }
 
-const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["Las élites", "llegaron"], potencias: ["Las potencias", "llegaron"] };
+const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["El Partido", "llegó"], potencias: ["Las potencias", "llegaron"] };
 /* Fin de la partida: caída (clave = fuerza y extremo) o victoria (sin clave). Al pasar de era, «Sigues…» va aparte. */
 function terminar(clave, transicion) {
   if (transicion) { mostrarEra(); return; }
@@ -1324,7 +1324,7 @@ window.addEventListener("resize", ajustarIntro);
 function nombreValido() {
   let v = $("input-nombre").value.trim();
   if (!v) {
-    $("nombre-error").textContent = "Los libros de historia necesitan saber su nombre.";
+    $("nombre-error").textContent = "Los libros de historia necesitan saber tu nombre.";
     return false;
   }
   if (/\s/.test(v)) {

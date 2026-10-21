@@ -204,6 +204,7 @@ COLOR_ESTADO = {"luna": "#8E2A5E", "censura": "#6B3A1E", "vigilancia": "#1F5F5B"
                 "nacionalizado": "#1F4E6B"}
 for _id, _c in COLOR_ESTADO.items():
     DIBUJO_AJUSTES[_id] = {"color": _c}
+DIBUJO_AJUSTES["elite"] = {"color": "#5E1A2B"}   # 21 oct: el Partido, una estrella a rotulador granate (rojo no: es de las alertas)
 
 
 def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, color=None):

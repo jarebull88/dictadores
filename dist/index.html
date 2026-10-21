@@ -1023,17 +1023,17 @@ const CARTAS = [
   {
     id: "milicias", tipo: "sorteo", peso: 6, titulo: "Las milicias",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El Pueblo quiere defender la Revolución con sus propias manos. Proponemos repartir fusiles.",
-    izq: { accion: "Que el Pueblo sea el Ejército", largaAutorizada: true, efectos: { pueblo: 6, ejercito: -6 } },
-    der: { accion: "Que la defiendan con aplausos", efectos: { pueblo: -6, ejercito: 6 } }
+    texto: "Los barrios piden fusiles para defender la Revolución por su cuenta.",
+    izq: { accion: "Milicias en cada barrio", efectos: { pueblo: 6, ejercito: -6 } },
+    der: { accion: "Las armas solo para los soldados", largaAutorizada: true, efectos: { pueblo: -6, ejercito: 6 } }
   },
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
     texto: "Los artistas e intelectuales piden libertad para criticar al gobierno sin miedo.",
-    izq: { accion: "Que critiquen", efectos: { pueblo: 8, elite: -4, ejercito: -4 }, banderas: ["base.critica_abierta"],
+    izq: { accion: "Que critiquen", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
-    der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, ejercito: 4, elite: 4 } }
+    der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, elite: 5 } }
   },
   {
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes",

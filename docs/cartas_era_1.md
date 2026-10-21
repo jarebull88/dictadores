@@ -9,10 +9,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «Hemos tomado el palacio. Los ministros del tirano no huyeron a tiempo y el Pueblo pide justicia.»
+**Carta:** «Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.»
 
-- **A. Juicio público en el estadio** Pueblo +8 · Élite −7 · Potencias −5 · Bandera: `juicios_publicos`
-- **B. Tienen 24 horas para irse** Pueblo −8 · Élite +7 · Potencias +5 · Bandera: `exiliados_vocales`
+- **A. Juicio público en el estadio** Pueblo +8 · Ejército +4 · Potencias −5 · Bandera: `juicios_publicos`
+- **B. Tienen 24 horas para irse** Pueblo −8 · Ejército −4 · Potencias +5 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
 
@@ -23,7 +23,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «La mansión del tirano tiene piscina, cine y 20 habitaciones. ¿Museo del Pueblo o residencia del Comandante?»
+**Carta:** «La mansión del tirano tiene piscina, cine y 20 habitaciones. Habrá que darle algún uso revolucionario.»
 
 - **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6
@@ -35,8 +35,8 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.»
 
-- **A. Impriman billetes** Pueblo +5 · Élite −4 · Potencias −4 · Bandera: `mercado_paralelo`
-- **B. Préstamo y recortes** Pueblo −5 · Élite +4 · Potencias +4 · Bandera: `deuda_externa`
+- **A. Impriman billetes** Pueblo +5 · Potencias −5 · Bandera: `mercado_paralelo`
+- **B. Pedir préstamo y hacer recortes** Pueblo −5 · Potencias +5 · Bandera: `deuda_externa`
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
@@ -47,10 +47,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «El general Cienfuegos es muy popular y quiere ser jefe del Estado Mayor.»
+**Carta:** «El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.»
 
 - **A. Denle el Estado Mayor** Ejército +9 · Élite −4 · Bandera: `general_popular`
-- **B. Embajador donde haga frío** Ejército −9 · Élite +4 · Bandera: `general_apartado`
+- **B. Embajador, lejos del ejército** Ejército −9 · Élite +4 · Bandera: `general_apartado`
 
 **Consecuencia futura de `general_popular`:** Cienfuegos conspira si el Ejército baja de 40.
 
@@ -61,10 +61,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Comercio  
 **Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
 
-**Carta:** «Las refinerías extranjeras nos cierran las puertas y amenazan con dejarnos sin gasolina.»
+**Carta:** «Las petroleras extranjeras exigen condiciones o cierran el grifo.»
 
-- **A. Negociemos** Potencias +10 · Élite +6 · Pueblo −8 · Bandera: `negocio_refinerias`
-- **B. ¡Exprópiese!** Pueblo +8 · Élite −6 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años
+- **A. Aceptemos sus condiciones** Potencias +10 · Élite −5 · Pueblo −4 · Bandera: `negocio_refinerias`
+- **B. ¡Exprópiese!** Pueblo +8 · Élite +5 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años
 
 **Consecuencia futura de `negocio_refinerias`:** Las empresas exigen garantías que limitan tus decisiones económicas.
 
@@ -75,10 +75,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
 
-**Carta:** «Nuestro país le ofrece ayuda económica y militar. A cambio, solo pedimos su lealtad.»
+**Carta:** «Nuestro país le ofrece petróleo, armas y asesores. A cambio, solo pedimos su lealtad.»
 
-- **A. Lealtad a cambio de petróleo** Potencias +9 · Pueblo +5 · Élite −6 · Crisis +2 · Bandera: `alineado_bloque_oriental`
-- **B. La Revolución no tiene dueño** Élite +6 · Potencias −9 · Pueblo −5 · Crisis +1 · Bandera: `no_alineado`
+- **A. Acepto su generosa ayuda** Potencias +9 · Pueblo +5 · Ejército +4 · Crisis +2 · Bandera: `alineado_bloque_oriental`
+- **B. La Revolución no tiene dueño** Potencias −9 · Pueblo −5 · Ejército −4 · Crisis +1 · Bandera: `no_alineado`
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 
@@ -91,8 +91,8 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.»
 
-- **A. Que nos embarguen** Pueblo +9 · Potencias −9 · Élite −5 · Crisis +2 · Bandera: `embargo_en_marcha`
-- **B. Pagaremos… algo** Potencias +9 · Élite +5 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
+- **A. Aquí no se paga nada** Pueblo +3 · Potencias −9 · Crisis +2 · Bandera: `embargo_en_marcha`
+- **B. Pagar compensación** Potencias +9 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
@@ -103,10 +103,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Ya sabemos quiénes nos critican. Sus vecinos han sido muy colaboradores.»
+**Carta:** «Ya sabemos quiénes nos critican, gracias a unos vecinos muy colaboradores.»
 
-- **A. Que critiquen con moderación** Pueblo +8 · Ejército −5 · Potencias +5
-- **B. A la cárcel por orden alfabético** Pueblo −8 · Ejército +5 · Élite +4 · Potencias −5 · Bandera: `criticos_detenidos`
+- **A. Que protesten, pero bajito** Pueblo +8 · Ejército −5
+- **B. A la cárcel por orden alfabético** Pueblo −8 · Ejército +5 · Bandera: `criticos_detenidos`
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
 
@@ -115,10 +115,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
 
-**Carta:** «Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.»
+**Carta:** «Si repartimos las tierras entre los campesinos, el país será el granero del mundo en un año.»
 
-- **A. Respeten la propiedad privada** Pueblo −10 · Élite +8
-- **B. La tierra para quien la merece** Pueblo +10 · Élite −8 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
+- **A. Respeten la propiedad privada** Pueblo −10 · Élite −5
+- **B. La tierra para quien la merece** Pueblo +10 · Élite +5 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
@@ -127,10 +127,10 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «La prensa no para de criticar nuestros decretos.»
+**Carta:** «Los periódicos publican críticas contra cada decreto, uno detrás de otro.»
 
-- **A. Que publiquen** Pueblo +6 · Potencias +6 · Ejército −4 · Bandera: `prensa_libre`
-- **B. Nacionalicen la imprenta** Pueblo −6 · Élite +5 · Potencias −5 · Bandera: `censura_previa`
+- **A. Que la prensa respire** Pueblo +6 · Élite −5 · Bandera: `prensa_libre`
+- **B. Nacionalicen la imprenta** Pueblo −6 · Élite +5 · Bandera: `censura_previa`
 
 **Consecuencia futura de `prensa_libre`:** Un reportaje destapa un escándalo.
 

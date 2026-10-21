@@ -89,16 +89,16 @@ const CARTAS = [
   {
     id: "tierra", tipo: "sorteo", peso: 12, titulo: "La tierra",
     personaje: "Ministro de Trabajo",
-    texto: "Repartamos las tierras entre los campesinos y en un año seremos el granero del mundo.",
-    izq: { accion: "Respeten la propiedad privada", efectos: { pueblo: -10, elite: 8 } },
-    der: { accion: "La tierra para quien la merece", largaAutorizada: true, efectos: { pueblo: 10, elite: -8, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
+    texto: "Si repartimos las tierras entre los campesinos, el país será el granero del mundo en un año.",
+    izq: { accion: "Respeten la propiedad privada", efectos: { pueblo: -10, elite: -5 } },
+    der: { accion: "La tierra para quien la merece", largaAutorizada: true, efectos: { pueblo: 10, elite: 5, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
   },
   {
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos",
     personaje: "Ministra de Cultura",
-    texto: "La prensa no para de criticar nuestros decretos.",
-    izq: { accion: "Que publiquen", efectos: { pueblo: 6, potencias: 6, ejercito: -4 }, banderas: ["base.prensa_libre"] },
-    der: { accion: "Nacionalicen la imprenta", efectos: { pueblo: -6, elite: 5, potencias: -5 }, banderas: ["base.censura_previa"] }
+    texto: "Los periódicos publican críticas contra cada decreto, uno detrás de otro.",
+    izq: { accion: "Que la prensa respire", efectos: { pueblo: 6, elite: -5 }, banderas: ["base.prensa_libre"] },
+    der: { accion: "Nacionalicen la imprenta", efectos: { pueblo: -6, elite: 5 }, banderas: ["base.censura_previa"] }
   },
   {
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",

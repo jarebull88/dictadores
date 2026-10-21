@@ -229,9 +229,9 @@ const CARTAS = [
     disparo: e => e.barras.pueblo < UMBRAL_COALICION && e.barras.ejercito < UMBRAL_COALICION,
     titulo: "La calle y los cuarteles",
     personaje: "Ministro del Interior",
-    texto: "Hay oficiales reuniéndose con los manifestantes. Si se unen, caemos.",
-    izq: { accion: "Asciendan a los indecisos", efectos: { ejercito: 8, elite: -4, crisis: 2 } },
-    der: { accion: "Detengan a los cabecillas", efectos: { pueblo: -6, ejercito: 5 } }
+    texto: "Algunos oficiales se reúnen con los que protestan en la calle. Si se juntan, caemos.",
+    izq: { accion: "Asciendan a los indecisos", efectos: { ejercito: 8, elite: -4 } },
+    der: { accion: "Calabozo para esos oficiales", largaAutorizada: true, efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
   },
   {
     id: "coalicion_dinero_sale", tipo: "coalicion", repetible: true, borrador: true,

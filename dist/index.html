@@ -1166,8 +1166,8 @@ const CARTAS = [
   {
     id: "general_murmura", tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Cienfuegos está recibiendo oficiales en su casa. Dicen que habla de usted en pasado.",
-    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: 6, elite: -4 } },
+    texto: "El general Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.",
+    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: -3, crisis: 1 } },
     der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, elite: 3 }, banderas: ["base.accidente_cienfuegos"] }
   },
 

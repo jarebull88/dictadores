@@ -147,15 +147,16 @@ const icono = (id, clase = "") => {
   return img ? `<img class="${["icono", "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
-/* Cada personaje tiene su cartón fijo: el color («carton» en personajes.json); la textura de papel es la misma para todos. */
+/* 21 oct: todas las cartas, del mismo cartón neutro (assets/fondos/carton.jpg), con uno de los cuatro desgastes. */
 /* 17 oct: la carta del Comandante lleva un marco de metal que se degrada con los años (oro el joven, plata el asentado;
    vendrán bronce y óxido). Texturas en assets/fondos/ (oro.jpg, plata.jpg). */
 const METAL_DICTADOR = { "dictador-joven": "oro", "dictador-asentado": "plata" };
 function cartonDe(carta, slug) {
-  const p = RETRATOS[slug] || {};
-  carta.classList.remove("purpurina", "oro", "plata");
+  carta.classList.remove("purpurina", "oro", "plata", "d1", "d2", "d3", "d4");
+  // 21 oct: cada carta, uno de los cuatro desgastes del cartón (el mismo siempre para el mismo personaje)
+  const h = [...(slug || String(Math.random()))].reduce((a, c) => a + c.charCodeAt(0), 0);
+  carta.classList.add("d" + (h % 4 + 1));
   if (METAL_DICTADOR[slug]) carta.classList.add(METAL_DICTADOR[slug]);
-  carta.style.setProperty("--c-base", p.carton || "#D2AE7C");
 }
 /* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */
 const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fondo-escena:${RETRATOS[slug].fondo}"` : "";
@@ -618,7 +619,9 @@ function fichaPersonaje(cargo) {
   return dorsoFicha({ foto: fotoFicha(cargo), nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
 }
 function dorsoFicha(f) {
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${f.foto || ""}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+  // 21 oct: el expediente, más de manualidad: la foto grapada y, en la esquina, un agujero con un hilo atado
+  const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="grapa"></i><i class="grapa g2"></i></div>` : "";
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<i class="hilo" aria-hidden="true"></i>${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }

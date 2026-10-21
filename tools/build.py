@@ -56,6 +56,8 @@ def texturas():
         if f"var(--tex-{f.stem})" not in estilos:
             continue                      # solo se incrustan las texturas que usan los estilos
         css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/jpeg")});\n'
+    for f in sorted((RAIZ / "assets/fondos/desgaste").glob("*.webp")):   # 21 oct: desgaste de los cartones (del EPS de Jorge)
+        css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/webp")});\n'
     return css + "}\n"
 
 def main():

@@ -591,7 +591,7 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
     izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 } },
-    der: { accion: "Qué disparate, pararía todo", efectos: { pueblo: 5, elite: -4 } }
+    der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",

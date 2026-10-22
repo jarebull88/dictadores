@@ -526,8 +526,8 @@ const CARTAS = [
     id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
     personaje: "Ministro de Economía",
     texto: "El acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.",
-    izq: { accion: "Vender nuestro voto.", remate: "La diplomacia también sirve para pagar deudas.", efectos: { potencias: 8, elite: 3, pueblo: -5, crisis: -2 } },
-    der: { accion: "Pagar con lo que haya.", remate: "La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.", efectos: { potencias: -8, elite: -3, pueblo: 5, crisis: 2 } }
+    izq: { accion: "Vender nuestro voto.", remate: "La diplomacia también sirve para pagar deudas.", efectos: { potencias: 7, elite: -2, crisis: -2 } },
+    der: { accion: "Pagar con lo que haya.", remate: "La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.", efectos: { potencias: -7, elite: 3, pueblo: -5, crisis: 1 } }
   },
   {
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
@@ -648,8 +648,8 @@ const CARTAS = [
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
     personaje: "Ministra de Cultura",
     texto: "Un periódico al que usted dejó publicar ha destapado las cuentas del palacio. Se vende en todos los quioscos.",
-    izq: { accion: "Cerrar el periódico.", remate: "La libertad de prensa también tiene horario de cierre.", efectos: { pueblo: -7, ejercito: 4, potencias: -5 } },
-    der: { accion: "Despedir a un ministro.", remate: "Alguien tendrá que haber firmado esas cuentas.", efectos: { pueblo: 7, elite: -6, potencias: 4 } }
+    izq: { accion: "Cerrar el periódico.", remate: "La libertad de prensa también tiene horario de cierre.", efectos: { pueblo: -6, ejercito: 4 } },
+    der: { accion: "Despedir a un ministro.", remate: "Alguien tendrá que haber firmado esas cuentas.", efectos: { pueblo: 3, elite: -6 } }
   },
   {
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",

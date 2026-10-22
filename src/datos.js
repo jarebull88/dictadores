@@ -527,7 +527,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "El acreedor perdonará los intereses si en los foros internacionales votamos siempre con él.",
     izq: { accion: "Mi delegado levantará las dos manos", efectos: { potencias: 7, elite: -2, crisis: -2 } },
-    der: { accion: "Apretaremos más para pagar la deuda", efectos: { potencias: -7, pueblo: -5, elite: 3, crisis: 1 } }
+    der: { accion: "Pagaremos apretando el cinturón", efectos: { potencias: -7, pueblo: -5, elite: 3, crisis: 1 } }
   },
   {
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
@@ -648,7 +648,7 @@ const CARTAS = [
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
     personaje: "Ministra de Cultura",
     texto: "Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.",
-    izq: { accion: "Son mercenarios y mienten", efectos: { elite: 3, pueblo: -5 } },
+    izq: { accion: "Ciérrenlo por... falta de papel", efectos: { elite: 3, pueblo: -5 } },
     der: { accion: "Busquen un viceministro culpable", efectos: { pueblo: 3, elite: -5, crisis: 1 } }
   },
   {
@@ -663,7 +663,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su hermano ya recibe embajadores en su despacho y reparte sus propios retratos por las escuelas.",
     izq: { accion: "En los retratos solo salgo yo", efectos: { elite: -5, crisis: 1 } },
-    der: { accion: "Nombren a mi hermano mi segundo", efectos: { elite: 5, ejercito: -2 } }
+    der: { accion: "Que gobierne él y yo le corrijo", efectos: { elite: 5, ejercito: -2 } }
   },
   {
     id: "los_inocentes", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.oposicion_culpada"] }, titulo: "Los inocentes",
@@ -684,7 +684,7 @@ const CARTAS = [
     id: "palacio_sin_terminar", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar",
     personaje: "Ministro de Economía",
     texto: "Su palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
-    izq: { accion: "Termínenlo, la Revolución lo merece", efectos: { elite: 5, pueblo: -5, crisis: 3 } },
+    izq: { accion: "La Revolución merece su palacio", efectos: { elite: 5, pueblo: -5, crisis: 3 } },
     der: { accion: "Conviértanlo en un hospital", efectos: { pueblo: 5, elite: -4 } }
   },
   {
@@ -699,15 +699,15 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "El batallón especial ya ha llenado las cárceles. Pedimos más celdas y más sueldo para seguir así.",
     izq: { accion: "Más celdas y más sueldo", efectos: { ejercito: 6, pueblo: -4 } },
-    der: { accion: "Que el batallón obedezca al Partido", efectos: { ejercito: -5, elite: 4 } }
+    der: { accion: "Que repartan palos los del Partido", efectos: { ejercito: -5, elite: 4 } }
   },
 
   {
     id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.",
-    izq: { accion: "Detengan a los del rumor", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Saquen a mi doble en chándal", efectos: { ejercito: 3, elite: -3 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
+    izq: { accion: "Apunten quién se pelea por mi silla", efectos: { ejercito: 5, pueblo: -5 } },
+    der: { accion: "Saquen a mi doble a saludar", efectos: { ejercito: 3, elite: -3 } }
   },
   {
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
@@ -726,29 +726,29 @@ const CARTAS = [
   {
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "La oposición ha reunido firmas para un referéndum. La Constitución, por desgracia, lo permite.",
+    texto: "La oposición quiere un referéndum sobre elecciones libres. Por desgracia, la Constitución lo permite.",
     izq: { accion: "Adelante, que el Pueblo decida", efectos: { pueblo: 6, elite: -4 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
     der: { accion: "Pues que el 99 % firme lo contrario", efectos: { elite: 5, pueblo: -5 } }
   },
   {
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Ha ganado el «No», pero el resultado aún no es oficial.",
-    izq: { accion: "Acepto el resultado y me quedo", efectos: { pueblo: 6, elite: -4, ejercito: -2 }, banderas: ["base.derrota_aceptada"] },
-    der: { accion: "Cuenten hasta que gane el Sí", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
+    texto: "Ha ganado el «Sí» a las elecciones libres, pero el resultado aún no es oficial.",
+    izq: { accion: "Elecciones con un solo candidato", efectos: { pueblo: 6, elite: -4, ejercito: -2 }, banderas: ["base.derrota_aceptada"] },
+    der: { accion: "Cuenten hasta que gane el No", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
   },
   {
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país se disuelve. Le dejo el último barril de petróleo y mi abrigo de piel.",
-    izq: { accion: "Lo llamaré «período especial»", efectos: { potencias: -6, pueblo: -5, elite: 3, crisis: 2 } },
+    izq: { accion: "Lo llamaré... «período especial»", efectos: { potencias: -6, pueblo: -5, elite: 3, crisis: 2 } },
     der: { accion: "Ya me buscaré un amigo con dólares", efectos: { potencias: 5, elite: -4 } }
   },
   {
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
     personaje: "Embajador de la potencia del norte",
     texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
-    izq: { accion: "Llévese unos espías suyos de regalo", efectos: { potencias: 6, elite: -3 } },
+    izq: { accion: "Guárdenme la casa por si acaso", efectos: { potencias: 6, elite: -3 } },
     der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },
   {
@@ -769,8 +769,8 @@ const CARTAS = [
     id: "la_cuenta", era: 4, tipo: "sorteo", peso: 10, titulo: "La cuenta en el extranjero",
     personaje: "Ministro de Economía",
     texto: "Una revista extranjera dice que es usted de los más ricos del mundo.",
-    izq: { accion: "Díganles que es ahorro de mi sueldo", efectos: { pueblo: -4, elite: 3 } },
-    der: { accion: "Que me enseñen dónde está ese dinero", efectos: { potencias: -5, elite: 2, crisis: -1 } }
+    izq: { accion: "Dimito si encuentran un dólar", efectos: { pueblo: -4, elite: 3 } },
+    der: { accion: "Calumnias pagadas por el imperio", efectos: { potencias: -5, elite: 2, crisis: -1 } }
   },
   {
     id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria",
@@ -833,7 +833,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Los médicos ordenan reposo absoluto. Alguien tiene que firmar los decretos mientras se recupera.",
     izq: { accion: "Firmaré en chándal desde la cama", efectos: { elite: -5, crisis: 2 } },
-    der: { accion: "Que firme mi hermano", efectos: { elite: 5 } }
+    der: { accion: "Que firme el Consejo de Ministros", efectos: { elite: 5 } }
   }
 ];
 

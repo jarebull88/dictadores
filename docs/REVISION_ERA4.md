@@ -232,3 +232,11 @@ Solo coherencia: si la pregunta plantea algo en juego y si las dos respuestas so
 
 ### Bien (no tocar)
 mausoleo, varela_vuelve, dos_ejercitos, las_medallas, huelga_general, el_concierto, estatuas_caen, la_sequia, los_turistas, la_memoria, el_general_heroe, el_escrutinio B y las_memorias (pregunta).
+
+**Aplicado (22 oct, Jorge):**
+- salida_honrosa A; la_cuenta («Dimito si encuentran un dólar» / «Calumnias pagadas por el imperio»); la_salud (sin encolar `el_doble`, que queda retirada).
+- Plebiscito: pregunta nueva. Escrutinio: «Sí» a las elecciones libres, y A «Elecciones con un solo candidato».
+- el_reportaje A «Ciérrenlo por... falta de papel»; el_parte_medico B; delfin_impaciente B.
+- aliado_se_hunde A «Lo llamaré... «período especial»»; palacio A; acreedor B.
+- el_batallon B «Que repartan palos los del Partido».
+- Pendiente: el hilo de la bomba, con base histórica (los atentados los ponían los terroristas del exilio). Se rehace entero cuando acabe el resto.

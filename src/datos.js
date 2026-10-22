@@ -368,16 +368,16 @@ const CARTAS = [
     id: "universidades", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.huelga_reprimida"] }, titulo: "Panfletos en la universidad",
     personaje: "Ministra de Educación",
     texto: "Los hijos de los estibadores reparten panfletos en la universidad. Recuerdan lo del puerto.",
-    izq: { accion: "Sus compañeros los educarán", efectos: { pueblo: 6, elite: -4, crisis: 1 } },
-    der: { accion: "Expúlsenlos, a cortar caña", efectos: { pueblo: -6, ejercito: 5, potencias: -3 } }
+    izq: { accion: "Sus compañeros los educarán", efectos: { pueblo: 4, elite: 3 } },
+    der: { accion: "Expúlsenlos, a cortar caña", efectos: { pueblo: -6, ejercito: 4 } }
   },
 
   {
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
     texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por un balcón o una gallina.",
-    izq: { accion: "Investigarlas todas.", remate: "Más vale investigar a cien inocentes que dejar escapar a un enemigo.", efectos: { ejercito: 6, pueblo: -7, elite: 2 } },
-    der: { accion: "Castigar las falsas.", remate: "La Revolución necesita confidentes, no bromistas.", efectos: { pueblo: 7, ejercito: -5, elite: -2 } }
+    izq: { accion: "Investigarlas todas.", remate: "Más vale investigar a cien inocentes que dejar escapar a un enemigo.", efectos: { ejercito: 6, pueblo: -6 } },
+    der: { accion: "Castigar las falsas.", remate: "La Revolución necesita confidentes, no bromistas.", efectos: { pueblo: 4, ejercito: -4 } }
   },
 
   {
@@ -392,16 +392,16 @@ const CARTAS = [
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
-    izq: { accion: "Contratar extranjeros.", remate: "La Revolución necesita profesionales, no importa el pasaporte.", efectos: { potencias: 6, elite: -4, crisis: 1, pueblo: 1 } },
-    der: { accion: "Formar a los fieles.", remate: "Primero lealtad; el oficio se aprende después.", efectos: { elite: 5, pueblo: -1, ejercito: 2 } }
+    izq: { accion: "Contratar extranjeros.", remate: "La Revolución necesita profesionales, no importa el pasaporte.", efectos: { potencias: 6, elite: -4 } },
+    der: { accion: "Formar a los fieles.", remate: "Primero lealtad; el oficio se aprende después.", efectos: { elite: 5, potencias: -3 } }
   },
 
   {
     id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga",
     personaje: "Ministro del Interior",
     texto: "Tres familias intentaron cruzar la frontera en una barca. Una era la de un viceministro.",
-    izq: { accion: "Reforzar la frontera.", remate: "Quien abandona la Patria debe explicar por qué.", efectos: { ejercito: 6, potencias: -5, pueblo: -5 } },
-    der: { accion: "Amnistía a quien vuelva.", remate: "Que vuelvan; aún tenemos preguntas para ellos.", efectos: { pueblo: 6, potencias: 4, ejercito: -6 } }
+    izq: { accion: "Reforzar la frontera.", remate: "Quien abandona la Patria debe explicar por qué.", efectos: { ejercito: 6, pueblo: -5 } },
+    der: { accion: "Amnistía a quien vuelva.", remate: "Que vuelvan; aún tenemos preguntas para ellos.", efectos: { pueblo: 5, ejercito: -4 } }
   },
 
   {

@@ -577,7 +577,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido ya diseña su tumba: un cacho de roca gigante que dicen que se parece a usted.",
     izq: { accion: "Seré una piedra eterna", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
-    der: { accion: "Prohíban estatuas con mi cara", efectos: { elite: -3, crisis: -1 } }
+    der: { accion: "Entiérrenme como viví: con humildad", efectos: { elite: -3, crisis: -1 } }
   },
   {
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
@@ -673,7 +673,8 @@ const CARTAS = [
     der: { accion: "Sus pruebas son un montaje", efectos: { potencias: -5, ejercito: 4, pueblo: -3 } }
   },
   {
-    id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",
+    id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 0,   // retirada (22 oct, Jorge): el mantenimiento antes de morir no tiene sentido; peso 0 = no sale
+    cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",
     personaje: "Ministro de Economía",
     texto: "Su roca eterna pide mantenimiento: la gente se sube a hacerse fotos y las palomas la usan a diario.",
     izq: { accion: "Guardia de honor día y noche", efectos: { ejercito: 3, pueblo: -3, crisis: 1 } },

@@ -1159,7 +1159,7 @@ const CARTAS = [
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
     texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
-    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 3, elite: 4 } },
+    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
     der: { accion: "Acúsenlos de agentes extranjeros", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
@@ -1175,7 +1175,7 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "El Estado dará mejor uso a la tierra", largaAutorizada: true, efectos: { pueblo: -5, elite: 5 } },
+    izq: { accion: "El Estado dará mejor uso a la tierra", largaAutorizada: true, efectos: { pueblo: -5, elite: 2 } },
     der: { accion: "Empiecen a importar comida", efectos: { pueblo: 6, potencias: 5 } }
   },
 
@@ -1264,7 +1264,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
     izq: { accion: "Ningún titulado sale del país", largaAutorizada: true, efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Crear cursos acelerados de todo", largaAutorizada: true, efectos: { elite: 4, pueblo: 3 } }
+    der: { accion: "Crear cursos acelerados de todo", largaAutorizada: true, efectos: { elite: 2, pueblo: 3 } }
   },
 
   {
@@ -1288,7 +1288,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.",
     izq: { accion: "Paguen, aunque no comamos", efectos: { potencias: 5, pueblo: -5 } },
-    der: { accion: "No pagamos a explotadores", efectos: { potencias: -6, elite: 3 } }
+    der: { accion: "No pagamos a explotadores", efectos: { potencias: -6, elite: 2 } }
   },
 
   {
@@ -1363,7 +1363,7 @@ const CARTAS = [
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
     izq: { accion: "Apoyaremos su próxima invasión", largaAutorizada: true, efectos: { potencias: 7 } },
-    der: { accion: "Iremos en bicicleta", efectos: { potencias: -6, elite: 4, pueblo: -4 } }
+    der: { accion: "Iremos en bicicleta", efectos: { potencias: -6, pueblo: -4 } }
   },
   {
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable",
@@ -1504,7 +1504,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.",
     izq: { accion: "Prohíban las flores ese día", efectos: { ejercito: 6, pueblo: -6 } },
-    der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 5 } }
+    der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 2 } }
   },
   {
     // 21 oct, Jorge: las UMAP (1965-68), campos de trabajo militares para los «desviados»; el chiste va contra el eufemismo del régimen

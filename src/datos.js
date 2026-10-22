@@ -748,7 +748,7 @@ const CARTAS = [
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
     personaje: "Embajador de la potencia del norte",
     texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
-    izq: { accion: "Me quedo la casa, sin elecciones", efectos: { potencias: 6, elite: -3 } },
+    izq: { accion: "Le devuelvo algunos de sus espías", efectos: { potencias: 6, elite: -3 } },
     der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },
   {

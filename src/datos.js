@@ -425,7 +425,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda del país.",
     izq: { accion: "Que el éxito quede por escrito", remate: "El éxito de la Revolución empieza por escribirlo.", efectos: { elite: 5, pueblo: -4, crisis: 2 } },
-    der: { accion: "Que el mercado fije los precios", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
+    der: { accion: "Que el mercado fije los precios", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, elite: -4 } }
   },
 
   {
@@ -519,8 +519,8 @@ const CARTAS = [
     id: "presos_agenda", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.criticos_detenidos"] }, titulo: "Los presos en la agenda",
     personaje: "Embajador de la potencia del norte",
     texto: "Una organización extranjera publicó una lista de presos políticos. Esperamos que los libere como gesto de buena voluntad.",
-    izq: { accion: "Liberaré a algunos, por mi cumple", remate: "Liberemos a los más ancianos para no gastar en entierros.", efectos: { potencias: 6, ejercito: -5, pueblo: 3, elite: -3 } },
-    der: { accion: "¿Qué presos? Que revisen su lista", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -6, ejercito: 5, pueblo: -3, elite: 2 } }
+    izq: { accion: "Liberaré a algunos, por mi cumple", remate: "Liberemos a los más ancianos para no gastar en entierros.", efectos: { potencias: 6, ejercito: -5, pueblo: 3 } },
+    der: { accion: "¿Qué presos? Que revisen su lista", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },
   {
     id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
@@ -604,15 +604,15 @@ const CARTAS = [
     id: "beso_fraterno", era: 3, tipo: "sorteo", peso: 8, titulo: "El beso fraterno",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro máximo dirigente desea un abrazo fraternal con usted ante las cámaras. Será una foto para la Historia.",
-    izq: { accion: "Abrazo que todos digan «¡Ohhh!»", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Apretón de manos, que hace calor", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -5, elite: 2 } }
+    izq: { accion: "Abrazo que todos digan «¡Ohhh!»", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 6 } },
+    der: { accion: "Apretón de manos, que hace calor", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -5 } }
   },
   {
     id: "viaje_oficial", era: 3, tipo: "sorteo", peso: 8, titulo: "El viaje oficial",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro presidente le invita a una visita oficial de dos semanas, con cenas, desfiles y un acuerdo comercial preparado.",
-    izq: { accion: "Encantado, llevaré los puros", remate: "Dos semanas de aplausos extranjeros valen un par de riesgos.", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Imposible, tengo mucho que dirigir", remate: "El Pueblo no puede pasar dos semanas sin escucharme.", efectos: { potencias: -5, elite: 2 } }
+    izq: { accion: "Encantado, llevaré los puros", remate: "Dos semanas de aplausos extranjeros valen un par de riesgos.", efectos: { potencias: 6 } },
+    der: { accion: "Imposible, tengo mucho que dirigir", remate: "El Pueblo no puede pasar dos semanas sin escucharme.", efectos: { potencias: -5 } }
   },
   {
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado",

@@ -52,13 +52,7 @@ test("cada carta se pinta con su imagen y su nombre", () => {
   }
 });
 
-test("las opciones son cortas (acción de 5 palabras o menos; en la era 1 manda el límite de caracteres)", () => {
-  for (const c of cartas.filter(c => (c.era || 1) !== 1)) for (const l of ["izq", "der"]) {
-    const n = c[l].accion.trim().split(/\s+/).length;
-    // 16 oct: más de 5 palabras solo con permiso de Jorge (largaAutorizada: true en la opción)
-    if (!c[l].largaAutorizada) assert.ok(n <= 5, `«${c.id}» ${l}: la acción tiene ${n} palabras`);
-  }
-});
+// 22 oct (Jorge): sin límite de palabras; manda el de caracteres (2 líneas de la respuesta sin achicar la letra)
 
 test("ninguna carta nombra un país real", () => {
   const paises = /(Cuba|Estados Unidos|Unión Soviética|URSS|Rusia|China|España|Chile|México)/;
@@ -73,7 +67,7 @@ test("todas las cartas respetan los límites de longitud y el tratamiento de su 
     // 17 oct (Jorge): en ninguna era la pregunta empieza por el tratamiento («Comandante», «Excelencia», «Padre de la Patria»)
     assert.ok(!/^(Comandante|Excelencia|Padre de la Patria),/.test(c.texto), `«${c.id}»: la pregunta va sin tratamiento delante`);
     for (const l of ["izq", "der"]) {
-      const maxAccion = c[l].largaAutorizada ? 36 : 32;   // 16 oct: en todas las eras la letra se ajusta a 2 líneas (ajustarRespuesta); la guía pide ≤30 salvo permiso de Jorge
+      const maxAccion = 36;   // 22 oct: 2 líneas sin achicar la letra en todos los móviles (el tamaño depende solo del ancho de la carta)
       assert.ok(c[l].accion.length <= maxAccion, `«${c.id}» ${l}: la acción tiene ${c[l].accion.length} caracteres (máx. ${maxAccion})`);
       if (era === 1) {
         // Respuestas cortas en la era 1 (11-13 oct): sin remate ni punto final; si es larga, la letra baja hasta caber

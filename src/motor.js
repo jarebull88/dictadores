@@ -675,9 +675,7 @@ function voltear() {
 function ajustarRespuesta(r) {
   const s = r && r.querySelector(".texto-respuesta strong");
   if (!s) return;
-  s.style.fontSize = "";
-  let px = parseFloat(getComputedStyle(s).fontSize) || 21;
-  while (s.offsetHeight > px * 1.15 * 2 + 2 && px > 14) { px -= 1; s.style.fontSize = px + "px"; }
+  s.style.fontSize = "";   // 22 oct, Jorge: la letra ya no se achica; el límite de caracteres asegura las 2 líneas
 }
 function pintarEleccion(dir) {
   if (modoEstado) return;                             // la carta de estado no tiene respuestas (ni se arrastra)

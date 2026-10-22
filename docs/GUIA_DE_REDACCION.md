@@ -33,7 +33,7 @@ Cada barra mide el **peso político** de esa fuerza en el régimen, no lo conten
 - Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). **Sin tratamiento delante en ninguna era** (17 oct): ni «Comandante,» ni «Excelencia,» ni «Padre de la Patria,».
 
 ## Las respuestas A y B
-- **Cinco palabras como máximo.** No es irrompible, pero para pasar de cinco hace falta que Jorge lo autorice. Si lo autoriza, la opción lleva `largaAutorizada: true` en `datos.js` (si no, la prueba falla). Y caben en dos líneas (≤30 caracteres), sin punto final.
+- **Hasta 36 caracteres, espacios incluidos** (22 oct; antes 5 palabras y ≤28): dos líneas en todos los móviles, sin achicar la letra. Sin límite de palabras: se puede usar ese espacio para que la decisión se entienda mejor. Sin punto final.
 - **Sin remate, en ninguna era** (16 oct): la respuesta es todo lo que se lee.
 - Una decisión clara: el jugador tiene que entender qué está eligiendo. No sacrifiques la claridad por el ingenio (negar que existen unos misiles no deja claro que los retiras).
 - **Si habla un embajador, la respuesta va dirigida a él** («Se irán como nunca vinieron», «Tranquilo, los retiraremos»), no como una orden a tu gente.
@@ -65,7 +65,7 @@ Sin títulos, explicaciones, análisis, efectos ni propuestas adicionales. Si se
 Para cada carta, antes de proponerla o al revisarla:
 1. ¿La pregunta deja claro entre qué fuerzas se elige, sin acabar en una pregunta explícita?
 2. ¿La pregunta tiene 100 caracteres o menos y habla como su personaje (embajador en primera persona, ministro sobre asuntos internos)?
-3. ¿Cada respuesta tiene 5 palabras o menos, 30 caracteres o menos, sin remate ni punto final?
+3. ¿Cada respuesta tiene 36 caracteres o menos, sin remate ni punto final?
 4. ¿Es una orden o resolución del Comandante, clara, propia de esta carta y distinta de la otra?
 5. ¿La ironía está dentro de la decisión, sin explicar el chiste ni frases contrapuestas o telegráficas?
 6. ¿Hay algún país real, gentilicio o término propio de una potencia real («gringo», «camarada»)?

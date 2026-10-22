@@ -617,16 +617,16 @@ const CARTAS = [
   {
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado",
     personaje: "Ministro del Interior",
-    texto: "Una bomba ha estallado cerca del palacio, sin heridos. Podemos investigarla o culpar a la oposición.",
-    izq: { accion: "No desperdiciemos esta conspiración", efectos: { ejercito: 7, pueblo: -6 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
-    der: { accion: "Quiero al culpable, no a cualquiera", efectos: { ejercito: -4, pueblo: 4 }, banderas: ["base.atentado_investigado"] }
+    texto: "Los terroristas del exilio han volado uno de nuestros aviones en pleno vuelo. Setenta y tres muertos.",
+    izq: { accion: "Que pague la oposición de aquí", efectos: { ejercito: 7, pueblo: -6 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
+    der: { accion: "Infiltren agentes en el extranjero", efectos: { ejercito: -4, pueblo: 4 }, banderas: ["base.atentado_investigado"] }
   },
   {
     id: "la_investigacion", era: 3, tipo: "cola", titulo: "La investigación",
     personaje: "Ministro del Interior",
     texto: "Los acusados del atentado lo niegan todo. Uno de ellos lleva dos años muerto.",
     izq: { accion: "Que confiese también el difunto", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Busquen a los verdaderos culpables", efectos: { ejercito: -5, pueblo: 5 } }
+    der: { accion: "Suéltenlos sin pedirles perdón", efectos: { ejercito: -5, pueblo: 5 } }
   },
   {
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
@@ -668,9 +668,16 @@ const CARTAS = [
   {
     id: "los_inocentes", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.oposicion_culpada"] }, titulo: "Los inocentes",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país tiene pruebas de que la oposición no puso aquella bomba. Pedimos que se revise el caso.",
-    izq: { accion: "Revisaremos el caso con gusto", efectos: { potencias: 5, pueblo: 3, ejercito: -5 } },
-    der: { accion: "Sus pruebas son un montaje", efectos: { potencias: -5, ejercito: 4, pueblo: -3 } }
+    texto: "Tenemos pruebas de que la oposición de dentro no tuvo nada que ver con lo del avión. Pedimos que se libere a los presos.",
+    izq: { accion: "Si los quieres, te los llevas", efectos: { potencias: 5, pueblo: 3, ejercito: -5 } },
+    der: { accion: "Esas pruebas las fabricó su espionaje", efectos: { potencias: -5, ejercito: 4, pueblo: -3 } }
+  },
+  {
+    id: "bombas_hoteles", era: 4, tipo: "sorteo", peso: 10, titulo: "Las bombas de los hoteles",
+    personaje: "Ministro del Interior",
+    texto: "Han estallado bombas en tres hoteles. El detenido confiesa que le pagaban desde el extranjero por cada bomba.",
+    izq: { accion: "Que el Ejército custodie los hoteles", efectos: { ejercito: 5, pueblo: -3 } },
+    der: { accion: "Juicio para que lo vea el mundo", efectos: { potencias: -4, elite: 2 } }
   },
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 0,   // retirada (22 oct, Jorge): el mantenimiento antes de morir no tiene sentido; peso 0 = no sale
@@ -815,11 +822,11 @@ const CARTAS = [
     der: { accion: "Que el exilio mantenga la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
   {
-    id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "La bomba de dentro", ilustracion: null,
-    personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Tenemos el resultado de la investigación: la bomba salió del Ministerio del Interior.",
-    izq: { accion: "Purguen el Ministerio del Interior", efectos: { ejercito: -6, elite: 3 } },
-    der: { accion: "Archiven y que me deban una", efectos: { ejercito: 5, elite: -3 } }
+    id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "Los cinco", ilustracion: null,
+    personaje: "Embajador de la potencia del norte",
+    texto: "Hemos detenido a cinco agentes suyos infiltrados en nuestro país. Los juzgaremos como espías.",
+    izq: { accion: "Volverán: lo pintaré en cada pared", efectos: { ejercito: -6, elite: 3 } },
+    der: { accion: "Hablemos de un canje discreto", efectos: { ejercito: 5, elite: -3 } }
   },
   {
     id: "el_general_heroe", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "El general héroe", ilustracion: null,
@@ -944,7 +951,7 @@ const FUTURO = {
   "base.mausoleo_construido": "Un edificio eterno que hay que mantener.",
   "base.palacio_del_pueblo": "Las deudas del palacio siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldos y más cárceles.",
-  "base.atentado_investigado": "La investigación del atentado señala al Ministerio del Interior."
+  "base.atentado_investigado": "Tus agentes en el exilio corren peligro."
 };
 /* Lo que te espera, como lo cuenta el informe de inteligencia detrás de la carta del dictador al pasar de era (16 oct):
    sin mecánica del juego (nada de crisis ni umbrales), en el tono del informe. FUTURO se queda para los documentos. */
@@ -991,7 +998,7 @@ const PREVISION = {
   "base.mausoleo_construido": "El mausoleo cuesta una fortuna en mantenimiento.",
   "base.palacio_del_pueblo": "Las deudas del Palacio del Pueblo siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldo y más cárceles.",
-  "base.atentado_investigado": "La investigación del atentado apunta hacia dentro de casa."
+  "base.atentado_investigado": "Tus agentes en el exilio corren peligro."
 };
 
 

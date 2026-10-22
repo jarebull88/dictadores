@@ -240,3 +240,11 @@ mausoleo, varela_vuelve, dos_ejercitos, las_medallas, huelga_general, el_concier
 - aliado_se_hunde A «Lo llamaré... «período especial»»; palacio A; acreedor B.
 - el_batallon B «Que repartan palos los del Partido».
 - Pendiente: el hilo de la bomba, con base histórica (los atentados los ponían los terroristas del exilio). Se rehace entero cuando acabe el resto.
+
+**Hilo del atentado, rehecho (22 oct, Jorge):** sobre hechos reales: el avión volado por terroristas del exilio (1976), los Cinco (1998) y las bombas de los hoteles (1997).
+- `el_atentado` (era 3): culpar también a la oposición de dentro, o infiltrar agentes fuera.
+- `la_investigacion` (era 3): cambia la B.
+- `bomba_interior` pasa a ser «Los cinco» (habla el embajador occidental).
+- `los_inocentes` (era 4): pregunta y respuestas nuevas.
+- Carta nueva `bombas_hoteles` (era 4).
+- **Pesos por revisar:** los de `el_atentado` B y `bomba_interior` son los del concepto viejo; los de `bombas_hoteles` son provisionales.

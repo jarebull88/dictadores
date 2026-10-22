@@ -542,13 +542,13 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido propone rebautizar la capital con su nombre.",
     izq: { accion: "Que la capital lleve mi nombre", remate: "Que el Pueblo pueda pronunciar mi nombre al pedir una dirección.", efectos: { elite: 5, pueblo: -3 }, banderas: ["base.capital_rebautizada"] },
-    der: { accion: "Solo una avenida.", remate: "Una avenida recuerda a un hombre; una capital pertenece al Pueblo.", efectos: { elite: -3, pueblo: 3 } }
+    der: { accion: "Basta con el estadio y el aeropuerto", remate: "Una avenida recuerda a un hombre; una capital pertenece al Pueblo.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "himno_nuevo", era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo",
     personaje: "Ministra de Cultura",
     texto: "El himno nacional no le menciona. Proponemos una nueva versión.",
-    izq: { accion: "Himno de cuarenta estrofas.", remate: "El Pueblo necesita tiempo para aprender a agradecer.", efectos: { elite: 4, pueblo: -3 } },
+    izq: { accion: "Y que se cante a diario en clase", remate: "El Pueblo necesita tiempo para aprender a agradecer.", efectos: { elite: 4, pueblo: -3 } },
     der: { accion: "Dejen el himno como está", remate: "Mi nombre en el estribillo bastará para que nadie lo olvide.", efectos: { elite: -3, pueblo: 3 } }
   },
   {

@@ -804,14 +804,14 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "La sequía arruinó la cosecha. El campo pasa hambre y los almacenes del Ejército están llenos.",
     izq: { accion: "Que los soldados repartan el arroz", efectos: { pueblo: 6, ejercito: -6 } },
-    der: { accion: "Que el Ejército venda su grano", efectos: { ejercito: 6, pueblo: -5 } }
+    der: { accion: "Ese grano es para defender la patria", efectos: { ejercito: 6, pueblo: -5 } }
   },
   {
     id: "los_turistas", era: 4, tipo: "sorteo", peso: 10, titulo: "Los turistas",
     personaje: "Ministro de Comercio",
-    texto: "Hacen falta divisas. Podemos abrir las playas al turismo o dejar que los exiliados manden dólares.",
+    texto: "Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los exiliados manden dólares.",
     izq: { accion: "Playas solo para turistas", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
-    der: { accion: "Que los exiliados manden dólares", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
+    der: { accion: "Que el exilio mantenga la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
   {
     id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "La bomba de dentro", ilustracion: null,

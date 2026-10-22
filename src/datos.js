@@ -327,7 +327,7 @@ const CARTAS = [
   {
     id: "elecciones_controladas", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Las elecciones prometidas están a la vista. El Partido propone una lista única para evitar confusiones.",
+    texto: "Se acercan las elecciones prometidas. El Partido propone una lista única, «para comodidad del votante».",
     izq: { accion: "Lista única.", remate: "El Pueblo no necesita elegir entre nosotros.", efectos: { pueblo: -6, elite: 5 } },
     der: { accion: "Varias listas.", remate: "Que voten libremente. El resultado ya está claro.", efectos: { pueblo: 6, elite: -5 } }
   },
@@ -383,7 +383,7 @@ const CARTAS = [
   {
     id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta", "base.campos_trabajo"] }, titulo: "Una carta con firmas",
     personaje: "Ministra de Cultura",
-    texto: "Intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.",
+    texto: "Un grupo de intelectuales firmó una carta reclamando los derechos que usted mismo prometió.",
     izq: { accion: "Recibir a los firmantes.", remate: "Quiero conocer a los que creen que eso depende de mí.", efectos: { pueblo: 6, ejercito: -4, elite: -3 } },
     der: { accion: "Prohibir la carta.", remate: "No permitiré que cuatro firmas aparenten dividir al Pueblo.", efectos: { pueblo: -6, ejercito: 5, elite: 3 } }
   },
@@ -423,8 +423,8 @@ const CARTAS = [
   {
     id: "plan_quinquenal", era: 3, tipo: "sorteo", peso: 8, titulo: "El plan quinquenal",
     personaje: "Ministro de Economía",
-    texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda.",
-    izq: { accion: "Plan quinquenal.", remate: "El éxito de la Revolución empieza por escribirlo.", efectos: { elite: 5, pueblo: -4, crisis: 2 } },
+    texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda del país.",
+    izq: { accion: "Que el éxito quede por escrito", remate: "El éxito de la Revolución empieza por escribirlo.", efectos: { elite: 5, pueblo: -4, crisis: 2 } },
     der: { accion: "Dejar al mercado.", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
 

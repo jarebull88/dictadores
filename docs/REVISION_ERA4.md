@@ -248,3 +248,4 @@ mausoleo, varela_vuelve, dos_ejercitos, las_medallas, huelga_general, el_concier
 - `los_inocentes` (era 4): pregunta y respuestas nuevas.
 - Carta nueva `bombas_hoteles` (era 4).
 - **Pesos por revisar:** los de `el_atentado` B y `bomba_interior` son los del concepto viejo; los de `bombas_hoteles` son provisionales.
+- **Atentado, rehecho otra vez (Jorge):** «Funeral con un millón en la plaza» (duelo; encola la carta nueva `los_que_celebran`) o «Infiltren agentes en el extranjero» (lleva a «Los cinco»). Cárcel o no para los opositores que lo celebraron; la cárcel sigue a «La investigación» y «Los inocentes». Pesos provisionales.

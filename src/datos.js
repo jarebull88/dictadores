@@ -698,22 +698,22 @@ const CARTAS = [
     id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Corren rumores sobre su salud. Proponemos que se le vea nadando en el río, como hacía de joven.",
-    izq: { accion: "Nadar en el río.", remate: "Que la corriente sepa quién manda.", efectos: { pueblo: 6, elite: 3, ejercito: -4 } },
-    der: { accion: "Mandar a un doble.", remate: "Nadie notará la diferencia; yo tampoco.", efectos: { pueblo: -6, elite: -3, ejercito: 4 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
+    izq: { accion: "Nadar en el río.", remate: "Que la corriente sepa quién manda.", efectos: { elite: 3 } },
+    der: { accion: "Mandar a un doble.", remate: "Nadie notará la diferencia; yo tampoco.", efectos: { ejercito: 4, elite: -3 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
   },
   {
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
     personaje: "Ministro del Interior",
     texto: "Su doble ha empezado a dar discursos por su cuenta. Dicen que habla mejor que usted.",
-    izq: { accion: "Retirar al doble.", remate: "Solo hay sitio para un Padre de la Patria.", efectos: { ejercito: 6, pueblo: -5, elite: -2 } },
-    der: { accion: "Dejarle los discursos.", remate: "Que hable él; yo descanso y escucho.", efectos: { ejercito: -6, pueblo: 5, elite: 2 } }
+    izq: { accion: "Retirar al doble.", remate: "Solo hay sitio para un Padre de la Patria.", efectos: { ejercito: -5, elite: 2 } },
+    der: { accion: "Dejarle los discursos.", remate: "Que hable él; yo descanso y escucho.", efectos: { ejercito: 5, elite: -3 } }
   },
   {
     id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Ejército quiere concederle su máxima condecoración. Sería la número ochenta y tres.",
-    izq: { accion: "Aceptarla.", remate: "La modestia también necesita sitio en el pecho.", efectos: { ejercito: 6, pueblo: -4, elite: 2 } },
-    der: { accion: "Rechazarla.", remate: "Ochenta y dos bastan para un hombre humilde.", efectos: { ejercito: -6, pueblo: 4, elite: -2 } }
+    izq: { accion: "Aceptarla.", remate: "La modestia también necesita sitio en el pecho.", efectos: { elite: 2 } },
+    der: { accion: "Rechazarla.", remate: "Ochenta y dos bastan para un hombre humilde.", efectos: { ejercito: 5, crisis: 1 } }
   },
   {
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito",

@@ -98,7 +98,7 @@ Hechos reales que pueden ser cartas. En el juego, sin nombres de países ni pers
 
 **Era 2, La Purga (1963–70)**
 - **La ofensiva revolucionaria** (1968): nacionalizar hasta el último puesto de fritas, barbería y taller (unos 58 000 negocios). El Partido se queda hasta con los timbiriches.
-- **El compañero que exporta la Revolución** (1965–67): el héroe más famoso se va a hacer la Revolución a otros países. ¿Lo financias o lo dejas solo? Vuelve como mártir y como póster.
+- **El compañero que exporta la Revolución** (1965–67), **trama de traición** (Jorge, 22 oct): el héroe más famoso es demasiado fanático y no sabe negociar como el Comandante, así que conviene quitárselo de encima. Primero se le manda a hacer la Revolución a otros países; después llega la decisión de apoyarlo o dejarlo solo. Vuelve como mártir y como póster.
 - **El servicio militar obligatorio** (1963): tres años de mili para todos los jóvenes.
 - **La invasión del aliado** (1968): los tanques del bloque aplastan la primavera de un país hermano. ¿La aplaudes o callas? Aplaudirla te ata al bloque.
 - **La zafra de los diez millones** (1970): ya está en el juego. Se puede convertir en trama de varias cartas (movilizar al país, la cifra que no llega, el discurso de la derrota).

@@ -432,8 +432,8 @@ const CARTAS = [
     id: "cosecha_record", era: 2, tipo: "sorteo", peso: 8, titulo: "La cosecha récord",
     personaje: "Ministro de Trabajo",
     texto: "La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.",
-    izq: { accion: "Anuncien el récord por radio", efectos: { elite: 5 } },
-    der: { accion: "Busquen al que infló cifras", efectos: { elite: -5, ejercito: 3 } }
+    izq: { accion: "Que la radio anuncie el récord", efectos: { elite: 5 } },
+    der: { accion: "Detengan al que infló las cifras", efectos: { elite: -5, ejercito: 3 } }
   },
 
   {
@@ -449,7 +449,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.",
     izq: { accion: "Detengan a quien lo cuente", efectos: { pueblo: -5, ejercito: 4 } },
-    der: { accion: "Dejen que se rían", efectos: { pueblo: 4, ejercito: -3 } }
+    der: { accion: "Reírse es gratis", efectos: { pueblo: 4, ejercito: -3 } }
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {

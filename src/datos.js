@@ -518,7 +518,7 @@ const CARTAS = [
   {
     id: "presos_agenda", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.criticos_detenidos"] }, titulo: "Los presos en la agenda",
     personaje: "Embajador de la potencia del norte",
-    texto: "Una organización extranjera publicó una lista de presos políticos. Podríamos liberarlos como gesto de buena voluntad.",
+    texto: "Una organización extranjera publicó una lista de presos políticos. Esperamos que los libere como gesto de buena voluntad.",
     izq: { accion: "Liberaré a algunos, por mi cumple", remate: "Liberemos a los más ancianos para no gastar en entierros.", efectos: { potencias: 6, ejercito: -5, pueblo: 3, elite: -3 } },
     der: { accion: "¿Qué presos? Que revisen su lista", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -6, ejercito: 5, pueblo: -3, elite: 2 } }
   },
@@ -533,30 +533,30 @@ const CARTAS = [
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
     personaje: "Ministro de Comercio",
     texto: "El mercado paralelo ya vende más que las tiendas del Estado, y algunos funcionarios cobran en divisas.",
-    izq: { accion: "Legalizar el mercado.", remate: "Si el Pueblo compra allí, será mejor que tribute aquí.", efectos: { pueblo: 6, elite: -5, crisis: -1 } },
+    izq: { accion: "Permitan pequeños negocios privados", remate: "Si el Pueblo compra allí, será mejor que tribute aquí.", efectos: { pueblo: 6, elite: -5, crisis: -1 } },
     der: { accion: "Persigan a los vendedores", remate: "La escasez también debe tener licencia.", efectos: { pueblo: -6, elite: 3, ejercito: 3, crisis: 1 } }
   },
 
   {
     id: "ciudad_con_nombre", era: 3, tipo: "sorteo", peso: 10, titulo: "La ciudad con su nombre",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "La capital merece un nombre a su altura. El Partido propone sustituir el actual por el suyo, con avenida incluida.",
-    izq: { accion: "Rebautizar la capital.", remate: "Que el Pueblo pueda pronunciar mi nombre al pedir una dirección.", efectos: { elite: 5, pueblo: -3 }, banderas: ["base.capital_rebautizada"] },
+    texto: "El Partido propone rebautizar la capital con su nombre.",
+    izq: { accion: "Que la capital lleve mi nombre", remate: "Que el Pueblo pueda pronunciar mi nombre al pedir una dirección.", efectos: { elite: 5, pueblo: -3 }, banderas: ["base.capital_rebautizada"] },
     der: { accion: "Solo una avenida.", remate: "Una avenida recuerda a un hombre; una capital pertenece al Pueblo.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "himno_nuevo", era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo",
     personaje: "Ministra de Cultura",
-    texto: "El himno nacional no le menciona. Proponemos una versión con cuarenta estrofas, treinta sobre usted.",
+    texto: "El himno nacional no le menciona. Proponemos una nueva versión.",
     izq: { accion: "Himno de cuarenta estrofas.", remate: "El Pueblo necesita tiempo para aprender a agradecer.", efectos: { elite: 4, pueblo: -3 } },
-    der: { accion: "Solo el estribillo.", remate: "Mi nombre en el estribillo bastará para que nadie lo olvide.", efectos: { elite: -3, pueblo: 3 } }
+    der: { accion: "Dejen el himno como está", remate: "Mi nombre en el estribillo bastará para que nadie lo olvide.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "libro_texto", era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto",
     personaje: "Ministra de Educación",
-    texto: "Proponemos un libro con su vida y sus pensamientos, obligatorio en todas las escuelas y para obtener el carné de conducir.",
+    texto: "Tenemos listo un libro con su vida y sus ideas. Lo exigiremos en todas las escuelas.",
     izq: { accion: "Libro obligatorio.", remate: "Quien no lo apruebe no sabrá de qué le acusan.", efectos: { elite: 5, pueblo: -5 }, banderas: ["base.libro_obligatorio"] },
-    der: { accion: "Libro opcional.", remate: "Si es bueno, se leerá; y si no, también.", efectos: { elite: -4, pueblo: 4 } }
+    der: { accion: "Libro opcional, en las bibliotecas", remate: "Si es bueno, se leerá; y si no, también.", efectos: { elite: -4, pueblo: 4 } }
   },
   {
     id: "cumpleanos", era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional",

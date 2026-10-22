@@ -128,7 +128,7 @@ const PERSONAJE_SLUG = {
   "Embajador del bloque oriental": "embajador-oriental",
   "Embajador de la potencia del norte": "embajador-occidental"
 };
-/* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Cienfuegos solo son mencionados.
+/* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Diezfuegos solo son mencionados.
    Grupo de cada personaje = fuerza a la que pertenece.
    Partido (id «elite»): el gabinete civil. Ejército: Interior (policía y Seguridad del Estado) y Fuerzas Armadas. Potencias: el extranjero.
    Pueblo no tiene portavoz: sus problemas llegan a través de los ministros. */

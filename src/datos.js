@@ -47,7 +47,17 @@ const CARTAS = [
     der: { accion: "Pidan un préstamo y recorten gastos", efectos: { pueblo: -5, potencias: 5 }, banderas: ["base.deuda_externa"] }
   },
   {
-    id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido",
+    // 22 oct, Jorge: Huber Matos (1959), el comandante que dimite porque ve llegar el comunismo; sustituye a «El general querido»
+    id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "El comandante Mota dimite con una carta: dice que la Revolución se está volviendo comunista.",
+    izq: { accion: "Veinte años de cárcel por traidor", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"],
+           encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] },
+    der: { accion: "La Revolución no retiene a nadie", efectos: { ejercito: 4, elite: -5 },
+           encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] }
+  },
+  {
+    id: "general_querido", retirada: true, tipo: "ancla", ventana: [1, 3], titulo: "El general querido",
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.",
     izq: { accion: "Denle el Estado Mayor", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
@@ -70,6 +80,14 @@ const CARTAS = [
   },
 
   /* ---------- Cola ---------- */
+  {
+    // 22 oct: Camilo Cienfuegos (oct. 1959), que desaparece con su avión al volver de relevar a Matos
+    id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Diezfuegos",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "El general Diezfuegos, el más querido de la tropa, volvía de relevar a Mota y su avión no ha llegado.",
+    izq: { accion: "Búsquenlo aunque sequemos el mar", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
+    der: { accion: "Tres días de luto y todos a trabajar", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
+  },
   {
     id: "embargo", tipo: "cola", titulo: "El embargo",
     personaje: "Embajador de la potencia del norte",
@@ -293,7 +311,7 @@ const CARTAS = [
   },
 
   {
-    id: "general_murmura", tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura",
+    id: "general_murmura", retirada: true, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El general Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.",
     izq: { accion: "Pregúntenle cómo están sus hijos", efectos: { ejercito: -3, crisis: 1 } },
@@ -638,9 +656,9 @@ const CARTAS = [
   {
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",
-    texto: "Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.",
-    izq: { accion: "Prohíban tirar flores al mar", efectos: { ejercito: 6, pueblo: -6 } },
-    der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 2 } }
+    texto: "El Pueblo sigue tirando flores al mar por Diezfuegos. Muchos aún preguntan qué pasó.",
+    izq: { accion: "Que se olvide sin acto oficial", efectos: { pueblo: 3, elite: -4 } },
+    der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 4, pueblo: -3 } }
   },
   {
     // 21 oct, Jorge: las UMAP (1965-68), campos de trabajo militares para los «desviados»; el chiste va contra el eufemismo del régimen
@@ -659,7 +677,7 @@ const CARTAS = [
     der: { accion: "Busquen un viceministro culpable", efectos: { pueblo: 3, elite: -5, crisis: 1 } }
   },
   {
-    id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",
+    id: "varela_vuelve", retirada: true, era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos vuelve de su embajada. En el aeropuerto lo recibe una multitud con pancartas.",
     izq: { accion: "Jubílenlo con honores y escolta", efectos: { ejercito: -4, elite: 3 } },
@@ -787,7 +805,7 @@ const CARTAS = [
     der: { accion: "Calumnias pagadas por el imperio", efectos: { potencias: -4, elite: 2 } }
   },
   {
-    id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria",
+    id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, cond: { requiere: ["base.mota_juzgado"] }, titulo: "La memoria",
     personaje: "Ministra de Educación",
     texto: "Los nietos de los compañeros de la sierra que encarceló quieren que los libros hablen de ellos.",
     izq: { accion: "Fueron héroes, aunque se desviaran", efectos: { pueblo: 4, ejercito: -4 } },
@@ -914,12 +932,13 @@ const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de intel
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                         bajo: "En el exterior nadie te quiere, salvo quien te teme." }
 };
 
-const FUTURO_ERA = {"base.campos_trabajo": 3, "base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.campos_trabajo": 3, "base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.mota_juzgado": 4, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
-  "base.general_popular": "Cienfuegos conspira si el Ejército baja de 40.",
-  "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Cienfuegos.",
+  "base.general_popular": "(Obsoleta, 22 oct) Cienfuegos conspira si el Ejército baja de 40.",
+  "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Diezfuegos.",
+  "base.mota_juzgado": "Los nietos de Mota piden que los libros hablen de él.",
   "base.general_apartado": "Cienfuegos regresa como candidato de los descontentos.",
   "base.reforma_agraria": "Escasez de alimentos dos años después.",
   "base.prensa_libre": "Un reportaje destapa un escándalo.",
@@ -966,7 +985,8 @@ const PREVISION = {
   "base.juicios_publicos": "Las potencias extranjeras toman nota de los juicios públicos.",
   "base.exiliados_vocales": "Los exiliados hablan cada vez más alto desde fuera.",
   "base.general_popular": "El general Cienfuegos recibe oficiales en su casa.",
-  "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del general Cienfuegos.",
+  "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del general Diezfuegos.",
+  "base.mota_juzgado": "La familia de Mota sigue contando su versión.",
   "base.general_apartado": "El general Cienfuegos prepara su regreso.",
   "base.reforma_agraria": "Las cosechas del reparto de tierras no llegarán a tiempo.",
   "base.prensa_libre": "Hay periodistas que siguen haciendo preguntas.",

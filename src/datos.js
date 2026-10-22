@@ -768,9 +768,9 @@ const CARTAS = [
   {
     id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias",
     personaje: "Ministra de Cultura",
-    texto: "Un periodista extranjero quiere escribir sus memorias. La editorial del Estado las quiere para ella.",
-    izq: { accion: "Doce tomos, obligatorios en clase", efectos: { elite: 4, pueblo: -3 } },
-    der: { accion: "Que me entreviste un extranjero", efectos: { potencias: 3, elite: -3 } }
+    texto: "Una editorial extranjera quiere publicar sus memorias. Piden cien horas de entrevista con usted.",
+    izq: { accion: "El mundo merece conocerme", efectos: { potencias: 3, elite: 2 } },
+    der: { accion: "No tengo tiempo, hay que gobernar", efectos: { elite: -2 } }
   },
   {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",

@@ -8,7 +8,7 @@ Es **un único HTML autocontenido** (`dist/index.html`, sin red). **Juego comple
 ```
 npm install            # una vez (jsdom, para las pruebas)
 pip install pillow numpy scipy   # solo para recortar personajes e iconos (tools/recortar.py)
-npm test               # monta el juego y pasa 35 pruebas
+npm test               # monta el juego y pasa 34 pruebas
 npm run build          # solo montar → dist/index.html
 npm run docs           # regenera docs/ desde los datos
 npm run simular        # supervivencia y cobertura de cartas con miles de partidas

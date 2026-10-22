@@ -447,9 +447,9 @@ const CARTAS = [
   {
     id: "los_chistes", era: 2, tipo: "sorteo", peso: 8, titulo: "Los chistes",
     personaje: "Ministra de Cultura",
-    texto: "Circula un chiste sobre usted por todas las oficinas. Al final, todos miran al techo.",
-    izq: { accion: "Tribunal del humor.", remate: "Quiero saber quién se ríe cuando cree que nadie lo escucha.", efectos: { pueblo: -5, ejercito: 4 } },
-    der: { accion: "Contar uno mejor.", remate: "El mejor chiste sobre un dictador es el que todos aplauden.", efectos: { pueblo: 4, ejercito: -3 } }
+    texto: "Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.",
+    izq: { accion: "Detengan a quien lo cuente", efectos: { pueblo: -5, ejercito: 4 } },
+    der: { accion: "Dejen que se rían", efectos: { pueblo: 4, ejercito: -3 } }
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {
@@ -485,7 +485,7 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros satélites siguen detectando misiles. Exigimos una inspección.",
     izq: { accion: "Inspeccionen lo que quieran", efectos: { potencias: 8, ejercito: -5 } },
-    der: { accion: "Negarse.", remate: "La soberanía no se inspecciona.", efectos: { potencias: -8, ejercito: 5 } }
+    der: { accion: "Revisen primero sus propias bases", largaAutorizada: true, efectos: { potencias: -8, ejercito: 5 } }
   },
   {
     id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado",
@@ -589,8 +589,8 @@ const CARTAS = [
   {
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
-    texto: "Para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.",
-    izq: { accion: "Todos a la zafra.", remate: "El que corta caña no conspira.", efectos: { pueblo: -6, elite: 4 } },
+    texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
+    izq: { accion: "Todos a la zafra", efectos: { pueblo: -6, elite: 4 } },
     der: { accion: "Contratar jornaleros.", remate: "La Revolución también puede pagar a quien trabaja.", efectos: { pueblo: 5, elite: -4 } }
   },
   {
@@ -632,7 +632,7 @@ const CARTAS = [
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",
     texto: "Cada año más gente tira flores al mar el día del accidente de Cienfuegos.",
-    izq: { accion: "Declaren la playa zona militar", efectos: { ejercito: 6, pueblo: -6 } },
+    izq: { accion: "Prohíban las flores ese día", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 5 } }
   },
   {

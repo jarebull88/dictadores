@@ -555,15 +555,15 @@ const CARTAS = [
     id: "libro_texto", era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto",
     personaje: "Ministra de Educación",
     texto: "Tenemos listo un libro con su vida y sus ideas. Lo exigiremos en todas las escuelas.",
-    izq: { accion: "Libro obligatorio.", remate: "Quien no lo apruebe no sabrá de qué le acusan.", efectos: { elite: 5, pueblo: -5 }, banderas: ["base.libro_obligatorio"] },
+    izq: { accion: "Que se evalúe en los exámenes", remate: "Quien no lo apruebe no sabrá de qué le acusan.", efectos: { elite: 5, pueblo: -5 }, banderas: ["base.libro_obligatorio"] },
     der: { accion: "Libro opcional, en las bibliotecas", remate: "Si es bueno, se leerá; y si no, también.", efectos: { elite: -4, pueblo: 4 } }
   },
   {
     id: "cumpleanos", era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido propone declarar fiesta nacional el día de su cumpleaños, con desfile, discursos y un día libre para todos.",
-    izq: { accion: "Fiesta nacional.", remate: "Un día al año para que el Pueblo celebre a quien lo protege.", efectos: { pueblo: 3, elite: 4, crisis: 2 } },
-    der: { accion: "Cumpleaños privado.", remate: "Prefiero que el Pueblo celebre nuestras conquistas, no mi cumpleaños.", efectos: { pueblo: -3, elite: -2, crisis: -1 } }
+    texto: "Su cumpleaños merece ser fiesta nacional, con discursos y día libre.",
+    izq: { accion: "Que todo el país sople las velas", remate: "Un día al año para que el Pueblo celebre a quien lo protege.", efectos: { pueblo: -2, elite: 4, crisis: 2 } },
+    der: { accion: "Ese día, todos a trabajar", remate: "Prefiero que el Pueblo celebre nuestras conquistas, no mi cumpleaños.", efectos: { pueblo: -2, elite: -2, crisis: -1 } }
   },
   {
     id: "biografia", era: 3, tipo: "sorteo", peso: 10, titulo: "La biografía oficial",

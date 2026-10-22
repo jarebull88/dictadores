@@ -359,9 +359,9 @@ const CARTAS = [
   {
     id: "huelgas_crisis", tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos",
     personaje: "Ministro de Trabajo",
-    texto: "Los electricistas amenazan con apagar la capital. Quieren un sindicato fuera del Partido.",
-    izq: { accion: "Que tengan su sindicato", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
-    der: { accion: "Fuera de la Revolución, nada", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
+    texto: "Los electricistas quieren un sindicato libre como el del puerto, o apagarán la capital.",
+    izq: { accion: "Que también tengan su sindicato", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
+    der: { accion: "Calabozo por contrarrevolución", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
   },
 
   {
@@ -369,15 +369,15 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Desde la huelga, los estibadores trabajan a medio ritmo. Los barcos esperan semanas para descargar.",
     izq: { accion: "Militaricen el puerto", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Que puedan elegir a su delegado", largaAutorizada: true, efectos: { pueblo: 5, elite: -5 } }
+    der: { accion: "Que puedan elegir a su delegado", efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
     texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.",
-    izq: { accion: "Investiguen hasta la gallina", efectos: { ejercito: 6, pueblo: -6 } },
-    der: { accion: "Solo las contrarrevolucionarias", largaAutorizada: true, efectos: { pueblo: 4, ejercito: -4 } }
+    izq: { accion: "Que se investigue hasta la gallina", efectos: { ejercito: 6, pueblo: -6 } },
+    der: { accion: "Solo cuentan las denuncias políticas", efectos: { pueblo: 4, ejercito: -4 } }
   },
 
   {
@@ -392,8 +392,8 @@ const CARTAS = [
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
-    izq: { accion: "Ningún titulado sale del país", largaAutorizada: true, efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Crear cursos acelerados de todo", largaAutorizada: true, efectos: { elite: 2, pueblo: 3 } }
+    izq: { accion: "Prohíban salir a los titulados", efectos: { ejercito: 4, pueblo: -4 } },
+    der: { accion: "Cursos acelerados de todo para todos", efectos: { elite: 2, pueblo: 3 } }
   },
 
   {

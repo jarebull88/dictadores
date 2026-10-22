@@ -327,7 +327,7 @@ const CARTAS = [
   {
     id: "elecciones_controladas", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Se acercan las elecciones prometidas. El Partido propone una lista única, «para comodidad del votante».",
+    texto: "Se acercan las elecciones prometidas. El Partido propone lista única, «para comodidad del votante».",
     izq: { accion: "Papeleta única: Partido o Partido", efectos: { pueblo: -6, elite: 5 } },
     der: { accion: "Abran las listas a la oposición", efectos: { pueblo: 6, elite: -5 } }
   },
@@ -455,7 +455,7 @@ const CARTAS = [
   {
     id: "el_monumento", era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido ha diseñado un monumento de cuarenta metros en su honor. Visible desde todos los barrios y la costa.",
+    texto: "El Partido propone un monumento de 40m en su honor, visible desde toda la costa y los barrios",
     izq: { accion: "Cuarenta metros, ni uno menos", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
     der: { accion: "Que el dinero se gaste en escuelas", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
   },
@@ -518,7 +518,7 @@ const CARTAS = [
   {
     id: "presos_agenda", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.criticos_detenidos"] }, titulo: "Los presos en la agenda",
     personaje: "Embajador de la potencia del norte",
-    texto: "Una organización extranjera publicó una lista de presos políticos. Esperamos que los libere como gesto de buena voluntad.",
+    texto: "Tenemos una lista de presos políticos. Esperamos que los libere como gesto de buena fe.",
     izq: { accion: "Liberaré a algunos, por mi cumple", efectos: { potencias: 6, ejercito: -5, pueblo: 3 } },
     der: { accion: "¿Qué presos? Que revisen su lista", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },

@@ -541,22 +541,22 @@ const CARTAS = [
     id: "ciudad_con_nombre", era: 3, tipo: "sorteo", peso: 10, titulo: "La ciudad con su nombre",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "La capital merece un nombre a su altura. El Partido propone sustituir el actual por el suyo, con avenida incluida.",
-    izq: { accion: "Rebautizar la capital.", remate: "Que el Pueblo pueda pronunciar mi nombre al pedir una dirección.", efectos: { elite: 6, pueblo: -5, ejercito: 2 }, banderas: ["base.capital_rebautizada"] },
-    der: { accion: "Solo una avenida.", remate: "Una avenida recuerda a un hombre; una capital pertenece al Pueblo.", efectos: { elite: -6, pueblo: 5, ejercito: -2 } }
+    izq: { accion: "Rebautizar la capital.", remate: "Que el Pueblo pueda pronunciar mi nombre al pedir una dirección.", efectos: { elite: 5, pueblo: -3 }, banderas: ["base.capital_rebautizada"] },
+    der: { accion: "Solo una avenida.", remate: "Una avenida recuerda a un hombre; una capital pertenece al Pueblo.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "himno_nuevo", era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo",
     personaje: "Ministra de Cultura",
     texto: "El himno nacional no le menciona. Proponemos una versión con cuarenta estrofas, treinta sobre usted.",
-    izq: { accion: "Himno de cuarenta estrofas.", remate: "El Pueblo necesita tiempo para aprender a agradecer.", efectos: { elite: 5, ejercito: 3, pueblo: -6 } },
-    der: { accion: "Solo el estribillo.", remate: "Mi nombre en el estribillo bastará para que nadie lo olvide.", efectos: { elite: -5, ejercito: -3, pueblo: 6 } }
+    izq: { accion: "Himno de cuarenta estrofas.", remate: "El Pueblo necesita tiempo para aprender a agradecer.", efectos: { elite: 4, pueblo: -3 } },
+    der: { accion: "Solo el estribillo.", remate: "Mi nombre en el estribillo bastará para que nadie lo olvide.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "libro_texto", era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto",
     personaje: "Ministra de Educación",
     texto: "Proponemos un libro con su vida y sus pensamientos, obligatorio en todas las escuelas y para obtener el carné de conducir.",
-    izq: { accion: "Libro obligatorio.", remate: "Quien no lo apruebe no sabrá de qué le acusan.", efectos: { elite: 5, ejercito: 3, pueblo: -6 }, banderas: ["base.libro_obligatorio"] },
-    der: { accion: "Libro opcional.", remate: "Si es bueno, se leerá; y si no, también.", efectos: { elite: -5, ejercito: -3, pueblo: 6 } }
+    izq: { accion: "Libro obligatorio.", remate: "Quien no lo apruebe no sabrá de qué le acusan.", efectos: { elite: 5, pueblo: -5 }, banderas: ["base.libro_obligatorio"] },
+    der: { accion: "Libro opcional.", remate: "Si es bueno, se leerá; y si no, también.", efectos: { elite: -4, pueblo: 4 } }
   },
   {
     id: "cumpleanos", era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional",

@@ -754,7 +754,7 @@ const CARTAS = [
   {
     id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias",
     personaje: "Ministra de Cultura",
-    texto: "La editorial del Estado quiere publicar sus memorias. Necesitamos saber qué recuerda usted.",
+    texto: "Un periodista extranjero quiere escribir sus memorias. La editorial del Estado las quiere para ella.",
     izq: { accion: "Doce tomos, obligatorios en clase", efectos: { elite: 4, pueblo: -3 } },
     der: { accion: "Que me entreviste un extranjero", efectos: { potencias: 3, elite: -3 } }
   },
@@ -768,8 +768,8 @@ const CARTAS = [
   {
     id: "la_cuenta", era: 4, tipo: "sorteo", peso: 10, titulo: "La cuenta en el extranjero",
     personaje: "Ministro de Economía",
-    texto: "Un banco extranjero pregunta de dónde salen los fondos de su cuenta personal. Quiere un papel firmado.",
-    izq: { accion: "Firmo lo que haga falta", efectos: { potencias: 6 } },
+    texto: "Una revista extranjera dice que es usted de los más ricos del mundo.",
+    izq: { accion: "Díganles que es ahorro de mi sueldo", efectos: { potencias: 6 } },
     der: { accion: "Traigan el dinero a casa", efectos: { potencias: -5, elite: 2, crisis: -1 } }
   },
   {

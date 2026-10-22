@@ -456,22 +456,22 @@ const CARTAS = [
     id: "el_monumento", era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido ha diseñado un monumento de cuarenta metros en su honor. Se verá desde todos los barrios y desde la costa.",
-    izq: { accion: "Monumento colosal.", remate: "Me conmueve que el Pueblo me vea como a un padre.", efectos: { elite: 7, pueblo: -6, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
-    der: { accion: "Monumento modesto.", remate: "El Pueblo no necesita mármol para saber quién lo protege.", efectos: { elite: -7, pueblo: 6 }, banderas: ["base.monumento_modesto"] }
+    izq: { accion: "Monumento colosal.", remate: "Me conmueve que el Pueblo me vea como a un padre.", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
+    der: { accion: "Monumento modesto.", remate: "El Pueblo no necesita mármol para saber quién lo protege.", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
   },
   {
     id: "pedestal", era: 3, tipo: "cola", titulo: "El pedestal",
     personaje: "Ministro de Economía",
     texto: "El pedestal costó el doble de lo previsto y el bronce llegó incompleto: la estatua tiene un solo brazo.",
-    izq: { accion: "Terminar la estatua.", remate: "El Padre de la Patria no puede aparecer manco.", efectos: { elite: 5, pueblo: -6, crisis: 2 } },
-    der: { accion: "Dejarla con un brazo.", remate: "Un gesto de humildad también educa al Pueblo.", efectos: { elite: -5, pueblo: 6, crisis: -1 } }
+    izq: { accion: "Terminar la estatua.", remate: "El Padre de la Patria no puede aparecer manco.", efectos: { elite: 4, pueblo: -4, crisis: 2 } },
+    der: { accion: "Dejarla con un brazo.", remate: "Un gesto de humildad también educa al Pueblo.", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
   },
   {
     id: "modestia_sospechosa", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.modestia_aparente"] }, titulo: "La modestia sospechosa",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su rechazo a los retratos se ha interpretado como falsa humildad. El Partido propone una gran demostración de lealtad.",
-    izq: { accion: "Aceptar la demostración.", remate: "No quiero contrariar al Pueblo en una muestra de cariño.", efectos: { elite: 6, ejercito: 3, pueblo: -5 } },
-    der: { accion: "Insistir en la modestia.", remate: "La lealtad verdadera no necesita tantas ceremonias.", efectos: { elite: -6, ejercito: -3, pueblo: 5 } }
+    izq: { accion: "Aceptar la demostración.", remate: "No quiero contrariar al Pueblo en una muestra de cariño.", efectos: { elite: 4, pueblo: -4 } },
+    der: { accion: "Insistir en la modestia.", remate: "La lealtad verdadera no necesita tantas ceremonias.", efectos: { elite: -4, pueblo: 4 } }
   },
   {
     id: "desfile_anual", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.desfile_militar"] }, titulo: "El desfile del año",

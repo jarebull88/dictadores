@@ -18,7 +18,7 @@ const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 19
   { nombre: "La Revolución", min: 8, max: 10, factor: 1.25 },   // 16 oct: más larga (antes 6-8) y más dura (×1.25): al azar se pasaba demasiado fácil para Jorge
   { nombre: "La Purga", min: 8, max: 10, factor: 1.1 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.7): al azar se superaba ~30 %
   { nombre: "El Culto", min: 8, max: 10, factor: 1.2 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.75): el «humano» la superaba el 83 %
-  { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.1 }   // 22 oct: más larga y más dura (antes 6-8 y ×0.8): al azar se superaba ~50 %
+  { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.0 }   // 22 oct: más larga (antes 6-8 y ×0.8); con los pesos revisados, el «humano» la supera ~52 %
 ];
 const ERA = ERAS[0];
 const UMBRAL_COALICION = 30;
@@ -677,7 +677,7 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Tenemos pruebas de que la oposición de dentro no tuvo nada que ver con lo del avión. Pedimos que se libere a los presos.",
     izq: { accion: "Si los quieres, te los llevas", efectos: { potencias: 5, ejercito: -4 } },
-    der: { accion: "Esas pruebas las fabricó su espionaje", efectos: { potencias: -5, ejercito: 4, pueblo: -3 } }
+    der: { accion: "Pruebas fabricadas por su espionaje", efectos: { potencias: -5, ejercito: 4, pueblo: -3 } }
   },
   {
     id: "bombas_hoteles", era: 4, tipo: "sorteo", peso: 10, titulo: "Las bombas de los hoteles",

@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.2.
+Duración: entre 8 y 10 cartas. 24 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.2.
 
 ### 1. Elecciones controladas
 
@@ -225,16 +225,26 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 5 a 7 de su era.
 
-**Carta:** «Una bomba ha estallado cerca del palacio, sin heridos. Podemos investigarla o culpar a la oposición.»
+**Carta:** «Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos.»
 
-- **A. No desperdiciemos esta conspiración** Ejército +7 · Pueblo −6 · Bandera: `oposicion_culpada` · Encola: `la_investigacion` en 1 a 2 años
-- **B. Quiero al culpable, no a cualquiera** Ejército −4 · Pueblo +4 · Bandera: `atentado_investigado`
+- **A. Funeral con un millón en la plaza** Pueblo +4 · Élite +2 · Encola: `los_que_celebran` en 1 a 2 años
+- **B. Habrá que defenderse infiltrándolos** Ejército +4 · Potencias −3 · Bandera: `atentado_investigado`
+
+**Consecuencia futura de `atentado_investigado`:** Tus agentes en el exilio corren peligro.
+
+### 23. Los que celebran
+
+**Personaje:** Ministro del Interior  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Algunos opositores celebraron el atentado del avión. Los tenemos localizados.»
+
+- **A. Que celebren en la cárcel** Ejército +7 · Pueblo −6 · Bandera: `oposicion_culpada` · Encola: `la_investigacion` en 1 a 2 años
+- **B. Que los vecinos les den la respuesta** Élite +4 · Pueblo −3
 
 **Consecuencia futura de `oposicion_culpada`:** La oposición recuerda al acusado injusto.
 
-**Consecuencia futura de `atentado_investigado`:** La investigación del atentado señala al Ministerio del Interior.
-
-### 23. La investigación
+### 24. La investigación
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -242,4 +252,4 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Carta:** «Los acusados del atentado lo niegan todo. Uno de ellos lleva dos años muerto.»
 
 - **A. Que confiese también el difunto** Ejército +5 · Pueblo −5
-- **B. Busquen a los verdaderos culpables** Ejército −5 · Pueblo +5
+- **B. Suéltenlos sin pedirles perdón** Ejército −5 · Pueblo +5

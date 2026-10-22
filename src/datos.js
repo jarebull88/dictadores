@@ -485,14 +485,14 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros satélites siguen detectando misiles. Exigimos una inspección.",
     izq: { accion: "Inspeccionen lo que quieran", efectos: { potencias: 8, ejercito: -5 } },
-    der: { accion: "Revisen primero sus propias bases", largaAutorizada: true, efectos: { potencias: -8, ejercito: 5 } }
+    der: { accion: "Revisen primero sus propias bases", efectos: { potencias: -8, ejercito: 5 } }
   },
   {
     id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
-    izq: { accion: "Apoyaremos su próxima invasión", largaAutorizada: true, efectos: { potencias: 7 } },
-    der: { accion: "Iremos en bicicleta", efectos: { potencias: -6, pueblo: -4 } }
+    izq: { accion: "Apoyaremos su próxima invasión", efectos: { potencias: 7 } },
+    der: { accion: "Guarden su petróleo, iremos en bici", efectos: { potencias: -6, pueblo: -4 } }
   },
   {
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable",
@@ -590,7 +590,7 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
-    izq: { accion: "Todos a la zafra", efectos: { pueblo: -6, elite: 4 } },
+    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 } },
     der: { accion: "Qué disparate, pararía todo", efectos: { pueblo: 5, elite: -4 } }
   },
   {

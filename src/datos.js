@@ -269,7 +269,7 @@ const CARTAS = [
   },
 
   {
-    id: "mano_norte", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte",
+    id: "mano_norte", retirada: true, era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país ofrece créditos y comercio si acepta una auditoría de sus cuentas.",
     izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
@@ -453,14 +453,14 @@ const CARTAS = [
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {
-    id: "el_monumento", era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento",
+    id: "el_monumento", retirada: true, era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido propone un monumento de 40m en su honor, visible desde toda la costa y los barrios",
     izq: { accion: "Cuarenta metros, ni uno menos", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
     der: { accion: "Que el dinero se gaste en escuelas", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
   },
   {
-    id: "pedestal", era: 3, tipo: "cola", titulo: "El pedestal",
+    id: "pedestal", retirada: true, era: 3, tipo: "cola", titulo: "El pedestal",
     personaje: "Ministro de Economía",
     texto: "El monumento costó el doble y no se terminó: la estatua tiene un solo brazo.",
     izq: { accion: "Termínenla, cueste lo que cueste", efectos: { elite: 4, pueblo: -4, crisis: 2 } },
@@ -538,28 +538,28 @@ const CARTAS = [
   },
 
   {
-    id: "ciudad_con_nombre", era: 3, tipo: "sorteo", peso: 10, titulo: "La ciudad con su nombre",
+    id: "ciudad_con_nombre", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "La ciudad con su nombre",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido propone rebautizar la capital con su nombre.",
     izq: { accion: "Que la capital lleve mi nombre", efectos: { elite: 5, pueblo: -3 }, banderas: ["base.capital_rebautizada"] },
     der: { accion: "Basta con el estadio y el aeropuerto", efectos: { elite: -3, pueblo: 3 } }
   },
   {
-    id: "himno_nuevo", era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo",
+    id: "himno_nuevo", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo",
     personaje: "Ministra de Cultura",
     texto: "El himno nacional no le menciona. Proponemos una nueva versión.",
     izq: { accion: "Y que se cante a diario en clase", efectos: { elite: 4, pueblo: -3 } },
     der: { accion: "Dejen el himno como está", efectos: { elite: -3, pueblo: 3 } }
   },
   {
-    id: "libro_texto", era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto",
+    id: "libro_texto", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto",
     personaje: "Ministra de Educación",
     texto: "Tenemos listo un libro con su vida y sus ideas. Lo exigiremos en todas las escuelas.",
     izq: { accion: "Que se evalúe en los exámenes", efectos: { elite: 5, pueblo: -5 }, banderas: ["base.libro_obligatorio"] },
     der: { accion: "Libro opcional, en las bibliotecas", efectos: { elite: -4, pueblo: 4 } }
   },
   {
-    id: "cumpleanos", era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional",
+    id: "cumpleanos", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su cumpleaños merece ser fiesta nacional, con discursos y día libre.",
     izq: { accion: "Que todo el país sople las velas", efectos: { pueblo: -2, elite: 4, crisis: 2 } },
@@ -580,7 +580,7 @@ const CARTAS = [
     der: { accion: "Entiérrenme como viví: con humildad", efectos: { elite: -3, crisis: -1 } }
   },
   {
-    id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
+    id: "palacio_pueblo", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
     personaje: "Ministro de Economía",
     texto: "Proponemos un nuevo palacio de gobierno. Cuesta cinco años de presupuesto y tres barrios enteros.",
     izq: { accion: "El viejo palacio se nos queda chico", efectos: { elite: 3, pueblo: -6, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
@@ -652,7 +652,7 @@ const CARTAS = [
   },
   /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {
-    id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
+    id: "el_reportaje", retirada: true, era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
     personaje: "Ministra de Cultura",
     texto: "Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.",
     izq: { accion: "Ciérrenlo por... falta de papel", efectos: { elite: 3, pueblo: -5 } },
@@ -695,7 +695,7 @@ const CARTAS = [
     der: { accion: "Cobren la entrada en dólares", efectos: { potencias: 3, elite: -2 } }
   },
   {
-    id: "palacio_sin_terminar", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar",
+    id: "palacio_sin_terminar", retirada: true, era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar",
     personaje: "Ministro de Economía",
     texto: "Su palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
     izq: { accion: "La Revolución merece su palacio", efectos: { elite: 5, pueblo: -5, crisis: 3 } },
@@ -724,14 +724,14 @@ const CARTAS = [
     der: { accion: "Daré un discurso de siete horas", efectos: { elite: 3, crisis: -1 } }
   },
   {
-    id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
+    id: "el_doble", retirada: true, era: 4, tipo: "cola", titulo: "El doble",
     personaje: "Ministro del Interior",
     texto: "Su doble ya hace los actos mejor que usted y obedece a este ministerio. El Pueblo lo prefiere.",
     izq: { accion: "Que el doble desaparezca", efectos: { ejercito: -5, crisis: 1 } },
     der: { accion: "Que haga él los actos y yo descanso", efectos: { ejercito: 5, elite: -3 } }
   },
   {
-    id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
+    id: "las_medallas", retirada: true, era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los generales quieren lo que usted tiene: medallas en el pecho y una pensión para toda la vida.",
     izq: { accion: "Medalla y pensión para cada general", efectos: { ejercito: 5, crisis: 1 } },
@@ -759,7 +759,7 @@ const CARTAS = [
     der: { accion: "Ya me buscaré un amigo con dólares", efectos: { potencias: 5, elite: -4 } }
   },
   {
-    id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
+    id: "salida_honrosa", retirada: true, era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
     personaje: "Embajador de la potencia del norte",
     texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
     izq: { accion: "Guárdenme la casa por si acaso", efectos: { potencias: 6, elite: -3 } },

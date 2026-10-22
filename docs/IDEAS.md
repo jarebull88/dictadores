@@ -91,17 +91,20 @@ Hechos reales que pueden ser cartas. En el juego, sin nombres de países ni pers
 
 **Era 1, La Revolución (1959–62)**
 - **El comandante que dimite** (1959): un compañero de la sierra renuncia porque ve llegar el comunismo. ¿Lo juzgas por traición o lo dejas irse? (Huber Matos: veinte años de cárcel.)
-- **La coletilla** (1960): los periódicos que aún son libres publican sus artículos con una nota al pie de los sindicatos que dice que es mentira. Antesala del cierre.
+- **La coletilla** (1960): no es carta nueva, sino una **consecuencia de «Los periódicos»** (era 1) si los dejas publicar: los sindicatos añaden al pie de cada artículo una nota que dice que es mentira. Es la antesala del cierre.
 - **Se acabó el béisbol profesional** (1961): «el deporte, derecho del Pueblo». Los ídolos se van a jugar fuera.
-- **Los alfabetizadores y el monte** (1961): las brigadas de adolescentes van a zonas con alzados. ¿Las proteges con tropa o las mandas igual?
+- **Los alfabetizadores y el monte** (1961): una **consecuencia de «La campaña de alfabetización»**. Los alzados matan a un joven maestro (Conrado Benítez, 1961). ¿Proteges a las brigadas con tropa o las mandas igual?
 - **La declaración socialista** (1961): proclamar el socialismo en el entierro de las víctimas de un bombardeo (ya en `REVISION_HISTORICA.md`).
 
 **Era 2, La Purga (1963–70)**
-- **La ofensiva revolucionaria** (1968): nacionalizar hasta el último puesto de fritas, barbería y taller (unos 58 000 negocios). El Partido se queda hasta con los timbiriches.
+- **La ofensiva revolucionaria** (1968): nacionalizar hasta el último puesto de fritas, barbería y taller (unos 58 000 negocios). No choca con «La reforma urbana» (las casas, era 1) ni con las refinerías (las grandes empresas): son los negocios pequeños. Además prepara «El mercado mayor» (era 3), que los vuelve a permitir.
 - **El compañero que exporta la Revolución** (1965–67), **trama de traición** (Jorge, 22 oct): el héroe más famoso es demasiado fanático y no sabe negociar como el Comandante, así que conviene quitárselo de encima. Primero se le manda a hacer la Revolución a otros países; después llega la decisión de apoyarlo o dejarlo solo. Vuelve como mártir y como póster.
 - **El servicio militar obligatorio** (1963): tres años de mili para todos los jóvenes.
 - **La invasión del aliado** (1968): los tanques del bloque aplastan la primavera de un país hermano. ¿La aplaudes o callas? Aplaudirla te ata al bloque.
-- **La zafra de los diez millones** (1970): ya está en el juego. Se puede convertir en trama de varias cartas (movilizar al país, la cifra que no llega, el discurso de la derrota).
+- **La zafra de los diez millones** (1970): ya está en el juego. Se puede convertir en una trama de tres cartas:
+  1. **La zafra** (la que hay): ¡todos a cortar caña!, o «qué disparate». Si aceptas, consigues el logro del carnet de machetero.
+  2. **La cifra que no llega** (en cola): van por ocho millones y medio y se acaba el tiempo. ¿Paras las fábricas y mandas a todo el país al cañaveral o cuentas como de este año el azúcar del que viene?
+  3. **El discurso de la derrota** (en cola): no se llegó. En la realidad, el Comandante ofreció su dimisión ante la plaza y la plaza gritó que no. ¿Ofreces dimitir, que es teatro y culto, o culpas a los ministros y purgas al Partido?
 
 **Era 3, El Culto (1971–85)**
 - **La autocrítica del poeta** (1971): un escritor encarcelado lee en público su confesión de «contrarrevolucionario» ante sus colegas. Los intelectuales de fuera rompen con el régimen.

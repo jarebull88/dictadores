@@ -273,6 +273,7 @@ function iniciarEra(n) {
 }
 
 function cumple(c) {
+  if (c.retirada) return false;   // 22 oct: carta quitada del juego (el id no se borra)
   const k = c.cond || {};
   if (k.turnoMin && anioEra() < k.turnoMin) return false;
   if (k.barraMax && Object.entries(k.barraMax).some(([b, v]) => E.barras[b] > v)) return false;

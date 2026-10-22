@@ -676,8 +676,8 @@ const CARTAS = [
     id: "bombas_hoteles", era: 4, tipo: "sorteo", peso: 10, titulo: "Las bombas de los hoteles",
     personaje: "Ministro del Interior",
     texto: "Han estallado bombas en tres hoteles. El detenido confiesa que le pagaban desde el extranjero por cada bomba.",
-    izq: { accion: "Que el Ejército custodie los hoteles", efectos: { ejercito: 5, pueblo: -3 } },
-    der: { accion: "Juicio para que lo vea el mundo", efectos: { potencias: -4, elite: 2 } }
+    izq: { accion: "Que los turistas no se enteren de nada", efectos: { ejercito: 5, pueblo: -3 } },
+    der: { accion: "Que el mundo vea quién las paga", efectos: { potencias: -4, elite: 2 } }
   },
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 0,   // retirada (22 oct, Jorge): el mantenimiento antes de morir no tiene sentido; peso 0 = no sale

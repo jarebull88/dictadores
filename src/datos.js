@@ -375,7 +375,7 @@ const CARTAS = [
   {
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
-    texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por un balcón o una gallina.",
+    texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.",
     izq: { accion: "Investigarlas todas.", remate: "Más vale investigar a cien inocentes que dejar escapar a un enemigo.", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Castigar las falsas.", remate: "La Revolución necesita confidentes, no bromistas.", efectos: { pueblo: 4, ejercito: -4 } }
   },
@@ -399,9 +399,9 @@ const CARTAS = [
   {
     id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga",
     personaje: "Ministro del Interior",
-    texto: "Tres familias intentaron cruzar la frontera en una barca. Una era la de un viceministro.",
-    izq: { accion: "Reforzar la frontera.", remate: "Quien abandona la Patria debe explicar por qué.", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Amnistía a quien vuelva.", remate: "Que vuelvan; aún tenemos preguntas para ellos.", efectos: { pueblo: 5, ejercito: -4 } }
+    texto: "Tres familias intentaron huir en una balsa. Una era la de un viceministro.",
+    izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
+    der: { accion: "Amnistía a quien vuelva", efectos: { pueblo: 5, ejercito: -4 } }
   },
 
   {

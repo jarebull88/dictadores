@@ -312,15 +312,15 @@ const CARTAS = [
     id: "periodista_oficial", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.censura_previa"] }, titulo: "El periodista oficial",
     personaje: "Ministra de Cultura",
     texto: "La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.",
-    izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
-    der: { accion: "Que la prensa diga la verdad", largaAutorizada: true, efectos: { pueblo: 5, elite: -5 } }
+    izq: { accion: "Nombren un Desmentidor Oficial", efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
+    der: { accion: "Que la prensa diga la verdad", efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
     id: "garantias", tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías",
     personaje: "Ministro de Comercio",
     texto: "Las empresas extranjeras quieren por escrito que no habrá más nacionalizaciones y que podrán llevarse sus ganancias.",
-    izq: { accion: "Palabra de revolucionario", efectos: { potencias: 6, elite: -4, pueblo: -5, crisis: -1 } },
+    izq: { accion: "Les doy mi palabra de revolucionario", efectos: { potencias: 6, elite: -4, pueblo: -5, crisis: -1 } },
     der: { accion: "Aquí no se firma nada", efectos: { potencias: -6, pueblo: 4, elite: 4, crisis: 1 } }
   },
 
@@ -336,7 +336,7 @@ const CARTAS = [
     id: "estudiantes_calle", tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle",
     personaje: "Ministra de Educación",
     texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
-    izq: { accion: "Habrá elecciones, se lo prometo", largaAutorizada: true, efectos: { pueblo: 5, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
+    izq: { accion: "Habrá elecciones, palabra de honor", efectos: { pueblo: 5, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "¿Elecciones para qué?", efectos: { pueblo: -6, ejercito: 4 }, banderas: ["base.estudiantes_reprimidos"] }
   },
 

@@ -9,7 +9,7 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14; exige `elecciones_prometidas`.
 
-**Carta:** «Se acercan las elecciones prometidas. El Partido propone una lista única, «para comodidad del votante».»
+**Carta:** «Se acercan las elecciones prometidas. El Partido propone lista única, «para comodidad del votante».»
 
 - **A. Papeleta única: Partido o Partido** Pueblo −6 · Élite +5
 - **B. Abran las listas a la oposición** Pueblo +6 · Élite −5
@@ -39,7 +39,7 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 3 de su era; exige `culto_iniciado`.
 
-**Carta:** «El Partido ha diseñado un monumento de cuarenta metros en su honor. Visible desde todos los barrios y la costa.»
+**Carta:** «El Partido propone un monumento de 40m en su honor, visible desde toda la costa y los barrios»
 
 - **A. Cuarenta metros, ni uno menos** Élite +5 · Pueblo −4 · Crisis +2 · Bandera: `monumento_colosal` · Encola: `pedestal` en 2 a 3 años
 - **B. Que el dinero se gaste en escuelas** Élite −4 · Pueblo +4 · Bandera: `monumento_modesto`
@@ -111,7 +111,7 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `criticos_detenidos`.
 
-**Carta:** «Una organización extranjera publicó una lista de presos políticos. Esperamos que los libere como gesto de buena voluntad.»
+**Carta:** «Tenemos una lista de presos políticos. Esperamos que los libere como gesto de buena fe.»
 
 - **A. Liberaré a algunos, por mi cumple** Potencias +6 · Ejército −5 · Pueblo +3
 - **B. ¿Qué presos? Que revisen su lista** Potencias −6 · Ejército +5 · Pueblo −3
@@ -121,7 +121,7 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 14; exige `mercado_paralelo`.
 
-**Carta:** «El mercado paralelo ya vende más que las tiendas del Estado, y algunos funcionarios cobran en divisas.»
+**Carta:** «El mercado paralelo vende más que las tiendas del Estado, y algunos funcionarios cobran en divisas.»
 
 - **A. Permitan pequeños negocios privados** Pueblo +6 · Élite −5 · Crisis −1
 - **B. Persigan a los vendedores** Pueblo −6 · Élite +3 · Ejército +3 · Crisis +1
@@ -193,10 +193,10 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «El Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros se designarán solos.»
+**Carta:** «El Partido pregunta quién le sucederá. Si no lo designa, algunos ministros se designarán solos.»
 
 - **A. Designo sucesor a mi hermano** Élite −3 · Ejército +4 · Bandera: `sucesor_designado`
-- **B. Yo soy la Revolución, y no muero** Élite +3 · Crisis +2
+- **B. Yo soy la Revolución, y no muero** Élite −2 · Crisis +3
 
 **Consecuencia futura de `sucesor_designado`:** El sucesor empieza a hacerse notar.
 
@@ -205,7 +205,7 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «Nuestro máximo dirigente desea un abrazo fraternal con usted ante las cámaras. Será una foto para la Historia.»
+**Carta:** «Nuestro máximo dirigente desea abrazarle ante las cámaras. Será una foto para la Historia.»
 
 - **A. Abrazo que todos digan «¡Ohhh!»** Potencias +6
 - **B. Apretón de manos, que hace calor** Potencias −5
@@ -215,7 +215,7 @@ Duración: entre 8 y 10 cartas. 23 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «Nuestro presidente le invita a una visita oficial de dos semanas, con cenas, desfiles y un acuerdo comercial preparado.»
+**Carta:** «Nuestro presidente le invita dos semanas, con cenas, desfiles y un acuerdo comercial ya preparado.»
 
 - **A. Encantado, llevaré los puros** Potencias +6
 - **B. Imposible, tengo mucho que dirigir** Potencias −5

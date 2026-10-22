@@ -2,27 +2,27 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 cartas. 28 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.8.
+Duración: entre 8 y 10 cartas. 29 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.1.
 
 ### 1. El acreedor pide favores
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige `deuda_externa`.
 
-**Carta:** «El acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.»
+**Carta:** «El acreedor aplazará la deuda a cambio de nuestro voto en los foros internacionales durante años.»
 
-- **A. Vender nuestro voto.** *La diplomacia también sirve para pagar deudas.* Potencias +8 · Élite +3 · Pueblo −5 · Crisis −2
-- **B. Pagar con lo que haya.** *La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.* Potencias −8 · Élite −3 · Pueblo +5 · Crisis +2
+- **A. Nuestro voto es suyo, con intereses** Potencias +7 · Élite −2 · Crisis −2
+- **B. Pagaremos con la libreta de comida** Potencias −7 · Pueblo −5 · Élite +3 · Crisis +1
 
 ### 2. El mausoleo
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «El Partido ruega prever un mausoleo para cuando le llegue la hora. Los embalsamadores ya están en nómina.»
+**Carta:** «El Partido pide un monumento eterno: un cacho de roca gigante que dicen que se parece a usted.»
 
-- **A. Construir el mausoleo.** *La Historia merece un lugar donde visitarme.* Élite +4 · Pueblo −4 · Crisis +2 · Bandera: `mausoleo_construido`
-- **B. Sepultura sencilla.** *No hace falta pensar en mi tumba mientras sigo dando órdenes.* Élite −3 · Pueblo +3 · Crisis −1
+- **A. Seré una piedra eterna** Élite +4 · Pueblo −4 · Crisis +2 · Bandera: `mausoleo_construido`
+- **B. Prohíban estatuas con mi cara** Élite −3 · Crisis −1
 
 **Consecuencia futura de `mausoleo_construido`:** Un edificio eterno que hay que mantener.
 
@@ -31,30 +31,30 @@ Duración: entre 6 y 8 cartas. 28 cartas. Los efectos están en la escala peque�
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `prensa_libre`.
 
-**Carta:** «Un periódico al que usted dejó publicar ha destapado las cuentas del palacio. Se vende en todos los quioscos.»
+**Carta:** «Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.»
 
-- **A. Cerrar el periódico.** *La libertad de prensa también tiene horario de cierre.* Pueblo −7 · Ejército +4 · Potencias −5
-- **B. Despedir a un ministro.** *Alguien tendrá que haber firmado esas cuentas.* Pueblo +7 · Élite −6 · Potencias +4
+- **A. Ciérrenlo por falta de papel** Élite +3 · Pueblo −5
+- **B. Auditoría pública de las cuentas** Pueblo +3 · Élite −5 · Crisis +1
 
 ### 4. Cienfuegos vuelve
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `general_apartado`.
 
-**Carta:** «El general Cienfuegos ha vuelto de su embajada. Los descontentos lo reciben en el aeropuerto como a un candidato.»
+**Carta:** «El general Cienfuegos vuelve de su embajada. En el aeropuerto lo recibe una multitud con pancartas.»
 
-- **A. Recibirlo en palacio.** *Dos viejos generales; solo uno tiene palacio.* Ejército +7 · Pueblo +4 · Élite −6
-- **B. Devolverlo al avión.** *Su embajada le echaba mucho de menos.* Ejército −7 · Pueblo −4 · Élite +6
+- **A. Jubílenlo con honores y escolta** Ejército −4 · Élite +3
+- **B. Que mande la tropa y vigílenlo** Ejército +6 · Élite −4
 
 ### 5. El delfín impaciente
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14; exige `sucesor_designado`.
 
-**Carta:** «Su sucesor ya recibe a los embajadores en su despacho y ha encargado retratos suyos para las escuelas.»
+**Carta:** «Su hermano ya recibe embajadores en su despacho y reparte sus propios retratos por las escuelas.»
 
-- **A. Recordarle quién manda.** *La paciencia también es un mérito revolucionario.* Élite −7 · Ejército +5 · Potencias −3
-- **B. Dejarle hacer.** *Que aprenda; algún día tendrá que hacerlo sin mí.* Élite +7 · Ejército −5 · Potencias +3
+- **A. En los retratos solo salgo yo** Élite −5 · Crisis +1
+- **B. Nombren a mi hermano mi segundo** Élite +5 · Ejército −2
 
 ### 6. Los inocentes
 
@@ -63,18 +63,18 @@ Duración: entre 6 y 8 cartas. 28 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Nuestro país tiene pruebas de que la oposición no puso aquella bomba. Pedimos que se revise el caso.»
 
-- **A. Revisar el caso.** *Que se revise; la sentencia, que no se mueva.* Potencias +7 · Pueblo +4 · Ejército −6
-- **B. Asunto cerrado.** *La Historia ya dictó sentencia; yo solo la firmé.* Potencias −7 · Pueblo −4 · Ejército +6
+- **A. Revisaremos el caso con gusto** Potencias +5 · Pueblo +3 · Ejército −5
+- **B. Sus pruebas son un montaje** Potencias −5 · Ejército +4 · Pueblo −3
 
 ### 7. El mausoleo vacío
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige `mausoleo_construido`.
 
-**Carta:** «El mausoleo necesita mantenimiento y usted aún no lo ha estrenado. Los embalsamadores piden un aumento.»
+**Carta:** «Su roca eterna ya pide mantenimiento. Usted no la ha estrenado, pero las palomas la usan a diario.»
 
-- **A. Pagar el aumento.** *La eternidad no se recorta.* Élite +5 · Pueblo −5 · Crisis +2
-- **B. Alquilarlo para actos.** *Mientras tanto, que dé beneficios.* Élite −5 · Pueblo +5 · Crisis −1
+- **A. Guardia de honor día y noche** Ejército +3 · Pueblo −3 · Crisis +1
+- **B. Cobren la entrada en dólares** Potencias +3 · Élite −2
 
 ### 8. El palacio sin terminar
 
@@ -83,205 +83,215 @@ Duración: entre 6 y 8 cartas. 28 cartas. Los efectos están en la escala peque�
 
 **Carta:** «El palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.»
 
-- **A. Terminarlo como sea.** *Que mis sucesores tengan dónde aburrirse.* Élite +6 · Pueblo −7 · Crisis +3
-- **B. Convertirlo en museo.** *Un museo de lo que pudo haber sido.* Élite −6 · Pueblo +7 · Crisis −1
+- **A. Terminen mi palacio** Élite +5 · Pueblo −5 · Crisis +3
+- **B. Que sea un hospital con mi nombre** Pueblo +5 · Élite −4
 
-### 9. Dos ejércitos
+### 9. Los militares empresarios
 
 **Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** sorteo con peso 14; exige alguna de `estado_policial`, `jefe_poderoso`.
+**Condición:** sorteo con peso 14.
 
-**Carta:** «La unidad del Interior ya tiene más tanques que el Ejército. Mis oficiales preguntan quién manda.»
+**Carta:** «Los militares sabemos administrar. Denos los hoteles y las tiendas en divisas y verá qué orden.»
 
-- **A. Desarmar al batallón.** *Un ejército basta; dos acaban discutiendo.* Ejército +8 · Élite −4 · Pueblo +3
-- **B. Más tanques al Ejército.** *Si sobran tanques, que sobren en los dos lados.* Ejército −8 · Élite +4 · Crisis +2
+- **A. Los hoteles, para el Ejército** Ejército +6 · Élite −4
+- **B. Los negocios son cosa de ministros** Élite +4 · Ejército −3
 
-### 10. La salud
+### 10. El batallón
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 14; exige `estado_policial`.
+
+**Carta:** «El batallón especial ya ha llenado las cárceles. Pedimos más celdas y más sueldo para seguir así.»
+
+- **A. Más celdas y más sueldo** Ejército +6 · Pueblo −4
+- **B. Que el batallón obedezca al Partido** Ejército −5 · Élite +4
+
+### 11. La salud
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «Corren rumores sobre su salud. Proponemos que se le vea nadando en el río, como hacía de joven.»
+**Carta:** «Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.»
 
-- **A. Nadar en el río.** *Que la corriente sepa quién manda.* Pueblo +6 · Élite +3 · Ejército −4
-- **B. Mandar a un doble.** *Nadie notará la diferencia; yo tampoco.* Pueblo −6 · Élite −3 · Ejército +4 · Encola: `el_doble` en 2 a 3 años
+- **A. Detengan a los del rumor** Ejército +5 · Pueblo −5
+- **B. Que salga mi doble a saludar** Ejército +3 · Élite −3 · Encola: `el_doble` en 2 a 3 años
 
-### 11. El doble
+### 12. El doble
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Su doble ha empezado a dar discursos por su cuenta. Dicen que habla mejor que usted.»
+**Carta:** «Su doble ya hace los actos mejor que usted y obedece a este ministerio. El Pueblo lo prefiere.»
 
-- **A. Retirar al doble.** *Solo hay sitio para un Padre de la Patria.* Ejército +6 · Pueblo −5 · Élite −2
-- **B. Dejarle los discursos.** *Que hable él; yo descanso y escucho.* Ejército −6 · Pueblo +5 · Élite +2
+- **A. Que el doble desaparezca** Ejército −5 · Crisis +1
+- **B. Que haga él los actos y yo descanso** Ejército +5 · Élite −3
 
-### 12. Las medallas
+### 13. Las medallas
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «El Ejército quiere concederle su máxima condecoración. Sería la número ochenta y tres.»
+**Carta:** «El Ejército quiere darle su medalla número ochenta y tres. Los generales esperan las suyas, con pensión.»
 
-- **A. Aceptarla.** *La modestia también necesita sitio en el pecho.* Ejército +6 · Pueblo −4 · Élite +2
-- **B. Rechazarla.** *Ochenta y dos bastan para un hombre humilde.* Ejército −6 · Pueblo +4 · Élite −2
+- **A. Medallas y pensión para todos** Ejército +5 · Crisis +1
+- **B. Aquí las medallas solo las llevo yo** Élite +3 · Ejército −3
 
-### 13. El plebiscito
+### 14. El plebiscito
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «El Partido propone un plebiscito para que el Pueblo diga si quiere que usted siga ocho años más.»
+**Carta:** «La oposición ha reunido firmas para un referéndum. La Constitución, por desgracia, lo permite.»
 
-- **A. Convocar el plebiscito.** *El Pueblo decidirá lo que ya está decidido.* Potencias +6 · Pueblo +4 · Ejército −5 · Encola: `el_escrutinio` en 1 a 2 años
-- **B. No hace falta.** *No pregunto lo que ya sé.* Potencias −6 · Pueblo −4 · Ejército +5
+- **A. Que vote el Pueblo** Pueblo +6 · Élite −4 · Encola: `el_escrutinio` en 1 a 2 años
+- **B. Votemos que el socialismo es eterno** Élite +5 · Pueblo −5
 
-### 14. El escrutinio
+### 15. El escrutinio
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «El plebiscito ha salido mal: gana el «No». El escrutinio todavía no es oficial.»
+**Carta:** «El referéndum ha salido mal: gana el «No». El escrutinio todavía no es oficial.»
 
-- **A. Aceptar el resultado.** *Que no se diga que no sé perder; solo que no me voy.* Pueblo +9 · Potencias +7 · Ejército −9 · Élite −4 · Bandera: `derrota_aceptada`
-- **B. Recontar los votos.** *Hasta que salgan bien.* Pueblo −9 · Potencias −7 · Ejército +9 · Élite +4 · Bandera: `recuento`
+- **A. Acepto el resultado y me quedo** Pueblo +6 · Élite −4 · Ejército −2 · Bandera: `derrota_aceptada`
+- **B. Recuenten hasta que salga bien** Pueblo −8 · Ejército +5 · Élite +3 · Bandera: `recuento`
 
-### 15. El aliado se hunde
+### 16. El aliado se hunde
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Nuestro país atraviesa dificultades. El año que viene no podremos enviar petróleo, ni créditos, ni, quizá, embajador.»
+**Carta:** «Nuestro país se hunde. El año que viene no enviaremos petróleo, ni créditos, ni quizá embajador.»
 
-- **A. Pedir un último envío.** *Por los viejos tiempos y por los nuevos apagones.* Potencias +5 · Pueblo −5 · Crisis +2
-- **B. Buscar nuevos amigos.** *La amistad eterna también caduca.* Potencias −5 · Pueblo +5 · Élite +3 · Crisis +1
+- **A. Pedalearemos hasta la victoria** Potencias −6 · Pueblo −5 · Élite +3 · Crisis +2
+- **B. Ya encontraremos amigos con divisas** Potencias +5 · Élite −4
 
-### 16. La salida honrosa
+### 17. La salida honrosa
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Nuestro país le ofrece una salida honrosa: elecciones libres, inmunidad y una casa en la costa.»
 
-- **A. Negociar la salida.** *Una casa en la costa, con vistas al palacio.* Potencias +8 · Pueblo +5 · Ejército −7 · Élite −4
-- **B. Rechazar la oferta.** *De aquí solo salgo en procesión.* Potencias −8 · Pueblo −5 · Ejército +7 · Élite +4
+- **A. Me quedo la casa, sin elecciones** Potencias +6 · Élite −3
+- **B. Le responderé con la plaza llena** Potencias −6 · Ejército +5 · Pueblo −3
 
-### 17. Las memorias
+### 18. Las memorias
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «La editorial del Estado prepara sus memorias en doce tomos. Necesitamos saber qué recuerda usted.»
+**Carta:** «La editorial del Estado quiere publicar sus memorias. Necesitamos saber qué recuerda usted.»
 
-- **A. Doce tomos.** *Y un decimotercero con lo que no recuerdo.* Élite +5 · Pueblo −5 · Crisis +1
-- **B. Un solo tomo.** *Lo esencial cabe en una página: yo.* Élite −5 · Pueblo +5
+- **A. Doce tomos, obligatorios en clase** Élite +4 · Pueblo −3
+- **B. Que me entreviste un extranjero** Potencias +3 · Élite −3
 
-### 18. El hijo
+### 19. El hijo
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Su hijo quiere la concesión del puerto. Dice que conoce el negocio porque ha visto llegar los barcos.»
 
-- **A. Darle la concesión.** *La experiencia se hereda, como el apellido.* Élite +6 · Pueblo −6 · Potencias −2
-- **B. Negársela.** *Que empiece desde abajo: un ministerio pequeño.* Élite −6 · Pueblo +6 · Potencias +2
+- **A. Que mi hijo dirija el puerto** Élite +5 · Pueblo −4
+- **B. Al extranjero, con mi hijo de asesor** Potencias +4 · Élite −3
 
-### 19. La cuenta en el extranjero
+### 20. La cuenta en el extranjero
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Un banco extranjero pregunta de dónde salen los fondos de su cuenta personal. Quiere un papel firmado.»
 
-- **A. Firmar cualquier cosa.** *Mi firma vale más que su pregunta.* Potencias +6 · Élite +3 · Pueblo −5
-- **B. Traer el dinero a casa.** *Bajo el colchón del Estado no pregunta nadie.* Potencias −6 · Élite −3 · Pueblo +5 · Crisis −1
+- **A. Firmo lo que haga falta** Potencias +6
+- **B. Traigan el dinero a casa** Potencias −5 · Élite +2 · Crisis −1
 
-### 20. La memoria
+### 21. La memoria
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Los nietos de los que usted encarceló piden que los libros de texto cuenten lo que pasó.»
 
-- **A. Una página en el libro.** *Breve, en letra pequeña y al final.* Pueblo +6 · Potencias +4 · Ejército −6
-- **B. Nada que contar.** *La Historia ya está escrita; yo tengo la pluma.* Pueblo −6 · Potencias −4 · Ejército +6
+- **A. Una página que escribiré yo** Pueblo +4 · Ejército −4
+- **B. Fue un golpe y así se contará** Élite +3 · Pueblo −4
 
-### 21. La revuelta
+### 22. La revuelta
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Miles de personas han salido al paseo marítimo gritando contra usted.»
 
-- **A. Bajaré yo mismo a calmarlos** Pueblo +8 · Élite −5 · Crisis +2
-- **B. Manden a las tropas especiales** Pueblo −8 · Ejército +6 · Potencias −4
+- **A. Manden a las tropas especiales** Ejército +6 · Pueblo −6
+- **B. Abran la costa al que quiera irse** Pueblo −5 · Potencias +4 · Crisis −3
 
-### 22. El concierto
+### 23. El concierto
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «Una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.»
 
-- **A. Que toquen.** *Si cantan, no gritan.* Pueblo +7 · Potencias +4 · Ejército −5
-- **B. Prohibir el concierto.** *La música extranjera también necesita visado.* Pueblo −7 · Potencias −4 · Ejército +5
+- **A. Que toquen y yo en primera fila** Pueblo +5 · Élite −3
+- **B. Mejor la Orquesta del Ministerio** Élite +3 · Pueblo −5
 
-### 23. Las estatuas caen
+### 24. Las estatuas caen
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «En la televisión extranjera derriban estatuas de dirigentes como usted. El Pueblo lo está viendo.»
 
-- **A. Cortar la señal.** *Lo que no se ve, no se derriba.* Pueblo −6 · Ejército +5 · Potencias −3
-- **B. Reforzar las estatuas.** *Con hormigón y con guardia.* Pueblo +3 · Ejército −5 · Élite +3 · Crisis +1
+- **A. Corten la señal extranjera** Élite +3 · Pueblo −5 · Crisis +1
+- **B. Quiten mis estatuas antes que ellos** Élite −3 · Crisis −2
 
-### 24. La sequía
+### 25. La sequía
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 10.
 
 **Carta:** «La sequía ha arruinado la cosecha. Los campesinos piden ayuda y los almacenes del Ejército están llenos.»
 
-- **A. Abrir los almacenes.** *El Ejército comerá menos; por una vez.* Pueblo +8 · Ejército −7
-- **B. Mantenerlos cerrados.** *La reserva es para emergencias, no para el hambre.* Pueblo −8 · Ejército +7
+- **A. Abran los almacenes del Ejército** Pueblo +6 · Ejército −6
+- **B. Que el Ejército venda su grano** Ejército +6 · Pueblo −5
 
-### 25. Los turistas
+### 26. Los turistas
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Proponemos abrir las playas al turismo extranjero. Traerán divisas, cámaras y malas costumbres.»
+**Carta:** «Hacen falta divisas. Podemos abrir las playas al turismo o dejar que los exiliados manden dólares.»
 
-- **A. Abrir las playas.** *Las divisas no tienen ideología.* Potencias +6 · Élite +4 · Pueblo −4 · Crisis −2
-- **B. Mantenerlas cerradas.** *Las playas, para el Pueblo; el Pueblo, en su casa.* Potencias −6 · Élite −4 · Pueblo +4 · Crisis +1
+- **A. Playas solo para turistas** Potencias +5 · Élite +3 · Pueblo −4
+- **B. Que los exiliados manden dólares** Pueblo +4 · Potencias +3 · Élite −4
 
-### 26. La bomba de dentro
+### 27. La bomba de dentro
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `atentado_investigado`.
 
 **Carta:** «Tenemos el resultado de la investigación: la bomba salió del Ministerio del Interior.»
 
-- **A. Sarria tendrá una explicación** Ejército −6 · Pueblo +5 · Potencias +3
-- **B. Archiven la investigación** Ejército +6 · Pueblo −5 · Potencias −3
+- **A. Purguen el Ministerio del Interior** Ejército −6 · Élite +3
+- **B. Archiven y que me deban una** Ejército +5 · Élite −3
 
-### 27. El general héroe
+### 28. El general héroe
 
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «El general más condecorado está detenido por contrabando. El Pueblo lo adora.»
+**Carta:** «El general más condecorado está preso por contrabando. Lo hizo con su permiso, pero eso no lo sabe nadie.»
 
-- **A. Juicio en directo y paredón** Ejército −6 · Potencias +4 · Pueblo −3
-- **B. Retiro discreto en su finca** Ejército +6 · Potencias −4 · Pueblo +3
+- **A. Juicio en directo y paredón** Ejército −6 · Élite +3 · Pueblo −2
+- **B. Suéltenlo si sabe guardar silencio** Ejército +5 · Élite −2 · Crisis +1
 
-### 28. El parte médico
+### 29. El parte médico
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 5 a 8 de su era.
 
 **Carta:** «Los médicos recomiendan reposo absoluto. El Partido pregunta quién firmará los decretos mientras tanto.»
 
-- **A. Firmarlos desde la cama.** *Gobierno mejor tumbado: me cuesta menos sonreír.* Ejército +6 · Élite −6 · Pueblo −3
-- **B. Delegar en el Consejo.** *Que firmen; luego revisaré quién firmó qué.* Ejército −6 · Élite +6 · Pueblo +3
+- **A. Gobernaré desde la cama** Élite −5 · Crisis +2
+- **B. Deleguen, provisionalmente** Élite +5

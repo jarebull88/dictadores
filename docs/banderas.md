@@ -23,7 +23,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `elecciones_aplazadas` | Las urnas prometidas (B) | Estudiantes en la calle | Protestas estudiantiles. (era 1) |
 | `elecciones_prometidas` | Las urnas prometidas (A); Estudiantes en la calle (A) | Elecciones controladas | Elecciones controladas. (era 3) |
 | `embargo_en_marcha` | El embargo (A); El ultimátum (A) | Embargo total | Embargo total. (era 1) |
-| `estado_policial` | El jefe insaciable (A) | Dos ejércitos | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
+| `estado_policial` | El jefe insaciable (A) | El batallón | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
 | `estudiantes_reprimidos` | Estudiantes en la calle (B) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
 | `exiliados_vocales` | La casa vacía (B) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
@@ -31,7 +31,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `general_apartado` | El general querido (B) | Cienfuegos vuelve | Cienfuegos regresa como candidato de los descontentos. (era 4) |
 | `general_popular` | El general querido (A) | El general murmura | Cienfuegos conspira si el Ejército baja de 40. (era 1) |
 | `huelga_reprimida` | El puerto parado (B) | El puerto lento; Las aulas vacías | Malestar en las universidades. (era 2) |
-| `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable; Dos ejércitos | El Ministro del Interior pide cada vez más poder. (era 3) |
+| `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |
 | `libro_obligatorio` | El libro de texto (A) | — | — |
 | `mausoleo_construido` | El mausoleo (A) | El mausoleo vacío | Un edificio eterno que hay que mantener. (era 4) |

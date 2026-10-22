@@ -525,9 +525,9 @@ const CARTAS = [
   {
     id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
     personaje: "Ministro de Economía",
-    texto: "El acreedor aplazará la deuda a cambio de nuestro voto en los foros internacionales durante años.",
-    izq: { accion: "Nuestro voto es suyo, con intereses", efectos: { potencias: 7, elite: -2, crisis: -2 } },
-    der: { accion: "Pagaremos con la libreta de comida", efectos: { potencias: -7, pueblo: -5, elite: 3, crisis: 1 } }
+    texto: "El acreedor perdonará los intereses si en los foros internacionales votamos siempre con él.",
+    izq: { accion: "Mi delegado levantará las dos manos", efectos: { potencias: 7, elite: -2, crisis: -2 } },
+    der: { accion: "Apretaremos más para pagar la deuda", efectos: { potencias: -7, pueblo: -5, elite: 3, crisis: 1 } }
   },
   {
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
@@ -740,8 +740,8 @@ const CARTAS = [
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país se disuelve. Le dejo el último barril de petróleo y mi abrigo de piel.",
-    izq: { accion: "Pedalearemos hasta la victoria", efectos: { potencias: -6, pueblo: -5, elite: 3, crisis: 2 } },
-    der: { accion: "Ya encontraremos amigos con divisas", efectos: { potencias: 5, elite: -4 } }
+    izq: { accion: "Lo llamaré «período especial»", efectos: { potencias: -6, pueblo: -5, elite: 3, crisis: 2 } },
+    der: { accion: "Ya me buscaré un amigo con dólares", efectos: { potencias: 5, elite: -4 } }
   },
   {
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
@@ -802,8 +802,8 @@ const CARTAS = [
   {
     id: "la_sequia", era: 4, tipo: "sorteo", peso: 10, titulo: "La sequía",
     personaje: "Ministro de Trabajo",
-    texto: "La sequía ha arruinado la cosecha. Los campesinos piden ayuda y los almacenes del Ejército están llenos.",
-    izq: { accion: "Abran los almacenes del Ejército", efectos: { pueblo: 6, ejercito: -6 } },
+    texto: "La sequía arruinó la cosecha. El campo pasa hambre y los almacenes del Ejército están llenos.",
+    izq: { accion: "Que los soldados repartan el arroz", efectos: { pueblo: 6, ejercito: -6 } },
     der: { accion: "Que el Ejército venda su grano", efectos: { ejercito: 6, pueblo: -5 } }
   },
   {

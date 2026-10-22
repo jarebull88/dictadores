@@ -761,16 +761,16 @@ const CARTAS = [
   {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
-    texto: "Su hijo quiere la concesión del puerto. Dice que conoce el negocio porque ha visto llegar los barcos.",
-    izq: { accion: "Que mi hijo dirija el puerto", efectos: { elite: 5, pueblo: -4 } },
-    der: { accion: "Al extranjero, con mi hijo de asesor", efectos: { potencias: 4, elite: -3 } }
+    texto: "Su hijo quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",
+    izq: { accion: "Dénselo, lleva el mar en la sangre", efectos: { elite: 5, pueblo: -4 } },
+    der: { accion: "Que lo dirija alguien con méritos", efectos: { elite: -3, crisis: -1 } }
   },
   {
     id: "la_cuenta", era: 4, tipo: "sorteo", peso: 10, titulo: "La cuenta en el extranjero",
     personaje: "Ministro de Economía",
     texto: "Una revista extranjera dice que es usted de los más ricos del mundo.",
-    izq: { accion: "Díganles que es ahorro de mi sueldo", efectos: { potencias: 6 } },
-    der: { accion: "Traigan el dinero a casa", efectos: { potencias: -5, elite: 2, crisis: -1 } }
+    izq: { accion: "Díganles que es ahorro de mi sueldo", efectos: { pueblo: -4, elite: 3 } },
+    der: { accion: "Que me enseñen dónde está ese dinero", efectos: { potencias: -5, elite: 2, crisis: -1 } }
   },
   {
     id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria",

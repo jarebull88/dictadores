@@ -707,7 +707,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.",
     izq: { accion: "Detengan a los del rumor", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Que salga mi doble a saludar", efectos: { ejercito: 3, elite: -3 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
+    der: { accion: "Saquen a mi doble en chándal", efectos: { ejercito: 3, elite: -3 }, encolar: [{ carta: "el_doble", min: 2, max: 3 }] }
   },
   {
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
@@ -747,9 +747,9 @@ const CARTAS = [
   {
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país le ofrece una salida honrosa: elecciones libres, inmunidad y una casa en la costa.",
+    texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
     izq: { accion: "Me quedo la casa, sin elecciones", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Le responderé con la plaza llena", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
+    der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },
   {
     id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias",

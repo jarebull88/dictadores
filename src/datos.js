@@ -477,8 +477,8 @@ const CARTAS = [
     id: "desfile_anual", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.desfile_militar"] }, titulo: "El desfile del año",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Ejército espera un desfile mayor que el del año pasado: más tanques, más soldados y, por tradición, caballería.",
-    izq: { accion: "Desfile aún mayor.", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 8, elite: 3, pueblo: -7, crisis: 2 } },
-    der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -8, elite: -3, pueblo: 7 } }
+    izq: { accion: "Desfile aún mayor.", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 7, pueblo: -5, crisis: 2 } },
+    der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -5, pueblo: 4 } }
   },
   {
     id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
@@ -499,14 +499,14 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Mi unidad especial necesita su propio batallón, su propia cárcel y un presupuesto que no figure en ningún presupuesto.",
     izq: { accion: "Autorizar el batallón.", remate: "Quiero que tengan todo lo necesario para proteger la Revolución.", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.estado_policial"] },
-    der: { accion: "Recortarle el presupuesto.", remate: "Que vigilen al Pueblo sin crear un gobierno dentro del Gobierno.", efectos: { ejercito: -8, elite: 5, pueblo: 4 } }
+    der: { accion: "Recortarle el presupuesto.", remate: "Que vigilen al Pueblo sin crear un gobierno dentro del Gobierno.", efectos: { ejercito: -8, elite: 3, pueblo: 4 } }
   },
   {
     id: "aulas_vacias", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estudiantes_reprimidos", "base.huelga_reprimida"] }, titulo: "Las aulas vacías",
     personaje: "Ministra de Educación",
     texto: "La universidad sigue vacía y circulan apuntes clandestinos. Algunos profesores enseñan historia sin citarle a usted.",
-    izq: { accion: "Exigir lealtad a profesores.", remate: "Las notas medirán tanto los conocimientos como la lealtad.", efectos: { elite: 5, ejercito: 3, pueblo: -6 } },
-    der: { accion: "Reabrir las facultades.", remate: "La Revolución necesita aulas llenas, no héroes universitarios.", efectos: { pueblo: 6, elite: -5, ejercito: -3 } }
+    izq: { accion: "Exigir lealtad a profesores.", remate: "Las notas medirán tanto los conocimientos como la lealtad.", efectos: { elite: 5, pueblo: -5 } },
+    der: { accion: "Reabrir las facultades.", remate: "La Revolución necesita aulas llenas, no héroes universitarios.", efectos: { pueblo: 5, elite: -5 } }
   },
   {
     id: "titulares", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.periodista_oficial"] }, titulo: "Los titulares",

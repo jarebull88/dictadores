@@ -66,7 +66,7 @@ const ESTADOS = {
   nacionalizado: {
     nombre: "Nacionalizaciones", bandera: "base.nacionalizo_empresas", duracion: null,
     descripcion: "Ningún interés particular estará por encima del bienestar colectivo. Se nacionalizan empresas, comercios y pequeños negocios.",
-    deriva: { elite: 1 }, cada: 2, crisis: 1
+    deriva: { elite: 1 }, cada: 4, crisis: 1   // 22 oct: cada 4 cartas (antes 2): solo, el Partido llegaba al máximo
   },
   deuda: {
     nombre: "Deuda externa", bandera: "base.deuda_externa", duracion: null,

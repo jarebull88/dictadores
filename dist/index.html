@@ -901,7 +901,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.",
     izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Tienen 24 horas para irse", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+    der: { accion: "Tienen 24 horas para hacer maletas", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",
@@ -914,15 +914,15 @@ const CARTAS = [
     id: "arcas_vacias", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Las arcas vacías",
     personaje: "Ministro de Economía",
     texto: "El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.",
-    izq: { accion: "Impriman billetes", efectos: { pueblo: 5, potencias: -5 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Pedir préstamo y hacer recortes", efectos: { pueblo: -5, potencias: 5 }, banderas: ["base.deuda_externa"] }
+    izq: { accion: "Impriman billetes hasta que alcance", efectos: { pueblo: 5, potencias: -5 }, banderas: ["base.mercado_paralelo"] },
+    der: { accion: "Pidan un préstamo y recorten gastos", efectos: { pueblo: -5, potencias: 5 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido",
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.",
     izq: { accion: "Denle el Estado Mayor", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
-    der: { accion: "Embajador, lejos del Ejército", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
+    der: { accion: "Embajador en el país más lejano", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
   },
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",
@@ -953,7 +953,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Ya sabemos quiénes nos critican, gracias a unos vecinos muy colaboradores.",
     izq: { accion: "Que protesten, pero bajito", efectos: { pueblo: 8, ejercito: -5 } },
-    der: { accion: "A la cárcel por orden alfabético", largaAutorizada: true, efectos: { pueblo: -8, ejercito: 5 }, banderas: ["base.criticos_detenidos"] }
+    der: { accion: "Detengan a todos en orden alfabético", efectos: { pueblo: -8, ejercito: 5 }, banderas: ["base.criticos_detenidos"] }
   },
 
   /* ---------- Sorteo ---------- */
@@ -962,20 +962,20 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Si repartimos las tierras entre los campesinos, el país será el granero del mundo en un año.",
     izq: { accion: "Respeten la propiedad privada", efectos: { pueblo: -10, elite: -5 } },
-    der: { accion: "La tierra para quien la merece", largaAutorizada: true, efectos: { pueblo: 10, elite: 5, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
+    der: { accion: "La tierra para quien la \"merece\"", efectos: { pueblo: 10, elite: 5, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
   },
   {
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos",
     personaje: "Ministra de Cultura",
     texto: "Los periódicos publican críticas contra cada decreto, uno detrás de otro.",
-    izq: { accion: "Que la prensa respire", efectos: { pueblo: 6, elite: -5 }, banderas: ["base.prensa_libre"] },
-    der: { accion: "Nacionalicen la imprenta", efectos: { pueblo: -6, elite: 5 }, banderas: ["base.censura_previa"] }
+    izq: { accion: "Que publiquen lo que quieran", efectos: { pueblo: 6, elite: -5 }, banderas: ["base.prensa_libre"] },
+    der: { accion: "Nacionalicen las imprentas", efectos: { pueblo: -6, elite: 5 }, banderas: ["base.censura_previa"] }
   },
   {
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.",
-    izq: { accion: "Elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
+    izq: { accion: "Convoquen elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, elite: 5 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
@@ -983,28 +983,28 @@ const CARTAS = [
     personaje: "Ministra de Educación",
     texto: "Propongo una campaña de alfabetización: brigadas de jóvenes enseñando a leer en cada rincón.",
     izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10 } },
-    der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -10 } }
+    der: { accion: "Un Pueblo que lee pregunta demasiado", efectos: { pueblo: -10 } }
   },
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",
     personaje: "Ministra de Educación",
     texto: "Los colegios privados cobran por enseñar. Propongo que todas las escuelas sean del Estado.",
     izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: 5 } },
-    der: { accion: "Que cada familia elija su escuela", largaAutorizada: true, efectos: { pueblo: -7, elite: -5 } }
+    der: { accion: "Que pague quien quiera otra escuela", efectos: { pueblo: -7, elite: -5 } }
   },
   {
     id: "asesores", tipo: "sorteo", peso: 6, cond: { turnoMin: 2 }, titulo: "Los asesores",
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.",
     izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 9, ejercito: 5, elite: 5 } },
-    der: { accion: "Agradecemos, pero no hace falta", largaAutorizada: true, efectos: { potencias: -9, ejercito: -5, elite: -5 } }
+    der: { accion: "Gracias, aquí nos asesoramos solos", efectos: { potencias: -9, ejercito: -5, elite: -5 } }
   },
   {
     id: "club_golf", tipo: "sorteo", peso: 6, titulo: "El club de golf",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país reconocerá su gobierno si respeta nuestras propiedades, empezando por el club de golf.",
-    izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 9, pueblo: -8, elite: -4 } },
-    der: { accion: "Empezaremos nacionalizando el golf", largaAutorizada: true, efectos: { potencias: -9, pueblo: 8, elite: 4 } }
+    izq: { accion: "Las propiedades y el golf son suyas", efectos: { potencias: 9, pueblo: -8, elite: -4 } },
+    der: { accion: "Empezaremos nacionalizando el golf", efectos: { potencias: -9, pueblo: 8, elite: 4 } }
   },
   {
     id: "la_bahia", tipo: "ancla", ventana: [5, 7], titulo: "La bahía",
@@ -1017,28 +1017,28 @@ const CARTAS = [
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
     personaje: "Ministra de Educación",
     texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
-    izq: { accion: "Buen viaje, niños", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
-    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
+    izq: { accion: "Dejen salir a los niños", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
+    der: { accion: "Nadie se lleva a nuestros niños", efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
   },
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",
     personaje: "Ministro de Economía",
-    texto: "Que los inquilinos dejen de pagar al casero: el Estado cobrará la mitad y la casa será suya.",
-    izq: { accion: "Cada casa, para quien la vive", efectos: { pueblo: 8, elite: 4 } },
-    der: { accion: "Los contratos se respetan", efectos: { pueblo: -8, elite: -4 } }
+    texto: "El Estado expropiará las casas y las alquilará a mitad de precio hasta que el inquilino las compre.",
+    izq: { accion: "Ahora el casero es el Estado", efectos: { pueblo: 8, elite: 4 } },
+    der: { accion: "Los caseros mantienen sus casas", efectos: { pueblo: -8, elite: -4 } }
   },
   {
     id: "milicias", tipo: "sorteo", peso: 6, titulo: "Las milicias",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los barrios piden fusiles para defender la Revolución por su cuenta.",
-    izq: { accion: "Milicias en cada barrio", efectos: { pueblo: 6, ejercito: -6 } },
-    der: { accion: "Las armas solo para los soldados", largaAutorizada: true, efectos: { pueblo: -6, ejercito: 6 } }
+    izq: { accion: "Que el Pueblo se arme", efectos: { pueblo: 6, ejercito: -6 } },
+    der: { accion: "Las armas solo son para el Ejército", efectos: { pueblo: -6, ejercito: 6 } }
   },
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
     texto: "Los intelectuales preguntan hasta dónde pueden criticar a la Revolución.",
-    izq: { accion: "Que critiquen lo que quieran", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
+    izq: { accion: "Que critiquen todo lo que quieran", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
     der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, elite: 5 } }
   },
@@ -1047,20 +1047,20 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "¡Al paredón!", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
+    der: { accion: "Paredón y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",
     personaje: "Ministro de Trabajo",
     texto: "El puerto lleva tres días parado. Los estibadores no quieren que el Partido elija a sus líderes.",
     izq: { accion: "Que se organicen libremente", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
-    der: { accion: "La huelga es contrarrevolución", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
+    der: { accion: "El Partido ya eligió por ellos", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
   },
   {
     id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio",
     personaje: "Ministro del Interior",
     texto: "Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.",
-    izq: { accion: "Vecino vigila vecino", efectos: { ejercito: 6, elite: 4, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
+    izq: { accion: "Que cada vecino vigile a su vecino", efectos: { ejercito: 6, elite: 4, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
     der: { accion: "No necesitamos chivatos", efectos: { pueblo: 7, ejercito: -6, elite: -4 }, banderas: ["base.policia_tradicional"] }
   },
   {
@@ -1068,14 +1068,14 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido quiere su retrato en cada aula y una estatua en la plaza.",
     izq: { accion: "Si insisten…", efectos: { pueblo: -3, elite: 6, crisis: 1 }, banderas: ["base.culto_iniciado"] },
-    der: { accion: "Los monumentos son para los mártires", largaAutorizada: true, efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
+    der: { accion: "Los monumentos son para los mártires", efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
   },
   {
     id: "marchan", tipo: "sorteo", peso: 14, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan",
     personaje: "Ministro del Interior",
     texto: "Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.",
-    izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite"] },
-    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
+    izq: { accion: "Que se vayan y dejen el dinero", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite"] },
+    der: { accion: "Nadie sale del país sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */
@@ -1083,8 +1083,8 @@ const CARTAS = [
     id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura",
     personaje: "Ministro de Economía",
     texto: "Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.",
-    izq: { accion: "Precios congelados por decreto", efectos: { pueblo: 8, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Otro préstamo y ya veremos", efectos: { potencias: 8, pueblo: -3, crisis: -3 }, banderas: ["base.deuda_externa"] }
+    izq: { accion: "Congelen los precios por decreto", efectos: { pueblo: 8, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] },
+    der: { accion: "Pidan otro préstamo y ya veremos", efectos: { potencias: 8, pueblo: -3, crisis: -3 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías",
@@ -1101,8 +1101,8 @@ const CARTAS = [
     titulo: "La calle y los cuarteles",
     personaje: "Ministro del Interior",
     texto: "Algunos oficiales se reúnen con los que protestan en la calle. Si se juntan, caemos.",
-    izq: { accion: "Un ascenso por cada traición evitada", largaAutorizada: true, efectos: { ejercito: 8, elite: -4 } },
-    der: { accion: "Calabozo para esos oficiales", largaAutorizada: true, efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
+    izq: { accion: "Asciendan a los que no se reúnen", efectos: { ejercito: 8, elite: -4 } },
+    der: { accion: "Arresten a los oficiales reunidos", efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
   },
   {
     id: "coalicion_dinero_sale", tipo: "coalicion", repetible: true, borrador: true,
@@ -1119,15 +1119,15 @@ const CARTAS = [
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.",
-    izq: { accion: "Que desfilen los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
-    der: { accion: "Ron para el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
+    izq: { accion: "Un gran desfile con tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
+    der: { accion: "Ron gratis para todo el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
   },
 
   {
     id: "nuevos_vecinos", tipo: "ancla", ventana: [8, 10], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país le ofrece misiles, instalados y apuntando a donde usted diga.",
-    izq: { accion: "Ahora sí nos respetarán", efectos: { ejercito: 6, potencias: 5, pueblo: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
+    izq: { accion: "Acepto y apúntenlos donde ya sabe", efectos: { ejercito: 6, potencias: 5, pueblo: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
     der: { accion: "Nuestro misil es el Pueblo", efectos: { ejercito: -6, potencias: -5, pueblo: 4 }, banderas: ["base.misiles_rechazados"] }
   },
 
@@ -1136,7 +1136,7 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros barcos rodearán su costa hasta que retire los misiles.",
     izq: { accion: "Que disfruten de la vista", efectos: { ejercito: 6, potencias: -6, pueblo: -3, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Tranquilo, los retiraremos", efectos: { ejercito: -6, potencias: 6, crisis: -1 } }
+    der: { accion: "Tranquilo, mañana no estarán", efectos: { ejercito: -6, potencias: 6, crisis: -1 } }
   },
 
   {
@@ -1159,7 +1159,7 @@ const CARTAS = [
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
     texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
-    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
+    izq: { accion: "Interfieran la emisora con música", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
     der: { accion: "Acúsenlos de agentes extranjeros", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
@@ -1167,7 +1167,7 @@ const CARTAS = [
     id: "general_murmura", tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El general Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.",
-    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: -3, crisis: 1 } },
+    izq: { accion: "Pregúntenle cómo están sus hijos", efectos: { ejercito: -3, crisis: 1 } },
     der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, elite: 3 }, banderas: ["base.accidente_cienfuegos"] }
   },
 
@@ -1175,23 +1175,23 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "El Estado dará mejor uso a la tierra", largaAutorizada: true, efectos: { pueblo: -5, elite: 2 } },
-    der: { accion: "Empiecen a importar comida", efectos: { pueblo: 6, potencias: 5 } }
+    izq: { accion: "El Estado dará mejor uso a la tierra", efectos: { pueblo: -5, elite: 2 } },
+    der: { accion: "Importen comida a cualquier precio", efectos: { pueblo: 6, potencias: 5 } }
   },
 
   {
     id: "periodista_oficial", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.censura_previa"] }, titulo: "El periodista oficial",
     personaje: "Ministra de Cultura",
     texto: "La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.",
-    izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
-    der: { accion: "Que la prensa diga la verdad", largaAutorizada: true, efectos: { pueblo: 5, elite: -5 } }
+    izq: { accion: "Nombren un Desmentidor Oficial", efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
+    der: { accion: "Que la prensa diga la verdad", efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
     id: "garantias", tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías",
     personaje: "Ministro de Comercio",
     texto: "Las empresas extranjeras quieren por escrito que no habrá más nacionalizaciones y que podrán llevarse sus ganancias.",
-    izq: { accion: "Palabra de revolucionario", efectos: { potencias: 6, elite: -4, pueblo: -5, crisis: -1 } },
+    izq: { accion: "Les doy mi palabra de revolucionario", efectos: { potencias: 6, elite: -4, pueblo: -5, crisis: -1 } },
     der: { accion: "Aquí no se firma nada", efectos: { potencias: -6, pueblo: 4, elite: 4, crisis: 1 } }
   },
 
@@ -1207,7 +1207,7 @@ const CARTAS = [
     id: "estudiantes_calle", tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle",
     personaje: "Ministra de Educación",
     texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
-    izq: { accion: "Habrá elecciones, se lo prometo", largaAutorizada: true, efectos: { pueblo: 5, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
+    izq: { accion: "Habrá elecciones, palabra de honor", efectos: { pueblo: 5, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "¿Elecciones para qué?", efectos: { pueblo: -6, ejercito: 4 }, banderas: ["base.estudiantes_reprimidos"] }
   },
 
@@ -1215,8 +1215,8 @@ const CARTAS = [
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.",
-    izq: { accion: "Arréstenlos", efectos: { ejercito: 3, potencias: -5 } },
-    der: { accion: "Metan un topo en el club", largaAutorizada: true, efectos: { ejercito: 6 } }
+    izq: { accion: "Jaque mate: todos detenidos", efectos: { ejercito: 3, potencias: -5 } },
+    der: { accion: "Metan un topo en el club", efectos: { ejercito: 6 } }
   },
 
   {
@@ -1224,15 +1224,15 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
     izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -3, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Que la policía se vigile sola", largaAutorizada: true, largaAutorizada: true, efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
+    der: { accion: "Que la policía se vigile sola", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
   {
     id: "huelgas_crisis", tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos",
     personaje: "Ministro de Trabajo",
-    texto: "Los electricistas amenazan con apagar la capital. Quieren un sindicato fuera del Partido.",
-    izq: { accion: "Que tengan su sindicato", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
-    der: { accion: "Fuera de la Revolución, nada", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
+    texto: "Los electricistas quieren un sindicato libre como el del puerto, o apagarán la capital.",
+    izq: { accion: "Que también tengan su sindicato", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
+    der: { accion: "Calabozo por contrarrevolución", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
   },
 
   {
@@ -1240,15 +1240,15 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Desde la huelga, los estibadores trabajan a medio ritmo. Los barcos esperan semanas para descargar.",
     izq: { accion: "Militaricen el puerto", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Que puedan elegir a su delegado", largaAutorizada: true, efectos: { pueblo: 5, elite: -5 } }
+    der: { accion: "Que puedan elegir a su delegado", efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
     texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.",
-    izq: { accion: "Investiguen hasta la gallina", efectos: { ejercito: 6, pueblo: -6 } },
-    der: { accion: "Solo las contrarrevolucionarias", largaAutorizada: true, efectos: { pueblo: 4, ejercito: -4 } }
+    izq: { accion: "Que se investigue hasta la gallina", efectos: { ejercito: 6, pueblo: -6 } },
+    der: { accion: "Solo cuentan las denuncias políticas", efectos: { pueblo: 4, ejercito: -4 } }
   },
 
   {
@@ -1263,8 +1263,8 @@ const CARTAS = [
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
-    izq: { accion: "Ningún titulado sale del país", largaAutorizada: true, efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Crear cursos acelerados de todo", largaAutorizada: true, efectos: { elite: 2, pueblo: 3 } }
+    izq: { accion: "Prohíban salir a los titulados", efectos: { ejercito: 4, pueblo: -4 } },
+    der: { accion: "Cursos acelerados de todo para todos", efectos: { elite: 2, pueblo: 3 } }
   },
 
   {
@@ -1272,23 +1272,23 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Cada semana huyen más familias en balsas. Las patrullas no dan abasto.",
     izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
+    der: { accion: "Dejen que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
   },
 
   {
     id: "embargo_total", tipo: "sorteo", peso: 14, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total",
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran comida, medicinas ni repuestos.",
-    izq: { accion: "Racionen: una libreta por familia", largaAutorizada: true, efectos: { pueblo: -4, elite: 3, crisis: -1 } },
-    der: { accion: "Que un país amigo nos lo revenda", largaAutorizada: true, efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
+    izq: { accion: "Libreta de racionamiento por familia", efectos: { pueblo: -4, elite: 3, crisis: -1 } },
+    der: { accion: "Que un país amigo nos revenda", efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
   },
 
   {
     id: "deuda_llama", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.compensaciones", "base.deuda_externa"] }, titulo: "La deuda llama",
     personaje: "Ministro de Economía",
     texto: "Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.",
-    izq: { accion: "Paguen, aunque no comamos", efectos: { potencias: 5, pueblo: -5 } },
-    der: { accion: "No pagamos a explotadores", efectos: { potencias: -6, elite: 2 } }
+    izq: { accion: "Paguen aunque el Pueblo no coma", efectos: { potencias: 5, pueblo: -5 } },
+    der: { accion: "No se le paga al explotador", efectos: { potencias: -6, elite: 2 } }
   },
 
   {
@@ -1303,8 +1303,8 @@ const CARTAS = [
     id: "cosecha_record", era: 2, tipo: "sorteo", peso: 8, titulo: "La cosecha récord",
     personaje: "Ministro de Trabajo",
     texto: "La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.",
-    izq: { accion: "Anuncien el récord por radio", efectos: { elite: 5 } },
-    der: { accion: "Busquen al que infló cifras", efectos: { elite: -5, ejercito: 3 } }
+    izq: { accion: "Que la radio anuncie el récord", efectos: { elite: 5 } },
+    der: { accion: "Detengan al que infló las cifras", efectos: { elite: -5, ejercito: 3 } }
   },
 
   {
@@ -1320,7 +1320,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.",
     izq: { accion: "Detengan a quien lo cuente", efectos: { pueblo: -5, ejercito: 4 } },
-    der: { accion: "Dejen que se rían", efectos: { pueblo: 4, ejercito: -3 } }
+    der: { accion: "Reírse es gratis", efectos: { pueblo: 4, ejercito: -3 } }
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {
@@ -1356,14 +1356,14 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros satélites siguen detectando misiles. Exigimos una inspección.",
     izq: { accion: "Inspeccionen lo que quieran", efectos: { potencias: 8, ejercito: -5 } },
-    der: { accion: "Revisen primero sus propias bases", largaAutorizada: true, efectos: { potencias: -8, ejercito: 5 } }
+    der: { accion: "Revisen primero sus propias bases", efectos: { potencias: -8, ejercito: 5 } }
   },
   {
     id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
-    izq: { accion: "Apoyaremos su próxima invasión", largaAutorizada: true, efectos: { potencias: 7 } },
-    der: { accion: "Iremos en bicicleta", efectos: { potencias: -6, pueblo: -4 } }
+    izq: { accion: "Apoyaremos su próxima invasión", efectos: { potencias: 7 } },
+    der: { accion: "Guarden su petróleo, iremos en bici", efectos: { potencias: -6, pueblo: -4 } }
   },
   {
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable",
@@ -1461,8 +1461,8 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
-    izq: { accion: "Todos a la zafra", efectos: { pueblo: -6, elite: 4 } },
-    der: { accion: "Qué disparate, pararía todo", efectos: { pueblo: 5, elite: -4 } }
+    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 } },
+    der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",
@@ -1503,7 +1503,7 @@ const CARTAS = [
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",
     texto: "Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.",
-    izq: { accion: "Prohíban las flores ese día", efectos: { ejercito: 6, pueblo: -6 } },
+    izq: { accion: "Prohíban tirar flores al mar", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 2 } }
   },
   {
@@ -1511,8 +1511,8 @@ const CARTAS = [
     id: "campos_trabajo", era: 2, tipo: "sorteo", peso: 14, titulo: "Los campos de trabajo",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.",
-    izq: { accion: "El trabajo les hará hombres", efectos: { ejercito: 6, pueblo: -7 }, banderas: ["base.campos_trabajo"] },
-    der: { accion: "Que lleven el pelo como quieran", largaAutorizada: true, efectos: { ejercito: -6, pueblo: 7 } }
+    izq: { accion: "Que el trabajo los haga hombres", efectos: { ejercito: 6, pueblo: -7 }, banderas: ["base.campos_trabajo"] },
+    der: { accion: "Que lleven el pelo como quieran", efectos: { ejercito: -6, pueblo: 7 } }
   },
   /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {

@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.7.
+Duración: entre 8 y 10 cartas. 21 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.1.
 
 ### 1. El aniversario
 
@@ -11,8 +11,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.»
 
-- **A. Que desfilen los tanques** Ejército +8 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
-- **B. Ron para el Pueblo** Pueblo +7 · Ejército −8
+- **A. Un gran desfile con tanques** Ejército +8 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
+- **B. Ron gratis para todo el Pueblo** Pueblo +7 · Ejército −8
 
 **Consecuencia futura de `desfile_militar`:** El Ejército espera cada año un desfile mayor.
 
@@ -45,7 +45,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.»
 
-- **A. Apagón donde llegue la señal** Pueblo −6 · Ejército +3 · Élite +4
+- **A. Interfieran la emisora con música** Pueblo −6 · Ejército +3 · Élite +2
 - **B. Acúsenlos de agentes extranjeros** Ejército +4 · Potencias −4 · Pueblo −3
 
 ### 5. El hambre
@@ -55,8 +55,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»
 
-- **A. El Estado dará mejor uso a la tierra** Pueblo −5 · Élite +5
-- **B. Empiecen a importar comida** Pueblo +6 · Potencias +5
+- **A. El Estado dará mejor uso a la tierra** Pueblo −5 · Élite +2
+- **B. Importen comida a cualquier precio** Pueblo +6 · Potencias +5
 
 ### 6. El periodista oficial
 
@@ -65,7 +65,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.»
 
-- **A. Nombren un Vocero de la Verdad** Pueblo −3 · Élite +5 · Bandera: `periodista_oficial`
+- **A. Nombren un Desmentidor Oficial** Pueblo −3 · Élite +5 · Bandera: `periodista_oficial`
 - **B. Que la prensa diga la verdad** Pueblo +5 · Élite −5
 
 **Consecuencia futura de `periodista_oficial`:** La prensa del régimen exige titulares cada vez más generosos.
@@ -77,7 +77,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.»
 
-- **A. Arréstenlos** Ejército +3 · Potencias −5
+- **A. Jaque mate: todos detenidos** Ejército +3 · Potencias −5
 - **B. Metan un topo en el club** Ejército +6
 
 ### 8. El jefe pide más
@@ -109,8 +109,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.»
 
-- **A. Investiguen hasta la gallina** Ejército +6 · Pueblo −6
-- **B. Solo las contrarrevolucionarias** Pueblo +4 · Ejército −4
+- **A. Que se investigue hasta la gallina** Ejército +6 · Pueblo −6
+- **B. Solo cuentan las denuncias políticas** Pueblo +4 · Ejército −4
 
 ### 11. Faltan técnicos
 
@@ -119,8 +119,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.»
 
-- **A. Ningún titulado sale del país** Ejército +4 · Pueblo −4
-- **B. Crear cursos acelerados de todo** Élite +4 · Pueblo +3
+- **A. Prohíban salir a los titulados** Ejército +4 · Pueblo −4
+- **B. Cursos acelerados de todo para todos** Élite +2 · Pueblo +3
 
 ### 12. Intentos de fuga
 
@@ -130,7 +130,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 **Carta:** «Cada semana huyen más familias en balsas. Las patrullas no dan abasto.»
 
 - **A. Refuercen la frontera** Ejército +6 · Pueblo −5
-- **B. Que se vaya quien quiera** Pueblo +5 · Ejército −4 · Potencias +3
+- **B. Dejen que se vaya quien quiera** Pueblo +5 · Ejército −4 · Potencias +3
 
 ### 13. La deuda llama
 
@@ -139,8 +139,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.»
 
-- **A. Paguen, aunque no comamos** Potencias +5 · Pueblo −5
-- **B. No pagamos a explotadores** Potencias −6 · Élite +3
+- **A. Paguen aunque el Pueblo no coma** Potencias +5 · Pueblo −5
+- **B. No se le paga al explotador** Potencias −6 · Élite +2
 
 ### 14. La cosecha récord
 
@@ -149,8 +149,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.»
 
-- **A. Anuncien el récord por radio** Élite +5
-- **B. Busquen al que infló cifras** Élite −5 · Ejército +3
+- **A. Que la radio anuncie el récord** Élite +5
+- **B. Detengan al que infló las cifras** Élite −5 · Ejército +3
 
 ### 15. El diplomático curioso
 
@@ -170,7 +170,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 **Carta:** «Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.»
 
 - **A. Detengan a quien lo cuente** Pueblo −5 · Ejército +4
-- **B. Dejen que se rían** Pueblo +4 · Ejército −3
+- **B. Reírse es gratis** Pueblo +4 · Ejército −3
 
 ### 17. Los satélites
 
@@ -190,7 +190,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 **Carta:** «Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.»
 
 - **A. Apoyaremos su próxima invasión** Potencias +7
-- **B. Iremos en bicicleta** Potencias −6 · Élite +4 · Pueblo −4
+- **B. Guarden su petróleo, iremos en bici** Potencias −6 · Pueblo −4
 
 ### 19. La zafra de los diez millones
 
@@ -199,8 +199,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
 
-- **A. Todos a la zafra** Pueblo −6 · Élite +4
-- **B. Qué disparate, pararía todo** Pueblo +5 · Élite −4
+- **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4
+- **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
 
 ### 20. Las flores en el mar
 
@@ -209,8 +209,8 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.»
 
-- **A. Prohíban las flores ese día** Ejército +6 · Pueblo −6
-- **B. Encabezaré yo los homenajes** Élite +5
+- **A. Prohíban tirar flores al mar** Ejército +6 · Pueblo −6
+- **B. Encabezaré yo los homenajes** Élite +2
 
 ### 21. Los campos de trabajo
 
@@ -219,7 +219,7 @@ Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.»
 
-- **A. El trabajo les hará hombres** Ejército +6 · Pueblo −7 · Bandera: `campos_trabajo`
+- **A. Que el trabajo los haga hombres** Ejército +6 · Pueblo −7 · Bandera: `campos_trabajo`
 - **B. Que lleven el pelo como quieran** Ejército −6 · Pueblo +7
 
 **Consecuencia futura de `campos_trabajo`:** Intelectuales denuncian los campos de trabajo.

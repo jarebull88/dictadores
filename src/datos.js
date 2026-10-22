@@ -30,7 +30,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.",
     izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Tienen 24 horas para hacer las maletas", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+    der: { accion: "Tienen 24 horas para hacer maletas", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",
@@ -632,7 +632,7 @@ const CARTAS = [
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",
     texto: "Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.",
-    izq: { accion: "Prohíban las flores ese día", efectos: { ejercito: 6, pueblo: -6 } },
+    izq: { accion: "Prohíban tirar flores al mar", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 2 } }
   },
   {
@@ -640,8 +640,8 @@ const CARTAS = [
     id: "campos_trabajo", era: 2, tipo: "sorteo", peso: 14, titulo: "Los campos de trabajo",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.",
-    izq: { accion: "El trabajo les hará hombres", efectos: { ejercito: 6, pueblo: -7 }, banderas: ["base.campos_trabajo"] },
-    der: { accion: "Que lleven el pelo como quieran", largaAutorizada: true, efectos: { ejercito: -6, pueblo: 7 } }
+    izq: { accion: "Que el trabajo los haga hombres", efectos: { ejercito: 6, pueblo: -7 }, banderas: ["base.campos_trabajo"] },
+    der: { accion: "Que lleven el pelo como quieran", efectos: { ejercito: -6, pueblo: 7 } }
   },
   /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {

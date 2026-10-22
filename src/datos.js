@@ -265,7 +265,7 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros barcos rodearán su costa hasta que retire los misiles.",
     izq: { accion: "Que disfruten de la vista", efectos: { ejercito: 6, potencias: -6, pueblo: -3, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Tranquilo, los retiraremos", efectos: { ejercito: -6, potencias: 6, crisis: -1 } }
+    der: { accion: "Tranquilo, mañana no estarán", efectos: { ejercito: -6, potencias: 6, crisis: -1 } }
   },
 
   {

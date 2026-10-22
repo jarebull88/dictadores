@@ -51,7 +51,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.",
     izq: { accion: "Denle el Estado Mayor", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
-    der: { accion: "Embajador, lejos del Ejército", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
+    der: { accion: "Embajador en el país más lejano", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
   },
   {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",

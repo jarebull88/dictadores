@@ -570,7 +570,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "El documental de la Revolución está listo, pero en las tomas de la sierra se le ve algo rellenito.",
     izq: { accion: "Reescribir la biografía.", remate: "La Historia la escriben los vencedores, y nosotros vencimos.", efectos: { elite: 4, pueblo: -3 } },
-    der: { accion: "Dejarla como está.", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -3, pueblo: 3 } }
+    der: { accion: "La hamaca fue mi trinchera", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "mausoleo", era: 4, tipo: "sorteo", peso: 8, titulo: "El mausoleo",
@@ -596,16 +596,16 @@ const CARTAS = [
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros empezarán a designarse solos.",
-    izq: { accion: "Designar sucesor.", remate: "El sucesor debe aprender a esperar; yo tuve que hacerlo.", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.sucesor_designado"] },
+    texto: "El Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros se designarán solos.",
+    izq: { accion: "Designo sucesor a mi hermano", remate: "El sucesor debe aprender a esperar; yo tuve que hacerlo.", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.sucesor_designado"] },
     der: { accion: "Sin sucesor.", remate: "Un líder eterno no necesita explicar quién viene después.", efectos: { elite: -3, ejercito: 4 } }
   },
   {
     id: "beso_fraterno", era: 3, tipo: "sorteo", peso: 8, titulo: "El beso fraterno",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro máximo dirigente desea un abrazo fraternal con usted ante las cámaras. Será una foto para la Historia.",
-    izq: { accion: "Abrazo y beso.", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Apretón de manos.", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -5, elite: 2 } }
+    izq: { accion: "Abrazo que todos digan «¡Ohhh!»", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 6, elite: -3 } },
+    der: { accion: "Apretón de manos, que hace calor", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -5, elite: 2 } }
   },
   {
     id: "viaje_oficial", era: 3, tipo: "sorteo", peso: 8, titulo: "El viaje oficial",

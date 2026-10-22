@@ -478,7 +478,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Las Fuerzas Armadas esperan un desfile mayor que el del año pasado: más tanques y más soldados.",
     izq: { accion: "Desfile por todo lo alto", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 7, pueblo: -5, crisis: 2 } },
-    der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -6, pueblo: 4 } }
+    der: { accion: "Desfile austero, con lo que haya", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -6, pueblo: 4 } }
   },
   {
     id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
@@ -512,15 +512,15 @@ const CARTAS = [
     id: "titulares", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.periodista_oficial"] }, titulo: "Los titulares",
     personaje: "Ministra de Cultura",
     texto: "El periódico oficial pide titulares más generosos con usted. Ayer solo le dedicó tres páginas.",
-    izq: { accion: "Seis páginas diarias.", remate: "El Pueblo merece seis páginas diarias de buenas noticias.", efectos: { elite: 5, pueblo: -3 } },
-    der: { accion: "Tres páginas bastan.", remate: "El Pueblo ya conoce mi obra; no hace falta repetirla tanto.", efectos: { elite: -4, pueblo: 3 } }
+    izq: { accion: "Seis páginas y el horóscopo", remate: "El Pueblo merece seis páginas diarias de buenas noticias.", efectos: { elite: 5, pueblo: -3 } },
+    der: { accion: "Con tres páginas es suficiente", remate: "El Pueblo ya conoce mi obra; no hace falta repetirla tanto.", efectos: { elite: -4, pueblo: 3 } }
   },
   {
     id: "presos_agenda", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.criticos_detenidos"] }, titulo: "Los presos en la agenda",
     personaje: "Embajador de la potencia del norte",
-    texto: "Una organización extranjera publica la lista de sus presos políticos. Nuestro país pide su liberación como gesto de buena voluntad.",
-    izq: { accion: "Liberar a algunos.", remate: "Liberemos a los más ancianos para no gastar en entierros.", efectos: { potencias: 6, ejercito: -5, pueblo: 3, elite: -3 } },
-    der: { accion: "Negar que existan.", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -6, ejercito: 5, pueblo: -3, elite: 2 } }
+    texto: "Una organización extranjera publicó una lista de presos políticos. Podríamos liberarlos como gesto de buena voluntad.",
+    izq: { accion: "Liberaré a algunos, por mi cumple", remate: "Liberemos a los más ancianos para no gastar en entierros.", efectos: { potencias: 6, ejercito: -5, pueblo: 3, elite: -3 } },
+    der: { accion: "¿Qué presos? Que revisen su lista", remate: "En mi país no hay presos políticos, solo ciudadanos confundidos.", efectos: { potencias: -6, ejercito: 5, pueblo: -3, elite: 2 } }
   },
   {
     id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
@@ -532,9 +532,9 @@ const CARTAS = [
   {
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
     personaje: "Ministro de Comercio",
-    texto: "El mercado paralelo vende más que las tiendas del Estado. Algunos funcionarios ya cobran en especie y otros, en dólares.",
+    texto: "El mercado paralelo ya vende más que las tiendas del Estado, y algunos funcionarios cobran en divisas.",
     izq: { accion: "Legalizar el mercado.", remate: "Si el Pueblo compra allí, será mejor que tribute aquí.", efectos: { pueblo: 6, elite: -5, crisis: -1 } },
-    der: { accion: "Perseguir a los vendedores.", remate: "La escasez también debe tener licencia.", efectos: { pueblo: -6, elite: 3, ejercito: 3, crisis: 1 } }
+    der: { accion: "Persigan a los vendedores", remate: "La escasez también debe tener licencia.", efectos: { pueblo: -6, elite: 3, ejercito: 3, crisis: 1 } }
   },
 
   {

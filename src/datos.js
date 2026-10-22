@@ -626,7 +626,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Algunos opositores celebraron el atentado del avión. Los tenemos localizados.",
     izq: { accion: "Que celebren en la cárcel", efectos: { ejercito: 7, pueblo: -6 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
-    der: { accion: "Que los vecinos les den la respuesta", efectos: { pueblo: 3, ejercito: -3 } }
+    der: { accion: "Que los vecinos les den la respuesta", efectos: { elite: 4, pueblo: -3 } }
   },
   {
     id: "la_investigacion", era: 3, tipo: "cola", titulo: "La investigación",
@@ -669,22 +669,22 @@ const CARTAS = [
     id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su hermano ya recibe embajadores en su despacho y reparte sus propios retratos por las escuelas.",
-    izq: { accion: "En los retratos solo salgo yo", efectos: { elite: -5, crisis: 1 } },
-    der: { accion: "Que gobierne él y yo le corrijo", efectos: { elite: 5, ejercito: -2 } }
+    izq: { accion: "En los retratos solo salgo yo", efectos: { ejercito: -5, crisis: 1 } },
+    der: { accion: "Que gobierne él y yo le corrijo", efectos: { ejercito: 5, elite: -3 } }
   },
   {
     id: "los_inocentes", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.oposicion_culpada"] }, titulo: "Los inocentes",
     personaje: "Embajador de la potencia del norte",
     texto: "Tenemos pruebas de que la oposición de dentro no tuvo nada que ver con lo del avión. Pedimos que se libere a los presos.",
-    izq: { accion: "Si los quieres, te los llevas", efectos: { potencias: 5, pueblo: 3, ejercito: -5 } },
+    izq: { accion: "Si los quieres, te los llevas", efectos: { potencias: 5, ejercito: -4 } },
     der: { accion: "Esas pruebas las fabricó su espionaje", efectos: { potencias: -5, ejercito: 4, pueblo: -3 } }
   },
   {
     id: "bombas_hoteles", era: 4, tipo: "sorteo", peso: 10, titulo: "Las bombas de los hoteles",
     personaje: "Ministro del Interior",
     texto: "Han estallado bombas en tres hoteles. El detenido confiesa que le pagaban desde el extranjero por cada bomba.",
-    izq: { accion: "Que los turistas no se enteren de nada", efectos: { ejercito: 5, pueblo: -3 } },
-    der: { accion: "Juicio para que lo vea el mundo", efectos: { potencias: -4, elite: 2 } }
+    izq: { accion: "Que los turistas no se enteren de nada", efectos: { ejercito: 3, potencias: 3, pueblo: -2 } },
+    der: { accion: "Juicio para que lo vea el mundo", efectos: { potencias: -5, elite: 3, crisis: 1 } }
   },
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 0,   // retirada (22 oct, Jorge): el mantenimiento antes de morir no tiene sentido; peso 0 = no sale
@@ -713,15 +713,15 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "El batallón especial ya ha llenado las cárceles. Pedimos más celdas y más sueldo para seguir así.",
     izq: { accion: "Más celdas y más sueldo", efectos: { ejercito: 6, pueblo: -4 } },
-    der: { accion: "Que el Partido mande a sus brigadas", efectos: { ejercito: -5, elite: 4 } }
+    der: { accion: "Que el Partido mande a sus brigadas", efectos: { elite: 5, ejercito: -4, pueblo: -2 } }
   },
 
   {
     id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.",
-    izq: { accion: "Apunten quién se pelea por mi silla", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Daré un discurso de siete horas", efectos: { ejercito: 3, elite: -3 } }
+    izq: { accion: "Apunten quién se pelea por mi silla", efectos: { ejercito: 4, elite: -5 } },
+    der: { accion: "Daré un discurso de siete horas", efectos: { elite: 3, crisis: -1 } }
   },
   {
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
@@ -748,7 +748,7 @@ const CARTAS = [
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Ha ganado el «Sí» a las elecciones libres, pero el resultado aún no es oficial.",
-    izq: { accion: "Elecciones con un solo candidato", efectos: { pueblo: 6, elite: -4, ejercito: -2 }, banderas: ["base.derrota_aceptada"] },
+    izq: { accion: "Elecciones con un solo candidato", efectos: { pueblo: 3, elite: 2, crisis: 2 }, banderas: ["base.derrota_aceptada"] },
     der: { accion: "Cuenten hasta que gane el No", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
   },
   {
@@ -763,7 +763,7 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
     izq: { accion: "Guárdenme la casa por si acaso", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
+    der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, elite: 3 } }
   },
   {
     id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias",
@@ -783,8 +783,8 @@ const CARTAS = [
     id: "la_cuenta", era: 4, tipo: "sorteo", peso: 10, titulo: "La cuenta en el extranjero",
     personaje: "Ministro de Economía",
     texto: "Una revista extranjera dice que es usted de los más ricos del mundo.",
-    izq: { accion: "Dimito si encuentran un dólar", efectos: { pueblo: -4, elite: 3 } },
-    der: { accion: "Calumnias pagadas por el imperio", efectos: { potencias: -5, elite: 2, crisis: -1 } }
+    izq: { accion: "Dimito si encuentran un dólar", efectos: { pueblo: 3, crisis: 1 } },
+    der: { accion: "Calumnias pagadas por el imperio", efectos: { potencias: -4, elite: 2 } }
   },
   {
     id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria",
@@ -832,8 +832,8 @@ const CARTAS = [
     id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "Los cinco", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Hemos detenido a cinco agentes suyos infiltrados en nuestro país. Los juzgaremos como espías.",
-    izq: { accion: "Volverán: eso se lo aseguro", efectos: { ejercito: -6, elite: 3 } },
-    der: { accion: "Hablemos de un canje discreto", efectos: { ejercito: 5, elite: -3 } }
+    izq: { accion: "Volverán: eso se lo aseguro", efectos: { elite: 4, potencias: -4 } },
+    der: { accion: "Hablemos de un canje discreto", efectos: { potencias: 4, elite: -2 } }
   },
   {
     id: "el_general_heroe", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "El general héroe", ilustracion: null,

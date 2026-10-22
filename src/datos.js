@@ -691,7 +691,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Interior ya tiene más efectivos que el Ejército, y mis oficiales preguntan quién manda aquí.",
     izq: { accion: "Que el Interior reduzca su plantilla", efectos: { ejercito: -5, pueblo: 3 } },
-    der: { accion: "Más tanques al Ejército.", remate: "Si sobran tanques, que sobren en los dos lados.", efectos: { ejercito: 3, pueblo: -4 } }
+    der: { accion: "Manda quien más vigila: el Interior", efectos: { ejercito: 3, pueblo: -4 } }
   },
 
   {
@@ -711,7 +711,7 @@ const CARTAS = [
   {
     id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El Ejército quiere concederle su máxima condecoración. Sería la número ochenta y tres.",
+    texto: "El Ejército quiere darle su condecoración número ochenta y tres. Ya no le cabe en el chándal.",
     izq: { accion: "Aceptarla.", remate: "La modestia también necesita sitio en el pecho.", efectos: { elite: 2 } },
     der: { accion: "Rechazarla.", remate: "Ochenta y dos bastan para un hombre humilde.", efectos: { ejercito: 5, crisis: 1 } }
   },

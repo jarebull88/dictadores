@@ -401,23 +401,23 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Cada semana huyen más familias en balsas. Las patrullas no dan abasto.",
     izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
+    der: { accion: "Dejen que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
   },
 
   {
     id: "embargo_total", tipo: "sorteo", peso: 14, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total",
     personaje: "Ministro de Comercio",
     texto: "El embargo ya es total: no entran comida, medicinas ni repuestos.",
-    izq: { accion: "Racionen: una libreta por familia", largaAutorizada: true, efectos: { pueblo: -4, elite: 3, crisis: -1 } },
-    der: { accion: "Que un país amigo nos lo revenda", largaAutorizada: true, efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
+    izq: { accion: "Libreta de racionamiento por familia", efectos: { pueblo: -4, elite: 3, crisis: -1 } },
+    der: { accion: "Que un país amigo nos revenda", efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
   },
 
   {
     id: "deuda_llama", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.compensaciones", "base.deuda_externa"] }, titulo: "La deuda llama",
     personaje: "Ministro de Economía",
     texto: "Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.",
-    izq: { accion: "Paguen, aunque no comamos", efectos: { potencias: 5, pueblo: -5 } },
-    der: { accion: "No pagamos a explotadores", efectos: { potencias: -6, elite: 2 } }
+    izq: { accion: "Paguen aunque el Pueblo no coma", efectos: { potencias: 5, pueblo: -5 } },
+    der: { accion: "No se le paga al explotador", efectos: { potencias: -6, elite: 2 } }
   },
 
   {

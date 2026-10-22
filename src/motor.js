@@ -383,8 +383,8 @@ function aplicar(c, op) {
   E.vistas.add(c.id);
   E.ultima[c.id] = E.turno;
   E.turno++;
-  const [m0, m1] = MESES_POR_CARTA[E.era] || MESES_POR_CARTA[1];
-  E.meses += m0 + Math.floor(Math.random() * (m1 - m0 + 1));
+  // 22 oct: cada era dura lo mismo tenga las cartas que tenga: sus meses se reparten entre sus cartas (±15 %)
+  E.meses += Math.max(1, Math.round((MESES_ERA[E.era] || MESES_ERA[1]) / E.N * (0.85 + Math.random() * 0.3)));
   avanzarEstados();
 }
 
@@ -995,9 +995,10 @@ function siguiente() {
   mostrarAvisoPendiente();
 }
 
-/* Meses que pasan con cada carta, según la era (16 oct): siguen la cronología de la Revolución (1959–2006).
-   Era 1 (8–10 cartas) ≈ 4 años · era 2 (6–8) ≈ 8 · era 3 ≈ 15 · era 4 ≈ 21: una partida entera, unos 48 años. */
-const MESES_POR_CARTA = { 1: [5, 6], 2: [12, 16], 3: [22, 30], 4: [30, 42] };
+/* Duración de cada era en meses (22 oct; antes, meses fijos por carta): siguen la cronología de la Revolución
+   (1959–2006): era 1 ≈ 4 años · era 2 ≈ 8 · era 3 ≈ 15 · era 4 ≈ 21; una partida entera, unos 48 años. Se reparten entre
+   las cartas de la era, así que si una era gana cartas (más adelante, hasta 15 o más), cada carta pasa a contar menos tiempo. */
+const MESES_ERA = { 1: 48, 2: 96, 3: 180, 4: 252 };
 function anios() { return Math.floor((E.meses || 0) / 12); }
 
 /* Paso de era (16 oct): arriba solo cabe una frase (≤100 caracteres; provisional, la editará Jorge); el resto va

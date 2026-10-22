@@ -457,14 +457,14 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido ha diseñado un monumento de cuarenta metros en su honor. Visible desde todos los barrios y la costa.",
     izq: { accion: "Cuarenta metros, ni uno menos", remate: "Me conmueve que el Pueblo me vea como a un padre.", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
-    der: { accion: "Monumento modesto.", remate: "El Pueblo no necesita mármol para saber quién lo protege.", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
+    der: { accion: "Que el dinero se gaste en escuelas", remate: "El Pueblo no necesita mármol para saber quién lo protege.", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
   },
   {
     id: "pedestal", era: 3, tipo: "cola", titulo: "El pedestal",
     personaje: "Ministro de Economía",
-    texto: "El pedestal costó el doble de lo previsto y el bronce llegó incompleto: la estatua tiene un solo brazo.",
-    izq: { accion: "Terminar la estatua.", remate: "El Padre de la Patria no puede aparecer manco.", efectos: { elite: 4, pueblo: -4, crisis: 2 } },
-    der: { accion: "Dejarla con un brazo.", remate: "Un gesto de humildad también educa al Pueblo.", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
+    texto: "El monumento costó el doble y no se terminó: la estatua tiene un solo brazo.",
+    izq: { accion: "Termínenla, cueste lo que cueste", remate: "El Padre de la Patria no puede aparecer manco.", efectos: { elite: 4, pueblo: -4, crisis: 2 } },
+    der: { accion: "Un brazo basta para saludar", remate: "Un gesto de humildad también educa al Pueblo.", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
   },
   {
     id: "modestia_sospechosa", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.modestia_aparente"] }, titulo: "La modestia sospechosa",

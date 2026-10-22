@@ -955,7 +955,7 @@ const FUTURO = {
   "base.jefe_poderoso": "El Ministro del Interior pide cada vez más poder.",
   "base.sucesor_designado": "El sucesor empieza a hacerse notar.",
   "base.oposicion_culpada": "La oposición recuerda al acusado injusto.",
-  "base.mausoleo_construido": "Un edificio eterno que hay que mantener.",
+  "base.mausoleo_construido": "La roca eterna espera a su inquilino.",
   "base.palacio_del_pueblo": "Las deudas del palacio siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldos y más cárceles.",
   "base.atentado_investigado": "Tus agentes en el exilio corren peligro."

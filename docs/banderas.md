@@ -34,7 +34,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |
 | `libro_obligatorio` | El libro de texto (A) | — | — |
-| `mausoleo_construido` | El mausoleo (A) | El mausoleo vacío | Un edificio eterno que hay que mantener. (era 4) |
+| `mausoleo_construido` | El mausoleo (A) | El mausoleo vacío | La roca eterna espera a su inquilino. (era 4) |
 | `mercado_paralelo` | Las arcas vacías (A); La factura (A); Las tiendas vacías (B) | El mercado mayor | Una economía que escapa a tu control. (era 3) |
 | `misiles_instalados` | Los nuevos vecinos (A) | Los satélites | Una potencia vecina vigila tus misiles. (era 2) |
 | `misiles_rechazados` | Los nuevos vecinos (B) | El aliado enfadado | El aliado recuerda tu negativa. (era 2) |

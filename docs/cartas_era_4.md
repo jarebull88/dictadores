@@ -24,7 +24,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Seré una piedra eterna** Élite +4 · Pueblo −4 · Crisis +2 · Bandera: `mausoleo_construido`
 - **B. Entiérrenme como viví: con humildad** Élite −3 · Crisis −1
 
-**Consecuencia futura de `mausoleo_construido`:** Un edificio eterno que hay que mantener.
+**Consecuencia futura de `mausoleo_construido`:** La roca eterna espera a su inquilino.
 
 ### 3. El reportaje
 

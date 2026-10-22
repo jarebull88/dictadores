@@ -84,7 +84,7 @@ const CARTAS = [
     // 22 oct: Camilo Cienfuegos (oct. 1959), que desaparece con su avión al volver de relevar a Matos
     id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Diezfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El general Diezfuegos, el más querido de la tropa, volvía de relevar a Mota y su avión no ha llegado.",
+    texto: "El general Diezfuegos, el más querido de la tropa, fue a relevar a Mota y su avión no ha vuelto.",
     izq: { accion: "Búsquenlo aunque sequemos el mar", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
     der: { accion: "Tres días de luto y todos a trabajar", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
   },

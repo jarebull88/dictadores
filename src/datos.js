@@ -525,9 +525,9 @@ const CARTAS = [
   {
     id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
     personaje: "Ministro de Economía",
-    texto: "El acreedor aplazará el pago a cambio de un favor: nuestro voto en los foros internacionales durante años.",
+    texto: "El acreedor aplazará la deuda a cambio de nuestro voto en los foros internacionales durante años.",
     izq: { accion: "Vender nuestro voto.", remate: "La diplomacia también sirve para pagar deudas.", efectos: { potencias: 7, elite: -2, crisis: -2 } },
-    der: { accion: "Pagar con lo que haya.", remate: "La Revolución honra sus deudas, aunque el Pueblo pague la cuenta.", efectos: { potencias: -7, elite: 3, pueblo: -5, crisis: 1 } }
+    der: { accion: "Racionar más hasta pagar la deuda", efectos: { potencias: -7, elite: 3, pueblo: -5, crisis: 1 } }
   },
   {
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
@@ -577,7 +577,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido ruega prever un mausoleo para cuando le llegue la hora. Los embalsamadores ya están en nómina.",
     izq: { accion: "Construir el mausoleo.", remate: "La Historia merece un lugar donde visitarme.", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
-    der: { accion: "Sepultura sencilla.", remate: "No hace falta pensar en mi tumba mientras sigo dando órdenes.", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
+    der: { accion: "Enterrarme sin avisar a nadie", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
   },
   {
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
@@ -647,9 +647,9 @@ const CARTAS = [
   {
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
     personaje: "Ministra de Cultura",
-    texto: "Un periódico al que usted dejó publicar ha destapado las cuentas del palacio. Se vende en todos los quioscos.",
-    izq: { accion: "Cerrar el periódico.", remate: "La libertad de prensa también tiene horario de cierre.", efectos: { pueblo: -6, ejercito: 4 } },
-    der: { accion: "Despedir a un ministro.", remate: "Alguien tendrá que haber firmado esas cuentas.", efectos: { pueblo: 3, elite: -6 } }
+    texto: "Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.",
+    izq: { accion: "Cerrar el periódico por falta de papel", efectos: { pueblo: -6, ejercito: 4 } },
+    der: { accion: "Culpar a un ministro y despedirlo", efectos: { pueblo: 3, elite: -6 } }
   },
   {
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",

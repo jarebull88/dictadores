@@ -146,22 +146,22 @@ const CARTAS = [
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
     personaje: "Ministra de Educación",
     texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
-    izq: { accion: "Buen viaje, niños", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
-    der: { accion: "Nadie se lleva a nuestros niños", largaAutorizada: true, efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
+    izq: { accion: "Dejen salir a los niños", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
+    der: { accion: "Nadie se lleva a nuestros niños", efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
   },
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",
     personaje: "Ministro de Economía",
     texto: "Que los inquilinos dejen de pagar al casero: el Estado cobrará la mitad y la casa será suya.",
     izq: { accion: "Cada casa, para quien la vive", efectos: { pueblo: 8, elite: 4 } },
-    der: { accion: "Los contratos se respetan", efectos: { pueblo: -8, elite: -4 } }
+    der: { accion: "Los caseros mantienen sus casas", efectos: { pueblo: -8, elite: -4 } }
   },
   {
     id: "milicias", tipo: "sorteo", peso: 6, titulo: "Las milicias",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los barrios piden fusiles para defender la Revolución por su cuenta.",
-    izq: { accion: "Milicias en cada barrio", efectos: { pueblo: 6, ejercito: -6 } },
-    der: { accion: "Las armas solo para los soldados", largaAutorizada: true, efectos: { pueblo: -6, ejercito: 6 } }
+    izq: { accion: "Que el Pueblo se arme", efectos: { pueblo: 6, ejercito: -6 } },
+    der: { accion: "Las armas solo son para el Ejército", efectos: { pueblo: -6, ejercito: 6 } }
   },
   {
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",

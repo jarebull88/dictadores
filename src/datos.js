@@ -619,14 +619,14 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos.",
     izq: { accion: "Funeral con un millón en la plaza", efectos: { pueblo: 4, elite: 2 }, encolar: [{ carta: "los_que_celebran", min: 1, max: 2 }] },
-    der: { accion: "Infiltren agentes en el extranjero", efectos: { ejercito: 4, potencias: -3 }, banderas: ["base.atentado_investigado"] }
+    der: { accion: "Habrá que defenderse infiltrándolos", efectos: { ejercito: 4, potencias: -3 }, banderas: ["base.atentado_investigado"] }
   },
   {
     id: "los_que_celebran", era: 3, tipo: "cola", titulo: "Los que celebran",
     personaje: "Ministro del Interior",
     texto: "Algunos opositores celebraron el atentado del avión. Los tenemos localizados.",
     izq: { accion: "Que celebren en la cárcel", efectos: { ejercito: 7, pueblo: -6 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
-    der: { accion: "Que celebren: el Pueblo ya los vio", efectos: { pueblo: 3, ejercito: -3 } }
+    der: { accion: "Que los vecinos les den la respuesta", efectos: { pueblo: 3, ejercito: -3 } }
   },
   {
     id: "la_investigacion", era: 3, tipo: "cola", titulo: "La investigación",

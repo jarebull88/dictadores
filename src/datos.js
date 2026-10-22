@@ -247,7 +247,7 @@ const CARTAS = [
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Para el aniversario de la Revolución, el Ejército pide tanques y el Pueblo ron. No hay para ambos.",
+    texto: "Se acerca el aniversario de la Revolución. El Ejército quiere desfilar con tanques nuevos y el Pueblo quiere ron. No hay para ambos.",
     izq: { accion: "Que aplaudan a los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
     der: { accion: "Repartan ron en mi nombre", efectos: { pueblo: 7, ejercito: -8 } }
   },
@@ -271,7 +271,7 @@ const CARTAS = [
   {
     id: "mano_norte", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte",
     personaje: "Embajador de la potencia del norte",
-    texto: "Le daremos créditos y comercio si se porta bien y nos deja auditarle.",
+    texto: "Nuestro país ofrece créditos y comercio si acepta una auditoría de sus cuentas.",
     izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
     der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 4, elite: 4 } }
   },
@@ -279,8 +279,8 @@ const CARTAS = [
   {
     id: "potencias_enfadan", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.juicios_publicos"] }, titulo: "Las potencias se enfadan",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país pide garantías para los acusados de sus juicios públicos que aún esperan sentencia.",
-    izq: { accion: "Tendrán abogados «de confianza»", efectos: { potencias: 7, elite: -3 } },
+    texto: "Exigimos que los acusados de sus juicios públicos tengan defensa y garantías antes de la sentencia.",
+    izq: { accion: "Que se les asignen abogados", efectos: { potencias: 7, elite: -3 } },
     der: { accion: "Los juicios son asunto nuestro", efectos: { potencias: -7, ejercito: 4, elite: 3 } }
   },
 
@@ -289,7 +289,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
     izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 3, elite: 4 } },
-    der: { accion: "Son agentes del imperialismo", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
+    der: { accion: "Acúsenlos de agentes extranjeros", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
   {

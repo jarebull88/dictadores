@@ -60,5 +60,24 @@ Ideas transversales: **el archivo del tirano** (lo que se llevó al huir y que a
 - Hay que pensar cuántas purgas permite el juego y qué pasa si te quedas sin gabinete.
 - Cómo afecta exactamente al gameplay se decidirá más adelante; por ahora es solo una idea (Jorge, 17 oct).
 
+### 4. Logros desbloqueables (22 oct, Jorge)
+Recompensas por decisiones concretas, que se guardan entre partidas, como una colección de carnés y medallas del régimen. Ejemplo de Jorge: si haces la zafra de los diez millones, consigues **«el carnet de machetero»**. Otras ideas en la misma línea: la libreta de abastecimiento (racionar), la medalla al mérito de la sierra (sobrevivir a la era 1), el diploma de la campaña de alfabetización, el carnet del comité de barrio (crear los comités de vigilancia). Encaja con la estética de manualidad: cada logro, un carnet o una medalla de papel recortado.
+
+Más logros basados en hechos reales (en el juego, sin nombres de países ni personas reales):
+- **Carnet de miliciano** (era 1): armar las milicias de barrio (las Milicias Nacionales Revolucionarias, 1959).
+- **Diploma de brigadista** (era 1): la campaña de alfabetización; en la real, los brigadistas eran adolescentes con un farol (como Hortensia).
+- **Medalla de la bahía** (era 1): derrotar la invasión; y si cambias a los prisioneros por compotas, el **vale de compota** (Girón, 1961; se canjearon por medicinas y comida para bebés).
+- **Llave del misil** (era 1): aceptar los misiles y aguantar el ultimátum (crisis de octubre, 1962).
+- **Billete de avión de ida** (era 1): dejar salir a los niños (Operación Peter Pan).
+- **Carnet de la escuela al campo** (era 3): mandar a los estudiantes a trabajar en el campo (1971).
+- **Diploma de microbrigadista** (era 3): construir viviendas con brigadas de trabajadores (años setenta).
+- **Papeleta del 97 %** (era 3): ganar un plebiscito con un resultado imposible (la Constitución de 1976 se aprobó con el 97,7 %).
+- **Pase del puerto** (era 3): abrir el puerto para que se vaya quien quiera (Mariel, 1980).
+- **Diploma de oyente** (cualquier era): aguantar el discurso más largo; el récord real pasó de siete horas.
+- **Medalla de héroe, retirada** (era 4): juzgar al general héroe (el juicio de 1989).
+- **Bicicleta de importación** (era 4): «Iremos en bicicleta», en la crisis tras perder al aliado (Período Especial, años noventa).
+- **Billete verde con permiso** (era 4): legalizar la moneda extranjera (1993).
+- **Neumático de balsa** (era 4): dejar salir a los balseros (crisis de 1994).
+
 ### Otras ideas de la misma lista (no elegidas por ahora)
 Portada del periódico del régimen al acabar cada era («la versión oficial»), álbum de cromos de caídas y esquelas, sucesión (la siguiente partida la juega el hermano), el discurso (mantener pulsado para hablar), lo que dice la calle (pintadas y chistes en el fondo), el sello de goma APROBADO/DENEGADO, la cartilla de racionamiento como recurso, récords, guardar a mitad de partida, logros e idiomas.

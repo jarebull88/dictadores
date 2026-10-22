@@ -566,11 +566,11 @@ const CARTAS = [
     der: { accion: "Ese día, todos a trabajar", remate: "Prefiero que el Pueblo celebre nuestras conquistas, no mi cumpleaños.", efectos: { pueblo: -2, elite: -2, crisis: -1 } }
   },
   {
-    id: "biografia", era: 3, tipo: "sorteo", peso: 10, titulo: "La biografía oficial",
+    id: "biografia", era: 3, tipo: "sorteo", peso: 10, titulo: "El documental",
     personaje: "Ministra de Cultura",
-    texto: "Algunos historiadores dicen que usted no hizo la Revolución, sino que llegó al final. La biografía oficial está lista.",
-    izq: { accion: "Reescribir la biografía.", remate: "La Historia la escriben los vencedores, y nosotros vencimos.", efectos: { elite: 5, pueblo: -4 } },
-    der: { accion: "Dejarla como está.", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -4, pueblo: 4 } }
+    texto: "El documental de la Revolución está listo, pero en las tomas de la sierra se le ve algo rellenito.",
+    izq: { accion: "Reescribir la biografía.", remate: "La Historia la escriben los vencedores, y nosotros vencimos.", efectos: { elite: 4, pueblo: -3 } },
+    der: { accion: "Dejarla como está.", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
     id: "mausoleo", era: 4, tipo: "sorteo", peso: 8, titulo: "El mausoleo",

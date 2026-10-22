@@ -781,8 +781,8 @@ const CARTAS = [
   {
     id: "huelga_general", era: 4, tipo: "sorteo", peso: 10, titulo: "La revuelta",
     personaje: "Ministro del Interior",
-    texto: "Miles de personas han salido al paseo marítimo gritando contra usted.",
-    izq: { accion: "Manden a las tropas especiales", efectos: { ejercito: 6, pueblo: -6 } },
+    texto: "El paseo marítimo está lleno de gente que grita contra usted y de balsas hechas con neumáticos.",
+    izq: { accion: "Bajaré con las tropas especiales", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Abran la costa al que quiera irse", efectos: { pueblo: -5, potencias: 4, crisis: -3 } }
   },
   {
@@ -824,7 +824,7 @@ const CARTAS = [
     id: "el_general_heroe", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "El general héroe", ilustracion: null,
     personaje: "Ministro del Interior",
     texto: "El general más condecorado está preso por contrabando. Cuando declare, dirá quién lo autorizó.",
-    izq: { accion: "Juicio en directo y paredón", efectos: { ejercito: -6, elite: 3, pueblo: -2 } },
+    izq: { accion: "Que asuma toda la culpa en directo", efectos: { ejercito: -6, elite: 3, pueblo: -2 } },
     der: { accion: "Finca con vistas y boquita cerrada", efectos: { ejercito: 5, elite: -2, crisis: 1 } }
   },
   {

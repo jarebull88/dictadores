@@ -247,9 +247,9 @@ const CARTAS = [
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Se acerca el aniversario de la Revolución. El Ejército quiere desfilar con tanques nuevos y el Pueblo quiere ron. No hay para ambos.",
-    izq: { accion: "Que aplaudan a los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
-    der: { accion: "Repartan ron en mi nombre", efectos: { pueblo: 7, ejercito: -8 } }
+    texto: "Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.",
+    izq: { accion: "Que desfilen los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
+    der: { accion: "Ron para el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
   },
 
   {
@@ -303,15 +303,15 @@ const CARTAS = [
   {
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
-    texto: "Los campesinos tienen tierra, pero no semillas ni tractores. La cosecha ha caído a la mitad.",
+    texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
     izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -5, elite: 3 } },
-    der: { accion: "Importen la canasta básica", efectos: { pueblo: 6, potencias: 5 } }
+    der: { accion: "Empiecen a importar comida", efectos: { pueblo: 6, potencias: 5 } }
   },
 
   {
     id: "periodista_oficial", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.censura_previa"] }, titulo: "El periodista oficial",
     personaje: "Ministra de Cultura",
-    texto: "Nadie cree los periódicos, pero sí los rumores. Propongo un periodista oficial que los desmienta.",
+    texto: "La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.",
     izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
     der: { accion: "Apunten quién los repite", efectos: { pueblo: -6, elite: -3, ejercito: 5 } }
   },
@@ -353,7 +353,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
     izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -3, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Denegado", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
+    der: { accion: "Que la policía se vigile sola", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
   {

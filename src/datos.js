@@ -718,7 +718,7 @@ const CARTAS = [
   {
     id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El Ejército quiere darle su medalla número ochenta y tres. Los generales esperan las suyas, con pensión.",
+    texto: "Los generales quieren lo que usted tiene: medallas en el pecho y una pensión para toda la vida.",
     izq: { accion: "Medalla y pensión para cada general", efectos: { ejercito: 5, crisis: 1 } },
     der: { accion: "Mi chándal es el único condecorado", efectos: { elite: 3, ejercito: -3 } }
   },

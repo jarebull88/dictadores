@@ -583,8 +583,8 @@ const CARTAS = [
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
     personaje: "Ministro de Economía",
     texto: "El nuevo palacio costará cinco años de presupuesto y exige derribar tres barrios enteros.",
-    izq: { accion: "Derribar los barrios.", remate: "Una gran Revolución necesita un palacio a su altura.", efectos: { elite: 6, ejercito: 2, pueblo: -8, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
-    der: { accion: "Buscar otro solar.", remate: "El palacio puede esperar; los vecinos viven ahí.", efectos: { elite: -6, ejercito: -2, pueblo: 8, crisis: -1 } }
+    izq: { accion: "Derribar los barrios.", remate: "Una gran Revolución necesita un palacio a su altura.", efectos: { elite: 3, pueblo: -6, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
+    der: { accion: "Buscar otro solar.", remate: "El palacio puede esperar; los vecinos viven ahí.", efectos: { pueblo: 4, crisis: -1 } }
   },
   {
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
@@ -597,15 +597,15 @@ const CARTAS = [
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros empezarán a designarse solos.",
-    izq: { accion: "Designar sucesor.", remate: "El sucesor debe aprender a esperar; yo tuve que hacerlo.", efectos: { elite: 6, ejercito: -5, potencias: 2 }, banderas: ["base.sucesor_designado"] },
-    der: { accion: "Sin sucesor.", remate: "Un líder eterno no necesita explicar quién viene después.", efectos: { elite: -6, ejercito: 5, potencias: -2 } }
+    izq: { accion: "Designar sucesor.", remate: "El sucesor debe aprender a esperar; yo tuve que hacerlo.", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.sucesor_designado"] },
+    der: { accion: "Sin sucesor.", remate: "Un líder eterno no necesita explicar quién viene después.", efectos: { elite: -3, ejercito: 4 } }
   },
   {
     id: "beso_fraterno", era: 3, tipo: "sorteo", peso: 8, titulo: "El beso fraterno",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro máximo dirigente desea un abrazo fraternal con usted ante las cámaras. Será una foto para la Historia.",
-    izq: { accion: "Abrazo y beso.", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 7, pueblo: -5, elite: -2 } },
-    der: { accion: "Apretón de manos.", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -7, pueblo: 5, elite: 2 } }
+    izq: { accion: "Abrazo y beso.", remate: "Que la Historia vea que la Revolución tiene amigos poderosos.", efectos: { potencias: 6, elite: -3 } },
+    der: { accion: "Apretón de manos.", remate: "Una mano firme también puede estrecharse sin besar.", efectos: { potencias: -5, elite: 2 } }
   },
   {
     id: "viaje_oficial", era: 3, tipo: "sorteo", peso: 8, titulo: "El viaje oficial",

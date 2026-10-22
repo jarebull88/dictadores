@@ -304,7 +304,7 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -5, elite: 3 } },
+    izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -5, elite: 5 } },
     der: { accion: "Empiecen a importar comida", efectos: { pueblo: 6, potencias: 5 } }
   },
 

@@ -1002,7 +1002,7 @@ const PREVISION = {
   "base.jefe_poderoso": "El ministro del Interior pide cada vez más poder.",
   "base.sucesor_designado": "El sucesor empieza a hacerse notar.",
   "base.oposicion_culpada": "La oposición recuerda al acusado injustamente.",
-  "base.mausoleo_construido": "El mausoleo cuesta una fortuna en mantenimiento.",
+  "base.mausoleo_construido": "Tu roca eterna ya espera inquilino.",
   "base.palacio_del_pueblo": "Las deudas del Palacio del Pueblo siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldo y más cárceles.",
   "base.atentado_investigado": "Tus agentes en el exilio corren peligro."

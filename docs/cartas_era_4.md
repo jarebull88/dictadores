@@ -73,7 +73,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 
 **Carta:** «Han estallado bombas en tres hoteles. El detenido confiesa que le pagaban desde el extranjero por cada bomba.»
 
-- **A. Que los turistas no se enteren de nada** Ejército +3 · Potencias +3 · Pueblo −2
+- **A. Que los turistas no se enteren** Ejército +3 · Potencias +3 · Pueblo −2
 - **B. Juicio para que lo vea el mundo** Potencias −5 · Élite +3 · Crisis +1
 
 ### 8. El mausoleo vacío
@@ -191,10 +191,10 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Un periodista extranjero quiere escribir sus memorias. La editorial del Estado las quiere para ella.»
+**Carta:** «Una editorial extranjera quiere publicar sus memorias. Piden cien horas de entrevista con usted.»
 
-- **A. Doce tomos, obligatorios en clase** Élite +4 · Pueblo −3
-- **B. Que me entreviste un extranjero** Potencias +3 · Élite −3
+- **A. El mundo merece conocerme** Potencias +3 · Élite +2
+- **B. No tengo tiempo, hay que gobernar** Élite −2
 
 ### 20. El hijo
 

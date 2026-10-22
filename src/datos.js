@@ -104,7 +104,7 @@ const CARTAS = [
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.",
-    izq: { accion: "Elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
+    izq: { accion: "Convoquen elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, elite: 5 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
@@ -112,14 +112,14 @@ const CARTAS = [
     personaje: "Ministra de Educación",
     texto: "Propongo una campaña de alfabetización: brigadas de jóvenes enseñando a leer en cada rincón.",
     izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10 } },
-    der: { accion: "Un Pueblo que lee pregunta", efectos: { pueblo: -10 } }
+    der: { accion: "Un Pueblo que lee pregunta demasiado", efectos: { pueblo: -10 } }
   },
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",
     personaje: "Ministra de Educación",
     texto: "Los colegios privados cobran por enseñar. Propongo que todas las escuelas sean del Estado.",
     izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: 5 } },
-    der: { accion: "Que cada familia elija su escuela", largaAutorizada: true, efectos: { pueblo: -7, elite: -5 } }
+    der: { accion: "Que pague quien quiera otra escuela", efectos: { pueblo: -7, elite: -5 } }
   },
   {
     id: "asesores", tipo: "sorteo", peso: 6, cond: { turnoMin: 2 }, titulo: "Los asesores",

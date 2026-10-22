@@ -248,15 +248,15 @@ const CARTAS = [
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.",
-    izq: { accion: "Que desfilen los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
-    der: { accion: "Ron para el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
+    izq: { accion: "Un gran desfile con tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
+    der: { accion: "Ron gratis para todo el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
   },
 
   {
     id: "nuevos_vecinos", tipo: "ancla", ventana: [8, 10], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país le ofrece misiles, instalados y apuntando a donde usted diga.",
-    izq: { accion: "Ahora sí nos respetarán", efectos: { ejercito: 6, potencias: 5, pueblo: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
+    izq: { accion: "Acepto y apúntenlos donde ya sabe", efectos: { ejercito: 6, potencias: 5, pueblo: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
     der: { accion: "Nuestro misil es el Pueblo", efectos: { ejercito: -6, potencias: -5, pueblo: 4 }, banderas: ["base.misiles_rechazados"] }
   },
 

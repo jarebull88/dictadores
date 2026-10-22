@@ -189,7 +189,7 @@ const CARTAS = [
     id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio",
     personaje: "Ministro del Interior",
     texto: "Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.",
-    izq: { accion: "Vecino vigila vecino", efectos: { ejercito: 6, elite: 4, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
+    izq: { accion: "Que cada vecino vigile a su vecino", efectos: { ejercito: 6, elite: 4, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
     der: { accion: "No necesitamos chivatos", efectos: { pueblo: 7, ejercito: -6, elite: -4 }, banderas: ["base.policia_tradicional"] }
   },
   {
@@ -197,14 +197,14 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido quiere su retrato en cada aula y una estatua en la plaza.",
     izq: { accion: "Si insisten…", efectos: { pueblo: -3, elite: 6, crisis: 1 }, banderas: ["base.culto_iniciado"] },
-    der: { accion: "Los monumentos son para los mártires", largaAutorizada: true, efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
+    der: { accion: "Los monumentos son para los mártires", efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
   },
   {
     id: "marchan", tipo: "sorteo", peso: 14, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan",
     personaje: "Ministro del Interior",
     texto: "Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.",
-    izq: { accion: "Que se vayan, sin el dinero", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite"] },
-    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
+    izq: { accion: "Que se vayan y dejen el dinero", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite"] },
+    der: { accion: "Nadie sale del país sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */

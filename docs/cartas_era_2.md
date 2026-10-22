@@ -2,17 +2,17 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.7.
+Duración: entre 6 y 8 cartas. 21 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 0.7.
 
 ### 1. El aniversario
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 2 de su era.
 
-**Carta:** «Para el aniversario de la Revolución, el Ejército pide tanques y el Pueblo ron. No hay para ambos.»
+**Carta:** «Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.»
 
-- **A. Que aplaudan a los tanques** Ejército +8 · Élite +4 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
-- **B. Repartan ron en mi nombre** Pueblo +7 · Ejército −8 · Élite −4
+- **A. Que desfilen los tanques** Ejército +8 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
+- **B. Ron para el Pueblo** Pueblo +7 · Ejército −8
 
 **Consecuencia futura de `desfile_militar`:** El Ejército espera cada año un desfile mayor.
 
@@ -21,10 +21,10 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `no_alineado`.
 
-**Carta:** «Le daremos créditos y comercio si se porta bien y nos deja auditarle.»
+**Carta:** «Nuestro país ofrece créditos y comercio si acepta una auditoría de sus cuentas.»
 
-- **A. Será un honor rendir cuentas** Potencias +8 · Élite −5 · Pueblo −5 · Crisis +1 · Bandera: `deuda_externa`
-- **B. Aquí solo audita el Pueblo** Potencias −8 · Pueblo +6 · Élite +4
+- **A. Será un honor rendir cuentas** Potencias +8 · Élite −5 · Crisis +1 · Bandera: `deuda_externa`
+- **B. Aquí solo audita el Pueblo** Potencias −8 · Pueblo +4 · Élite +4
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 
@@ -33,10 +33,10 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `juicios_publicos`.
 
-**Carta:** «Nuestro país pide garantías para los acusados de sus juicios públicos que aún esperan sentencia.»
+**Carta:** «Exigimos que los acusados de sus juicios públicos tengan defensa y garantías antes de la sentencia.»
 
-- **A. Tendrán abogados «de confianza»** Potencias +7 · Pueblo −6 · Élite +3
-- **B. Los juicios son asunto nuestro** Potencias −7 · Ejército +5 · Élite −3
+- **A. Que se les asignen abogados** Potencias +7 · Élite −3
+- **B. Los juicios son asunto nuestro** Potencias −7 · Ejército +4 · Élite +3
 
 ### 4. La voz del exilio
 
@@ -45,28 +45,28 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.»
 
-- **A. Apagón donde llegue la señal** Pueblo −6 · Ejército +4 · Élite +3
-- **B. Son agentes del imperialismo** Pueblo +5 · Potencias +4 · Élite −3
+- **A. Apagón donde llegue la señal** Pueblo −6 · Ejército +3 · Élite +4
+- **B. Acúsenlos de agentes extranjeros** Ejército +4 · Potencias −4 · Pueblo −3
 
 ### 5. El hambre
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `reforma_agraria`.
 
-**Carta:** «Los campesinos tienen tierra, pero no semillas ni tractores. La cosecha ha caído a la mitad.»
+**Carta:** «Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»
 
-- **A. La culpa es del imperialismo** Pueblo −6 · Élite +3 · Crisis −1
-- **B. Importen la canasta básica** Pueblo +6 · Potencias +5 · Crisis +2
+- **A. El Estado dará mejor uso a la tierra** Pueblo −5 · Élite +5
+- **B. Empiecen a importar comida** Pueblo +6 · Potencias +5
 
 ### 6. El periodista oficial
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `censura_previa`.
 
-**Carta:** «Nadie cree los periódicos, pero sí los rumores. Propongo un periodista oficial que los desmienta.»
+**Carta:** «La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.»
 
-- **A. Nombren un Vocero de la Verdad** Pueblo −5 · Élite +5 · Ejército +3 · Bandera: `periodista_oficial`
-- **B. Apunten quién los repite** Pueblo +5 · Élite −5 · Ejército −3
+- **A. Nombren un Vocero de la Verdad** Pueblo −3 · Élite +5 · Bandera: `periodista_oficial`
+- **B. Que la prensa diga la verdad** Pueblo +5 · Élite −5
 
 **Consecuencia futura de `periodista_oficial`:** La prensa del régimen exige titulares cada vez más generosos.
 
@@ -75,10 +75,10 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `viejos_oficiales`.
 
-**Carta:** «Los oficiales jubilados tienen un «club de ajedrez». No juegan al ajedrez.»
+**Carta:** «Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.»
 
-- **A. Arresto domiciliario para todos** Ejército −6 · Élite +3 · Potencias −3
-- **B. Vigilen cada movimiento** Ejército +6 · Élite −3 · Crisis +1
+- **A. Arréstenlos** Ejército +3 · Potencias −5
+- **B. Metan un topo en el club** Ejército +6
 
 ### 8. El jefe pide más
 
@@ -87,30 +87,30 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.»
 
-- **A. Autorizo la unidad especial** Ejército +8 · Élite −5 · Pueblo −4 · Bandera: `jefe_poderoso`
-- **B. Denegado** Ejército −8 · Pueblo +4 · Élite +5
+- **A. Autorizo la unidad especial** Ejército +8 · Élite −3 · Pueblo −4 · Bandera: `jefe_poderoso`
+- **B. Que la policía se vigile sola** Ejército −4 · Pueblo +3 · Élite +3
 
 **Consecuencia futura de `jefe_poderoso`:** El Ministro del Interior pide cada vez más poder.
 
-### 9. Panfletos en la universidad
+### 9. El puerto lento
 
-**Personaje:** Ministra de Educación  
+**Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `huelga_reprimida`.
 
-**Carta:** «Los hijos de los estibadores reparten panfletos en la universidad. Recuerdan lo del puerto.»
+**Carta:** «Desde la huelga, los estibadores trabajan a medio ritmo. Los barcos esperan semanas para descargar.»
 
-- **A. Sus compañeros los educarán** Pueblo +6 · Élite −4 · Crisis +1
-- **B. Expúlsenlos, a cortar caña** Pueblo −6 · Ejército +5 · Potencias −3
+- **A. Militaricen el puerto** Ejército +5 · Pueblo −5
+- **B. Que puedan elegir a su delegado** Pueblo +5 · Élite −5
 
 ### 10. Denuncias falsas
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `comites_vigilancia`, `purga_inicial`, `criticos_detenidos`.
 
-**Carta:** «Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por un balcón o una gallina.»
+**Carta:** «Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.»
 
-- **A. Investigarlas todas.** *Más vale investigar a cien inocentes que dejar escapar a un enemigo.* Ejército +6 · Pueblo −7 · Élite +2
-- **B. Castigar las falsas.** *La Revolución necesita confidentes, no bromistas.* Pueblo +7 · Ejército −5 · Élite −2
+- **A. Investiguen hasta la gallina** Ejército +6 · Pueblo −6
+- **B. Solo las contrarrevolucionarias** Pueblo +4 · Ejército −4
 
 ### 11. Faltan técnicos
 
@@ -119,38 +119,38 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.»
 
-- **A. Contratar extranjeros.** *La Revolución necesita profesionales, no importa el pasaporte.* Potencias +6 · Élite −4 · Crisis +1 · Pueblo +1
-- **B. Formar a los fieles.** *Primero lealtad; el oficio se aprende después.* Élite +5 · Pueblo −1 · Ejército +2
+- **A. Ningún titulado sale del país** Ejército +4 · Pueblo −4
+- **B. Crear cursos acelerados de todo** Élite +4 · Pueblo +3
 
 ### 12. Intentos de fuga
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `frontera_cerrada`, `criticos_detenidos`, `exiliados_vocales`.
 
-**Carta:** «Tres familias intentaron cruzar la frontera en una barca. Una era la de un viceministro.»
+**Carta:** «Cada semana huyen más familias en balsas. Las patrullas no dan abasto.»
 
-- **A. Reforzar la frontera.** *Quien abandona la Patria debe explicar por qué.* Ejército +6 · Potencias −5 · Pueblo −5
-- **B. Amnistía a quien vuelva.** *Que vuelvan; aún tenemos preguntas para ellos.* Pueblo +6 · Potencias +4 · Ejército −6
+- **A. Refuercen la frontera** Ejército +6 · Pueblo −5
+- **B. Que se vaya quien quiera** Pueblo +5 · Ejército −4 · Potencias +3
 
 ### 13. La deuda llama
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige alguna de `compensaciones`, `deuda_externa`.
 
-**Carta:** «Mañana vence el primer pago de las compensaciones. En caja hay menos de lo prometido.»
+**Carta:** «Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.»
 
-- **A. Pagar la cuota.** *La Revolución cumple cuando le conviene.* Potencias +6 · Élite +3 · Pueblo −7 · Crisis −2
-- **B. Pedir prórroga.** *La Historia puede esperar; los acreedores tendrán que aprender.* Potencias −6 · Crisis +3 · Élite −3
+- **A. Paguen, aunque no comamos** Potencias +5 · Pueblo −5
+- **B. No pagamos a explotadores** Potencias −6 · Élite +3
 
 ### 14. La cosecha récord
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «La cosecha es récord, según los informes. Los almacenes, curiosamente, están vacíos.»
+**Carta:** «La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.»
 
-- **A. Proclamar el récord.** *El Pueblo no come estadísticas, pero escucha las noticias.* Pueblo +5 · Élite +3 · Crisis +2
-- **B. Pedir cifras reales.** *Quiero saber cuánto falta antes de decidir a quién culpar.* Pueblo −4 · Élite −4 · Crisis −1
+- **A. Anuncien el récord por radio** Élite +5
+- **B. Busquen al que infló cifras** Élite −5 · Ejército +3
 
 ### 15. El diplomático curioso
 
@@ -159,28 +159,28 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.»
 
-- **A. Expulsarlo.** *Que visite otro país. Aquí ya ha visto demasiado.* Potencias −5 · Ejército +5
-- **B. Intercambiarlo.** *La Patria también puede negociar con sus enemigos.* Potencias +5 · Ejército −5 · Élite +2
+- **A. Expúlsenlo del país** Potencias −3
+- **B. A la cárcel, por espía** Potencias −6 · Ejército +5
 
 ### 16. Los chistes
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «Circula un chiste sobre usted por todas las oficinas. Al final, todos miran al techo.»
+**Carta:** «Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.»
 
-- **A. Tribunal del humor.** *Quiero saber quién se ríe cuando cree que nadie lo escucha.* Pueblo −6 · Ejército +4 · Élite +2
-- **B. Contar uno mejor.** *El mejor chiste sobre un dictador es el que todos aplauden.* Pueblo +5 · Ejército −3 · Élite −2
+- **A. Detengan a quien lo cuente** Pueblo −5 · Ejército +4
+- **B. Dejen que se rían** Pueblo +4 · Ejército −3
 
 ### 17. Los satélites
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `misiles_instalados`.
 
-**Carta:** «Nuestros satélites siguen contando sus misiles y pedimos una inspección. Aceptarla evitaría un incidente mayor.»
+**Carta:** «Nuestros satélites siguen detectando misiles. Exigimos una inspección.»
 
-- **A. Permitir la inspección.** *Que inspeccionen; para entonces ya habremos hecho el cambio.* Potencias +8 · Ejército −7 · Élite +2
-- **B. Negarse.** *La soberanía no se inspecciona.* Potencias −8 · Ejército +7 · Élite −2 · Crisis +1
+- **A. Inspeccionen lo que quieran** Potencias +8 · Ejército −5
+- **B. Revisen primero sus propias bases** Potencias −8 · Ejército +5
 
 ### 18. El aliado enfadado
 
@@ -189,25 +189,37 @@ Duración: entre 6 y 8 cartas. 20 cartas. Los efectos están en la escala peque�
 
 **Carta:** «Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.»
 
-- **A. Pedir disculpas.** *Una amistad duradera también exige saber pedir perdón.* Potencias +8 · Pueblo −6 · Ejército −2
-- **B. Buscar otro proveedor.** *El petróleo no tiene ideología, solo precio.* Potencias −8 · Pueblo +6 · Ejército +2 · Crisis +1
+- **A. Apoyaremos su próxima invasión** Potencias +7
+- **B. Iremos en bicicleta** Potencias −6 · Élite +4 · Pueblo −4
 
 ### 19. La zafra de los diez millones
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
 
-**Carta:** «Para batir el récord de la zafra proponemos movilizar durante tres meses a estudiantes, oficinistas y soldados.»
+**Carta:** «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
 
-- **A. Todos a la zafra.** *El que corta caña no conspira.* Pueblo −6 · Ejército +3 · Élite +3 · Crisis −1
-- **B. Contratar jornaleros.** *La Revolución también puede pagar a quien trabaja.* Pueblo +6 · Ejército −3 · Élite −3 · Crisis +1
+- **A. Todos a la zafra** Pueblo −6 · Élite +4
+- **B. Qué disparate, pararía todo** Pueblo +5 · Élite −4
 
 ### 20. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
 
-**Carta:** «Cada año más gente tira flores al mar el día del accidente de Cienfuegos.»
+**Carta:** «Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.»
 
-- **A. Declaren la playa zona militar** Ejército +6 · Pueblo −6
-- **B. Encabezaré yo los homenajes** Pueblo +6 · Ejército −6
+- **A. Prohíban las flores ese día** Ejército +6 · Pueblo −6
+- **B. Encabezaré yo los homenajes** Élite +5
+
+### 21. Los campos de trabajo
+
+**Personaje:** Ministro de las Fuerzas Armadas  
+**Condición:** sorteo con peso 14.
+
+**Carta:** «Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.»
+
+- **A. El trabajo les hará hombres** Ejército +6 · Pueblo −7 · Bandera: `campos_trabajo`
+- **B. Que lleven el pelo como quieran** Ejército −6 · Pueblo +7
+
+**Consecuencia futura de `campos_trabajo`:** Intelectuales denuncian los campos de trabajo.

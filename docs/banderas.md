@@ -9,6 +9,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `accidente_cienfuegos` | El general murmura (B) | Las flores en el mar | El Pueblo no olvida el accidente de Cienfuegos. (era 2) |
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | Los nuevos vecinos | El aliado exige concesiones y armamento. (era 1) |
 | `atentado_investigado` | El atentado (B) | La bomba de dentro | La investigación del atentado señala al Ministerio del Interior. (era 4) |
+| `campos_trabajo` | Los campos de trabajo (A) | Una carta con firmas | Intelectuales denuncian los campos de trabajo. (era 3) |
 | `capital_rebautizada` | La ciudad con su nombre (A) | — | — |
 | `censura_previa` | Los periódicos (B) | Los ojos del barrio; El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
 | `comites_vigilancia` | Los ojos del barrio (A) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |
@@ -29,7 +30,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `frontera_cerrada` | Los que se marchan (B) | Intentos de fuga | Intentos de fuga. (era 2) |
 | `general_apartado` | El general querido (B) | Cienfuegos vuelve | Cienfuegos regresa como candidato de los descontentos. (era 4) |
 | `general_popular` | El general querido (A) | El general murmura | Cienfuegos conspira si el Ejército baja de 40. (era 1) |
-| `huelga_reprimida` | El puerto parado (B) | Panfletos en la universidad; Las aulas vacías | Malestar en las universidades. (era 2) |
+| `huelga_reprimida` | El puerto parado (B) | El puerto lento; Las aulas vacías | Malestar en las universidades. (era 2) |
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable; Dos ejércitos | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |
 | `libro_obligatorio` | El libro de texto (A) | — | — |

@@ -17,7 +17,7 @@ Duración: entre 6 y 8 cartas. 24 cartas. Los efectos están en la escala peque�
 ### 2. Una carta con firmas
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 14; exige alguna de `policia_tradicional`, `exiliados_vocales`, `critica_abierta`.
+**Condición:** sorteo con peso 14; exige alguna de `policia_tradicional`, `exiliados_vocales`, `critica_abierta`, `campos_trabajo`.
 
 **Carta:** «Intelectuales han firmado una carta pidiendo respetar los derechos que usted mismo prometió.»
 

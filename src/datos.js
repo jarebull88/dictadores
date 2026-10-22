@@ -353,7 +353,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
     izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -3, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Que la policía se vigile sola", largaAutorizada: true, efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
+    der: { accion: "Que la policía se vigile sola", largaAutorizada: true, largaAutorizada: true, efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
   {
@@ -591,7 +591,7 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
     izq: { accion: "Todos a la zafra", efectos: { pueblo: -6, elite: 4 } },
-    der: { accion: "Eso paralizaría el país", efectos: { pueblo: 5, elite: -4 } }
+    der: { accion: "Qué disparate, pararía todo", efectos: { pueblo: 5, elite: -4 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",

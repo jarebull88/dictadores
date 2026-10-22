@@ -313,7 +313,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.",
     izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
-    der: { accion: "Que la prensa diga la verdad", efectos: { pueblo: 5, elite: -5 } }
+    der: { accion: "Que la prensa diga la verdad", largaAutorizada: true, efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
@@ -345,7 +345,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.",
     izq: { accion: "Arréstenlos", efectos: { ejercito: 3, potencias: -5 } },
-    der: { accion: "Metan un topo en el club", efectos: { ejercito: 6 } }
+    der: { accion: "Metan un topo en el club", largaAutorizada: true, efectos: { ejercito: 6 } }
   },
 
   {
@@ -353,7 +353,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
     izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -3, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Que la policía se vigile sola", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
+    der: { accion: "Que la policía se vigile sola", largaAutorizada: true, efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
   {
@@ -591,7 +591,7 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
     izq: { accion: "Todos a la zafra", efectos: { pueblo: -6, elite: 4 } },
-    der: { accion: "Contratar jornaleros.", remate: "La Revolución también puede pagar a quien trabaja.", efectos: { pueblo: 5, elite: -4 } }
+    der: { accion: "Eso paralizaría el país", efectos: { pueblo: 5, elite: -4 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",
@@ -631,7 +631,7 @@ const CARTAS = [
   {
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",
-    texto: "Cada año más gente tira flores al mar el día del accidente de Cienfuegos.",
+    texto: "Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.",
     izq: { accion: "Prohíban las flores ese día", efectos: { ejercito: 6, pueblo: -6 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 5 } }
   },

@@ -304,7 +304,7 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -5, elite: 5 } },
+    izq: { accion: "El Estado dará mejor uso a la tierra", largaAutorizada: true, efectos: { pueblo: -5, elite: 5 } },
     der: { accion: "Empiecen a importar comida", efectos: { pueblo: 6, potencias: 5 } }
   },
 
@@ -376,8 +376,8 @@ const CARTAS = [
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
     texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.",
-    izq: { accion: "Investigarlas todas.", remate: "Más vale investigar a cien inocentes que dejar escapar a un enemigo.", efectos: { ejercito: 6, pueblo: -6 } },
-    der: { accion: "Castigar las falsas.", remate: "La Revolución necesita confidentes, no bromistas.", efectos: { pueblo: 4, ejercito: -4 } }
+    izq: { accion: "Investiguen hasta la gallina", efectos: { ejercito: 6, pueblo: -6 } },
+    der: { accion: "Solo las contrarrevolucionarias", largaAutorizada: true, efectos: { pueblo: 4, ejercito: -4 } }
   },
 
   {
@@ -392,16 +392,16 @@ const CARTAS = [
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
-    izq: { accion: "Contratar extranjeros.", remate: "La Revolución necesita profesionales, no importa el pasaporte.", efectos: { potencias: 6, elite: -4 } },
-    der: { accion: "Formar a los fieles.", remate: "Primero lealtad; el oficio se aprende después.", efectos: { elite: 5, potencias: -3 } }
+    izq: { accion: "Ningún titulado sale del país", largaAutorizada: true, efectos: { ejercito: 4, pueblo: -4 } },
+    der: { accion: "Crear cursos acelerados de todo", largaAutorizada: true, efectos: { elite: 4, pueblo: 3 } }
   },
 
   {
     id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga",
     personaje: "Ministro del Interior",
-    texto: "Tres familias intentaron huir en una balsa. Una era la de un viceministro.",
+    texto: "Cada semana huyen más familias en balsas. Las patrullas no dan abasto.",
     izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Amnistía a quien vuelva", efectos: { pueblo: 5, ejercito: -4 } }
+    der: { accion: "Que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
   },
 
   {

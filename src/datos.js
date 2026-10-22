@@ -583,7 +583,7 @@ const CARTAS = [
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
     personaje: "Ministro de Economía",
     texto: "Proponemos un nuevo palacio de gobierno. Cuesta cinco años de presupuesto y tres barrios enteros.",
-    izq: { accion: "Derribar los barrios.", remate: "Una gran Revolución necesita un palacio a su altura.", efectos: { elite: 3, pueblo: -6, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
+    izq: { accion: "El viejo palacio se nos queda chico", remate: "Una gran Revolución necesita un palacio a su altura.", efectos: { elite: 3, pueblo: -6, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
     der: { accion: "Ese dinero, para viviendas", remate: "El palacio puede esperar; los vecinos viven ahí.", efectos: { pueblo: 4, crisis: -1 } }
   },
   {
@@ -612,7 +612,7 @@ const CARTAS = [
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro presidente le invita a una visita oficial de dos semanas, con cenas, desfiles y un acuerdo comercial preparado.",
     izq: { accion: "Encantado, llevaré los puros", remate: "Dos semanas de aplausos extranjeros valen un par de riesgos.", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Quedarse en el país.", remate: "El Pueblo no puede pasar dos semanas sin escucharme.", efectos: { potencias: -5, elite: 2 } }
+    der: { accion: "Imposible, tengo mucho que dirigir", remate: "El Pueblo no puede pasar dos semanas sin escucharme.", efectos: { potencias: -5, elite: 2 } }
   },
   {
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado",

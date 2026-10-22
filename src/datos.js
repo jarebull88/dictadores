@@ -726,14 +726,14 @@ const CARTAS = [
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El plebiscito ha salido mal: gana el «No». El escrutinio todavía no es oficial.",
-    izq: { accion: "Aceptar el resultado.", remate: "Que no se diga que no sé perder; solo que no me voy.", efectos: { pueblo: 8, elite: -5, ejercito: -3 }, banderas: ["base.derrota_aceptada"] },
-    der: { accion: "Recontar los votos.", remate: "Hasta que salgan bien.", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
+    izq: { accion: "Aceptar el resultado.", remate: "Que no se diga que no sé perder; solo que no me voy.", efectos: { pueblo: 6, elite: -4, ejercito: -2 }, banderas: ["base.derrota_aceptada"] },
+    der: { accion: "Recuenten hasta que salga bien", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
   },
   {
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país atraviesa dificultades. El año que viene no podremos enviar petróleo, ni créditos, ni, quizá, embajador.",
-    izq: { accion: "Pedir un último envío.", remate: "Por los viejos tiempos y por los nuevos apagones.", efectos: { potencias: 5, crisis: 1 } },
+    izq: { accion: "Pedir un último envío.", remate: "Por los viejos tiempos y por los nuevos apagones.", efectos: { ejercito: 5, potencias: -3, crisis: 1 } },
     der: { accion: "Buscar nuevos amigos.", remate: "La amistad eterna también caduca.", efectos: { potencias: -6, pueblo: -5, elite: 3 } }
   },
   {

@@ -705,14 +705,14 @@ const CARTAS = [
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
     personaje: "Ministro del Interior",
     texto: "Su doble lee mejor los discursos que usted. El Pueblo aplaude más cuando habla él.",
-    izq: { accion: "Retirar al doble.", remate: "Solo hay sitio para un Padre de la Patria.", efectos: { ejercito: -5, elite: 2 } },
-    der: { accion: "Dejarle los discursos.", remate: "Que hable él; yo descanso y escucho.", efectos: { ejercito: 5, elite: -3 } }
+    izq: { accion: "«Jubilen» a ese doble", efectos: { ejercito: -5, elite: 2 } },
+    der: { accion: "Que siempre hable él y haré playback", efectos: { ejercito: 5, elite: -3 } }
   },
   {
     id: "las_medallas", era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Ejército quiere darle su condecoración número ochenta y tres. Ya no le cabe en el chándal.",
-    izq: { accion: "Aceptarla.", remate: "La modestia también necesita sitio en el pecho.", efectos: { elite: 2 } },
+    izq: { accion: "Una medalla nunca se rechaza", efectos: { elite: 2 } },
     der: { accion: "Las medallas ya pesan más que yo", efectos: { elite: -2 } }
   },
   {

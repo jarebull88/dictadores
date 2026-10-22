@@ -726,15 +726,15 @@ const CARTAS = [
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "La oposición ha reunido firmas para un referéndum. La Constitución, por desgracia, lo permite.",
-    izq: { accion: "Que vote el Pueblo", efectos: { pueblo: 6, elite: -4 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
+    izq: { accion: "Adelante, que el Pueblo decida", efectos: { pueblo: 6, elite: -4 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
     der: { accion: "Votemos que el socialismo es eterno", efectos: { elite: 5, pueblo: -5 } }
   },
   {
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El referéndum ha salido mal: gana el «No». El escrutinio todavía no es oficial.",
+    texto: "Ha ganado el «No», pero el resultado aún no es oficial.",
     izq: { accion: "Acepto el resultado y me quedo", efectos: { pueblo: 6, elite: -4, ejercito: -2 }, banderas: ["base.derrota_aceptada"] },
-    der: { accion: "Recuenten hasta que salga bien", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
+    der: { accion: "Cuenten hasta que gane el Sí", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
   },
   {
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde",

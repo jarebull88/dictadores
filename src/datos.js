@@ -676,7 +676,7 @@ const CARTAS = [
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",
     personaje: "Ministro de Economía",
     texto: "El mausoleo necesita mantenimiento y usted aún no lo ha estrenado. Los embalsamadores piden un aumento.",
-    izq: { accion: "Pagar el aumento.", remate: "La eternidad no se recorta.", efectos: { elite: 5, pueblo: -5, crisis: 2 } },
+    izq: { accion: "Mi roca no se ensucia: paguen", efectos: { elite: 5, pueblo: -5, crisis: 2 } },
     der: { accion: "Alquilarlo para actos.", remate: "Mientras tanto, que dé beneficios.", efectos: { elite: -4, crisis: -2 } }
   },
   {
@@ -689,7 +689,7 @@ const CARTAS = [
   {
     id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estado_policial", "base.jefe_poderoso"] }, titulo: "Dos ejércitos",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "La unidad del Interior ya tiene más tanques que el Ejército. Mis oficiales preguntan quién manda.",
+    texto: "El Interior ya tiene más efectivos que el Ejército, y mis oficiales preguntan quién manda aquí.",
     izq: { accion: "Desarmar al batallón.", remate: "Un ejército basta; dos acaban discutiendo.", efectos: { ejercito: -5, elite: 4 } },
     der: { accion: "Más tanques al Ejército.", remate: "Si sobran tanques, que sobren en los dos lados.", efectos: { ejercito: 8, elite: -4, crisis: 2 } }
   },

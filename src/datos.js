@@ -344,8 +344,8 @@ const CARTAS = [
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.",
-    izq: { accion: "Arréstenlos", efectos: { ejercito: 3, potencias: -5 } },
-    der: { accion: "Metan un topo en el club", largaAutorizada: true, efectos: { ejercito: 6 } }
+    izq: { accion: "Jaque mate: todos detenidos", efectos: { ejercito: 3, potencias: -5 } },
+    der: { accion: "Metan un topo en el club", efectos: { ejercito: 6 } }
   },
 
   {
@@ -353,7 +353,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
     izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -3, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Que la policía se vigile sola", largaAutorizada: true, largaAutorizada: true, efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
+    der: { accion: "Que la policía se vigile sola", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
   {

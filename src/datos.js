@@ -656,7 +656,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos vuelve de su embajada. En el aeropuerto lo recibe una multitud con pancartas.",
     izq: { accion: "Jubílenlo con honores y escolta", efectos: { ejercito: -4, elite: 3 } },
-    der: { accion: "Que mande la tropa y vigílenlo", efectos: { ejercito: 6, elite: -4 } }
+    der: { accion: "Denle un cuartel y un espía al lado", efectos: { ejercito: 6, elite: -4 } }
   },
   {
     id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente",
@@ -748,7 +748,7 @@ const CARTAS = [
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
     personaje: "Embajador de la potencia del norte",
     texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
-    izq: { accion: "Le devuelvo algunos de sus espías", efectos: { potencias: 6, elite: -3 } },
+    izq: { accion: "Llévese unos espías suyos de regalo", efectos: { potencias: 6, elite: -3 } },
     der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },
   {
@@ -831,9 +831,9 @@ const CARTAS = [
   {
     id: "el_parte_medico", era: 4, tipo: "ancla", ventana: [5, 8], titulo: "El parte médico",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Los médicos recomiendan reposo absoluto. El Partido pregunta quién firmará los decretos mientras tanto.",
-    izq: { accion: "Gobernaré desde la cama", efectos: { elite: -5, crisis: 2 } },
-    der: { accion: "Deleguen, provisionalmente", efectos: { elite: 5 } }
+    texto: "Los médicos ordenan reposo absoluto. Alguien tiene que firmar los decretos mientras se recupera.",
+    izq: { accion: "Firmaré en chándal desde la cama", efectos: { elite: -5, crisis: 2 } },
+    der: { accion: "Que firme mi hermano", efectos: { elite: 5 } }
   }
 ];
 

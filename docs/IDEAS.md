@@ -79,5 +79,50 @@ Más logros basados en hechos reales (en el juego, sin nombres de países ni per
 - **Billete verde con permiso** (era 4): legalizar la moneda extranjera (1993).
 - **Neumático de balsa** (era 4): dejar salir a los balseros (crisis de 1994).
 
+### 5. El final del juego (22 oct, recomendación guardada)
+Hoy, si ganas, sale una pantalla de texto («¡Has ganado!», «Moriste en tu cama, y en el poder» y la esquela): poco premio tras cuatro eras. Propuesta recomendada, las dos cosas juntas:
+- **Últimas palabras:** una carta final en la que habla el dictador moribundo. Sus dos respuestas deciden la última línea de la esquela.
+- **La caravana de las cenizas:** escena de collage propia (como las caídas), con las cenizas recorriendo el país al revés que la entrada triunfal (2016, al revés que en 1959). Cierra el círculo con la escena de la portada.
+- Más adelante, debajo de la esquela, los logros desbloqueados de la partida.
+- Revisar entonces la esquela: «Tu cuerpo, embalsamado…» ya no encaja con la roca, y hay que comprobar que siguen vivas las cartas que activan cada línea.
+
+### 6. Cartas y tramas por era (22 oct, Jorge)
+Hechos reales que pueden ser cartas. En el juego, sin nombres de países ni personas reales.
+
+**Era 1, La Revolución (1959–62)**
+- **El comandante que dimite** (1959): un compañero de la sierra renuncia porque ve llegar el comunismo. ¿Lo juzgas por traición o lo dejas irse? (Huber Matos: veinte años de cárcel.)
+- **La coletilla** (1960): los periódicos que aún son libres publican sus artículos con una nota al pie de los sindicatos que dice que es mentira. Antesala del cierre.
+- **Se acabó el béisbol profesional** (1961): «el deporte, derecho del Pueblo». Los ídolos se van a jugar fuera.
+- **Los alfabetizadores y el monte** (1961): las brigadas de adolescentes van a zonas con alzados. ¿Las proteges con tropa o las mandas igual?
+- **La declaración socialista** (1961): proclamar el socialismo en el entierro de las víctimas de un bombardeo (ya en `REVISION_HISTORICA.md`).
+
+**Era 2, La Purga (1963–70)**
+- **La ofensiva revolucionaria** (1968): nacionalizar hasta el último puesto de fritas, barbería y taller (unos 58 000 negocios). El Partido se queda hasta con los timbiriches.
+- **El compañero que exporta la Revolución** (1965–67): el héroe más famoso se va a hacer la Revolución a otros países. ¿Lo financias o lo dejas solo? Vuelve como mártir y como póster.
+- **El servicio militar obligatorio** (1963): tres años de mili para todos los jóvenes.
+- **La invasión del aliado** (1968): los tanques del bloque aplastan la primavera de un país hermano. ¿La aplaudes o callas? Aplaudirla te ata al bloque.
+- **La zafra de los diez millones** (1970): ya está en el juego. Se puede convertir en trama de varias cartas (movilizar al país, la cifra que no llega, el discurso de la derrota).
+
+**Era 3, El Culto (1971–85)**
+- **La autocrítica del poeta** (1971): un escritor encarcelado lee en público su confesión de «contrarrevolucionario» ante sus colegas. Los intelectuales de fuera rompen con el régimen.
+- **La guerra lejana** (1975): mandar tropas a una guerra de liberación en otro continente. Gloria para el Ejército, ataúdes que vuelven.
+- **Diez mil en una embajada** (1980): un autobús embiste la verja de una embajada y miles de personas se meten dentro. Abre el puerto (Mariel) o resiste.
+- **El diálogo con el exilio** (1978): dejar volver de visita a los «gusanos», que llegan cargados de regalos y de dólares (ya en `REVISION_HISTORICA.md`).
+- **El boicot a las olimpiadas** (1984 y 1988): el bloque no va, o no vas por solidaridad con un aliado. Los atletas pierden su oportunidad y el régimen se queda sin medallas para la propaganda.
+
+**Era 4, La Supervivencia (1986–2006)**
+- **El niño balsero** (1999–2000): un niño llega a la costa del Norte en una balsa en la que murió su madre; su padre lo reclama. Todo el país marcha durante meses por su regreso. Trama de varias cartas: las marchas, las tribunas, el regreso.
+- **Los Juegos Panamericanos** (1991): organizar unos juegos con estadios nuevos en plena crisis, sin petróleo ni comida. «Arruinar el país por las medallas.»
+- **La visita del Papa** (1998): abrir la puerta a la Iglesia a cambio de imagen. ¿Misa en la plaza de la Revolución?
+- **La revolución energética** (2005–06): cambiar todas las bombillas y repartir ollas arroceras casa por casa para acabar con los apagones.
+- **El nuevo amigo del sur** (1999–2006): un presidente admirador ofrece petróleo a cambio de médicos. Vuelves a depender de alguien.
+- **La primavera de los 75** (2003): detener a 75 opositores y periodistas en una semana mientras el mundo mira a otra guerra. Sus esposas, vestidas de blanco, desfilan cada domingo.
+- **Matar una vaca** (todas las eras): sacrificar una vaca sin permiso da más cárcel que matar a una persona. ¿Endurecer la pena o hacer la vista gorda con el hambre?
+
+**Tramas que cruzan eras**
+- **El hermano:** de capitán en la sierra a sucesor. Cada era, una carta suya que sube un escalón (ya hay `sucesion`, `delfin_impaciente` y `el_parte_medico`).
+- **El exilio:** de los niños que se van (era 1) al diálogo (era 3), las balsas y el niño balsero (era 4).
+- **Cienfuegos:** su destino, por eras (ya apuntado en la trama secundaria).
+
 ### Otras ideas de la misma lista (no elegidas por ahora)
 Portada del periódico del régimen al acabar cada era («la versión oficial»), álbum de cromos de caídas y esquelas, sucesión (la siguiente partida la juega el hermano), el discurso (mantener pulsado para hablar), lo que dice la calle (pintadas y chistes en el fondo), el sello de goma APROBADO/DENEGADO, la cartilla de racionamiento como recurso, récords, guardar a mitad de partida, logros e idiomas.

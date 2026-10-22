@@ -60,5 +60,8 @@ Ideas transversales: **el archivo del tirano** (lo que se llevó al huir y que a
 - Hay que pensar cuántas purgas permite el juego y qué pasa si te quedas sin gabinete.
 - Cómo afecta exactamente al gameplay se decidirá más adelante; por ahora es solo una idea (Jorge, 17 oct).
 
+### 4. Logros desbloqueables (22 oct, Jorge)
+Recompensas por decisiones concretas, que se guardan entre partidas, como una colección de carnés y medallas del régimen. Ejemplo de Jorge: si haces la zafra de los diez millones, consigues **«el carnet de machetero»**. Otras ideas en la misma línea: la libreta de abastecimiento (racionar), la medalla al mérito de la sierra (sobrevivir a la era 1), el diploma de la campaña de alfabetización, el carnet del comité de barrio (crear los comités de vigilancia). Encaja con la estética de manualidad: cada logro, un carnet o una medalla de papel recortado.
+
 ### Otras ideas de la misma lista (no elegidas por ahora)
 Portada del periódico del régimen al acabar cada era («la versión oficial»), álbum de cromos de caídas y esquelas, sucesión (la siguiente partida la juega el hermano), el discurso (mantener pulsado para hablar), lo que dice la calle (pintadas y chistes en el fondo), el sello de goma APROBADO/DENEGADO, la cartilla de racionamiento como recurso, récords, guardar a mitad de partida, logros e idiomas.

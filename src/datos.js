@@ -739,7 +739,7 @@ const CARTAS = [
   {
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde",
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro país se hunde. El año que viene no enviaremos petróleo, ni créditos, ni quizá embajador.",
+    texto: "Nuestro país se disuelve. Le dejo el último barril de petróleo y mi abrigo de piel.",
     izq: { accion: "Pedalearemos hasta la victoria", efectos: { potencias: -6, pueblo: -5, elite: 3, crisis: 2 } },
     der: { accion: "Ya encontraremos amigos con divisas", efectos: { potencias: 5, elite: -4 } }
   },

@@ -617,8 +617,8 @@ const CARTAS = [
   {
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado",
     personaje: "Ministro del Interior",
-    texto: "Los terroristas del exilio han volado uno de nuestros aviones en pleno vuelo. Setenta y tres muertos.",
-    izq: { accion: "Que pague la oposición de aquí", efectos: { ejercito: 7, pueblo: -6 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
+    texto: "Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos. Algunos opositores de aquí lo celebran.",
+    izq: { accion: "Que celebren en la cárcel", efectos: { ejercito: 7, pueblo: -6 }, banderas: ["base.oposicion_culpada"], encolar: [{ carta: "la_investigacion", min: 1, max: 2 }] },
     der: { accion: "Infiltren agentes en el extranjero", efectos: { ejercito: -4, pueblo: 4 }, banderas: ["base.atentado_investigado"] }
   },
   {
@@ -677,7 +677,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Han estallado bombas en tres hoteles. El detenido confiesa que le pagaban desde el extranjero por cada bomba.",
     izq: { accion: "Que los turistas no se enteren de nada", efectos: { ejercito: 5, pueblo: -3 } },
-    der: { accion: "Que el mundo vea quién las paga", efectos: { potencias: -4, elite: 2 } }
+    der: { accion: "Juicio para que lo vea el mundo", efectos: { potencias: -4, elite: 2 } }
   },
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 0,   // retirada (22 oct, Jorge): el mantenimiento antes de morir no tiene sentido; peso 0 = no sale
@@ -825,7 +825,7 @@ const CARTAS = [
     id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "Los cinco", ilustracion: null,
     personaje: "Embajador de la potencia del norte",
     texto: "Hemos detenido a cinco agentes suyos infiltrados en nuestro país. Los juzgaremos como espías.",
-    izq: { accion: "Volverán: lo pintaré en cada pared", efectos: { ejercito: -6, elite: 3 } },
+    izq: { accion: "Volverán: eso se lo aseguro", efectos: { ejercito: -6, elite: 3 } },
     der: { accion: "Hablemos de un canje discreto", efectos: { ejercito: 5, elite: -3 } }
   },
   {

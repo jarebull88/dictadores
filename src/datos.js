@@ -573,7 +573,7 @@ const CARTAS = [
     der: { accion: "Dejarla como está.", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -4, pueblo: 4 } }
   },
   {
-    id: "mausoleo", era: 3, tipo: "sorteo", peso: 8, titulo: "El mausoleo",
+    id: "mausoleo", era: 4, tipo: "sorteo", peso: 8, titulo: "El mausoleo",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido ruega prever un mausoleo para cuando le llegue la hora. Los embalsamadores ya están en nómina.",
     izq: { accion: "Construir el mausoleo.", remate: "La Historia merece un lugar donde visitarme.", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },

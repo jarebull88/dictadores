@@ -97,7 +97,7 @@ const CARTAS = [
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos",
     personaje: "Ministra de Cultura",
     texto: "Los periódicos publican críticas contra cada decreto, uno detrás de otro.",
-    izq: { accion: "Que sigan publicando lo que quieran", efectos: { pueblo: 6, elite: -5 }, banderas: ["base.prensa_libre"] },
+    izq: { accion: "Que publiquen lo que quieran", efectos: { pueblo: 6, elite: -5 }, banderas: ["base.prensa_libre"] },
     der: { accion: "Nacionalicen las imprentas", efectos: { pueblo: -6, elite: 5 }, banderas: ["base.censura_previa"] }
   },
   {

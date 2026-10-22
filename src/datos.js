@@ -675,23 +675,23 @@ const CARTAS = [
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",
     personaje: "Ministro de Economía",
-    texto: "El mausoleo necesita mantenimiento y usted aún no lo ha estrenado. Los embalsamadores piden un aumento.",
+    texto: "Su roca eterna ya pide mantenimiento. Usted no la ha estrenado, pero las palomas la usan a diario.",
     izq: { accion: "Mi roca no se ensucia: paguen", efectos: { elite: 5, pueblo: -5, crisis: 2 } },
-    der: { accion: "Alquilarlo para actos.", remate: "Mientras tanto, que dé beneficios.", efectos: { elite: -4, crisis: -2 } }
+    der: { accion: "Que la limpien cuando la estrene", efectos: { elite: -4, crisis: -2 } }
   },
   {
     id: "palacio_sin_terminar", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar",
     personaje: "Ministro de Economía",
     texto: "El palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
-    izq: { accion: "Terminarlo como sea.", remate: "Que mis sucesores tengan dónde aburrirse.", efectos: { elite: 6, pueblo: -5, crisis: 3 } },
-    der: { accion: "Convertirlo en museo.", remate: "Un museo de lo que pudo haber sido.", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
+    izq: { accion: "Primero mi palacio, luego hospitales", efectos: { elite: 6, pueblo: -5, crisis: 3 } },
+    der: { accion: "Paren las obras", efectos: { elite: -5, pueblo: 5, crisis: -1 } }
   },
   {
     id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estado_policial", "base.jefe_poderoso"] }, titulo: "Dos ejércitos",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Interior ya tiene más efectivos que el Ejército, y mis oficiales preguntan quién manda aquí.",
-    izq: { accion: "Desarmar al batallón.", remate: "Un ejército basta; dos acaban discutiendo.", efectos: { ejercito: -5, elite: 4 } },
-    der: { accion: "Más tanques al Ejército.", remate: "Si sobran tanques, que sobren en los dos lados.", efectos: { ejercito: 8, elite: -4, crisis: 2 } }
+    izq: { accion: "Que el Interior reduzca su plantilla", efectos: { ejercito: -5, pueblo: 3 } },
+    der: { accion: "Más tanques al Ejército.", remate: "Si sobran tanques, que sobren en los dos lados.", efectos: { ejercito: 3, pueblo: -4 } }
   },
 
   {

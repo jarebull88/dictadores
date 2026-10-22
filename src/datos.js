@@ -576,8 +576,8 @@ const CARTAS = [
     id: "mausoleo", era: 4, tipo: "sorteo", peso: 8, titulo: "El mausoleo",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido pide un monumento eterno: un cacho de roca gigante que dicen que se parece a usted.",
-    izq: { accion: "Construir el mausoleo.", remate: "La Historia merece un lugar donde visitarme.", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
-    der: { accion: "Enterrarme sin avisar a nadie", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
+    izq: { accion: "Seré una piedra eterna", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
+    der: { accion: "Prefiero ser enterrado y olvidado", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
   },
   {
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
@@ -655,22 +655,22 @@ const CARTAS = [
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",
     personaje: "Ministro del Interior",
     texto: "El general Cienfuegos vuelve de su embajada. En el aeropuerto lo recibe una multitud con pancartas.",
-    izq: { accion: "Recibirlo en palacio.", remate: "Dos viejos generales; solo uno tiene palacio.", efectos: { ejercito: -4, pueblo: 2 } },
-    der: { accion: "Devolverlo al avión.", remate: "Su embajada le echaba mucho de menos.", efectos: { ejercito: 4, pueblo: -5 } }
+    izq: { accion: "Recibirlo en palacio.", remate: "Dos viejos generales; solo uno tiene palacio.", efectos: { ejercito: -4, pueblo: -2, elite: 3 } },
+    der: { accion: "Devolverlo al avión.", remate: "Su embajada le echaba mucho de menos.", efectos: { ejercito: 6, pueblo: 3, elite: -5 } }
   },
   {
     id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su hermano ya recibe embajadores en su despacho y reparte sus propios retratos por las escuelas.",
-    izq: { accion: "Recordarle quién manda.", remate: "La paciencia también es un mérito revolucionario.", efectos: { elite: -6 } },
+    izq: { accion: "Adviértanle que aún mando yo", efectos: { elite: -6 } },
     der: { accion: "Dejarle hacer.", remate: "Que aprenda; algún día tendrá que hacerlo sin mí.", efectos: { elite: 6 } }
   },
   {
     id: "los_inocentes", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.oposicion_culpada"] }, titulo: "Los inocentes",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país tiene pruebas de que la oposición no puso aquella bomba. Pedimos que se revise el caso.",
-    izq: { accion: "Revisar el caso.", remate: "Que se revise; la sentencia, que no se mueva.", efectos: { potencias: 7, pueblo: 4, ejercito: -6 } },
-    der: { accion: "Asunto cerrado.", remate: "La Historia ya dictó sentencia; yo solo la firmé.", efectos: { potencias: -6, pueblo: -4, ejercito: 5 } }
+    izq: { accion: "Rectificar es de revolucionarios", efectos: { potencias: 7, pueblo: 4, ejercito: -6 } },
+    der: { accion: "La Revolución no se revisa", efectos: { potencias: -6, pueblo: -4, ejercito: 5 } }
   },
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",

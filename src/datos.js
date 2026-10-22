@@ -654,14 +654,14 @@ const CARTAS = [
   {
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",
     personaje: "Ministro del Interior",
-    texto: "El general Cienfuegos ha vuelto de su embajada. Los descontentos lo reciben en el aeropuerto como a un candidato.",
-    izq: { accion: "Recibirlo en palacio.", remate: "Dos viejos generales; solo uno tiene palacio.", efectos: { ejercito: 6, pueblo: 3, elite: -5 } },
-    der: { accion: "Devolverlo al avión.", remate: "Su embajada le echaba mucho de menos.", efectos: { ejercito: 3, pueblo: -5, elite: 3 } }
+    texto: "El general Cienfuegos vuelve de su embajada. En el aeropuerto lo recibe una multitud con pancartas.",
+    izq: { accion: "Recibirlo en palacio.", remate: "Dos viejos generales; solo uno tiene palacio.", efectos: { ejercito: -4, pueblo: 2 } },
+    der: { accion: "Devolverlo al avión.", remate: "Su embajada le echaba mucho de menos.", efectos: { ejercito: 4, pueblo: -5 } }
   },
   {
     id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Su sucesor ya recibe a los embajadores en su despacho y ha encargado retratos suyos para las escuelas.",
+    texto: "Su hermano ya recibe embajadores en su despacho y reparte sus propios retratos por las escuelas.",
     izq: { accion: "Recordarle quién manda.", remate: "La paciencia también es un mérito revolucionario.", efectos: { elite: -6 } },
     der: { accion: "Dejarle hacer.", remate: "Que aprenda; algún día tendrá que hacerlo sin mí.", efectos: { elite: 6 } }
   },

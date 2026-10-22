@@ -71,3 +71,8 @@ Para cada carta, antes de proponerla o al revisarla:
 4. ¿Es una orden o resolución del Comandante, clara, propia de esta carta y distinta de la otra?
 5. ¿La ironía está dentro de la decisión, sin explicar el chiste ni frases contrapuestas o telegráficas?
 6. ¿Hay algún país real, gentilicio o término propio de una potencia real («gringo», «camarada»)?
+
+## Notas de Jorge (22 oct, revisión de la era 4)
+- **Los embajadores son «el occidental» y «el oriental»**, nunca «del norte» (ni en las propuestas ni al hablar con Jorge). El cargo interno de las cartas no cambia.
+- **Las respuestas las dice el Comandante, no son decisiones crudas.** Nada de «Detenerlo por viajar sin permiso»: voz propia, con chulería, ego y humor («Seré una piedra eterna», «Me encantan las piedras»). Cuando cede, lo hace de forma revolucionaria, nunca con debilidad ni humillación.
+- **No se despide a ministros** como decisión: el juego no lo contempla, así que una respuesta no puede depender de eso.

@@ -30,7 +30,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.",
     izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Tienen 24 horas para irse", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+    der: { accion: "Tienen 24 horas para hacer las maletas", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",
@@ -43,8 +43,8 @@ const CARTAS = [
     id: "arcas_vacias", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Las arcas vacías",
     personaje: "Ministro de Economía",
     texto: "El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.",
-    izq: { accion: "Impriman billetes", efectos: { pueblo: 5, potencias: -5 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Pedir préstamo y hacer recortes", efectos: { pueblo: -5, potencias: 5 }, banderas: ["base.deuda_externa"] }
+    izq: { accion: "Impriman billetes hasta que alcance", efectos: { pueblo: 5, potencias: -5 }, banderas: ["base.mercado_paralelo"] },
+    der: { accion: "Pidan un préstamo y recorten gastos", efectos: { pueblo: -5, potencias: 5 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "general_querido", tipo: "ancla", ventana: [1, 3], titulo: "El general querido",

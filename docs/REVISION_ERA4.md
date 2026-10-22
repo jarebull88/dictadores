@@ -200,3 +200,35 @@ Diagnóstico: hoy el Ejército se mueve sin motivo.
 - **`el_batallon`**: sin redactar.
 - **Pesos cambiados por los textos nuevos, a confirmar**: `estatuas_caen` B (Ejército +4, Pueblo −2), `la_cuenta` A (Pueblo −4, Partido +3), `el_hijo` B (Partido −3, crisis −1).
 - **Informe de era**: `PREVISION` sigue diciendo «El mausoleo cuesta una fortuna en mantenimiento».
+
+---
+
+## Revisión de coherencia (22 oct, segunda pasada)
+Solo coherencia: si la pregunta plantea algo en juego y si las dos respuestas son medidas distintas que le responden. Los pesos se revisarán después.
+
+### Graves: las dos respuestas hacen lo mismo o no responden
+- **salida_honrosa:** las dos respuestas rechazan la oferta («Llévese unos espías…» y «Váyase…»). Una tiene que aceptar algo. A: «Guárdenme la casa por si acaso» (te quedas la salida sin convocar elecciones). B: la de ahora.
+- **la_cuenta:** las dos niegan la fortuna. A: «Dimito si encuentran un dólar» (la apuesta pública, que es real). B: «Esa revista no entra en el país» (censura).
+- **la_salud:** la pregunta habla de los que se pelean por tu despacho, y las respuestas, del rumor. Además, un rumor no se detiene. A: «Apunten quién se pelea por mi silla». B: «Saquen a mi doble a saludar», sin encolar `el_doble`.
+- **el_plebiscito / el_escrutinio:** no se sabe qué se vota, así que «ha ganado el No» no se entiende; y aceptar la derrota sería caer.
+  - Plebiscito: «La oposición pide votar si hay elecciones libres. La Constitución, por desgracia, lo permite.»
+  - Escrutinio: «Ha ganado el «Sí» a las elecciones libres, pero el resultado aún no es oficial.»
+  - A: «Elecciones con un solo candidato». B: «Cuenten hasta que gane el No».
+- **el_reportaje:** las dos respuestas tapan el escándalo y ninguna dice qué pasa con el periódico. A: «Ciérrenlo por falta de papel». B: la del viceministro culpable.
+
+### Incoherencias del hilo
+- **el_parte_medico:** «Que firme mi hermano» sale aunque no hayas nombrado sucesor (`sucesion` es un sorteo y puede no salir). B: «Que firme el Consejo de Ministros».
+- **delfin_impaciente:** el hermano ya es el sucesor, así que «Nombren a mi hermano mi segundo» no cambia nada. B: «Que gobierne él y yo le corrijo».
+- **el_doble:** no tiene sentido (ya lo vio Jorge). Se retira: la B de `la_salud` deja de encolarla.
+- **El chándal sale en tres respuestas** (la_salud, las_medallas, el_parte_medico). Se queda en las medallas y en la cama.
+- **El hilo de la bomba** (`bomba_interior`, `los_inocentes`): sigue pendiente, como dice arriba.
+
+### Menores: claridad
+- **aliado_se_hunde, A:** «Lo llamaré período especial» no deja claro qué haces. Propuesta: «Que el Pueblo vaya en bicicleta».
+- **palacio_sin_terminar, A:** la frase está partida por la coma. Propuesta: «La Revolución merece su palacio».
+- **acreedor_favores, B:** «Apretaremos más» es vago. Propuesta: «Pagaremos apretando el cinturón».
+- **el_batallon:** la B no contesta a la petición. Propuesta: que la represión pase a civiles del Partido (las brigadas de respuesta rápida, 1991): «Que repriman brigadas del Partido».
+- **el_hijo, B:** es un «no» a secas; se acepta.
+
+### Bien (no tocar)
+mausoleo, varela_vuelve, dos_ejercitos, las_medallas, huelga_general, el_concierto, estatuas_caen, la_sequia, los_turistas, la_memoria, el_general_heroe, el_escrutinio B y las_memorias (pregunta).

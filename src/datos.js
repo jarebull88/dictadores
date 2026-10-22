@@ -796,7 +796,7 @@ const CARTAS = [
     id: "estatuas_caen", era: 4, tipo: "sorteo", peso: 10, titulo: "Las estatuas caen",
     personaje: "Ministro del Interior",
     texto: "En la televisión extranjera derriban estatuas de dirigentes como usted. El Pueblo lo está viendo.",
-    izq: { accion: "Corten la señal extranjera", efectos: { elite: 3, pueblo: -5, crisis: 1 } },
+    izq: { accion: "Corten la señal, que es mal ejemplo", efectos: { elite: 3, pueblo: -5, crisis: 1 } },
     der: { accion: "Quiten mis estatuas antes que ellos", efectos: { elite: -3, crisis: -2 } }
   },
   {

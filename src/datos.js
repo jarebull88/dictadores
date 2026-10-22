@@ -774,9 +774,9 @@ const CARTAS = [
   {
     id: "la_memoria", era: 4, tipo: "sorteo", peso: 10, titulo: "La memoria",
     personaje: "Ministra de Educación",
-    texto: "Los nietos de los que usted encarceló piden que los libros de texto cuenten lo que pasó.",
-    izq: { accion: "Una página que escribiré yo", efectos: { pueblo: 4, ejercito: -4 } },
-    der: { accion: "Fue un golpe y así se contará", efectos: { elite: 3, pueblo: -4 } }
+    texto: "Los nietos de los compañeros de la sierra que encarceló quieren que los libros hablen de ellos.",
+    izq: { accion: "Fueron héroes, aunque se desviaran", efectos: { pueblo: 4, ejercito: -4 } },
+    der: { accion: "Eran contrarrevolucionarios y punto", efectos: { elite: 3, pueblo: -4 } }
   },
   {
     id: "huelga_general", era: 4, tipo: "sorteo", peso: 10, titulo: "La revuelta",
@@ -797,7 +797,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "En la televisión extranjera derriban estatuas de dirigentes como usted. El Pueblo lo está viendo.",
     izq: { accion: "Corten la señal, que es mal ejemplo", efectos: { elite: 3, pueblo: -5, crisis: 1 } },
-    der: { accion: "Quiten mis estatuas antes que ellos", efectos: { elite: -3, crisis: -2 } }
+    der: { accion: "Que vigilen mis estatuas día y noche", efectos: { ejercito: 4, pueblo: -2 } }
   },
   {
     id: "la_sequia", era: 4, tipo: "sorteo", peso: 10, titulo: "La sequía",

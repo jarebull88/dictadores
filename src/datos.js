@@ -126,14 +126,14 @@ const CARTAS = [
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.",
     izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 9, ejercito: 5, elite: 5 } },
-    der: { accion: "Agradecemos, pero no hace falta", largaAutorizada: true, efectos: { potencias: -9, ejercito: -5, elite: -5 } }
+    der: { accion: "Gracias, aquí nos asesoramos solos", efectos: { potencias: -9, ejercito: -5, elite: -5 } }
   },
   {
     id: "club_golf", tipo: "sorteo", peso: 6, titulo: "El club de golf",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestro país reconocerá su gobierno si respeta nuestras propiedades, empezando por el club de golf.",
-    izq: { accion: "Le reservo el hoyo nueve", efectos: { potencias: 9, pueblo: -8, elite: -4 } },
-    der: { accion: "Empezaremos nacionalizando el golf", largaAutorizada: true, efectos: { potencias: -9, pueblo: 8, elite: 4 } }
+    izq: { accion: "Las propiedades y el golf son suyas", efectos: { potencias: 9, pueblo: -8, elite: -4 } },
+    der: { accion: "Empezaremos nacionalizando el golf", efectos: { potencias: -9, pueblo: 8, elite: 4 } }
   },
   {
     id: "la_bahia", tipo: "ancla", ventana: [5, 7], titulo: "La bahía",

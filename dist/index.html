@@ -1570,7 +1570,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "El batallón especial ya ha llenado las cárceles. Pedimos más celdas y más sueldo para seguir así.",
     izq: { accion: "Más celdas y más sueldo", efectos: { ejercito: 6, pueblo: -4 } },
-    der: { accion: "Que repartan palos los del Partido", efectos: { ejercito: -5, elite: 4 } }
+    der: { accion: "Que el Partido mande a sus brigadas", efectos: { ejercito: -5, elite: 4 } }
   },
 
   {
@@ -1578,7 +1578,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.",
     izq: { accion: "Apunten quién se pelea por mi silla", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Saquen a mi doble a saludar", efectos: { ejercito: 3, elite: -3 } }
+    der: { accion: "Daré un discurso de siete horas", efectos: { ejercito: 3, elite: -3 } }
   },
   {
     id: "el_doble", era: 4, tipo: "cola", titulo: "El doble",
@@ -1597,7 +1597,7 @@ const CARTAS = [
   {
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "La oposición quiere un referéndum sobre elecciones libres. Por desgracia, la Constitución lo permite.",
+    texto: "La oposición quiere votar si hay elecciones libres. Y la Constitución se lo permite, por desgracia.",
     izq: { accion: "Adelante, que el Pueblo decida", efectos: { pueblo: 6, elite: -4 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
     der: { accion: "Pues que el 99 % firme lo contrario", efectos: { elite: 5, pueblo: -5 } }
   },
@@ -1703,7 +1703,7 @@ const CARTAS = [
     id: "el_parte_medico", era: 4, tipo: "ancla", ventana: [5, 8], titulo: "El parte médico",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Los médicos ordenan reposo absoluto. Alguien tiene que firmar los decretos mientras se recupera.",
-    izq: { accion: "Firmaré en chándal desde la cama", efectos: { elite: -5, crisis: 2 } },
+    izq: { accion: "Firmaré los decretos desde la cama", efectos: { elite: -5, crisis: 2 } },
     der: { accion: "Que firme el Consejo de Ministros", efectos: { elite: 5 } }
   }
 ];

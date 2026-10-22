@@ -288,7 +288,7 @@ const CARTAS = [
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
     texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
-    izq: { accion: "Apagón donde llegue la señal", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
+    izq: { accion: "Interfieran la emisora con música", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
     der: { accion: "Acúsenlos de agentes extranjeros", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
@@ -296,7 +296,7 @@ const CARTAS = [
     id: "general_murmura", tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El general Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.",
-    izq: { accion: "Pregúntenle por sus hijos", efectos: { ejercito: -3, crisis: 1 } },
+    izq: { accion: "Pregúntenle cómo están sus hijos", efectos: { ejercito: -3, crisis: 1 } },
     der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, elite: 3 }, banderas: ["base.accidente_cienfuegos"] }
   },
 
@@ -304,8 +304,8 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "El Estado dará mejor uso a la tierra", largaAutorizada: true, efectos: { pueblo: -5, elite: 2 } },
-    der: { accion: "Empiecen a importar comida", efectos: { pueblo: 6, potencias: 5 } }
+    izq: { accion: "El Estado dará mejor uso a la tierra", efectos: { pueblo: -5, elite: 2 } },
+    der: { accion: "Importen comida a cualquier precio", efectos: { pueblo: 6, potencias: 5 } }
   },
 
   {

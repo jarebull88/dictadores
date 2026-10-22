@@ -727,7 +727,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "La oposición ha reunido firmas para un referéndum. La Constitución, por desgracia, lo permite.",
     izq: { accion: "Adelante, que el Pueblo decida", efectos: { pueblo: 6, elite: -4 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
-    der: { accion: "Votemos que el socialismo es eterno", efectos: { elite: 5, pueblo: -5 } }
+    der: { accion: "Pues que el 99 % firme lo contrario", efectos: { elite: 5, pueblo: -5 } }
   },
   {
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio",
@@ -789,8 +789,8 @@ const CARTAS = [
     id: "el_concierto", era: 4, tipo: "sorteo", peso: 10, titulo: "El concierto",
     personaje: "Ministra de Cultura",
     texto: "Una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.",
-    izq: { accion: "Que toquen y yo en primera fila", efectos: { pueblo: 5, elite: -3 } },
-    der: { accion: "Mejor la Orquesta del Ministerio", efectos: { elite: 3, pueblo: -5 } }
+    izq: { accion: "Que toquen, que yo también fui joven", efectos: { pueblo: 5, elite: -3 } },
+    der: { accion: "Que toque la orquesta del Ministerio", efectos: { elite: 3, pueblo: -5 } }
   },
   {
     id: "estatuas_caen", era: 4, tipo: "sorteo", peso: 10, titulo: "Las estatuas caen",

@@ -719,22 +719,22 @@ const CARTAS = [
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido propone un plebiscito para que el Pueblo diga si quiere que usted siga ocho años más.",
-    izq: { accion: "Convocar el plebiscito.", remate: "El Pueblo decidirá lo que ya está decidido.", efectos: { potencias: 6, pueblo: 4, ejercito: -5 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
-    der: { accion: "No hace falta.", remate: "No pregunto lo que ya sé.", efectos: { potencias: -6, pueblo: -4, ejercito: 5 } }
+    izq: { accion: "Convocar el plebiscito.", remate: "El Pueblo decidirá lo que ya está decidido.", efectos: { pueblo: 5, elite: -2 }, encolar: [{ carta: "el_escrutinio", min: 1, max: 2 }] },
+    der: { accion: "No hace falta.", remate: "No pregunto lo que ya sé.", efectos: { elite: 3, pueblo: -4 } }
   },
   {
     id: "el_escrutinio", era: 4, tipo: "cola", titulo: "El escrutinio",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El plebiscito ha salido mal: gana el «No». El escrutinio todavía no es oficial.",
-    izq: { accion: "Aceptar el resultado.", remate: "Que no se diga que no sé perder; solo que no me voy.", efectos: { pueblo: 9, potencias: 7, ejercito: -9, elite: -4 }, banderas: ["base.derrota_aceptada"] },
-    der: { accion: "Recontar los votos.", remate: "Hasta que salgan bien.", efectos: { pueblo: -9, potencias: -7, ejercito: 9, elite: 4 }, banderas: ["base.recuento"] }
+    izq: { accion: "Aceptar el resultado.", remate: "Que no se diga que no sé perder; solo que no me voy.", efectos: { pueblo: 8, elite: -5, ejercito: -3 }, banderas: ["base.derrota_aceptada"] },
+    der: { accion: "Recontar los votos.", remate: "Hasta que salgan bien.", efectos: { pueblo: -8, ejercito: 5, elite: 3 }, banderas: ["base.recuento"] }
   },
   {
     id: "aliado_se_hunde", era: 4, tipo: "sorteo", peso: 10, titulo: "El aliado se hunde",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país atraviesa dificultades. El año que viene no podremos enviar petróleo, ni créditos, ni, quizá, embajador.",
-    izq: { accion: "Pedir un último envío.", remate: "Por los viejos tiempos y por los nuevos apagones.", efectos: { potencias: 5, pueblo: -5, crisis: 2 } },
-    der: { accion: "Buscar nuevos amigos.", remate: "La amistad eterna también caduca.", efectos: { potencias: -5, pueblo: 5, elite: 3, crisis: 1 } }
+    izq: { accion: "Pedir un último envío.", remate: "Por los viejos tiempos y por los nuevos apagones.", efectos: { potencias: 5, crisis: 1 } },
+    der: { accion: "Buscar nuevos amigos.", remate: "La amistad eterna también caduca.", efectos: { potencias: -6, pueblo: -5, elite: 3 } }
   },
   {
     id: "salida_honrosa", era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",

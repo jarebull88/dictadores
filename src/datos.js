@@ -569,7 +569,7 @@ const CARTAS = [
     id: "biografia", era: 3, tipo: "sorteo", peso: 10, titulo: "El documental",
     personaje: "Ministra de Cultura",
     texto: "El documental de la Revolución está listo, pero en las tomas de la sierra se le ve algo rellenito.",
-    izq: { accion: "Reescribir la biografía.", remate: "La Historia la escriben los vencedores, y nosotros vencimos.", efectos: { elite: 4, pueblo: -3 } },
+    izq: { accion: "Repitan con un actor con abdominales", remate: "La Historia la escriben los vencedores, y nosotros vencimos.", efectos: { elite: 4, pueblo: -3 } },
     der: { accion: "La hamaca fue mi trinchera", remate: "La Historia sabrá poner cada nombre en su sitio.", efectos: { elite: -3, pueblo: 3 } }
   },
   {
@@ -582,7 +582,7 @@ const CARTAS = [
   {
     id: "palacio_pueblo", era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
     personaje: "Ministro de Economía",
-    texto: "El nuevo palacio costará cinco años de presupuesto y exige derribar tres barrios enteros.",
+    texto: "Proponemos un nuevo palacio de gobierno. Cuesta cinco años de presupuesto y tres barrios enteros.",
     izq: { accion: "Derribar los barrios.", remate: "Una gran Revolución necesita un palacio a su altura.", efectos: { elite: 3, pueblo: -6, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
     der: { accion: "Buscar otro solar.", remate: "El palacio puede esperar; los vecinos viven ahí.", efectos: { pueblo: 4, crisis: -1 } }
   },
@@ -598,7 +598,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros se designarán solos.",
     izq: { accion: "Designo sucesor a mi hermano", remate: "El sucesor debe aprender a esperar; yo tuve que hacerlo.", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.sucesor_designado"] },
-    der: { accion: "Sin sucesor.", remate: "Un líder eterno no necesita explicar quién viene después.", efectos: { elite: -3, ejercito: 4 } }
+    der: { accion: "Yo soy la Revolución, y no muero", remate: "Un líder eterno no necesita explicar quién viene después.", efectos: { elite: -3, ejercito: 4 } }
   },
   {
     id: "beso_fraterno", era: 3, tipo: "sorteo", peso: 8, titulo: "El beso fraterno",

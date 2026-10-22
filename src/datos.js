@@ -532,7 +532,7 @@ const CARTAS = [
   {
     id: "mercado_mayor", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mercado_paralelo"] }, titulo: "El mercado mayor",
     personaje: "Ministro de Comercio",
-    texto: "El mercado paralelo ya vende más que las tiendas del Estado, y algunos funcionarios cobran en divisas.",
+    texto: "El mercado paralelo vende más que las tiendas del Estado, y algunos funcionarios cobran en divisas.",
     izq: { accion: "Permitan pequeños negocios privados", efectos: { pueblo: 6, elite: -5, crisis: -1 } },
     der: { accion: "Persigan a los vendedores", efectos: { pueblo: -6, elite: 3, ejercito: 3, crisis: 1 } }
   },
@@ -596,21 +596,21 @@ const CARTAS = [
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido pregunta quién le sucederá. Si no lo designa usted, algunos ministros se designarán solos.",
+    texto: "El Partido pregunta quién le sucederá. Si no lo designa, algunos ministros se designarán solos.",
     izq: { accion: "Designo sucesor a mi hermano", efectos: { elite: -3, ejercito: 4 }, banderas: ["base.sucesor_designado"] },
     der: { accion: "Yo soy la Revolución, y no muero", efectos: { elite: -2, crisis: 3 } }
   },
   {
     id: "beso_fraterno", era: 3, tipo: "sorteo", peso: 8, titulo: "El beso fraterno",
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro máximo dirigente desea un abrazo fraternal con usted ante las cámaras. Será una foto para la Historia.",
+    texto: "Nuestro máximo dirigente desea abrazarle ante las cámaras. Será una foto para la Historia.",
     izq: { accion: "Abrazo que todos digan «¡Ohhh!»", efectos: { potencias: 6 } },
     der: { accion: "Apretón de manos, que hace calor", efectos: { potencias: -5 } }
   },
   {
     id: "viaje_oficial", era: 3, tipo: "sorteo", peso: 8, titulo: "El viaje oficial",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro presidente le invita a una visita oficial de dos semanas, con cenas, desfiles y un acuerdo comercial preparado.",
+    texto: "Nuestro presidente le invita dos semanas, con cenas, desfiles y un acuerdo comercial ya preparado.",
     izq: { accion: "Encantado, llevaré los puros", efectos: { potencias: 6 } },
     der: { accion: "Imposible, tengo mucho que dirigir", efectos: { potencias: -5 } }
   },

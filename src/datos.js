@@ -469,16 +469,16 @@ const CARTAS = [
   {
     id: "modestia_sospechosa", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.modestia_aparente"] }, titulo: "La modestia sospechosa",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Su rechazo a los retratos se ha interpretado como falsa humildad. El Partido propone una gran demostración de lealtad.",
-    izq: { accion: "Aceptar la demostración.", remate: "No quiero contrariar al Pueblo en una muestra de cariño.", efectos: { elite: 4, pueblo: -4 } },
-    der: { accion: "Insistir en la modestia.", remate: "La lealtad verdadera no necesita tantas ceremonias.", efectos: { elite: -4, pueblo: 4 } }
+    texto: "Su rechazo a los retratos se toma por desapego al Partido. Quieren una demostración de lealtad.",
+    izq: { accion: "Que cuelguen mi retrato en cada sede", remate: "No quiero contrariar al Pueblo en una muestra de cariño.", efectos: { elite: 4, pueblo: -4 } },
+    der: { accion: "Que el Partido trabaje y no adore", remate: "La lealtad verdadera no necesita tantas ceremonias.", efectos: { elite: -4, pueblo: 4 } }
   },
   {
     id: "desfile_anual", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.desfile_militar"] }, titulo: "El desfile del año",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El Ejército espera un desfile mayor que el del año pasado: más tanques, más soldados y, por tradición, caballería.",
+    texto: "Las Fuerzas Armadas esperan un desfile mayor que el del año pasado: más tanques y más soldados.",
     izq: { accion: "Desfile aún mayor.", remate: "El Pueblo debe ver que la Revolución sigue fuerte.", efectos: { ejercito: 7, pueblo: -5, crisis: 2 } },
-    der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -5, pueblo: 4 } }
+    der: { accion: "El mismo desfile.", remate: "La fuerza de la Revolución no se mide en tanques.", efectos: { ejercito: -6, pueblo: 4 } }
   },
   {
     id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
@@ -497,14 +497,14 @@ const CARTAS = [
   {
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable",
     personaje: "Ministro del Interior",
-    texto: "Mi unidad especial necesita su propio batallón, su propia cárcel y un presupuesto que no figure en ningún presupuesto.",
-    izq: { accion: "Autorizar el batallón.", remate: "Quiero que tengan todo lo necesario para proteger la Revolución.", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.estado_policial"] },
+    texto: "Mi unidad especial necesita su propio batallón, su propia cárcel y un presupuesto secreto.",
+    izq: { accion: "Tendrá batallón, cárcel y fondos", remate: "Quiero que tengan todo lo necesario para proteger la Revolución.", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.estado_policial"] },
     der: { accion: "Recortarle el presupuesto.", remate: "Que vigilen al Pueblo sin crear un gobierno dentro del Gobierno.", efectos: { ejercito: -8, elite: 3, pueblo: 4 } }
   },
   {
     id: "aulas_vacias", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estudiantes_reprimidos", "base.huelga_reprimida"] }, titulo: "Las aulas vacías",
     personaje: "Ministra de Educación",
-    texto: "La universidad sigue vacía y circulan apuntes clandestinos. Algunos profesores enseñan historia sin citarle a usted.",
+    texto: "Algunos profesores se atreven a enseñar historia sin citarle a usted.",
     izq: { accion: "Exigir lealtad a profesores.", remate: "Las notas medirán tanto los conocimientos como la lealtad.", efectos: { elite: 5, pueblo: -5 } },
     der: { accion: "Reabrir las facultades.", remate: "La Revolución necesita aulas llenas, no héroes universitarios.", efectos: { pueblo: 5, elite: -5 } }
   },

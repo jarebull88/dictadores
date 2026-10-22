@@ -575,7 +575,7 @@ const CARTAS = [
   {
     id: "mausoleo", era: 4, tipo: "sorteo", peso: 8, titulo: "El mausoleo",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido pide un monumento eterno: un cacho de roca gigante que dicen que se parece a usted.",
+    texto: "El Partido ya diseña su tumba: un cacho de roca gigante que dicen que se parece a usted.",
     izq: { accion: "Seré una piedra eterna", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
     der: { accion: "Prohíban estatuas con mi cara", efectos: { elite: -3, crisis: -1 } }
   },
@@ -675,16 +675,16 @@ const CARTAS = [
   {
     id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",
     personaje: "Ministro de Economía",
-    texto: "Su roca eterna ya pide mantenimiento. Usted no la ha estrenado, pero las palomas la usan a diario.",
+    texto: "Su roca eterna pide mantenimiento: la gente se sube a hacerse fotos y las palomas la usan a diario.",
     izq: { accion: "Guardia de honor día y noche", efectos: { ejercito: 3, pueblo: -3, crisis: 1 } },
     der: { accion: "Cobren la entrada en dólares", efectos: { potencias: 3, elite: -2 } }
   },
   {
     id: "palacio_sin_terminar", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar",
     personaje: "Ministro de Economía",
-    texto: "El palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
-    izq: { accion: "Terminen mi palacio", efectos: { elite: 5, pueblo: -5, crisis: 3 } },
-    der: { accion: "Que sea un hospital con mi nombre", efectos: { pueblo: 5, elite: -4 } }
+    texto: "Su palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
+    izq: { accion: "Termínenlo, la Revolución lo merece", efectos: { elite: 5, pueblo: -5, crisis: 3 } },
+    der: { accion: "Conviértanlo en un hospital", efectos: { pueblo: 5, elite: -4 } }
   },
   {
     id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, titulo: "Los militares empresarios",

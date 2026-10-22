@@ -365,11 +365,11 @@ const CARTAS = [
   },
 
   {
-    id: "universidades", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.huelga_reprimida"] }, titulo: "Panfletos en la universidad",
-    personaje: "Ministra de Educación",
-    texto: "Los hijos de los estibadores reparten panfletos en la universidad. Recuerdan lo del puerto.",
-    izq: { accion: "Sus compañeros los educarán", efectos: { pueblo: 4, elite: 3 } },
-    der: { accion: "Expúlsenlos, a cortar caña", efectos: { pueblo: -6, ejercito: 4 } }
+    id: "universidades", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.huelga_reprimida"] }, titulo: "El puerto lento",
+    personaje: "Ministro de Trabajo",
+    texto: "Desde la huelga, los estibadores trabajan a medio ritmo. Los barcos esperan semanas para descargar.",
+    izq: { accion: "Militaricen el puerto", efectos: { ejercito: 5, pueblo: -5 } },
+    der: { accion: "Que puedan elegir a su delegado", largaAutorizada: true, efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
@@ -415,9 +415,9 @@ const CARTAS = [
   {
     id: "deuda_llama", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.compensaciones", "base.deuda_externa"] }, titulo: "La deuda llama",
     personaje: "Ministro de Economía",
-    texto: "Mañana vence el primer pago de las compensaciones. En caja hay menos de lo prometido.",
-    izq: { accion: "Pagar la cuota.", remate: "La Revolución cumple cuando le conviene.", efectos: { potencias: 5, pueblo: -5 } },
-    der: { accion: "Pedir prórroga.", remate: "La Historia puede esperar; los acreedores tendrán que aprender.", efectos: { potencias: -6, elite: 3 } }
+    texto: "Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.",
+    izq: { accion: "Paguen, aunque no comamos", efectos: { potencias: 5, pueblo: -5 } },
+    der: { accion: "No pagamos a explotadores", efectos: { potencias: -6, elite: 3 } }
   },
 
   {
@@ -431,17 +431,17 @@ const CARTAS = [
   {
     id: "cosecha_record", era: 2, tipo: "sorteo", peso: 8, titulo: "La cosecha récord",
     personaje: "Ministro de Trabajo",
-    texto: "La cosecha es récord, según los informes. Los almacenes, curiosamente, están vacíos.",
-    izq: { accion: "Proclamar el récord.", remate: "El Pueblo no come estadísticas, pero escucha las noticias.", efectos: { elite: 5 } },
-    der: { accion: "Pedir cifras reales.", remate: "Quiero saber cuánto falta antes de decidir a quién culpar.", efectos: { elite: -5, ejercito: 3 } }
+    texto: "La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.",
+    izq: { accion: "Anuncien el récord por radio", efectos: { elite: 5 } },
+    der: { accion: "Busquen al que infló cifras", efectos: { elite: -5, ejercito: 3 } }
   },
 
   {
     id: "el_espia", era: 2, tipo: "sorteo", peso: 8, titulo: "El diplomático curioso",
     personaje: "Ministro del Interior",
     texto: "Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.",
-    izq: { accion: "Expulsarlo.", remate: "Que visite otro país. Aquí ya ha visto demasiado.", efectos: { potencias: -5, ejercito: 3 } },
-    der: { accion: "Intercambiarlo.", remate: "La Patria también puede negociar con sus enemigos.", efectos: { ejercito: 6 } }
+    izq: { accion: "Expulsarlo.", remate: "Que visite otro país. Aquí ya ha visto demasiado.", efectos: { potencias: -3 } },
+    der: { accion: "Intercambiarlo.", remate: "La Patria también puede negociar con sus enemigos.", efectos: { potencias: -6, ejercito: 5 } }
   },
 
   {

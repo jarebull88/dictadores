@@ -648,8 +648,8 @@ const CARTAS = [
     id: "el_reportaje", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
     personaje: "Ministra de Cultura",
     texto: "Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.",
-    izq: { accion: "Ciérrenlo por falta de papel", efectos: { elite: 3, pueblo: -5 } },
-    der: { accion: "Auditoría pública de las cuentas", efectos: { pueblo: 3, elite: -5, crisis: 1 } }
+    izq: { accion: "Son mercenarios y mienten", efectos: { elite: 3, pueblo: -5 } },
+    der: { accion: "Busquen un viceministro culpable", efectos: { pueblo: 3, elite: -5, crisis: 1 } }
   },
   {
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",

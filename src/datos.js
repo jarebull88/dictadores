@@ -313,7 +313,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.",
     izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
-    der: { accion: "Apunten quién los repite", efectos: { pueblo: -6, elite: -3, ejercito: 5 } }
+    der: { accion: "Que la prensa diga la verdad", efectos: { pueblo: 5, elite: -5 } }
   },
 
   {
@@ -344,8 +344,8 @@ const CARTAS = [
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.",
-    izq: { accion: "Arréstenlos", efectos: { ejercito: -6 } },
-    der: { accion: "Vigilen cada movimiento", efectos: { ejercito: 5 } }
+    izq: { accion: "Arréstenlos", efectos: { ejercito: 3, potencias: -5 } },
+    der: { accion: "Metan un topo en el club", efectos: { ejercito: 6 } }
   },
 
   {

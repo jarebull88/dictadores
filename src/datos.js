@@ -689,8 +689,8 @@ const CARTAS = [
   {
     id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, titulo: "Los militares empresarios",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los militares sabemos administrar. Denos los hoteles y las tiendas en divisas y verá qué orden.",
-    izq: { accion: "Los hoteles, para el Ejército", efectos: { ejercito: 6, elite: -4 } },
+    texto: "Los generales ya saben de tanques. Ahora quieren aprender de hoteles, tiendas y divisas.",
+    izq: { accion: "Que cada general tenga su hotel", efectos: { ejercito: 6, elite: -4 } },
     der: { accion: "Los negocios son cosa de ministros", efectos: { elite: 4, ejercito: -3 } }
   },
   {
@@ -810,7 +810,7 @@ const CARTAS = [
     id: "los_turistas", era: 4, tipo: "sorteo", peso: 10, titulo: "Los turistas",
     personaje: "Ministro de Comercio",
     texto: "Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los exiliados manden dólares.",
-    izq: { accion: "Playas solo para turistas", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
+    izq: { accion: "Que los turistas gocen la Revolución", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
     der: { accion: "Que el exilio mantenga la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
   {
@@ -823,9 +823,9 @@ const CARTAS = [
   {
     id: "el_general_heroe", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "El general héroe", ilustracion: null,
     personaje: "Ministro del Interior",
-    texto: "El general más condecorado está preso por contrabando. Lo hizo con su permiso, pero eso no lo sabe nadie.",
+    texto: "El general más condecorado está preso por contrabando. Cuando declare, dirá quién lo autorizó.",
     izq: { accion: "Juicio en directo y paredón", efectos: { ejercito: -6, elite: 3, pueblo: -2 } },
-    der: { accion: "Suéltenlo si sabe guardar silencio", efectos: { ejercito: 5, elite: -2, crisis: 1 } }
+    der: { accion: "Finca con vistas y boquita cerrada", efectos: { ejercito: 5, elite: -2, crisis: 1 } }
   },
   {
     id: "el_parte_medico", era: 4, tipo: "ancla", ventana: [5, 8], titulo: "El parte médico",

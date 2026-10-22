@@ -212,8 +212,8 @@ const CARTAS = [
     id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura",
     personaje: "Ministro de Economía",
     texto: "Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.",
-    izq: { accion: "Precios congelados por decreto", efectos: { pueblo: 8, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Otro préstamo y ya veremos", efectos: { potencias: 8, pueblo: -3, crisis: -3 }, banderas: ["base.deuda_externa"] }
+    izq: { accion: "Congelen los precios por decreto", efectos: { pueblo: 8, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] },
+    der: { accion: "Pidan otro préstamo y ya veremos", efectos: { potencias: 8, pueblo: -3, crisis: -3 }, banderas: ["base.deuda_externa"] }
   },
   {
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías",
@@ -230,8 +230,8 @@ const CARTAS = [
     titulo: "La calle y los cuarteles",
     personaje: "Ministro del Interior",
     texto: "Algunos oficiales se reúnen con los que protestan en la calle. Si se juntan, caemos.",
-    izq: { accion: "Un ascenso por cada traición evitada", largaAutorizada: true, efectos: { ejercito: 8, elite: -4 } },
-    der: { accion: "Calabozo para esos oficiales", largaAutorizada: true, efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
+    izq: { accion: "Asciendan a los que no se reúnen", efectos: { ejercito: 8, elite: -4 } },
+    der: { accion: "Arresten a los oficiales reunidos", efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
   },
   {
     id: "coalicion_dinero_sale", tipo: "coalicion", repetible: true, borrador: true,

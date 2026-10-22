@@ -575,7 +575,7 @@ const CARTAS = [
   {
     id: "mausoleo", era: 4, tipo: "sorteo", peso: 8, titulo: "El mausoleo",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido ruega prever un mausoleo para cuando le llegue la hora. Los embalsamadores ya están en nómina.",
+    texto: "El Partido pide un monumento eterno: un cacho de roca gigante que dicen que se parece a usted.",
     izq: { accion: "Construir el mausoleo.", remate: "La Historia merece un lugar donde visitarme.", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
     der: { accion: "Enterrarme sin avisar a nadie", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
   },
@@ -649,7 +649,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.",
     izq: { accion: "Cerrar el periódico por falta de papel", efectos: { pueblo: -6, ejercito: 4 } },
-    der: { accion: "Culpar a un ministro y despedirlo", efectos: { pueblo: 3, elite: -6 } }
+    der: { accion: "Ordenar una auditoría pública", efectos: { pueblo: 3, elite: -6 } }
   },
   {
     id: "varela_vuelve", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",

@@ -328,8 +328,8 @@ const CARTAS = [
     id: "elecciones_controladas", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Se acercan las elecciones prometidas. El Partido propone una lista única, «para comodidad del votante».",
-    izq: { accion: "Lista única.", remate: "El Pueblo no necesita elegir entre nosotros.", efectos: { pueblo: -6, elite: 5 } },
-    der: { accion: "Varias listas.", remate: "Que voten libremente. El resultado ya está claro.", efectos: { pueblo: 6, elite: -5 } }
+    izq: { accion: "Papeleta única: Partido o Partido", remate: "El Pueblo no necesita elegir entre nosotros.", efectos: { pueblo: -6, elite: 5 } },
+    der: { accion: "Abran las listas a la oposición", remate: "Que voten libremente. El resultado ya está claro.", efectos: { pueblo: 6, elite: -5 } }
   },
 
   {
@@ -384,8 +384,8 @@ const CARTAS = [
     id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta", "base.campos_trabajo"] }, titulo: "Una carta con firmas",
     personaje: "Ministra de Cultura",
     texto: "Un grupo de intelectuales firmó una carta reclamando los derechos que usted mismo prometió.",
-    izq: { accion: "Recibir a los firmantes.", remate: "Quiero conocer a los que creen que eso depende de mí.", efectos: { pueblo: 6, ejercito: -4, elite: -3 } },
-    der: { accion: "Prohibir la carta.", remate: "No permitiré que cuatro firmas aparenten dividir al Pueblo.", efectos: { pueblo: -6, ejercito: 5, elite: 3 } }
+    izq: { accion: "Abran un diálogo con los firmantes", remate: "Quiero conocer a los que creen que eso depende de mí.", efectos: { pueblo: 6, ejercito: -4, elite: -3 } },
+    der: { accion: "Prohíban la carta y a sus autores", remate: "No permitiré que cuatro firmas aparenten dividir al Pueblo.", efectos: { pueblo: -6, ejercito: 5, elite: 3 } }
   },
 
   {
@@ -425,7 +425,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda del país.",
     izq: { accion: "Que el éxito quede por escrito", remate: "El éxito de la Revolución empieza por escribirlo.", efectos: { elite: 5, pueblo: -4, crisis: 2 } },
-    der: { accion: "Dejar al mercado.", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
+    der: { accion: "Que el mercado fije los precios", remate: "El mercado funciona mientras haga lo que se le dice.", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
 
   {
@@ -455,8 +455,8 @@ const CARTAS = [
   {
     id: "el_monumento", era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido ha diseñado un monumento de cuarenta metros en su honor. Se verá desde todos los barrios y desde la costa.",
-    izq: { accion: "Monumento colosal.", remate: "Me conmueve que el Pueblo me vea como a un padre.", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
+    texto: "El Partido ha diseñado un monumento de cuarenta metros en su honor. Visible desde todos los barrios y la costa.",
+    izq: { accion: "Cuarenta metros, ni uno menos", remate: "Me conmueve que el Pueblo me vea como a un padre.", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
     der: { accion: "Monumento modesto.", remate: "El Pueblo no necesita mármol para saber quién lo protege.", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
   },
   {

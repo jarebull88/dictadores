@@ -186,3 +186,8 @@ Objetivo: reposo absoluto. ¿Sueltas el poder? (2006)
 - A. Gobernar desde la cama. → Pa −5, C +2
 - B. Delegar «provisionalmente». → Pa +5
 Diagnóstico: hoy el Ejército se mueve sin motivo.
+
+---
+
+## Pendiente para el final de la redacción (22 oct, Jorge)
+- **El hilo de la bomba, desde el principio.** En la historia real, los atentados de los 70 los pusieron los exiliados. Rehacer el hilo entero con esa base, empezando por `el_atentado` (era 3) y siguiendo por `la_investigacion`, `bomba_interior` y `los_inocentes` (era 4). Hoy `bomba_interior` dice que la bomba la puso Interior, sin base histórica, y el jugador no recuerda de qué bomba se habla ni para qué se puso. Se deja sin redactar hasta entonces.

@@ -304,16 +304,16 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Los campesinos tienen tierra, pero no semillas ni tractores. La cosecha ha caído a la mitad.",
-    izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -6, elite: 3, crisis: -1 } },
-    der: { accion: "Importen la canasta básica", efectos: { pueblo: 6, potencias: 5, crisis: 2 } }
+    izq: { accion: "La culpa es del imperialismo", efectos: { pueblo: -5, elite: 3 } },
+    der: { accion: "Importen la canasta básica", efectos: { pueblo: 6, potencias: 5 } }
   },
 
   {
     id: "periodista_oficial", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.censura_previa"] }, titulo: "El periodista oficial",
     personaje: "Ministra de Cultura",
     texto: "Nadie cree los periódicos, pero sí los rumores. Propongo un periodista oficial que los desmienta.",
-    izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -5, elite: 5, ejercito: 3 }, banderas: ["base.periodista_oficial"] },
-    der: { accion: "Apunten quién los repite", efectos: { pueblo: 5, elite: -5, ejercito: -3 } }
+    izq: { accion: "Nombren un Vocero de la Verdad", largaAutorizada: true, efectos: { pueblo: -3, elite: 5 }, banderas: ["base.periodista_oficial"] },
+    der: { accion: "Apunten quién los repite", efectos: { pueblo: -6, elite: -3, ejercito: 5 } }
   },
 
   {
@@ -344,16 +344,16 @@ const CARTAS = [
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales jubilados tienen un «club de ajedrez». No juegan al ajedrez.",
-    izq: { accion: "Arresto domiciliario para todos", efectos: { ejercito: -6, elite: 3, potencias: -3 } },
-    der: { accion: "Vigilen cada movimiento", efectos: { ejercito: 6, elite: -3, crisis: 1 } }
+    izq: { accion: "Arresto domiciliario para todos", efectos: { ejercito: -6 } },
+    der: { accion: "Vigilen cada movimiento", efectos: { ejercito: 5 } }
   },
 
   {
     id: "jefe_poder", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.purga_inicial"] }, titulo: "El jefe pide más",
     personaje: "Ministro del Interior",
     texto: "Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.",
-    izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -5, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
-    der: { accion: "Denegado", efectos: { ejercito: -8, pueblo: 4, elite: 5 } }
+    izq: { accion: "Autorizo la unidad especial", efectos: { ejercito: 8, elite: -3, pueblo: -4 }, banderas: ["base.jefe_poderoso"] },
+    der: { accion: "Denegado", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
   {

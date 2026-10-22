@@ -440,8 +440,8 @@ const CARTAS = [
     id: "el_espia", era: 2, tipo: "sorteo", peso: 8, titulo: "El diplomático curioso",
     personaje: "Ministro del Interior",
     texto: "Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.",
-    izq: { accion: "Expulsarlo.", remate: "Que visite otro país. Aquí ya ha visto demasiado.", efectos: { potencias: -3 } },
-    der: { accion: "Intercambiarlo.", remate: "La Patria también puede negociar con sus enemigos.", efectos: { potencias: -6, ejercito: 5 } }
+    izq: { accion: "Expúlsenlo del país", efectos: { potencias: -3 } },
+    der: { accion: "A la cárcel, por espía", efectos: { potencias: -6, ejercito: 5 } }
   },
 
   {
@@ -483,16 +483,16 @@ const CARTAS = [
   {
     id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestros satélites siguen contando sus misiles y pedimos una inspección. Aceptarla evitaría un incidente mayor.",
-    izq: { accion: "Permitir la inspección.", remate: "Que inspeccionen; para entonces ya habremos hecho el cambio.", efectos: { potencias: 8, ejercito: -5 } },
+    texto: "Nuestros satélites siguen detectando misiles. Exigimos una inspección.",
+    izq: { accion: "Inspeccionen lo que quieran", efectos: { potencias: 8, ejercito: -5 } },
     der: { accion: "Negarse.", remate: "La soberanía no se inspecciona.", efectos: { potencias: -8, ejercito: 5 } }
   },
   {
     id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
-    izq: { accion: "Pedir disculpas.", remate: "Una amistad duradera también exige saber pedir perdón.", efectos: { potencias: 7 } },
-    der: { accion: "Buscar otro proveedor.", remate: "El petróleo no tiene ideología, solo precio.", efectos: { potencias: -6, elite: 4, pueblo: -4 } }
+    izq: { accion: "Apoyaremos su próxima invasión", largaAutorizada: true, efectos: { potencias: 7 } },
+    der: { accion: "Iremos en bicicleta", efectos: { potencias: -6, elite: 4, pueblo: -4 } }
   },
   {
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable",

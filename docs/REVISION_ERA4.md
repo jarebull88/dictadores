@@ -193,3 +193,10 @@ Diagnóstico: hoy el Ejército se mueve sin motivo.
 - **El hilo de la bomba, desde el principio.** En la historia real, los atentados de los 70 los pusieron los exiliados. Rehacer el hilo entero con esa base, empezando por `el_atentado` (era 3) y siguiendo por `la_investigacion`, `bomba_interior` y `los_inocentes` (era 4). Hoy `bomba_interior` dice que la bomba la puso Interior, sin base histórica, y el jugador no recuerda de qué bomba se habla ni para qué se puso. Se deja sin redactar hasta entonces.
 - **`mausoleo_vacio`, retirada** (peso 0, sin borrar el id): el mantenimiento de la roca antes de morir no tiene sentido. Jorge pensará otras cartas para el mausoleo.
 - **`las_memorias`, respuestas** (se deja para el final): la pregunta ya está («Un periodista extranjero quiere escribir sus memorias…»); el dilema es publicarlas en el país o venderlas en el extranjero.
+- **`el_doble`**: Jorge no ve el sentido de la carta; aparcada con el texto provisional (la B de `la_salud` la sigue encolando).
+- **`la_salud`, respuesta A**: un rumor no se puede detener. Propuesta sin decidir: «Daré un discurso de siete horas», con pesos Partido +3, Pueblo −3.
+- **`el_escrutinio`, respuesta A**: no puede ser aceptar la derrota (sería caer). Las alternativas propuestas no convencieron.
+- **`delfin_impaciente`, respuestas**: apartar al hermano o darle oficialmente su papel; sin elegir.
+- **`el_batallon`**: sin redactar.
+- **Pesos cambiados por los textos nuevos, a confirmar**: `estatuas_caen` B (Ejército +4, Pueblo −2), `la_cuenta` A (Pueblo −4, Partido +3), `el_hijo` B (Partido −3, crisis −1).
+- **Informe de era**: `PREVISION` sigue diciendo «El mausoleo cuesta una fortuna en mantenimiento».

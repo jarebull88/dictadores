@@ -32,6 +32,8 @@ Cada barra mide el **peso político** de esa fuerza en el régimen, no lo conten
 - Respeta a quien habla: el **embajador** habla en nombre de su país (primera persona) y plantea sus exigencias o intereses; el **ministro** habla de asuntos internos, y quien decide es el Comandante.
 - Concisa y con personalidad: **100 caracteres como máximo** (16 oct; el test aún vigila 150). **Sin tratamiento delante en ninguna era** (17 oct): ni «Comandante,» ni «Excelencia,» ni «Padre de la Patria,».
 
+- **Humor en la pregunta, de vez en cuando** (22 oct): el personaje sigue hablando en serio, pero la situación puede tener guasa («en las tomas de la sierra se le ve algo rellenito»). Funciona porque es raro: no abusar.
+
 ## Las respuestas A y B
 - **Hasta 36 caracteres, espacios incluidos** (22 oct; antes 5 palabras y ≤28): dos líneas en todos los móviles, sin achicar la letra. Sin límite de palabras: se puede usar ese espacio para que la decisión se entienda mejor. Sin punto final.
 - **Sin remate, en ninguna era** (16 oct): la respuesta es todo lo que se lee.

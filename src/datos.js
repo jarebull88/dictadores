@@ -526,7 +526,7 @@ const CARTAS = [
     id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
     personaje: "Ministro de Economía",
     texto: "El acreedor aplazará la deuda a cambio de nuestro voto en los foros internacionales durante años.",
-    izq: { accion: "Vender nuestro voto.", remate: "La diplomacia también sirve para pagar deudas.", efectos: { potencias: 7, elite: -2, crisis: -2 } },
+    izq: { accion: "Votaremos fieles a nuestros aliados", efectos: { potencias: 7, elite: -2, crisis: -2 } },
     der: { accion: "Racionar más hasta pagar la deuda", efectos: { potencias: -7, elite: 3, pueblo: -5, crisis: 1 } }
   },
   {

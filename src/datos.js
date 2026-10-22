@@ -152,8 +152,8 @@ const CARTAS = [
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",
     personaje: "Ministro de Economía",
-    texto: "Que los inquilinos dejen de pagar al casero: el Estado cobrará la mitad y la casa será suya.",
-    izq: { accion: "Cada casa, para quien la vive", efectos: { pueblo: 8, elite: 4 } },
+    texto: "El Estado expropiará las casas y las alquilará a mitad de precio hasta que el inquilino las compre.",
+    izq: { accion: "Ahora el casero es el Estado", efectos: { pueblo: 8, elite: 4 } },
     der: { accion: "Los caseros mantienen sus casas", efectos: { pueblo: -8, elite: -4 } }
   },
   {
@@ -167,7 +167,7 @@ const CARTAS = [
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
     texto: "Los intelectuales preguntan hasta dónde pueden criticar a la Revolución.",
-    izq: { accion: "Que critiquen lo que quieran", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
+    izq: { accion: "Que critiquen todo lo que quieran", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
            encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
     der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, elite: 5 } }
   },
@@ -176,14 +176,14 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "¡Al paredón!", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
+    der: { accion: "Paredón y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",
     personaje: "Ministro de Trabajo",
     texto: "El puerto lleva tres días parado. Los estibadores no quieren que el Partido elija a sus líderes.",
     izq: { accion: "Que se organicen libremente", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
-    der: { accion: "La huelga es contrarrevolución", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
+    der: { accion: "El Partido ya eligió por ellos", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
   },
   {
     id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio",

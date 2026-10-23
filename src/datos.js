@@ -1005,7 +1005,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Cada semana desaparecen vacas del Estado. Los campesinos dicen que se tiran solas a la vía del tren.",
     izq: { accion: "Más años por vaca que por persona", efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Si la vaca se cae, que se aproveche", efectos: { pueblo: 4, ejercito: -4 } }
+    der: { accion: "Si la vaca estaba triste, al caldero", efectos: { pueblo: 4, ejercito: -4 } }
   },
   {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",

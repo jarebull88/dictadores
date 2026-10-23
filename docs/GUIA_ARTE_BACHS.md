@@ -333,7 +333,13 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 ### La regla de oro de los personajes (23 oct, Jorge)
 **Que el jugador diga «esto me suena».** Cada personaje es un homenaje reconocible a su cartel: la misma composición, el mismo truco y la misma técnica, casi literales, con nuestro personaje y nuestra paleta. Los modelos son el Comandante joven v2 (*Por primera vez*) y Sarria v3 (*Zorro*). **La fidelidad al cartel manda sobre la regla del busto**: el encuadre y la escala los pone el cartel (los ojos animados se colocan por personaje en `personajes.json`).
 
-### Prompt A-P · Estilo de personaje (v8, 23 oct)
+### Prompt A-P · Estilo de personaje (v9, homenaje, 23 oct)
+Sustituye al v8 desde la regla de oro: sin busto obligatorio y con el cartel seguido casi al pie de la letra.
+```
+Square 1:1 illustration in the style of a 1960s–70s Cuban silkscreen film poster by Eduardo Muñoz Bachs (ICAIC). This is a recognizable homage to the attached poster: follow it almost literally in composition, visual trick, technique and tone, so anyone who knows the poster recognizes it at once, but with our character, in a square format and in our palette, and without its text. Full-bleed: the background runs off all four edges, edge to edge. Use the poster's own techniques: big flat silkscreen shapes, thick wobbly hand-drawn black outlines, hatching, doodled details, naive childlike drawing and boldly distorted proportions. The main character's eyes are always two solid round near-black dots, clearly separated, each on a small plain light patch so they read clearly. Every color is one of these flat inks, with no intermediate tones: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0, soft pink #DF8178, cream paper #F0E9D6, near-black ink #201D14. Even rough, brush-made shapes are printed: solid, uniform ink inside with no bristle streaks or dry-brush texture. Real screen-print texture: fine mottle, paper fibers visible. No gradients, no shadows, no shine. No text, no letters, no flags, no emblems.
+```
+
+### Prompt A-P · Estilo de personaje (v8, 23 oct; sustituido por el v9)
 Va antes del bloque del personaje. Hay que adjuntar el cartel de referencia que toque.
 
 **v8 (23 oct, Jorge): en los personajes se pueden usar todas las técnicas de Bachs** (rayado de grabado, contornos negros de pincel, dibujo a línea, tramas, dibujo infantil), según el cartel de referencia. Lo minimalista y «sin líneas» era para los iconos, que se ven pequeños. Y el cartel se respeta en concepto, composición, técnica y tono, no solo en la idea. Se mantienen: el busto a la misma escala, los ojos de punto, solo las tintas de la paleta (sin tonos intermedios) y sin texto.
@@ -442,3 +448,21 @@ Jorge: la v2 no recordaba en nada al cartel. Lo que hace *Zorro*: un primerísim
 ```
 Cream paper #F0E9D6 background. Following the attached poster almost literally: an extreme close-up of a face that fills the whole square, edge to edge. Across the top third runs one solid near-black horizontal band from the left edge to the right edge, his hair and his heavy round glasses fused into a single mask-like shape, with two wide cream eye openings cut into it; in each opening, one solid near-black dot eye looking sideways. Below the band, the rest of the square is his plain cream face, almost empty. In the middle, like the rooster nose in the poster, his nose is a small human ear drawn in rough near-black ink, because he listens to everything. Lower down, his mouth is two thick, rough horizontal near-black bars, one above the other, like sealed lips. The only color: in each eye opening, a few tiny brick-red and olive-green round faces of his comrades, one of them crossed out, reflected next to the pupil. Nothing else. Rough, irregular edges but solid, uniform ink inside.
 ```
+
+### Homenajes casi literales (23 oct, con el A-P v9)
+
+**Domingo v2** (referencia 01, *Los pájaros tirándole a la escopeta*)
+```
+Mustard #D8A02A background. Following the attached poster almost literally: in the center, a tall, narrow, solid near-black vertical shape rises from the bottom edge to near the top, like the shotgun in the poster: it is the silhouette of his big brother, topped by a flat-topped kepi, with two big round cream rings at the top like the binocular barrels in the poster. Clinging to its side, like the bird in the poster, small Domingo: a slim young guerrilla in a neat olive-green #86762C uniform buttoned up to the chin with a row of small mustard buttons, a small flat-topped olive kepi set perfectly straight, a long lopsided cream face with two solid near-black dot eyes, a small pointed near-black wedge nose and a thin pencil mustache. He gazes up at his brother's shadow adoringly, one hand raised delicately with the little finger lifted, and a tiny soft-pink flower in his buttonhole. Small soft-pink hearts float around his head, like in the poster. Thick wobbly hand-drawn outlines and rough edges, printed as solid ink.
+```
+
+**Rigoberto v3** (referencia 16, *El deporte nacional*)
+```
+Mustard #D8A02A background with a strip of olive-green #86762C ground along the bottom edge. Following the attached poster almost literally: a skinny bodega keeper stands, seen almost full length, lost in a huge baggy uniform two sizes too big, cream with thin vertical olive-green pinstripes like the baseball uniform in the poster, but cut like guerrilla fatigues, with a thick wobbly near-black outline and a mustard rope tied around the waist. His head in three-quarter view, both eyes visible: a long lopsided cream face, two solid near-black dot eyes, a huge drooping pear-shaped mustard nose, and an enormous windswept solid near-black beard flying to one side like in the poster. A small flat-topped olive kepi. Where the poster has the bat, he leans one hand on a giant cone of cream newspaper, as tall as his leg, standing on the ground and full to the brim with small solid near-black beans. Black boots. Thick wobbly hand-drawn outlines, printed as solid ink.
+```
+
+**Neto v2** (referencia 21, *Se permuta*)
+```
+Olive-green #86762C background, covered all over with hand-drawn near-black arrows, dotted lines and curving arrows pointing in every direction, exactly like in the attached poster. Following the poster almost literally: Neto leaps diagonally across the square, arms flung wide, one leg kicked back, like the woman in the poster. A loud cream shirt with big soft-pink and brick-red flowers, sleeves rolled up. A long, lopsided cream face in three-quarter view, both eyes visible: two solid near-black dot eyes, a long hooked brick-red pirate nose, a mop of tight near-black curls, a thin near-black mustache and a wide grin with one mustard gold tooth. Like the city skirt in the poster, around his waist he wears his wooden smuggling boat as a skirt: a mustard and cream wooden boat with small doodled planks, loaded with small rum bottles and crates, with a brick-red arrow sticking out of it to the right. Cream legs and two-tone mustard and red shoes. Thick wobbly hand-drawn near-black outlines around everything, printed as solid ink.
+```
+

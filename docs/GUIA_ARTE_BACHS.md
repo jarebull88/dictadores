@@ -167,9 +167,9 @@ Brick red #B0362A background. A big portrait in a chunky mustard frame, slightly
 Brick red #B0362A background. A tall, proud statue of a naive guerrilla leader: a flat-topped olive-green kepi cap, a small cream face with two solid dot eyes, one enormous solid black beard covering the lower face and chest, a small flat mustard cigar sticking out of the beard, and a stocky olive-green body in fatigues with one arm raised high. He stands on a simple mustard block pedestal. No suit, no tie.
 ```
 
-**Embargo**
+**Embargo** (23 oct: el candado, ahora en el azul de las potencias: el color dice quién cierra. El ojo de la cerradura, en crema, porque el negro no se ve sobre el azul)
 ```
-Mustard #D8A02A background. A big, chubby padlock, slightly lopsided: one rounded brick-red body shape with a solid near-black keyhole, and a thick solid near-black shackle on top, closed.
+Mustard #D8A02A background. A big, chubby padlock, slightly lopsided, filling most of the square: one rounded cobalt-blue #1D51A0 body shape with a cream #F0E9D6 keyhole cut into it, and a thick solid near-black shackle on top, closed.
 ```
 
 **Alineado 1** (títere de guante)

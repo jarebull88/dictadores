@@ -436,9 +436,9 @@ function mostrar(id) {
 
 function parBarra(id) {
   return `<div class="par">
-      <div class="icono-fuerza" style="height:40px" aria-hidden="true">${icono(id)}</div>
+      <div class="icono-fuerza" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
-      <div class="nivel" aria-hidden="true" style="max-width:72px"><i class="relleno"></i></div>
+      <div class="nivel" aria-hidden="true"><i class="relleno"></i></div>
     </div>`;
 }
 

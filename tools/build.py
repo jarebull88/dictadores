@@ -39,8 +39,8 @@ def portada():
 
 def fuentes():
     css = ""
-    for familia, archivo, peso in (("Courier Prime", "courier-prime-latin-400-normal", 400),   # 14 oct: se probó Iosevka y se volvió a estas
-                                   ("Courier Prime", "courier-prime-latin-700-normal", 700),
+    for familia, archivo, peso in (("Baloo 2", "baloo-2-latin-400-normal", 400),   # 23 oct: texto (antes Courier Prime, que sigue en assets/fuentes)
+                                   ("Baloo 2", "baloo-2-latin-700-normal", 700),
                                    ("Special Elite", "special-elite-latin-400-normal", 400),
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
                                    ("Londrina Solid", "londrina-solid-latin-400-normal", 400),

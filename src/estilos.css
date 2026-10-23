@@ -8,8 +8,8 @@
 :root {
   box-sizing: border-box;
   color-scheme: light;
-  --fuente: "Courier Prime", "Courier New", Courier, monospace;
-  --fuente-titulo: "Special Elite", "Courier Prime", "Courier New", monospace;
+  --fuente: "Baloo 2", system-ui, sans-serif;   /* 23 oct: texto en Baloo 2, redonda y algo infantil, que casa con Londrina (antes Courier Prime) */
+  --fuente-titulo: "Special Elite", "Baloo 2", monospace;
   --tinta-marcador: rgba(28, 27, 25, .9);
   --rojo-marcador: rgba(179, 38, 30, .9);
   --fuente-mano: "Londrina Solid", "Special Elite", cursive;   /* 23 oct: letra recortada a mano, como en los carteles cubanos (antes Permanent Marker): títulos de ventanas, cintas, expediente */
@@ -28,7 +28,7 @@
   --radio: 3px;
   --radio-carta: 18px;      /* esquinas de la carta de cartón */
   /* Bisel del papel, mínimo: filo claro arriba y un filo oscuro abajo (luz cenital; nada a los lados) */
-  --bisel: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -1px 0 rgba(0, 0, 0, .12);
+  --bisel: none;   /* 23 oct: todo plano, sin relieves ni sombras */
   --radio-pegado: 10px;     /* esquinas de la cartulina y la hoja pegadas encima */
   --hueco-carton: #B7A68C;   /* 23 oct: color plano provisional para las perforaciones (barras, casillas, nombre); antes, cartón */
 }
@@ -46,7 +46,7 @@ body {
 .titulo { font-family: var(--fuente-titulo); font-weight: 400; letter-spacing: 0; }
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
-.icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, .35)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
 .icono.dibujo { filter: none; }   /* está dibujado en la cartulina: sin sombra de recorte */
 .icono.en-linea { display: inline-block; height: 1.25em; width: auto; vertical-align: -.3em; margin: 0 .25em 0 .05em; }
 .ico { display: inline-block; width: 24px; height: 24px; flex: none; fill: currentColor; }
@@ -143,7 +143,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pantalla-nombre .campo input {
   height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
   background: var(--hueco-carton);
-  box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .7);
+
 }
 .pantalla-nombre .campo input::placeholder { color: rgba(28, 27, 25, .55); }
 .pantalla-nombre .campo input:focus { outline: 2px solid var(--tinta); outline-offset: 2px; }
@@ -156,22 +156,23 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .cabecera { display: flex; align-items: flex-start; gap: 6px; }
 
 /* Las cuatro fuerzas: un icono, la barra horizontal debajo y los puntos de pista bajo la barra */
-.barras { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }   /* sin margen lateral: la primera y la última barra llegan a los bordes de la carta */
+.barras { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }   /* 23 oct: menos separación (antes 12 px); sin margen lateral: la primera y la última barra llegan a los bordes de la carta */
 .barra { display: block; width: 100%; margin: 0; padding: 0; border: none; background: none; color: inherit; font: inherit; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
 .barra:focus-visible { outline: 2px solid var(--tinta); outline-offset: 1px; }
-.par { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.par .icono-fuerza { height: 46px; display: flex; align-items: center; justify-content: center; }
-.par .icono-fuerza .icono { height: 100%; }
+/* 23 oct: el icono es un cuadrado tan ancho como su columna (como mucho el 10 % del alto de la pantalla) y la barra mide lo mismo */
+.par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: min(100%, 10vh); margin: 0 auto; }
+.par .icono-fuerza { display: block; }
+.par .icono-fuerza .icono { width: 100%; height: auto; }
 .icono.cartel { aspect-ratio: 1; border-radius: 3px; }   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {
   position: relative; background: var(--hueco-carton);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .7);
+
 }
 .nivel::after, .ranura::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
-  box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .5);
+
 }
 .nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 4px; }
 .nivel .relleno {
@@ -186,7 +187,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
    Al entrar en la zona crítica el móvil vibra (motor.js). */
 .alerta {
-  display: none; position: absolute; top: -2px; right: calc(50% - 38px);
+  display: none; position: absolute; top: -4px; right: -6px; z-index: 3;
   width: 16px; height: 16px; align-items: center; justify-content: center;
   background: var(--rojo); color: var(--bloque); font-family: var(--fuente); font-weight: 700; font-size: 13px; line-height: 1;
 }
@@ -230,7 +231,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
   background: #A88A64;   /* 23 oct: color plano provisional (antes, cartón gastado) */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .6), var(--bisel);
+
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
    .giro da la media vuelta en 3D: anverso (personaje) y reverso (ficha), cada uno con la espalda oculta. */
@@ -251,7 +252,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
   background: #A88A64;   /* 23 oct: color plano provisional (antes, cartón gastado) */
-  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
+
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .carta.revelando .dorso { visibility: hidden; }
@@ -313,7 +314,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
   padding: 6.5%; border-radius: var(--radio-carta);
   background-color: #C9A97C;   /* 23 oct: color plano provisional (antes, cartón con desgaste) */
-  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);   /* sombra corta y oscura: está pegada, no flota */
+
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .dorso { transform: rotateY(180deg); }
@@ -338,7 +339,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   flex: 1; min-height: 0; position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column;
   border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte de cartulina */
   background: var(--fondo-escena, #2F2E2B);   /* 21 oct: cartulina de color liso */
-  box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
+
 }
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background-color: var(--gris); color: var(--tinta-suave); }
 /* Personaje: SVG a todo el ancho de la carta, apoyado abajo (margin-top: auto). Si es más alto que el hueco,
@@ -351,7 +352,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .etiqueta-boli {
   position: relative; isolation: isolate;
   width: 84%; padding: 10px 14px 12px; text-align: center; color: var(--tinta);
-  transform: rotate(-1.5deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));
+  transform: rotate(-1.5deg);
 }
 .etiqueta-boli::before {
   content: ""; position: absolute; inset: 0; z-index: -1; opacity: .8;
@@ -363,7 +364,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .etiqueta-boli.larga b { font-size: min(21px, 5.4vw); }   /* una palabra muy larga («Nacionalizaciones») no cabe al tamaño normal */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
 .carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
-.carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
+.carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; }
 .carta-estado .escena .ojos-fijos { fill: #161618; }
 .carta-estado .escena + .etiqueta-boli { position: absolute; left: 8%; bottom: 5%; }
 /* Tutorial: la instrucción al jugador, en cinta de carrocero pegada abajo en la cartulina de Cuesta */
@@ -374,8 +375,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    por detrás); al volver, reaparece cuando la cara ya mira de frente */
 .cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: opacity .2s ease .3s; }
 .carta.volteada .cinta-tutorial { opacity: 0; transition: opacity .08s; }
-.carta-estado .icono-grande .icono { width: 100%; height: 100%; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
-.personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 1.5px 0.6px rgba(0, 0, 0, .6)); }
+.carta-estado .icono-grande .icono { width: 100%; height: 100%; }
+.personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
 /* Brillo del farol (16 oct): la luz respira y parpadea un poco, como una llama */
 .personaje .brillo { mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; animation: llama 2.6s ease-in-out infinite; }
@@ -408,19 +409,19 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px;
   padding: 12px 14px; overflow: hidden; text-align: left; border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte */
   background: #F8F6F0;
-  box-shadow: 0 1.5px 1px rgba(0, 0, 0, .7), var(--bisel);
+
 }
 .ficha-foto {
   flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 4 / 5; margin-bottom: 6px; overflow: hidden;
   background: var(--fondo-escena, #CFCBC2); filter: grayscale(1) contrast(1.08);
-  border: 4px solid #FBFAF6; box-shadow: 0 1.5px 1px rgba(0, 0, 0, .55);   /* foto pegada: borde blanco y sombra corta */
+  border: 4px solid #FBFAF6;
 }
 .ficha-foto svg { display: block; width: 100%; height: 100%; }
 /* 21 oct: la foto de carné, pegada a la hoja con un trozo de cinta de carrocero (como la de las cartas de estado) */
 .foto-grapada { position: relative; flex: none; margin-bottom: 6px; transform: rotate(-1.5deg); }
 .foto-grapada .ficha-foto { margin-bottom: 0; }
 .cinta-foto { position: absolute; top: -7px; left: 50%; width: 62%; height: 15px; translate: -50% 0; rotate: -4deg; opacity: .85;
-  background: #EFE3BE; filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .3));
+  background: #EFE3BE;
   clip-path: polygon(0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%, 0 100%, 3% 75%, 0 50%, 3% 25%); }
 .ficha-foto .ojos-foto { fill: #161618; }
 .ficha-nombre { font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
@@ -441,7 +442,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */
 }
 /* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
-.texto-respuesta { opacity: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, .75), 0 0 6px rgba(0, 0, 0, .45); }   /* 21 oct: sombra, que el panel es más claro */
+.texto-respuesta { opacity: 0; }   /* 21 oct: sombra, que el panel es más claro */
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
@@ -487,7 +488,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   position: absolute; z-index: 7; color: var(--tinta); isolation: isolate;
   background: var(--pop-color, #F6F2E6);
   border-radius: 14px; padding: 14px 16px;
-  box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
+
 }
 /* La pulpa, a media fuerza (15 oct): se nota el papel sin restar legibilidad */
 .popup::before {
@@ -501,7 +502,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .popup .sube-baja em { font-style: normal; font-weight: 700; }
 .popup .efecto {   /* el efecto, en cinta de carrocero (como el nombre en la carta del estado) */
   position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-size: 20px; line-height: 1.2; font-weight: 400;
-  transform: rotate(-1deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));
+  transform: rotate(-1deg);
 }
 .popup .efecto::before {
   content: ""; position: absolute; inset: 0; z-index: -1; opacity: .8;
@@ -530,7 +531,7 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 #screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones { display: none; }
 #screen-end.caida .relato { justify-self: stretch; text-align: center; font-size: 15px; line-height: 1.35; }
 .carta-caida .ilustracion { align-items: center; justify-content: center; }
-.titulo-caida { padding: 0 10%; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--bloque); text-shadow: 0 1px 1px rgba(0, 0, 0, .5); }
+.titulo-caida { padding: 0 10%; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--bloque); }
 @keyframes golpe { from { opacity: 0; transform: scale(1.18); } to { opacity: 1; transform: none; } }
 /* Victoria: «¡Has ganado!» en tinta y una esquela de periódico con lo que deja el dictador */
 #screen-end.victoria h1.fin-principal { color: var(--tinta); font-size: min(13vw, 64px); white-space: nowrap; }
@@ -546,7 +547,6 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
   .mensaje { font-size: 17px; --alto-mensaje: calc(var(--lineas-mensaje, 4) * 17px * 1.28 + 2px); }
 }
 @media (max-height: 640px) {
-  .par .icono-fuerza { height: 36px; }
   .ranura { width: 42px; height: 42px; }
   .ranura .icono { width: 36px; height: 36px; }
 }

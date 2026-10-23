@@ -636,6 +636,15 @@ const CARTAS = [
     der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
   },
   {
+    // 23 oct, Jorge: trama de traición inspirada en el Che (1965-67): el héroe fanático que critica al bloque y estorba al Comandante
+    id: "companero_incomodo", era: 2, tipo: "sorteo", peso: 10, titulo: "El compañero incómodo",
+    personaje: "Embajador del bloque oriental",
+    texto: "Ferro, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.",
+    izq: { accion: "Lo mandaré a una misión bien lejos", efectos: { potencias: 4, ejercito: -3 },
+           encolar: [{ carta: "guerrilla_perdida", min: 2, max: 3 }] },
+    der: { accion: "Quien calla a Ferro me calla a mí", efectos: { potencias: -4, ejercito: 3 } }
+  },
+  {
     // 23 oct, Jorge: la ofensiva revolucionaria (1968), que nacionalizó unos 58 000 negocios pequeños; «El mercado mayor» (era 3) los vuelve a permitir
     id: "ofensiva_revolucionaria", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La ofensiva revolucionaria",
     personaje: "Ministro de Economía",
@@ -658,6 +667,14 @@ const CARTAS = [
     texto: "Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.",
     izq: { accion: "Tienen todo nuestro apoyo fraterno", efectos: { potencias: 5 } },
     der: { accion: "Aquí no opinamos de casas ajenas", efectos: { potencias: -5 } }
+  },
+  {
+    // 23 oct, Jorge: la guerrilla del Che en Bolivia (1967), sin refuerzos
+    id: "guerrilla_perdida", era: 2, tipo: "cola", titulo: "La guerrilla perdida",
+    personaje: "Ministro del Interior",
+    texto: "Ferro pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.",
+    izq: { accion: "Mándenle a nuestros mejores hombres", efectos: { ejercito: 4, potencias: -4 } },
+    der: { accion: "Díganle que los refuerzos ya van", efectos: { potencias: 3, ejercito: -3 }, banderas: ["base.ferro_martir"] }
   },
   {
     // 23 oct, Jorge: la zafra de 1970 se queda en ocho millones y medio

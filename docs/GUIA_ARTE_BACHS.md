@@ -146,7 +146,7 @@ Image 2: take only the blocky, cut-paper shape of the hand. Ignore its colors, i
 
 **El Ejército**
 ```
-Mustard #D8A02A background. A small, chubby toy-like tank seen from the side, filling most of the square: one olive-green body shape, a short solid near-black cannon pointing up, and round solid near-black wheels with a cream dot in the middle.
+Mustard #D8A02A background. A chubby toy-like tank seen from the side, filling most of the square: one olive-green #86762C body shape with a round turret, a short solid near-black cannon pointing up, and round solid near-black wheels with a cream #F0E9D6 dot in the middle. Nothing else.
 ```
 
 **El Partido**

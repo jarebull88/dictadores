@@ -177,8 +177,8 @@ const CARTAS = [
     id: "fin_pelota", tipo: "sorteo", peso: 10, titulo: "Se acabó el profesional",
     personaje: "Ministra de Educación",
     texto: "Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.",
-    izq: { accion: "Ahora se jugará por amor a la patria", efectos: { pueblo: 4, potencias: -4 } },
-    der: { accion: "Que sigan cobrando en divisas", efectos: { potencias: 4, pueblo: -4 } }
+    izq: { accion: "La pelota libre le gana a la esclava", efectos: { elite: 4, potencias: -4 } },
+    der: { accion: "Que sigan bateando en divisas", efectos: { potencias: 4, elite: -4 } }
   },
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",
@@ -514,9 +514,9 @@ const CARTAS = [
     // 23 oct, Jorge: la embajada asaltada y el éxodo del Mariel (1980)
     id: "diez_mil_embajada", era: 3, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "Diez mil en una embajada",
     personaje: "Ministro del Interior",
-    texto: "Un autobús ha embestido la verja de una embajada y diez mil personas se han metido dentro.",
-    izq: { accion: "Abran el puerto a quien quiera irse", efectos: { pueblo: 3, ejercito: -4 } },
-    der: { accion: "Corten el agua y espérenlos fuera", efectos: { ejercito: 4, pueblo: -3 } }
+    texto: "Un autobús ha entrado en una embajada por la verja y detrás diez mil personas.",
+    izq: { accion: "Abran el puerto a quien quiera irse", efectos: { pueblo: -4, potencias: 4, crisis: -2 } },
+    der: { accion: "Corten el agua y espérenlos fuera", efectos: { ejercito: 4, potencias: -4 } }
   },
   {
     // 23 oct, Jorge: el diálogo con el exilio (1978): los «gusanos» vuelven de visita convertidos en «mariposas»
@@ -971,8 +971,8 @@ const CARTAS = [
     // 23 oct, Jorge: el hijo mayor del Comandante dirigió el programa nuclear y fue destituido en 1992; la central nunca se terminó
     id: "hijo_mayor", era: 4, tipo: "sorteo", peso: 10, titulo: "La central del hijo",
     personaje: "Ministro de Economía",
-    texto: "Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.",
-    izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { pueblo: 4, elite: -3 } },
+    texto: "Su hijo mayor dirige la central nuclear que nos dio el aliado. Sin ellos no hay dinero ni uranio.",
+    izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { elite: -3, crisis: -1 } },
     der: { accion: "Quiten de donde sea para su central", efectos: { elite: 3, pueblo: -4 } }
   },
   {

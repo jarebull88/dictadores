@@ -154,9 +154,9 @@ Olive green #86762C background. A big hand-cut five-pointed star in brick red, c
 Cobalt blue #1D51A0 background. A big round globe of cream paper, slightly squashed and imperfect, with four or five big clumsy olive-green blobs as continents, only vaguely suggesting the Americas, Europe-Africa and Asia, with no islands or coastline detail. Two curved meridians and one equator as thin solid near-black bands.
 ```
 
-**Luna de miel**
+**Luna de miel** (23 oct: la luna novia; el país se casa con la Revolución)
 ```
-Cobalt blue #1D51A0 background. A big, chubby crescent moon in mustard, slightly lopsided, with one sleepy closed eye as a small solid near-black curved shape and a tiny solid smile. Nestled inside the curve of the crescent, a plump brick-red heart, slightly tilted.
+Cobalt blue #1D51A0 background. A big, chubby crescent moon in mustard #D8A02A, slightly lopsided, filling most of the square, with one sleepy closed eye as a small solid near-black curved shape and a tiny solid smile. On top of the moon sits a cream #F0E9D6 bridal veil: one flowing flat shape that falls behind the crescent down to the bottom, held by one small brick-red #B0362A flower at the top. Nothing else.
 ```
 
 **Culto** (23 oct, elegido: el líder como sol; v2: con rayos triangulares salía una explosión, así que ahora es un disco redondo con rayos sueltos. Los dos de abajo, el cuadro y la estatua, quedan como alternativas)

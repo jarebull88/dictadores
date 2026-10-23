@@ -898,9 +898,9 @@ const CARTAS = [
   {
     id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.",
+    texto: "La radio del exilio lo ha dado por muerto tres veces este mes. Algunos se pelean por su despacho.",
     izq: { accion: "Apunten quién se pelea por mi silla", efectos: { ejercito: 4, elite: -5 } },
-    der: { accion: "Daré un discurso de siete horas", efectos: { elite: 3, crisis: -1 } }
+    der: { accion: "Que me graben corriendo en chándal", efectos: { elite: 3, crisis: -1 } }
   },
   {
     id: "el_doble", retirada: true, era: 4, tipo: "cola", titulo: "El doble",
@@ -1046,8 +1046,8 @@ const CARTAS = [
   {
     id: "el_concierto", era: 4, tipo: "sorteo", peso: 10, titulo: "El concierto",
     personaje: "Ministra de Cultura",
-    texto: "Una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.",
-    izq: { accion: "Que toquen, que yo también fui joven", efectos: { pueblo: 5, elite: -3 } },
+    texto: "Una banda de rock extranjera pide tocar en el estadio. Hace treinta años sus discos eran delito.",
+    izq: { accion: "Que toquen, que yo también tuve pelo", efectos: { pueblo: 5, elite: -3 } },
     der: { accion: "Que toque la orquesta del Ministerio", efectos: { elite: 3, pueblo: -5 } }
   },
   {
@@ -1067,9 +1067,9 @@ const CARTAS = [
   {
     id: "los_turistas", era: 4, tipo: "sorteo", peso: 10, titulo: "Los turistas",
     personaje: "Ministro de Comercio",
-    texto: "Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los exiliados manden dólares.",
-    izq: { accion: "Que los turistas gocen la Revolución", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
-    der: { accion: "Que el exilio mantenga la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
+    texto: "Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los gusanos manden dólares.",
+    izq: { accion: "Que los turistas gocen el socialismo", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
+    der: { accion: "Que los gusanos paguen la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
   {
     id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "Los cinco", ilustracion: null,

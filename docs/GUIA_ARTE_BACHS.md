@@ -157,6 +157,11 @@ Cobalt blue #1D51A0 background. A big round globe of cream paper, slightly squas
 Cobalt blue #1D51A0 background. A big, chubby crescent moon in mustard, slightly lopsided, with one sleepy closed eye as a small solid near-black curved shape and a tiny solid smile. Nestled inside the curve of the crescent, a plump brick-red heart, slightly tilted.
 ```
 
+**Culto** (23 oct, elegido: el líder como sol. Los dos de abajo, el cuadro y la estatua, quedan como alternativas)
+```
+Brick red #B0362A background. A huge chubby mustard #D8A02A sun filling most of the square, with a ring of thick, uneven, hand-cut triangular rays of different lengths. In the middle of the sun, the round cream #F0E9D6 face of a naive guerrilla leader: a flat-topped olive-green #86762C kepi cap, two solid near-black dot eyes and one enormous solid near-black beard covering the lower half of the face. Nothing else.
+```
+
 **Culto 1** (cuadro)
 ```
 Brick red #B0362A background. A big portrait in a chunky mustard frame, slightly crooked. Inside, on cream, a naive guerrilla leader seen from the chest up: a flat-topped olive-green kepi cap, two solid dot eyes and one enormous solid black beard. At the bottom of the frame, three simple round flowers in cream and cobalt blue.

@@ -968,6 +968,14 @@ const CARTAS = [
     der: { accion: "Que gane solo, como gané yo", efectos: { potencias: -5, ejercito: -2 } }
   },
   {
+    // 23 oct, Jorge: la revolución energética (2005-06): bombillas y ollas arroceras casa por casa
+    id: "revolucion_energetica", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 5 }, titulo: "La revolución energética",
+    personaje: "Ministro de Economía",
+    texto: "Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.",
+    izq: { accion: "Regálenlas con mi foto pegada", efectos: { pueblo: 4, ejercito: -4 } },
+    der: { accion: "Que las venda el Ejército en dólares", efectos: { ejercito: 4, pueblo: -4 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
     texto: "Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",

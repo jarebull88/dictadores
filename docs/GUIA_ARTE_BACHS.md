@@ -305,6 +305,13 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 12. `12-la-historia-del-fuego.jpg`: *La historia del fuego*. Un cavernícola peludo de rayitas con una pata de carne.
 13. `13-aniversario-cine-movil.jpg`: *XXV aniversario Cine Móvil*. Un hombre con bombín sentado sobre un proyector.
 14. `14-los-tres-mosqueteros.jpg`: *Los tres mosqueteros*. Un sombrero, un bigote y una pluma enormes sobre unas piernas de colores.
+15. `15-el-general-de-las-canas.jpg`: *El general de las cañas*. Un cañaveral de formas recortadas, con una caña roja en el centro.
+16. `16-el-deporte-nacional.jpg`: *El deporte nacional*. Un pelotero con una barba negra enorme, uniforme de rayas y bate.
+17. `17-plaf.jpg`: *Plaf*. Una mujer cuya cabeza es una explosión amarilla con ojos, y huevos rotos a sus pies.
+18. `18-cria-cuervos.jpg`: *Cría cuervos*. Un cuervo negro enorme con un ojo rojo y cruces en la cabeza.
+19. `19-tres-en-un-sofa.jpg`: *Tres en un sofá*. Una cara cuadrada naranja con gafas de colores, nariz de zapato y sombrero de plumas.
+20. `20-dichoso-seas.jpg`: *Dichoso seas*. Un hombre con sombrero y, a su espalda, una segunda cara que asoma y sonríe.
+21. `21-se-permuta.jpg`: *Se permuta*. Una mujer que salta con una ciudad por falda, entre flechas.
 
 ### Prompt A-P · Estilo de personaje (v3, 23 oct)
 

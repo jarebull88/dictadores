@@ -522,6 +522,17 @@ function pintarRanuras() {
 
 let temporizadorPopup = null;
 /* Color pastel claro de cada ventana: uno por fuerza; los estados, su cartulina aclarada */
+/* 23 oct: abajo a la derecha, dos iconos de tinta: el archivo (logros, retos, historia; aún vacío) y abandonar la partida
+   (una bandera blanca: rendirse). En el tutorial, «Saltar tutorial» sigue en texto. */
+const ICONO_LOGROS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h4l1 5-3 1zM13 2h4l-2 6-3-1z"/><circle cx="12" cy="15" r="6.5"/><path d="M12 11.2l1.1 2.3 2.5.3-1.8 1.7.5 2.5-2.3-1.2-2.3 1.2.5-2.5-1.8-1.7 2.5-.3z" fill="var(--p-crema)"/></svg>';
+const ICONO_SALIR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h2v20H5z"/><path d="M8 3c3-1.5 5 1.5 8 0s4-1 4-1v9s-1-.5-4 1-5-1.5-8 0z" fill="var(--p-crema)" stroke="var(--p-tinta)" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+function ponerSalir(tutorial) {
+  const b = $("btn-salir");
+  b.classList.toggle("boton-pie", !tutorial);
+  if (tutorial) { b.textContent = "Saltar tutorial"; b.removeAttribute("title"); }
+  else { b.innerHTML = ICONO_SALIR + '<span class="solo-lector">Abandonar partida</span>'; b.title = "Abandonar partida"; }
+  $("btn-logros").classList.toggle("hidden", tutorial);
+}
 const COLOR_POPUP = { pueblo: "#F1D3CB", ejercito: "#F5E3B8", elite: "#E3E0C3", potencias: "#CFDCEF" };   // 23 oct: tintes claros de la paleta   // muy claros: se lee mejor
 function colorPopup(clave) {
   const [tipo, id] = clave.split("-");
@@ -702,7 +713,7 @@ function empezar() {
   nuevaPartida();
   construirBarras();
   $("barras").classList.remove("apagadas");
-  $("btn-salir").textContent = "Abandonar partida";
+  ponerSalir(false);
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
@@ -1166,7 +1177,7 @@ function empezarTutorial() {
   colorReverso(1);
   medirCartaJuego();
   pintarBarras(); pintarRanuras();
-  $("btn-salir").textContent = "Saltar tutorial";
+  ponerSalir(true);
   $("carta").classList.remove("hidden", "listo", "volteada");
   if (animar()) { pasoTutorial(0, true); repartir(); } else pasoTutorial(0);
 }
@@ -1269,7 +1280,7 @@ function terminarTutorial() {
   clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
-  $("btn-salir").textContent = "Abandonar partida";
+  ponerSalir(false);
   irANombre();
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
@@ -1573,6 +1584,11 @@ document.addEventListener("click", e => {
 });
 
 $("btn-salir").addEventListener("click", () => { if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-logros").innerHTML = ICONO_LOGROS;
+$("btn-logros").addEventListener("click", ev => {
+  ev.stopPropagation();
+  abrirPopup("logros", "<b>El archivo</b><span>Muy pronto: tus carnés, los retos de cada era y la historia real de cada carta.</span>", $("btn-logros"), 4500);
+});
 // 17 oct: el tutorial ya no es obligatorio, ni la primera vez: «Cómo se juega» está siempre en la portada
 $("btn-comenzar").addEventListener("click", irANombre);
 

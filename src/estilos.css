@@ -165,7 +165,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: min(100%, 10vh); margin: 0 auto; }
 .par .icono-fuerza { display: block; }
 .par .icono-fuerza .icono { width: 100%; height: auto; }
-.icono.cartel { aspect-ratio: 1; border-radius: 0; }   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
+.icono.cartel { aspect-ratio: 1; border-radius: 0; box-sizing: border-box; padding: 3px; background: var(--p-crema); border: 1.5px solid var(--p-tinta); }   /* 23 oct: mini serigrafías, con margen crema y línea de tinta, como las cartas */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {

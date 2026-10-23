@@ -474,3 +474,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
   - en el pie, las casillas de estado van a la izquierda;
   - a la derecha, dos iconos: **el archivo** (una medalla, que de momento abre «Muy pronto: carnés, retos e historia real») y **abandonar**, una bandera blanca de rendición; en el tutorial sigue «Saltar tutorial» en texto;
   - debajo, centrado, «Comandante X · N años».
+- **23 oct — Iconos como mini serigrafías:** los carteles de fuerzas y estados llevan, como las cartas, un margen crema de 3 px y una línea de tinta de 1,5 px.

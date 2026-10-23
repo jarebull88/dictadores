@@ -151,10 +151,10 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.»
+**Carta:** «La radio del exilio lo ha dado por muerto tres veces este mes. Algunos se pelean por su despacho.»
 
 - **A. Apunten quién se pelea por mi silla** Ejército +4 · Élite −5
-- **B. Daré un discurso de siete horas** Élite +3 · Crisis −1
+- **B. Que me graben corriendo en chándal** Élite +3 · Crisis −1
 
 ### 16. El doble
 
@@ -251,9 +251,9 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.»
+**Carta:** «Su hijo mayor dirige la central nuclear del aliado, pero el aliado se ha hundido y no hay uranio.»
 
-- **A. Destitúyanlo: el fracaso es suyo** Pueblo +4 · Élite −3
+- **A. Destitúyanlo: el fracaso es suyo** Élite −3 · Crisis −1
 - **B. Quiten de donde sea para su central** Élite +3 · Pueblo −4
 
 ### 26. Los setenta y cinco
@@ -281,9 +281,9 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10; a partir del año 5 de la era.
 
-**Carta:** «Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.»
+**Carta:** «Tenemos bombillas que ahorran luz y ollas que ahorran arroz. Podemos regalarlas o venderlas.»
 
-- **A. Regálenlas con mi foto pegada** Pueblo +4 · Ejército −4
+- **A. Regálenlas y enseñaré a hacer arroz** Pueblo +4 · Ejército −4
 - **B. Que las venda el Ejército en dólares** Ejército +4 · Pueblo −4
 
 ### 29. El niño de la balsa
@@ -351,9 +351,9 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.»
+**Carta:** «Una banda de rock extranjera pide tocar en el estadio. Hace treinta años sus discos eran delito.»
 
-- **A. Que toquen, que yo también fui joven** Pueblo +5 · Élite −3
+- **A. Que toquen, que yo también tuve pelo** Pueblo +5 · Élite −3
 - **B. Que toque la orquesta del Ministerio** Élite +3 · Pueblo −5
 
 ### 36. Las estatuas caen
@@ -381,10 +381,10 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los exiliados manden dólares.»
+**Carta:** «Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los gusanos manden dólares.»
 
-- **A. Que los turistas gocen la Revolución** Potencias +5 · Élite +3 · Pueblo −4
-- **B. Que el exilio mantenga la Revolución** Pueblo +4 · Potencias +3 · Élite −4
+- **A. Que los turistas gocen el socialismo** Potencias +5 · Élite +3 · Pueblo −4
+- **B. Que los gusanos paguen la Revolución** Pueblo +4 · Potencias +3 · Élite −4
 
 ### 39. Los cinco
 

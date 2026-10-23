@@ -125,10 +125,10 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.»
+**Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o no les venderemos ni un tornillo.»
 
 - **A. Aquí no se paga nada** Pueblo +3 · Potencias −9 · Crisis +2 · Bandera: `embargo_en_marcha`
-- **B. Pagar compensación** Potencias +9 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
+- **B. Pagaremos, que somos gente seria** Potencias +9 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
@@ -179,7 +179,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Carta:** «El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.»
 
-- **A. Convoquen elecciones en seis meses** Pueblo +9 · Élite −5 · Bandera: `elecciones_prometidas`
+- **A. Elecciones ya, que seguro gano** Pueblo +9 · Élite −5 · Bandera: `elecciones_prometidas`
 - **B. La Revolución ya fue votada** Pueblo −9 · Élite +5 · Bandera: `elecciones_aplazadas`
 
 **Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
@@ -213,8 +213,8 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Carta:** «Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.»
 
-- **A. Ahora se jugará por amor a la patria** Pueblo +4 · Potencias −4
-- **B. Que sigan cobrando en divisas** Potencias +4 · Pueblo −4
+- **A. La pelota libre le gana a la esclava** Élite +4 · Potencias −4
+- **B. Que sigan bateando en divisas** Potencias +4 · Élite −4
 
 ### 18. Las escuelas para todos
 

@@ -459,7 +459,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.",
     izq: { accion: "Prohíban salir a los titulados", efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Cursos acelerados de todo para todos", efectos: { elite: 2, pueblo: 3 } }
+    der: { accion: "Cursos de ingeniería en seis meses", efectos: { elite: 2, pueblo: 3 } }
   },
 
   {

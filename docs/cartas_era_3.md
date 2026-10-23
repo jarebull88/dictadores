@@ -59,10 +59,10 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
 
-**Carta:** «Un autobús ha embestido la verja de una embajada y diez mil personas se han metido dentro.»
+**Carta:** «Un autobús ha entrado en una embajada por la verja y detrás diez mil personas.»
 
-- **A. Abran el puerto a quien quiera irse** Pueblo +3 · Ejército −4
-- **B. Corten el agua y espérenlos fuera** Ejército +4 · Pueblo −3
+- **A. Abran el puerto a quien quiera irse** Pueblo −4 · Potencias +4 · Crisis −2
+- **B. Corten el agua y espérenlos fuera** Ejército +4 · Potencias −4
 
 ### 7. El diálogo con el exilio
 

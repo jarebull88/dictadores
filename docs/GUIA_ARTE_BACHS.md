@@ -337,7 +337,7 @@ Idea: la libreta, que crece en cada era. Jorge quiso probar las tres.
 Cobalt blue #1D51A0 background. Bust of a thin young bank clerk turned guerrilla interrogator, whose whole chest is a big open notebook held up with both hands: two cream pages with rows of small solid near-black rectangles like scribbled names, no letters. Above it, a round cream face, two solid near-black dot eyes inside small round glasses made of thin solid near-black rings, a tiny tight-lipped mouth, neatly combed dark hair, and a mustard pencil tucked behind one ear. An olive-green #86762C guerrilla jacket worn open over a cream office-shirt collar with a thin brick-red tie. Quiet, polite, attentive, slightly creepy.
 ```
 
-**2 · Las gafas que vigilan** (referencia 08, *Zorro*)
+**2 · Las gafas que vigilan** (referencia 08, *Zorro*). **Elegida por Jorge (23 oct).**
 ```
 Brick red #B0362A background. Bust of a thin young bank clerk turned guerrilla interrogator, his face dominated by enormous round glasses: two big cream lenses ringed by thick solid near-black rims joined across the nose, like a mask, filling the whole width of the face. Inside each lens, one solid near-black dot eye, both looking sideways. A tiny tight-lipped mouth, neatly combed dark hair. Right under his chin he holds a tiny cobalt-blue notebook and a mustard pencil, ready to write. An olive-green #86762C guerrilla jacket over a cream office-shirt collar. Quiet, polite, watching everything.
 ```

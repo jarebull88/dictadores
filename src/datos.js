@@ -995,7 +995,7 @@ const CARTAS = [
     // 23 oct, Jorge: el niño balsero (1999-2000), una oportunidad política: meses de marchas, la tribuna y el regreso
     id: "nino_balsero", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "El niño de la balsa",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Un niño llegó en balsa a la otra orilla y su madre murió. Su padre lo reclama: podría ser una causa.",
+    texto: "Un niño llegó en balsa a la otra orilla sin su madre. Su padre lo reclama: podría ser una causa.",
     izq: { accion: "Este niño vale por diez discursos", efectos: { elite: 4, pueblo: -3 }, encolar: [{ carta: "la_tribuna", min: 1, max: 2 }] },
     der: { accion: "Un niño no es una bandera", efectos: { pueblo: 3, elite: -4 }, encolar: [{ carta: "el_regreso", min: 2, max: 3 }] }
   },

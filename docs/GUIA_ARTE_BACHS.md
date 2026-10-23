@@ -302,3 +302,15 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 12. `12-la-historia-del-fuego.jpg`: *La historia del fuego*. Un cavernícola peludo de rayitas con una pata de carne.
 13. `13-aniversario-cine-movil.jpg`: *XXV aniversario Cine Móvil*. Un hombre con bombín sentado sobre un proyector.
 14. `14-los-tres-mosqueteros.jpg`: *Los tres mosqueteros*. Un sombrero, un bigote y una pluma enormes sobre unas piernas de colores.
+
+### Prompt A-P · Estilo de personaje (v1, 23 oct)
+Va antes del bloque del personaje. Hay que adjuntar el cartel de referencia que toque.
+```
+Square 1:1 illustration in the style of a 1960s–70s Cuban silkscreen film poster by Eduardo Muñoz Bachs (ICAIC). Take strong inspiration from the attached poster: its concept, its playful way of telling an idea and its bold composition, but adapt it to a square format and do not copy its colors, its text or its subject. Full-bleed: the flat background color runs off all four edges, edge to edge. Naive, childlike and witty, with boldly distorted proportions. Big flat shapes of opaque ink cut by hand, with crisp, slightly irregular edges; each color is one flat ink, perfectly aligned, never stacked or overlapping, no outlines. Black details are printed as their own stencil layer: solid flat shapes and thin solid bands of near-black ink with clean edges, never scratchy or brushy. The face is simple: two solid round near-black dot eyes, clearly separated, each one sitting on plain cream skin, plus one small shape for the mouth. Real screen-print texture: fine directionless mottle, paper fibers visible. Use ONLY these inks: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0, soft pink #DF8178, cream paper #F0E9D6, near-black ink #201D14. No gradients, no shadows, no shine. No text, no letters, no flags, no emblems.
+```
+
+### Comandante joven (etapa 1)
+Referencia: **05, *Por primera vez*** (el hombrecillo que asoma sobre un campo de flores). Idea: brota del monte; la Revolución como primavera. En 1:1, el campo de hojas llena la mitad de abajo y el Comandante asoma en el centro, con la cara en el tercio de arriba.
+```
+Mustard #D8A02A background. A young, joyful bearded guerrilla leader rises from the waist up out of a dense, lush field of big hand-cut tropical leaves and naive flowers that fills the whole bottom half of the square, edge to edge: leaves in olive green, flowers in brick red, cobalt blue, soft pink and cream, with small solid near-black centers and veins. He is centered, his face in the upper third: a flat-topped olive-green kepi cap, a round cream face, two solid near-black dot eyes, and one enormous solid near-black beard covering the lower half of the face and the chest, with a wide-open laughing mouth as a brick-red shape inside the beard. One arm raised high with a big chunky cream fist. He wears scruffy, oversized olive-green fatigues with two patches of a slightly different olive, and a small cream origami dove peeks out of his chest pocket. Happy, hopeful, a little clumsy.
+```

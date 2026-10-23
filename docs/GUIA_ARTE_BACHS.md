@@ -330,6 +330,9 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 33. `33-los-karatecas.jpg`: *Los karatecas*. Una cabeza de perfil con flechas que le salen del cráneo.
 34. `34-robinson-crusoe.jpg`: *Robinson Crusoe*. Una cabeza barbuda que es una isla, con árboles de colores encima.
 
+### La regla de oro de los personajes (23 oct, Jorge)
+**Que el jugador diga «esto me suena».** Cada personaje es un homenaje reconocible a su cartel: la misma composición, el mismo truco y la misma técnica, casi literales, con nuestro personaje y nuestra paleta. Los modelos son el Comandante joven v2 (*Por primera vez*) y Sarria v3 (*Zorro*). **La fidelidad al cartel manda sobre la regla del busto**: el encuadre y la escala los pone el cartel (los ojos animados se colocan por personaje en `personajes.json`).
+
 ### Prompt A-P · Estilo de personaje (v8, 23 oct)
 Va antes del bloque del personaje. Hay que adjuntar el cartel de referencia que toque.
 

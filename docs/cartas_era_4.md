@@ -219,7 +219,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 ### 22. La memoria
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 10.
+**Condición:** sorteo con peso 10; exige `mota_juzgado`.
 
 **Carta:** «Los nietos de los compañeros de la sierra que encarceló quieren que los libros hablen de ellos.»
 

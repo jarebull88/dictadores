@@ -207,10 +207,10 @@ Duración: entre 8 y 10 cartas. 21 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
 
-**Carta:** «Las flores al mar por Cienfuegos ya son una protesta. Muchos creen que no fue un accidente.»
+**Carta:** «El Pueblo sigue tirando flores al mar por Diezfuegos. Muchos aún preguntan qué pasó.»
 
-- **A. Prohíban tirar flores al mar** Ejército +6 · Pueblo −6
-- **B. Encabezaré yo los homenajes** Élite +2
+- **A. Que se olvide sin acto oficial** Pueblo +3 · Élite −4
+- **B. Encabezaré yo los homenajes** Élite +4 · Pueblo −3
 
 ### 21. Los campos de trabajo
 

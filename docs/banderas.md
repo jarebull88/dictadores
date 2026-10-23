@@ -6,7 +6,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 
 | Bandera | La concede | La exigen | Consecuencia (era) |
 | --- | --- | --- | --- |
-| `accidente_cienfuegos` | El general murmura (B) | Las flores en el mar | El Pueblo no olvida el accidente de Cienfuegos. (era 2) |
+| `accidente_cienfuegos` | El avión de Diezfuegos (A); El avión de Diezfuegos (B); El general murmura (B) | Las flores en el mar | El Pueblo no olvida el accidente de Diezfuegos. (era 2) |
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | Los nuevos vecinos | El aliado exige concesiones y armamento. (era 1) |
 | `atentado_investigado` | El atentado (B) | Los cinco | Tus agentes en el exilio corren peligro. (era 4) |
 | `campos_trabajo` | Los campos de trabajo (A) | Una carta con firmas | Intelectuales denuncian los campos de trabajo. (era 3) |
@@ -29,7 +29,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
 | `frontera_cerrada` | Los que se marchan (B) | Intentos de fuga | Intentos de fuga. (era 2) |
 | `general_apartado` | El general querido (B) | Cienfuegos vuelve | Cienfuegos regresa como candidato de los descontentos. (era 4) |
-| `general_popular` | El general querido (A) | El general murmura | Cienfuegos conspira si el Ejército baja de 40. (era 1) |
+| `general_popular` | El general querido (A) | El general murmura | (Obsoleta, 22 oct) Cienfuegos conspira si el Ejército baja de 40. (era 1) |
 | `huelga_reprimida` | El puerto parado (B) | El puerto lento; Las aulas vacías | Malestar en las universidades. (era 2) |
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |
@@ -41,6 +41,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `modestia_aparente` | El retrato (B) | La modestia sospechosa | El Partido exige otros símbolos de lealtad. (era 3) |
 | `monumento_colosal` | El monumento (A) | — | — |
 | `monumento_modesto` | El monumento (B) | — | — |
+| `mota_juzgado` | El comandante que dimite (A) | La memoria | Los nietos de Mota piden que los libros hablen de él. (era 4) |
 | `nacionalizo_empresas` | Las refinerías (B) | Los que se marchan; Faltan técnicos; Embargo total | Sanciones de la potencia del norte. (era 2) |
 | `negocio_refinerias` | Las refinerías (A) | Las garantías | Las empresas exigen garantías que limitan tus decisiones económicas. (era 1) |
 | `no_alineado` | El visitante del bloque oriental (B) | La mano del norte | La potencia del norte se acerca y el aislamiento económico se agrava. (era 2) |

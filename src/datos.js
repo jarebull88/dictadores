@@ -948,8 +948,8 @@ const CARTAS = [
     id: "hijo_mayor", era: 4, tipo: "sorteo", peso: 10, titulo: "La central del hijo",
     personaje: "Ministro de Economía",
     texto: "Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.",
-    izq: { accion: "Que mi hijo cargue con el apagón", efectos: { elite: 3, potencias: -4 } },
-    der: { accion: "Pidan créditos para que la termine", efectos: { potencias: 4, elite: -3 } }
+    izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { pueblo: 4, elite: -3 } },
+    der: { accion: "Quiten de donde sea para su central", efectos: { elite: 3, pueblo: -4 } }
   },
   {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",

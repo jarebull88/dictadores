@@ -168,9 +168,9 @@ const CARTAS = [
     // 23 oct, Jorge: la declaración del carácter socialista (abril de 1961), en el entierro de las víctimas del bombardeo del exilio
     id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.",
+    texto: "El exilio nos ha bombardeado y la plaza se llena de luto. Habrá que decir qué es la Revolución.",
     izq: { accion: "Hoy la Revolución será socialista", efectos: { potencias: 5, elite: 3 } },
-    der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, ejercito: 3 } }
+    der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, elite: -3 } }
   },
   {
     // 23 oct, Jorge: el fin del béisbol profesional (1961), «el deporte, derecho del Pueblo»; las estrellas se quedan fuera
@@ -206,7 +206,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.",
     izq: { accion: "Cámbienlos por compotas", efectos: { potencias: -6, pueblo: 2, ejercito: -4 } },
-    der: { accion: "Juicio televisado y paredón", efectos: { potencias: -3, pueblo: 5, ejercito: 5, crisis: 2 } }
+    der: { accion: "Juicio televisado y luego al «patio»", efectos: { potencias: -3, pueblo: 5, ejercito: 5, crisis: 2 } }
   },
   {
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
@@ -242,7 +242,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "Paredón y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
+    der: { accion: "Purga y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",
@@ -796,7 +796,7 @@ const CARTAS = [
   {
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado",
     personaje: "Ministro del Interior",
-    texto: "Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos.",
+    texto: "Los terroristas del exilio han volado uno de nuestros aviones con setenta y tres pasajeros.",
     izq: { accion: "Funeral con un millón en la plaza", efectos: { pueblo: 4, elite: 2 }, encolar: [{ carta: "los_que_celebran", min: 1, max: 2 }] },
     der: { accion: "Habrá que defenderse infiltrándolos", efectos: { ejercito: 4, potencias: -3 }, banderas: ["base.atentado_investigado"] }
   },
@@ -810,7 +810,7 @@ const CARTAS = [
   {
     id: "la_investigacion", era: 3, tipo: "cola", titulo: "La investigación",
     personaje: "Ministro del Interior",
-    texto: "Los acusados del atentado lo niegan todo. Uno de ellos lleva dos años muerto.",
+    texto: "Los acusados del atentado lo niegan todo. A uno de ellos lo enterraron hace dos años.",
     izq: { accion: "Que confiese también el difunto", efectos: { ejercito: 5, pueblo: -5 } },
     der: { accion: "Suéltenlos sin pedirles perdón", efectos: { ejercito: -5, pueblo: 5 } }
   },

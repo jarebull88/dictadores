@@ -463,6 +463,22 @@ const CARTAS = [
   },
 
   {
+    // 23 oct, Jorge: las consignas del Comandante en vallas por todo el país
+    id: "consignas_vallas", era: 3, tipo: "sorteo", peso: 10, titulo: "Las vallas",
+    personaje: "Ministra de Cultura",
+    texto: "Queremos poner sus frases épicas en vallas por todo el país, pero no hay pintura para todo.",
+    izq: { accion: "Si necesitan más frases, avísenme", efectos: { elite: 4, pueblo: -4 } },
+    der: { accion: "Que la pintura vaya a las escuelas", efectos: { pueblo: 4, elite: -4 } }
+  },
+  {
+    // 23 oct, Jorge: los discursos de horas del Comandante
+    id: "discurso_maraton", era: 3, tipo: "sorteo", peso: 10, titulo: "El discurso",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Hoy le toca dar el discurso del aniversario. La televisión pregunta cuántas horas le reserva.",
+    izq: { accion: "Hablaré hasta que amanezca", efectos: { elite: 4, pueblo: -3 } },
+    der: { accion: "Diez minutos y que empiece la fiesta", efectos: { pueblo: 3, elite: -4 } }
+  },
+  {
     id: "plan_quinquenal", era: 3, tipo: "sorteo", peso: 8, titulo: "El plan quinquenal",
     personaje: "Ministro de Economía",
     texto: "Proponemos un plan quinquenal con metas para cada fábrica, granja y tienda del país.",

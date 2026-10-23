@@ -86,7 +86,7 @@ const CARTAS = [
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Los médicos dicen que es el final. El país entero espera sus últimas palabras.",
     izq: { accion: "No me iré nunca del todo", efectos: {}, banderas: ["base.ultimas_eterno"] },
-    der: { accion: "Volveré cuando pase el apagón", efectos: {}, banderas: ["base.ultimas_apagon"] }
+    der: { accion: "Es solo un apagón, volveré", efectos: {}, banderas: ["base.ultimas_apagon"] }
   },
   {
     // 23 oct, Jorge: la tribuna antiimperialista (2000), frente a la oficina de intereses del norte

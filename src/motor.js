@@ -1028,7 +1028,7 @@ const EPITAFIO = [
 /* 23 oct: la carta «Últimas palabras» decide la última línea, que va siempre al final */
 const ULTIMAS_PALABRAS = [
   ["base.ultimas_eterno", "Tus últimas palabras: «No me iré nunca del todo». Tus retratos lo cumplen."],
-  ["base.ultimas_apagon", "Tus últimas palabras: «Volveré cuando pase el apagón». Aún no ha vuelto la luz."]
+  ["base.ultimas_apagon", "Tus últimas palabras: «Es solo un apagón, volveré». Aún no ha vuelto la luz."]
 ];
 function epitafio() {
   const lineas = EPITAFIO.filter(([b]) => E.banderas.has(b)).map(([, t]) => t);

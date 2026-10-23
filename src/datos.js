@@ -928,6 +928,22 @@ const CARTAS = [
     der: { accion: "No tengo tiempo, hay que gobernar", efectos: { elite: -2 } }
   },
   {
+    // 23 oct, Jorge: los Juegos Panamericanos de 1991, en pleno período especial
+    id: "juegos_crisis", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Los Juegos",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "No hay petróleo ni comida, y nos toca construir los estadios de los Juegos del continente.",
+    izq: { accion: "Las medallas alimentarán al Pueblo", efectos: { elite: 4, pueblo: -4 } },
+    der: { accion: "Primero el plato y luego el podio", efectos: { pueblo: 4, elite: -4 } }
+  },
+  {
+    // 23 oct, Jorge: la visita de Juan Pablo II (1998), con misa en la plaza de la Revolución
+    id: "visita_papa", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La visita del Papa",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "El Papa vendría si le dejamos la plaza para una misa. Nos vendría bien un amigo de su tamaño.",
+    izq: { accion: "Dios también cabe en la Revolución", efectos: { pueblo: 4, elite: -3 } },
+    der: { accion: "La plaza es solo para mí", efectos: { elite: 3, pueblo: -4 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
     texto: "Su hijo quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",

@@ -103,6 +103,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - Las caras: dos puntos sólidos de ojos y una pequeña forma sólida, nada más.
 - La ironía de Bachs funciona mejor con una idea visual: la estrella «sacando bíceps», la manga azul de las potencias metida en el títere.
 - El líder es un guerrillero naíf: gorra kepi oliva de copa plana, cara crema con ojos de punto, barba negra enorme, uniforme oliva y, a veces, puro. Si solo se pide «bigote», sale el señor del Monopoly.
+- Un sol con rayos triangulares pegados al disco parece una explosión (23 oct, Culto): hay que pedir un disco claramente redondo y rayos rectos sueltos, «separate short thick bars», cada uno separado del disco por un hueco de fondo.
 - Los objetos que todo el mundo conoce en blanco van en crema (23 oct, Jorge: el bocadillo de diálogo de Censura salió azul y no se reconocía). Entonces el fondo no puede ser crema.
 - Cuidado con lo que significa cada color: una manga oliva convierte al pueblo en militar. El oliva es del ejército y del líder; el pueblo lleva el azul de obrero.
 
@@ -157,9 +158,9 @@ Cobalt blue #1D51A0 background. A big round globe of cream paper, slightly squas
 Cobalt blue #1D51A0 background. A big, chubby crescent moon in mustard, slightly lopsided, with one sleepy closed eye as a small solid near-black curved shape and a tiny solid smile. Nestled inside the curve of the crescent, a plump brick-red heart, slightly tilted.
 ```
 
-**Culto** (23 oct, elegido: el líder como sol. Los dos de abajo, el cuadro y la estatua, quedan como alternativas)
+**Culto** (23 oct, elegido: el líder como sol; v2: con rayos triangulares salía una explosión, así que ahora es un disco redondo con rayos sueltos. Los dos de abajo, el cuadro y la estatua, quedan como alternativas)
 ```
-Brick red #B0362A background. A huge chubby mustard #D8A02A sun filling most of the square, with a ring of thick, uneven, hand-cut triangular rays of different lengths. In the middle of the sun, the round cream #F0E9D6 face of a naive guerrilla leader: a flat-topped olive-green #86762C kepi cap, two solid near-black dot eyes and one enormous solid near-black beard covering the lower half of the face. Nothing else.
+Brick red #B0362A background. A huge round mustard #D8A02A sun disc, clearly circular, filling most of the square, surrounded by a ring of twelve separate short, thick straight mustard rays like little bars, each one detached from the disc by a small gap of red background. In the middle of the sun, the round cream #F0E9D6 face of a naive guerrilla leader: a flat-topped olive-green #86762C kepi cap, two solid near-black dot eyes and one enormous solid near-black beard covering the lower half of the face. Nothing else.
 ```
 
 **Culto 1** (cuadro)

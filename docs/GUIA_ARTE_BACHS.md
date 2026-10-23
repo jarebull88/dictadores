@@ -189,7 +189,14 @@ Olive green #86762C background. A chubby, slightly crooked factory: one brick-re
 Olive green #86762C background. A chubby soft-pink #DF8178 piggy bank seen from the side, broken in two halves that open like a V: the front half tilts about 15° to the left and the back half about 15° to the right, hinged at the bottom, with an empty gap of background between their jagged zigzag edges. Both halves are one single flat pink. Only two solid near-black details: one dot eye on the front half and a coin slot on the back half.
 ```
 
-**Pendientes de definir:** Censura (crema) y Vigilancia (azul). Jaula y «Frontera cerrada» son el mismo estado: el id interno es `frontera` y en el juego se llama Jaula. Ya tiene cartel, el muro con alambre de espino, aunque su fondo está asignado al oliva.
+**Vigilancia** (23 oct: el ojo con la gorra del líder; el que vigila es el régimen)
+```
+Cobalt blue #1D51A0 background. One huge almond-shaped eye, wide open and slightly lopsided, filling most of the square: a cream #F0E9D6 eye shape with pointed corners, a big round mustard iris looking sideways to the left, and a solid near-black round pupil inside it. Sitting on top of the eye, tilted like a hat, a small flat-topped olive-green kepi cap, as if the eye were wearing it. Nothing else.
+```
+
+**23 oct, Jorge: todos los iconos se rehacen desde cero en la conversación de arte**, uno a uno; los carteles instalados siguen en el juego hasta que llegue su sustituto.
+
+**Pendiente de definir:** Censura (crema). Jaula y «Frontera cerrada» son el mismo estado: el id interno es `frontera` y en el juego se llama Jaula. Ya tiene cartel, el muro con alambre de espino, aunque su fondo está asignado al oliva.
 
 ---
 

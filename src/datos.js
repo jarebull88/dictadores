@@ -123,9 +123,9 @@ const CARTAS = [
   {
     id: "embargo", tipo: "cola", titulo: "El embargo",
     personaje: "Embajador de la potencia del norte",
-    texto: "Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.",
+    texto: "Han expropiado nuestras refinerías. Exigimos compensación o no les venderemos ni un tornillo.",
     izq: { accion: "Aquí no se paga nada", efectos: { pueblo: 3, potencias: -9, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Pagar compensación", efectos: { potencias: 9, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
+    der: { accion: "Pagaremos, que somos gente seria", efectos: { potencias: 9, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
   },
   {
     id: "depuracion_criticos", tipo: "cola", borrador: true, titulo: "La lista",
@@ -457,7 +457,7 @@ const CARTAS = [
   {
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
-    texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
+    texto: "Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.",
     izq: { accion: "Prohíban salir a los titulados", efectos: { ejercito: 4, pueblo: -4 } },
     der: { accion: "Cursos acelerados de todo para todos", efectos: { elite: 2, pueblo: 3 } }
   },
@@ -465,9 +465,9 @@ const CARTAS = [
   {
     id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga",
     personaje: "Ministro del Interior",
-    texto: "Cada semana huyen más familias en balsas. Las patrullas no dan abasto.",
+    texto: "Cada semana huyen más familias en balsas. Ya no quedan neumáticos ni puertas en los barrios.",
     izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Dejen que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
+    der: { accion: "Que se vayan y nos dejen sus casas", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
   },
 
   {

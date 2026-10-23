@@ -2,9 +2,39 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.
+Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.4.
 
-### 1. El acreedor pide favores
+### 1. Últimas palabras
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Los médicos dicen que es el final. El país entero espera sus últimas palabras.»
+
+- **A. No me iré nunca del todo**  · Bandera: `ultimas_eterno`
+- **B. Es solo un apagón, volveré**  · Bandera: `ultimas_apagon`
+
+### 2. La tribuna
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Llevamos meses marchando por el niño. Proponemos una tribuna fija frente a la embajada occidental.»
+
+- **A. Una tribuna para gritar siempre** Élite +4 · Pueblo −4 · Encola: `el_regreso` en 1 a 2 años
+- **B. Ya gritaron bastante, a trabajar** Pueblo +4 · Élite −4 · Encola: `el_regreso` en 1 a 2 años
+
+### 3. El regreso
+
+**Personaje:** Embajador de la potencia del norte  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «El niño volverá con su padre. Nuestro gobierno espera que no lo convierta en un trofeo.»
+
+- **A. Algo sencillo: un millón en la plaza** Élite +4 · Pueblo −3
+- **B. Lo recibirá su padre y nadie más** Pueblo +3 · Élite −4
+
+### 4. El acreedor pide favores
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige `deuda_externa`.
@@ -14,7 +44,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Mi delegado levantará las dos manos** Potencias +7 · Élite −2 · Crisis −2
 - **B. Pagaremos apretando el cinturón** Potencias −7 · Pueblo −5 · Élite +3 · Crisis +1
 
-### 2. El mausoleo
+### 5. El mausoleo
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 8.
@@ -26,7 +56,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `mausoleo_construido`:** La roca eterna espera a su inquilino.
 
-### 3. El reportaje
+### 6. El reportaje
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `prensa_libre`.
@@ -36,7 +66,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Ciérrenlo por... falta de papel** Élite +3 · Pueblo −5
 - **B. Busquen un viceministro culpable** Pueblo +3 · Élite −5 · Crisis +1
 
-### 4. Cienfuegos vuelve
+### 7. Cienfuegos vuelve
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `general_apartado`.
@@ -46,7 +76,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Jubílenlo con honores y escolta** Ejército −4 · Élite +3
 - **B. Denle un cuartel y un espía al lado** Ejército +6 · Élite −4
 
-### 5. El delfín impaciente
+### 8. El delfín impaciente
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14; exige `sucesor_designado`.
@@ -56,7 +86,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. En los retratos solo salgo yo** Ejército −5 · Crisis +1
 - **B. Que gobierne él y yo le corrijo** Ejército +5 · Élite −3
 
-### 6. Los inocentes
+### 9. Los inocentes
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `oposicion_culpada`.
@@ -66,7 +96,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Si los quieres, te los llevas** Potencias +5 · Ejército −4
 - **B. Pruebas fabricadas por su espionaje** Potencias −5 · Ejército +4 · Pueblo −3
 
-### 7. Las bombas de los hoteles
+### 10. Las bombas de los hoteles
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10.
@@ -76,7 +106,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que los turistas no se enteren** Ejército +3 · Potencias +3 · Pueblo −2
 - **B. Juicio para que lo vea el mundo** Potencias −5 · Élite +3 · Crisis +1
 
-### 8. El mausoleo vacío
+### 11. El mausoleo vacío
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 0; exige `mausoleo_construido`.
@@ -86,7 +116,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Guardia de honor día y noche** Ejército +3 · Pueblo −3 · Crisis +1
 - **B. Cobren la entrada en dólares** Potencias +3 · Élite −2
 
-### 9. El palacio sin terminar
+### 12. El palacio sin terminar
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige `palacio_del_pueblo`.
@@ -96,7 +126,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. La Revolución merece su palacio** Élite +5 · Pueblo −5 · Crisis +3
 - **B. Conviértanlo en un hospital** Pueblo +5 · Élite −4
 
-### 10. Los militares empresarios
+### 13. Los militares empresarios
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.
@@ -106,7 +136,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que cada general tenga su hotel** Ejército +6 · Élite −4
 - **B. Los negocios son cosa de ministros** Élite +4 · Ejército −3
 
-### 11. El batallón
+### 14. El batallón
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `estado_policial`.
@@ -116,7 +146,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Más celdas y más sueldo** Ejército +6 · Pueblo −4
 - **B. Que el Partido mande a sus brigadas** Élite +5 · Ejército −4 · Pueblo −2
 
-### 12. La salud
+### 15. La salud
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 3 de su era.
@@ -126,7 +156,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Apunten quién se pelea por mi silla** Ejército +4 · Élite −5
 - **B. Daré un discurso de siete horas** Élite +3 · Crisis −1
 
-### 13. El doble
+### 16. El doble
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -136,7 +166,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que el doble desaparezca** Ejército −5 · Crisis +1
 - **B. Que haga él los actos y yo descanso** Ejército +5 · Élite −3
 
-### 14. Las medallas
+### 17. Las medallas
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -146,7 +176,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Medalla y pensión para cada general** Ejército +5 · Crisis +1
 - **B. Mi chándal es el único condecorado** Élite +3 · Ejército −3
 
-### 15. El plebiscito
+### 18. El plebiscito
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10.
@@ -156,7 +186,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Adelante, que el Pueblo decida** Pueblo +6 · Élite −4 · Encola: `el_escrutinio` en 1 a 2 años
 - **B. Pues que el 99 % firme lo contrario** Élite +5 · Pueblo −5
 
-### 16. El escrutinio
+### 19. El escrutinio
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -166,7 +196,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Elecciones con un solo candidato** Pueblo +3 · Élite +2 · Crisis +2 · Bandera: `derrota_aceptada`
 - **B. Cuenten hasta que gane el No** Pueblo −8 · Ejército +5 · Élite +3 · Bandera: `recuento`
 
-### 17. El aliado se hunde
+### 20. El aliado se hunde
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10.
@@ -176,7 +206,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Lo llamaré... «período especial»** Potencias −6 · Pueblo −5 · Élite +3 · Crisis +2
 - **B. Ya me buscaré un amigo con dólares** Potencias +5 · Élite −4
 
-### 18. La salida honrosa
+### 21. La salida honrosa
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 10.
@@ -186,7 +216,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Guárdenme la casa por si acaso** Potencias +6 · Élite −3
 - **B. Váyase, que me espera la plaza llena** Potencias −6 · Élite +3
 
-### 19. Las memorias
+### 22. Las memorias
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
@@ -196,17 +226,97 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. El mundo merece conocerme** Potencias +3 · Élite +2
 - **B. No tengo tiempo, hay que gobernar** Élite −2
 
-### 20. El hijo
+### 23. Los Juegos
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 10; a partir del año 2 de la era.
+
+**Carta:** «No hay petróleo ni comida, y nos toca construir los estadios de los Juegos del continente.»
+
+- **A. Las medallas alimentarán al Pueblo** Élite +4 · Pueblo −4
+- **B. Primero el plato y luego el podio** Pueblo +4 · Élite −4
+
+### 24. La visita del Papa
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 10; a partir del año 3 de la era.
+
+**Carta:** «El Papa vendría si le dejamos la plaza para una misa. Nos vendría bien un amigo de su tamaño.»
+
+- **A. Dios también cabe en la Revolución** Pueblo +4 · Élite −3
+- **B. La plaza es solo para mí** Élite +3 · Pueblo −4
+
+### 25. La central del hijo
+
+**Personaje:** Ministro de Economía  
+**Condición:** sorteo con peso 10.
+
+**Carta:** «Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.»
+
+- **A. Destitúyanlo: el fracaso es suyo** Pueblo +4 · Élite −3
+- **B. Quiten de donde sea para su central** Élite +3 · Pueblo −4
+
+### 26. Los setenta y cinco
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 10; a partir del año 4 de la era.
+
+**Carta:** «El mundo está pendiente de una guerra lejana. Es un buen momento para detener opositores.»
+
+- **A. Aprovechemos que el mundo no mira** Ejército +5 · Pueblo −4
+- **B. No, los mártires salen caros** Pueblo +4 · Ejército −5
+
+### 27. El amigo del sur
+
+**Personaje:** Ministro de Comercio  
+**Condición:** sorteo con peso 10; a partir del año 4 de la era.
+
+**Carta:** «Un coronel del sur que lo admira quiere ser presidente. Ofrece petróleo si le ayudamos.»
+
+- **A. Le prestaré asesores y algunos tips** Potencias +5 · Ejército +2
+- **B. Que gane solo, como gané yo** Potencias −5 · Ejército −2
+
+### 28. La revolución energética
+
+**Personaje:** Ministro de Economía  
+**Condición:** sorteo con peso 10; a partir del año 5 de la era.
+
+**Carta:** «Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.»
+
+- **A. Regálenlas con mi foto pegada** Pueblo +4 · Ejército −4
+- **B. Que las venda el Ejército en dólares** Ejército +4 · Pueblo −4
+
+### 29. El niño de la balsa
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 10; a partir del año 4 de la era.
+
+**Carta:** «Un niño llegó en balsa a la otra orilla sin su madre. Su padre lo reclama: podría ser una causa.»
+
+- **A. Este niño vale por diez discursos** Élite +4 · Pueblo −3 · Encola: `la_tribuna` en 1 a 2 años
+- **B. Un niño no es una bandera** Pueblo +3 · Élite −4 · Encola: `el_regreso` en 2 a 3 años
+
+### 30. Las vacas del Estado
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 10.
+
+**Carta:** «Cada semana desaparecen vacas del Estado. Los campesinos dicen que se tiran solas a la vía del tren.»
+
+- **A. Más años por vaca que por persona** Ejército +4 · Pueblo −4
+- **B. Si la vaca estaba triste, al caldero** Pueblo +4 · Ejército −4
+
+### 31. El hijo
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Su hijo quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.»
+**Carta:** «Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.»
 
 - **A. Dénselo, lleva el mar en la sangre** Élite +5 · Pueblo −4
 - **B. Que lo dirija alguien con méritos** Élite −3 · Crisis −1
 
-### 21. La cuenta en el extranjero
+### 32. La cuenta en el extranjero
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10.
@@ -216,7 +326,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Dimito si encuentran un dólar** Pueblo +3 · Crisis +1
 - **B. Calumnias pagadas por el imperio** Potencias −4 · Élite +2
 
-### 22. La memoria
+### 33. La memoria
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 10; exige `mota_juzgado`.
@@ -226,7 +336,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Fueron héroes, aunque se desviaran** Pueblo +4 · Ejército −4
 - **B. Eran contrarrevolucionarios y punto** Élite +3 · Pueblo −4
 
-### 23. La revuelta
+### 34. La revuelta
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10.
@@ -236,7 +346,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Bajaré con las tropas especiales** Ejército +6 · Pueblo −6
 - **B. Abran la costa al que quiera irse** Pueblo −5 · Potencias +4 · Crisis −3
 
-### 24. El concierto
+### 35. El concierto
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
@@ -246,7 +356,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que toquen, que yo también fui joven** Pueblo +5 · Élite −3
 - **B. Que toque la orquesta del Ministerio** Élite +3 · Pueblo −5
 
-### 25. Las estatuas caen
+### 36. Las estatuas caen
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10.
@@ -256,7 +366,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Corten la señal, que es mal ejemplo** Élite +3 · Pueblo −5 · Crisis +1
 - **B. Que vigilen mis estatuas día y noche** Ejército +4 · Pueblo −2
 
-### 26. La sequía
+### 37. La sequía
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 10.
@@ -266,7 +376,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que los soldados repartan el arroz** Pueblo +6 · Ejército −6
 - **B. Ese grano es para defender la patria** Ejército +6 · Pueblo −5
 
-### 27. Los turistas
+### 38. Los turistas
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 10.
@@ -276,7 +386,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que los turistas gocen la Revolución** Potencias +5 · Élite +3 · Pueblo −4
 - **B. Que el exilio mantenga la Revolución** Pueblo +4 · Potencias +3 · Élite −4
 
-### 28. Los cinco
+### 39. Los cinco
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `atentado_investigado`.
@@ -286,7 +396,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Volverán: eso se lo aseguro** Élite +4 · Potencias −4
 - **B. Hablemos de un canje discreto** Potencias +4 · Élite −2
 
-### 29. El general héroe
+### 40. El general héroe
 
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 1 a 3 de su era.
@@ -296,7 +406,7 @@ Duración: entre 8 y 10 cartas. 30 cartas. Los efectos están en la escala peque
 - **A. Que asuma toda la culpa en directo** Ejército −6 · Élite +3 · Pueblo −2
 - **B. Finca con vistas y boquita cerrada** Ejército +5 · Élite −2 · Crisis +1
 
-### 30. El parte médico
+### 41. El parte médico
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 5 a 8 de su era.

@@ -275,3 +275,30 @@ Keep this image exactly the same. Redraw every black detail as a solid flat shap
 ```
 Keep this image exactly the same. Only scale the object up so it matches the visual weight of the object in the attached reference image, filling about 85% of the square, still centered.
 ```
+
+---
+
+## 7. Personajes (desde el 23 oct)
+
+**Diferencias con los iconos** (Jorge, 23 oct):
+- Más complejidad, en técnica y en concepto: no son un objeto solo, sino un cartel de verdad.
+- **Cada personaje se inspira en un cartel de Bachs**, que se adjunta como referencia. No es para copiarlo: se toma su concepto, su manera de contar una idea y su composición. Los colores siempre son los de nuestra paleta.
+- Base de contenido: `docs/PERSONAJES.md` (historia e idea visual de cada etapa).
+- Los ojos animados del juego van encima: los ojos tienen que ser **dos puntos limpios y fáciles de localizar**.
+- Formato: cuadrado 1:1. Los carteles son verticales, así que de ellos se toma la idea y no el encuadre.
+
+**Carteles de referencia** (`assets/portada/`, subidos por Jorge el 23 oct):
+1. `20081110_bachs03.jpg`: *Los pájaros tirándole a la escopeta*. Una escopeta-personaje negra con prismáticos y dos pájaros enamorados.
+2. `El-bohio.jpg`: *El bohío*. Una casa de paja sobre una bandera. Ojo: tiene una bandera real, que en el juego no puede salir.
+3. `images (1).jpeg`: *El llamado de la selva*. Una nube blanca enorme con una boca de fiera.
+4. `images (10).jpeg`: *Vampiros en La Habana*. Un busto frontal con guayabera amarilla, ojos cerrados y puro.
+5. `images (11).jpeg`: *Por primera vez*. Un hombre pequeño que asoma sobre un campo de flores de colores.
+6. `images (2).jpeg`: *Alfredo Alfredo*. Una cara enorme con la boca abierta, y dentro, un hombrecillo.
+7. `images (3).jpeg`: *El gran robo del tren de San Trinian*. Un ladrón enmascarado sobre un tren-edificio.
+8. `images (4).jpeg`: *Zorro*. Una cara solo con el antifaz negro, la nariz y el bigote.
+9. `images (5).jpeg`: *Cine Móvil ICAIC*. Un personaje-pantalla con ruedas, gorro negro enorme y bigote.
+10. `images (6).jpeg`: *Un hombre de éxito*. Un hombre trajeado con cigarrillo, enorme sobre una ciudad.
+11. `images (7).jpeg`: *Hombres*. Figuras de formas grandes que se encajan, en rojo, azul y crema.
+12. `images (8).jpeg`: *La historia del fuego*. Un cavernícola peludo de rayitas con una pata de carne.
+13. `images (9).jpeg`: *XXV aniversario Cine Móvil*. Un hombre con bombín sentado sobre un proyector.
+14. `images.jpeg`: *Los tres mosqueteros*. Un sombrero, un bigote y una pluma enormes sobre unas piernas de colores.

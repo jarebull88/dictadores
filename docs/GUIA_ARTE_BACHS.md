@@ -430,16 +430,17 @@ No todos iguales (Jorge). Con las tintas de la paleta:
 - **Eusebio:** crema en el corte de la caña.
 - **Pendiente:** dar mostaza u oliva a algún personaje (Mirta, los embajadores) para variar más.
 
-### Narices del reparto (23 oct)
-Cada personaje, una nariz distinta de forma y de tinta, para que no se parezcan entre sí. Se dice siempre en su bloque B.
+### Narices del reparto (23 oct; revisado)
+El generador tiende a poner a todos la misma narizota roja de payaso (Neto, Rigoberto). Regla nueva: **la mayoría de las narices van del color de la piel, dibujadas solo con la línea negra**, como hace Bachs, y cada una con una **forma** distinta. Solo dos llevan nariz de otro color, y es parte de su chiste: Anselmo (triángulo rosa) y Sarria (la oreja). En el prompt se dice siempre «same color as the skin, drawn only with its outline» y se prohíbe «no red clown nose».
 - **Comandante:** no se ve; la tapa la barba.
-- **Domingo:** pequeña y recta, una cuña negra (en crema el generador se inventa un beige).
-- **Sarria:** casi no tiene; queda entre las gafas.
-- **Anselmo:** triángulo rosa afilado, de nariz respingona de buena familia (ya hecho).
-- **Rigoberto:** una pera rosa caída (ya hecho; si se rehace, mejor mostaza).
-- **Neto:** un gancho largo y rojo, de pirata.
-- **Hortensia:** un botoncito redondo y rojo.
-- **Eusebio, Mirta y los embajadores:** por decidir, sin repetir forma ni tinta.
+- **Domingo:** cuña pequeña y recta.
+- **Sarria:** la oreja.
+- **Anselmo:** triángulo rosa respingón.
+- **Rigoberto:** chata y redonda, un botoncito.
+- **Neto:** larga, fina y puntiaguda, de pico, como la mujer de *Se permuta*.
+- **Hortensia:** pequeña y respingona.
+- **Eusebio:** ancha y aplastada.
+- **Mirta y los embajadores:** por decidir, sin repetir forma.
 
 **Colores fuera de la paleta que se corrigen con PIL** (23 oct): la llama del farol de Hortensia salió en un rojo vivo (`#EB341F`) y la mano en un tostado (`#C59A5C`); el marco crema se recorta.
 

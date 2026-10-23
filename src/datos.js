@@ -370,7 +370,7 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "El Estado dará mejor uso a la tierra", efectos: { pueblo: -5, elite: 2 } },
+    izq: { accion: "El Estado sabe sembrar mejor que nadie", efectos: { pueblo: -5, elite: 2 } },
     der: { accion: "Importen comida a cualquier precio", efectos: { pueblo: 6, potencias: 5 } }
   },
 
@@ -569,9 +569,9 @@ const CARTAS = [
   {
     id: "los_chistes", era: 2, tipo: "sorteo", peso: 8, titulo: "Los chistes",
     personaje: "Ministra de Cultura",
-    texto: "Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.",
-    izq: { accion: "Detengan a quien lo cuente", efectos: { pueblo: -5, ejercito: 4 } },
-    der: { accion: "Reírse es gratis", efectos: { pueblo: 4, ejercito: -3 } }
+    texto: "Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.",
+    izq: { accion: "Detengan al que se ría primero", efectos: { pueblo: -5, ejercito: 4 } },
+    der: { accion: "Reírse también es de revolucionarios", efectos: { pueblo: 4, ejercito: -3 } }
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {
@@ -995,8 +995,8 @@ const CARTAS = [
     // 23 oct, Jorge: la revolución energética (2005-06): bombillas y ollas arroceras casa por casa
     id: "revolucion_energetica", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 5 }, titulo: "La revolución energética",
     personaje: "Ministro de Economía",
-    texto: "Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.",
-    izq: { accion: "Regálenlas con mi foto pegada", efectos: { pueblo: 4, ejercito: -4 } },
+    texto: "Tenemos bombillas que ahorran luz y ollas que ahorran arroz. Podemos regalarlas o venderlas.",
+    izq: { accion: "Regálenlas y enseñaré a hacer arroz", efectos: { pueblo: 4, ejercito: -4 } },
     der: { accion: "Que las venda el Ejército en dólares", efectos: { ejercito: 4, pueblo: -4 } }
   },
   {

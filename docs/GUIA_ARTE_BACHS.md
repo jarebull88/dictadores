@@ -411,7 +411,7 @@ Solid near-black #201D14 night background, edge to edge. In the middle, a big ro
 ### Narices del reparto (23 oct)
 Cada personaje, una nariz distinta de forma y de tinta, para que no se parezcan entre sí. Se dice siempre en su bloque B.
 - **Comandante:** no se ve; la tapa la barba.
-- **Domingo:** pequeña y recta, una cuña crema apenas marcada.
+- **Domingo:** pequeña y recta, una cuña negra (en crema el generador se inventa un beige).
 - **Sarria:** casi no tiene; queda entre las gafas.
 - **Anselmo:** triángulo rosa afilado, de nariz respingona de buena familia (ya hecho).
 - **Rigoberto:** una pera rosa caída (ya hecho; si se rehace, mejor mostaza).

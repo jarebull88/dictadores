@@ -46,11 +46,11 @@
   --rojo: var(--p-rojo);           /* solo alertas */
   --rojo-tinta: var(--p-rojo);     /* 17 oct: el rojo de rotulador tal como se ve (títulos de era): puntos de pista y contorno de confirmación */
   --trazo: 2px solid var(--carbon);
-  --radio: 3px;
-  --radio-carta: 18px;      /* esquinas de la carta de cartón */
+  --radio: 0;   /* 23 oct: sin esquinas redondeadas en nada */
+  --radio-carta: 0;      /* esquinas de la carta de cartón */
   /* Bisel del papel, mínimo: filo claro arriba y un filo oscuro abajo (luz cenital; nada a los lados) */
   --bisel: none;   /* 23 oct: todo plano, sin relieves ni sombras */
-  --radio-pegado: 10px;     /* esquinas de la cartulina y la hoja pegadas encima */
+  --radio-pegado: 0;     /* esquinas de la cartulina y la hoja pegadas encima */
   --hueco-carton: #E2D8C2;   /* 23 oct: color plano provisional para las perforaciones (barras, casillas, nombre); antes, cartón */
 }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
@@ -80,7 +80,7 @@ body {
 /* ---------- Botones: contorno negro neto; el principal, en tinta ---------- */
 .modo {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 48px; padding: 0 24px; border: none; border-radius: var(--radio); background: transparent;
+  min-height: 48px; padding: 0 24px; border: none; border-radius: 0; background: transparent;
   color: var(--tinta); font-family: var(--fuente); font-size: 16px; font-weight: 700; letter-spacing: .02em;
   cursor: pointer; -webkit-appearance: none; appearance: none;
 }
@@ -104,7 +104,7 @@ body {
 .campo { display: grid; gap: 8px; }
 .campo label { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta-suave); }
 .campo input {
-  width: 100%; padding: 14px 16px; border: var(--trazo); border-radius: var(--radio);
+  width: 100%; padding: 14px 16px; border: var(--trazo); border-radius: 0;
   background: var(--bloque); color: var(--tinta); font-family: var(--fuente); font-weight: 700; font-size: 22px;
 }
 .campo input:focus { outline: 3px solid var(--tinta); outline-offset: 2px; }
@@ -162,7 +162,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); font-size: 19px; line-height: 1.28; text-align: center; font-weight: 700; }   /* como la pregunta de la partida */
 .pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
 .pantalla-nombre .campo input {
-  height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 9px; color: var(--tinta);
+  height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 0; color: var(--tinta);
   background: var(--hueco-carton);
 
 }
@@ -184,7 +184,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: min(100%, 10vh); margin: 0 auto; }
 .par .icono-fuerza { display: block; }
 .par .icono-fuerza .icono { width: 100%; height: auto; }
-.icono.cartel { aspect-ratio: 1; border-radius: 3px; }   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
+.icono.cartel { aspect-ratio: 1; border-radius: 0; }   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {
@@ -195,7 +195,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
 
 }
-.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 4px; }
+.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 0; }
 .nivel .relleno {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
@@ -250,7 +250,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* 23 oct: sin texturas de cartón ni papel (siguen en assets/fondos); colores planos provisionales hasta el arte nuevo */
 .pila { position: absolute; top: 14px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
-  position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
+  position: absolute; inset: 0; transform: translateY(7px); border-radius: 0;   /* vista cenital: solo asoma por abajo */
   background: var(--rev-base, var(--p-oliva));   /* 23 oct: el reverso, del color de la era (REVERSO_ERA) */
 
 }
@@ -271,7 +271,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta.boca-abajo .giro { transform: rotateY(180deg); }
 .tapa { display: none; }
 .carta.revelando .tapa {
-  display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
+  display: block; position: absolute; inset: 0; border-radius: 0; transform: rotateY(180deg);
   background: var(--rev-base, var(--p-oliva));   /* 23 oct: el reverso, del color de la era (REVERSO_ERA) */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
@@ -296,11 +296,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* 17 oct: y encima, una capa roja translúcida que destella, para que se vea que hay que tocarla */
 #ranuras.destacar button.ranura.llena { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }   /* la casilla no se desvanece: palpita, y destella el rojo */
 @keyframes latido-casilla { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 8px; background: rgba(176, 54, 42, .5);
+#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
 #barras.destacar .icono-fuerza { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }
-#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 8px; background: rgba(176, 54, 42, .5);
+#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 @keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
@@ -333,7 +333,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    color del personaje (.ilustracion), con su sombra de papel pegado. El marco es el 6,5 % del ancho de la carta. */
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
-  padding: 6.5%; border-radius: var(--radio-carta);
+  padding: 6.5%; border-radius: 0;
   background-color: var(--p-tinta);   /* 23 oct: marco de tinta, como el borde de un cartel (antes, cartón con desgaste) */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
@@ -348,7 +348,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* 17 oct: vuelve la confirmación. Al pasar el umbral (soltar decide), la carta lleva un contorno de rotulador rojo,
    gastado como las letras (las mismas vetas): un anillo que solo pinta el borde (máscara borde − relleno) */
 .carta::after {
-  content: ""; position: absolute; inset: -4px; z-index: 6; pointer-events: none; border-radius: calc(var(--radio-carta) + 4px);
+  content: ""; position: absolute; inset: -4px; z-index: 6; pointer-events: none; border-radius: 0;
   border: 5px solid transparent;
   background: linear-gradient(var(--rojo-tinta), var(--rojo-tinta)) border-box;   /* 23 oct: sin vetas */
   -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0) border-box; -webkit-mask-composite: xor;
@@ -455,7 +455,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    es una cuña: más alto en el lado que sube. El texto (1 a 3 palabras, hasta 2 líneas) va en esa esquina,
    la contraria al arrastre. Siempre negro al 50 %, también en la zona de decisión. El panel es más ancho que la carta; la carta lo recorta (overflow de .ilustracion). */
 .respuesta {
-  --alto-panel: 96px;
+  --alto-panel: 108px;   /* 23 oct: sitio para 3 líneas (antes 96 px) */
   position: absolute; left: -50%; width: 200%; height: 400%; bottom: calc(100% - var(--alto-panel)); z-index: 3;
   background: rgba(0, 0, 0, .25); color: var(--bloque);   /* 21 oct: más transparente (antes, al 50 %) */
   transform-origin: 50% 100%; transform: rotate(calc(-1 * var(--giro, 0deg)));
@@ -467,10 +467,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
-.texto-respuesta strong, .texto-respuesta span { max-width: 100%; overflow-wrap: break-word; }   /* 22 oct: todo el ancho (antes 88 %), para que quepan 2 líneas sin bajar la letra */
+.texto-respuesta strong, .texto-respuesta span { max-width: 85%; overflow-wrap: break-word; }   /* 23 oct: hasta el 85 % (antes 100 %): al inclinar la carta, el borde ya no corta la respuesta */   /* 22 oct: todo el ancho (antes 88 %), para que quepan 2 líneas sin bajar la letra */
 .respuesta[data-dir="1"] .texto-respuesta { align-items: flex-start; text-align: left; }
 .respuesta[data-dir="-1"] .texto-respuesta { align-items: flex-end; text-align: right; }
-.texto-respuesta strong { display: block; font-weight: 700; font-size: min(21px, calc(var(--carta-w, 360px) / 17.8)); line-height: 1.15; }   /* 22 oct: siempre el mismo tamaño en cada móvil (21 px; algo menos si la carta es estrecha), nunca según lo larga que sea la respuesta */
+.texto-respuesta strong { display: block; font-weight: 700; font-size: min(23px, calc(var(--carta-w, 360px) / 16)); line-height: 1.08; }   /* 23 oct: más grande, hasta 3 líneas, siempre el mismo tamaño en cada móvil */   /* 22 oct: siempre el mismo tamaño en cada móvil (21 px; algo menos si la carta es estrecha), nunca según lo larga que sea la respuesta */
 .texto-respuesta span { display: block; font-weight: 400; font-size: 15px; line-height: 1.3; margin-top: 4px; }
 
 /* Barra inferior: dictador y años en dos líneas; a la derecha, las cuatro casillas de estado */
@@ -485,7 +485,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; gap: 6px; flex-shrink: 0; position: relative; }
 .ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */
-.ranura { width: 46px; height: 46px; border-radius: 9px; border: none; padding: 0; display: block; }
+.ranura { width: 46px; height: 46px; border-radius: 0; border: none; padding: 0; display: block; }
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
 .ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; mix-blend-mode: multiply; }   /* pintados sobre el cartón del hueco */
@@ -509,7 +509,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .popup {
   position: absolute; z-index: 7; color: var(--tinta); isolation: isolate;
   background: var(--pop-color, var(--p-crema));
-  border-radius: 14px; padding: 14px 16px;
+  border-radius: 0; padding: 14px 16px;
 
 }
 /* La pulpa, a media fuerza (15 oct): se nota el papel sin restar legibilidad */

@@ -449,3 +449,13 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **23 oct — Títulos de pantalla también en Baloo 2** (antes Special Elite): «Comenzar partida», «Gobernaste…», esquela. Special Elite ya no se incrusta.
 - **23 oct — Carteles serigrafiados de cuatro estados:** Luna de miel, Culto, Embargo y Jaula (`cartel-<id>.jpg`). En las casillas llenan el hueco entero. Faltan Censura, Vigilancia, Alineado, Nacionalizaciones y Deuda externa, que siguen con el dibujo a rotulador.
 - **23 oct — Paleta del cartel** (`docs/PALETA.md`): 6 tintas sacadas de los iconos de Jorge (rojo `#B0362A`, mostaza `#D8A02A`, oliva `#7C7530`, azul `#1D51A0`, crema `#F2EBDA` y tinta `#201D14`). Un mismo rojo para el Pueblo, la estrella, las letras rojas y las alertas. Incluye el bloque para los prompts de imágenes.
+- **23 oct — Paleta aplicada a la interfaz:**
+  - página en crema `#F2EBDA` y texto en tinta `#201D14`;
+  - un solo rojo `#B0362A` para títulos, alertas, confirmación y halos;
+  - cartas con marco de tinta, como el borde de un cartel;
+  - reverso y mazo del color de la era: oliva, azul, mostaza y rojo;
+  - ventanas de las fuerzas con tintes claros de la paleta;
+  - nombres de las fichas en oliva oscuro, rojo y azul según el grupo;
+  - fondos de estados y caídas con las tintas de la paleta;
+  - cintas en mostaza clara.
+  Los fondos de los personajes (`personajes.json`) no se tocan: cambiarán con el arte nuevo.

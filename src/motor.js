@@ -253,10 +253,10 @@ const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c
 const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
 /* El reverso de las cartas cambia de color con la etapa (base pastel y el dibujo, del mismo tono, más intenso) */
 const REVERSO_ERA = {
-  1: { base: "#A9D3A0", tinta: "#4E8A47" },   // La Revolución: verde guerrillero
-  2: { base: "#9EC8EA", tinta: "#3F7DB3" },   // La Purga: azul
-  3: { base: "#F2C76E", tinta: "#B9832A" },   // Culto: dorado
-  4: { base: "#C9B1E4", tinta: "#7D5BAE" }    // La Supervivencia: lavanda
+  1: { base: "#7C7530", tinta: "#201D14" },   // 23 oct, paleta del cartel. La Revolución: oliva
+  2: { base: "#1D51A0", tinta: "#201D14" },   // La Purga: azul
+  3: { base: "#D8A02A", tinta: "#7A2A1D" },   // El Culto: mostaza
+  4: { base: "#B0362A", tinta: "#201D14" }    // La Supervivencia: rojo
 };
 function colorReverso(era) {
   const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;
@@ -525,7 +525,7 @@ function pintarRanuras() {
 
 let temporizadorPopup = null;
 /* Color pastel claro de cada ventana: uno por fuerza; los estados, su cartulina aclarada */
-const COLOR_POPUP = { pueblo: "#FBEBDF", ejercito: "#EBF2E2", elite: "#F1EAF8", potencias: "#E4F0F8" };   // muy claros: se lee mejor
+const COLOR_POPUP = { pueblo: "#F1D3CB", ejercito: "#F5E3B8", elite: "#E3E0C3", potencias: "#CFDCEF" };   // 23 oct: tintes claros de la paleta   // muy claros: se lee mejor
 function colorPopup(clave) {
   const [tipo, id] = clave.split("-");
   if (tipo === "fuerza") return COLOR_POPUP[id];
@@ -601,7 +601,7 @@ function ajustarFicha(carta = $("carta")) {
 }
 
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
-const ROTULADOR_GRUPO = { ejercito: "#2E6B2E", elite: "#5B2C83", potencias: "#B5541C" };
+const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D51A0" };   // 23 oct: tintas de la paleta
 
 /* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
    Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
@@ -903,8 +903,8 @@ const FRASE_ESTADO = {
   frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
 };
-const FONDO_ESTADO = { luna: "#F28FA6", censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",
-  embargo: "#5BA8DC", frontera: "#7CC67A", nacionalizado: "#7CC6EE", deuda: "#A5D867" };
+const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F2EBDA", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
+  embargo: "#D8A02A", frontera: "#7C7530", nacionalizado: "#7C7530", deuda: "#D8A02A" };
 const ESPERA_ESTADO = 7000;   // 15 oct: si nadie toca la carta de estado, se guarda sola a los 7 s (también en el tutorial)
 let relojEstado = null;
 function mostrarCartaEstado() {
@@ -1101,8 +1101,8 @@ function ajustarCabeceraFin() {
 let finOcupada = false;
 /* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
    sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
-const FONDO_CAIDA = { ejercito_0: "#A9C3D9", pueblo_0: "#F5C77A", pueblo_100: "#F7D78C", ejercito_100: "#C9B8E8",
-  elite_0: "#9FD8D0", elite_100: "#F2B8C6", potencias_0: "#A9D6F2", potencias_100: "#F7C59F" };
+const FONDO_CAIDA = { ejercito_0: "#1D51A0", pueblo_0: "#D8A02A", pueblo_100: "#B0362A", ejercito_100: "#7C7530",   // 23 oct: paleta del cartel
+  elite_0: "#F2EBDA", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
 let claveFin = "";
 function pintarCartaFin(titulo, clave = claveFin) {
   const carta = $("carta-fin");
@@ -1472,7 +1472,7 @@ function decidirNombre(dir) {
 /* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js): el nombre es el que se está escribiendo */
 function fichaComandante() {
   const v = $("input-nombre").value.trim().split(/\s+/)[0];
-  return { ...FICHA_COMANDANTE, foto: fotoDe("dictador-joven"), color: "#1F2A5C",
+  return { ...FICHA_COMANDANTE, foto: fotoDe("dictador-joven"), color: "#1D51A0",
     nombre: v ? `Comandante ${v.charAt(0).toUpperCase()}${v.slice(1)}` : FICHA_COMANDANTE.sinNombre };
 }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre,
@@ -1495,7 +1495,7 @@ function informeEra() {
   const estado = Math.abs(masTensa.v - 50) >= 10 ? LINEAS_BARRA[masTensa.id][masTensa.v > 50 ? "alto" : "bajo"] : "";
   const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2).map(b => PREVISION[b] || FUTURO[b]);
   return {
-    foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1F2A5C", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
+    foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1D51A0", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
     historia: [INFORME_ERA[E.era], estado].filter(Boolean).join(" "),
     nota: espera.join(" ")
   };

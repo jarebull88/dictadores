@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 21 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.1.
+Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. El aniversario
 
@@ -199,10 +199,80 @@ Duración: entre 8 y 10 cartas. 21 cartas. Los efectos están en la escala peque
 
 **Carta:** «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
 
-- **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4
+- **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
 - **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
 
-### 20. Las flores en el mar
+### 20. El compañero incómodo
+
+**Personaje:** Embajador del bloque oriental  
+**Condición:** sorteo con peso 10.
+
+**Carta:** «Ferro, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.»
+
+- **A. Lo mandaré a una misión bien lejos** Potencias +4 · Ejército −3 · Encola: `guerrilla_perdida` en 2 a 3 años
+- **B. Quien calla a Ferro me calla a mí** Potencias −4 · Ejército +3
+
+### 21. La ofensiva revolucionaria
+
+**Personaje:** Ministro de Economía  
+**Condición:** sorteo con peso 10; a partir del año 3 de la era.
+
+**Carta:** «Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.»
+
+- **A. El Estado hará las mejores frituras** Élite +5 · Pueblo −4
+- **B. Dejen vivir al pequeño negocio** Pueblo +4 · Élite −5
+
+### 22. El servicio militar
+
+**Personaje:** Ministro de las Fuerzas Armadas  
+**Condición:** sorteo con peso 10.
+
+**Carta:** «Proponemos tres años de servicio militar obligatorio para todos los jóvenes.»
+
+- **A. Que cada joven sirva a la patria** Ejército +5 · Pueblo −4
+- **B. La patria no se defiende obligado** Pueblo +4 · Ejército −5
+
+### 23. La invasión del aliado
+
+**Personaje:** Embajador del bloque oriental  
+**Condición:** sorteo con peso 10; a partir del año 4 de la era.
+
+**Carta:** «Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.»
+
+- **A. Tienen todo nuestro apoyo fraterno** Potencias +5
+- **B. Aquí no opinamos de casas ajenas** Potencias −5
+
+### 24. La guerrilla perdida
+
+**Personaje:** Ministro del Interior  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Ferro pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»
+
+- **A. Mándenle a nuestros mejores hombres** Ejército +4 · Potencias −4
+- **B. Ferro será un millón de camisetas** Potencias +3 · Ejército −3 · Bandera: `ferro_martir`
+
+### 25. La cifra que no llega
+
+**Personaje:** Ministro de Trabajo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.»
+
+- **A. Manden a todo el país al cañaveral** Élite +4 · Pueblo −5 · Encola: `discurso_derrota` en 1 a 2 años
+- **B. Busquen cómo hacer que la cuenta dé** Pueblo +3 · Élite −3 · Encola: `discurso_derrota` en 1 a 2 años
+
+### 26. El discurso de la derrota
+
+**Personaje:** Ministro de Trabajo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.»
+
+- **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
+- **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
+
+### 27. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
@@ -212,7 +282,7 @@ Duración: entre 8 y 10 cartas. 21 cartas. Los efectos están en la escala peque
 - **A. Que se olvide sin acto oficial** Pueblo +3 · Élite −4
 - **B. Encabezaré yo los homenajes** Élite +4 · Pueblo −3
 
-### 21. Los campos de trabajo
+### 28. Los campos de trabajo
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.

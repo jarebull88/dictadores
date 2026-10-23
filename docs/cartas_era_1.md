@@ -201,7 +201,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
 
-**Carta:** «Aviones del exilio nos han bombardeado dejando víctimas inocentes. En el entierro, el Pueblo querrá saber qué es esta Revolución.»
+**Carta:** «El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.»
 
 - **A. Hoy la Revolución será socialista** Potencias +5 · Élite +3
 - **B. Que la palabra sea patria y nada más** Potencias −5 · Ejército +3

@@ -16,7 +16,7 @@ const BARRAS = [
 ];
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
   { nombre: "La Revolución", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.25): con las cartas cubanas nuevas el «humano» la superaba el 75 %; ahora ~62 %
-  { nombre: "La Purga", min: 8, max: 10, factor: 1.1 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.7): al azar se superaba ~30 %
+  { nombre: "La Purga", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.1): con las cartas cubanas nuevas el «humano» la superaba el 68 %; ahora ~59 %
   { nombre: "El Culto", min: 8, max: 10, factor: 1.2 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.75): el «humano» la superaba el 83 %
   { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.0 }   // 22 oct: más larga (antes 6-8 y ×0.8); con los pesos revisados, el «humano» la supera ~52 %
 ];

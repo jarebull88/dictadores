@@ -27,6 +27,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `estudiantes_reprimidos` | Estudiantes en la calle (B) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
 | `exiliados_vocales` | La casa vacía (B) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
+| `ferro_martir` | La guerrilla perdida (B) | — | — |
 | `frontera_cerrada` | Los que se marchan (B) | Intentos de fuga | Intentos de fuga. (era 2) |
 | `general_apartado` | El general querido (B) | Cienfuegos vuelve | Cienfuegos regresa como candidato de los descontentos. (era 4) |
 | `general_popular` | El general querido (A) | El general murmura | (Obsoleta, 22 oct) Cienfuegos conspira si el Ejército baja de 40. (era 1) |

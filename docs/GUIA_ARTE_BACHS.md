@@ -182,9 +182,9 @@ Brick red #B0362A background. A hand puppet of a naive guerrilla leader, centere
 Brick red #B0362A background. A small, limp marionette of the same naive guerrilla leader hanging in the middle: flat-topped olive-green kepi cap, round cream face with two solid dot eyes, big solid black beard, small olive-green body, floppy stick-like arms and legs. Thin solid near-black strings run from its head and hands up to a mustard cross-shaped control bar held at the top by a big cobalt-blue hand coming in from the top edge.
 ```
 
-**Nacionalizaciones**
+**Nacionalizaciones** (23 oct, idea de Jorge: una fábrica a la que le ponen la estrella roja del Partido. La fábrica, grande y crema; la estrella, más pequeña, para no confundirla con el icono del Partido, que también es una estrella roja sobre oliva)
 ```
-Olive green #86762C background. A chubby, slightly crooked factory: one brick-red building shape with a sawtooth roof, two tall solid near-black chimneys of different heights leaning a little, each puffing one round cream cloud of smoke, and a row of small solid near-black rectangular windows.
+Olive green #86762C background. A chubby, slightly crooked factory filling most of the square: one big cream #F0E9D6 building shape with a sawtooth roof, two tall solid near-black chimneys of different heights leaning a little, and a row of small solid near-black rectangular windows. Slapped onto the middle of its facade, slightly crooked like a freshly stuck label, a big hand-cut brick-red #B0362A five-pointed star with uneven points, like the star in the attached reference image. Nothing else.
 ```
 
 **Deuda externa**

@@ -43,7 +43,7 @@ Slight misregistration between inks and visible paper grain. Square 1:1.
 - Embargo: mostaza
 - Jaula: oliva
 - **Para los que faltan** (Censura, Vigilancia, Alineado, Nacionalizaciones, Deuda externa), repartir los fondos para que no se repitan seguidos. Por ejemplo:
-  - Censura: crema
+  - Censura: mostaza (23 oct; antes crema, pero el bocadillo es crema)
   - Vigilancia: azul
   - Alineado: rojo
   - Nacionalizaciones: oliva

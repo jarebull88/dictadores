@@ -71,7 +71,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - Culto: rojo
 - Embargo: mostaza
 - Jaula: oliva
-- Censura: crema
+- Censura: mostaza (23 oct; antes crema, pero el bocadillo es crema)
 - Vigilancia: azul
 - Alineado: rojo
 - Nacionalizaciones: oliva
@@ -101,6 +101,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - Las caras: dos puntos sólidos de ojos y una pequeña forma sólida, nada más.
 - La ironía de Bachs funciona mejor con una idea visual: la estrella «sacando bíceps», la manga azul de las potencias metida en el títere.
 - El líder es un guerrillero naíf: gorra kepi oliva de copa plana, cara crema con ojos de punto, barba negra enorme, uniforme oliva y, a veces, puro. Si solo se pide «bigote», sale el señor del Monopoly.
+- Los objetos que todo el mundo conoce en blanco van en crema (23 oct, Jorge: el bocadillo de diálogo de Censura salió azul y no se reconocía). Entonces el fondo no puede ser crema.
 - Cuidado con lo que significa cada color: una manga oliva convierte al pueblo en militar. El oliva es del ejército y del líder; el pueblo lleva el azul de obrero.
 
 **Generadores**
@@ -196,7 +197,12 @@ Cobalt blue #1D51A0 background. One huge almond-shaped eye, wide open and slight
 
 **23 oct, Jorge: todos los iconos se rehacen desde cero en la conversación de arte**, uno a uno; los carteles instalados siguen en el juego hasta que llegue su sustituto.
 
-**Pendiente de definir:** Censura (crema). Jaula y «Frontera cerrada» son el mismo estado: el id interno es `frontera` y en el juego se llama Jaula. Ya tiene cartel, el muro con alambre de espino, aunque su fondo está asignado al oliva.
+**Censura** (23 oct: tijeras que cortan un bocadillo; v2: el bocadillo, en crema, y el fondo pasa de crema a mostaza para que se vea)
+```
+Mustard #D8A02A background. A big pair of brick-red #B0362A scissors, slightly tilted, blades open and cutting straight through a chubby cream #F0E9D6 speech bubble. Each blade is one continuous solid shape. The bubble is split in two: the top half stays in place, the bottom half with its little tail drops slightly away, with a gap of background between their jagged edges. One solid near-black round screw dot where the scissor blades cross. Nothing else.
+```
+
+Jaula y «Frontera cerrada» son el mismo estado: el id interno es `frontera` y en el juego se llama Jaula. Ya tiene cartel, el muro con alambre de espino, aunque su fondo está asignado al oliva.
 
 ---
 

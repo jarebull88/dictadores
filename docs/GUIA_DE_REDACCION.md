@@ -77,3 +77,9 @@ Para cada carta, antes de proponerla o al revisarla:
 - **Las respuestas las dice el Comandante, no son decisiones crudas.** Nada de «Detenerlo por viajar sin permiso»: voz propia, con chulería, ego y humor («Seré una piedra eterna», «Me encantan las piedras»). Cuando cede, lo hace de forma revolucionaria, nunca con debilidad ni humillación.
 - **No se despide a ministros** como decisión: el juego no lo contempla, así que una respuesta no puede depender de eso.
 - **La respuesta tiene que nombrar la medida** (sesión de la era 4): leída sola, el jugador debe saber qué hace y deducir quién gana o pierde poder. «Tranquilo, iremos en bicicleta» no sirve: no dice que se raciona ni que se corta la luz. Mejor «Tranquilo, racionaremos hasta la luz».
+
+## Notas de Jorge (23 oct, redacción de las cartas cubanas)
+- **Cuando Jorge da una idea de redacción, se le devuelven varias versiones de ella** (al menos 3), no se aplica tal cual.
+- **La pregunta da el contexto que el jugador necesita** y nada irrelevante: si sale un personaje o un hecho nuevo (Diezfuegos, un bombardeo), se presenta en la propia carta; los detalles técnicos («aeródromos») sobran.
+- **Una respuesta no puede adelantar lo que contradice una carta posterior** de la misma trama (si luego la zafra no llega, la B no puede asegurar que la cuenta llegue).
+- **Ni purgar ni despedir ministros**: los culpables son otros (viceministros, burócratas, saboteadores).

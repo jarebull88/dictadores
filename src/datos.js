@@ -154,7 +154,7 @@ const CARTAS = [
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.",
-    izq: { accion: "Convoquen elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
+    izq: { accion: "Elecciones ya, que seguro gano", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, elite: 5 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
@@ -313,7 +313,7 @@ const CARTAS = [
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.",
+    texto: "Llega el aniversario: el Ejército quiere desfile de tanques y el Pueblo, ron. No hay para los dos.",
     izq: { accion: "Un gran desfile con tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
     der: { accion: "Ron gratis para todo el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
   },
@@ -353,9 +353,9 @@ const CARTAS = [
   {
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
-    texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
+    texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha bajito.",
     izq: { accion: "Interfieran la emisora con música", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
-    der: { accion: "Acúsenlos de agentes extranjeros", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
+    der: { accion: "Que la radio diga que son espías", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
   {

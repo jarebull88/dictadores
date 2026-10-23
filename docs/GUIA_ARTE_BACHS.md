@@ -132,7 +132,12 @@ Square 1:1 icon in the style of a 1970s Cuban silkscreen poster by Eduardo Muño
 
 ## 5. Prompts B por icono
 
-**El Pueblo** (adjuntar también el cartel *Realengo 18* sin texto)
+**El Pueblo** (23 oct, elegido: el puño en alto. Abajo queda la mano que vota, como alternativa)
+```
+Brick red #B0362A background. A big raised fist, seen from the front, filling most of the square: one chunky, blocky cream #F0E9D6 silhouette with four curled fingers as thick squarish blocks stacked side by side, separated only by thin gaps of red background, and a short square thumb folded across them. Below it, the wrist and the rolled-up sleeve of a cobalt-blue #1D51A0 work shirt as one plain flat shape, cropped by the bottom edge. No black details on the hand. Nothing else.
+```
+
+**El Pueblo, alternativa: la mano que vota** (adjuntar también el cartel *Realengo 18* sin texto)
 ```
 Brick red #B0362A background. A big raised open hand, as if voting, like the hand in the second attached image: one chunky, blocky cream silhouette, palm facing the viewer, fingers slightly spread and separated only by small gaps of red background, each finger a thick squarish block with a flat, straight-cut tip, and a short square thumb sticking out to one side. No black details on the hand. Below it, a short piece of wrist cropped by the bottom edge, with the rolled-up sleeve of a cobalt-blue work shirt as one plain flat shape.
 

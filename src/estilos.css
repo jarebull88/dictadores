@@ -211,7 +211,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   --alto-mensaje: calc(var(--lineas-mensaje, 4) * 19px * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
 }
 
-/* Escenario: la carta ocupa todo el alto libre (el que dejan el mensaje y la barra inferior) y el ancho de la ilustración, con el mazo detrás.
+/* Escenario: la carta, cuadrada, ocupa el lado más corto del hueco libre (el que dejan el mensaje y la barra inferior), con el mazo detrás.
    Sin proporción fija: el personaje se ajusta con preserveAspectRatio (ver svgPersonaje). Alto máximo: 1,45 veces el ancho. */
 .escenario {
   flex: 1; min-height: 260px; padding: 2px 0 8px; position: relative;
@@ -219,10 +219,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   container-type: size; perspective: 1400px;
 }
 .carta, .pila {
-  /* Alto: todo el hueco disponible. Ancho: el que pide la proporción de las ilustraciones (900 × 1205 ≈ 0,747),
-     para que el personaje salga entero; si la pantalla es muy alta, manda el ancho disponible. */
-  height: min(100cqh - 8px, (100cqw - 8px) * 1.6);
-  width: min(100cqw - 8px, (100cqh - 8px) * 0.772);   /* 0,772 = la proporción de la ilustración (0,747) más el marco de cartón */
+  /* 23 oct: cartas cuadradas (1:1), para el arte nuevo de Jorge. Miden lo que permita el lado más corto del hueco;
+     en los móviles manda el ancho y queda sitio libre debajo de la carta (para avisos como «¡Carné conseguido!»). */
+  height: min(100cqh - 8px, 100cqw - 8px);
+  width: min(100cqw - 8px, 100cqh - 8px);
 }
 /* Cartón: color liso × textura de papel (capa «multiplicar»). La textura es assets/fondos/cartulinablanca.jpg, que se
    incrusta como --tex-cartulinablanca (21 oct: sustituye a las cartulinas 1, 2, 3 y 5). */

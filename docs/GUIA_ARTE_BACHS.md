@@ -390,3 +390,9 @@ Cobalt blue #1D51A0 background. Bust of a skinny young bodega keeper who followe
 - **Anselmo:** detrás, una etiqueta de precio gigante, en blanco, con su cordel: él mismo está en venta.
 - **Rigoberto:** de su bolsillo sale una cuenta de fiado larguísima que se desenrolla y llena el fondo, con filas de rayitas y un sello rojo de «sin pagar» (sin texto).
 
+
+### Ernesto «Neto» Arrieta, Comercio (etapa 1)
+Referencia: **21, *Se permuta*** (la ciudad metida en la falda). Idea: se abre la guerrera como un vendedor ambulante, y el forro está lleno de contrabando. En cada era, otra mercancía (contratos, dólares, souvenirs).
+```
+Cobalt blue #1D51A0 background. Bust of a cheeky young smuggler who ran guns to the guerrillas and sold rum to the army on the same trip. With both hands he holds his olive-green #86762C guerrilla jacket wide open, like a street vendor showing his goods: the inside lining is brick red and covered with contraband hanging in neat rows, small mustard rum bottles with blank cream labels, a few solid near-black cigars and one small solid near-black pistol. Under the jacket, a loud cream shirt with big soft-pink and mustard flowers. A long, lopsided cream head with a big hooked nose as one flat soft-pink #DF8178 shape, a mop of tight solid near-black curls, a thin solid near-black mustache, two solid near-black dot eyes and a wide, sly grin as one solid brick-red shape with one mustard gold tooth. The open jacket and its goods fill the lower half of the square. Charming, shameless, always selling.
+```

@@ -147,15 +147,11 @@ const icono = (id, clase = "") => {
   return img ? `<img class="${["icono", "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
-/* 21 oct: todas las cartas, del mismo cartón neutro (assets/fondos/carton.jpg), con uno de los cuatro desgastes. */
 /* 17 oct: la carta del Comandante lleva un marco de metal que se degrada con los años (oro el joven, plata el asentado;
    vendrán bronce y óxido). Texturas en assets/fondos/ (oro.jpg, plata.jpg). */
 const METAL_DICTADOR = { "dictador-joven": "oro", "dictador-asentado": "plata" };
 function cartonDe(carta, slug) {
-  carta.classList.remove("purpurina", "oro", "plata", "d1", "d2", "d3", "d4");
-  // 21 oct: cada carta, uno de los cuatro desgastes del cartón (el mismo siempre para el mismo personaje)
-  const h = [...(slug || String(Math.random()))].reduce((a, c) => a + c.charCodeAt(0), 0);
-  carta.classList.add("d" + (h % 4 + 1));
+  carta.classList.remove("purpurina", "oro", "plata");   // 23 oct: sin desgastes de cartón (color plano)
   if (METAL_DICTADOR[slug]) carta.classList.add(METAL_DICTADOR[slug]);
 }
 /* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */

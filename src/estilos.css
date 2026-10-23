@@ -12,7 +12,6 @@
   --fuente-titulo: "Special Elite", "Courier Prime", "Courier New", monospace;
   --tinta-marcador: rgba(28, 27, 25, .9);
   --rojo-marcador: rgba(179, 38, 30, .9);
-  --veta-marcador: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.3' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.4 0 0 0 -0.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");   /* 16 oct: vetas claras horizontales de rotulador (ruido SVG) */   /* 15 oct: el rotulador, al 90 %: el negro puro pesaba demasiado */
   --fuente-mano: "Londrina Solid", "Special Elite", cursive;   /* 23 oct: letra recortada a mano, como en los carteles cubanos (antes Permanent Marker): títulos de ventanas, cintas, expediente */
   --fuente-caligrafica: "Playwrite IT Moderna", cursive;   /* 23 oct: caligráfica (Playwrite Italia), lista para usar; aún no se usa */
   padding-top: env(safe-area-inset-top, 0px);
@@ -31,7 +30,7 @@
   /* Bisel del papel, mínimo: filo claro arriba y un filo oscuro abajo (luz cenital; nada a los lados) */
   --bisel: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -1px 0 rgba(0, 0, 0, .12);
   --radio-pegado: 10px;     /* esquinas de la cartulina y la hoja pegadas encima */
-  --hueco-carton: var(--tex-carton) center / cover;   /* 21 oct: el fondo de las perforaciones (barras, casillas, nombre), de cartón */
+  --hueco-carton: #B7A68C;   /* 23 oct: color plano provisional para las perforaciones (barras, casillas, nombre); antes, cartón */
 }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
 html, body { height: 100%; margin: 0; }
@@ -106,13 +105,13 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .cabecera-carta .era-texto { justify-self: stretch; text-align: center; margin: 0; font-size: 15px; line-height: 1.4; font-weight: 700; }   /* en negrita, como la pregunta */
 #screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1 { margin: 0; font-size: min(8.6vw, 46px); white-space: nowrap; }
 /* 15 oct: «Sigues en el poder» y «¡Has caído!», escritos con rotulador rojo (al 90 %, como el negro) */
-#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); font-weight: 400; color: var(--rojo-marcador); }
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; color: var(--rojo-marcador); }
 
 /* Pantalla del nombre: «Comandante» y el campo centrados, sin contorno, sobre papel beige */
 /* Portada: el logo y, debajo, las tres opciones como texto */
 .portada { justify-content: center; align-items: center; gap: 34px; text-align: center; }
 .portada .logo { margin: 0; width: min(100%, 400px); }
-.logo-texto { display: grid; justify-items: center; font-family: var(--fuente-mano); font-weight: 400; text-transform: uppercase; line-height: 1; transform: rotate(-3deg); }
+.logo-texto { display: grid; justify-items: center; font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; line-height: 1; transform: rotate(-3deg); }
 .logo-texto > span { font-size: min(46px, 10vw); }
 .logo-texto > span + span { font-size: min(92px, 20vw); }   /* la orden manda: «¡ORDENE!» va más grande */
 .logo-texto i { font-style: normal; }
@@ -225,12 +224,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   height: min(100cqh - 8px, 100cqw - 8px);
   width: min(100cqw - 8px, 100cqh - 8px);
 }
-/* Cartón: color liso × textura de papel (capa «multiplicar»). La textura es assets/fondos/cartulinablanca.jpg, que se
-   incrusta como --tex-cartulinablanca (21 oct: sustituye a las cartulinas 1, 2, 3 y 5). */
+/* 23 oct: sin texturas de cartón ni papel (siguen en assets/fondos); colores planos provisionales hasta el arte nuevo */
 .pila { position: absolute; top: 14px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
-  background: var(--tex-desgaste3) center / 100% 100%, var(--tex-carton) center / cover;   /* 21 oct: reverso de cartón neutro, gastado */
+  background: #A88A64;   /* 23 oct: color plano provisional (antes, cartón gastado) */
   box-shadow: 0 1px 2px rgba(0, 0, 0, .6), var(--bisel);
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -251,7 +249,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: var(--radio-carta); transform: rotateY(180deg);
-  background: var(--tex-desgaste3) center / 100% 100%, var(--tex-carton) center / cover;   /* 21 oct: reverso de cartón neutro, gastado */
+  background: #A88A64;   /* 23 oct: color plano provisional (antes, cartón gastado) */
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -313,16 +311,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
   padding: 6.5%; border-radius: var(--radio-carta);
-  background-color: #C9A97C;
-  background-image: var(--desgaste, var(--tex-desgaste1)), var(--tex-carton);   /* 21 oct: cartón neutro para todas, con desgaste */
-  background-position: center; background-size: 100% 100%, cover;
+  background-color: #C9A97C;   /* 23 oct: color plano provisional (antes, cartón con desgaste) */
   box-shadow: 0 2px 1.5px rgba(0, 0, 0, .65), var(--bisel);   /* sombra corta y oscura: está pegada, no flota */
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .dorso { transform: rotateY(180deg); }
-/* 21 oct: todas las cartas, del mismo cartón; cada una con uno de los cuatro desgastes (.d1 a .d4, ver cartonDe) */
-.carta.d1 { --desgaste: var(--tex-desgaste1); } .carta.d2 { --desgaste: var(--tex-desgaste2); }
-.carta.d3 { --desgaste: var(--tex-desgaste3); } .carta.d4 { --desgaste: var(--tex-desgaste4); }
 /* Cartas de estado: el marco es de cartulina de purpurina dorada (assets/fondos/purpurina.jpg), sin color ni pulpa encima */
 .carta.purpurina .cara { background-color: #FFF; background-image: var(--tex-purpurina); background-size: cover; background-position: center; }
 /* 17 oct: la carta del Comandante, con marco de metal según la etapa (METAL_DICTADOR en motor.js) */
@@ -334,7 +327,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta::after {
   content: ""; position: absolute; inset: -4px; z-index: 6; pointer-events: none; border-radius: calc(var(--radio-carta) + 4px);
   border: 5px solid transparent;
-  background: var(--veta-marcador) 0 0 / 420px 160px border-box, linear-gradient(var(--rojo-tinta), var(--rojo-tinta)) border-box;
+  background: linear-gradient(var(--rojo-tinta), var(--rojo-tinta)) border-box;   /* 23 oct: sin vetas */
   -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0) border-box; -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0) border-box;
   opacity: 0; transition: opacity .1s ease;
@@ -365,7 +358,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
-.etiqueta-boli b { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: min(26px, 6.8vw); line-height: 1.1; }   /* título a máquina */
+.etiqueta-boli b { display: block; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-weight: 400; font-size: min(26px, 6.8vw); line-height: 1.1; }   /* título a máquina */
 .etiqueta-boli.larga b { font-size: min(21px, 5.4vw); }   /* una palabra muy larga («Nacionalizaciones») no cabe al tamaño normal */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
 .carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
@@ -375,7 +368,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Tutorial: la instrucción al jugador, en cinta de carrocero pegada abajo en la cartulina de Cuesta */
 .cinta-tutorial { position: absolute; left: 6%; width: 88%; bottom: 5%; z-index: 2; pointer-events: none; transform: rotate(1.2deg); }
 .cinta-tutorial::before { opacity: .95; }   /* menos translúcida que la del nombre de los estados: aquí hay frases que leer */
-.cinta-tutorial span { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-size: min(21px, 5.5vw); line-height: 1.2; font-weight: 400; }   /* la letra del mensaje de arriba, en negrita */
+.cinta-tutorial span { display: block; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-size: min(21px, 5.5vw); line-height: 1.2; font-weight: 400; }   /* la letra del mensaje de arriba, en negrita */
 /* Al girar la carta, la cinta se desvanece enseguida (la vuelta llega a 90° muy pronto y con retardo se veía
    por detrás); al volver, reaparece cuando la cara ya mira de frente */
 .cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: opacity .2s ease .3s; }
@@ -429,7 +422,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   background: #EFE3BE; filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .3));
   clip-path: polygon(0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%, 0 100%, 3% 75%, 0 50%, 3% 25%); }
 .ficha-foto .ojos-foto { fill: #161618; }
-.ficha-nombre { font-family: var(--fuente-mano); font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
+.ficha-nombre { font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
 .ficha-cargo { font-size: var(--ficha-px, 15px); font-weight: 700; margin-bottom: 4px; }
 .ficha-nota b { font-weight: 700; }
 .ficha-historia { margin: 0; font-size: var(--ficha-px, 15px); line-height: 1.4; max-width: 32ch; }
@@ -501,12 +494,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   display: none;   /* 21 oct: sin pulpa, papel liso */
 }
 .popup .etiqueta-pop { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); margin-bottom: 2px; }
-.popup b { display: block; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-weight: 400; font-size: 25px; line-height: 1.1; margin-bottom: 6px; }
+.popup b { display: block; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-weight: 400; font-size: 25px; line-height: 1.1; margin-bottom: 6px; }
 .popup span { display: block; font-size: 16px; line-height: 1.4; }
 .popup .sube-baja { margin-top: 8px; }   /* 21 oct: «Lo sube» y «Lo baja» de cada fuerza */
 .popup .sube-baja em { font-style: normal; font-weight: 700; }
 .popup .efecto {   /* el efecto, en cinta de carrocero (como el nombre en la carta del estado) */
-  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); color: var(--tinta-marcador); font-size: 20px; line-height: 1.2; font-weight: 400;
+  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-size: 20px; line-height: 1.2; font-weight: 400;
   transform: rotate(-1deg); filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35));
 }
 .popup .efecto::before {
@@ -572,16 +565,8 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
   .personaje .ojos { animation: none !important; }
 }
 
-/* Rotulador con vetas (16 oct, propuesta B): la tinta no es plana; el relleno lleva vetas horizontales algo más claras,
-   como un rotulador que pasa con más o menos tinta, y se mezcla con el papel de debajo (multiplicar) */
-#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal,
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .ficha-nombre, .logo-texto > span, .logo-texto i {
-  background-image: var(--veta-marcador); background-size: 420px 160px;
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; mix-blend-mode: multiply;
-}
-#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { background-color: #B3261E; }
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta { background-color: #23211E; }
-.ficha-nombre { background-color: var(--rotulador, #23211E); }
-.logo-texto > span { background-color: #23211E; }
-.logo-texto i { background-color: #D9A21B; }   /* los signos, en amarillo mostaza */   /* el rotulador de su grupo */
+/* 23 oct: sin vetas de rotulador; letra de color plano */
+.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .logo-texto > span { color: #23211E; }
+.ficha-nombre { color: var(--rotulador, #23211E); }
+.logo-texto i { color: #D9A21B; }   /* los signos, en amarillo mostaza */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */

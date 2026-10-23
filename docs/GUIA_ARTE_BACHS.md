@@ -328,3 +328,21 @@ Referencia: **01, *Los pájaros tirándole a la escopeta*** (una silueta negra g
 Cream paper #F0E9D6 background. Bust of a slim, serious young guerrilla, slightly smaller than the frame would allow, standing in front of a huge solid near-black silhouette that fills most of the background behind him: the giant shadow of his big brother, a flat-topped kepi cap and an enormous bushy beard, cropped by the top and side edges. He wears a neat olive-green #86762C uniform buttoned all the way up to the chin with a tidy row of small mustard buttons, the only clean, well-pressed uniform in the series, and a small flat-topped olive kepi set perfectly straight. Round cream face, two solid near-black dot eyes, a thin, carefully trimmed solid near-black pencil mustache, no beard, neatly combed hair with a sharp side parting. Subtly dainty and prim: one hand raised delicately to his collar with the little finger lifted, and a tiny soft-pink #DF8178 flower tucked into his buttonhole. Serious, proper, a little fussy, always in his brother's shadow.
 ```
 
+
+### Octavio Sarria, Interior (etapa 1): tres pruebas (23 oct)
+Idea: la libreta, que crece en cada era. Jorge quiso probar las tres.
+
+**1 · El hombre-libreta** (referencia 09, *Cine Móvil*)
+```
+Cobalt blue #1D51A0 background. Bust of a thin young bank clerk turned guerrilla interrogator, whose whole chest is a big open notebook held up with both hands: two cream pages with rows of small solid near-black rectangles like scribbled names, no letters. Above it, a round cream face, two solid near-black dot eyes inside small round glasses made of thin solid near-black rings, a tiny tight-lipped mouth, neatly combed dark hair, and a mustard pencil tucked behind one ear. An olive-green #86762C guerrilla jacket worn open over a cream office-shirt collar with a thin brick-red tie. Quiet, polite, attentive, slightly creepy.
+```
+
+**2 · Las gafas que vigilan** (referencia 08, *Zorro*)
+```
+Brick red #B0362A background. Bust of a thin young bank clerk turned guerrilla interrogator, his face dominated by enormous round glasses: two big cream lenses ringed by thick solid near-black rims joined across the nose, like a mask, filling the whole width of the face. Inside each lens, one solid near-black dot eye, both looking sideways. A tiny tight-lipped mouth, neatly combed dark hair. Right under his chin he holds a tiny cobalt-blue notebook and a mustard pencil, ready to write. An olive-green #86762C guerrilla jacket over a cream office-shirt collar. Quiet, polite, watching everything.
+```
+
+**3 · Los apuntados** (referencia 06, *Alfredo Alfredo*)
+```
+Mustard #D8A02A background. Bust of a thin young bank clerk turned guerrilla interrogator, with round glasses made of thin solid near-black rings around two solid near-black dot eyes, a tiny polite smile and neatly combed dark hair. In front of his chest he holds open a big notebook with cream pages, and on the pages, in neat rows, many tiny round faces of his comrades, each one a small olive-green or soft-pink circle with two near-black dots; a few of them are crossed out by a short solid brick-red band. A mustard pencil in his other hand. An olive-green #86762C guerrilla jacket over a cream office-shirt collar. Quiet, polite, keeping count.
+```

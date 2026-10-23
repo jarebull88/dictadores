@@ -81,6 +81,14 @@ const CARTAS = [
 
   /* ---------- Cola ---------- */
   {
+    // 23 oct, Jorge: la última carta de la partida (la pone finDeEra() al acabar la era 4); decide la última línea de la esquela
+    id: "ultimas_palabras", era: 4, tipo: "cola", titulo: "Últimas palabras",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Los médicos dicen que es el final. El país entero espera sus últimas palabras.",
+    izq: { accion: "No me iré nunca del todo", efectos: {}, banderas: ["base.ultimas_eterno"] },
+    der: { accion: "Volveré cuando pase el apagón", efectos: {}, banderas: ["base.ultimas_apagon"] }
+  },
+  {
     // 23 oct, Jorge: la tribuna antiimperialista (2000), frente a la oficina de intereses del norte
     id: "la_tribuna", era: 4, tipo: "cola", titulo: "La tribuna",
     personaje: "Vicepresidente del Consejo de Ministros",

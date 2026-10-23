@@ -51,10 +51,13 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
   assert.equal(j.w.eval("E.era"), 4);
   assert.match(j.$("nombre-dictador").textContent, /, Padre de la Patria$/);
   j.w.eval("E.banderas.add('base.mausoleo_construido'); E.turno=finEra()+1; finDeEra();");
+  assert.equal(j.w.eval("E.actual.id"), "ultimas_palabras", "antes de la esquela salen las últimas palabras");
+  j.w.eval("resolver(1)");
   assert.equal(j.$("fin-principal").textContent, "¡Has ganado!");
   assert.ok(j.$("screen-end").classList.contains("victoria"));
   assert.ok(!j.visible("screen-era"), "tras la última era no se sigue gobernando");
-  assert.match(j.$("fin-esquela").textContent, /mausoleo/);
+  assert.match(j.$("fin-esquela").textContent, /roca gigante/);
+  assert.match(j.$("fin-esquela").textContent, /Tus últimas palabras/);
 });
 
 test("al pasar de era: pantalla propia con el nombre de la era, con los años, un párrafo y el dictador de la era que empieza en una carta", () => {

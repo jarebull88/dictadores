@@ -1018,27 +1018,29 @@ const DICTADOR_ERA = { 2: "dictador-asentado", 3: "dictador-culto", 4: "dictador
    La esquela cambia según lo que hayas decidido en la partida. */
 const TEXTO_VICTORIA = n => `Gobernaste ${n} años. Ningún general, ninguna Revolución y ningún aliado consiguió echarte: te echó la biología. Muy pocos dictadores lo consiguen.`;
 const EPITAFIO = [
-  ["base.mausoleo_construido", "Tu cuerpo, embalsamado, recibe visitas en el mausoleo. Las colas son voluntarias."],
+  ["base.mausoleo_construido", "Tus cenizas descansan en una roca gigante que dicen que se parece a ti. Las colas son voluntarias."],
   ["base.sucesor_designado", "Tu sucesor jura el cargo antes de que se enfríe el café."],
-  ["base.capital_rebautizada", "La capital lleva tu nombre. De momento."],
-  ["base.monumento_colosal", "Tu estatua de cuarenta metros se ve desde la costa."],
-  ["base.monumento_modesto", "Un busto pequeño que nadie limpia."],
-  ["base.palacio_del_pueblo", "El palacio del Pueblo sigue sin terminar."],
-  ["base.libro_obligatorio", "Tu libro sigue siendo obligatorio para sacarse el carné de conducir."],
-  ["base.derrota_aceptada", "Perdiste un plebiscito y aun así moriste en el poder. Los historiadores no se ponen de acuerdo."],
+  ["base.derrota_aceptada", "Convocaste elecciones con un solo candidato. Las ganaste todas."],
   ["base.recuento", "El recuento de aquel plebiscito todavía no ha terminado."],
   ["base.culto_iniciado", "Tus retratos siguen colgados en las aulas, cada vez más torcidos."],
   ["base.estado_policial", "El batallón del Interior monta guardia en tu funeral. Por si acaso."]
+];
+/* 23 oct: la carta «Últimas palabras» decide la última línea, que va siempre al final */
+const ULTIMAS_PALABRAS = [
+  ["base.ultimas_eterno", "Tus últimas palabras: «No me iré nunca del todo». Tus retratos lo cumplen."],
+  ["base.ultimas_apagon", "Tus últimas palabras: «Volveré cuando pase el apagón». Aún no ha vuelto la luz."]
 ];
 function epitafio() {
   const lineas = EPITAFIO.filter(([b]) => E.banderas.has(b)).map(([, t]) => t);
   if (!E.banderas.has("base.sucesor_designado")) lineas.push("Sin sucesor, el gabinete se reparte el país en la sala de espera del hospital.");
   if (!E.banderas.has("base.mausoleo_construido")) lineas.push("Te entierran con honores en una tumba que nadie sabrá encontrar.");
-  return lineas.slice(0, 4);
+  const ultima = ULTIMAS_PALABRAS.find(([b]) => E.banderas.has(b));
+  return ultima ? lineas.slice(0, 3).concat(ultima[1]) : lineas.slice(0, 4);
 }
 
 function finDeEra() {
   if (E.era < ERAS.length) terminar(null, true);      // hay otra era: se puede seguir gobernando
+  else if (!E.vistas.has("ultimas_palabras")) { E.cola.unshift({ carta: "ultimas_palabras", turno: 0 }); siguiente(); }   // 23 oct: la última carta decide la última línea de la esquela
   else terminar(null);
 }
 function continuarEra() {

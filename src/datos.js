@@ -944,9 +944,17 @@ const CARTAS = [
     der: { accion: "La plaza es solo para mí", efectos: { elite: 3, pueblo: -4 } }
   },
   {
+    // 23 oct, Jorge: el hijo mayor del Comandante dirigió el programa nuclear y fue destituido en 1992; la central nunca se terminó
+    id: "hijo_mayor", era: 4, tipo: "sorteo", peso: 10, titulo: "La central del hijo",
+    personaje: "Ministro de Economía",
+    texto: "Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.",
+    izq: { accion: "Que mi hijo cargue con el apagón", efectos: { elite: 3, potencias: -4 } },
+    der: { accion: "Pidan créditos para que la termine", efectos: { potencias: 4, elite: -3 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
-    texto: "Su hijo quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",
+    texto: "Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",
     izq: { accion: "Dénselo, lleva el mar en la sangre", efectos: { elite: 5, pueblo: -4 } },
     der: { accion: "Que lo dirija alguien con méritos", efectos: { elite: -3, crisis: -1 } }
   },

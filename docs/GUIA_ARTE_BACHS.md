@@ -198,7 +198,7 @@ Brick red #B0362A background. A small, limp marionette of the same naive guerril
 
 **Nacionalizaciones** (23 oct, idea de Jorge: una fábrica a la que le ponen la estrella roja del Partido. La fábrica, grande y crema; la estrella, más pequeña, para no confundirla con el icono del Partido, que también es una estrella roja sobre oliva)
 ```
-Olive green #86762C background. A chubby, slightly crooked factory filling most of the square: one big cream #F0E9D6 building shape with a sawtooth roof, two tall solid near-black chimneys of different heights leaning a little, and a row of small solid near-black rectangular windows. Slapped onto the middle of its facade, slightly crooked like a freshly stuck label, a big hand-cut brick-red #B0362A five-pointed star with uneven points, like the star in the attached reference image. Nothing else.
+Olive green #86762C background. A chubby, slightly crooked factory filling most of the square: one big cream #F0E9D6 building shape with a sawtooth roof, two tall solid near-black chimneys of different heights leaning a little, and a row of small solid near-black rectangular windows. Slapped onto the middle of its facade, slightly crooked like a freshly stuck label, a big hand-cut brick-red #B0362A five-pointed star with uneven points and soft wobbly edges, like a star cut out by hand from paper. Nothing else.
 ```
 
 **Deuda externa**

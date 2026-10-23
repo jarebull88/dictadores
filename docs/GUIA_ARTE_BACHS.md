@@ -156,9 +156,9 @@ Mustard #D8A02A background. A chubby toy-like tank seen from the side, filling m
 Olive green #86762C background. A big hand-cut five-pointed star in brick red, clearly imperfect: points of different lengths, soft wobbly edges, slightly tilted, like a star cut out by hand from paper, its points almost touching the edges. One point goes out to the right and bends upward at an elbow, like an arm flexing its biceps, with a small rounded bulge on top. Next to it, three small solid near-black wedges like a little sparkle.
 ```
 
-**El Partido, alternativa: la estrella gorda** (23 oct: el Partido como cerdo de la granja)
+**El Partido, alternativa: la estrella gorda** (23 oct: el Partido como cerdo de la granja; v2, Jorge: sin ojos ni puro, solo la gordura y una curva que marca la barriga)
 ```
-Olive green #86762C background. A big, fat, well-fed five-pointed star in brick red #B0362A, filling most of the square: short, stubby, rounded points and a plump round belly bulging out at the bottom, like a star that eats too much. Two small solid near-black dot eyes and a small mustard #D8A02A cigar with a cream #F0E9D6 tip sticking out of one side, smugly. Nothing else.
+Olive green #86762C background. A big, fat, well-fed five-pointed star in brick red #B0362A, filling most of the square: short, stubby, rounded points and a plump round belly bulging out at the bottom, like a star that eats too much. No face. Only one detail: a thin solid near-black curved band, shaped like a wide smile, across the lower part of the star, marking the top of its round belly. Nothing else.
 ```
 
 **Las Potencias**

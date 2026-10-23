@@ -952,6 +952,14 @@ const CARTAS = [
     der: { accion: "Quiten de donde sea para su central", efectos: { elite: 3, pueblo: -4 } }
   },
   {
+    // 23 oct, Jorge: la primavera negra (2003), 75 opositores detenidos mientras el mundo miraba a otra guerra
+    id: "los_75", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "Los setenta y cinco",
+    personaje: "Ministro del Interior",
+    texto: "El mundo está pendiente de una guerra lejana. Es un buen momento para detener opositores.",
+    izq: { accion: "Aprovechemos que el mundo no mira", efectos: { ejercito: 5, pueblo: -4 } },
+    der: { accion: "No, los mártires salen caros", efectos: { pueblo: 4, ejercito: -5 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
     texto: "Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",

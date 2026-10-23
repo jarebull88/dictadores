@@ -103,6 +103,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - Las caras: dos puntos sólidos de ojos y una pequeña forma sólida, nada más.
 - La ironía de Bachs funciona mejor con una idea visual: la estrella «sacando bíceps», la manga azul de las potencias metida en el títere.
 - El líder es un guerrillero naíf: gorra kepi oliva de copa plana, cara crema con ojos de punto, barba negra enorme, uniforme oliva y, a veces, puro. Si solo se pide «bigote», sale el señor del Monopoly.
+- Los objetos-símbolo (bocadillo, sol…) se describen en su forma clásica y limpia («classic», «instantly recognizable»). Si se pide que estén rotos o cortados, el corte tiene que ser recto y sin trozos sueltos: con «jagged edges» se deforman y dejan de reconocerse (23 oct, Censura).
 - Un sol con rayos triangulares pegados al disco parece una explosión (23 oct, Culto): hay que pedir un disco claramente redondo y rayos rectos sueltos, «separate short thick bars», cada uno separado del disco por un hueco de fondo.
 - Los objetos que todo el mundo conoce en blanco van en crema (23 oct, Jorge: el bocadillo de diálogo de Censura salió azul y no se reconocía). Entonces el fondo no puede ser crema.
 - Cuidado con lo que significa cada color: una manga oliva convierte al pueblo en militar. El oliva es del ejército y del líder; el pueblo lleva el azul de obrero.
@@ -205,9 +206,9 @@ Cobalt blue #1D51A0 background. One huge almond-shaped eye, wide open and slight
 
 **23 oct, Jorge: todos los iconos se rehacen desde cero en la conversación de arte**, uno a uno; los carteles instalados siguen en el juego hasta que llegue su sustituto.
 
-**Censura** (23 oct: tijeras que cortan un bocadillo; v2: el bocadillo, en crema, y el fondo pasa de crema a mostaza para que se vea)
+**Censura** (23 oct: tijeras que cortan un bocadillo; v2: el bocadillo, en crema, y el fondo pasa de crema a mostaza para que se vea; v3: un óvalo limpio con su cola, cortado en recto y con «…» dentro, porque deformado y con trozos sueltos no se reconocía)
 ```
-Mustard #D8A02A background. A big pair of brick-red #B0362A scissors, slightly tilted, blades open and cutting straight through a chubby cream #F0E9D6 speech bubble. Each blade is one continuous solid shape. The bubble is split in two: the top half stays in place, the bottom half with its little tail drops slightly away, with a gap of background between their jagged edges. One solid near-black round screw dot where the scissor blades cross. Nothing else.
+Mustard #D8A02A background. A big pair of brick-red #B0362A scissors, slightly tilted, blades open and cutting straight through a classic cream #F0E9D6 speech bubble: one smooth, plump oval with a clear pointed tail at the bottom left, instantly recognizable. Each blade is one continuous solid shape. The bubble is cut cleanly in two along the blade, with a thin straight gap of background between the two halves and no other fragments; inside it, three solid near-black dots in a row, like "...", cut through by the gap. One solid near-black round screw dot where the scissor blades cross. Nothing else.
 ```
 
 **Jaula** (`frontera`; 23 oct: la isla enjaulada, la jaula es el país entero. La palmera, en negro, porque en oliva se perdería en el fondo)

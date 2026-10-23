@@ -112,9 +112,9 @@ for (const id in ESTADOS) {
 const MAX_RANURAS = 4;
 
 /* =====================================================
-   PERSONAJES: manualidades de papel recortado (RETRATOS, incrustado por tools/build.py desde
-   assets/personajes/personajes.json). La imagen no tiene ojos: se pintan por código y
-   miran a un lado y a otro solos (animación CSS «mirar»). Ver docs/PIPELINE_PERSONAJES.md.
+   PERSONAJES (23 oct): carteles cuadrados al estilo Muñoz Bachs (RETRATOS, incrustado por tools/build.py desde
+   assets/personajes/personajes.json); cada uno, homenaje a un cartel (docs/GUIA_ARTE_BACHS.md). Sin ojos animados:
+   la ilustración es la que es. Solo las etapas 2–4 del dictador siguen siendo de papel recortado, con sus ojos pintados por código.
    ===================================================== */
 const PERSONAJE_SLUG = {
   "Vicepresidente del Consejo de Ministros": "vicepresidente",
@@ -140,13 +140,11 @@ const GRUPO_DE = {
 };
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
-/* Iconos de fuerzas y estados: dibujos a rotulador (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), sin sombra:
-   están pintados en la cartulina */
-/* 23 oct: las fuerzas tienen icono de cartel serigrafiado (cuadrado, con su fondo de color; assets/iconos/originales/cartel-*.jpg);
-   si no hay cartel, el dibujo a rotulador. */
+/* Iconos de fuerzas y estados (23 oct): carteles serigrafiados cuadrados, con su fondo de color
+   (assets/iconos/originales/cartel-*.jpg → «<id>-cartel»). */
 const icono = (id, clase = "") => {
-  const cartel = IMG["icono_" + id + "-cartel"], img = cartel || IMG["icono_" + id + "-dibujo"];
-  return img ? `<img class="${["icono", cartel ? "cartel" : "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
+  const img = IMG["icono_" + id + "-cartel"];
+  return img ? `<img class="${["icono", "cartel", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
 /* 17 oct: la carta del Comandante lleva un marco de metal que se degrada con los años (oro el joven, plata el asentado;
@@ -160,17 +158,16 @@ function cartonDe(carta, slug) {
 const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fondo-escena:${RETRATOS[slug].fondo}"` : "";
 function svgPersonaje(slug, nombre) {
   const p = RETRATOS[slug];
-  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
+  const arriba = p.arriba || 0;      // papel recortado: se recorta el aire de encima de la cabeza; el resto se ve entero
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo
+  const ojos = p.ojos   // solo el papel recortado (etapas 2–4 del dictador): los carteles no llevan ojos por código
+    ? `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${p.ojos.izq[0]}" cy="${p.ojos.izq[1]}" r="${p.ojos.r}"/><circle cx="${p.ojos.der[0]}" cy="${p.ojos.der[1]}" r="${p.ojos.r}"/></g>` : "";
   return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" style="aspect-ratio:${p.ancho} / ${p.alto - arriba}" role="img" aria-label="${esc(nombre || p.nombre)}">` +
-    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>` +
-    (p.brillo ? svgBrillo(slug, p.brillo) : "") +
-    `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
+    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${ojos}</svg>`;
 }
 
-/* Brillo que late sobre una luz del dibujo (16 oct: solo el farol de Hortensia). En personajes.json:
-   "brillo": {"x", "y", "r"} en coordenadas del recorte; un halo cálido en «trama» que respira. */
+/* Brillo que late sobre una luz del dibujo (16 oct: el farol de Hortensia; 23 oct: ya solo en la escena de la portada).
+   "brillo": {"x", "y", "r"} en coordenadas de la imagen; un halo cálido en «trama» que respira. */
 function svgBrillo(slug, b) {
   const id = "brillo-" + slug;
   return `<defs><radialGradient id="${id}"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/>` +
@@ -609,6 +606,9 @@ function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
 function fotoDe(slug) {
   const p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
   if (!p) return "";
+  if (!p.ojos)   // 23 oct: los carteles van enteros, sin encuadrar desde los ojos
+    return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
+      `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
   const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
   return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
@@ -935,17 +935,21 @@ function svgEscena(id, etiqueta) {
   const e = typeof ESCENAS !== "undefined" && ESCENAS[id], img = IMG["icono_" + id + "-escena"];
   if (!e || !img) return "";
   const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
-  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
   let caras = "";
   const huecos = IMG["icono_" + id + "-huecos"], marcos = e.marcos;
   if (marcos.length && huecos) {
-    const vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;     // cabeza y hombros
+    // 23 oct: el cartel del Comandante joven entra entero en el marco; el papel recortado, desde los ojos (cabeza y hombros)
+    let vista = `0 0 ${p.ancho} ${p.alto}`, fondo = "", ojos = "";
+    if (p.ojos) {
+      const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+      const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
+      vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;
+      fondo = `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>`;
+      ojos = `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g>`;
+    }
     const retrato = m => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
       `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vista}" preserveAspectRatio="xMidYMid slice">` +
-      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>` +
-      `<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
-      `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></g>`;
+      `${fondo}<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>${ojos}</svg></g>`;
     caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
       `<g mask="url(#huecos-${id})">${marcos.map(retrato).join("")}</g>`;
   }
@@ -1440,8 +1444,7 @@ function pintarCartaNombre() {
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "dictador-joven");
-  // 21 oct, de prueba: el estilo nuevo («periódico mural», collage pobre y cubista), solo en esta carta
-  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven-mural", "El Comandante")}` +
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div>${dorsoFicha(fichaComandante())}</div>`;   // 17 oct: detrás, su expediente (al tocarla)
   carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";

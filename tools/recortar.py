@@ -2,8 +2,11 @@
 """Recorta el croma verde de los personajes, los dibujos, las escenas y la escena de la portada.
 
     python3 tools/recortar.py            # todo
-    python3 tools/recortar.py personajes # assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp
-    python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp
+    python3 tools/recortar.py carteles   # 23 oct: personajes e iconos al estilo Bachs (sin croma): reducir y pasar a WebP
+                                         #   assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp (720 px)
+                                         #   assets/iconos/originales/cartel-<id>.jpg -> recortados/<id>-cartel.webp (144 px)
+    python3 tools/recortar.py personajes # papel recortado con croma: solo lo que queda (dictador, etapas 2–4)
+    python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp (ya solo el reverso)
     python3 tools/recortar.py escenas    # assets/iconos/originales/escena-<id>.jpg -> recortados/<id>-escena.webp (+ escenas.json)
     python3 tools/recortar.py fondos     # assets/fondos/*.jpg -> fondos/web/ (versiones ligeras)
     python3 tools/recortar.py portada    # assets/portada/originales/ -> portada/recortados/ (+ escena.json)
@@ -44,13 +47,13 @@ def alfa_croma(a, isla_min):
 
 # Croma por tono (16 oct): algunos fondos salen verde azulado y en degradado (oscuro abajo), y «cuánto domina el verde»
 # no basta. Aquí también se quita lo que tenga tono verde-turquesa y bastante saturación. Solo en estos personajes.
-CROMA_TONO = {"economia", "educacion"}
+CROMA_TONO = set()   # 23 oct: economia y educacion ya son carteles
 # Despill fuerte (16 oct): el verde que queda se lleva del todo a gris. Comercio: las sombras verdes entre los rizos
 # del pelo pasan a sombra gris oscura, que se lee como pelo.
-DESPILL_FUERTE = {"comercio"}
+DESPILL_FUERTE = set()   # 23 oct: comercio ya es un cartel
 # Zonas que el croma por tono no debe agujerear (x0, y0, x1, y1 en coordenadas del recorte de 900 px): dentro se rellenan
 # los huecos de la silueta. Economía: los brillos de los frijoles del cucurucho, que reflejan el verde.
-PROTEGER = {"economia": [(540, 845, 665, 960)]}
+PROTEGER = {}   # 23 oct: economia ya es un cartel
 
 
 def alfa_tono(a, tono_max=175, croma_min=28):
@@ -93,7 +96,7 @@ def mascara_piel(rgba, ojos):
 
 # Caras con la luz desigual en la foto (16 oct: la barbilla de Hortensia salía sombreada): se iguala el brillo de la
 # piel de la cabeza al tono de la frente, para que la cara sea una sola pieza de papel liso.
-IGUALAR_CARA = {"educacion"}
+IGUALAR_CARA = set()   # 23 oct: educacion ya es un cartel
 
 
 def igualar_cara(out, slug):
@@ -197,15 +200,7 @@ def aligerar_fondos(carpeta):
 # Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
 # «principal» = quedarse solo con los trazos grandes (fuera garabatos sueltos de las esquinas).
 DIBUJO_AJUSTES = {"reverso": {"lado": 800}}   # el reverso de las cartas (14 oct) ocupa la carta entera: más resolución
-# Iconos de estado (16 oct): se dibujan en carbón y aquí se tiñe la tinta de un color oscuro propio de cada estado
-# (el tono de su cartulina, mucho más oscuro). Nunca rojo: el rojo es para las alertas.
-COLOR_ESTADO = {"luna": "#8E2A5E", "censura": "#6B3A1E", "vigilancia": "#1F5F5B", "culto": "#8A6417",
-                "alineado": "#3D4F7A", "embargo": "#2F4858", "frontera": "#3E5B2A", "deuda": "#5C4A1C",
-                "nacionalizado": "#1F4E6B"}
-for _id, _c in COLOR_ESTADO.items():
-    DIBUJO_AJUSTES[_id] = {"color": _c}
-DIBUJO_AJUSTES["elite"] = {"color": "#6B1A1A"}   # 21 oct: el Partido, una estrella a rotulador en rojo oscuro (más apagado que el rojo de las alertas)
-DIBUJO_AJUSTES["pueblo"] = {"color": "#7A5416"}  # 21 oct: el Pueblo pasa a ocre oscuro (el rojo, para el Partido)
+# 23 oct: los iconos de fuerzas y estados ya son carteles (comando «carteles»); de los dibujos solo queda el reverso.
 
 
 def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, color=None):
@@ -387,11 +382,30 @@ def componer_portada():
     (RAIZ / "assets/portada/escena.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
 
 
+LADO_CARTEL_PERSONAJE, LADO_CARTEL_ICONO = 720, 144
+
+
+def reducir_cartel(entrada, salida, lado, calidad):
+    """Carteles al estilo Bachs (23 oct): imagen cuadrada con su fondo, sin croma; solo se reduce."""
+    Image.open(entrada).convert("RGB").resize((lado, lado), Image.LANCZOS).save(salida, quality=calidad)
+
+
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
+    personajes = json.loads((RAIZ / "assets/personajes/personajes.json").read_text())
+    if que in ("todo", "carteles"):
+        for slug, p in personajes.items():
+            if "ojos" not in p:     # sin ojos por código = cartel
+                reducir_cartel(RAIZ / f"assets/personajes/originales/{slug}.jpg", RAIZ / f"assets/personajes/recortados/{slug}.webp", LADO_CARTEL_PERSONAJE, 86)
+                print(f"cartel {slug}")
+        for f in sorted((RAIZ / "assets/iconos/originales").glob("cartel-*.jpg")):
+            reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{f.stem[len('cartel-'):]}-cartel.webp", LADO_CARTEL_ICONO, 88)
+            print(f"icono {f.stem}")
     if que in ("todo", "personajes"):
         dst = RAIZ / "assets/personajes/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for f in sorted((RAIZ / "assets/personajes/originales").glob("*.jpg")):
+            if "ojos" not in personajes.get(f.stem, {}):
+                continue            # los carteles no pasan por el croma
             w, h = recortar_personaje(f, dst / f"{f.stem}.webp")
             print(f"personaje {f.stem}: {w}×{h}, {(dst / f'{f.stem}.webp').stat().st_size // 1024} KB")
     if que in ("todo", "dibujos"):

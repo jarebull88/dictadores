@@ -1,3 +1,5 @@
+> **23 oct:** este proceso (croma, ojos por código, piel texturizada) ya solo vale para el papel recortado que queda: las etapas 2–4 del dictador y la escena de la portada. Los personajes nuevos son carteles al estilo Bachs: ver `docs/GUIA_ARTE_BACHS.md` y `python3 tools/recortar.py carteles`.
+
 # Personajes e iconos: de la imagen de Gemini a la carta del juego
 
 Especificación del pipeline de personajes de *¡Comandante, ordene!*. Léela entera antes de tocar nada.

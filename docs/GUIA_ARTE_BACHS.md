@@ -46,6 +46,8 @@ La tarea de la conversación de arte es:
 
 Responde en español; los prompts van en inglés.
 
+**Cómo pide Jorge cada icono** (23 oct): primero, solo las propuestas (3 ideas con una recomendación), sin prompt. Cuando elija una, el **prompt completo listo para pegar: A v8 + tema** en un solo bloque.
+
 ---
 
 ## 2. Paleta (la única permitida)

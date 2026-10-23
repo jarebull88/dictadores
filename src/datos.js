@@ -636,6 +636,14 @@ const CARTAS = [
     der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
   },
   {
+    // 23 oct, Jorge: la ofensiva revolucionaria (1968), que nacionalizó unos 58 000 negocios pequeños; «El mercado mayor» (era 3) los vuelve a permitir
+    id: "ofensiva_revolucionaria", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La ofensiva revolucionaria",
+    personaje: "Ministro de Economía",
+    texto: "Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.",
+    izq: { accion: "El Estado hará las mejores frituras", efectos: { elite: 5, pueblo: -4 } },
+    der: { accion: "Dejen vivir al pequeño negocio", efectos: { pueblo: 4, elite: -5 } }
+  },
+  {
     // 23 oct, Jorge: el servicio militar obligatorio (1963), tres años
     id: "servicio_militar", era: 2, tipo: "sorteo", peso: 10, titulo: "El servicio militar",
     personaje: "Ministro de las Fuerzas Armadas",

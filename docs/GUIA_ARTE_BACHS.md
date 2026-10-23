@@ -46,7 +46,7 @@ La tarea de la conversación de arte es:
 
 Responde en español; los prompts van en inglés.
 
-**Cómo pide Jorge cada icono** (23 oct): primero, solo las propuestas (3 ideas con una recomendación), sin prompt. Cuando elija una, el **prompt completo listo para pegar: A v8 + tema** en un solo bloque.
+**Cómo pide Jorge cada icono** (23 oct): primero, solo las propuestas (3 ideas con una recomendación), sin prompt. Cuando elija una, el **prompt completo listo para pegar: A (versión vigente) + tema** en un solo bloque.
 
 ---
 
@@ -112,15 +112,17 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - **ChatGPT (imagen)** es el que mejor entiende el estilo y la textura.
 - **Gemini (Nano Banana)** tiende a volver a su propia estética: necesita una referencia adjunta y edición por pasos.
 - **Bing Image Creator** usa modelos de OpenAI y es gratis, pero solo admite 2.000 caracteres y no acepta referencias.
-- Adjuntar siempre como referencia de estilo la estrella del Partido, que es el icono que mejor salió. Para personajes que se repiten, adjuntar también el icono donde ya aparecen.
+- Con ChatGPT no hace falta referencia (23 oct: los iconos de Vigilancia, Censura y Culto salieron sin adjuntar nada; prompt A v9). Con Gemini, adjuntar como referencia de estilo la estrella del Partido. Para personajes que se repiten, adjuntar también el icono donde ya aparecen.
 - Iterar con edición en el mismo hilo («Keep this image exactly the same… change only…») en lugar de regenerar. Pero solo para cambios pequeños (color, tamaño, un detalle): si cambia la composición, el modelo arrastra lo anterior y tras 2 o 3 ediciones se lía (23 oct, Censura: tres bocadillos en vez de uno partido). Entonces, regenerar de cero en un hilo nuevo.
 
 ---
 
-## 4. Prompt A · Estilo de icono (v8)
+## 4. Prompt A · Estilo de icono (v9)
+
+**v9 (23 oct):** sin imagen de referencia. Jorge genera sin adjuntar nada y los resultados salen bien, así que se quita la frase «Match the style, print texture and visual weight of the attached reference image, but not its subject or colors». Si algún día se adjunta referencia, se vuelve a añadir tras la primera frase.
 
 ```
-Square 1:1 icon in the style of a 1970s Cuban silkscreen poster by Eduardo Muñoz Bachs (ICAIC). Match the style, print texture and visual weight of the attached reference image, but not its subject or colors. The flat background color runs off all four edges of the image, like a cropped detail of a larger print. One single object, centered, large and dominant, filling about 85% of the square. Hand-cut stencil look: a few big flat shapes of opaque ink with crisp, slightly irregular edges, playful, naive and boldly distorted, never geometrically perfect. Every shape is defined only by its silhouette against the background, and each shape is exactly one ink: each color sits directly next to the other, perfectly aligned, never stacked or overlapping. Black details are printed as their own stencil layer of near-black ink: small flat shapes with crisp, clean edges and uniform solid black inside, cut like the other shapes, never drawn with a brush, pen or marker. Any face is just two solid dot eyes and one small solid shape. A bold, simple silhouette readable at very small size. Real screen-print texture: fine directionless mottle, slightly fuzzy edges, paper fibers visible. Palette: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0, soft pink #DF8178, cream paper #F0E9D6, near-black ink #201D14. Keep it minimal: one object, at most three small details, empty background around it. Perfectly flat colors. Not vector, not a logo.
+Square 1:1 icon in the style of a 1970s Cuban silkscreen poster by Eduardo Muñoz Bachs (ICAIC). The flat background color runs off all four edges of the image, like a cropped detail of a larger print. One single object, centered, large and dominant, filling about 85% of the square. Hand-cut stencil look: a few big flat shapes of opaque ink with crisp, slightly irregular edges, playful, naive and boldly distorted, never geometrically perfect. Every shape is defined only by its silhouette against the background, and each shape is exactly one ink: each color sits directly next to the other, perfectly aligned, never stacked or overlapping. Black details are printed as their own stencil layer of near-black ink: small flat shapes with crisp, clean edges and uniform solid black inside, cut like the other shapes, never drawn with a brush, pen or marker. Any face is just two solid dot eyes and one small solid shape. A bold, simple silhouette readable at very small size. Real screen-print texture: fine directionless mottle, slightly fuzzy edges, paper fibers visible. Palette: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0, soft pink #DF8178, cream paper #F0E9D6, near-black ink #201D14. Keep it minimal: one object, at most three small details, empty background around it. Perfectly flat colors. Not vector, not a logo.
 ```
 
 **Cómo se escribe un bloque B nuevo:**

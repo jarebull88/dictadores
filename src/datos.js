@@ -971,7 +971,7 @@ const CARTAS = [
     // 23 oct, Jorge: el hijo mayor del Comandante dirigió el programa nuclear y fue destituido en 1992; la central nunca se terminó
     id: "hijo_mayor", era: 4, tipo: "sorteo", peso: 10, titulo: "La central del hijo",
     personaje: "Ministro de Economía",
-    texto: "Su hijo mayor dirige la central nuclear que nos dio el aliado. Sin ellos no hay dinero ni uranio.",
+    texto: "Su hijo mayor dirige la central nuclear del aliado, pero el aliado se ha hundido y no hay uranio.",
     izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { elite: -3, crisis: -1 } },
     der: { accion: "Quiten de donde sea para su central", efectos: { elite: 3, pueblo: -4 } }
   },

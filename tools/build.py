@@ -41,7 +41,7 @@ def fuentes():
     css = ""
     for familia, archivo, peso in (("Baloo 2", "baloo-2-latin-400-normal", 400),   # 23 oct: texto (antes Courier Prime, que sigue en assets/fuentes)
                                    ("Baloo 2", "baloo-2-latin-700-normal", 700),
-                                   ("Special Elite", "special-elite-latin-400-normal", 400),
+                                   # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
                                    ("Londrina Solid", "londrina-solid-latin-400-normal", 400),
                                    ("Playwrite IT Moderna", "playwrite-it-moderna-latin-400-normal", 400)):   # 23 oct: caligráfica (Playwrite Italia), instalada para usarla más adelante   # 23 oct: letra recortada a mano, como los carteles cubanos

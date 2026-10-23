@@ -9,10 +9,10 @@
   box-sizing: border-box;
   color-scheme: light;
   --fuente: "Baloo 2", system-ui, sans-serif;   /* 23 oct: texto en Baloo 2, redonda y algo infantil, que casa con Londrina (antes Courier Prime) */
-  --fuente-titulo: "Special Elite", "Baloo 2", monospace;
+  --fuente-titulo: "Baloo 2", system-ui, sans-serif;   /* 23 oct: títulos de pantalla también en Baloo 2 (antes Special Elite) */
   --tinta-marcador: rgba(28, 27, 25, .9);
   --rojo-marcador: rgba(179, 38, 30, .9);
-  --fuente-mano: "Londrina Solid", "Special Elite", cursive;   /* 23 oct: letra recortada a mano, como en los carteles cubanos (antes Permanent Marker): títulos de ventanas, cintas, expediente */
+  --fuente-mano: "Londrina Solid", "Baloo 2", cursive;   /* 23 oct: letra recortada a mano, como en los carteles cubanos (antes Permanent Marker): títulos de ventanas, cintas, expediente */
   --fuente-caligrafica: "Playwrite IT Moderna", cursive;   /* 23 oct: caligráfica (Playwrite Italia), lista para usar; aún no se usa */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);

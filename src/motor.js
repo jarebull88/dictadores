@@ -142,9 +142,11 @@ const GRUPO_DE = {
 
 /* Iconos de fuerzas y estados: dibujos a rotulador (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), sin sombra:
    están pintados en la cartulina */
+/* 23 oct: las fuerzas tienen icono de cartel serigrafiado (cuadrado, con su fondo de color; assets/iconos/originales/cartel-*.jpg);
+   si no hay cartel, el dibujo a rotulador. */
 const icono = (id, clase = "") => {
-  const img = IMG["icono_" + id + "-dibujo"];
-  return img ? `<img class="${["icono", "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
+  const cartel = IMG["icono_" + id + "-cartel"], img = cartel || IMG["icono_" + id + "-dibujo"];
+  return img ? `<img class="${["icono", cartel ? "cartel" : "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
 /* 17 oct: la carta del Comandante lleva un marco de metal que se degrada con los años (oro el joven, plata el asentado;
@@ -434,7 +436,7 @@ function mostrar(id) {
 
 function parBarra(id) {
   return `<div class="par">
-      <div class="icono-fuerza" style="height:32px" aria-hidden="true">${icono(id)}</div>
+      <div class="icono-fuerza" style="height:40px" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true" style="max-width:72px"><i class="relleno"></i></div>
     </div>`;

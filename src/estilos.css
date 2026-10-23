@@ -162,6 +162,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .par { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .par .icono-fuerza { height: 46px; display: flex; align-items: center; justify-content: center; }
 .par .icono-fuerza .icono { height: 100%; }
+.icono.cartel { aspect-ratio: 1; border-radius: 3px; }   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {

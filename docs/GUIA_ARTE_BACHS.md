@@ -371,7 +371,7 @@ Cobalt blue #1D51A0 background. Bust of a skinny young bodega keeper who followe
 ```
 
 ### Ideas de fondo para los que se quedaron en busto (23 oct)
-- **Sarria:** detrás, una página gigante de su libreta que llena el fondo, con filas de caritas de sus compañeros y algunas tachadas en rojo (junta las pruebas 2 y 3).
+- **Sarria:** detrás, una página gigante de su libreta que llena el fondo, con filas de caritas de sus compañeros y algunas tachadas en rojo (junta las pruebas 2 y 3). v2, Jorge: más minimalista. Sin la forma de la libreta ni el contorno rojo: las caritas van directamente sobre el fondo rojo, más grandes y menos, en crema y oliva, y las tachadas con una banda negra.
 - **Anselmo:** detrás, una etiqueta de precio gigante, en blanco, con su cordel: él mismo está en venta.
 - **Rigoberto:** de su bolsillo sale una cuenta de fiado larguísima que se desenrolla y llena el fondo, con filas de rayitas y un sello rojo de «sin pagar» (sin texto).
 

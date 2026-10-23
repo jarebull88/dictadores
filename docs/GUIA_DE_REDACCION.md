@@ -83,3 +83,4 @@ Para cada carta, antes de proponerla o al revisarla:
 - **La pregunta da el contexto que el jugador necesita** y nada irrelevante: si sale un personaje o un hecho nuevo (Diezfuegos, un bombardeo), se presenta en la propia carta; los detalles técnicos («aeródromos») sobran.
 - **Una respuesta no puede adelantar lo que contradice una carta posterior** de la misma trama (si luego la zafra no llega, la B no puede asegurar que la cuenta llegue).
 - **Ni purgar ni despedir ministros**: los culpables son otros (viceministros, burócratas, saboteadores).
+- **Las respuestas necesitan cinismo político, oportunismo y humor negro** (23 oct, «La guerra lejana»): no basta con que sean correctas y claras. El Comandante saca partido de todo: el cinismo con que aprovecha la situación es el chiste.

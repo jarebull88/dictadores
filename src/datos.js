@@ -479,6 +479,30 @@ const CARTAS = [
     der: { accion: "Que publique, la poesía no muerde", efectos: { pueblo: 3, ejercito: -4 } }
   },
   {
+    // 23 oct, Jorge: la guerra de Angola (1975), tropas al otro lado del océano
+    id: "guerra_lejana", era: 3, tipo: "sorteo", peso: 10, titulo: "La guerra lejana",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Nos piden soldados para una guerra de liberación al otro lado del mar. El Ejército está listo.",
+    izq: { accion: "Que el océano no frene la Revolución", efectos: { ejercito: 5, pueblo: -3 } },
+    der: { accion: "Que se liberen solos, como nosotros", efectos: { pueblo: 3, ejercito: -5 } }
+  },
+  {
+    // 23 oct, Jorge: la embajada asaltada y el éxodo del Mariel (1980)
+    id: "diez_mil_embajada", era: 3, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "Diez mil en una embajada",
+    personaje: "Ministro del Interior",
+    texto: "Un autobús ha embestido la verja de una embajada y diez mil personas se han metido dentro.",
+    izq: { accion: "Abran el puerto a quien quiera irse", efectos: { pueblo: 3, ejercito: -4 } },
+    der: { accion: "Corten el agua y espérenlos fuera", efectos: { ejercito: 4, pueblo: -3 } }
+  },
+  {
+    // 23 oct, Jorge: el diálogo con el exilio (1978): los «gusanos» vuelven de visita convertidos en «mariposas»
+    id: "dialogo_exilio", era: 3, tipo: "sorteo", peso: 10, titulo: "El diálogo con el exilio",
+    personaje: "Ministro de Comercio",
+    texto: "Los exiliados quieren volver de visita a ver a sus familias, cargados de regalos y de dólares.",
+    izq: { accion: "Mis gusanos ahora son mariposas", efectos: { pueblo: 4, elite: -4 } },
+    der: { accion: "Los traidores no tienen familia", efectos: { elite: 4, pueblo: -4 } }
+  },
+  {
     // 23 oct, Jorge: los discursos de horas del Comandante
     id: "discurso_maraton", era: 3, tipo: "sorteo", peso: 10, titulo: "El discurso",
     personaje: "Vicepresidente del Consejo de Ministros",

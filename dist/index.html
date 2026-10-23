@@ -333,13 +333,14 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    color del personaje (.ilustracion), con su sombra de papel pegado. El marco es el 6,5 % del ancho de la carta. */
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
-  padding: 6.5%; border-radius: 0;
-  background-color: var(--p-tinta);   /* 23 oct: marco de tinta, como el borde de un cartel (antes, cartón con desgaste) */
+  padding: 0; border-radius: 0;   /* 23 oct: sin marco ni contorno: la ilustración llena la carta */
+  background-color: transparent;
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .dorso { transform: rotateY(180deg); }
 /* Cartas de estado: el marco es de cartulina de purpurina dorada (assets/fondos/purpurina.jpg), sin color ni pulpa encima */
+.carta.purpurina .cara, .carta.oro .cara, .carta.plata .cara { padding: 6.5%; }   /* los marcos de purpurina y metal se quedan por ahora */
 .carta.purpurina .cara { background-color: #FFF; background-image: var(--tex-purpurina); background-size: cover; background-position: center; }
 /* 17 oct: la carta del Comandante, con marco de metal según la etapa (METAL_DICTADOR en motor.js) */
 .carta.oro .cara { background-color: #FFF; background-image: var(--tex-oro); background-size: cover; background-position: center; }
@@ -463,7 +464,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */
 }
 /* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
-.texto-respuesta { opacity: 0; }   /* 21 oct: sombra, que el panel es más claro */
+.texto-respuesta { opacity: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, .75), 0 0 6px rgba(0, 0, 0, .45); }   /* 23 oct: la excepción de Jorge al «todo plano»: la respuesta sí lleva sombra */
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }

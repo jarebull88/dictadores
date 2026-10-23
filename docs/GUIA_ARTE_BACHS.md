@@ -287,18 +287,18 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 - Los ojos animados del juego van encima: los ojos tienen que ser **dos puntos limpios y fáciles de localizar**.
 - Formato: cuadrado 1:1. Los carteles son verticales, así que de ellos se toma la idea y no el encuadre.
 
-**Carteles de referencia** (`assets/portada/`, subidos por Jorge el 23 oct):
-1. `20081110_bachs03.jpg`: *Los pájaros tirándole a la escopeta*. Una escopeta-personaje negra con prismáticos y dos pájaros enamorados.
-2. `El-bohio.jpg`: *El bohío*. Una casa de paja sobre una bandera. Ojo: tiene una bandera real, que en el juego no puede salir.
-3. `images (1).jpeg`: *El llamado de la selva*. Una nube blanca enorme con una boca de fiera.
-4. `images (10).jpeg`: *Vampiros en La Habana*. Un busto frontal con guayabera amarilla, ojos cerrados y puro.
-5. `images (11).jpeg`: *Por primera vez*. Un hombre pequeño que asoma sobre un campo de flores de colores.
-6. `images (2).jpeg`: *Alfredo Alfredo*. Una cara enorme con la boca abierta, y dentro, un hombrecillo.
-7. `images (3).jpeg`: *El gran robo del tren de San Trinian*. Un ladrón enmascarado sobre un tren-edificio.
-8. `images (4).jpeg`: *Zorro*. Una cara solo con el antifaz negro, la nariz y el bigote.
-9. `images (5).jpeg`: *Cine Móvil ICAIC*. Un personaje-pantalla con ruedas, gorro negro enorme y bigote.
-10. `images (6).jpeg`: *Un hombre de éxito*. Un hombre trajeado con cigarrillo, enorme sobre una ciudad.
-11. `images (7).jpeg`: *Hombres*. Figuras de formas grandes que se encajan, en rojo, azul y crema.
-12. `images (8).jpeg`: *La historia del fuego*. Un cavernícola peludo de rayitas con una pata de carne.
-13. `images (9).jpeg`: *XXV aniversario Cine Móvil*. Un hombre con bombín sentado sobre un proyector.
-14. `images.jpeg`: *Los tres mosqueteros*. Un sombrero, un bigote y una pluma enormes sobre unas piernas de colores.
+**Carteles de referencia** (`assets/referencias/bachs/`, subidos por Jorge el 23 oct; se citan por su número). Para añadir uno, se pone con el número siguiente y el título del cartel en minúsculas, con guiones:
+1. `01-pajaros-tirandole-a-la-escopeta.jpg`: *Los pájaros tirándole a la escopeta*. Una escopeta-personaje negra con prismáticos y dos pájaros enamorados.
+2. `02-el-bohio.jpg`: *El bohío*. Una casa de paja sobre una bandera. Ojo: tiene una bandera real, que en el juego no puede salir.
+3. `03-el-llamado-de-la-selva.jpg`: *El llamado de la selva*. Una nube blanca enorme con una boca de fiera.
+4. `04-vampiros-en-la-habana.jpg`: *Vampiros en La Habana*. Un busto frontal con guayabera amarilla, ojos cerrados y puro.
+5. `05-por-primera-vez.jpg`: *Por primera vez*. Un hombre pequeño que asoma sobre un campo de flores de colores.
+6. `06-alfredo-alfredo.jpg`: *Alfredo Alfredo*. Una cara enorme con la boca abierta, y dentro, un hombrecillo.
+7. `07-gran-robo-del-tren.jpg`: *El gran robo del tren de San Trinian*. Un ladrón enmascarado sobre un tren-edificio.
+8. `08-zorro.jpg`: *Zorro*. Una cara solo con el antifaz negro, la nariz y el bigote.
+9. `09-cine-movil.jpg`: *Cine Móvil ICAIC*. Un personaje-pantalla con ruedas, gorro negro enorme y bigote.
+10. `10-un-hombre-de-exito.jpg`: *Un hombre de éxito*. Un hombre trajeado con cigarrillo, enorme sobre una ciudad.
+11. `11-hombres.jpg`: *Hombres*. Figuras de formas grandes que se encajan, en rojo, azul y crema.
+12. `12-la-historia-del-fuego.jpg`: *La historia del fuego*. Un cavernícola peludo de rayitas con una pata de carne.
+13. `13-aniversario-cine-movil.jpg`: *XXV aniversario Cine Móvil*. Un hombre con bombín sentado sobre un proyector.
+14. `14-los-tres-mosqueteros.jpg`: *Los tres mosqueteros*. Un sombrero, un bigote y una pluma enormes sobre unas piernas de colores.

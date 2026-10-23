@@ -93,7 +93,7 @@ const CARTAS = [
     id: "el_regreso", era: 4, tipo: "cola", titulo: "El regreso",
     personaje: "Embajador de la potencia del norte",
     texto: "El niño volverá con su padre. Nuestro gobierno espera que no lo convierta en un trofeo.",
-    izq: { accion: "Solo un acto íntimo con un millón", efectos: { elite: 4, pueblo: -3 } },
+    izq: { accion: "Algo sencillo: un millón en la plaza", efectos: { elite: 4, pueblo: -3 } },
     der: { accion: "Lo recibirá su padre y nadie más", efectos: { pueblo: 3, elite: -4 } }
   },
   {
@@ -995,8 +995,8 @@ const CARTAS = [
     // 23 oct, Jorge: el niño balsero (1999-2000), una oportunidad política: meses de marchas, la tribuna y el regreso
     id: "nino_balsero", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "El niño de la balsa",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El país llora por el niño balsero retenido en la otra orilla. Podríamos hacer de él una causa.",
-    izq: { accion: "Mañana marcha un millón por el niño", efectos: { elite: 4, pueblo: -3 }, encolar: [{ carta: "la_tribuna", min: 1, max: 2 }] },
+    texto: "Un niño llegó en balsa a la otra orilla y su madre murió. Su padre lo reclama: podría ser una causa.",
+    izq: { accion: "Este niño vale por diez discursos", efectos: { elite: 4, pueblo: -3 }, encolar: [{ carta: "la_tribuna", min: 1, max: 2 }] },
     der: { accion: "Un niño no es una bandera", efectos: { pueblo: 3, elite: -4 }, encolar: [{ carta: "el_regreso", min: 2, max: 3 }] }
   },
   {

@@ -500,7 +500,7 @@ Cream paper #F0E9D6 background. Following the attached poster almost literally: 
 ### Mirta Albear, Cultura (etapa 1): dos pruebas (23 oct)
 Piel mostaza; nariz de dos fosas negras, como en *Petulia*.
 
-**1 · La voz que entra en las casas** (referencia 06, *Alfredo Alfredo*)
+**1 · La voz que entra en las casas** (referencia 06, *Alfredo Alfredo*). **Elegida por Jorge (23 oct).** *Petulia* queda libre para otro personaje.
 ```
 Brick red #B0362A background. Following the attached poster almost literally: a huge frontal face of a young radio announcer fills the square, framed by an enormous mane of wild hair made of wavy bands of cobalt blue, olive green, soft pink and near-black, like the hair in the poster. Mustard #D8A02A skin with a few hand-drawn hatching marks. Her eyes are two solid round near-black dots on cream patches, with thick near-black eyelashes like in the poster. Her nose is just two small near-black nostril shapes. Her mouth is wide open, singing into a small dented tin microphone in cream and near-black held at her lips, with thick soft-pink lips and a row of cream teeth, like the mouth in the poster. Inside her open mouth, where the poster shows a little man, there is a tiny night scene: a humble family of three tiny cream silhouettes huddled around a little radio, listening in secret. At the bottom edge, the open collar of an olive guerrilla jacket over a dirty cream T-shirt. Thick wobbly near-black outlines, printed as solid ink.
 ```
@@ -509,3 +509,10 @@ Brick red #B0362A background. Following the attached poster almost literally: a 
 ```
 Solid near-black #201D14 background. Following the attached poster almost literally: at the top, a cream band runs from edge to edge, and in its center, where the poster has a blue heart, three bold cobalt-blue #1D51A0 arcs of radio waves. Below, a big mass of near-black hair frames a mustard #D8A02A face that shows only its features, like the face in the poster: two solid round near-black dot eyes on small cream patches with fringes of near-black eyelashes, a nose made of just two small near-black nostril shapes, and full lips, the upper lip cobalt blue and the lower lip soft pink, with thick near-black outlines. Right in front of the lips, a small dented tin microphone in cream with a near-black grille. At the bottom edge, the open collar of an olive guerrilla jacket over a dirty cream T-shirt. Rough, irregular edges but solid, uniform ink.
 ```
+
+### Pavel Strenko, embajador del bloque oriental (etapa 1)
+Referencia: **34, *Robinson Crusoe*** (una cabeza-isla que sale del mar, con árboles encima). Idea: el náufrago de una «misión de seis meses»; su gorro de piel es la isla. Piel rosa de quemado por el sol; nariz larga y recta, del color de la piel.
+```
+Cream paper #F0E9D6 background. Following the attached poster almost literally: at the bottom, two wide flat bands of cobalt-blue #1D51A0 sea run from edge to edge, and out of the sea rises the head and shoulders of a foreign envoy, like the island-head in the poster. His huge fur hat with ear flaps and the big fur collar of his heavy winter coat are drawn with dense wavy streaks of near-black, olive green and cobalt blue, exactly like the hair in the poster, so together they look like an island. On top of the fur hat grow three lollipop-shaped trees with round mustard and olive-green crowns and one small brick-red flower, like in the poster. Between hat and collar, his face, three-quarter view with both eyes visible: sunburnt soft-pink #DF8178 skin with a few cobalt-blue drops of sweat, two solid round near-black dot eyes on small cream patches, a long straight nose of the same pink drawn only with its outline (no red clown nose) and a small, polite, suffering mouth. Floating on the sea beside him, a small mustard suitcase with near-black straps, half unpacked. Thick wobbly near-black outlines, printed as solid ink.
+```
+

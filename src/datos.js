@@ -636,6 +636,22 @@ const CARTAS = [
     der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
   },
   {
+    // 23 oct, Jorge: el servicio militar obligatorio (1963), tres años
+    id: "servicio_militar", era: 2, tipo: "sorteo", peso: 10, titulo: "El servicio militar",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Proponemos tres años de servicio militar obligatorio para todos los jóvenes.",
+    izq: { accion: "Que cada joven sirva a la patria", efectos: { ejercito: 5, pueblo: -4 } },
+    der: { accion: "La patria no se defiende obligado", efectos: { pueblo: 4, ejercito: -5 } }
+  },
+  {
+    // 23 oct, Jorge: la invasión de la primavera de un país del bloque (1968), que el Comandante aplaudió
+    id: "invasion_aliado", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La invasión del aliado",
+    personaje: "Embajador del bloque oriental",
+    texto: "Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.",
+    izq: { accion: "Tienen todo nuestro apoyo fraterno", efectos: { potencias: 5 } },
+    der: { accion: "Aquí no opinamos de casas ajenas", efectos: { potencias: -5 } }
+  },
+  {
     // 23 oct, Jorge: la zafra de 1970 se queda en ocho millones y medio
     id: "cifra_no_llega", era: 2, tipo: "cola", titulo: "La cifra que no llega",
     personaje: "Ministro de Trabajo",

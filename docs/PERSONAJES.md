@@ -47,7 +47,7 @@ Las cuatro eras:
 ### Domingo, el hermano (Ministro de las Fuerzas Armadas) — CAMBIA
 - **Quién es:** el hermano pequeño del Comandante. Hoy se llama Domingo Cuesta y es un capitán campesino sin relación familiar. **Pasa a ser el hermano**, con el nombre Domingo y sin apellido, porque el del Comandante lo elige el jugador. En el monte fue el más disciplinado; después, el que organiza el Ejército y el sucesor que espera su turno toda la vida. Trata al Comandante de usted y lo llama «Comandante», lo que también es chiste. Sigue siendo el guía del tutorial «La víspera».
 - **Inspiración real:** el hermano que fue ministro de las Fuerzas Armadas de 1959 a 2008 y acabó de sucesor.
-- **Idea visual:** **el hermano pequeño a la sombra**, siempre un poco más bajo y detrás. Bigote fino y nunca barba, que es la diferencia con el Comandante. Gorra de plato que va creciendo.
+- **Idea visual:** **el hermano pequeño a la sombra**, siempre un poco más bajo y detrás. **Algo afeminado** (Jorge, 23 oct): con sutileza, en el gesto y el cuidado (el meñique levantado, una florecita en el ojal), nunca como burla gruesa. Bigote fino y nunca barba, que es la diferencia con el Comandante. Gorra de plato que va creciendo.
 - **Etapas:**
   1. Guerrillero delgado y serio, con bigotito y el uniforme bien abrochado (el único que lo lleva así). Cargo: «Capitán de columna».
   2. General ordenado, con gafas de pasta, gorra de plato y un maletín. Cargo: «Ministro de las Fuerzas Armadas».

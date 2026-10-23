@@ -205,7 +205,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 
 /* Lo que dice el personaje: sin caja, con sitio para cinco líneas (el mensaje más largo, 143 caracteres, ocupa cinco) */
 .mensaje {
-  flex: none; height: var(--alto-mensaje); margin-top: 0; overflow: hidden;
+  flex: none; height: var(--alto-mensaje); margin-top: 8px; overflow: hidden;   /* 23 oct: aire bajo las barras (antes 0) */
   display: flex; align-items: center; justify-content: center; text-align: center;   /* centrada en vertical (2 o 4 líneas, mismo aire) y en horizontal */
   font-size: 19px; line-height: 1.28; font-weight: 400; padding: 2px 2px 0;
   --alto-mensaje: calc(var(--lineas-mensaje, 4) * 19px * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
@@ -214,7 +214,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Escenario: la carta, cuadrada, ocupa el lado más corto del hueco libre (el que dejan el mensaje y la barra inferior), con el mazo detrás.
    Sin proporción fija: el personaje se ajusta con preserveAspectRatio (ver svgPersonaje). Alto máximo: 1,45 veces el ancho. */
 .escenario {
-  flex: 1; min-height: 260px; padding: 2px 0 8px; position: relative;
+  flex: 1; min-height: 260px; padding: 14px 0 8px; position: relative;   /* 23 oct: más aire entre la pregunta y la carta (antes 2 px) */
   display: flex; align-items: flex-start; justify-content: center;
   container-type: size; perspective: 1400px;
 }
@@ -226,7 +226,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 }
 /* Cartón: color liso × textura de papel (capa «multiplicar»). La textura es assets/fondos/cartulinablanca.jpg, que se
    incrusta como --tex-cartulinablanca (21 oct: sustituye a las cartulinas 1, 2, 3 y 5). */
-.pila { position: absolute; top: 2px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
+.pila { position: absolute; top: 14px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: var(--radio-carta);   /* vista cenital: solo asoma por abajo */
   background: var(--tex-desgaste3) center / 100% 100%, var(--tex-carton) center / cover;   /* 21 oct: reverso de cartón neutro, gastado */

@@ -415,8 +415,10 @@ function medirCartaJuego() {
   const raiz = document.documentElement.style;
   raiz.setProperty("--lineas-mensaje", "4");
   const linea = parseFloat(getComputedStyle($("mensaje")).fontSize) * 1.28 || 24;
-  const sobra = c.offsetHeight - c.offsetWidth * 1.32;              // 1,32 ≈ alto/ancho que necesita la ilustración con su marco
-  if (sobra > 0) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
+  /* 23 oct: con la carta cuadrada sobra alto debajo; se dan hasta 2 líneas más a la pregunta, dejando siempre
+     unos 90 px libres bajo la carta para los avisos de logros. */
+  const sobra = esc.clientHeight - c.offsetHeight - 90;
+  if (sobra > linea) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }

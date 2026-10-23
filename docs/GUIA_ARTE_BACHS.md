@@ -328,7 +328,9 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 33. `33-los-karatecas.jpg`: *Los karatecas*. Una cabeza de perfil con flechas que le salen del cráneo.
 34. `34-robinson-crusoe.jpg`: *Robinson Crusoe*. Una cabeza barbuda que es una isla, con árboles de colores encima.
 
-### Prompt A-P · Estilo de personaje (v6, 23 oct)
+### Prompt A-P · Estilo de personaje (v7, 23 oct)
+
+**v7 (23 oct, Jorge):** las narices se repetían (la misma mancha rosa en Anselmo, Rigoberto, Neto y Hortensia). Cada personaje tiene **su nariz**, de forma y tinta propias: ver «Narices del reparto» más abajo. Cada bloque B dice cuál.
 
 **v6 (23 oct, Jorge):** las caras no tienen que ser crema: pueden ser de cualquier tinta de la paleta que encaje con el concepto del cartel (como el rosa de Anselmo). Así también se mezclan orígenes en el reparto, como pide la regla de diversidad. Los ojos siempre son dos puntos negros, y en piel oscura van sobre un blanco crema, por los ojos animados.
 
@@ -341,7 +343,7 @@ Va antes del bloque del personaje. Hay que adjuntar el cartel de referencia que 
 
 **v2 (23 oct, Jorge, en prueba): todos los personajes en busto**, sea cual sea el cartel que los inspira, para que haya equilibrio entre las cartas: de la mitad del pecho para arriba, centrado y de frente, con la cabeza del mismo tamaño y los ojos a la misma altura en todos. La idea del cartel va en lo que rodea al busto, en la ropa o en los objetos.
 ```
-Square 1:1 illustration in the style of a 1960s–70s Cuban silkscreen film poster by Eduardo Muñoz Bachs (ICAIC). Take strong inspiration from the attached poster: its concept, its playful way of telling an idea and its bold composition, but adapt it to a square format and do not copy its colors, its text or its subject. Composition: a bust portrait, from mid-chest up, centered and facing the viewer; the head fills about the upper half of the square, with the eyes at about 35% from the top, so every character in the series has the same scale. The bust is never alone on an empty background: like a real poster, one big graphic idea behind or around him fills the background and tells his story at a glance. Full-bleed: the flat background color runs off all four edges, edge to edge. Naive, childlike and witty, with boldly distorted proportions. Big flat shapes of opaque ink cut by hand, with crisp, slightly irregular edges; each color is one flat ink, perfectly aligned, never stacked or overlapping, no outlines. Black details are printed as their own stencil layer: solid flat shapes and thin solid bands of near-black ink with clean edges, never scratchy or brushy. No line drawing anywhere: knuckles, stitches and folds are small solid shapes or thin gaps of background, never pen lines. Faces are drawn like Muñoz Bachs: boldly distorted heads (long, egg-shaped, lopsided, never a round smiley), one big characteristic nose as a single flat shape, and the mouth as one solid shape, never a thin line; no eyebrows. Skin can be any ink of the palette that fits the poster's idea, not always cream. The eyes are always two solid round near-black dots, clearly separated; on dark skin, each dot sits on a small round cream eye-white so it reads clearly. Real screen-print texture: fine directionless mottle, paper fibers visible. Use ONLY these inks: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0, soft pink #DF8178, cream paper #F0E9D6, near-black ink #201D14. No gradients, no shadows, no shine. No text, no letters, no flags, no emblems.
+Square 1:1 illustration in the style of a 1960s–70s Cuban silkscreen film poster by Eduardo Muñoz Bachs (ICAIC). Take strong inspiration from the attached poster: its concept, its playful way of telling an idea and its bold composition, but adapt it to a square format and do not copy its colors, its text or its subject. Composition: a bust portrait, from mid-chest up, centered and facing the viewer; the head fills about the upper half of the square, with the eyes at about 35% from the top, so every character in the series has the same scale. The bust is never alone on an empty background: like a real poster, one big graphic idea behind or around him fills the background and tells his story at a glance. Full-bleed: the flat background color runs off all four edges, edge to edge. Naive, childlike and witty, with boldly distorted proportions. Big flat shapes of opaque ink cut by hand, with crisp, slightly irregular edges; each color is one flat ink, perfectly aligned, never stacked or overlapping, no outlines. Black details are printed as their own stencil layer: solid flat shapes and thin solid bands of near-black ink with clean edges, never scratchy or brushy. No line drawing anywhere: knuckles, stitches and folds are small solid shapes or thin gaps of background, never pen lines. Faces are drawn like Muñoz Bachs: boldly distorted heads (long, egg-shaped, lopsided, never a round smiley), one big characteristic nose as a single flat shape, its shape and ink unique to each character (never a default pink blob), and the mouth as one solid shape, never a thin line; no eyebrows. Skin can be any ink of the palette that fits the poster's idea, not always cream. The eyes are always two solid round near-black dots, clearly separated; on dark skin, each dot sits on a small round cream eye-white so it reads clearly. Real screen-print texture: fine directionless mottle, paper fibers visible. Use ONLY these inks: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0, soft pink #DF8178, cream paper #F0E9D6, near-black ink #201D14. No gradients, no shadows, no shine. No text, no letters, no flags, no emblems.
 ```
 
 ### Comandante joven (etapa 1)
@@ -411,4 +413,17 @@ Solid near-black #201D14 night background, edge to edge. In the middle, a big ro
 ```
 
 **Hortensia, variante con piel rosa** (23 oct, A-P v6): misma descripción, cambiando la cara por «A long, lopsided soft-pink #DF8178 face with a small upturned nose as one flat brick-red shape, two solid near-black dot eyes and a big open smile as one solid near-black shape».
+
+### Narices del reparto (23 oct)
+Cada personaje, una nariz distinta de forma y de tinta, para que no se parezcan entre sí. Se dice siempre en su bloque B.
+- **Comandante:** no se ve; la tapa la barba.
+- **Domingo:** pequeña y recta, una cuña crema apenas marcada.
+- **Sarria:** casi no tiene; queda entre las gafas.
+- **Anselmo:** triángulo rosa afilado, de nariz respingona de buena familia (ya hecho).
+- **Rigoberto:** una pera rosa caída (ya hecho; si se rehace, mejor mostaza).
+- **Neto:** un gancho largo y rojo, de pirata.
+- **Hortensia:** un botoncito redondo y rojo.
+- **Eusebio, Mirta y los embajadores:** por decidir, sin repetir forma ni tinta.
+
+**Colores fuera de la paleta que se corrigen con PIL** (23 oct): la llama del farol de Hortensia salió en un rojo vivo (`#EB341F`) y la mano en un tostado (`#C59A5C`); el marco crema se recorta.
 

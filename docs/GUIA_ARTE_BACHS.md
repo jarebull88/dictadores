@@ -93,6 +93,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - No mencionar «border», «frame» ni «margin», ni siquiera para prohibirlos: nombrarlo lo provoca. Hay que decirlo en positivo: «the background color runs off all four edges, like a cropped detail of a larger print».
 - Para reforzarlo, empezar el bloque B con «Full-bleed … background, edge to edge» (23 oct: a Potencias le salió un marco crema).
 - Si aun así aparece un marco de papel, es más fiable recortarlo en Photoshop que pelearlo con prompts.
+- **Colores que la edición no consigue quitar** (23 oct, Rigoberto: el beige de la cara de atrás de la cuenta siguió tras editar): los corrige Claude con PIL. Clasifica cada píxel por la tinta más cercana y desplaza el tono intruso hasta la tinta buena, sin perder el grano. Más fiable que insistir con el generador.
 
 **Color**
 - No pedir desajuste de registro en los iconos: el modelo lo convierte en un halo blanco o en una segunda capa de color más oscura, como una sombra. Pedir en su lugar «each shape is exactly one ink, perfectly aligned, never stacked or overlapping».

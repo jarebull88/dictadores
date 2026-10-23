@@ -210,6 +210,11 @@ Cobalt blue #1D51A0 background. One huge almond-shaped eye, wide open and slight
 Mustard #D8A02A background. A big pair of brick-red #B0362A scissors, slightly tilted, blades open and cutting straight through a chubby cream #F0E9D6 speech bubble. Each blade is one continuous solid shape. The bubble is split in two: the top half stays in place, the bottom half with its little tail drops slightly away, with a gap of background between their jagged edges. One solid near-black round screw dot where the scissor blades cross. Nothing else.
 ```
 
+**Jaula** (`frontera`; 23 oct: la isla enjaulada, la jaula es el país entero. La palmera, en negro, porque en oliva se perdería en el fondo)
+```
+Olive green #86762C background. A big dome-shaped birdcage in mustard #D8A02A, slightly crooked, filling most of the square: a round ring on top, six thick vertical bars as separate solid bands with wide gaps of background between them, and a solid mustard base. Inside the cage, sitting on its base, a small round patch of cobalt-blue #1D51A0 sea with a little cream #F0E9D6 island on it, and one small solid near-black palm tree silhouette growing from the island. Nothing else.
+```
+
 Jaula y «Frontera cerrada» son el mismo estado: el id interno es `frontera` y en el juego se llama Jaula. Ya tiene cartel, el muro con alambre de espino, aunque su fondo está asignado al oliva.
 
 ---

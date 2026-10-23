@@ -674,7 +674,7 @@ const CARTAS = [
     personaje: "Ministro del Interior",
     texto: "Ferro pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.",
     izq: { accion: "Mándenle a nuestros mejores hombres", efectos: { ejercito: 4, potencias: -4 } },
-    der: { accion: "Díganle que los refuerzos ya van", efectos: { potencias: 3, ejercito: -3 }, banderas: ["base.ferro_martir"] }
+    der: { accion: "Ferro será un millón de camisetas", efectos: { potencias: 3, ejercito: -3 }, banderas: ["base.ferro_martir"] }
   },
   {
     // 23 oct, Jorge: la zafra de 1970 se queda en ocho millones y medio

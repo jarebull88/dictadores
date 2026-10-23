@@ -81,6 +81,22 @@ const CARTAS = [
 
   /* ---------- Cola ---------- */
   {
+    // 23 oct, Jorge: la tribuna antiimperialista (2000), frente a la oficina de intereses del norte
+    id: "la_tribuna", era: 4, tipo: "cola", titulo: "La tribuna",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Llevamos meses marchando por el niño. Proponemos una tribuna fija frente a la embajada occidental.",
+    izq: { accion: "Una tribuna para gritar siempre", efectos: { elite: 4, pueblo: -4 }, encolar: [{ carta: "el_regreso", min: 1, max: 2 }] },
+    der: { accion: "Ya gritaron bastante, a trabajar", efectos: { pueblo: 4, elite: -4 }, encolar: [{ carta: "el_regreso", min: 1, max: 2 }] }
+  },
+  {
+    // 23 oct, Jorge: el regreso del niño con su padre (junio de 2000)
+    id: "el_regreso", era: 4, tipo: "cola", titulo: "El regreso",
+    personaje: "Embajador de la potencia del norte",
+    texto: "El niño volverá con su padre. Nuestro gobierno espera que no lo convierta en un trofeo.",
+    izq: { accion: "Solo un acto íntimo con un millón", efectos: { elite: 4, pueblo: -3 } },
+    der: { accion: "Lo recibirá su padre y nadie más", efectos: { pueblo: 3, elite: -4 } }
+  },
+  {
     // 23 oct, Jorge: Conrado Benítez (1961), el maestro asesinado por los alzados; tras su muerte se apuntaron más brigadistas
     id: "alfabetizadores_monte", tipo: "cola", titulo: "Los alfabetizadores en el monte",
     personaje: "Ministra de Educación",
@@ -974,6 +990,14 @@ const CARTAS = [
     texto: "Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.",
     izq: { accion: "Regálenlas con mi foto pegada", efectos: { pueblo: 4, ejercito: -4 } },
     der: { accion: "Que las venda el Ejército en dólares", efectos: { ejercito: 4, pueblo: -4 } }
+  },
+  {
+    // 23 oct, Jorge: el niño balsero (1999-2000), una oportunidad política: meses de marchas, la tribuna y el regreso
+    id: "nino_balsero", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "El niño de la balsa",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "El país llora por el niño balsero retenido en la otra orilla. Podríamos hacer de él una causa.",
+    izq: { accion: "Mañana marcha un millón por el niño", efectos: { elite: 4, pueblo: -3 }, encolar: [{ carta: "la_tribuna", min: 1, max: 2 }] },
+    der: { accion: "Un niño no es una bandera", efectos: { pueblo: 3, elite: -4 }, encolar: [{ carta: "el_regreso", min: 2, max: 3 }] }
   },
   {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",

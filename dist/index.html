@@ -888,7 +888,7 @@ const BARRAS = [
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
   { nombre: "La Revolución", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.25): con las cartas cubanas nuevas el «humano» la superaba el 75 %; ahora ~62 %
   { nombre: "La Purga", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.1): con las cartas cubanas nuevas el «humano» la superaba el 68 %; ahora ~59 %
-  { nombre: "El Culto", min: 8, max: 10, factor: 1.7 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.75): el «humano» la superaba el 83 %
+  { nombre: "El Culto", min: 8, max: 10, factor: 1.7 },   // 23 oct: ×1.7 (antes 1.2): con las cartas cubanas nuevas el «humano» la superaba el 75 % y el azar el 37 %; ahora ~58 % y ~9 %
   { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.0 }   // 22 oct: más larga (antes 6-8 y ×0.8); con los pesos revisados, el «humano» la supera ~52 %
 ];
 const ERA = ERAS[0];
@@ -951,6 +951,22 @@ const CARTAS = [
   },
 
   /* ---------- Cola ---------- */
+  {
+    // 23 oct, Jorge: la tribuna antiimperialista (2000), frente a la oficina de intereses del norte
+    id: "la_tribuna", era: 4, tipo: "cola", titulo: "La tribuna",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Llevamos meses marchando por el niño. Proponemos una tribuna fija frente a la embajada occidental.",
+    izq: { accion: "Una tribuna para gritar siempre", efectos: { elite: 4, pueblo: -4 }, encolar: [{ carta: "el_regreso", min: 1, max: 2 }] },
+    der: { accion: "Ya gritaron bastante, a trabajar", efectos: { pueblo: 4, elite: -4 }, encolar: [{ carta: "el_regreso", min: 1, max: 2 }] }
+  },
+  {
+    // 23 oct, Jorge: el regreso del niño con su padre (junio de 2000)
+    id: "el_regreso", era: 4, tipo: "cola", titulo: "El regreso",
+    personaje: "Embajador de la potencia del norte",
+    texto: "El niño volverá con su padre. Nuestro gobierno espera que no lo convierta en un trofeo.",
+    izq: { accion: "Algo sencillo: un millón en la plaza", efectos: { elite: 4, pueblo: -3 } },
+    der: { accion: "Lo recibirá su padre y nadie más", efectos: { pueblo: 3, elite: -4 } }
+  },
   {
     // 23 oct, Jorge: Conrado Benítez (1961), el maestro asesinado por los alzados; tras su muerte se apuntaron más brigadistas
     id: "alfabetizadores_monte", tipo: "cola", titulo: "Los alfabetizadores en el monte",
@@ -1799,9 +1815,73 @@ const CARTAS = [
     der: { accion: "No tengo tiempo, hay que gobernar", efectos: { elite: -2 } }
   },
   {
+    // 23 oct, Jorge: los Juegos Panamericanos de 1991, en pleno período especial
+    id: "juegos_crisis", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Los Juegos",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "No hay petróleo ni comida, y nos toca construir los estadios de los Juegos del continente.",
+    izq: { accion: "Las medallas alimentarán al Pueblo", efectos: { elite: 4, pueblo: -4 } },
+    der: { accion: "Primero el plato y luego el podio", efectos: { pueblo: 4, elite: -4 } }
+  },
+  {
+    // 23 oct, Jorge: la visita de Juan Pablo II (1998), con misa en la plaza de la Revolución
+    id: "visita_papa", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La visita del Papa",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "El Papa vendría si le dejamos la plaza para una misa. Nos vendría bien un amigo de su tamaño.",
+    izq: { accion: "Dios también cabe en la Revolución", efectos: { pueblo: 4, elite: -3 } },
+    der: { accion: "La plaza es solo para mí", efectos: { elite: 3, pueblo: -4 } }
+  },
+  {
+    // 23 oct, Jorge: el hijo mayor del Comandante dirigió el programa nuclear y fue destituido en 1992; la central nunca se terminó
+    id: "hijo_mayor", era: 4, tipo: "sorteo", peso: 10, titulo: "La central del hijo",
+    personaje: "Ministro de Economía",
+    texto: "Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.",
+    izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { pueblo: 4, elite: -3 } },
+    der: { accion: "Quiten de donde sea para su central", efectos: { elite: 3, pueblo: -4 } }
+  },
+  {
+    // 23 oct, Jorge: la primavera negra (2003), 75 opositores detenidos mientras el mundo miraba a otra guerra
+    id: "los_75", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "Los setenta y cinco",
+    personaje: "Ministro del Interior",
+    texto: "El mundo está pendiente de una guerra lejana. Es un buen momento para detener opositores.",
+    izq: { accion: "Aprovechemos que el mundo no mira", efectos: { ejercito: 5, pueblo: -4 } },
+    der: { accion: "No, los mártires salen caros", efectos: { pueblo: 4, ejercito: -5 } }
+  },
+  {
+    // 23 oct, Jorge: el presidente del sur que admira al Comandante (1994-99): petróleo a cambio de asesores y médicos
+    id: "amigo_sur", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "El amigo del sur",
+    personaje: "Ministro de Comercio",
+    texto: "Un coronel del sur que lo admira quiere ser presidente. Ofrece petróleo si le ayudamos.",
+    izq: { accion: "Le prestaré asesores y algunos tips", efectos: { potencias: 5, ejercito: 2 } },
+    der: { accion: "Que gane solo, como gané yo", efectos: { potencias: -5, ejercito: -2 } }
+  },
+  {
+    // 23 oct, Jorge: la revolución energética (2005-06): bombillas y ollas arroceras casa por casa
+    id: "revolucion_energetica", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 5 }, titulo: "La revolución energética",
+    personaje: "Ministro de Economía",
+    texto: "Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.",
+    izq: { accion: "Regálenlas con mi foto pegada", efectos: { pueblo: 4, ejercito: -4 } },
+    der: { accion: "Que las venda el Ejército en dólares", efectos: { ejercito: 4, pueblo: -4 } }
+  },
+  {
+    // 23 oct, Jorge: el niño balsero (1999-2000), una oportunidad política: meses de marchas, la tribuna y el regreso
+    id: "nino_balsero", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "El niño de la balsa",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Un niño llegó en balsa a la otra orilla sin su madre. Su padre lo reclama: podría ser una causa.",
+    izq: { accion: "Este niño vale por diez discursos", efectos: { elite: 4, pueblo: -3 }, encolar: [{ carta: "la_tribuna", min: 1, max: 2 }] },
+    der: { accion: "Un niño no es una bandera", efectos: { pueblo: 3, elite: -4 }, encolar: [{ carta: "el_regreso", min: 2, max: 3 }] }
+  },
+  {
+    // 23 oct, Jorge: matar una vaca sin permiso daba más cárcel que matar a una persona; las vacas «se tiraban» a la vía del tren
+    id: "matar_vaca", era: 4, tipo: "sorteo", peso: 10, titulo: "Las vacas del Estado",
+    personaje: "Ministro del Interior",
+    texto: "Cada semana desaparecen vacas del Estado. Los campesinos dicen que se tiran solas a la vía del tren.",
+    izq: { accion: "Más años por vaca que por persona", efectos: { ejercito: 4, pueblo: -4 } },
+    der: { accion: "Si la vaca estaba triste, al caldero", efectos: { pueblo: 4, ejercito: -4 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
-    texto: "Su hijo quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",
+    texto: "Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",
     izq: { accion: "Dénselo, lleva el mar en la sangre", efectos: { elite: 5, pueblo: -4 } },
     der: { accion: "Que lo dirija alguien con méritos", efectos: { elite: -3, crisis: -1 } }
   },

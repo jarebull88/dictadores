@@ -459,3 +459,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
   - fondos de estados y caídas con las tintas de la paleta;
   - cintas en mostaza clara.
   Los fondos de los personajes (`personajes.json`) no se tocan: cambiarán con el arte nuevo.
+- **23 oct — Oliva de la paleta: el verde del tanque** `#86762C` (antes `#7C7530`, la media con el fondo de la estrella). Falta el rosa del cerdo.

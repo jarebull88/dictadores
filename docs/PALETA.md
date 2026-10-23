@@ -9,7 +9,7 @@ Sacada de los carteles serigrafiados de Jorge para los iconos (`assets/iconos/or
 |---|---|---|---|
 | **Rojo cartel** | `#B0362A` | fondo de la mano del Pueblo, estrella del Partido, candado | letras rojas (títulos de era, «¡Has caído!»), alertas, fondos rojos |
 | **Mostaza** | `#D8A02A` | fondo del tanque, del candado, la luna | fondos cálidos, signos del logo, acentos |
-| **Oliva** | `#7C7530` | fondo de la estrella y del muro, tanque, continentes | fondos, uniformes, vegetación |
+| **Oliva** | `#86762C` | el tanque (23 oct: Jorge lo prefiere al fondo de la estrella) | fondos, uniformes, vegetación |
 | **Azul cobalto** | `#1D51A0` | fondo de la luna y del globo | fondos fríos, manga del Pueblo |
 | **Crema papel** | `#F2EBDA` | la mano, el muro, el océano | el «blanco» del papel: fondos de página, ventanas, fichas |
 | **Tinta** | `#201D14` | contornos, ruedas, barba | texto y trazos |
@@ -27,7 +27,7 @@ Matices (solo para sombras de tinta o acentos, nunca de fondo grande):
 ## Para los prompts de imágenes (copiar y pegar)
 ```
 Flat 1970s Cuban silkscreen poster style (ICAIC, Eduardo Muñoz Bachs), naive and childlike, hand-cut shapes.
-Use ONLY these flat inks: brick red #B0362A, mustard #D8A02A, olive green #7C7530, cobalt blue #1D51A0,
+Use ONLY these flat inks: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0,
 cream paper #F2EBDA and near-black ink #201D14. No gradients, no shadows, no shine, no text.
 Slight misregistration between inks and visible paper grain. Square 1:1.
 ```

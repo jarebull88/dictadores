@@ -232,7 +232,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pila { position: absolute; top: 14px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: 0;   /* vista cenital: solo asoma por abajo */
-  background: var(--rev-base, var(--p-oliva));   /* 23 oct: el reverso, del color de la era (REVERSO_ERA) */
+  background: var(--rev-base, var(--p-oliva)); border: 1.5px solid var(--p-tinta);   /* 23 oct: el reverso, del color de la era (REVERSO_ERA), con la misma línea de tinta */
 
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -253,7 +253,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: 0; transform: rotateY(180deg);
-  background: var(--rev-base, var(--p-oliva));   /* 23 oct: el reverso, del color de la era (REVERSO_ERA) */
+  background: var(--rev-base, var(--p-oliva)); border: 1.5px solid var(--p-tinta);   /* 23 oct: el reverso, del color de la era (REVERSO_ERA), con la misma línea de tinta */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -314,18 +314,14 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    color del personaje (.ilustracion), con su sombra de papel pegado. El marco es el 6,5 % del ancho de la carta. */
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
-  padding: 0; border-radius: 0;   /* 23 oct: sin marco ni contorno: la ilustración llena la carta */
-  background-color: transparent;
+  padding: 3.5%; border-radius: 0;   /* 23 oct: un margen crema fino, como el papel de una serigrafía (antes 6,5 %) */
+  background-color: var(--p-crema); border: 1.5px solid var(--p-tinta);   /* y una línea de tinta alrededor de la carta */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .dorso { transform: rotateY(180deg); }
 /* Cartas de estado: el marco es de cartulina de purpurina dorada (assets/fondos/purpurina.jpg), sin color ni pulpa encima */
-.carta.purpurina .cara, .carta.oro .cara, .carta.plata .cara { padding: 6.5%; }   /* los marcos de purpurina y metal se quedan por ahora */
-.carta.purpurina .cara { background-color: #FFF; background-image: var(--tex-purpurina); background-size: cover; background-position: center; }
-/* 17 oct: la carta del Comandante, con marco de metal según la etapa (METAL_DICTADOR en motor.js) */
-.carta.oro .cara { background-color: #FFF; background-image: var(--tex-oro); background-size: cover; background-position: center; }
-.carta.plata .cara { background-color: #FFF; background-image: var(--tex-plata); background-size: cover; background-position: center; }
+/* 23 oct: fuera los marcos de purpurina, oro y plata: todas las cartas, con el mismo margen crema */
 .carta:active { cursor: grabbing; }
 /* 17 oct: vuelve la confirmación. Al pasar el umbral (soltar decide), la carta lleva un contorno de rotulador rojo,
    gastado como las letras (las mismas vetas): un anillo que solo pinta el borde (máscara borde − relleno) */

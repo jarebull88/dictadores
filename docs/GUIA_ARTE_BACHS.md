@@ -91,6 +91,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 
 **Bordes y marcos**
 - No mencionar «border», «frame» ni «margin», ni siquiera para prohibirlos: nombrarlo lo provoca. Hay que decirlo en positivo: «the background color runs off all four edges, like a cropped detail of a larger print».
+- Para reforzarlo, empezar el bloque B con «Full-bleed … background, edge to edge» (23 oct: a Potencias le salió un marco crema).
 - Si aun así aparece un marco de papel, es más fiable recortarlo en Photoshop que pelearlo con prompts.
 
 **Color**
@@ -105,6 +106,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - La ironía de Bachs funciona mejor con una idea visual: la estrella «sacando bíceps», la manga azul de las potencias metida en el títere.
 - El líder es un guerrillero naíf: gorra kepi oliva de copa plana, cara crema con ojos de punto, barba negra enorme, uniforme oliva y, a veces, puro. Si solo se pide «bigote», sale el señor del Monopoly.
 - Los objetos-símbolo (bocadillo, sol…) se describen en su forma clásica y limpia («classic», «instantly recognizable»). Si se pide que estén rotos o cortados, el corte tiene que ser recto y sin trozos sueltos: con «jagged edges» se deforman y dejan de reconocerse (23 oct, Censura). Y hay que decir que las piezas «fit together like a puzzle»: si no, el modelo dibuja dos bocadillos enteros, cada uno con sus puntos.
+- «Globe» o «world» saca un mapamundi bien dibujado, con costas e islas. Hay que pedir «a simple round ball with three clumsy blobs, abstract and childlike, not a map» (23 oct, Potencias). Y si hay dos objetos, dar proporciones («only about half the width», «each hand as big as the ball»): si no, el principal se come al otro.
 - Un sol con rayos triangulares pegados al disco parece una explosión (23 oct, Culto): hay que pedir un disco claramente redondo y rayos rectos sueltos, «separate short thick bars», cada uno separado del disco por un hueco de fondo.
 - Los objetos que todo el mundo conoce en blanco van en crema (23 oct, Jorge: el bocadillo de diálogo de Censura salió azul y no se reconocía). Entonces el fondo no puede ser crema.
 - Cuidado con lo que significa cada color: una manga oliva convierte al pueblo en militar. El oliva es del ejército y del líder; el pueblo lleva el azul de obrero.
@@ -162,9 +164,9 @@ Olive green #86762C background. A big hand-cut five-pointed star in brick red, c
 Olive green #86762C background. A big, fat, well-fed five-pointed star in brick red #B0362A, filling most of the square: short, stubby, rounded points and a plump round belly bulging out at the bottom, like a star that eats too much. No face. Only one detail: a thin solid near-black curved band, shaped like a wide smile, across the lower part of the star, marking the top of its round belly. Nothing else.
 ```
 
-**Las Potencias** (23 oct, elegido: el globo agarrado; dos potencias se pelean por el mundo como por una pelota. Las manos van en rojo y mostaza, como guantes, para que no se fundan con el globo crema; sin meridianos, para no recargar. Abajo queda el globo solo, como alternativa)
+**Las Potencias** (23 oct, elegido: el globo agarrado; dos potencias se pelean por el mundo como por una pelota. Las manos van en rojo y mostaza, como guantes, para que no se fundan con el globo crema; sin meridianos, para no recargar. v2: el globo, más pequeño y abstracto, y las manos, tan grandes como él. Abajo queda el globo solo, como alternativa)
 ```
-Cobalt blue #1D51A0 background. A big round globe of cream #F0E9D6 paper in the center, slightly squashed and imperfect, filling most of the square, with three or four big clumsy olive-green #86762C blobs as continents, with no islands or coastline detail. Two big chunky hands grab it tightly from the left and right edges, like two kids fighting over a ball: the left hand and its sleeve are one flat brick-red #B0362A shape, the right hand and its sleeve one flat mustard #D8A02A shape, each entering from its own side edge, fingers as thick blocky shapes gripping only the sides of the globe, so most of the globe stays visible. Nothing else.
+Full-bleed cobalt blue #1D51A0 background, edge to edge. In the center, a simple round cream #F0E9D6 ball, only about half the width of the square, with three clumsy olive-green #86762C blobs on it, abstract and childlike, not a map, so it reads as a toy globe. Two huge, chunky hands grab it from the left and right, like two kids fighting over a ball, each hand as big as the ball itself: the left hand and its thick sleeve are one flat brick-red #B0362A shape, the right hand and its thick sleeve one flat mustard #D8A02A shape, each sleeve running off its side edge, fingers as thick blocky shapes squeezing the ball. Nothing else.
 ```
 
 **Las Potencias, alternativa: el globo solo**

@@ -47,4 +47,4 @@ Slight misregistration between inks and visible paper grain. Square 1:1.
   - Vigilancia: azul
   - Alineado: rojo
   - Nacionalizaciones: oliva
-  - Deuda externa: mostaza
+  - Deuda externa: oliva (23 oct, Jorge: el rosa no contrasta con mostaza)

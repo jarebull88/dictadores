@@ -141,6 +141,14 @@ const CARTAS = [
     der: { accion: "Un Pueblo que lee pregunta demasiado", efectos: { pueblo: -10 } }
   },
   {
+    // 23 oct, Jorge: la declaración del carácter socialista (abril de 1961), en el entierro de las víctimas del bombardeo del exilio
+    id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Aviones del exilio nos han bombardeado dejando víctimas inocentes. En el entierro, el Pueblo querrá saber qué es esta Revolución.",
+    izq: { accion: "Hoy la Revolución será socialista", efectos: { potencias: 5, elite: 3 } },
+    der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, ejercito: 3 } }
+  },
+  {
     // 23 oct, Jorge: el fin del béisbol profesional (1961), «el deporte, derecho del Pueblo»; las estrellas se quedan fuera
     id: "fin_pelota", tipo: "sorteo", peso: 10, titulo: "Se acabó el profesional",
     personaje: "Ministra de Educación",

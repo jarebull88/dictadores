@@ -960,6 +960,14 @@ const CARTAS = [
     der: { accion: "No, los mártires salen caros", efectos: { pueblo: 4, ejercito: -5 } }
   },
   {
+    // 23 oct, Jorge: el presidente del sur que admira al Comandante (1994-99): petróleo a cambio de asesores y médicos
+    id: "amigo_sur", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "El amigo del sur",
+    personaje: "Ministro de Comercio",
+    texto: "Un coronel del sur que lo admira quiere ser presidente. Ofrece petróleo si le ayudamos.",
+    izq: { accion: "Le prestaré asesores y algunos tips", efectos: { potencias: 5, ejercito: 2 } },
+    der: { accion: "Que gane solo, como gané yo", efectos: { potencias: -5, ejercito: -2 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
     texto: "Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",

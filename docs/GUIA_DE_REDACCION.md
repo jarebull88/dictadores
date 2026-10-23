@@ -84,3 +84,4 @@ Para cada carta, antes de proponerla o al revisarla:
 - **Una respuesta no puede adelantar lo que contradice una carta posterior** de la misma trama (si luego la zafra no llega, la B no puede asegurar que la cuenta llegue).
 - **Ni purgar ni despedir ministros**: los culpables son otros (viceministros, burócratas, saboteadores).
 - **Las respuestas necesitan cinismo político, oportunismo y humor negro** (23 oct, «La guerra lejana»): no basta con que sean correctas y claras. El Comandante saca partido de todo: el cinismo con que aprovecha la situación es el chiste.
+- **Lenguaje suavizado** (23 oct): nada de «matar», «fusilar», «suicidio», «asesinato» y parecidos, ni en preguntas ni en respuestas. La dureza se sugiere («se tiran solas a la vía del tren», «el caldero»).

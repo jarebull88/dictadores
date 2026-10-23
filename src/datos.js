@@ -1001,7 +1001,7 @@ const CARTAS = [
   },
   {
     // 23 oct, Jorge: matar una vaca sin permiso daba más cárcel que matar a una persona; las vacas «se tiraban» a la vía del tren
-    id: "matar_vaca", era: 4, tipo: "sorteo", peso: 10, titulo: "Las vacas suicidas",
+    id: "matar_vaca", era: 4, tipo: "sorteo", peso: 10, titulo: "Las vacas del Estado",
     personaje: "Ministro del Interior",
     texto: "Cada semana desaparecen vacas del Estado. Los campesinos dicen que se tiran solas a la vía del tren.",
     izq: { accion: "Más años por vaca que por persona", efectos: { ejercito: 4, pueblo: -4 } },

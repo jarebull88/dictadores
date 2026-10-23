@@ -156,6 +156,11 @@ Mustard #D8A02A background. A chubby toy-like tank seen from the side, filling m
 Olive green #86762C background. A big hand-cut five-pointed star in brick red, clearly imperfect: points of different lengths, soft wobbly edges, slightly tilted, like a star cut out by hand from paper, its points almost touching the edges. One point goes out to the right and bends upward at an elbow, like an arm flexing its biceps, with a small rounded bulge on top. Next to it, three small solid near-black wedges like a little sparkle.
 ```
 
+**El Partido, alternativa: la estrella gorda** (23 oct: el Partido como cerdo de la granja)
+```
+Olive green #86762C background. A big, fat, well-fed five-pointed star in brick red #B0362A, filling most of the square: short, stubby, rounded points and a plump round belly bulging out at the bottom, like a star that eats too much. Two small solid near-black dot eyes and a small mustard #D8A02A cigar with a cream #F0E9D6 tip sticking out of one side, smugly. Nothing else.
+```
+
 **Las Potencias**
 ```
 Cobalt blue #1D51A0 background. A big round globe of cream paper, slightly squashed and imperfect, with four or five big clumsy olive-green blobs as continents, only vaguely suggesting the Americas, Europe-Africa and Asia, with no islands or coastline detail. Two curved meridians and one equator as thin solid near-black bands.

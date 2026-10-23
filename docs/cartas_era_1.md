@@ -201,10 +201,10 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
 
-**Carta:** «El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.»
+**Carta:** «El exilio nos ha bombardeado y la plaza se llena de luto. Habrá que decir qué es la Revolución.»
 
 - **A. Hoy la Revolución será socialista** Potencias +5 · Élite +3
-- **B. Que la palabra sea patria y nada más** Potencias −5 · Ejército +3
+- **B. Que la palabra sea patria y nada más** Potencias −5 · Élite −3
 
 ### 17. Se acabó el profesional
 
@@ -254,7 +254,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Carta:** «Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.»
 
 - **A. Cámbienlos por compotas** Potencias −6 · Pueblo +2 · Ejército −4
-- **B. Juicio televisado y paredón** Potencias −3 · Pueblo +5 · Ejército +5 · Crisis +2
+- **B. Juicio televisado y luego al «patio»** Potencias −3 · Pueblo +5 · Ejército +5 · Crisis +2
 
 ### 22. Los niños que se van
 
@@ -306,7 +306,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Carta:** «Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.»
 
 - **A. Jubílenlos** Ejército −5 · Crisis +1 · Bandera: `viejos_oficiales`
-- **B. Paredón y ascensos para los nuestros** Ejército +5 · Pueblo +4 · Bandera: `purga_inicial`
+- **B. Purga y ascensos para los nuestros** Ejército +5 · Pueblo +4 · Bandera: `purga_inicial`
 
 **Consecuencia futura de `viejos_oficiales`:** Conspiración de oficiales retirados.
 

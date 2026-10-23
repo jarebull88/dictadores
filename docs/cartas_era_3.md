@@ -295,7 +295,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 5 a 7 de su era.
 
-**Carta:** «Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos.»
+**Carta:** «Los terroristas del exilio han volado uno de nuestros aviones con setenta y tres pasajeros.»
 
 - **A. Funeral con un millón en la plaza** Pueblo +4 · Élite +2 · Encola: `los_que_celebran` en 1 a 2 años
 - **B. Habrá que defenderse infiltrándolos** Ejército +4 · Potencias −3 · Bandera: `atentado_investigado`
@@ -319,7 +319,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Los acusados del atentado lo niegan todo. Uno de ellos lleva dos años muerto.»
+**Carta:** «Los acusados del atentado lo niegan todo. A uno de ellos lo enterraron hace dos años.»
 
 - **A. Que confiese también el difunto** Ejército +5 · Pueblo −5
 - **B. Suéltenlos sin pedirles perdón** Ejército −5 · Pueblo +5

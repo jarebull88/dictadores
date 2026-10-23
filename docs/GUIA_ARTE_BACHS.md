@@ -346,3 +346,9 @@ Brick red #B0362A background. Bust of a thin young bank clerk turned guerrilla i
 ```
 Mustard #D8A02A background. Bust of a thin young bank clerk turned guerrilla interrogator, with round glasses made of thin solid near-black rings around two solid near-black dot eyes, a tiny polite smile and neatly combed dark hair. In front of his chest he holds open a big notebook with cream pages, and on the pages, in neat rows, many tiny round faces of his comrades, each one a small olive-green or soft-pink circle with two near-black dots; a few of them are crossed out by a short solid brick-red band. A brick-red pencil in his other hand. An olive-green #86762C guerrilla jacket over a cream office-shirt collar. Quiet, polite, keeping count.
 ```
+
+### Anselmo Quiñones, el presidente florero (etapa 1)
+Referencia: **14, *Los tres mosqueteros*** (el disfraz manda: sombrero, bigote y pluma enormes). Idea: el chaquetero disfrazado de guerrillero el último día. La etiqueta va en blanco, sin texto.
+```
+Brick red #B0362A background. Bust of a well-groomed young lawyer from a good family, disguised as a guerrilla on the very last day. A brand-new olive-green #86762C kepi cap, a bit too big and perfectly stiff, with a blank cream price tag hanging from its visor on a thin solid near-black string. A round, clean-shaven cream face with two solid near-black dot eyes and a small smug smile, and over his chin an obviously fake, oversized solid near-black guerrilla beard, held on by a thin solid near-black elastic band looped over his ears. A brand-new olive-green guerrilla jacket, too clean, with sharp square shop creases shown as thin gaps of background, and an elegant mustard fountain pen clipped in its chest pocket. Smug, polished, opportunistic.
+```

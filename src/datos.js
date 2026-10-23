@@ -81,6 +81,14 @@ const CARTAS = [
 
   /* ---------- Cola ---------- */
   {
+    // 23 oct, Jorge: Conrado Benítez (1961), el maestro asesinado por los alzados; tras su muerte se apuntaron más brigadistas
+    id: "alfabetizadores_monte", tipo: "cola", titulo: "Los alfabetizadores en el monte",
+    personaje: "Ministra de Educación",
+    texto: "Los alzados del monte han matado a un maestro de dieciocho años. Las brigadas temen subir.",
+    izq: { accion: "Que el Ejército suba con ellos", efectos: { ejercito: 5, elite: -3 } },
+    der: { accion: "Que suban todos aunque tengan miedo", efectos: { elite: 3, ejercito: -5 } }
+  },
+  {
     // 22 oct: Camilo Cienfuegos (oct. 1959), que desaparece con su avión al volver de relevar a Matos
     id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Diezfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
@@ -129,8 +137,16 @@ const CARTAS = [
     id: "alfabetizacion", tipo: "sorteo", peso: 6, titulo: "La campaña de alfabetización",
     personaje: "Ministra de Educación",
     texto: "Propongo una campaña de alfabetización: brigadas de jóvenes enseñando a leer en cada rincón.",
-    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10 } },
+    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10 }, encolar: [{ carta: "alfabetizadores_monte", min: 2, max: 3 }] },
     der: { accion: "Un Pueblo que lee pregunta demasiado", efectos: { pueblo: -10 } }
+  },
+  {
+    // 23 oct, Jorge: el fin del béisbol profesional (1961), «el deporte, derecho del Pueblo»; las estrellas se quedan fuera
+    id: "fin_pelota", tipo: "sorteo", peso: 10, titulo: "Se acabó el profesional",
+    personaje: "Ministra de Educación",
+    texto: "Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.",
+    izq: { accion: "Ahora se jugará por amor a la patria", efectos: { pueblo: 4, potencias: -4 } },
+    der: { accion: "Que sigan cobrando en divisas", efectos: { potencias: 4, pueblo: -4 } }
   },
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",

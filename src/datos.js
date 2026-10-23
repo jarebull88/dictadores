@@ -503,6 +503,14 @@ const CARTAS = [
     der: { accion: "Los traidores no tienen familia", efectos: { elite: 4, pueblo: -4 } }
   },
   {
+    // 23 oct, Jorge: los boicots a las olimpiadas (1984 y 1988), por lealtad al bloque
+    id: "boicot_olimpiadas", era: 3, tipo: "sorteo", peso: 10, cond: { turnoMin: 5 }, titulo: "El boicot",
+    personaje: "Embajador del bloque oriental",
+    texto: "Boicotearemos las olimpiadas que organiza el enemigo. Esperamos que sus atletas tampoco vayan.",
+    izq: { accion: "El mejor deporte es la lealtad", efectos: { potencias: 4, pueblo: -3 } },
+    der: { accion: "No les robaré el sueño a mis atletas", efectos: { pueblo: 3, potencias: -4 } }
+  },
+  {
     // 23 oct, Jorge: los discursos de horas del Comandante
     id: "discurso_maraton", era: 3, tipo: "sorteo", peso: 10, titulo: "El discurso",
     personaje: "Vicepresidente del Consejo de Ministros",

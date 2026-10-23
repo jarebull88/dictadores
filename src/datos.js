@@ -1000,6 +1000,14 @@ const CARTAS = [
     der: { accion: "Un niño no es una bandera", efectos: { pueblo: 3, elite: -4 }, encolar: [{ carta: "el_regreso", min: 2, max: 3 }] }
   },
   {
+    // 23 oct, Jorge: matar una vaca sin permiso daba más cárcel que matar a una persona; las vacas «se tiraban» a la vía del tren
+    id: "matar_vaca", era: 4, tipo: "sorteo", peso: 10, titulo: "Las vacas suicidas",
+    personaje: "Ministro del Interior",
+    texto: "Cada semana desaparecen vacas del Estado. Los campesinos dicen que se tiran solas a la vía del tren.",
+    izq: { accion: "Más años por vaca que por persona", efectos: { ejercito: 4, pueblo: -4 } },
+    der: { accion: "Si la vaca se cae, que se aproveche", efectos: { pueblo: 4, ejercito: -4 } }
+  },
+  {
     id: "el_hijo", era: 4, tipo: "sorteo", peso: 10, titulo: "El hijo",
     personaje: "Ministro de Comercio",
     texto: "Su hijo menor quiere dirigir el puerto. Dice que entiende de barcos porque tiene tres yates.",

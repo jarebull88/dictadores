@@ -14,6 +14,7 @@
   --rojo-marcador: rgba(179, 38, 30, .9);
   --veta-marcador: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.3' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.4 0 0 0 -0.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");   /* 16 oct: vetas claras horizontales de rotulador (ruido SVG) */   /* 15 oct: el rotulador, al 90 %: el negro puro pesaba demasiado */
   --fuente-mano: "Londrina Solid", "Special Elite", cursive;   /* 23 oct: letra recortada a mano, como en los carteles cubanos (antes Permanent Marker): títulos de ventanas, cintas, expediente */
+  --fuente-caligrafica: "Playwrite IT Moderna", cursive;   /* 23 oct: caligráfica (Playwrite Italia), lista para usar; aún no se usa */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 

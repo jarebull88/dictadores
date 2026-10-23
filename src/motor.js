@@ -903,7 +903,7 @@ const FRASE_ESTADO = {
   frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
 };
-const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F2EBDA", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
+const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
   embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A" };
 const ESPERA_ESTADO = 7000;   // 15 oct: si nadie toca la carta de estado, se guarda sola a los 7 s (también en el tutorial)
 let relojEstado = null;
@@ -1102,7 +1102,7 @@ let finOcupada = false;
 /* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
    sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
 const FONDO_CAIDA = { ejercito_0: "#1D51A0", pueblo_0: "#D8A02A", pueblo_100: "#B0362A", ejercito_100: "#86762C",   // 23 oct: paleta del cartel
-  elite_0: "#F2EBDA", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
+  elite_0: "#F0E9D6", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
 let claveFin = "";
 function pintarCartaFin(titulo, clave = claveFin) {
   const carta = $("carta-fin");

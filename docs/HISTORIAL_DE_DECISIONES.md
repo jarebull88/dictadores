@@ -460,3 +460,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
   - cintas en mostaza clara.
   Los fondos de los personajes (`personajes.json`) no se tocan: cambiarán con el arte nuevo.
 - **23 oct — Oliva de la paleta: el verde del tanque** `#86762C` (antes `#7C7530`, la media con el fondo de la estrella). Falta el rosa del cerdo.
+- **23 oct — Crema = el color exacto de la mano del Pueblo** `#F0E9D6` (antes `#F2EBDA`, la media de la mano, el muro y el océano; la diferencia apenas se ve). Es el «blanco» del juego.

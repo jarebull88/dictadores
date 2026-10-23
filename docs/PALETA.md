@@ -11,7 +11,7 @@ Sacada de los carteles serigrafiados de Jorge para los iconos (`assets/iconos/or
 | **Mostaza** | `#D8A02A` | fondo del tanque, del candado, la luna | fondos cálidos, signos del logo, acentos |
 | **Oliva** | `#86762C` | el tanque (23 oct: Jorge lo prefiere al fondo de la estrella) | fondos, uniformes, vegetación |
 | **Azul cobalto** | `#1D51A0` | fondo de la luna y del globo | fondos fríos, manga del Pueblo |
-| **Crema papel** | `#F2EBDA` | la mano, el muro, el océano | el «blanco» del papel: fondos de página, ventanas, fichas |
+| **Crema papel** | `#F0E9D6` | la mano del Pueblo (23 oct: exacto, `#F0E9D6`): sustituye al blanco | el «blanco» del papel: fondos de página, ventanas, fichas |
 | **Tinta** | `#201D14` | contornos, ruedas, barba | texto y trazos |
 
 Matices (solo para sombras de tinta o acentos, nunca de fondo grande):
@@ -28,7 +28,7 @@ Matices (solo para sombras de tinta o acentos, nunca de fondo grande):
 ```
 Flat 1970s Cuban silkscreen poster style (ICAIC, Eduardo Muñoz Bachs), naive and childlike, hand-cut shapes.
 Use ONLY these flat inks: brick red #B0362A, mustard #D8A02A, olive green #86762C, cobalt blue #1D51A0,
-cream paper #F2EBDA and near-black ink #201D14. No gradients, no shadows, no shine, no text.
+cream paper #F0E9D6 and near-black ink #201D14. No gradients, no shadows, no shine, no text.
 Slight misregistration between inks and visible paper grain. Square 1:1.
 ```
 

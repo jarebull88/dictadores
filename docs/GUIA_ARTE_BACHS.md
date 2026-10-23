@@ -26,6 +26,7 @@
   - En el juego va reducido a `assets/iconos/recortados/<id>-cartel.webp` (144 px).
   - `icono()`, en `src/motor.js`, prefiere el cartel al dibujo antiguo.
   - Los id son: `pueblo`, `ejercito`, `elite` (el Partido), `potencias`, `luna`, `censura`, `vigilancia`, `culto`, `alineado`, `embargo`, `frontera` (se llama Jaula en el juego), `nacionalizado` y `deuda`.
+- **Reparto:** `docs/PERSONAJES.md` (23 oct) tiene la historia de cada personaje y una idea visual por etapa (eras 1–4), pensada para este estilo. Es la base para los prompts de personajes.
 - **Personajes:** por ahora siguen siendo el arte antiguo, de papel recortado y 3:4. Los nuevos serán 1:1. Antes de cambiarlos, lee `docs/PIPELINE_PERSONAJES.md` y decide con Jorge cómo encajan los ojos animados: hoy son círculos SVG encima de la imagen.
 - **Escenas** de estados y de caídas: también son arte antiguo, pendiente de rehacer en este estilo.
 

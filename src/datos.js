@@ -144,7 +144,7 @@ const CARTAS = [
     // 23 oct, Jorge: la declaración del carácter socialista (abril de 1961), en el entierro de las víctimas del bombardeo del exilio
     id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Aviones del exilio nos han bombardeado dejando víctimas inocentes. En el entierro, el Pueblo querrá saber qué es esta Revolución.",
+    texto: "El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.",
     izq: { accion: "Hoy la Revolución será socialista", efectos: { potencias: 5, elite: 3 } },
     der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, ejercito: 3 } }
   },
@@ -632,8 +632,24 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
-    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 } },
+    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
     der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
+  },
+  {
+    // 23 oct, Jorge: la zafra de 1970 se queda en ocho millones y medio
+    id: "cifra_no_llega", era: 2, tipo: "cola", titulo: "La cifra que no llega",
+    personaje: "Ministro de Trabajo",
+    texto: "Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.",
+    izq: { accion: "Manden a todo el país al cañaveral", efectos: { elite: 4, pueblo: -5 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] },
+    der: { accion: "Busquen cómo hacer que la cuenta dé", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] }
+  },
+  {
+    // 23 oct, Jorge: el discurso de julio de 1970, en el que el Comandante ofrece dimitir y la plaza grita que no
+    id: "discurso_derrota", era: 2, tipo: "cola", titulo: "El discurso de la derrota",
+    personaje: "Ministro de Trabajo",
+    texto: "La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.",
+    izq: { accion: "Ofreceré mi dimisión a la plaza", efectos: { pueblo: 4, elite: -3 } },
+    der: { accion: "Busquen al contrarrevolucionario", efectos: { ejercito: 4, pueblo: -4 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",

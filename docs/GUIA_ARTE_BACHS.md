@@ -197,7 +197,7 @@ Brick red #B0362A background. A tall, proud statue of a naive guerrilla leader: 
 Mustard #D8A02A background. A big, chubby padlock, slightly lopsided, filling most of the square: one rounded cobalt-blue #1D51A0 body shape with a cream #F0E9D6 keyhole cut into it, and a thick solid near-black shackle on top, closed.
 ```
 
-**Alineado 1** (títere de guante)
+**Alineado** (23 oct, elegido: el títere de guante; la marioneta de abajo queda como alternativa)
 ```
 Brick red #B0362A background. A hand puppet of a naive guerrilla leader, centered: a flat-topped olive-green kepi cap, a round cream face with two solid black dot eyes, one big solid black beard covering the lower half of the face, and a floppy olive-green cloth body shaped like a sack, with two tiny limp arms. From the bottom edge, a big cobalt-blue sleeve and wrist enter the puppet from below, clearly working it from inside.
 ```

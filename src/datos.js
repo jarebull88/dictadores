@@ -467,8 +467,16 @@ const CARTAS = [
     id: "consignas_vallas", era: 3, tipo: "sorteo", peso: 10, titulo: "Las vallas",
     personaje: "Ministra de Cultura",
     texto: "Queremos poner sus frases épicas en vallas por todo el país, pero no hay pintura para todo.",
-    izq: { accion: "Si necesitan más frases, avísenme", efectos: { elite: 4, pueblo: -4 } },
+    izq: { accion: "Si faltan frases que me avisen", efectos: { elite: 4, pueblo: -4 } },
     der: { accion: "Que la pintura vaya a las escuelas", efectos: { pueblo: 4, elite: -4 } }
+  },
+  {
+    // 23 oct, Jorge: el caso Padilla (1971), el poeta que lee su autocrítica ante sus colegas
+    id: "autocritica_poeta", era: 3, tipo: "sorteo", peso: 10, titulo: "La autocrítica del poeta",
+    personaje: "Ministro del Interior",
+    texto: "Hemos detenido a un poeta premiado por sus versos contra el gobierno. Ofrece retractarse en público.",
+    izq: { accion: "Que sus colegas oigan su autocrítica", efectos: { ejercito: 4, pueblo: -3 } },
+    der: { accion: "Que publique, la poesía no muerde", efectos: { pueblo: 3, ejercito: -4 } }
   },
   {
     // 23 oct, Jorge: los discursos de horas del Comandante

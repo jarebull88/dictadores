@@ -11,6 +11,7 @@ Sacada de los carteles serigrafiados de Jorge para los iconos (`assets/iconos/or
 | **Mostaza** | `#D8A02A` | fondo del tanque, del candado, la luna | fondos cálidos, signos del logo, acentos |
 | **Oliva** | `#86762C` | el tanque (23 oct: Jorge lo prefiere al fondo de la estrella) | fondos, uniformes, vegetación |
 | **Azul cobalto** | `#1D51A0` | fondo de la luna y del globo | fondos fríos, manga del Pueblo |
+| **Rosa** | `#DF8178` | el cerdo de la Deuda externa | detalles cálidos, caras, cerdos y lujo |
 | **Crema papel** | `#F0E9D6` | la mano del Pueblo (23 oct: exacto, `#F0E9D6`): sustituye al blanco | el «blanco» del papel: fondos de página, ventanas, fichas |
 | **Tinta** | `#201D14` | contornos, ruedas, barba | texto y trazos |
 

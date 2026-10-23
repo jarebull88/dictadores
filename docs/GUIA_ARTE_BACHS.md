@@ -113,7 +113,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - **Gemini (Nano Banana)** tiende a volver a su propia estética: necesita una referencia adjunta y edición por pasos.
 - **Bing Image Creator** usa modelos de OpenAI y es gratis, pero solo admite 2.000 caracteres y no acepta referencias.
 - Adjuntar siempre como referencia de estilo la estrella del Partido, que es el icono que mejor salió. Para personajes que se repiten, adjuntar también el icono donde ya aparecen.
-- Iterar con edición en el mismo hilo («Keep this image exactly the same… change only…») en lugar de regenerar.
+- Iterar con edición en el mismo hilo («Keep this image exactly the same… change only…») en lugar de regenerar. Pero solo para cambios pequeños (color, tamaño, un detalle): si cambia la composición, el modelo arrastra lo anterior y tras 2 o 3 ediciones se lía (23 oct, Censura: tres bocadillos en vez de uno partido). Entonces, regenerar de cero en un hilo nuevo.
 
 ---
 

@@ -886,7 +886,7 @@ const BARRAS = [
   { id: "potencias", nombre: "Potencias" }
 ];
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
-  { nombre: "La Revolución", min: 8, max: 10, factor: 1.35 },   // 16 oct: más larga (antes 6-8) y más dura (×1.25): al azar se pasaba demasiado fácil para Jorge
+  { nombre: "La Revolución", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.25): con las cartas cubanas nuevas el «humano» la superaba el 75 %; ahora ~62 %
   { nombre: "La Purga", min: 8, max: 10, factor: 1.1 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.7): al azar se superaba ~30 %
   { nombre: "El Culto", min: 8, max: 10, factor: 1.2 },   // 22 oct: más larga y más dura (antes 6-8 y ×0.75): el «humano» la superaba el 83 %
   { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.0 }   // 22 oct: más larga (antes 6-8 y ×0.8); con los pesos revisados, el «humano» la supera ~52 %
@@ -1015,7 +1015,7 @@ const CARTAS = [
     // 23 oct, Jorge: la declaración del carácter socialista (abril de 1961), en el entierro de las víctimas del bombardeo del exilio
     id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Aviones del exilio nos han bombardeado dejando víctimas inocentes. En el entierro, el Pueblo querrá saber qué es esta Revolución.",
+    texto: "El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.",
     izq: { accion: "Hoy la Revolución será socialista", efectos: { potencias: 5, elite: 3 } },
     der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, ejercito: 3 } }
   },
@@ -1503,8 +1503,65 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
-    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 } },
+    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
     der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
+  },
+  {
+    // 23 oct, Jorge: trama de traición inspirada en el Che (1965-67): el héroe fanático que critica al bloque y estorba al Comandante
+    id: "companero_incomodo", era: 2, tipo: "sorteo", peso: 10, titulo: "El compañero incómodo",
+    personaje: "Embajador del bloque oriental",
+    texto: "Ferro, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.",
+    izq: { accion: "Lo mandaré a una misión bien lejos", efectos: { potencias: 4, ejercito: -3 },
+           encolar: [{ carta: "guerrilla_perdida", min: 2, max: 3 }] },
+    der: { accion: "Quien calla a Ferro me calla a mí", efectos: { potencias: -4, ejercito: 3 } }
+  },
+  {
+    // 23 oct, Jorge: la ofensiva revolucionaria (1968), que nacionalizó unos 58 000 negocios pequeños; «El mercado mayor» (era 3) los vuelve a permitir
+    id: "ofensiva_revolucionaria", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La ofensiva revolucionaria",
+    personaje: "Ministro de Economía",
+    texto: "Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.",
+    izq: { accion: "El Estado hará las mejores frituras", efectos: { elite: 5, pueblo: -4 } },
+    der: { accion: "Dejen vivir al pequeño negocio", efectos: { pueblo: 4, elite: -5 } }
+  },
+  {
+    // 23 oct, Jorge: el servicio militar obligatorio (1963), tres años
+    id: "servicio_militar", era: 2, tipo: "sorteo", peso: 10, titulo: "El servicio militar",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Proponemos tres años de servicio militar obligatorio para todos los jóvenes.",
+    izq: { accion: "Que cada joven sirva a la patria", efectos: { ejercito: 5, pueblo: -4 } },
+    der: { accion: "La patria no se defiende obligado", efectos: { pueblo: 4, ejercito: -5 } }
+  },
+  {
+    // 23 oct, Jorge: la invasión de la primavera de un país del bloque (1968), que el Comandante aplaudió
+    id: "invasion_aliado", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La invasión del aliado",
+    personaje: "Embajador del bloque oriental",
+    texto: "Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.",
+    izq: { accion: "Tienen todo nuestro apoyo fraterno", efectos: { potencias: 5 } },
+    der: { accion: "Aquí no opinamos de casas ajenas", efectos: { potencias: -5 } }
+  },
+  {
+    // 23 oct, Jorge: la guerrilla del Che en Bolivia (1967), sin refuerzos
+    id: "guerrilla_perdida", era: 2, tipo: "cola", titulo: "La guerrilla perdida",
+    personaje: "Ministro del Interior",
+    texto: "Ferro pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.",
+    izq: { accion: "Mándenle a nuestros mejores hombres", efectos: { ejercito: 4, potencias: -4 } },
+    der: { accion: "Díganle que los refuerzos ya van", efectos: { potencias: 3, ejercito: -3 }, banderas: ["base.ferro_martir"] }
+  },
+  {
+    // 23 oct, Jorge: la zafra de 1970 se queda en ocho millones y medio
+    id: "cifra_no_llega", era: 2, tipo: "cola", titulo: "La cifra que no llega",
+    personaje: "Ministro de Trabajo",
+    texto: "Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.",
+    izq: { accion: "Manden a todo el país al cañaveral", efectos: { elite: 4, pueblo: -5 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] },
+    der: { accion: "Busquen cómo hacer que la cuenta dé", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] }
+  },
+  {
+    // 23 oct, Jorge: el discurso de julio de 1970, en el que el Comandante ofrece dimitir y la plaza grita que no
+    id: "discurso_derrota", era: 2, tipo: "cola", titulo: "El discurso de la derrota",
+    personaje: "Ministro de Trabajo",
+    texto: "La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.",
+    izq: { accion: "Ofreceré mi dimisión a la plaza", efectos: { pueblo: 4, elite: -3 } },
+    der: { accion: "Busquen al contrarrevolucionario", efectos: { ejercito: 4, pueblo: -4 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",

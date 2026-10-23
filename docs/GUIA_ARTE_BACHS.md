@@ -162,7 +162,12 @@ Olive green #86762C background. A big hand-cut five-pointed star in brick red, c
 Olive green #86762C background. A big, fat, well-fed five-pointed star in brick red #B0362A, filling most of the square: short, stubby, rounded points and a plump round belly bulging out at the bottom, like a star that eats too much. No face. Only one detail: a thin solid near-black curved band, shaped like a wide smile, across the lower part of the star, marking the top of its round belly. Nothing else.
 ```
 
-**Las Potencias**
+**Las Potencias** (23 oct, elegido: el globo agarrado; dos potencias se pelean por el mundo como por una pelota. Las manos van en rojo y mostaza, como guantes, para que no se fundan con el globo crema; sin meridianos, para no recargar. Abajo queda el globo solo, como alternativa)
+```
+Cobalt blue #1D51A0 background. A big round globe of cream #F0E9D6 paper in the center, slightly squashed and imperfect, filling most of the square, with three or four big clumsy olive-green #86762C blobs as continents, with no islands or coastline detail. Two big chunky hands grab it tightly from the left and right edges, like two kids fighting over a ball: the left hand and its sleeve are one flat brick-red #B0362A shape, the right hand and its sleeve one flat mustard #D8A02A shape, each entering from its own side edge, fingers as thick blocky shapes gripping only the sides of the globe, so most of the globe stays visible. Nothing else.
+```
+
+**Las Potencias, alternativa: el globo solo**
 ```
 Cobalt blue #1D51A0 background. A big round globe of cream paper, slightly squashed and imperfect, with four or five big clumsy olive-green blobs as continents, only vaguely suggesting the Americas, Europe-Africa and Asia, with no islands or coastline detail. Two curved meridians and one equator as thin solid near-black bands.
 ```

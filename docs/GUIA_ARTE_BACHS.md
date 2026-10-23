@@ -312,6 +312,19 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 19. `19-tres-en-un-sofa.jpg`: *Tres en un sofá*. Una cara cuadrada naranja con gafas de colores, nariz de zapato y sombrero de plumas.
 20. `20-dichoso-seas.jpg`: *Dichoso seas*. Un hombre con sombrero y, a su espalda, una segunda cara que asoma y sonríe.
 21. `21-se-permuta.jpg`: *Se permuta*. Una mujer que salta con una ciudad por falda, entre flechas.
+22. `22-maravilla-con-trenzas-largas.jpg`: *Maravilla con trenzas largas*. Una niña haciendo el pino, con las piernas en V, sobre rojo.
+23. `23-petulia.jpg`: *Petulia*. Una cara mínima: ojos de punto azules, nariz y labios, enmarcada por el pelo negro, y un corazón arriba.
+24. `24-sobre-un-primer-combate.jpg`: *Sobre un primer combate*. Una calavera blanca con llamas de colores en los ojos.
+25. `25-los-coroneles.jpg`: *Los coroneles*. Un militar con bigote y casco de plumas, rodeado de explosiones de colores.
+26. `26-el-enigma-de-kaspar-hauser.jpg`: *El enigma de Kaspar Hauser*. Una chistera enorme con una ventana por donde asoma una cara.
+27. `27-desierto-rojo.jpg`: *Desierto rojo*. Una cara de líneas sueltas, en naranja y rosa.
+28. `28-el-mundo-de-los-animales.jpg`: *El mundo de los animales*. Un león amarillo de frente, con melena de rizos.
+29. `29-nikolai-bauman.jpg`: *Nikolai Bauman*. Un hombre de traje cuya cara es una estrella roja.
+30. `30-en-las-tinieblas.jpg`: *En las tinieblas*. Una calavera rayada con corazones por ojos y un cuchillo clavado.
+31. `31-marnie.jpg`: *Marnie*. Un perfil de mujer hecho de rizos, con franjas de colores.
+32. `32-dos-almas-en-pugna.jpg`: *Dos almas en pugna*. Una mujer de perfil con un moño enorme, y barrotes.
+33. `33-los-karatecas.jpg`: *Los karatecas*. Una cabeza de perfil con flechas que le salen del cráneo.
+34. `34-robinson-crusoe.jpg`: *Robinson Crusoe*. Una cabeza barbuda que es una isla, con árboles de colores encima.
 
 ### Prompt A-P · Estilo de personaje (v5, 23 oct)
 

@@ -93,7 +93,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - No mencionar «border», «frame» ni «margin», ni siquiera para prohibirlos: nombrarlo lo provoca. Hay que decirlo en positivo: «the background color runs off all four edges, like a cropped detail of a larger print».
 - Para reforzarlo, empezar el bloque B con «Full-bleed … background, edge to edge» (23 oct: a Potencias le salió un marco crema).
 - Si aun así aparece un marco de papel, es más fiable recortarlo en Photoshop que pelearlo con prompts.
-- **Colores que la edición no consigue quitar** (23 oct, Rigoberto: el beige de la cara de atrás de la cuenta siguió tras editar): los corrige Claude con PIL. Clasifica cada píxel por la tinta más cercana y desplaza el tono intruso hasta la tinta buena, sin perder el grano. Más fiable que insistir con el generador.
+- **Claude no retoca las imágenes** (Jorge, 24 oct, tras un recorte mal hecho de Hortensia): ni recortes, ni colores, ni marcos con PIL, y no lo ofrece. Lo que haya que cambiar se pide al generador con una edición, o lo arregla Jorge en Photoshop. (Antes, el 23 oct, se corrigieron así algunos colores y marcos; ya no.)
 
 **Color**
 - No pedir desajuste de registro en los iconos: el modelo lo convierte en un halo blanco o en una segunda capa de color más oscura, como una sombra. Pedir en su lugar «each shape is exactly one ink, perfectly aligned, never stacked or overlapping».
@@ -116,7 +116,7 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 - **El cartel de referencia se ignora si el bloque B describe otra escena** (23 oct, Hortensia con *En las tinieblas*: del cartel solo se quedó el fondo negro). Jorge: hay que respetar el cartel en concepto y en técnica. Cada bloque B tiene que decir **qué se toma del cartel**: la composición (una cabeza enorme sola), la técnica (rayado de grabado frente a tintas planas), el truco visual (los ojos cambiados por formas de color, el objeto intruso clavado) y el tono.
 - «Brush» o «brushy» en personajes saca pincel seco, con vetas de cerdas, que parece acuarela y no serigrafía (23 oct, Sarria). En serigrafía, una forma hecha a pincel se imprime: borde irregular pero tinta maciza y uniforme por dentro. Se pide así en el A-P v8.
 - **El generador convierte a cualquier guerrillero en el Comandante** (barba, kepi, cara de señor mayor) y les da a todos la misma piel y el mismo pelo (23 oct, Rigoberto v4). En cada personaje hay que decir la edad, «clean-shaven, NO beard» si no la tiene, y una piel y un pelo propios (ver «Pieles y pelo del reparto»).
-- **Todos los prompts llevan siempre** (Jorge, 24 oct): «Full-bleed: no frame, no margin and no border of any kind» y «every shape printed as solid, uniform flat ink… never sketchy, scratchy or dry-brush». Si aun así sale un marco, lo recorta Claude.
+- **Todos los prompts llevan siempre** (Jorge, 24 oct): «Full-bleed: no frame, no margin and no border of any kind» y «every shape printed as solid, uniform flat ink… never sketchy, scratchy or dry-brush». Si aun así sale un marco, se edita en el generador o lo arregla Jorge en Photoshop.
 - **«Follow the poster almost literally» no basta** (24 oct, Hortensia con *Petulia* y Anselmo con *Tres en un sofá*): el generador hace un retrato bonito y genérico. Hay que **describir los recursos formales concretos del cartel**, uno a uno: en *Petulia*, la cara no está dibujada, es el papel que deja el pelo (espacio negativo, sin contorno ni color de piel), el flequillo recto tapa media ceja, los rasgos son pocos, pequeños y flotan, y la cara llega hasta el borde de abajo sin barbilla; en *Tres en un sofá*, la cara es un rectángulo plano y la línea es un contorno azul tembloroso.
 - Un sol con rayos triangulares pegados al disco parece una explosión (23 oct, Culto): hay que pedir un disco claramente redondo y rayos rectos sueltos, «separate short thick bars», cada uno separado del disco por un hueco de fondo.
 - Los objetos que todo el mundo conoce en blanco van en crema (23 oct, Jorge: el bocadillo de diálogo de Censura salió azul y no se reconocía). Entonces el fondo no puede ser crema.
@@ -444,7 +444,7 @@ El generador tiende a poner a todos la misma narizota roja de payaso (Neto, Rigo
 - **Eusebio:** ancha y aplastada.
 - **Mirta y los embajadores:** por decidir, sin repetir forma.
 
-**Colores fuera de la paleta que se corrigen con PIL** (23 oct): la llama del farol de Hortensia salió en un rojo vivo (`#EB341F`) y la mano en un tostado (`#C59A5C`); el marco crema se recorta.
+**Colores fuera de la paleta** (23 oct; entonces se corrigieron con PIL, ya no: ver «Claude no retoca las imágenes»): la llama del farol de Hortensia salió en un rojo vivo (`#EB341F`) y la mano en un tostado (`#C59A5C`); el marco crema se recorta.
 
 ### Hortensia v2 (23 oct): fiel a *En las tinieblas*
 Del cartel se toma: una cabeza enorme sola sobre negro; la técnica mezclada (todo rayado a lo grabado en crema y negro, y solo unas pocas manchas de color plano); el objeto intruso clavado en la cabeza (aquí, un lápiz gigante: la educación como arma); y el tono negro.

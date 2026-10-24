@@ -415,10 +415,12 @@ function medirCartaJuego() {
   const sobra = esc.clientHeight - c.offsetHeight - 90;
   if (sobra > linea) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
+  const lado = ($("barras").querySelector(".icono-fuerza") || {}).offsetWidth || 0;   // los iconos son cuadrados: el menú y los logros se reparten su alto
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
+  if (lado) r.setProperty("--lado-icono", lado + "px");
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
   document.body.classList.add("carta-medida");
 }
@@ -529,7 +531,6 @@ function ponerSalir(tutorial) {
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-sonido").classList.toggle("hidden", tutorial);
   cerrarMenu(); avisoMenu();
-  $("btn-menu").classList.toggle("con-aviso", !tutorial && sinAbrir() > 0);
 }
 function cerrarMenu() {
   $("menu-juego").classList.add("hidden");
@@ -1605,16 +1606,19 @@ function guardarLogros(l) { logrosMem = l; try { localStorage.setItem(CLAVE_LOGR
 const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
 function comprobarLogros(op) {
   const l = logros();
-  const nuevos = LOGROS.filter(g => !l[g.id] && (op.banderas || []).includes(g.bandera));
+  // PROVISIONAL (24 oct, para probarlo rápido): la primera decisión de cada partida da el primer logro si aún no lo tienes
+  const deRegalo = E.turno === E.inicioEra + 1 && E.era === 1 ? LOGROS[0] : null;
+  const nuevos = LOGROS.filter(g => !l[g.id] && ((op.banderas || []).includes(g.bandera) || g === deRegalo));
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
   lanzarSello();
 }
+/* El icono de logros es una estrella a línea; se rellena de amarillo mientras haya logros sin abrir */
 function avisoMenu() {
   const n = sinAbrir();
-  $("btn-menu").classList.toggle("con-aviso", n > 0);
-  $("btn-logros").innerHTML = "Logros" + (n ? ` <span class="aviso-menu">${n} sin abrir</span>` : "");
+  $("btn-logros").classList.toggle("pendiente", n > 0);
+  $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
 }
 /* El sello cae bajo la carta, se queda un momento y vuela al menú */
 function lanzarSello() {
@@ -1631,17 +1635,34 @@ function lanzarSello() {
   s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1.8)", opacity: 0 }, { transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 }],
     { duration: 260, easing: "cubic-bezier(.3,1.6,.6,1)", fill: "both" });
   setTimeout(() => {
-    const a = s.getBoundingClientRect(), m = $("btn-menu").getBoundingClientRect();
+    const a = s.getBoundingClientRect(), m = $("btn-logros").getBoundingClientRect();
     const dx = m.left + m.width / 2 - (a.left + a.width / 2), dy = m.top + m.height / 2 - (a.top + a.height / 2);
     const vuelo = s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 },
       { transform: `translate(calc(-50% + ${dx}px), ${dy}px) rotate(0deg) scale(.12)`, opacity: .6 }],
       { duration: 520, easing: "cubic-bezier(.5,0,.8,.4)", fill: "both" });
     vuelo.onfinish = () => {
       s.remove(); avisoMenu();
-      const b = $("btn-menu"); b.classList.remove("salto"); void b.offsetWidth; b.classList.add("salto");
-      if (navigator.vibrate) navigator.vibrate(25);
+      estallidoEstrella();
+      if (navigator.vibrate) navigator.vibrate([30, 40, 60]);
     };
   }, 1500);
+}
+
+/* La animación de LottieFiles «Star» (assets/lottie/Star-original.json), recoloreada con la paleta (estrella amarilla sin la sombra
+   oscura, contorno en la tinta): nace del contorno de la estrella del menú, hace su pop con aro y chispas, y se encoge hasta
+   quedarse como el icono. Dura 50 fotogramas a 30 por segundo. Sin Lottie o con «reducir movimiento», un saltito. */
+function estallidoEstrella() {
+  const b = $("btn-logros"), g = $("screen-game");
+  b.classList.remove("salto");
+  if (!animar() || !window.lottie) { void b.offsetWidth; b.classList.add("salto"); return; }
+  const r = b.getBoundingClientRect(), caja = g.getBoundingClientRect(), S = 150;
+  const o = document.createElement("div");
+  o.className = "estrella-lottie"; o.style.width = o.style.height = S + "px";
+  o.style.left = (r.left - caja.left + r.width / 2 - S / 2) + "px"; o.style.top = (r.top - caja.top + r.height / 2 - S / 2) + "px";
+  g.appendChild(o); b.classList.add("animando");
+  const an = lottie.loadAnimation({ container: o, renderer: "svg", loop: false, autoplay: true, animationData: ESTRELLA });
+  setTimeout(() => o.animate([{ transform: "scale(1)" }, { transform: `scale(${24 / (S * 0.45)})` }], { duration: 380, easing: "ease-in-out", fill: "forwards" }), 1000);
+  setTimeout(() => { an.destroy(); o.remove(); b.classList.remove("animando"); }, 1400);
 }
 
 /* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
@@ -1658,46 +1679,41 @@ function pintarArchivo() {
   for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
     const g = LOGROS[i], estado = g && l[g.id];
     if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
-    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>Confidencial</span></button>`;
+    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>¡Nuevo!</span></button>`;
     else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
   }
   $("archivo-rejilla").innerHTML = html;
   $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
 }
-/* Un logro a pantalla completa: si está sin abrir, primero el sobre; luego la carta boca abajo; al tocarla, se gira */
+/* Un logro a pantalla completa, con la medida y el sitio de las cartas del juego: arriba el título (que no sale hasta
+   abrirlo), en medio la carta (cuadrada) y debajo la decisión que lo dio. Si está sin abrir, un solo toque abre el sobre
+   y la carta sale ya descubierta. */
 function verLogro(id) {
   const g = LOGROS.find(x => x.id === id), cerrado = !logros()[id].abierto;
   const v = $("archivo-abrir");
-  v.innerHTML = `<div class="sobre-escena${cerrado ? "" : " abierto"}">
-      <div class="logro-carta${cerrado ? "" : " volteada"}"><div class="giro">
-        <div class="logro-dorso" aria-hidden="true">?</div>
-        <div class="logro-cara">
-          <div class="logro-objeto"><span>${esc(g.objeto)}</span></div>
-          <h3 class="logro-titulo">${esc(g.titulo)}</h3>
-          <p class="logro-frase">${esc(g.frase)}</p>
-          <p class="logro-por">Por «${esc(g.decision)}»</p>
-        </div>
-      </div></div>
-      ${cerrado ? '<div class="sobre"><div class="sobre-cuerpo"><span class="sello-conf">Confidencial</span></div><svg class="sobre-solapa" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 46Z"/></svg></div>' : ""}
+  v.className = "logro-vista";
+  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo"></h2></div>
+    <div class="sobre-escena${cerrado ? "" : " ya"}">
+      <div class="logro-carta"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
+      ${cerrado ? '<div class="sobre"><svg class="sobre-solapa" viewBox="0 0 100 52" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 50Z"/></svg><span class="sello-conf">Confidencial</span></div>' : ""}
     </div>
-    <p class="archivo-pista">${cerrado ? "Toca el sobre para abrirlo" : ""}</p>`;
-  v.classList.remove("hidden"); $("archivo").classList.add("viendo");
-  const escena = v.querySelector(".sobre-escena"), carta = v.querySelector(".logro-carta"), pista = v.querySelector(".archivo-pista");
+    <p class="archivo-pista"></p>`;
+  $("archivo").classList.add("viendo");
+  v.style.paddingTop = "";
+  const dy = $("carta").getBoundingClientRect().top - v.querySelector(".sobre-escena").getBoundingClientRect().top;   // la carta, justo donde está la del juego
+  if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
+  const escena = v.querySelector(".sobre-escena"), titulo = v.querySelector(".logro-titulo"), pista = v.querySelector(".archivo-pista");
+  const descubrir = () => { titulo.textContent = g.titulo; pista.textContent = `Por «${g.decision}»`; v.classList.add("abierto"); };
+  if (!cerrado) { descubrir(); return; }
+  pista.textContent = "Toca el sobre para abrirlo";
   escena.addEventListener("click", () => {
-    if (!escena.classList.contains("abierto")) {
-      escena.classList.add("abierto");
-      pista.textContent = "";
-      setTimeout(() => { pista.textContent = "Toca la carta para darle la vuelta"; }, animar() ? 1000 : 0);
-      return;
-    }
-    if (carta.classList.contains("volteada")) return;
-    carta.classList.add("volteada");
-    pista.textContent = "";
+    if (v.classList.contains("abierto")) return;
+    descubrir();
     const l = logros(); l[id].abierto = true; guardarLogros(l);
   });
 }
 $("archivo-cerrar").addEventListener("click", () => {
-  if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); return; }
+  if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
   cerrarArchivo();
 });
 

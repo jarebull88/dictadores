@@ -107,7 +107,7 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 
 /* — CUERPO — */
 /* la pregunta: negrita, 19 px */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input { font-size: var(--c-pregunta); line-height: 1.28; font-weight: 700; }
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema { font-size: var(--c-pregunta); line-height: 1.28; font-weight: 700; }
 /* la respuesta al arrastrar: negrita, grande */
 .texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: 700; }
 /* texto corrido: 16 px */
@@ -120,6 +120,8 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 .dictador b, .dictador small, .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
 .dictador b, .alerta, .popup .etiqueta-pop { font-weight: 700; }
+/* portada: «Cómo se juega», en cuerpo, como acción secundaria */
+.opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: 700; line-height: 1.4; }
 /* — CURSIVA — */
 .logro-escribe { font-family: var(--f-cursiva); font-size: var(--t-cursiva); font-weight: 400; line-height: 1.6; text-transform: none; letter-spacing: 0; }
 .alerta { line-height: 1; }
@@ -189,22 +191,22 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 #screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { color: var(--rojo-marcador); }
 
 /* Pantalla del nombre: «Comandante» y el campo centrados, sin contorno, sobre papel beige */
-/* Portada: el logo y, debajo, las tres opciones como texto */
-.portada { justify-content: center; align-items: center; gap: 34px; text-align: center; }
+/* Portada (24 oct): el cartel del juego. Título arriba, el lema, el sillón y las dos opciones; el fondo, del crema
+   exacto del cartel, y sus bordes se funden con él para que no se note dónde acaba la imagen en ninguna pantalla. */
+.portada { justify-content: center; align-items: center; gap: 0; text-align: center; background: #F2E4C2; }
+body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .portada .logo { margin: 0; width: min(100%, 400px); }
-.logo-texto { display: grid; justify-items: center; transform: rotate(-3deg); }
-.logo-texto > span { }
-.logo-texto > span + span { }   /* la orden manda: «¡ORDENE!» va más grande */
-.logo-texto i { font-style: normal; }
-/* 17 oct: la escena del triunfo, pegada abajo y de lado a lado de la pantalla; logo y botón quedan centrados encima */
-.portada { justify-content: flex-end; padding-bottom: calc(min(var(--alto-escena, 96vw), 50vh) + 5vh); }   /* logo y botón, justo encima de la gente */
-.escena-portada { position: fixed; left: 0; right: 0; bottom: 0; pointer-events: none; }
-.escena-portada svg { display: block; width: 100%; height: auto; max-height: 50vh; }
-.escena-portada .escena-ancha { display: none; }
-@media (min-width: 700px) {
-  .portada { padding-bottom: calc(min(39vw, 45vh) + 7vh); }
-  .escena-portada .escena-movil { display: none; }
-  .escena-portada .escena-ancha { display: block; width: 100%; height: min(45vh, calc(100vw * 663 / 1700)); max-height: none; }   /* entera, centrada abajo */
+.logo-texto { display: grid; justify-items: center; }
+.logo-texto > span:first-child { color: var(--p-tinta); }
+.logo-texto > span + span { color: var(--p-rojo); }
+.lema { margin: 6px 0 0; color: var(--p-tinta); }
+.cartel-portada {
+  display: block; width: min(92vw, 52vh, 560px); aspect-ratio: 1; margin: 1vh 0;
+  /* solo el filo se funde con el fondo (un 3 %), para no tocar las patas del sillón */
+  -webkit-mask: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(transparent, #000 3%, #000 97%, transparent);
+  -webkit-mask-composite: source-in;
+  mask: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(transparent, #000 3%, #000 97%, transparent);
+  mask-composite: intersect;
 }
 .menu-portada { display: grid; justify-items: center; gap: 0; }
 .opcion-portada {
@@ -470,17 +472,6 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
-/* Brillo del farol (16 oct): la luz respira y parpadea un poco, como una llama */
-.personaje .brillo { mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; animation: llama 2.6s ease-in-out infinite; }
-@keyframes llama {
-  0%, 100% { opacity: .55; transform: scale(.92); }
-  18%      { opacity: .85; transform: scale(1.04); }
-  31%      { opacity: .7;  transform: scale(.98); }
-  52%      { opacity: 1;   transform: scale(1.08); }
-  70%      { opacity: .65; transform: scale(.95); }
-}
-.personaje .brillo.halo { mix-blend-mode: normal; animation-delay: -.4s; }   /* la luz que cae alrededor: tiñe de amarillo también lo blanco */
-@media (prefers-reduced-motion: reduce) { .personaje .brillo { animation: none; opacity: .75; } }
 .personaje .ojos { fill: var(--ojo, #161618); animation: mirar 7s ease-in-out infinite; }
 @keyframes mirar {
   0%, 14%   { transform: translate(0, 0); }
@@ -654,13 +645,12 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 }
 
 /* 23 oct: sin vetas de rotulador; letra de color plano */
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .logo-texto > span { color: var(--p-tinta); }
+.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .logo-texto > span:first-child { color: var(--p-tinta); }
 /* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
 .ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
 .ficha-cab .foto-grapada { margin-bottom: 0; }
 .ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; min-width: 0; flex: 1; }
 .ficha-nombre span { display: block; white-space: nowrap; }
-.logo-texto i { color: var(--p-mostaza); }   /* los signos, en amarillo mostaza */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
 
 /* =====================================================================================================

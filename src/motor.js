@@ -1605,7 +1605,9 @@ function guardarLogros(l) { logrosMem = l; try { localStorage.setItem(CLAVE_LOGR
 const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
 function comprobarLogros(op) {
   const l = logros();
-  const nuevos = LOGROS.filter(g => !l[g.id] && (op.banderas || []).includes(g.bandera));
+  // PROVISIONAL (24 oct, para probarlo rápido): la primera decisión de cada partida da el primer logro si aún no lo tienes
+  const deRegalo = E.turno === E.inicioEra + 1 && E.era === 1 ? LOGROS[0] : null;
+  const nuevos = LOGROS.filter(g => !l[g.id] && ((op.banderas || []).includes(g.bandera) || g === deRegalo));
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);

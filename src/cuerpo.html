@@ -28,6 +28,12 @@
   <section id="screen-game" class="screen hidden">
     <div class="cabecera">
       <div class="barras" id="barras"></div>
+      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><svg viewBox="0 0 20 18" aria-hidden="true"><path d="M0 0h20v3H0zM0 7.5h20v3H0zM0 15h20v3H0z"/></svg></button>
+      <div class="menu-juego hidden" id="menu-juego" role="menu">
+        <button class="opcion-menu" id="btn-logros" type="button" role="menuitem">Logros</button>
+        <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
+        <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
+      </div>
     </div>
     <div class="mensaje" id="mensaje"></div>
     <div class="escenario">
@@ -38,7 +44,6 @@
       <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
     </div>
-    <button class="abandonar" id="btn-salir" type="button">Abandonar partida</button>
     <div class="popup hidden" id="popup" role="dialog"></div>
   </section>
 

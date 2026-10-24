@@ -522,6 +522,17 @@ function pintarRanuras() {
 
 let temporizadorPopup = null;
 /* Color pastel claro de cada ventana: uno por fuerza; los estados, su cartulina aclarada */
+/* 24 oct: el menú de arriba a la derecha. En el tutorial solo trae «Saltar tutorial»; en la partida, logros, sonido y abandonar */
+function ponerSalir(tutorial) {
+  $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
+  $("btn-logros").classList.toggle("hidden", tutorial);
+  $("btn-sonido").classList.toggle("hidden", tutorial);
+  cerrarMenu();
+}
+function cerrarMenu() {
+  $("menu-juego").classList.add("hidden");
+  $("btn-menu").setAttribute("aria-expanded", "false");
+}
 const COLOR_POPUP = { pueblo: "#F1D3CB", ejercito: "#F5E3B8", elite: "#E3E0C3", potencias: "#CFDCEF" };   // 23 oct: tintes claros de la paleta   // muy claros: se lee mejor
 function colorPopup(clave) {
   const [tipo, id] = clave.split("-");
@@ -591,7 +602,14 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 function ajustarFicha(carta = $("carta")) {
   const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
-  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
+  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
+  /* el nombre ocupa todo el sitio junto a la foto: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
+  const nom = h.querySelector(".ficha-nombre");
+  if (nom) {
+    let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
+    const ancho = () => Math.max(...[...nom.children].map(c => c.scrollWidth));
+    while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
+  }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
   for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
   for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
@@ -622,7 +640,10 @@ function fichaPersonaje(cargo) {
 function dorsoFicha(f) {
   // 21 oct: la foto de carné, pegada con un trozo de cinta de carrocero
   const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="cinta-foto" aria-hidden="true"></i></div>` : "";
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+  // 24 oct: nombre en dos líneas (nombre y apellido), al lado de la foto
+  const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
+  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${foto}${nombre}</div>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }
@@ -702,7 +723,7 @@ function empezar() {
   nuevaPartida();
   construirBarras();
   $("barras").classList.remove("apagadas");
-  $("btn-salir").textContent = "Abandonar partida";
+  ponerSalir(false);
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
@@ -744,10 +765,16 @@ function entrarCarta(carta) {
     return;
   }
   vigilarReposo();
+  carta.classList.remove("cogida");
+  /* 24 oct: la carta se pone boca abajo de golpe (sin transición) y luego da la vuelta. Antes dependía de que el reverso
+     fuera un elemento recién creado; ahora es explícito, igual que en entrarNombre(), y no se pierde si algo mide la carta antes. */
+  const giro = carta.querySelector(".giro");
+  if (giro) giro.style.transition = "none";
   carta.classList.add("revelando", "boca-abajo");
   // La pregunta (o la frase del estado) sale justo cuando se descubre la carta, a mitad de la vuelta
   const msg = $("mensaje"); msg.classList.add("oculto");
   void carta.offsetWidth;
+  if (giro) giro.style.transition = "";
   if (document.querySelector("#screen-game .escenario.repartiendo")) return;    // el reparto le da la vuelta al terminar
   carta.style.transition = "";
   carta.classList.remove("boca-abajo");
@@ -1166,7 +1193,7 @@ function empezarTutorial() {
   colorReverso(1);
   medirCartaJuego();
   pintarBarras(); pintarRanuras();
-  $("btn-salir").textContent = "Saltar tutorial";
+  ponerSalir(true);
   $("carta").classList.remove("hidden", "listo", "volteada");
   if (animar()) { pasoTutorial(0, true); repartir(); } else pasoTutorial(0);
 }
@@ -1269,7 +1296,7 @@ function terminarTutorial() {
   clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
-  $("btn-salir").textContent = "Abandonar partida";
+  ponerSalir(false);
   irANombre();
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
@@ -1377,8 +1404,15 @@ function arrastrable(carta, op) {
   function volver() {
     marcarListo(false);
     bajarPistas(0);
+    carta.classList.remove("cogida");
     carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
+  }
+  function coger() {
+    if (!drag || carta.classList.contains("cogida")) return;
+    clearTimeout(drag.cogida);
+    carta.style.transition = "scale .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
+    carta.classList.add("cogida");                // crece algo más al arrastrar (ver estilos.css)
   }
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
@@ -1387,6 +1421,9 @@ function arrastrable(carta, op) {
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
     carta.style.transition = "none";
+    /* 24 oct: el zoom (se despega del mazo) es solo si la SUJETAS: pasados 150 ms con el dedo puesto, o en cuanto se
+       arrastra. Un toque seco no hace zoom: solo gira la carta. */
+    drag.cogida = setTimeout(coger, 150);
     ocultarInfo();
   });
   // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)
@@ -1407,6 +1444,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
+    if (Math.abs(drag.dx) > 6) coger();
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
@@ -1416,6 +1454,7 @@ function arrastrable(carta, op) {
   function soltar(e) {
     if (!drag) return;
     const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    clearTimeout(drag.cogida);
     drag = null;
     arrastrando = false;
     if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(dx) < 30)) op.toque(); return; }
@@ -1427,6 +1466,7 @@ function arrastrable(carta, op) {
   }
   function cancelar() {
     if (!drag) return;
+    clearTimeout(drag.cogida);
     drag = null; arrastrando = false; volver();
   }
   carta.addEventListener("pointerup", soltar);
@@ -1570,9 +1610,22 @@ document.addEventListener("keydown", e => {
 });
 document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
+  if (!e.target.closest("#menu-juego, #btn-menu")) cerrarMenu();
 });
 
-$("btn-salir").addEventListener("click", () => { if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-menu").addEventListener("click", () => {
+  const abierto = $("menu-juego").classList.toggle("hidden") === false;
+  $("btn-menu").setAttribute("aria-expanded", String(abierto));
+});
+$("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+for (const [id, titulo, texto] of [
+  ["btn-logros", "Logros", "Muy pronto: tus carnés, los retos de cada era y la historia real de cada carta."],
+  ["btn-sonido", "Sonido", "Muy pronto: música y sonidos, y aquí podrás quitarlos."],
+]) $(id).addEventListener("click", ev => {
+  ev.stopPropagation();
+  cerrarMenu();
+  abrirPopup(id, `<b>${titulo}</b><span>${texto}</span>`, $("btn-menu"), 4500);
+});
 // 17 oct: el tutorial ya no es obligatorio, ni la primera vez: «Cómo se juega» está siempre en la portada
 $("btn-comenzar").addEventListener("click", irANombre);
 

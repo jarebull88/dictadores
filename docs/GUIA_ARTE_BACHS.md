@@ -579,3 +579,11 @@ Mismo estilo que la era 1 (el Comandante en el centro y una melena simétrica qu
 - **Era 3 · El Culto** (mostaza y rojo ladrillo): muy gordo y de barba blanca, boca de discurso; la melena son sus medallas, estrellas y charreteras, en anillos como los rayos de un sol.
 - **Era 4 · La Supervivencia** (rojo y mostaza): viejo y flaco, calvo, con gafas y chándal; la melena son manos arrugadas que se aferran a los brazos de un sillón presidencial.
 Los tres prompts están en la conversación del 24 oct; al cambiarlos, se copian aquí.
+
+### Reversos v4, las cuatro eras (24 oct)
+Jorge: las cuatro primeras parecían vector e ilustración digital, no la serigrafía dibujada a mano del león; la 2 y la 3 llevaban el círculo del medallón y la 1 no; la 4 inventó a un señor realista; en la 2 el reloj y las caras salieron mal. Correcciones:
+- **Técnica del cartel 28:** contorno negro grueso y tembloroso a mano en todo, rizos a mano y todos distintos, tintas planas algo desplazadas de la línea, grano de papel. La línea negra entra como tercera tinta (sube algo el contraste, pero sin ella no hay homenaje).
+- **El medallón** (un círculo dibujado a mano alrededor de la cara) en las cuatro; ningún marco en los bordes.
+- **El mismo muñeco en las cuatro:** la cara sencilla del león (ojos redondos con punto, mofletes redondos), envejeciendo; nunca una cara realista.
+- **Era 2:** sin reloj; los hombres, tan simples como un rizo (una kepi y dos puntos).
+- Orden: primero la era 1 nueva; luego, las otras tres con el cartel 28 y la era 1 nueva como referencias. Los prompts, en la conversación del 24 oct.

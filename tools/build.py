@@ -4,7 +4,7 @@
     python3 tools/build.py
 
 Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
-(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), la escena de la portada, las texturas de cartulina (assets/fondos/web/) y las fuentes
+(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), el cartel de la portada, las texturas de cartulina (assets/fondos/web/) y las fuentes
 (Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
 import base64, json, pathlib, sys
@@ -30,19 +30,19 @@ def iconos():
            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
     return img
 
-def portada():
-    """Escena del triunfo de la portada (17 oct): versión ancha y de móvil, con la posición de ojos y farol."""
-    info = json.loads(leer("assets/portada/escena.json"))
-    for v, d in info.items():
-        d["src"] = datos_uri(f"assets/portada/recortados/escena-{v}.webp", "image/webp")
-    return info
+def reversos():
+    """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
+    return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
+            for f in sorted((RAIZ / "assets/reversos").glob("era-*.webp"))}
 
 def fuentes():
     css = ""
-    for familia, archivo, peso in (("Courier Prime", "courier-prime-latin-400-normal", 400),   # 14 oct: se probó Iosevka y se volvió a estas
-                                   ("Courier Prime", "courier-prime-latin-700-normal", 700),
-                                   ("Special Elite", "special-elite-latin-400-normal", 400),
-                                   ("Permanent Marker", "permanent-marker-latin-400-normal", 400)):   # 15 oct: letra a mano (rotulador) para títulos y cintas
+    for familia, archivo, peso in (("Baloo 2", "baloo-2-latin-400-normal", 400),   # 23 oct: texto (antes Courier Prime, que sigue en assets/fuentes)
+                                   ("Baloo 2", "baloo-2-latin-700-normal", 700),
+                                   # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
+                                   # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
+                                   ("Londrina Solid", "londrina-solid-latin-400-normal", 400),
+                                   ("Playwrite IT Moderna", "playwrite-it-moderna-latin-400-normal", 400)):   # 23 oct: caligráfica (Playwrite Italia), instalada para usarla más adelante   # 23 oct: letra recortada a mano, como los carteles cubanos
         datos = base64.b64encode((RAIZ / f"assets/fuentes/{archivo}.woff2").read_bytes()).decode()
         css += ('@font-face { font-family: "%s"; font-style: normal; font-weight: %d; font-display: swap; '
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))
@@ -56,8 +56,7 @@ def texturas():
         if f"var(--tex-{f.stem})" not in estilos:
             continue                      # solo se incrustan las texturas que usan los estilos
         css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/jpeg")});\n'
-    for f in sorted((RAIZ / "assets/fondos/desgaste").glob("*.webp")):   # 21 oct: desgaste de los cartones (del EPS de Jorge)
-        css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/webp")});\n'
+    # 23 oct: los desgastes (assets/fondos/desgaste) ya no se incrustan: cartas de color plano
     return css + "}\n"
 
 def main():
@@ -68,15 +67,16 @@ def main():
     activos = ('<script>\n/* Personajes e iconos de papel recortado (WebP con transparencia, incrustados) */\nconst RETRATOS = '
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
-               + leer("assets/iconos/escenas.json").strip() + ';\nconst PORTADA = '
-               + json.dumps(portada(), ensure_ascii=False) + ';\n</script>\n')
+               + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
+               + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
+               + json.dumps(reversos()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#ECE9E1">
+<meta name="theme-color" content="#F0E9D6">
 <title>¡Comandante, ordene!</title>
 <style>
 {css}</style>

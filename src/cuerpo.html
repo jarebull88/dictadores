@@ -1,12 +1,14 @@
 <div id="app">
 
   <section id="screen-start" class="screen portada">
+    <!-- 24 oct: la portada es el cartel del juego (el sillón vacío, homenaje a «Cría cuervos» de Bachs); el título y los botones van en texto -->
     <h1 class="logo" id="logo"><span class="solo-lector">Comandante, ¡ordene!</span></h1>
+    <p class="lema">La Revolución eres tú</p>
+    <img class="cartel-portada" id="cartel-portada" alt="" draggable="false">
     <nav class="menu-portada">
       <button class="opcion-portada principal" id="btn-comenzar" type="button">Comenzar partida</button>
       <button class="opcion-portada secundaria" id="btn-repasar" type="button">Cómo se juega</button>
     </nav>
-    <div class="escena-portada" id="escena-portada" aria-hidden="true"></div>
   </section>
 
   <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
@@ -35,11 +37,22 @@
       <div class="carta" id="carta" role="group" aria-label="Carta de decisión"></div>
     </div>
     <div class="pie-juego">
-      <div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small></div>
+      <div class="zona-nombre"><div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small></div><div class="logro-escribe" id="logro-escribe" aria-live="polite"></div></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
+      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><i></i><i></i><i></i></button>
+      <div class="menu-juego hidden" id="menu-juego" role="menu">
+        <button class="opcion-menu" id="btn-logros" type="button" role="menuitem">Logros</button>
+        <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
+        <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
+      </div>
     </div>
-    <button class="abandonar" id="btn-salir" type="button">Abandonar partida</button>
     <div class="popup hidden" id="popup" role="dialog"></div>
+    <!-- 24 oct: el archivo de logros, por encima de la partida (que espera debajo) -->
+    <div class="archivo hidden" id="archivo" role="dialog" aria-label="Logros">
+      <div class="archivo-cab"><h2 class="titulo archivo-titulo">Logros</h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
+      <div class="archivo-rejilla" id="archivo-rejilla"></div>
+      <div class="logro-vista hidden" id="archivo-abrir"></div>
+    </div>
   </section>
 
   <section id="screen-era" class="screen pantalla-carta hidden">

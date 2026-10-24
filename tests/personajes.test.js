@@ -1,13 +1,14 @@
-// Personajes de papel recortado: ojos que se mueven solos, el humo del puro en los que fuman y la ilustración entera.
+// Personajes (23 oct): carteles al estilo Bachs, sin ojos animados; solo el papel recortado que queda (dictador, etapas 2–4) los lleva.
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar } = require("./_juego");
 
-test("cada personaje tiene dos ojos animados y ninguna otra animación", () => {
+test("los carteles no llevan ojos por código; el papel recortado, dos ojos animados; ninguna otra animación", () => {
   const j = cargar(); j.empezar();
   const retratos = j.w.eval("RETRATOS");
   for (const slug of Object.keys(retratos)) {
     j.d.querySelector("#carta").innerHTML = j.w.eval(`svgPersonaje("${slug}")`);
     const ojos = j.d.querySelector("#carta .ojos");
+    if (!retratos[slug].ojos) { assert.equal(ojos, null, `«${slug}» es un cartel: no debería llevar ojos`); continue; }
     assert.equal(ojos.querySelectorAll("circle").length, 2, `«${slug}» no tiene dos ojos`);
     assert.match(ojos.getAttribute("style") || "", /animation-delay/, `los ojos de «${slug}» no tienen desfase`);
     assert.ok(!j.d.querySelector("#carta .animacion"), `«${slug}» no debería tener animación (16 oct: fuera el humo)`);

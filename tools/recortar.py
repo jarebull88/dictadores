@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Recorta el croma verde de los personajes, los dibujos, las escenas y la escena de la portada.
+"""Recorta el croma verde de lo que queda de papel (dictador 2–4, escenas, reverso) y reduce los carteles nuevos.
 
     python3 tools/recortar.py            # todo
-    python3 tools/recortar.py personajes # assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp
-    python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp
+    python3 tools/recortar.py carteles   # 23 oct: personajes e iconos al estilo Bachs (sin croma): reducir y pasar a WebP
+                                         #   assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp (720 px)
+                                         #   assets/iconos/originales/cartel-<id>.jpg -> recortados/<id>-cartel.webp (144 px)
+    python3 tools/recortar.py personajes # papel recortado con croma: solo lo que queda (dictador, etapas 2–4)
+    python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp (ya solo el reverso)
     python3 tools/recortar.py escenas    # assets/iconos/originales/escena-<id>.jpg -> recortados/<id>-escena.webp (+ escenas.json)
     python3 tools/recortar.py fondos     # assets/fondos/*.jpg -> fondos/web/ (versiones ligeras)
-    python3 tools/recortar.py portada    # assets/portada/originales/ -> portada/recortados/ (+ escena.json)
+                                         #   assets/portada/cartel.jpg -> cartel.webp (24 oct: el cartel del juego, el sillón vacío)
 
 El recorte sigue docs/PIPELINE_PERSONAJES.md: alfa en rampa (no umbral binario), se descartan islas
 sueltas y se quita el rebote verde del borde. Necesita numpy, scipy y Pillow.
@@ -44,13 +47,13 @@ def alfa_croma(a, isla_min):
 
 # Croma por tono (16 oct): algunos fondos salen verde azulado y en degradado (oscuro abajo), y «cuánto domina el verde»
 # no basta. Aquí también se quita lo que tenga tono verde-turquesa y bastante saturación. Solo en estos personajes.
-CROMA_TONO = {"economia", "educacion"}
+CROMA_TONO = set()   # 23 oct: economia y educacion ya son carteles
 # Despill fuerte (16 oct): el verde que queda se lleva del todo a gris. Comercio: las sombras verdes entre los rizos
 # del pelo pasan a sombra gris oscura, que se lee como pelo.
-DESPILL_FUERTE = {"comercio"}
+DESPILL_FUERTE = set()   # 23 oct: comercio ya es un cartel
 # Zonas que el croma por tono no debe agujerear (x0, y0, x1, y1 en coordenadas del recorte de 900 px): dentro se rellenan
 # los huecos de la silueta. Economía: los brillos de los frijoles del cucurucho, que reflejan el verde.
-PROTEGER = {"economia": [(540, 845, 665, 960)]}
+PROTEGER = {}   # 23 oct: economia ya es un cartel
 
 
 def alfa_tono(a, tono_max=175, croma_min=28):
@@ -93,7 +96,7 @@ def mascara_piel(rgba, ojos):
 
 # Caras con la luz desigual en la foto (16 oct: la barbilla de Hortensia salía sombreada): se iguala el brillo de la
 # piel de la cabeza al tono de la frente, para que la cara sea una sola pieza de papel liso.
-IGUALAR_CARA = {"educacion"}
+IGUALAR_CARA = set()   # 23 oct: educacion ya es un cartel
 
 
 def igualar_cara(out, slug):
@@ -197,15 +200,7 @@ def aligerar_fondos(carpeta):
 # Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
 # «principal» = quedarse solo con los trazos grandes (fuera garabatos sueltos de las esquinas).
 DIBUJO_AJUSTES = {"reverso": {"lado": 800}}   # el reverso de las cartas (14 oct) ocupa la carta entera: más resolución
-# Iconos de estado (16 oct): se dibujan en carbón y aquí se tiñe la tinta de un color oscuro propio de cada estado
-# (el tono de su cartulina, mucho más oscuro). Nunca rojo: el rojo es para las alertas.
-COLOR_ESTADO = {"luna": "#8E2A5E", "censura": "#6B3A1E", "vigilancia": "#1F5F5B", "culto": "#8A6417",
-                "alineado": "#3D4F7A", "embargo": "#2F4858", "frontera": "#3E5B2A", "deuda": "#5C4A1C",
-                "nacionalizado": "#1F4E6B"}
-for _id, _c in COLOR_ESTADO.items():
-    DIBUJO_AJUSTES[_id] = {"color": _c}
-DIBUJO_AJUSTES["elite"] = {"color": "#6B1A1A"}   # 21 oct: el Partido, una estrella a rotulador en rojo oscuro (más apagado que el rojo de las alertas)
-DIBUJO_AJUSTES["pueblo"] = {"color": "#7A5416"}  # 21 oct: el Pueblo pasa a ocre oscuro (el rojo, para el Partido)
+# 23 oct: los iconos de fuerzas y estados ya son carteles (comando «carteles»); de los dibujos solo queda el reverso.
 
 
 def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, color=None):
@@ -308,90 +303,35 @@ def recortar_escena(entrada, salida, marcos):
     return out.size, datos
 
 
-# 17 oct: la escena del triunfo de la portada (como la foto de la entrada en la capital). Las figuras con el puño en
-# alto están en assets/portada/originales/; se recortan por croma y se componen en dos versiones: «ancha» (escritorio,
-# los cinco en fila) y «movil» (más juntos). Los ojos y el brillo del farol no se pintan: van en escena.json para que
-# el juego los ponga por encima (los ojos miran a los lados como en las cartas).
-# Cada figura: (archivo, slug de personajes.json para los ojos o None, escala, centro x, borde de abajo); orden = de atrás a delante.
-OJOS_FUSIL = {"izq": [415, 261], "der": [505, 261], "r": 9}   # el Comandante con fusil, en coordenadas de 900 de ancho
-PORTADA = {
-    "ancha": ((3400, 1500), [("educacion-puno", "educacion", 0.513, 500, 80), ("cultura-puno", "cultura", 0.513, 2900, 80),
-                             ("comercio-puno", "comercio", 0.532, 1110, 60), ("economia-puno", "economia", 0.532, 2280, 60),
-                             ("dictador-joven-fusil", None, 0.68, 1700, 70)]),
-    "movil": ((2400, 1500), [("educacion-puno", "educacion", 0.47, 520, 40), ("cultura-puno", "cultura", 0.47, 1880, 40),
-                             ("comercio-puno", "comercio", 0.50, 690, 70), ("economia-puno", "economia", 0.50, 1710, 70),
-                             ("dictador-joven-fusil", None, 0.66, 1200, 70)]),
-}
-# 17 oct: en el móvil solo se ve el centro («ventana», en px del lienzo compuesto) y los de los lados quedan cortados: así el
-# Comandante sale del tamaño de su carta (la carta enseña el dibujo a un 80 % del ancho de la pantalla).
-VENTANA_PORTADA = {"movil": 1344}
-ESCALA_PORTADA = 0.5   # el lienzo se compone a tamaño grande y se guarda a la mitad
+LADO_CARTEL_PERSONAJE, LADO_CARTEL_ICONO = 720, 144
 
 
-def recortar_figura(f):
-    a = np.array(Image.open(f).convert("RGB")).astype(float)
-    alpha, _ = alfa_croma(a, 8000)
-    alpha = np.minimum(alpha, alfa_tono(a))
-    fg = alpha > 0.5
-    lab, n = ndi.label(fg)
-    tam = ndi.sum(fg, lab, range(1, n + 1))
-    keep = np.isin(lab, [i + 1 for i, t in enumerate(tam) if t > 8000])
-    alpha = np.where(ndi.binary_dilation(keep, iterations=3), alpha, 0)
-    g2 = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) + 6)
-    return Image.fromarray(np.dstack([a[..., 0], g2, a[..., 2], alpha * 255]).astype(np.uint8))
-
-
-def componer_portada():
-    org, dst = RAIZ / "assets/portada/originales", RAIZ / "assets/portada/recortados"
-    dst.mkdir(parents=True, exist_ok=True)
-    mapa = json.loads((RAIZ / "assets/personajes/personajes.json").read_text())
-    figs = {f.stem: recortar_figura(f) for f in sorted(org.glob("*.jpg"))}
-    info = {}
-    for version, ((W, H), lista) in PORTADA.items():
-        lienzo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        ojos, brillo, capas = [], None, []
-        for nombre, slug, s, cx, bajo in lista:
-            im = figs[nombre]
-            t = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
-            x0, y0 = round(cx - t.width / 2), round(H + bajo - t.height)
-            lienzo.alpha_composite(t, (x0, y0)) if x0 >= 0 and y0 >= 0 else lienzo.paste(t, (x0, y0), t)
-            k = s * im.width / 900                       # de coordenadas de carta (900 de ancho) al lienzo
-            o = mapa[slug]["ojos"] if slug else OJOS_FUSIL
-            ojos.append({"x": x0, "y": y0, "k": k, "ojos": o})
-            capas.append((np.array(t)[..., 3], x0, y0))
-            if slug == "educacion":                      # el farol: su luz amarilla, buscada por color
-                px = np.array(t).astype(int)
-                m = (px[..., 0] > 200) & (px[..., 1] > 170) & (px[..., 2] < 120) & (px[..., 3] > 200)
-                ys, xs = np.nonzero(m)
-                brillo = {"x": x0 + xs.mean(), "y": y0 + ys.mean(), "r": 240 * k}
-            bb = Image.fromarray(np.array(t)[..., 3]).getbbox()
-            if x0 + bb[0] < 0 or x0 + bb[2] > W:
-                print(f"  aviso: {nombre} se sale por un lado en «{version}»")
-        # un ojo tapado por una figura de delante no se pinta (si no, flotaría encima de la otra cara)
-        for i, o in enumerate(ojos):
-            for lado in ("izq", "der"):
-                ex, ey = o["x"] + o["ojos"][lado][0] * o["k"], o["y"] + o["ojos"][lado][1] * o["k"]
-                for al, ax, ay in capas[i + 1:]:
-                    yy, xx = int(ey - ay), int(ex - ax)
-                    if 0 <= yy < al.shape[0] and 0 <= xx < al.shape[1] and al[yy, xx] > 128:
-                        o["ojos"] = {**o["ojos"], lado: None}; break
-        arriba = max(0, lienzo.getbbox()[1] - 30)        # fuera el aire de encima del fusil
-        lienzo = lienzo.crop((0, arriba, W, H))
-        e = ESCALA_PORTADA
-        out = lienzo.resize((round(W * e), round((H - arriba) * e)), Image.LANCZOS)
-        out.save(dst / f"escena-{version}.webp", "WEBP", quality=86, method=6)
-        info[version] = {"ancho": out.width, "alto": out.height, "ventana": round(VENTANA_PORTADA.get(version, W) * e),
-                         "ojos": [{"x": round(o["x"] * e, 1), "y": round((o["y"] - arriba) * e, 1), "k": round(o["k"] * e, 4), **o["ojos"]} for o in ojos],
-                         "brillo": {"x": round(brillo["x"] * e), "y": round((brillo["y"] - arriba) * e), "r": round(brillo["r"] * e)}}
-        print(f"portada {version}: {out.width}×{out.height}, {(dst / f'escena-{version}.webp').stat().st_size // 1024} KB")
-    (RAIZ / "assets/portada/escena.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
+def reducir_cartel(entrada, salida, lado, calidad):
+    """Carteles al estilo Bachs (23 oct): imagen cuadrada con su fondo, sin croma; solo se reduce."""
+    Image.open(entrada).convert("RGB").resize((lado, lado), Image.LANCZOS).save(salida, quality=calidad)
 
 
 def main():
     que = sys.argv[1] if len(sys.argv) > 1 else "todo"
+    personajes = json.loads((RAIZ / "assets/personajes/personajes.json").read_text())
+    if que in ("todo", "carteles"):
+        for slug, p in personajes.items():
+            if "ojos" not in p:     # sin ojos por código = cartel
+                reducir_cartel(RAIZ / f"assets/personajes/originales/{slug}.jpg", RAIZ / f"assets/personajes/recortados/{slug}.webp", LADO_CARTEL_PERSONAJE, 86)
+                print(f"cartel {slug}")
+        reducir_cartel(RAIZ / "assets/portada/cartel.jpg", RAIZ / "assets/portada/cartel.webp", 900, 86)   # la portada
+        print("cartel portada")
+        for f in sorted((RAIZ / "assets/reversos").glob("era-*.jpg")):     # 24 oct: reversos de las cartas, uno por era
+            reducir_cartel(f, f.with_suffix(".webp"), 600, 86)
+            print(f"reverso {f.stem}")
+        for f in sorted((RAIZ / "assets/iconos/originales").glob("cartel-*.jpg")):
+            reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{f.stem[len('cartel-'):]}-cartel.webp", LADO_CARTEL_ICONO, 88)
+            print(f"icono {f.stem}")
     if que in ("todo", "personajes"):
         dst = RAIZ / "assets/personajes/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for f in sorted((RAIZ / "assets/personajes/originales").glob("*.jpg")):
+            if "ojos" not in personajes.get(f.stem, {}):
+                continue            # los carteles no pasan por el croma
             w, h = recortar_personaje(f, dst / f"{f.stem}.webp")
             print(f"personaje {f.stem}: {w}×{h}, {(dst / f'{f.stem}.webp').stat().st_size // 1024} KB")
     if que in ("todo", "dibujos"):
@@ -411,8 +351,6 @@ def main():
         (RAIZ / "assets/iconos/escenas.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
     if que in ("todo", "fondos"):
         aligerar_fondos(RAIZ / "assets/fondos")
-    if que in ("todo", "portada"):
-        componer_portada()
 
 
 if __name__ == "__main__":

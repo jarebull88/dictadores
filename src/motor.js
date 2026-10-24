@@ -112,9 +112,9 @@ for (const id in ESTADOS) {
 const MAX_RANURAS = 4;
 
 /* =====================================================
-   PERSONAJES: manualidades de papel recortado (RETRATOS, incrustado por tools/build.py desde
-   assets/personajes/personajes.json). La imagen no tiene ojos: se pintan por código y
-   miran a un lado y a otro solos (animación CSS «mirar»). Ver docs/PIPELINE_PERSONAJES.md.
+   PERSONAJES (23 oct): carteles cuadrados al estilo Muñoz Bachs (RETRATOS, incrustado por tools/build.py desde
+   assets/personajes/personajes.json); cada uno, homenaje a un cartel (docs/GUIA_ARTE_BACHS.md). Sin ojos animados:
+   la ilustración es la que es. Solo las etapas 2–4 del dictador siguen siendo de papel recortado, con sus ojos pintados por código.
    ===================================================== */
 const PERSONAJE_SLUG = {
   "Vicepresidente del Consejo de Ministros": "vicepresidente",
@@ -140,49 +140,32 @@ const GRUPO_DE = {
 };
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
-/* Iconos de fuerzas y estados: dibujos a rotulador (assets/iconos/originales/dibujo-*.jpeg → «<id>-dibujo»), sin sombra:
-   están pintados en la cartulina */
+/* Iconos de fuerzas y estados (23 oct): carteles serigrafiados cuadrados, con su fondo de color
+   (assets/iconos/originales/cartel-*.jpg → «<id>-cartel»). */
 const icono = (id, clase = "") => {
-  const img = IMG["icono_" + id + "-dibujo"];
-  return img ? `<img class="${["icono", "dibujo", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
+  const img = IMG["icono_" + id + "-cartel"];
+  return img ? `<img class="${["icono", "cartel", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
-/* 21 oct: todas las cartas, del mismo cartón neutro (assets/fondos/carton.jpg), con uno de los cuatro desgastes. */
 /* 17 oct: la carta del Comandante lleva un marco de metal que se degrada con los años (oro el joven, plata el asentado;
    vendrán bronce y óxido). Texturas en assets/fondos/ (oro.jpg, plata.jpg). */
 const METAL_DICTADOR = { "dictador-joven": "oro", "dictador-asentado": "plata" };
 function cartonDe(carta, slug) {
-  carta.classList.remove("purpurina", "oro", "plata", "d1", "d2", "d3", "d4");
-  // 21 oct: cada carta, uno de los cuatro desgastes del cartón (el mismo siempre para el mismo personaje)
-  const h = [...(slug || String(Math.random()))].reduce((a, c) => a + c.charCodeAt(0), 0);
-  carta.classList.add("d" + (h % 4 + 1));
+  carta.classList.remove("purpurina", "oro", "plata");   // 23 oct: sin desgastes de cartón (color plano)
   if (METAL_DICTADOR[slug]) carta.classList.add(METAL_DICTADOR[slug]);
 }
 /* Fondo de escena de cada personaje: un color plano que pega con su ropa ("fondo" en personajes.json) */
 const fondoDe = slug => RETRATOS[slug] && RETRATOS[slug].fondo ? ` style="--fondo-escena:${RETRATOS[slug].fondo}"` : "";
 function svgPersonaje(slug, nombre) {
   const p = RETRATOS[slug];
-  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const arriba = p.arriba || 0;      // se recorta el aire de encima de la cabeza; el resto se ve entero
+  const arriba = p.arriba || 0;      // papel recortado: se recorta el aire de encima de la cabeza; el resto se ve entero
   const desfase = -(Math.random() * 7).toFixed(2);   // cada carta mira a su ritmo
+  const ojos = p.ojos   // solo el papel recortado (etapas 2–4 del dictador): los carteles no llevan ojos por código
+    ? `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${p.ojos.izq[0]}" cy="${p.ojos.izq[1]}" r="${p.ojos.r}"/><circle cx="${p.ojos.der[0]}" cy="${p.ojos.der[1]}" r="${p.ojos.r}"/></g>` : "";
   return `<svg class="personaje" viewBox="0 ${arriba} ${p.ancho} ${p.alto - arriba}" preserveAspectRatio="xMidYMax meet" style="aspect-ratio:${p.ancho} / ${p.alto - arriba}" role="img" aria-label="${esc(nombre || p.nombre)}">` +
-    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>` +
-    (p.brillo ? svgBrillo(slug, p.brillo) : "") +
-    `<g class="ojos" style="animation-delay:${desfase}s"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg>`;
+    `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${ojos}</svg>`;
 }
 
-/* Brillo que late sobre una luz del dibujo (16 oct: solo el farol de Hortensia). En personajes.json:
-   "brillo": {"x", "y", "r"} en coordenadas del recorte; un halo cálido en «trama» que respira. */
-function svgBrillo(slug, b) {
-  const id = "brillo-" + slug;
-  return `<defs><radialGradient id="${id}"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/>` +
-    `<stop offset=".18" stop-color="#FFE27A" stop-opacity=".85"/><stop offset=".45" stop-color="#FFC24A" stop-opacity=".35"/>` +
-    `<stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>` +
-    `<radialGradient id="${id}-halo"><stop offset="0" stop-color="#FFD25A" stop-opacity=".55"/><stop offset=".5" stop-color="#FFC03A" stop-opacity=".22"/>` +
-    `<stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient></defs>` +
-    `<circle class="brillo halo" cx="${b.x}" cy="${b.y}" r="${Math.round(b.r * 1.7)}" fill="url(#${id}-halo)"/>` +
-    `<circle class="brillo" cx="${b.x}" cy="${b.y}" r="${b.r}" fill="url(#${id})"/>`;
-}
 
 /* =====================================================
    LAS CUATRO FUERZAS: un icono, una barra horizontal debajo y los puntos de pista bajo la barra
@@ -255,14 +238,18 @@ const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c
 const grupoVisto = c => !!c.grupo && CARTAS.some(o => o.grupo === c.grupo && o.id !== c.id && E.vistas.has(o.id));
 /* El reverso de las cartas cambia de color con la etapa (base pastel y el dibujo, del mismo tono, más intenso) */
 const REVERSO_ERA = {
-  1: { base: "#A9D3A0", tinta: "#4E8A47" },   // La Revolución: verde guerrillero
-  2: { base: "#9EC8EA", tinta: "#3F7DB3" },   // La Purga: azul
-  3: { base: "#F2C76E", tinta: "#B9832A" },   // Culto: dorado
-  4: { base: "#C9B1E4", tinta: "#7D5BAE" }    // La Supervivencia: lavanda
+  1: { base: "#86762C", tinta: "#201D14" },   // 23 oct, paleta del cartel. La Revolución: oliva
+  2: { base: "#1D51A0", tinta: "#201D14" },   // La Purga: azul
+  3: { base: "#D8A02A", tinta: "#7A2A1D" },   // El Culto: mostaza
+  4: { base: "#B0362A", tinta: "#201D14" }    // La Supervivencia: rojo
 };
+/* 24 oct: las eras con reverso ilustrado (REVERSOS, assets/reversos/era-N.webp) lo enseñan entero; las demás, color plano y el dibujo antiguo */
 function colorReverso(era) {
   const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;
   r.setProperty("--rev-base", c.base); r.setProperty("--rev-tinta", c.tinta);
+  const img = typeof REVERSOS !== "undefined" && REVERSOS[era];
+  r.setProperty("--rev-img", img ? `url(${img})` : "none");
+  document.body.classList.toggle("reverso-ilustrado", !!img);
 }
 function iniciarEra(n) {
   const def = ERAS[n - 1];
@@ -415,10 +402,13 @@ function medirCartaJuego() {
   const raiz = document.documentElement.style;
   raiz.setProperty("--lineas-mensaje", "4");
   const linea = parseFloat(getComputedStyle($("mensaje")).fontSize) * 1.28 || 24;
-  const sobra = c.offsetHeight - c.offsetWidth * 1.32;              // 1,32 ≈ alto/ancho que necesita la ilustración con su marco
-  if (sobra > 0) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
+  /* 23 oct: con la carta cuadrada sobra alto debajo; se dan hasta 2 líneas más a la pregunta, dejando siempre
+     unos 90 px libres bajo la carta para los avisos de logros. */
+  const sobra = esc.clientHeight - c.offsetHeight - 90;
+  if (sobra > linea) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
-  const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
+  const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
+  const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0) + (pila ? pila.offsetTop : 0);
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
@@ -431,14 +421,15 @@ function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
+  $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
 }
 
 function parBarra(id) {
   return `<div class="par">
-      <div class="icono-fuerza" style="height:32px" aria-hidden="true">${icono(id)}</div>
+      <div class="icono-fuerza" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
-      <div class="nivel" aria-hidden="true" style="max-width:72px"><i class="relleno"></i></div>
+      <div class="nivel" aria-hidden="true"><i class="relleno"></i></div>
     </div>`;
 }
 
@@ -525,7 +516,18 @@ function pintarRanuras() {
 
 let temporizadorPopup = null;
 /* Color pastel claro de cada ventana: uno por fuerza; los estados, su cartulina aclarada */
-const COLOR_POPUP = { pueblo: "#FBEBDF", ejercito: "#EBF2E2", elite: "#F1EAF8", potencias: "#E4F0F8" };   // muy claros: se lee mejor
+/* 24 oct: el menú de arriba a la derecha. En el tutorial solo trae «Saltar tutorial»; en la partida, logros, sonido y abandonar */
+function ponerSalir(tutorial) {
+  $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
+  $("btn-logros").classList.toggle("hidden", tutorial);
+  $("btn-sonido").classList.toggle("hidden", tutorial);
+  cerrarMenu(); avisoMenu();
+}
+function cerrarMenu() {
+  $("menu-juego").classList.add("hidden");
+  $("btn-menu").setAttribute("aria-expanded", "false");
+}
+const COLOR_POPUP = { pueblo: "#F1D3CB", ejercito: "#F5E3B8", elite: "#E3E0C3", potencias: "#CFDCEF" };   // 23 oct: tintes claros de la paleta   // muy claros: se lee mejor
 function colorPopup(clave) {
   const [tipo, id] = clave.split("-");
   if (tipo === "fuerza") return COLOR_POPUP[id];
@@ -594,14 +596,21 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 function ajustarFicha(carta = $("carta")) {
   const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
-  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
+  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
+  /* el nombre ocupa todo el sitio junto a la foto: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
+  const nom = h.querySelector(".ficha-nombre");
+  if (nom) {
+    let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
+    const ancho = () => Math.max(...[...nom.children].map(c => c.scrollWidth));
+    while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
+  }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
   for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
   for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
 }
 
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
-const ROTULADOR_GRUPO = { ejercito: "#2E6B2E", elite: "#5B2C83", potencias: "#B5541C" };
+const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D51A0" };   // 23 oct: tintas de la paleta
 
 /* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
    Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
@@ -609,6 +618,9 @@ function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
 function fotoDe(slug) {
   const p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
   if (!p) return "";
+  if (!p.ojos)   // 23 oct: los carteles van enteros, sin encuadrar desde los ojos
+    return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
+      `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
   const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
   return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
@@ -622,7 +634,10 @@ function fichaPersonaje(cargo) {
 function dorsoFicha(f) {
   // 21 oct: la foto de carné, pegada con un trozo de cinta de carrocero
   const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="cinta-foto" aria-hidden="true"></i></div>` : "";
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+  // 24 oct: nombre en dos líneas (nombre y apellido), al lado de la foto
+  const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
+  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${foto}${nombre}</div>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }
@@ -702,7 +717,7 @@ function empezar() {
   nuevaPartida();
   construirBarras();
   $("barras").classList.remove("apagadas");
-  $("btn-salir").textContent = "Abandonar partida";
+  ponerSalir(false);
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
@@ -744,10 +759,16 @@ function entrarCarta(carta) {
     return;
   }
   vigilarReposo();
+  carta.classList.remove("cogida");
+  /* 24 oct: la carta se pone boca abajo de golpe (sin transición) y luego da la vuelta. Antes dependía de que el reverso
+     fuera un elemento recién creado; ahora es explícito, igual que en entrarNombre(), y no se pierde si algo mide la carta antes. */
+  const giro = carta.querySelector(".giro");
+  if (giro) giro.style.transition = "none";
   carta.classList.add("revelando", "boca-abajo");
   // La pregunta (o la frase del estado) sale justo cuando se descubre la carta, a mitad de la vuelta
   const msg = $("mensaje"); msg.classList.add("oculto");
   void carta.offsetWidth;
+  if (giro) giro.style.transition = "";
   if (document.querySelector("#screen-game .escenario.repartiendo")) return;    // el reparto le da la vuelta al terminar
   carta.style.transition = "";
   carta.classList.remove("boca-abajo");
@@ -762,7 +783,7 @@ function vigilarReposo() { clearTimeout(reposo); reposo = setTimeout(amagar, REP
 function amagar() {
   const c = $("carta");
   const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !modoEstado &&
-    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden");
+    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden") && !archivoAbierto();
   if (quieta) {
     c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago");
     setTimeout(() => c.classList.remove("amago"), 1300);
@@ -835,6 +856,7 @@ function resolver(dir) {
   const op = opcionDe(dir);
   const turnoDecidido = E.turno;
   aplicar(c, op);
+  comprobarLogros(op);
   pintarBarras();
   pintarRanuras();
   mostrarDerivas();
@@ -903,8 +925,8 @@ const FRASE_ESTADO = {
   frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
 };
-const FONDO_ESTADO = { luna: "#F28FA6", censura: "#E86A5C", vigilancia: "#4FC3B8", culto: "#9B7FD4", alineado: "#F29A7A",
-  embargo: "#5BA8DC", frontera: "#7CC67A", nacionalizado: "#7CC6EE", deuda: "#A5D867" };
+const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
+  embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A" };
 const ESPERA_ESTADO = 7000;   // 15 oct: si nadie toca la carta de estado, se guarda sola a los 7 s (también en el tutorial)
 let relojEstado = null;
 function mostrarCartaEstado() {
@@ -935,17 +957,21 @@ function svgEscena(id, etiqueta) {
   const e = typeof ESCENAS !== "undefined" && ESCENAS[id], img = IMG["icono_" + id + "-escena"];
   if (!e || !img) return "";
   const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
-  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
   let caras = "";
   const huecos = IMG["icono_" + id + "-huecos"], marcos = e.marcos;
   if (marcos.length && huecos) {
-    const vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;     // cabeza y hombros
+    // 23 oct: el cartel del Comandante joven entra entero en el marco; el papel recortado, desde los ojos (cabeza y hombros)
+    let vista = `0 0 ${p.ancho} ${p.alto}`, fondo = "", ojos = "";
+    if (p.ojos) {
+      const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
+      const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
+      vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;
+      fondo = `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>`;
+      ojos = `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g>`;
+    }
     const retrato = m => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
       `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vista}" preserveAspectRatio="xMidYMid slice">` +
-      `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>` +
-      `<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>` +
-      `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></g>`;
+      `${fondo}<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>${ojos}</svg></g>`;
     caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
       `<g mask="url(#huecos-${id})">${marcos.map(retrato).join("")}</g>`;
   }
@@ -1101,8 +1127,8 @@ function ajustarCabeceraFin() {
 let finOcupada = false;
 /* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
    sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
-const FONDO_CAIDA = { ejercito_0: "#A9C3D9", pueblo_0: "#F5C77A", pueblo_100: "#F7D78C", ejercito_100: "#C9B8E8",
-  elite_0: "#9FD8D0", elite_100: "#F2B8C6", potencias_0: "#A9D6F2", potencias_100: "#F7C59F" };
+const FONDO_CAIDA = { ejercito_0: "#1D51A0", pueblo_0: "#D8A02A", pueblo_100: "#B0362A", ejercito_100: "#86762C",   // 23 oct: paleta del cartel
+  elite_0: "#F0E9D6", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
 let claveFin = "";
 function pintarCartaFin(titulo, clave = claveFin) {
   const carta = $("carta-fin");
@@ -1162,7 +1188,7 @@ function empezarTutorial() {
   colorReverso(1);
   medirCartaJuego();
   pintarBarras(); pintarRanuras();
-  $("btn-salir").textContent = "Saltar tutorial";
+  ponerSalir(true);
   $("carta").classList.remove("hidden", "listo", "volteada");
   if (animar()) { pasoTutorial(0, true); repartir(); } else pasoTutorial(0);
 }
@@ -1265,7 +1291,7 @@ function terminarTutorial() {
   clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
-  $("btn-salir").textContent = "Abandonar partida";
+  ponerSalir(false);
   irANombre();
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
@@ -1373,8 +1399,15 @@ function arrastrable(carta, op) {
   function volver() {
     marcarListo(false);
     bajarPistas(0);
+    carta.classList.remove("cogida");
     carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
+  }
+  function coger() {
+    if (!drag || carta.classList.contains("cogida")) return;
+    clearTimeout(drag.cogida);
+    carta.style.transition = "scale .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
+    carta.classList.add("cogida");                // crece algo más al arrastrar (ver estilos.css)
   }
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
@@ -1383,6 +1416,9 @@ function arrastrable(carta, op) {
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
     carta.style.transition = "none";
+    /* 24 oct: el zoom (se despega del mazo) es solo si la SUJETAS: pasados 150 ms con el dedo puesto, o en cuanto se
+       arrastra. Un toque seco no hace zoom: solo gira la carta. */
+    drag.cogida = setTimeout(coger, 150);
     ocultarInfo();
   });
   // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)
@@ -1403,6 +1439,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
+    if (Math.abs(drag.dx) > 6) coger();
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
@@ -1412,6 +1449,7 @@ function arrastrable(carta, op) {
   function soltar(e) {
     if (!drag) return;
     const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    clearTimeout(drag.cogida);
     drag = null;
     arrastrando = false;
     if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(dx) < 30)) op.toque(); return; }
@@ -1423,6 +1461,7 @@ function arrastrable(carta, op) {
   }
   function cancelar() {
     if (!drag) return;
+    clearTimeout(drag.cogida);
     drag = null; arrastrando = false; volver();
   }
   carta.addEventListener("pointerup", soltar);
@@ -1440,8 +1479,7 @@ function pintarCartaNombre() {
   carta.classList.remove("listo");
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1"; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "dictador-joven");
-  // 21 oct, de prueba: el estilo nuevo («periódico mural», collage pobre y cubista), solo en esta carta
-  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven-mural", "El Comandante")}` +
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe("dictador-joven")}>${svgPersonaje("dictador-joven", "El Comandante")}` +
     `<div class="respuesta"></div></div></div>${dorsoFicha(fichaComandante())}</div>`;   // 17 oct: detrás, su expediente (al tocarla)
   carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";
@@ -1472,7 +1510,7 @@ function decidirNombre(dir) {
 /* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js): el nombre es el que se está escribiendo */
 function fichaComandante() {
   const v = $("input-nombre").value.trim().split(/\s+/)[0];
-  return { ...FICHA_COMANDANTE, foto: fotoDe("dictador-joven"), color: "#1F2A5C",
+  return { ...FICHA_COMANDANTE, foto: fotoDe("dictador-joven"), color: "#1D51A0",
     nombre: v ? `Comandante ${v.charAt(0).toUpperCase()}${v.slice(1)}` : FICHA_COMANDANTE.sinNombre };
 }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre,
@@ -1495,7 +1533,7 @@ function informeEra() {
   const estado = Math.abs(masTensa.v - 50) >= 10 ? LINEAS_BARRA[masTensa.id][masTensa.v > 50 ? "alto" : "bajo"] : "";
   const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2).map(b => PREVISION[b] || FUTURO[b]);
   return {
-    foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1F2A5C", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
+    foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1D51A0", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
     historia: [INFORME_ERA[E.era], estado].filter(Boolean).join(" "),
     nota: espera.join(" ")
   };
@@ -1547,8 +1585,101 @@ function decidirEra(dir) {
 arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra,
   toque: () => { $("carta-era").classList.toggle("volteada"); eleccionEra(0); } });   // al tocarla se gira: detrás, el informe
 
+/* =====================================================
+   LOGROS (24 oct, prototipo). Al decidir algo que da un coleccionable cae el sello «¡Nuevo logro!» bajo la carta y
+   vuela al menú, que se queda con un punto rojo. En el archivo, el logro espera como un sobre cerrado: al abrirlo
+   sale una carta boca abajo y, al girarla, se descubre cuál es. Se guardan entre partidas.
+   ===================================================== */
+const CLAVE_LOGROS = "dictadores_logros_v1";
+let logrosMem = {};                                   // si el navegador no deja guardar, al menos dura la sesión
+function logros() { try { return JSON.parse(localStorage.getItem(CLAVE_LOGROS)) || {}; } catch (e) { return logrosMem; } }
+function guardarLogros(l) { logrosMem = l; try { localStorage.setItem(CLAVE_LOGROS, JSON.stringify(l)); } catch (e) {} }
+const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
+function comprobarLogros(op) {
+  const l = logros();
+  // PROVISIONAL (24 oct, para probarlo rápido): la primera decisión de cada partida da el primer logro si aún no lo tienes
+  const deRegalo = E.turno === E.inicioEra + 1 && E.era === 1 ? LOGROS[0] : null;
+  const nuevos = LOGROS.filter(g => !l[g.id] && ((op.banderas || []).includes(g.bandera) || g === deRegalo));
+  if (!nuevos.length) return;
+  nuevos.forEach(g => { l[g.id] = { abierto: false }; });
+  guardarLogros(l);
+  anunciarLogro();
+}
+/* Con logros sin abrir, una bolita amarilla encima del menú (☰) */
+function avisoMenu() {
+  const n = sinAbrir();
+  $("btn-menu").classList.toggle("con-aviso", n > 0);
+  $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} logros sin abrir)` : "Menú");
+}
+/* «¡Nuevo logro!» se escribe a mano, en cursiva, donde van el nombre y los años (que se esconden un momento); se queda un
+   instante y se borra de izquierda a derecha, como la animación «hello» de LottieFiles que eligió Jorge pero más rápida. */
+const LOGRO_MS = 2300;
+function anunciarLogro() {
+  const z = document.querySelector("#screen-game .zona-nombre"), t = $("logro-escribe");
+  avisoMenu();
+  t.textContent = "¡Nuevo logro!";
+  t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
+  z.classList.add("con-logro");
+  if (navigator.vibrate) navigator.vibrate(25);
+  clearTimeout(z._t);
+  z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
+}
+
+/* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
+const archivoAbierto = () => !$("archivo").classList.contains("hidden");
+function abrirArchivo() {
+  cerrarMenu(); ocultarInfo();
+  pintarArchivo();
+  $("archivo").classList.remove("hidden");
+}
+function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); avisoMenu(); }
+function pintarArchivo() {
+  const l = logros();
+  let html = "";
+  for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
+    const g = LOGROS[i], estado = g && l[g.id];
+    if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
+    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>¡Nuevo!</span></button>`;
+    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
+  }
+  $("archivo-rejilla").innerHTML = html;
+  $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
+}
+/* Un logro a pantalla completa, con la medida y el sitio de las cartas del juego: arriba el título (que no sale hasta
+   abrirlo), en medio la carta (cuadrada) y debajo la decisión que lo dio. Si está sin abrir, un solo toque abre el sobre
+   y la carta sale ya descubierta. */
+function verLogro(id) {
+  const g = LOGROS.find(x => x.id === id), cerrado = !logros()[id].abierto;
+  const v = $("archivo-abrir");
+  v.className = "logro-vista";
+  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo"></h2></div>
+    <div class="sobre-escena${cerrado ? "" : " ya"}">
+      <div class="logro-carta"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
+      ${cerrado ? '<div class="sobre"><svg class="sobre-solapa" viewBox="0 0 100 52" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 50Z"/></svg><span class="sello-conf">Confidencial</span></div>' : ""}
+    </div>
+    <p class="archivo-pista"></p>`;
+  $("archivo").classList.add("viendo");
+  v.style.paddingTop = "";
+  const dy = $("carta").getBoundingClientRect().top - v.querySelector(".sobre-escena").getBoundingClientRect().top;   // la carta, justo donde está la del juego
+  if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
+  const escena = v.querySelector(".sobre-escena"), titulo = v.querySelector(".logro-titulo"), pista = v.querySelector(".archivo-pista");
+  const descubrir = () => { titulo.textContent = g.titulo; pista.textContent = `Por «${g.decision}»`; v.classList.add("abierto"); };
+  if (!cerrado) { descubrir(); return; }
+  pista.textContent = "Toca el sobre para abrirlo";
+  escena.addEventListener("click", () => {
+    if (v.classList.contains("abierto")) return;
+    descubrir();
+    const l = logros(); l[id].abierto = true; guardarLogros(l);
+  });
+}
+$("archivo-cerrar").addEventListener("click", () => {
+  if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
+  cerrarArchivo();
+});
+
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
+  if (archivoAbierto()) { if (e.key === "Escape") cerrarArchivo(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();
     return;
@@ -1567,9 +1698,22 @@ document.addEventListener("keydown", e => {
 });
 document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
+  if (!e.target.closest("#menu-juego, #btn-menu")) cerrarMenu();
 });
 
-$("btn-salir").addEventListener("click", () => { if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-menu").addEventListener("click", () => {
+  const abierto = $("menu-juego").classList.toggle("hidden") === false;
+  $("btn-menu").setAttribute("aria-expanded", String(abierto));
+});
+$("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo(); });
+for (const [id, titulo, texto] of [
+  ["btn-sonido", "Sonido", "Muy pronto: música y sonidos, y aquí podrás quitarlos."],
+]) $(id).addEventListener("click", ev => {
+  ev.stopPropagation();
+  cerrarMenu();
+  abrirPopup(id, `<b>${titulo}</b><span>${texto}</span>`, $("btn-menu"), 4500);
+});
 // 17 oct: el tutorial ya no es obligatorio, ni la primera vez: «Cómo se juega» está siempre en la portada
 $("btn-comenzar").addEventListener("click", irANombre);
 
@@ -1580,20 +1724,8 @@ $("btn-repetir").addEventListener("click", empezar);
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
-// 16 oct: el logo, provisional, escrito a rotulador
-$("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span><i>¡</i>ordene<i>!</i></span></span>`);
-/* 17 oct: la escena del triunfo, abajo en la portada (como la foto de la entrada en la capital). Dos versiones:
-   «movil» (más juntos) y «ancha» (en fila, para pantallas anchas); el CSS enseña la que toca. Los ojos miran a los
-   lados como en las cartas y el farol de Hortensia late (PORTADA sale de tools/recortar.py portada). */
-function svgEscenaPortada(v) {
-  const d = PORTADA[v];
-  const ojos = d.ojos.map(o => `<g transform="translate(${o.x} ${o.y}) scale(${o.k})"><g class="ojos" style="animation-delay:${-(Math.random() * 7).toFixed(2)}s">` +
-    [o.izq, o.der].filter(Boolean).map(e => `<circle cx="${e[0]}" cy="${e[1]}" r="${o.r}"/>`).join("") + `</g></g>`).join("");   // sin los ojos tapados
-  // la «ventana» es el trozo central que se ve (en el móvil, los de los lados se cortan): «slice» llena la caja y recorta
-  // (la ancha, de escritorio, se ve siempre entera: «meet», centrada abajo aunque no llegue a los bordes)
-  const ajuste = v === "movil" ? `preserveAspectRatio="xMidYMin slice" style="aspect-ratio:${d.ventana} / ${d.alto}"` : `preserveAspectRatio="xMidYMax meet"`;
-  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" ${ajuste}>` +
-    `<image href="${d.src}" x="0" y="0" width="${d.ancho}" height="${d.alto}"/>${svgBrillo("portada-" + v, d.brillo)}${ojos}</svg>`;
-}
-if (typeof PORTADA !== "undefined") $("escena-portada").innerHTML = svgEscenaPortada("movil") + svgEscenaPortada("ancha");
+// 24 oct: el título del cartel, recto: «COMANDANTE,» en tinta y «¡ORDENE!» en rojo, como la diana del sillón
+$("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span>¡ordene!</span></span>`);
+/* 24 oct: el cartel del juego (el sillón vacío) en la portada; su crema es el fondo de la portada */
+if (typeof CARTEL_PORTADA !== "undefined") $("cartel-portada").src = CARTEL_PORTADA;
 mostrar("screen-start");

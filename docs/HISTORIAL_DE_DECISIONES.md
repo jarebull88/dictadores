@@ -475,3 +475,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
   - a la derecha, dos iconos: **el archivo** (una medalla, que de momento abre «Muy pronto: carnés, retos e historia real») y **abandonar**, una bandera blanca de rendición; en el tutorial sigue «Saltar tutorial» en texto;
   - debajo, centrado, «Comandante X · N años».
 - **23 oct — Iconos como mini serigrafías:** los carteles de fuerzas y estados llevan, como las cartas, un margen crema de 3 px y una línea de tinta de 1,5 px.
+- **24 oct — Sin margen crema ni línea de tinta** en ningún elemento (cartas, reverso, mazo e iconos de fuerzas y estados): se probaron el 23 oct y Jorge vuelve a la versión anterior, con la ilustración llenando la carta. Efecto secundario: la ficha del reverso, al ser crema, se funde con el fondo de la página.

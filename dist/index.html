@@ -180,7 +180,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: min(100%, 10vh); margin: 0 auto; }
 .par .icono-fuerza { display: block; }
 .par .icono-fuerza .icono { width: 100%; height: auto; }
-.icono.cartel { aspect-ratio: 1; border-radius: 0; box-sizing: border-box; padding: 3px; background: var(--p-crema); border: 1.5px solid var(--p-tinta); }   /* 23 oct: mini serigrafías, con margen crema y línea de tinta, como las cartas */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
+.icono.cartel { aspect-ratio: 1; border-radius: 0; }   /* 24 oct: sin margen crema ni línea de tinta (se probaron el 23 oct) */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {
@@ -247,7 +247,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .pila { position: absolute; top: 14px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
   position: absolute; inset: 0; transform: translateY(7px); border-radius: 0;   /* vista cenital: solo asoma por abajo */
-  background: var(--rev-base, var(--p-oliva)); border: 1.5px solid var(--p-tinta);   /* 23 oct: el reverso, del color de la era (REVERSO_ERA), con la misma línea de tinta */
+  background: var(--rev-base, var(--p-oliva));   /* 23 oct: el reverso, del color de la era (REVERSO_ERA) */
 
 }
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -268,7 +268,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: 0; transform: rotateY(180deg);
-  background: var(--rev-base, var(--p-oliva)); border: 1.5px solid var(--p-tinta);   /* 23 oct: el reverso, del color de la era (REVERSO_ERA), con la misma línea de tinta */
+  background: var(--rev-base, var(--p-oliva));   /* 23 oct: el reverso, del color de la era (REVERSO_ERA) */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -329,8 +329,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    color del personaje (.ilustracion), con su sombra de papel pegado. El marco es el 6,5 % del ancho de la carta. */
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
-  padding: 3.5%; border-radius: 0;   /* 23 oct: un margen crema fino, como el papel de una serigrafía (antes 6,5 %) */
-  background-color: var(--p-crema); border: 1.5px solid var(--p-tinta);   /* y una línea de tinta alrededor de la carta */
+  padding: 0; border-radius: 0;   /* 24 oct: sin margen crema ni línea de tinta: la ilustración llena la carta */
+  background-color: transparent;
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }

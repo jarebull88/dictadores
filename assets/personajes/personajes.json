@@ -2,7 +2,7 @@
   "vicepresidente": {"nombre": "Vicepresidente del Consejo de Ministros", "archivo": "vicepresidente.webp", "ancho": 720, "alto": 720, "fondo": "#CD9224"},
   "economia": {"nombre": "Ministro de Economía", "archivo": "economia.webp", "ancho": 720, "alto": 720, "fondo": "#F4E9CD"},
   "comercio": {"nombre": "Ministro de Comercio", "archivo": "comercio.webp", "ancho": 720, "alto": 720, "fondo": "#857421"},
-  "educacion": {"nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 720, "alto": 720, "fondo": "#295591"},
+  "educacion": {"nombre": "Ministra de Educación", "archivo": "educacion.webp", "ancho": 720, "alto": 720, "fondo": "#2B5693"},
   "trabajo": {"nombre": "Ministro de Trabajo", "archivo": "trabajo.webp", "ancho": 720, "alto": 720, "fondo": "#A62B1B"},
   "cultura": {"nombre": "Ministra de Cultura", "archivo": "cultura.webp", "ancho": 720, "alto": 720, "fondo": "#A63822"},
   "fuerzas-armadas": {"nombre": "Ministro de las Fuerzas Armadas", "archivo": "fuerzas-armadas.webp", "ancho": 720, "alto": 720, "fondo": "#CC9A1C"},

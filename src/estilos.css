@@ -245,6 +245,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   width: 16px; height: 16px; align-items: center; justify-content: center;
   background: var(--rojo); color: var(--bloque);
 }
+.peligro .nivel { border-color: var(--rojo); }   /* 24 oct: en peligro, también el contorno de la barra, en rojo */
 .peligro .alerta { display: flex; animation: parpadeo 1s steps(1) infinite; }
 .peligro .nivel .relleno {
   background: var(--rojo);

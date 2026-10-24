@@ -141,3 +141,25 @@ test("«Saltar tutorial» lleva directo al nombre", () => {
   assert.ok(j.visible("screen-name"));
 });
 
+
+test("logros: «Que cada vecino vigile a su vecino» da un sobre sin abrir; al abrirlo, se descubre «Chivatón de barrio»", () => {
+  const j = cargar();
+  j.empezar();
+  const id = j.w.eval(`CARTAS.find(c => [c.izq, c.der].some(o => (o.banderas || []).includes("base.comites_vigilancia"))).id`);
+  j.w.eval(`E.actual = CARTAS.find(c => c.id === "${id}"); mezclarLados = false; E.lados = null;`);
+  const dir = j.w.eval(`(E.actual.izq.banderas || []).includes("base.comites_vigilancia") ? -1 : 1`);
+  j.w.eval(`resolver(${dir})`);
+  assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú avisa del logro");
+  assert.match(j.$("btn-logros").textContent, /1 sin abrir/);
+  j.$("btn-logros").click();
+  assert.ok(!j.$("archivo").classList.contains("hidden"));
+  assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
+  j.d.querySelector(".sobre-mini").click();
+  j.d.querySelector(".sobre-escena").click();      // abre el sobre
+  j.d.querySelector(".sobre-escena").click();      // gira la carta
+  assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
+  j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
+  assert.ok(j.$("archivo").classList.contains("hidden"));
+  assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, el aviso se va");
+  assert.deepEqual(j.errores, []);
+});

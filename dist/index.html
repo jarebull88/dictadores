@@ -87,13 +87,15 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 /* — TITULAR — */
 .titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .etiqueta-boli b, .cinta-tutorial span, .popup .efecto, .esquela b, .titulo-caida,
-.opcion-portada, .era-anios, .fin-anios {
+.opcion-portada, .era-anios, .fin-anios, .sello-logro, .archivo-titulo, .logro-titulo, .logro-dorso, .sello-conf, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
 .ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
 .titulo, .cabecera-carta h1 { font-size: var(--t-l); }
-#screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
+#screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada, .sello-logro, .logro-titulo { font-size: var(--t-m); }
+.logro-dorso { font-size: var(--t-xl); }
+.sello-conf, .hueco-logro { font-size: var(--t-s); }
 .etiqueta-boli.larga b, .cinta-tutorial span, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
 .logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
 .logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
@@ -105,13 +107,14 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 .texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: 700; }
 /* texto corrido: 16 px */
 .popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .texto-respuesta span { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
-.modo, .modo b, .opcion-menu { font-size: var(--c-texto); font-weight: 700; }
+.modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: 700; }
+.logro-frase, .archivo-pista { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
 .ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
 .ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: 700; }
 /* texto pequeño: 14 px */
-.dictador b, .dictador small, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
+.dictador b, .dictador small, .aviso-menu, .logro-por, .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
-.dictador b, .alerta, .popup .etiqueta-pop { font-weight: 700; }
+.dictador b, .alerta, .popup .etiqueta-pop, .aviso-menu { font-weight: 700; }
 .alerta { line-height: 1; }
 @media (max-height: 760px) { :root { --c-pregunta: 17px; } }
 /* TIPOGRAFIA:FIN ============================================================================================== */
@@ -641,6 +644,63 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .ficha-nombre span { display: block; white-space: nowrap; }
 .logo-texto i { color: var(--p-mostaza); }   /* los signos, en amarillo mostaza */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
+
+/* =====================================================================================================
+   24 oct: LOGROS (prototipo). El sello «¡Nuevo logro!» bajo la carta, el punto rojo del menú y el archivo
+   ===================================================================================================== */
+.sello-logro { position: absolute; left: 50%; top: 72%; z-index: 25; transform: translateX(-50%) rotate(-4deg); white-space: nowrap; pointer-events: none;
+  color: var(--p-rojo); background: var(--p-crema); border: 3px solid var(--p-rojo); padding: 6px 14px 4px; }
+.boton-menu.con-aviso::before { content: ""; position: absolute; top: -5px; right: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--p-rojo); }
+.boton-menu.salto { animation: salto-menu .45s ease-out; }
+@keyframes salto-menu { 0% { transform: scale(1); } 35% { transform: scale(1.4); } 100% { transform: scale(1); } }
+.aviso-menu { display: inline-block; margin-left: 6px; padding: 1px 6px; background: var(--p-rojo); color: var(--p-crema); vertical-align: 1px; }
+
+/* El archivo: cubre la partida, que espera debajo */
+.archivo { position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 16px 12px; box-sizing: border-box; }
+.archivo-cab { display: flex; align-items: center; justify-content: space-between; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; }
+.archivo-titulo { margin: 0; color: var(--p-tinta); }
+.archivo-cerrar { border: none; background: none; padding: 6px 0; color: var(--p-tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.archivo-rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
+.hueco-logro { aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; box-sizing: border-box;
+  border: 1.5px solid var(--p-tinta); background: none; color: var(--p-tinta); }
+.hueco-logro.vacio { border-style: dashed; opacity: .35; }
+.hueco-logro.sobre-mini { background: var(--manila); cursor: pointer; }
+.hueco-logro.sobre-mini span { color: var(--p-rojo); border: 2px solid var(--p-rojo); padding: 2px 4px 0; transform: rotate(-8deg); }
+.hueco-logro.abierto { background: var(--p-crema); cursor: pointer; }
+.archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); }
+
+/* Abrir un logro: el sobre, la carta que sale y se gira */
+.archivo.viendo .archivo-rejilla { visibility: hidden; }
+.archivo-abrir { position: absolute; inset: 60px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: var(--p-crema); }
+.sobre-escena { position: relative; width: min(72%, 300px); aspect-ratio: 3 / 4; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.logro-carta { position: absolute; inset: 0; perspective: 1200px; z-index: 1; }
+.logro-carta .giro { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .56s cubic-bezier(.3,.7,.3,1); }
+.logro-carta.volteada .giro { transform: rotateY(180deg); }
+.logro-dorso, .logro-cara { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-sizing: border-box; border: 1.5px solid var(--p-tinta); }
+.logro-dorso { background: var(--rev-base, var(--p-oliva)); color: var(--p-crema); display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 8px var(--p-crema); }
+.logro-cara { transform: rotateY(180deg); background: var(--p-crema); padding: 7%; display: flex; flex-direction: column; gap: 8px; text-align: center; }
+.logro-objeto { aspect-ratio: 1.6; display: flex; align-items: center; justify-content: center; padding: 8px; border: 1.5px solid var(--p-tinta); background: var(--manila, #E6D3A8); color: var(--tinta-suave); }
+.logro-titulo { margin: 4px 0 0; color: var(--p-rojo); }
+.logro-frase { margin: 0; }
+.logro-por { margin: auto 0 0; color: var(--tinta-suave); }
+.sobre { position: absolute; left: -6%; right: -6%; top: 34%; height: 62%; z-index: 2; }
+.sobre-cuerpo { position: absolute; inset: 0; background: var(--manila); border: 1.5px solid var(--p-tinta); display: flex; align-items: center; justify-content: center; }
+.sello-conf { color: var(--p-rojo); border: 2.5px solid var(--p-rojo); padding: 4px 10px 2px; transform: rotate(-8deg); margin-top: 18%; }
+.sobre-solapa { position: absolute; left: 0; top: 0; width: 100%; height: 55%; transform-origin: top; fill: color-mix(in srgb, var(--p-mostaza) 60%, var(--p-crema)); stroke: var(--p-tinta); stroke-width: 1.5; vector-effect: non-scaling-stroke; overflow: visible; }
+.sobre-escena:not(.abierto) .logro-carta { opacity: 0; transform: translateY(15%) scale(.72); }
+.sobre-escena.abierto .sobre-solapa { animation: solapa .3s ease-in forwards; }
+.sobre-escena.abierto .sobre { animation: sobre-baja 1s forwards; }
+.sobre-escena.abierto .logro-carta { animation: carta-sale 1s forwards; }
+@keyframes solapa { to { transform: rotateX(180deg); } }
+@keyframes sobre-baja { 0%, 45% { transform: none; opacity: 1; } 100% { transform: translateY(90%); opacity: 0; visibility: hidden; } }
+@keyframes carta-sale { 0% { opacity: 0; transform: translateY(15%) scale(.72); z-index: 1; } 20% { opacity: 1; }
+  45% { transform: translateY(-40%) scale(.72); z-index: 1; } 46% { z-index: 3; } 100% { opacity: 1; transform: none; z-index: 3; } }
+.archivo-pista { margin: 0; min-height: 1.4em; color: var(--tinta-suave); text-align: center; }
+@media (prefers-reduced-motion: reduce) {
+  .sobre-escena.abierto .sobre { animation: none; display: none; }
+  .sobre-escena.abierto .logro-carta { animation: none; opacity: 1; transform: none; }
+  .logro-carta .giro { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -691,6 +751,12 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
       <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
     </div>
     <div class="popup hidden" id="popup" role="dialog"></div>
+    <!-- 24 oct: el archivo de logros, por encima de la partida (que espera debajo) -->
+    <div class="archivo hidden" id="archivo" role="dialog" aria-label="Logros">
+      <div class="archivo-cab"><h2 class="titulo archivo-titulo">Logros</h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
+      <div class="archivo-rejilla" id="archivo-rejilla"></div>
+      <div class="archivo-abrir hidden" id="archivo-abrir"></div>
+    </div>
   </section>
 
   <section id="screen-era" class="screen pantalla-carta hidden">
@@ -2181,6 +2247,18 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },
   { paso: "fin", texto: "La nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "Seré breve: cinco horas", der: "Quiero una paloma en mi hombro" }
 ];
+
+/* 24 oct: COLECCIONABLES (prototipo). Cada uno es un objeto real de la Revolución, reimaginado, que se desbloquea con
+   una decisión (la bandera) y se guarda entre partidas. Al conseguirlo solo se ve «¡Nuevo logro!»; en el archivo
+   llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
+   de redacción en docs/COLECCIONABLES.md. */
+const LOGROS = [
+  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", objeto: "Carné del comité de barrio",
+    frase: "Ser miembro del comité significa vigilar a tus vecinos. Y que ellos te vigilen a ti.",
+    decision: "Que cada vecino vigile a su vecino" }
+];
+/* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
+const HUECOS_ARCHIVO = 6;
 /* =====================================================
    UTILIDADES Y NOMBRE
    ===================================================== */
@@ -2611,6 +2689,7 @@ function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
+  $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
 }
 
@@ -2710,7 +2789,8 @@ function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-sonido").classList.toggle("hidden", tutorial);
-  cerrarMenu();
+  cerrarMenu(); avisoMenu();
+  $("btn-menu").classList.toggle("con-aviso", !tutorial && sinAbrir() > 0);
 }
 function cerrarMenu() {
   $("menu-juego").classList.add("hidden");
@@ -2972,7 +3052,7 @@ function vigilarReposo() { clearTimeout(reposo); reposo = setTimeout(amagar, REP
 function amagar() {
   const c = $("carta");
   const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !modoEstado &&
-    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden");
+    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden") && !archivoAbierto();
   if (quieta) {
     c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago");
     setTimeout(() => c.classList.remove("amago"), 1300);
@@ -3045,6 +3125,7 @@ function resolver(dir) {
   const op = opcionDe(dir);
   const turnoDecidido = E.turno;
   aplicar(c, op);
+  comprobarLogros(op);
   pintarBarras();
   pintarRanuras();
   mostrarDerivas();
@@ -3773,8 +3854,117 @@ function decidirEra(dir) {
 arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra,
   toque: () => { $("carta-era").classList.toggle("volteada"); eleccionEra(0); } });   // al tocarla se gira: detrás, el informe
 
+/* =====================================================
+   LOGROS (24 oct, prototipo). Al decidir algo que da un coleccionable cae el sello «¡Nuevo logro!» bajo la carta y
+   vuela al menú, que se queda con un punto rojo. En el archivo, el logro espera como un sobre cerrado: al abrirlo
+   sale una carta boca abajo y, al girarla, se descubre cuál es. Se guardan entre partidas.
+   ===================================================== */
+const CLAVE_LOGROS = "dictadores_logros_v1";
+let logrosMem = {};                                   // si el navegador no deja guardar, al menos dura la sesión
+function logros() { try { return JSON.parse(localStorage.getItem(CLAVE_LOGROS)) || {}; } catch (e) { return logrosMem; } }
+function guardarLogros(l) { logrosMem = l; try { localStorage.setItem(CLAVE_LOGROS, JSON.stringify(l)); } catch (e) {} }
+const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
+function comprobarLogros(op) {
+  const l = logros();
+  const nuevos = LOGROS.filter(g => !l[g.id] && (op.banderas || []).includes(g.bandera));
+  if (!nuevos.length) return;
+  nuevos.forEach(g => { l[g.id] = { abierto: false }; });
+  guardarLogros(l);
+  lanzarSello();
+}
+function avisoMenu() {
+  const n = sinAbrir();
+  $("btn-menu").classList.toggle("con-aviso", n > 0);
+  $("btn-logros").innerHTML = "Logros" + (n ? ` <span class="aviso-menu">${n} sin abrir</span>` : "");
+}
+/* El sello cae bajo la carta, se queda un momento y vuela al menú */
+function lanzarSello() {
+  const g = $("screen-game");
+  g.querySelectorAll(".sello-logro").forEach(n => n.remove());
+  const s = document.createElement("div");
+  s.className = "sello-logro"; s.setAttribute("role", "status"); s.textContent = "¡Nuevo logro!";
+  g.appendChild(s);
+  const pila = g.querySelector(".escenario .pila").getBoundingClientRect(), caja = g.getBoundingClientRect();
+  // Bajo la carta; en pantallas bajas, sin pisar el pie (sube sobre el borde de la carta)
+  const pie = g.querySelector(".pie-juego").getBoundingClientRect();
+  if (pila.height) s.style.top = Math.min(pila.bottom + 14, pie.top - s.offsetHeight - 8) - caja.top + "px";
+  if (!animar()) { avisoMenu(); setTimeout(() => s.remove(), 1500); return; }
+  s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1.8)", opacity: 0 }, { transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 }],
+    { duration: 260, easing: "cubic-bezier(.3,1.6,.6,1)", fill: "both" });
+  setTimeout(() => {
+    const a = s.getBoundingClientRect(), m = $("btn-menu").getBoundingClientRect();
+    const dx = m.left + m.width / 2 - (a.left + a.width / 2), dy = m.top + m.height / 2 - (a.top + a.height / 2);
+    const vuelo = s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 },
+      { transform: `translate(calc(-50% + ${dx}px), ${dy}px) rotate(0deg) scale(.12)`, opacity: .6 }],
+      { duration: 520, easing: "cubic-bezier(.5,0,.8,.4)", fill: "both" });
+    vuelo.onfinish = () => {
+      s.remove(); avisoMenu();
+      const b = $("btn-menu"); b.classList.remove("salto"); void b.offsetWidth; b.classList.add("salto");
+      if (navigator.vibrate) navigator.vibrate(25);
+    };
+  }, 1500);
+}
+
+/* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
+const archivoAbierto = () => !$("archivo").classList.contains("hidden");
+function abrirArchivo() {
+  cerrarMenu(); ocultarInfo();
+  pintarArchivo();
+  $("archivo").classList.remove("hidden");
+}
+function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); avisoMenu(); }
+function pintarArchivo() {
+  const l = logros();
+  let html = "";
+  for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
+    const g = LOGROS[i], estado = g && l[g.id];
+    if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
+    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>Confidencial</span></button>`;
+    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
+  }
+  $("archivo-rejilla").innerHTML = html;
+  $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
+}
+/* Un logro a pantalla completa: si está sin abrir, primero el sobre; luego la carta boca abajo; al tocarla, se gira */
+function verLogro(id) {
+  const g = LOGROS.find(x => x.id === id), cerrado = !logros()[id].abierto;
+  const v = $("archivo-abrir");
+  v.innerHTML = `<div class="sobre-escena${cerrado ? "" : " abierto"}">
+      <div class="logro-carta${cerrado ? "" : " volteada"}"><div class="giro">
+        <div class="logro-dorso" aria-hidden="true">?</div>
+        <div class="logro-cara">
+          <div class="logro-objeto"><span>${esc(g.objeto)}</span></div>
+          <h3 class="logro-titulo">${esc(g.titulo)}</h3>
+          <p class="logro-frase">${esc(g.frase)}</p>
+          <p class="logro-por">Por «${esc(g.decision)}»</p>
+        </div>
+      </div></div>
+      ${cerrado ? '<div class="sobre"><div class="sobre-cuerpo"><span class="sello-conf">Confidencial</span></div><svg class="sobre-solapa" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 46Z"/></svg></div>' : ""}
+    </div>
+    <p class="archivo-pista">${cerrado ? "Toca el sobre para abrirlo" : ""}</p>`;
+  v.classList.remove("hidden"); $("archivo").classList.add("viendo");
+  const escena = v.querySelector(".sobre-escena"), carta = v.querySelector(".logro-carta"), pista = v.querySelector(".archivo-pista");
+  escena.addEventListener("click", () => {
+    if (!escena.classList.contains("abierto")) {
+      escena.classList.add("abierto");
+      pista.textContent = "";
+      setTimeout(() => { pista.textContent = "Toca la carta para darle la vuelta"; }, animar() ? 1000 : 0);
+      return;
+    }
+    if (carta.classList.contains("volteada")) return;
+    carta.classList.add("volteada");
+    pista.textContent = "";
+    const l = logros(); l[id].abierto = true; guardarLogros(l);
+  });
+}
+$("archivo-cerrar").addEventListener("click", () => {
+  if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); return; }
+  cerrarArchivo();
+});
+
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
+  if (archivoAbierto()) { if (e.key === "Escape") cerrarArchivo(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();
     return;
@@ -3801,8 +3991,8 @@ $("btn-menu").addEventListener("click", () => {
   $("btn-menu").setAttribute("aria-expanded", String(abierto));
 });
 $("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo(); });
 for (const [id, titulo, texto] of [
-  ["btn-logros", "Logros", "Muy pronto: tus carnés, los retos de cada era y la historia real de cada carta."],
   ["btn-sonido", "Sonido", "Muy pronto: música y sonidos, y aquí podrás quitarlos."],
 ]) $(id).addEventListener("click", ev => {
   ev.stopPropagation();

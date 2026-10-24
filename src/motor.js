@@ -428,6 +428,7 @@ function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
   ocultarInfo();
+  $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
 }
 
@@ -527,7 +528,8 @@ function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-sonido").classList.toggle("hidden", tutorial);
-  cerrarMenu();
+  cerrarMenu(); avisoMenu();
+  $("btn-menu").classList.toggle("con-aviso", !tutorial && sinAbrir() > 0);
 }
 function cerrarMenu() {
   $("menu-juego").classList.add("hidden");
@@ -789,7 +791,7 @@ function vigilarReposo() { clearTimeout(reposo); reposo = setTimeout(amagar, REP
 function amagar() {
   const c = $("carta");
   const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !modoEstado &&
-    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden");
+    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden") && !archivoAbierto();
   if (quieta) {
     c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago");
     setTimeout(() => c.classList.remove("amago"), 1300);
@@ -862,6 +864,7 @@ function resolver(dir) {
   const op = opcionDe(dir);
   const turnoDecidido = E.turno;
   aplicar(c, op);
+  comprobarLogros(op);
   pintarBarras();
   pintarRanuras();
   mostrarDerivas();
@@ -1590,8 +1593,117 @@ function decidirEra(dir) {
 arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra,
   toque: () => { $("carta-era").classList.toggle("volteada"); eleccionEra(0); } });   // al tocarla se gira: detrás, el informe
 
+/* =====================================================
+   LOGROS (24 oct, prototipo). Al decidir algo que da un coleccionable cae el sello «¡Nuevo logro!» bajo la carta y
+   vuela al menú, que se queda con un punto rojo. En el archivo, el logro espera como un sobre cerrado: al abrirlo
+   sale una carta boca abajo y, al girarla, se descubre cuál es. Se guardan entre partidas.
+   ===================================================== */
+const CLAVE_LOGROS = "dictadores_logros_v1";
+let logrosMem = {};                                   // si el navegador no deja guardar, al menos dura la sesión
+function logros() { try { return JSON.parse(localStorage.getItem(CLAVE_LOGROS)) || {}; } catch (e) { return logrosMem; } }
+function guardarLogros(l) { logrosMem = l; try { localStorage.setItem(CLAVE_LOGROS, JSON.stringify(l)); } catch (e) {} }
+const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
+function comprobarLogros(op) {
+  const l = logros();
+  const nuevos = LOGROS.filter(g => !l[g.id] && (op.banderas || []).includes(g.bandera));
+  if (!nuevos.length) return;
+  nuevos.forEach(g => { l[g.id] = { abierto: false }; });
+  guardarLogros(l);
+  lanzarSello();
+}
+function avisoMenu() {
+  const n = sinAbrir();
+  $("btn-menu").classList.toggle("con-aviso", n > 0);
+  $("btn-logros").innerHTML = "Logros" + (n ? ` <span class="aviso-menu">${n} sin abrir</span>` : "");
+}
+/* El sello cae bajo la carta, se queda un momento y vuela al menú */
+function lanzarSello() {
+  const g = $("screen-game");
+  g.querySelectorAll(".sello-logro").forEach(n => n.remove());
+  const s = document.createElement("div");
+  s.className = "sello-logro"; s.setAttribute("role", "status"); s.textContent = "¡Nuevo logro!";
+  g.appendChild(s);
+  const pila = g.querySelector(".escenario .pila").getBoundingClientRect(), caja = g.getBoundingClientRect();
+  // Bajo la carta; en pantallas bajas, sin pisar el pie (sube sobre el borde de la carta)
+  const pie = g.querySelector(".pie-juego").getBoundingClientRect();
+  if (pila.height) s.style.top = Math.min(pila.bottom + 14, pie.top - s.offsetHeight - 8) - caja.top + "px";
+  if (!animar()) { avisoMenu(); setTimeout(() => s.remove(), 1500); return; }
+  s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1.8)", opacity: 0 }, { transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 }],
+    { duration: 260, easing: "cubic-bezier(.3,1.6,.6,1)", fill: "both" });
+  setTimeout(() => {
+    const a = s.getBoundingClientRect(), m = $("btn-menu").getBoundingClientRect();
+    const dx = m.left + m.width / 2 - (a.left + a.width / 2), dy = m.top + m.height / 2 - (a.top + a.height / 2);
+    const vuelo = s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 },
+      { transform: `translate(calc(-50% + ${dx}px), ${dy}px) rotate(0deg) scale(.12)`, opacity: .6 }],
+      { duration: 520, easing: "cubic-bezier(.5,0,.8,.4)", fill: "both" });
+    vuelo.onfinish = () => {
+      s.remove(); avisoMenu();
+      const b = $("btn-menu"); b.classList.remove("salto"); void b.offsetWidth; b.classList.add("salto");
+      if (navigator.vibrate) navigator.vibrate(25);
+    };
+  }, 1500);
+}
+
+/* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
+const archivoAbierto = () => !$("archivo").classList.contains("hidden");
+function abrirArchivo() {
+  cerrarMenu(); ocultarInfo();
+  pintarArchivo();
+  $("archivo").classList.remove("hidden");
+}
+function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); avisoMenu(); }
+function pintarArchivo() {
+  const l = logros();
+  let html = "";
+  for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
+    const g = LOGROS[i], estado = g && l[g.id];
+    if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
+    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>Confidencial</span></button>`;
+    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
+  }
+  $("archivo-rejilla").innerHTML = html;
+  $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
+}
+/* Un logro a pantalla completa: si está sin abrir, primero el sobre; luego la carta boca abajo; al tocarla, se gira */
+function verLogro(id) {
+  const g = LOGROS.find(x => x.id === id), cerrado = !logros()[id].abierto;
+  const v = $("archivo-abrir");
+  v.innerHTML = `<div class="sobre-escena${cerrado ? "" : " abierto"}">
+      <div class="logro-carta${cerrado ? "" : " volteada"}"><div class="giro">
+        <div class="logro-dorso" aria-hidden="true">?</div>
+        <div class="logro-cara">
+          <div class="logro-objeto"><span>${esc(g.objeto)}</span></div>
+          <h3 class="logro-titulo">${esc(g.titulo)}</h3>
+          <p class="logro-frase">${esc(g.frase)}</p>
+          <p class="logro-por">Por «${esc(g.decision)}»</p>
+        </div>
+      </div></div>
+      ${cerrado ? '<div class="sobre"><div class="sobre-cuerpo"><span class="sello-conf">Confidencial</span></div><svg class="sobre-solapa" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 46Z"/></svg></div>' : ""}
+    </div>
+    <p class="archivo-pista">${cerrado ? "Toca el sobre para abrirlo" : ""}</p>`;
+  v.classList.remove("hidden"); $("archivo").classList.add("viendo");
+  const escena = v.querySelector(".sobre-escena"), carta = v.querySelector(".logro-carta"), pista = v.querySelector(".archivo-pista");
+  escena.addEventListener("click", () => {
+    if (!escena.classList.contains("abierto")) {
+      escena.classList.add("abierto");
+      pista.textContent = "";
+      setTimeout(() => { pista.textContent = "Toca la carta para darle la vuelta"; }, animar() ? 1000 : 0);
+      return;
+    }
+    if (carta.classList.contains("volteada")) return;
+    carta.classList.add("volteada");
+    pista.textContent = "";
+    const l = logros(); l[id].abierto = true; guardarLogros(l);
+  });
+}
+$("archivo-cerrar").addEventListener("click", () => {
+  if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); return; }
+  cerrarArchivo();
+});
+
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
+  if (archivoAbierto()) { if (e.key === "Escape") cerrarArchivo(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();
     return;
@@ -1618,8 +1730,8 @@ $("btn-menu").addEventListener("click", () => {
   $("btn-menu").setAttribute("aria-expanded", String(abierto));
 });
 $("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
+$("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo(); });
 for (const [id, titulo, texto] of [
-  ["btn-logros", "Logros", "Muy pronto: tus carnés, los retos de cada era y la historia real de cada carta."],
   ["btn-sonido", "Sonido", "Muy pronto: música y sonidos, y aquí podrás quitarlos."],
 ]) $(id).addEventListener("click", ev => {
   ev.stopPropagation();

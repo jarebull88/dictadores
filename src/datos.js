@@ -1271,3 +1271,15 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },
   { paso: "fin", texto: "La nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "Seré breve: cinco horas", der: "Quiero una paloma en mi hombro" }
 ];
+
+/* 24 oct: COLECCIONABLES (prototipo). Cada uno es un objeto real de la Revolución, reimaginado, que se desbloquea con
+   una decisión (la bandera) y se guarda entre partidas. Al conseguirlo solo se ve «¡Nuevo logro!»; en el archivo
+   llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
+   de redacción en docs/COLECCIONABLES.md. */
+const LOGROS = [
+  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", objeto: "Carné del comité de barrio",
+    frase: "Ser miembro del comité significa vigilar a tus vecinos. Y que ellos te vigilen a ti.",
+    decision: "Que cada vecino vigile a su vecino" }
+];
+/* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
+const HUECOS_ARCHIVO = 6;

@@ -1642,10 +1642,27 @@ function lanzarSello() {
       { duration: 520, easing: "cubic-bezier(.5,0,.8,.4)", fill: "both" });
     vuelo.onfinish = () => {
       s.remove(); avisoMenu();
-      const b = $("btn-logros"); b.classList.remove("salto"); void b.offsetWidth; b.classList.add("salto");
-      if (navigator.vibrate) navigator.vibrate(25);
+      estallidoEstrella();
+      if (navigator.vibrate) navigator.vibrate([30, 40, 60]);
     };
   }, 1500);
+}
+
+/* La animación de LottieFiles «Star» (assets/lottie/Star-original.json), recoloreada con la paleta (estrella amarilla sin la sombra
+   oscura, contorno en la tinta): nace del contorno de la estrella del menú, hace su pop con aro y chispas, y se encoge hasta
+   quedarse como el icono. Dura 50 fotogramas a 30 por segundo. Sin Lottie o con «reducir movimiento», un saltito. */
+function estallidoEstrella() {
+  const b = $("btn-logros"), g = $("screen-game");
+  b.classList.remove("salto");
+  if (!animar() || !window.lottie) { void b.offsetWidth; b.classList.add("salto"); return; }
+  const r = b.getBoundingClientRect(), caja = g.getBoundingClientRect(), S = 150;
+  const o = document.createElement("div");
+  o.className = "estrella-lottie"; o.style.width = o.style.height = S + "px";
+  o.style.left = (r.left - caja.left + r.width / 2 - S / 2) + "px"; o.style.top = (r.top - caja.top + r.height / 2 - S / 2) + "px";
+  g.appendChild(o); b.classList.add("animando");
+  const an = lottie.loadAnimation({ container: o, renderer: "svg", loop: false, autoplay: true, animationData: ESTRELLA });
+  setTimeout(() => o.animate([{ transform: "scale(1)" }, { transform: `scale(${24 / (S * 0.45)})` }], { duration: 380, easing: "ease-in-out", fill: "forwards" }), 1000);
+  setTimeout(() => { an.destroy(); o.remove(); b.classList.remove("animando"); }, 1400);
 }
 
 /* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */

@@ -255,9 +255,13 @@ const REVERSO_ERA = {
   3: { base: "#D8A02A", tinta: "#7A2A1D" },   // El Culto: mostaza
   4: { base: "#B0362A", tinta: "#201D14" }    // La Supervivencia: rojo
 };
+/* 24 oct: las eras con reverso ilustrado (REVERSOS, assets/reversos/era-N.webp) lo enseñan entero; las demás, color plano y el dibujo antiguo */
 function colorReverso(era) {
   const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;
   r.setProperty("--rev-base", c.base); r.setProperty("--rev-tinta", c.tinta);
+  const img = typeof REVERSOS !== "undefined" && REVERSOS[era];
+  r.setProperty("--rev-img", img ? `url(${img})` : "none");
+  document.body.classList.toggle("reverso-ilustrado", !!img);
 }
 function iniciarEra(n) {
   const def = ERAS[n - 1];

@@ -398,6 +398,9 @@ def main():
             if "ojos" not in p:     # sin ojos por código = cartel
                 reducir_cartel(RAIZ / f"assets/personajes/originales/{slug}.jpg", RAIZ / f"assets/personajes/recortados/{slug}.webp", LADO_CARTEL_PERSONAJE, 86)
                 print(f"cartel {slug}")
+        for f in sorted((RAIZ / "assets/reversos").glob("era-*.jpg")):     # 24 oct: reversos de las cartas, uno por era
+            reducir_cartel(f, f.with_suffix(".webp"), 600, 86)
+            print(f"reverso {f.stem}")
         for f in sorted((RAIZ / "assets/iconos/originales").glob("cartel-*.jpg")):
             reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{f.stem[len('cartel-'):]}-cartel.webp", LADO_CARTEL_ICONO, 88)
             print(f"icono {f.stem}")

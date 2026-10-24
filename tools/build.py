@@ -30,6 +30,11 @@ def iconos():
            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
     return img
 
+def reversos():
+    """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
+    return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
+            for f in sorted((RAIZ / "assets/reversos").glob("era-*.webp"))}
+
 def portada():
     """Escena del triunfo de la portada (17 oct): versión ancha y de móvil, con la posición de ojos y farol."""
     info = json.loads(leer("assets/portada/escena.json"))
@@ -70,7 +75,8 @@ def main():
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
                + leer("assets/iconos/escenas.json").strip() + ';\nconst PORTADA = '
-               + json.dumps(portada(), ensure_ascii=False) + ';\n</script>\n')
+               + json.dumps(portada(), ensure_ascii=False) + ';\nconst REVERSOS = '
+               + json.dumps(reversos()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

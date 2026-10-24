@@ -363,6 +363,9 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--rev-tinta, var(--p-tinta)); opacity: .55;
   -webkit-mask: var(--reverso, none) center / 88% 90% no-repeat; mask: var(--reverso, none) center / 88% 90% no-repeat;
 }
+/* 24 oct: reverso ilustrado de la era (sustituye al color plano y al dibujo antiguo) */
+.pila .capa, .carta.revelando .tapa { background-image: var(--rev-img, none); background-size: cover; background-position: center; }
+body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelando .tapa::after { content: none; }
 .mensaje { transition: opacity .35s ease; }   /* 17 oct: la pregunta aparece con un fundido rápido, no de golpe */
 .mensaje.oculto { opacity: 0; transition: none; }
 .carta.revelando .giro { transition-duration: .56s; }

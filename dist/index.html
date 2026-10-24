@@ -23,12 +23,8 @@
 :root {
   box-sizing: border-box;
   color-scheme: light;
-  --fuente: "Baloo 2", system-ui, sans-serif;   /* 23 oct: texto en Baloo 2, redonda y algo infantil, que casa con Londrina (antes Courier Prime) */
-  --fuente-titulo: "Baloo 2", system-ui, sans-serif;   /* 23 oct: títulos de pantalla también en Baloo 2 (antes Special Elite) */
   --tinta-marcador: var(--p-tinta);
   --rojo-marcador: var(--p-rojo);
-  --fuente-mano: "Londrina Solid", "Baloo 2", cursive;   /* 23 oct: letra recortada a mano, como en los carteles cubanos (antes Permanent Marker): títulos de ventanas, cintas, expediente */
-  --fuente-caligrafica: "Playwrite IT Moderna", cursive;   /* 23 oct: caligráfica (Playwrite Italia), lista para usar; aún no se usa */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 
@@ -56,12 +52,69 @@ body {
   /* 16 oct: fondo de color plano, sin textura: el beige que predominaba en la cartulina 1 bajo su velo */
   background: var(--p-crema);
   color: var(--tinta);
-  font-family: var(--fuente); font-size: 16px; line-height: 1.45;
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
 *, *::before, *::after { box-sizing: border-box; }
 #app { height: 100%; position: relative; }
-.titulo { font-family: var(--fuente-titulo); font-weight: 400; letter-spacing: 0; }
+.titulo { }
+/* TIPOGRAFIA:INICIO ==========================================================================================
+   TIPOGRAFÍA: LA ÚNICA FUENTE DE VERDAD (24 oct)
+   Solo hay DOS estilos de letra:
+     · TITULAR: Londrina Solid, siempre en MAYÚSCULAS (cuatro tamaños: XL, L, M y S).
+     · CUERPO:  Baloo 2 (cuatro tamaños: pregunta, respuesta, texto y pequeño; en negrita o normal).
+   Cada texto del juego (partida, tutorial, fichas, ventanas, pantallas de nombre, era y final) elige un papel de esta
+   lista. Para cambiar la fuente, el tamaño o el peso de un papel se cambia AQUÍ y solo aquí. Fuera de este bloque no
+   debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height (lo vigila
+   tests/tipografia.test.js). Para un texto nuevo: añade su selector a un papel; no le des estilo propio.
+   La tabla de papeles está en docs/TIPOGRAFIA.md. */
+:root {
+  --f-titular: "Londrina Solid", "Baloo 2", system-ui, sans-serif;
+  --f-cuerpo: "Baloo 2", system-ui, sans-serif;
+  /* tamaños del TITULAR */
+  --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
+  --t-l: min(calc(var(--carta-w, 360px) * .10), 44px);    /* el título de la era y el de la pantalla del nombre */
+  --t-m: 26px;                                              /* títulos de ventanas, de estados, de la portada, de la esquela */
+  --t-s: 21px;                                              /* cintas del tutorial y de efectos, «Has gobernado N años» */
+  /* tamaños del CUERPO */
+  --c-pregunta: 19px;   /* la pregunta y todo texto que hable al jugador sobre una carta (17 px en pantallas bajas) */
+  --c-respuesta: min(23px, calc(var(--carta-w, 360px) / 16));
+  --c-texto: 16px;      /* párrafos: ventanas, fichas, informes, relato, esquela */
+  --c-pequeno: 14px;    /* pie, avisos, etiquetas, «abandonar» */
+}
+body { font-family: var(--f-cuerpo); font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
+button, input, textarea { font-family: inherit; }   /* los botones y campos no heredan la letra solos */
+
+/* — TITULAR — */
+.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
+.popup b, .etiqueta-boli b, .cinta-tutorial span, .popup .efecto, .esquela b, .titulo-caida,
+.opcion-portada, .era-anios, .fin-anios {
+  font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
+}
+#screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
+.ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
+.titulo, .cabecera-carta h1 { font-size: var(--t-l); }
+#screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
+.etiqueta-boli.larga b, .cinta-tutorial span, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
+.logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
+.logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
+
+/* — CUERPO — */
+/* la pregunta: negrita, 19 px */
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input { font-size: var(--c-pregunta); line-height: 1.28; font-weight: 700; }
+/* la respuesta al arrastrar: negrita, grande */
+.texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: 700; }
+/* texto corrido: 16 px */
+.popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .texto-respuesta span { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
+.modo, .modo b { font-size: var(--c-texto); font-weight: 700; }
+.ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
+.ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: 700; }
+/* texto pequeño: 14 px */
+.dictador b, .dictador small, .abandonar, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
+.campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
+.dictador b, .alerta, .popup .etiqueta-pop { font-weight: 700; }
+.alerta { line-height: 1; }
+@media (max-height: 760px) { :root { --c-pregunta: 17px; } }
+/* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
 .icono { display: block; max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
@@ -77,11 +130,10 @@ body {
 .modo {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 48px; padding: 0 24px; border: none; border-radius: 0; background: transparent;
-  color: var(--tinta); font-family: var(--fuente); font-size: 16px; font-weight: 700; letter-spacing: .02em;
-  cursor: pointer; -webkit-appearance: none; appearance: none;
+  color: var(--tinta);   cursor: pointer; -webkit-appearance: none; appearance: none;
 }
-.modo b { font-weight: 700; font-size: inherit; }
-.modo span { font-weight: 400; color: inherit; }
+.modo b { }
+.modo span { color: inherit; }
 .modo { width: 100%; border: var(--trazo); background: var(--bloque); }
 .modo.principal { background: var(--tinta); color: var(--bloque); border-color: var(--tinta); }
 .modo:active { background: var(--tinta); color: var(--bloque); }
@@ -92,20 +144,20 @@ body {
 .pantalla-texto { justify-content: flex-start; gap: 18px; overflow-y: auto; }
 .pantalla-texto > :first-child { margin-top: auto; }
 .pantalla-texto > :last-child { margin-bottom: auto; }
-.pantalla-texto h1 { font-size: clamp(38px, 11.4vw, 62px); line-height: 1; margin: 0; }
-.pantalla-texto h2 { font-size: clamp(30px, 9vw, 42px); line-height: 1.05; margin: 0; }
-.relato { margin: 0; font-size: 17px; line-height: 1.5; }
+.pantalla-texto h1 { margin: 0; }
+.pantalla-texto h2 { margin: 0; }
+.relato { margin: 0; }
 .acciones { display: grid; gap: 10px; }
 
 .campo { display: grid; gap: 8px; }
-.campo label { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta-suave); }
+.campo label { color: var(--tinta-suave); }
 .campo input {
   width: 100%; padding: 14px 16px; border: var(--trazo); border-radius: 0;
-  background: var(--bloque); color: var(--tinta); font-family: var(--fuente); font-weight: 700; font-size: 22px;
+  background: var(--bloque); color: var(--tinta);
 }
 .campo input:focus { outline: 3px solid var(--tinta); outline-offset: 2px; }
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.error { min-height: 20px; margin: 0; font-size: 15px; color: var(--rojo); }
+.error { min-height: 20px; margin: 0; color: var(--rojo); }
 
 /* Pantallas con carta (portada y «Sigues en el poder»): la misma interfaz que el juego.
    Arriba, los textos (donde en el juego están las fuerzas y el mensaje); en medio, la carta; abajo, una acción. */
@@ -117,20 +169,20 @@ body.carta-medida .pantalla-carta .carta, body.carta-medida .pantalla-carta .pil
 body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por ahora el texto largo se corta por abajo */
 
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
-.cabecera-carta h1 { margin: 0; color: var(--rojo); font-size: clamp(30px, 9vw, 48px); line-height: 1; }
-.era-anios, .fin-anios { flex: none; margin: 12px 0 0; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 22px; color: var(--tinta-suave); }   /* debajo de la carta */
-.cabecera-carta .era-texto { justify-self: stretch; text-align: center; margin: 0; font-size: 15px; line-height: 1.4; font-weight: 700; }   /* en negrita, como la pregunta */
-#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1 { margin: 0; font-size: min(8.6vw, 46px); white-space: nowrap; }
+.cabecera-carta h1 { margin: 0; color: var(--rojo); }
+.era-anios, .fin-anios { flex: none; margin: 12px 0 0; text-align: center; color: var(--tinta-suave); }   /* debajo de la carta */
+.cabecera-carta .era-texto { justify-self: stretch; text-align: center; margin: 0; }   /* en negrita, como la pregunta */
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1 { margin: 0; white-space: nowrap; }
 /* 15 oct: «Sigues en el poder» y «¡Has caído!», escritos con rotulador rojo (al 90 %, como el negro) */
-#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; color: var(--rojo-marcador); }
+#screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { color: var(--rojo-marcador); }
 
 /* Pantalla del nombre: «Comandante» y el campo centrados, sin contorno, sobre papel beige */
 /* Portada: el logo y, debajo, las tres opciones como texto */
 .portada { justify-content: center; align-items: center; gap: 34px; text-align: center; }
 .portada .logo { margin: 0; width: min(100%, 400px); }
-.logo-texto { display: grid; justify-items: center; font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; line-height: 1; transform: rotate(-3deg); }
-.logo-texto > span { font-size: min(46px, 10vw); }
-.logo-texto > span + span { font-size: min(92px, 20vw); }   /* la orden manda: «¡ORDENE!» va más grande */
+.logo-texto { display: grid; justify-items: center; transform: rotate(-3deg); }
+.logo-texto > span { }
+.logo-texto > span + span { }   /* la orden manda: «¡ORDENE!» va más grande */
 .logo-texto i { font-style: normal; }
 /* 17 oct: la escena del triunfo, pegada abajo y de lado a lado de la pantalla; logo y botón quedan centrados encima */
 .portada { justify-content: flex-end; padding-bottom: calc(min(var(--alto-escena, 96vw), 50vh) + 5vh); }   /* logo y botón, justo encima de la gente */
@@ -145,17 +197,17 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .menu-portada { display: grid; justify-items: center; gap: 0; }
 .opcion-portada {
   min-height: 44px; padding: 6px 14px; border: none; background: none; cursor: pointer; color: var(--tinta);
-  font-family: var(--fuente); font-size: 19px; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px;
+  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px;
 }
 /* 17 oct: «Comenzar partida» y «Cómo se juega», iguales, subrayados y juntos */
-.opcion-portada.principal, .opcion-portada.secundaria { font-family: var(--fuente-titulo); font-weight: 400; font-size: 23px; min-height: 38px; padding: 2px 14px; color: var(--tinta); }
+.opcion-portada.principal, .opcion-portada.secundaria { min-height: 38px; padding: 2px 14px; color: var(--tinta); }
 
 /* Tutorial: las fuerzas, apagadas hasta que se presentan; al encenderse, una nota corta debajo */
 #barras.apagadas .barra { opacity: .3; filter: grayscale(1); transition: opacity .4s, filter .4s; }
 #barras.apagadas .barra.encendida { opacity: 1; filter: none; }
 .opcion-portada:hover, .opcion-portada:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 /* Pantalla del nombre: el texto arriba, la carta del dictador en medio y el nombre abajo, en una perforación del cartón */
-.pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); font-size: 19px; line-height: 1.28; text-align: center; font-weight: 700; }   /* como la pregunta de la partida */
+.pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); text-align: center; }   /* como la pregunta de la partida */
 .pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
 .pantalla-nombre .campo input {
   height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 0; color: var(--tinta);
@@ -164,7 +216,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 }
 .pantalla-nombre .campo input::placeholder { color: rgba(28, 27, 25, .55); }
 .pantalla-nombre .campo input:focus { outline: 2px solid var(--tinta); outline-offset: 2px; }
-.pantalla-nombre .error { margin: 0; min-height: 1.3em; color: var(--rojo); text-align: center; font-size: 15px; }
+.pantalla-nombre .error { margin: 0; min-height: 1.3em; color: var(--rojo); text-align: center; }
 
 /* ---------- Juego ---------- */
 #screen-game { position: relative; overflow: visible; padding: 8px 12px 6px; }
@@ -206,7 +258,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .alerta {
   display: none; position: absolute; top: -4px; right: -6px; z-index: 3;
   width: 16px; height: 16px; align-items: center; justify-content: center;
-  background: var(--rojo); color: var(--bloque); font-family: var(--fuente); font-weight: 700; font-size: 13px; line-height: 1;
+  background: var(--rojo); color: var(--bloque);
 }
 .peligro .alerta { display: flex; animation: parpadeo 1s steps(1) infinite; }
 .peligro .nivel .relleno {
@@ -217,7 +269,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 @keyframes parpadeo { 50% { opacity: 0; } }
 @keyframes parpadeo-suave { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
 @keyframes latido { 0% { outline: 2px solid var(--carbon); outline-offset: 1px; } 100% { outline: 0 solid transparent; } }
-.barra.sube .par::after, .barra.baja .par::after { position: absolute; left: calc(50% + 26px); top: 2px; font-size: 12px; color: var(--carbon); animation: flecha 1.8s ease-out forwards; }
+.barra.sube .par::after, .barra.baja .par::after { position: absolute; left: calc(50% + 26px); top: 2px; color: var(--carbon); animation: flecha 1.8s ease-out forwards; }
 .barra.sube .par::after { content: "▲"; }
 .barra.baja .par::after { content: "▼"; }
 @keyframes flecha { 0% { opacity: 0; } 12% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
@@ -226,8 +278,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .mensaje {
   flex: none; height: var(--alto-mensaje); margin-top: 8px; overflow: hidden;   /* 23 oct: aire bajo las barras (antes 0) */
   display: flex; align-items: center; justify-content: center; text-align: center;   /* centrada en vertical (2 o 4 líneas, mismo aire) y en horizontal */
-  font-size: 19px; line-height: 1.28; font-weight: 400; padding: 2px 2px 0;
-  --alto-mensaje: calc(var(--lineas-mensaje, 4) * 19px * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
+  padding: 2px 2px 0;
+  --alto-mensaje: calc(var(--lineas-mensaje, 4) * var(--c-pregunta) * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
 }
 
 /* Escenario: la carta, cuadrada, ocupa el lado más corto del hueco libre (el que dejan el mensaje y la barra inferior), con el mazo detrás.
@@ -306,7 +358,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
    (con visibility, no opacity, para no pisar el parpadeo) */
 .icono-giro { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: visibility 0s .3s; }
 .carta.volteada .cara .icono-giro, .carta:not(.volteada) .dorso .icono-giro { visibility: hidden; transition: visibility 0s; }
-#screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; font-weight: 700; }   /* 17 oct: en negrita, para que la pregunta no pase desapercibida junto a la carta */
+#screen-game .mensaje { -webkit-hyphens: manual; hyphens: manual; }   /* 17 oct: en negrita, para que la pregunta no pase desapercibida junto a la carta */
 /* Amago: si la carta lleva un rato quieta, se inclina un poco a un lado y al otro */
 .carta.amago { animation: amago 1.2s ease-in-out; }
 @keyframes amago {
@@ -374,8 +426,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
-.etiqueta-boli b { display: block; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-weight: 400; font-size: min(26px, 6.8vw); line-height: 1.1; }   /* título a máquina */
-.etiqueta-boli.larga b { font-size: min(21px, 5.4vw); }   /* una palabra muy larga («Nacionalizaciones») no cabe al tamaño normal */
+.etiqueta-boli b { display: block; color: var(--tinta-marcador); }   /* título a máquina */
+.etiqueta-boli.larga b { }   /* una palabra muy larga («Nacionalizaciones») no cabe al tamaño normal */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
 .carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
 .carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; }
@@ -384,7 +436,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Tutorial: la instrucción al jugador, en cinta de carrocero pegada abajo en la cartulina de Cuesta */
 .cinta-tutorial { position: absolute; left: 6%; width: 88%; bottom: 5%; z-index: 2; pointer-events: none; transform: rotate(1.2deg); }
 .cinta-tutorial::before { opacity: .95; }   /* menos translúcida que la del nombre de los estados: aquí hay frases que leer */
-.cinta-tutorial span { display: block; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-size: min(21px, 5.5vw); line-height: 1.2; font-weight: 400; }   /* la letra del mensaje de arriba, en negrita */
+.cinta-tutorial span { display: block; color: var(--tinta-marcador); }   /* la letra del mensaje de arriba, en negrita */
 /* Al girar la carta, la cinta se desvanece enseguida (la vuelta llega a 90° muy pronto y con retardo se veía
    por detrás); al volver, reaparece cuando la cara ya mira de frente */
 .cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: opacity .2s ease .3s; }
@@ -414,8 +466,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta .nombre {
   flex: none; min-height: 40px; padding: 5px 10px; background: var(--bloque); border-top: var(--trazo);
   display: flex; align-items: center; justify-content: center; text-align: center;
-  font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: .01em;
-  transition: background-color .12s, color .12s;
+    transition: background-color .12s, color .12s;
 }
 /* Reverso: la ficha del personaje, como un expediente de la inteligencia (16 oct): foto de carné en blanco y negro,
    nombre a rotulador del color de su grupo, cargo e informe. La pulpa del papel, suavizada con un velo para que se lea mejor. */
@@ -438,10 +489,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   background: #E9C77A;
   clip-path: polygon(0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%, 0 100%, 3% 75%, 0 50%, 3% 25%); }
 .ficha-foto .ojos-foto { fill: #161618; }
-.ficha-nombre { font-family: var(--fuente-mano); text-transform: uppercase; font-weight: 400; font-size: calc(var(--ficha-px, 15px) * 1.73); line-height: 1.05; }
-.ficha-cargo { font-size: var(--ficha-px, 15px); font-weight: 700; margin-bottom: 4px; }
-.ficha-nota b { font-weight: 700; }
-.ficha-historia { margin: 0; font-size: var(--ficha-px, 15px); line-height: 1.4; max-width: 32ch; }
+.ficha-nombre { }
+.ficha-cargo { margin-bottom: 4px; }
+.ficha-nota b { }
+.ficha-historia { margin: 0; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
    cuanto se empieza a mover. Gira al revés que la carta (--giro), así su borde inferior queda siempre horizontal y el panel
@@ -463,8 +514,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .texto-respuesta strong, .texto-respuesta span { max-width: 85%; overflow-wrap: break-word; }   /* 23 oct: hasta el 85 % (antes 100 %): al inclinar la carta, el borde ya no corta la respuesta */   /* 22 oct: todo el ancho (antes 88 %), para que quepan 2 líneas sin bajar la letra */
 .respuesta[data-dir="1"] .texto-respuesta { align-items: flex-start; text-align: left; }
 .respuesta[data-dir="-1"] .texto-respuesta { align-items: flex-end; text-align: right; }
-.texto-respuesta strong { display: block; font-weight: 700; font-size: min(23px, calc(var(--carta-w, 360px) / 16)); line-height: 1.08; }   /* 23 oct: más grande, hasta 3 líneas, siempre el mismo tamaño en cada móvil */   /* 22 oct: siempre el mismo tamaño en cada móvil (21 px; algo menos si la carta es estrecha), nunca según lo larga que sea la respuesta */
-.texto-respuesta span { display: block; font-weight: 400; font-size: 15px; line-height: 1.3; margin-top: 4px; }
+.texto-respuesta strong { display: block; }   /* 23 oct: más grande, hasta 3 líneas, siempre el mismo tamaño en cada móvil */   /* 22 oct: siempre el mismo tamaño en cada móvil (21 px; algo menos si la carta es estrecha), nunca según lo larga que sea la respuesta */
+.texto-respuesta span { display: block; margin-top: 4px; }
 
 /* Barra inferior: dictador y años en dos líneas; a la derecha, las cuatro casillas de estado */
 /* Las barras, la pregunta y el pie van alineados con los bordes de la carta (--carta-w lo mide medirCartaJuego) */
@@ -472,8 +523,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 #screen-game .mensaje { padding-left: 0; padding-right: 0; }
 .pie-juego { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 2px 0 0; }
 .dictador { min-width: 0; flex: 1; }
-.dictador b { display: block; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
-.dictador small { display: block; font-size: 12px; line-height: 1.3; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dictador b { display: block; overflow-wrap: anywhere; }
+.dictador small { display: block; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dictador small.hidden { display: none; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; gap: 6px; flex-shrink: 0; position: relative; }
@@ -491,7 +542,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Abandonar partida: una línea de texto pequeña, sin botón */
 .abandonar {
   flex: none; margin: 0; padding: 2px 0 0; border: none; background: none;
-  color: var(--tinta-suave); font: inherit; font-size: 14px; text-align: right; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  color: var(--tinta-suave); font: inherit; text-align: right; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
 }
 /* 23 oct: el pie de la partida. A la izquierda, las casillas de estado; a la derecha, los iconos del archivo y de abandonar;
    debajo, centrado, «Comandante X» y los años */
@@ -501,7 +552,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .boton-pie.hidden { display: none; }
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 #screen-game .dictador { flex: none; text-align: center; width: var(--carta-w, 100%); max-width: 100%; margin: 4px auto 0; }
-#screen-game .dictador b, #screen-game .dictador small { display: inline; font-size: 14px; }
+#screen-game .dictador b, #screen-game .dictador small { display: inline; }
 #screen-game .dictador small::before { content: " · "; }
 .abandonar:hover, .abandonar:focus-visible { color: var(--tinta); outline: none; }
 
@@ -518,13 +569,13 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
   display: none;   /* 21 oct: sin pulpa, papel liso */
 }
-.popup .etiqueta-pop { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-suave); margin-bottom: 2px; }
-.popup b { display: block; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-weight: 400; font-size: 25px; line-height: 1.1; margin-bottom: 6px; }
-.popup span { display: block; font-size: 16px; line-height: 1.4; }
+.popup .etiqueta-pop { display: block; color: var(--tinta-suave); margin-bottom: 2px; }
+.popup b { display: block; color: var(--tinta-marcador); margin-bottom: 6px; }
+.popup span { display: block; }
 .popup .sube-baja { margin-top: 8px; }   /* 21 oct: «Lo sube» y «Lo baja» de cada fuerza */
-.popup .sube-baja em { font-style: normal; font-weight: 700; }
+.popup .sube-baja em { font-style: normal; }
 .popup .efecto {   /* el efecto, en cinta de carrocero (como el nombre en la carta del estado) */
-  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; font-family: var(--fuente-mano); text-transform: uppercase; color: var(--tinta-marcador); font-size: 20px; line-height: 1.2; font-weight: 400;
+  position: relative; isolation: isolate; margin: 10px -4px 2px; padding: 7px 12px 8px; color: var(--tinta-marcador);
   transform: rotate(-1deg);
 }
 .popup .efecto::before {
@@ -533,12 +584,12 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   clip-path: polygon(0 0, 100% 0, 98.6% 12%, 100% 25%, 98.6% 38%, 100% 50%, 98.6% 62%, 100% 75%, 98.6% 88%, 100% 100%,
     0 100%, 1.4% 88%, 0 75%, 1.4% 62%, 0 50%, 1.4% 38%, 0 25%, 1.4% 12%);
 }
-.popup small { display: block; margin-top: 8px; font-size: 14px; color: var(--tinta-suave); }
+.popup small { display: block; margin-top: 8px; color: var(--tinta-suave); }
 
 /* ---------- Pantalla final: el mensaje principal es lo más grande ---------- */
-#screen-end h1.fin-principal { font-size: clamp(52px, 16vw, 88px); line-height: .95; margin: 0; animation: golpe .55s cubic-bezier(.2, .9, .3, 1.2); }
-#screen-end.caida h1.fin-principal { color: var(--rojo); font-size: min(12vw, 56px); white-space: nowrap; animation: none; }
-#screen-end h2.fin-causa { font-size: clamp(26px, 8vw, 36px); line-height: 1.1; margin: 0; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
+#screen-end h1.fin-principal { margin: 0; animation: golpe .55s cubic-bezier(.2, .9, .3, 1.2); }
+#screen-end.caida h1.fin-principal { color: var(--rojo); white-space: nowrap; animation: none; }
+#screen-end h2.fin-causa { margin: 0; padding-bottom: 12px; border-bottom: 4px double var(--carbon); }
 /* Caída: cabecera en el hueco de las barras y la pregunta; sin título de la causa (va en la carta) ni divisor */
 .fin-escenario { display: none; }
 #screen-end.caida .fin-escenario { display: flex; }
@@ -549,26 +600,21 @@ body.carta-medida #screen-end.caida .fin-cab { height: var(--cabecera-h); overfl
 /* Los textos de arriba, del ancho de la carta (como en la partida) */
 body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { width: var(--carta-w); max-width: 100%; margin-left: auto; margin-right: auto; box-sizing: border-box; }
 body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta .cabecera-carta { grid-template-columns: minmax(0, 1fr); }
-body.carta-medida #screen-era .cabecera-carta h1, body.carta-medida #screen-name .cabecera-carta h1 { font-size: min(calc(var(--carta-w) * .088), 46px); }
-body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(--carta-w) * .15), 56px); }
 #screen-end.caida #fin-titulo, #screen-end.caida #fin-acciones { display: none; }
-#screen-end.caida .relato { justify-self: stretch; text-align: center; font-size: 15px; line-height: 1.35; }
+#screen-end.caida .relato { justify-self: stretch; text-align: center; }
 .carta-caida .ilustracion { align-items: center; justify-content: center; }
-.titulo-caida { padding: 0 10%; text-align: center; font-family: var(--fuente-titulo); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--bloque); }
+.titulo-caida { padding: 0 10%; text-align: center; color: var(--bloque); }
 @keyframes golpe { from { opacity: 0; transform: scale(1.18); } to { opacity: 1; transform: none; } }
 /* Victoria: «¡Has ganado!» en tinta y una esquela de periódico con lo que deja el dictador */
-#screen-end.victoria h1.fin-principal { color: var(--tinta); font-size: min(13vw, 64px); white-space: nowrap; }
+#screen-end.victoria h1.fin-principal { color: var(--tinta); white-space: nowrap; }
 .esquela:empty { display: none; }
 .esquela { display: grid; gap: 4px; justify-items: center; text-align: center; padding: 16px 16px 14px; background: var(--bloque); border: var(--trazo); border-top: 10px solid var(--tinta); }
-.esquela .qepd { font-size: 13px; font-weight: 700; letter-spacing: .3em; color: var(--tinta-suave); }
-.esquela b { font-family: var(--fuente-titulo); font-weight: 400; font-size: 26px; line-height: 1.1; }
+.esquela .qepd { color: var(--tinta-suave); }
+.esquela b { }
 .esquela ul { justify-self: stretch; text-align: left; }
-.esquela .anos { font-size: 15px; color: var(--tinta-suave); padding-bottom: 8px; border-bottom: 1.5px dotted var(--carbon); width: 100%; }
-.esquela ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15px; line-height: 1.4; }
+.esquela .anos { color: var(--tinta-suave); padding-bottom: 8px; border-bottom: 1.5px dotted var(--carbon); width: 100%; }
+.esquela ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
 
-@media (max-height: 760px) {
-  .mensaje { font-size: 17px; --alto-mensaje: calc(var(--lineas-mensaje, 4) * 17px * 1.28 + 2px); }
-}
 @media (max-height: 640px) {
   .ranura { width: 42px; height: 42px; }
   .ranura .icono { width: 36px; height: 36px; }
@@ -578,8 +624,6 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
   .ranura { width: 40px; height: 40px; }
   .ranura .icono { width: 34px; height: 34px; }
   .pie-juego { gap: 8px; }
-  .dictador b { font-size: 14px; }
-  .dictador small { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .carta, .nivel .relleno { transition: none; }
@@ -591,7 +635,11 @@ body.carta-medida #screen-end.caida h1.fin-principal { font-size: min(calc(var(-
 
 /* 23 oct: sin vetas de rotulador; letra de color plano */
 .etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .logo-texto > span { color: var(--p-tinta); }
-.ficha-nombre { color: var(--rotulador, var(--p-tinta)); }
+/* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
+.ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
+.ficha-cab .foto-grapada { margin-bottom: 0; }
+.ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; min-width: 0; flex: 1; }
+.ficha-nombre span { display: block; white-space: nowrap; }
 .logo-texto i { color: var(--p-mostaza); }   /* los signos, en amarillo mostaza */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
 </style>
@@ -2736,7 +2784,14 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 function ajustarFicha(carta = $("carta")) {
   const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
-  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
+  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
+  /* el nombre ocupa todo el sitio junto a la foto: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
+  const nom = h.querySelector(".ficha-nombre");
+  if (nom) {
+    let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
+    const ancho = () => Math.max(...[...nom.children].map(c => c.scrollWidth));
+    while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
+  }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
   for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
   for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
@@ -2767,7 +2822,10 @@ function fichaPersonaje(cargo) {
 function dorsoFicha(f) {
   // 21 oct: la foto de carné, pegada con un trozo de cinta de carrocero
   const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="cinta-foto" aria-hidden="true"></i></div>` : "";
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+  // 24 oct: nombre en dos líneas (nombre y apellido), al lado de la foto
+  const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
+  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${foto}${nombre}</div>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }

@@ -602,7 +602,14 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 function ajustarFicha(carta = $("carta")) {
   const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
-  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px");
+  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
+  /* el nombre ocupa todo el sitio junto a la foto: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
+  const nom = h.querySelector(".ficha-nombre");
+  if (nom) {
+    let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
+    const ancho = () => Math.max(...[...nom.children].map(c => c.scrollWidth));
+    while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
+  }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
   for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
   for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
@@ -633,7 +640,10 @@ function fichaPersonaje(cargo) {
 function dorsoFicha(f) {
   // 21 oct: la foto de carné, pegada con un trozo de cinta de carrocero
   const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="cinta-foto" aria-hidden="true"></i></div>` : "";
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}${foto}<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(f.nombre)}</b>` +
+  // 24 oct: nombre en dos líneas (nombre y apellido), al lado de la foto
+  const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
+  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${foto}${nombre}</div>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }

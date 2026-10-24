@@ -232,7 +232,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: min(100%, 10vh); margin: 0 auto; }
 .par .icono-fuerza { display: block; }
 .par .icono-fuerza .icono { width: 100%; height: auto; }
-.icono.cartel { aspect-ratio: 1; border-radius: 0; }   /* 24 oct: sin margen crema ni línea de tinta (se probaron el 23 oct) */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
+.icono.cartel { aspect-ratio: 1; border-radius: 0; box-sizing: border-box; border: 1.5px solid var(--p-tinta); }   /* 24 oct: línea de tinta, sin margen crema */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {
@@ -243,7 +243,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
 
 }
-.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 0; }
+.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 0; border: 1.5px solid var(--p-tinta); }
 .nivel .relleno {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
@@ -529,11 +529,11 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; gap: 6px; flex-shrink: 0; position: relative; }
 .ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */
-.ranura { width: 46px; height: 46px; border-radius: 0; border: none; padding: 0; display: block; }
+.ranura { width: 46px; height: 46px; border-radius: 0; border: 1.5px solid var(--p-tinta); padding: 0; display: block; }
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
 .ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; mix-blend-mode: multiply; }   /* pintados sobre el cartón del hueco */
-.ranura .icono.cartel { width: 100%; height: 100%; mix-blend-mode: normal; border-radius: inherit; }   /* 23 oct: los carteles de los estados llenan la casilla */
+.ranura .icono.cartel { width: 100%; height: 100%; border: none; mix-blend-mode: normal; border-radius: inherit; }   /* 23 oct: los carteles de los estados llenan la casilla */
 .ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
 .ranura.actua { animation: invierte .8s steps(1) 1; }
 @keyframes invierte { 0% { filter: brightness(1.55); } 100% { filter: none; } }

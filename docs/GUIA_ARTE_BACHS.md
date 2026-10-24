@@ -572,3 +572,10 @@ Square 1:1 back of a playing card from a Cuban card game, in the style of a 1960
 ```
 
 **Era 1: aprobado por Jorge (24 oct), la melena.** Original en `assets/reversos/era-1.jpg`, versión ligera `era-1.webp` (`python3 tools/recortar.py carteles`). En el juego sustituye al color plano y al dibujo antiguo del mazo y de la tapa; las eras 2–4 siguen con el color de la era hasta que se hagan.
+
+### Reversos de las eras 2, 3 y 4 (24 oct)
+Mismo estilo que la era 1 (el Comandante en el centro y una melena simétrica que irradia, de *El mundo de los animales*, 28), cambiando el concepto con la era y el color (el de `REVERSO_ERA`), siempre de poco contraste. Se generan de cero, adjuntando el cartel 28 y `assets/reversos/era-1.jpg`.
+- **Era 2 · La Purga** (azul y rosa): el Comandante más gordo, con un reloj; la melena son sus hombres, caritas con kepi, y algunas tachadas.
+- **Era 3 · El Culto** (mostaza y rojo ladrillo): muy gordo y de barba blanca, boca de discurso; la melena son sus medallas, estrellas y charreteras, en anillos como los rayos de un sol.
+- **Era 4 · La Supervivencia** (rojo y mostaza): viejo y flaco, calvo, con gafas y chándal; la melena son manos arrugadas que se aferran a los brazos de un sillón presidencial.
+Los tres prompts están en la conversación del 24 oct; al cambiarlos, se copian aquí.

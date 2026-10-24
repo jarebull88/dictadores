@@ -1120,7 +1120,7 @@ const FICHAS = {
     nota: "Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
   "Ministro de las Fuerzas Armadas": { nombre: "Domingo Cuesta", cargo: "Capitán de columna",
     historia: "Campesino de la sierra que aprendió a mandar con el fusil por delante y al que la tropa seguiría a cualquier parte, lo que conviene tener presente.",
-    nota: "Hasta la fecha ha rechazado todas las medallas que se le han ofrecido." },
+    nota: "Se cuida el bigote con un esmero impropio de la sierra." },
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
     historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",
     nota: "Este informe lo ha redactado él mismo." },

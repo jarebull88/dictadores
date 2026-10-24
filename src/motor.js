@@ -765,10 +765,16 @@ function entrarCarta(carta) {
     return;
   }
   vigilarReposo();
+  carta.classList.remove("cogida");
+  /* 24 oct: la carta se pone boca abajo de golpe (sin transición) y luego da la vuelta. Antes dependía de que el reverso
+     fuera un elemento recién creado; ahora es explícito, igual que en entrarNombre(), y no se pierde si algo mide la carta antes. */
+  const giro = carta.querySelector(".giro");
+  if (giro) giro.style.transition = "none";
   carta.classList.add("revelando", "boca-abajo");
   // La pregunta (o la frase del estado) sale justo cuando se descubre la carta, a mitad de la vuelta
   const msg = $("mensaje"); msg.classList.add("oculto");
   void carta.offsetWidth;
+  if (giro) giro.style.transition = "";
   if (document.querySelector("#screen-game .escenario.repartiendo")) return;    // el reparto le da la vuelta al terminar
   carta.style.transition = "";
   carta.classList.remove("boca-abajo");
@@ -1398,6 +1404,7 @@ function arrastrable(carta, op) {
   function volver() {
     marcarListo(false);
     bajarPistas(0);
+    carta.classList.remove("cogida");
     carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
   }
@@ -1407,7 +1414,8 @@ function arrastrable(carta, op) {
     drag = { x: e.clientX, dx: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
-    carta.style.transition = "none";
+    carta.style.transition = "scale .18s ease";   // 24 oct: solo el zoom se anima; el movimiento sigue al dedo
+    carta.classList.add("cogida");                // y se despega un poco del mazo (crece algo más al arrastrar, ver estilos.css)
     ocultarInfo();
   });
   // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)

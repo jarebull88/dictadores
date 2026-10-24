@@ -308,7 +308,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta {
   position: relative; color: var(--tinta); perspective: 2200px;
   touch-action: none; user-select: none; -webkit-user-select: none;
-  cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease;
+  cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease, scale .2s ease;
 }
 .giro {
   position: absolute; inset: 0; transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
@@ -391,6 +391,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Cartas de estado: el marco es de cartulina de purpurina dorada (assets/fondos/purpurina.jpg), sin color ni pulpa encima */
 /* 23 oct: fuera los marcos de purpurina, oro y plata: todas las cartas, con el mismo margen crema */
 .carta:active { cursor: grabbing; }
+/* 24 oct: al poner el dedo, la carta se despega del mazo con un zoom sutil, y crece un poco más según se arrastra */
+.carta.cogida { scale: calc(1.035 + var(--bajada, 0) * .025); }
 /* 17 oct: vuelve la confirmación. Al pasar el umbral (soltar decide), la carta lleva un contorno de rotulador rojo,
    gastado como las letras (las mismas vetas): un anillo que solo pinta el borde (máscara borde − relleno) */
 .carta::after {
@@ -2948,10 +2950,16 @@ function entrarCarta(carta) {
     return;
   }
   vigilarReposo();
+  carta.classList.remove("cogida");
+  /* 24 oct: la carta se pone boca abajo de golpe (sin transición) y luego da la vuelta. Antes dependía de que el reverso
+     fuera un elemento recién creado; ahora es explícito, igual que en entrarNombre(), y no se pierde si algo mide la carta antes. */
+  const giro = carta.querySelector(".giro");
+  if (giro) giro.style.transition = "none";
   carta.classList.add("revelando", "boca-abajo");
   // La pregunta (o la frase del estado) sale justo cuando se descubre la carta, a mitad de la vuelta
   const msg = $("mensaje"); msg.classList.add("oculto");
   void carta.offsetWidth;
+  if (giro) giro.style.transition = "";
   if (document.querySelector("#screen-game .escenario.repartiendo")) return;    // el reparto le da la vuelta al terminar
   carta.style.transition = "";
   carta.classList.remove("boca-abajo");
@@ -3581,6 +3589,7 @@ function arrastrable(carta, op) {
   function volver() {
     marcarListo(false);
     bajarPistas(0);
+    carta.classList.remove("cogida");
     carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
   }
@@ -3590,7 +3599,8 @@ function arrastrable(carta, op) {
     drag = { x: e.clientX, dx: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
-    carta.style.transition = "none";
+    carta.style.transition = "scale .18s ease";   // 24 oct: solo el zoom se anima; el movimiento sigue al dedo
+    carta.classList.add("cogida");                // y se despega un poco del mazo (crece algo más al arrastrar, ver estilos.css)
     ocultarInfo();
   });
   // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)

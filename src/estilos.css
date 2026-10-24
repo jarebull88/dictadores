@@ -293,7 +293,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .carta {
   position: relative; color: var(--tinta); perspective: 2200px;
   touch-action: none; user-select: none; -webkit-user-select: none;
-  cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease;
+  cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease, scale .2s ease;
 }
 .giro {
   position: absolute; inset: 0; transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
@@ -376,6 +376,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Cartas de estado: el marco es de cartulina de purpurina dorada (assets/fondos/purpurina.jpg), sin color ni pulpa encima */
 /* 23 oct: fuera los marcos de purpurina, oro y plata: todas las cartas, con el mismo margen crema */
 .carta:active { cursor: grabbing; }
+/* 24 oct: al poner el dedo, la carta se despega del mazo con un zoom sutil, y crece un poco más según se arrastra */
+.carta.cogida { scale: calc(1.035 + var(--bajada, 0) * .025); }
 /* 17 oct: vuelve la confirmación. Al pasar el umbral (soltar decide), la carta lleva un contorno de rotulador rojo,
    gastado como las letras (las mismas vetas): un anillo que solo pinta el borde (máscara borde − relleno) */
 .carta::after {

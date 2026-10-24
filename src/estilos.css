@@ -31,6 +31,25 @@
   --radio-pegado: 0;     /* esquinas de la cartulina y la hoja pegadas encima */
   --hueco-carton: #E2D8C2;   /* 23 oct: color plano provisional para las perforaciones (barras, casillas, nombre); antes, cartón */
 }
+/* DISENO:INICIO ==============================================================================================
+   DISEÑO: LAS MEDIDAS QUE SE REPITEN, EN UN SOLO SITIO (24 oct)
+   Igual que la tipografía: aquí viven el grosor de la línea, el margen de las cartas, el lado de las casillas y el mazo.
+   Fuera de este bloque no se escribe «1.5px solid» ni «3.5%»: se usa la variable (lo vigila tests/diseno.test.js).
+   Un cambio aquí llega a cartas, barras, casillas, iconos, mazo, logros y menú. */
+:root {
+  --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
+  --borde: var(--linea) solid var(--p-tinta);       /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
+  --margen-carta: 3.5%;                             /* el margen crema de las cartas */
+  --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
+  --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
+  --aviso: calc((var(--cuadro) - var(--menu)) / 2); /* la bolita amarilla del menú: justo el hueco hasta el borde de las casillas */
+  --mazo-cartas: 4;                                 /* cartas que se ven debajo de la de arriba */
+  --mazo-paso: 3.5px;                               /* lo que asoma cada una */
+  --mazo-alto: calc(var(--mazo-cartas) * var(--mazo-paso));
+  --separacion: 6px;                                /* hueco entre casillas y entre iconos pequeños */
+}
+@media (max-width: 380px) { :root { --cuadro: 40px; } }
+/* DISENO:FIN ================================================================================================== */
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
 html, body { height: 100%; margin: 0; }
 body {
@@ -155,8 +174,10 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 .pantalla-carta { padding: 8px 12px 6px; }
 /* Con la carta de la partida medida (medirCartaJuego): misma carta, misma altura; arriba, el hueco de barras y mensaje */
 body.carta-medida .pantalla-carta .cabecera-carta { height: var(--cabecera-h); overflow: hidden; padding: 0; align-content: center; }
-body.carta-medida .pantalla-carta .escenario { flex: none; min-height: 0; container-type: normal; }
-body.carta-medida .pantalla-carta .carta, body.carta-medida .pantalla-carta .pila { width: var(--carta-w); height: var(--carta-h); }
+body.carta-medida :is(.pantalla-carta, #screen-end.caida) .escenario { flex: none; min-height: 0; padding: 0; align-items: flex-start; container-type: normal; height: calc(var(--carta-h) + var(--mazo-alto)); }
+body.carta-medida :is(.pantalla-carta, #screen-end.caida) .carta, body.carta-medida :is(.pantalla-carta, #screen-end.caida) .pila { width: var(--carta-w); height: var(--carta-h); }
+body.carta-medida :is(.pantalla-carta, #screen-end.caida) .pila { top: 0; }
+body.carta-medida :is(.pantalla-carta, #screen-end.caida) .carta { margin-bottom: 0; }
 body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por ahora el texto largo se corta por abajo */
 
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
@@ -216,14 +237,14 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .cabecera { display: flex; align-items: flex-start; gap: 6px; }
 
 /* Las cuatro fuerzas: un icono, la barra horizontal debajo y los puntos de pista bajo la barra */
-.barras { flex: 0 1 75%; margin: 0 auto; min-width: 0; display: grid;   /* 23 oct: las fuerzas ocupan el 75 % del ancho, centradas, para ganar alto */ grid-template-columns: repeat(4, 1fr); gap: 10px; }   /* 23 oct: menos separación (antes 12 px); sin margen lateral: la primera y la última barra llegan a los bordes de la carta */
+.barras { flex: 1 1 100%; min-width: 0; display: grid;   /* 24 oct: las fuerzas vuelven a ocupar todo el ancho de la carta */ grid-template-columns: repeat(4, 1fr); gap: 10px; }   /* 23 oct: menos separación (antes 12 px); sin margen lateral: la primera y la última barra llegan a los bordes de la carta */
 .barra { display: block; width: 100%; margin: 0; padding: 0; border: none; background: none; color: inherit; font: inherit; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
 .barra:focus-visible { outline: 2px solid var(--tinta); outline-offset: 1px; }
-/* 23 oct: el icono es un cuadrado tan ancho como su columna (como mucho el 10 % del alto de la pantalla) y la barra mide lo mismo */
-.par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: min(100%, 10vh); margin: 0 auto; }
+/* el icono es un cuadrado tan ancho como su columna, y la barra mide lo mismo */
+.par { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: 100%; margin: 0 auto; }
 .par .icono-fuerza { display: block; }
 .par .icono-fuerza .icono { width: 100%; height: auto; }
-.icono.cartel { aspect-ratio: 1; border-radius: 0; box-sizing: border-box; border: 1.5px solid var(--p-tinta); }   /* 24 oct: línea de tinta, sin margen crema */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
+.icono.cartel { aspect-ratio: 1; border-radius: 0; box-sizing: border-box; border: var(--borde); }   /* 24 oct: línea de tinta, sin margen crema */   /* 23 oct: iconos de cartel serigrafiado, cuadrados */
 /* Perforaciones: huecos en el cartón con otro cartón más oscuro por detrás. Sin borde: sombra interior arriba
    (el hueco tapa la luz) y un filo claro abajo (el canto del cartón). Se usan en las barras y en las casillas de estado. */
 .nivel, .ranura {
@@ -234,7 +255,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
 
 }
-.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 0; border: 1.5px solid var(--p-tinta); }
+.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 0; border: var(--borde); }
 .nivel .relleno {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
@@ -277,23 +298,29 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 /* Escenario: la carta, cuadrada, ocupa el lado más corto del hueco libre (el que dejan el mensaje y la barra inferior), con el mazo detrás.
    Sin proporción fija: el personaje se ajusta con preserveAspectRatio (ver svgPersonaje). Alto máximo: 1,45 veces el ancho. */
 .escenario {
-  flex: 1; min-height: 260px; padding: 14px 0 8px; position: relative;   /* 23 oct: más aire entre la pregunta y la carta (antes 2 px) */
-  display: flex; align-items: flex-start; justify-content: center;
+  flex: 1; min-height: 260px; padding: 0; position: relative;
+  display: flex; align-items: center; justify-content: center;   /* 24 oct: carta y mazo, como un solo conjunto, centrados en el hueco */
   container-type: size; perspective: 1400px;
+  --lado: min(100cqw - 8px, 100cqh - var(--mazo-alto) - 8px);   /* la carta es cuadrada y deja sitio al mazo que asoma debajo */
 }
 .carta, .pila {
   /* 23 oct: cartas cuadradas (1:1), para el arte nuevo de Jorge. Miden lo que permita el lado más corto del hueco;
      en los móviles manda el ancho y queda sitio libre debajo de la carta (para avisos como «¡Carné conseguido!»). */
-  height: min(100cqh - 8px, 100cqw - 8px);
-  width: min(100cqw - 8px, 100cqh - 8px);
+  height: var(--lado);
+  width: var(--lado);
 }
 /* 23 oct: sin texturas de cartón ni papel (siguen en assets/fondos); colores planos provisionales hasta el arte nuevo */
-.pila { position: absolute; top: 14px; left: 0; right: 0; margin: 0 auto; pointer-events: none; }
+.pila { position: absolute; top: calc((100cqh - var(--lado) - var(--mazo-alto)) / 2); left: 0; right: 0; margin: 0 auto; pointer-events: none; }
 .pila .capa {
-  position: absolute; inset: 0; transform: translateY(7px); border-radius: 0;   /* vista cenital: solo asoma por abajo */
-  background: var(--rev-base, var(--p-oliva)); border: 1.5px solid var(--p-tinta);   /* el reverso, del color de la era (REVERSO_ERA), con la misma línea */
+  position: absolute; inset: 0; transform: translateY(var(--mazo-alto)); border-radius: 0;   /* vista cenital: solo asoma por abajo */
+  background: var(--rev-base, var(--p-oliva)); border: var(--borde);   /* el reverso, del color de la era (REVERSO_ERA), con la misma línea */
 
 }
+.pila .capa::before {   /* las cartas intermedias del mazo: una línea de tinta cada --mazo-paso */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: calc((var(--mazo-cartas) - 1) * var(--mazo-paso)); pointer-events: none;
+  background: repeating-linear-gradient(to top, transparent 0 calc(var(--mazo-paso) - var(--linea)), var(--p-tinta) calc(var(--mazo-paso) - var(--linea)) var(--mazo-paso));
+}
+.carta { margin-bottom: var(--mazo-alto); }   /* el mazo cuenta como parte del conjunto al centrar */
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
    .giro da la media vuelta en 3D: anverso (personaje) y reverso (ficha), cada uno con la espalda oculta. */
 .carta {
@@ -312,7 +339,7 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .tapa { display: none; }
 .carta.revelando .tapa {
   display: block; position: absolute; inset: 0; border-radius: 0; transform: rotateY(180deg);
-  background: var(--rev-base, var(--p-oliva)); border: 1.5px solid var(--p-tinta);   /* el reverso, del color de la era (REVERSO_ERA), con la misma línea */
+  background: var(--rev-base, var(--p-oliva)); border: var(--borde);   /* el reverso, del color de la era (REVERSO_ERA), con la misma línea */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -371,14 +398,15 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .carta.revelando .giro { transition-duration: .56s; }
 /* Reparto al empezar: las cartas que llegan al mazo; mientras tanto, ni carta ni mazo propio */
 .pila.reparto .capa { transform: none; }
+.pila.reparto .capa::before { display: none; }
 .escenario.repartiendo .carta, .escenario.repartiendo .pila:not(.reparto) { visibility: hidden; }
 .escenario.repartiendo { z-index: 10; }   /* 24 oct: durante el reparto, las cartas pasan POR DELANTE de las casillas y del pie, no por detrás */
 /* La carta es de cartón: rectángulo con esquinas redondeadas y, pegada encima y algo más pequeña, la cartulina de
    color del personaje (.ilustracion), con su sombra de papel pegado. El marco es el 6,5 % del ancho de la carta. */
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
-  padding: 3.5%; border-radius: 0;   /* 24 oct: margen crema fino, como el papel de una serigrafía, y línea de tinta (solo en las cartas) */
-  background-color: var(--p-crema); border: 1.5px solid var(--p-tinta);
+  padding: var(--margen-carta); border-radius: 0;   /* 24 oct: margen crema fino, como el papel de una serigrafía, y línea de tinta (solo en las cartas) */
+  background-color: var(--p-crema); border: var(--borde);
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -525,35 +553,27 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .dictador small { display: block; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dictador small.hidden { display: none; }
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-.ranuras { display: flex; justify-content: center; gap: 6px; flex-shrink: 0; position: relative; }
+.ranuras { display: flex; justify-content: center; gap: var(--separacion); flex-shrink: 0; position: relative; }
 .ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */
-.ranura { width: 46px; height: 46px; border-radius: 0; border: 1.5px solid var(--p-tinta); padding: 0; display: block; }
+.ranura { width: var(--cuadro); height: var(--cuadro); border-radius: 0; border: var(--borde); padding: 0; display: block; }
 .ranura.llena { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ranura.llena:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.ranura .icono { position: relative; z-index: 1; width: 40px; height: 40px; mix-blend-mode: multiply; }   /* pintados sobre el cartón del hueco */
+.ranura .icono { position: relative; z-index: 1; width: calc(var(--cuadro) - 6px); height: calc(var(--cuadro) - 6px); mix-blend-mode: multiply; }   /* pintados sobre el cartón del hueco */
 .ranura .icono.cartel { width: 100%; height: 100%; border: none; mix-blend-mode: normal; border-radius: inherit; }   /* 23 oct: los carteles de los estados llenan la casilla */
-.ranura.nueva { animation: entra .4s ease-out, invierte 1.2s steps(1) 1; }
-.ranura.actua { animation: invierte .8s steps(1) 1; }
-@keyframes invierte { 0% { filter: brightness(1.55); } 100% { filter: none; } }
+.ranura.nueva { animation: entra .4s ease-out; }   /* 24 oct: sin el destello de brillo (parecía un error) */
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* 24 oct: el menú, arriba a la derecha: su borde de arriba, a la altura de los iconos de las fuerzas; el derecho, con el de la carta.
-   Dentro, los logros y el sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial») */
-.cabecera { position: relative; }
-.lateral { position: absolute; right: 0; top: 24px; height: var(--lado-icono, 60px); width: 24px; display: flex; flex-direction: column; justify-content: space-between; }   /* el menú arriba y los logros abajo, repartidos por el alto de los iconos de las fuerzas */
-.boton-menu, .boton-logros { position: relative; flex: none; width: 24px; height: 24px; padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.boton-menu svg, .boton-logros svg { display: block; width: 24px; height: 24px; }
-.boton-menu svg { fill: currentColor; }   /* tres líneas del grosor del contorno de las cartas (1,5 px) */
-.boton-logros svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; overflow: visible; }   /* una medalla a línea fina; con logros sin abrir, en colores */
-.boton-logros .medalla { fill: var(--p-crema); }
-.boton-logros .estrella { stroke-width: 1.2; }
-.boton-logros.pendiente .medalla { fill: var(--p-mostaza); }
-.boton-logros.pendiente .cinta { fill: var(--p-rojo); }
-.boton-logros.pendiente .estrella { fill: var(--p-crema); }
-.boton-menu::after, .boton-logros::after { content: ""; position: absolute; inset: -3px; }   /* zona de toque algo mayor que el dibujo */
-.menu-juego { position: absolute; right: 0; top: calc(24px + var(--lado-icono, 60px) + 6px); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: 1.5px solid var(--p-tinta); }
+/* 24 oct: el menú (☰), abajo a la derecha: al borde de la carta y centrado en vertical con las casillas, a la mitad de su tamaño.
+   Con logros sin abrir lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas.
+   Dentro: Logros, Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
+.boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
+.boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
+.boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
+.boton-menu.con-aviso::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: var(--aviso); height: var(--aviso); margin-left: calc(var(--aviso) / -2); border-radius: 50%; background: var(--p-mostaza); border: var(--borde); }
+.pie-juego { position: relative; }
+.menu-juego { position: absolute; right: 0; bottom: calc(var(--cuadro) + var(--separacion)); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: var(--borde); }
 .menu-juego.hidden { display: none; }
-.opcion-menu { display: block; margin: 0; padding: 12px 16px; border: none; border-bottom: 1.5px solid var(--p-tinta); background: none; color: var(--p-tinta); text-align: left; cursor: pointer; }
+.opcion-menu { display: block; margin: 0; padding: 12px 16px; border: none; border-bottom: var(--borde); background: none; color: var(--p-tinta); text-align: left; cursor: pointer; }
 .opcion-menu:last-child { border-bottom: none; }
 .opcion-menu.hidden { display: none; }
 .opcion-menu:hover, .opcion-menu:focus-visible { background: var(--p-tinta); color: var(--p-crema); outline: none; }
@@ -623,14 +643,12 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 }
 @media (max-width: 380px) {
   .ranuras { gap: 4px; }
-  .ranura { width: 40px; height: 40px; }
-  .ranura .icono { width: 34px; height: 34px; }
   .pie-juego { gap: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .carta, .nivel .relleno { transition: none; }
   .peligro .alerta, .peligro .nivel .relleno { animation: none; }
-  .ranura.nueva, .ranura.actua, .barra.cambia .nivel { animation: none; }
+  .ranura.nueva, .barra.cambia .nivel { animation: none; }
   .giro { transition: none; }
   .personaje .ojos { animation: none !important; }
 }
@@ -671,7 +689,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo-rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
 .archivo.viendo .archivo-rejilla { display: none; }
 .hueco-logro { aspect-ratio: 1; min-width: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; box-sizing: border-box;
-  border: 1.5px solid var(--p-tinta); border-radius: 0; background: var(--hueco-carton); color: var(--p-tinta); }
+  border: var(--borde); border-radius: 0; background: var(--hueco-carton); color: var(--p-tinta); }
 .hueco-logro.vacio { color: transparent; }
 .hueco-logro.sobre-mini { background: var(--manila); cursor: pointer; }
 .hueco-logro.sobre-mini span { color: var(--p-rojo); border: 2px solid var(--p-rojo); padding: 2px 4px 0; transform: rotate(-8deg); }
@@ -684,10 +702,10 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .logro-vista.abierto .logro-titulo { opacity: 1; }
 .sobre-escena { position: relative; flex: none; width: var(--carta-w, 100%); max-width: 100%; aspect-ratio: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .sobre-escena.ya { cursor: default; }
-.logro-carta { position: absolute; inset: 0; z-index: 1; box-sizing: border-box; padding: 3.5%; background: var(--p-crema); border: 1.5px solid var(--p-tinta); }
+.logro-carta { position: absolute; inset: 0; z-index: 1; box-sizing: border-box; padding: var(--margen-carta); background: var(--p-crema); border: var(--borde); }
 .logro-ilustracion { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--manila); }
 .logro-objeto { color: var(--tinta-suave); }
-.sobre { position: absolute; inset: 0; z-index: 2; background: var(--manila); border: 1.5px solid var(--p-tinta); box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+.sobre { position: absolute; inset: 0; z-index: 2; background: var(--manila); border: var(--borde); box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
 .sello-conf { color: var(--p-rojo); border: 2.5px solid var(--p-rojo); padding: 4px 10px 2px; transform: rotate(-8deg); margin-top: 20%; }
 .sobre-solapa { position: absolute; left: 0; top: 0; width: 100%; height: 52%; transform-origin: top; fill: color-mix(in srgb, var(--p-mostaza) 60%, var(--p-crema)); stroke: var(--p-tinta); stroke-width: 1.5; vector-effect: non-scaling-stroke; overflow: visible; }
 .sobre-escena:not(.ya) .logro-carta { opacity: 0; }

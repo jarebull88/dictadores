@@ -419,12 +419,11 @@ function medirCartaJuego() {
   const sobra = esc.clientHeight - c.offsetHeight - 90;
   if (sobra > linea) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
   const w = c.offsetWidth, h = c.offsetHeight;
-  const lado = ($("barras").querySelector(".icono-fuerza") || {}).offsetWidth || 0;   // los iconos son cuadrados: el menú y los logros se reparten su alto
-  const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0);
+  const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
+  const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0) + (pila ? pila.offsetTop : 0);
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
-  if (lado) r.setProperty("--lado-icono", lado + "px");
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
   document.body.classList.add("carta-medida");
 }
@@ -1618,11 +1617,11 @@ function comprobarLogros(op) {
   guardarLogros(l);
   anunciarLogro();
 }
-/* El icono de logros es una medalla («Workspace Premium») a línea fina; con logros sin abrir se pone en colores */
+/* Con logros sin abrir, una bolita amarilla encima del menú (☰) */
 function avisoMenu() {
   const n = sinAbrir();
-  $("btn-logros").classList.toggle("pendiente", n > 0);
-  $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
+  $("btn-menu").classList.toggle("con-aviso", n > 0);
+  $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} logros sin abrir)` : "Menú");
 }
 /* «¡Nuevo logro!» se escribe a mano, en cursiva, donde van el nombre y los años (que se esconden un momento); se queda un
    instante y se borra de izquierda a derecha, como la animación «hello» de LottieFiles que eligió Jorge pero más rápida. */

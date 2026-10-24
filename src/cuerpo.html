@@ -28,14 +28,6 @@
   <section id="screen-game" class="screen hidden">
     <div class="cabecera">
       <div class="barras" id="barras"></div>
-      <div class="lateral">
-        <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v1.5H0zM0 11.25h24v1.5H0zM0 22.5h24V24H0z"/></svg></button>
-        <button class="boton-logros" id="btn-logros" type="button" aria-label="Logros"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="cinta" d="M6.2 16V23.25L12 20.3L17.8 23.25V16"/><circle class="medalla" cx="12" cy="9.5" r="8.75"/><path class="estrella" d="M12.00 5.30L13.15 8.32L16.37 8.48L13.85 10.50L14.70 13.62L12.00 11.85L9.30 13.62L10.15 10.50L7.63 8.48L10.85 8.32Z"/></svg></button>
-      </div>
-      <div class="menu-juego hidden" id="menu-juego" role="menu">
-        <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
-        <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
-      </div>
     </div>
     <div class="mensaje" id="mensaje"></div>
     <div class="escenario">
@@ -45,6 +37,12 @@
     <div class="pie-juego">
       <div class="zona-nombre"><div class="dictador"><b id="nombre-dictador"></b><small id="anios-poder"></small></div><div class="logro-escribe" id="logro-escribe" aria-live="polite"></div></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
+      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><i></i><i></i><i></i></button>
+      <div class="menu-juego hidden" id="menu-juego" role="menu">
+        <button class="opcion-menu" id="btn-logros" type="button" role="menuitem">Logros</button>
+        <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
+        <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
+      </div>
     </div>
     <div class="popup hidden" id="popup" role="dialog"></div>
     <!-- 24 oct: el archivo de logros, por encima de la partida (que espera debajo) -->

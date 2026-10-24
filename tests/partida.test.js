@@ -149,8 +149,8 @@ test("logros: «Que cada vecino vigile a su vecino» da un sobre sin abrir; al a
   j.w.eval(`E.actual = CARTAS.find(c => c.id === "${id}"); mezclarLados = false; E.lados = null;`);
   const dir = j.w.eval(`(E.actual.izq.banderas || []).includes("base.comites_vigilancia") ? -1 : 1`);
   j.w.eval(`resolver(${dir})`);
-  assert.ok(j.$("btn-logros").classList.contains("pendiente"), "el icono de logros se rellena");
-  assert.match(j.$("btn-logros").getAttribute("aria-label"), /1 sin abrir/);
+  assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú lleva la bolita amarilla");
+  assert.match(j.$("btn-menu").getAttribute("aria-label"), /1 logros sin abrir/);
   j.$("btn-logros").click();
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
@@ -161,6 +161,6 @@ test("logros: «Que cada vecino vigile a su vecino» da un sobre sin abrir; al a
   assert.match(j.d.querySelector(".archivo-pista").textContent, /Que cada vecino vigile a su vecino/);
   j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
-  assert.ok(!j.$("btn-logros").classList.contains("pendiente"), "abierto, el sobre se vacía");
+  assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");
   assert.deepEqual(j.errores, []);
 });

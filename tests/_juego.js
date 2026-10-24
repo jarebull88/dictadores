@@ -13,8 +13,6 @@ function cargar({ temporizadores = "inmediatos" } = {}) {
     pretendToBeVisual: true,
     beforeParse(w) {
       w.addEventListener("error", e => errores.push(e.message));
-      // jsdom no trae canvas y lottie-web lo pide al cargar: un contexto de mentira basta (la animación no se reproduce en las pruebas)
-      w.HTMLCanvasElement.prototype.getContext = () => new Proxy({}, { get: (t, k) => (k in t ? t[k] : () => ({ data: [0, 0, 0, 0] })), set: (t, k, v) => { t[k] = v; return true; } });
       // los avisos largos (9 s) no se ejecutan; el resto, al instante
       if (temporizadores === "inmediatos") w.setTimeout = (fn, ms) => { if ((ms || 0) >= 500) return 0; fn(); return 0; };
     }

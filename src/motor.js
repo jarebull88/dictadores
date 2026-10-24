@@ -1612,57 +1612,26 @@ function comprobarLogros(op) {
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
-  lanzarSello();
+  anunciarLogro();
 }
-/* El icono de logros es una estrella a línea; se rellena de amarillo mientras haya logros sin abrir */
+/* El icono de logros es una medalla («Workspace Premium») a línea fina; con logros sin abrir se pone en colores */
 function avisoMenu() {
   const n = sinAbrir();
   $("btn-logros").classList.toggle("pendiente", n > 0);
   $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
 }
-/* El sello cae bajo la carta, se queda un momento y vuela al menú */
-function lanzarSello() {
-  const g = $("screen-game");
-  g.querySelectorAll(".sello-logro").forEach(n => n.remove());
-  const s = document.createElement("div");
-  s.className = "sello-logro"; s.setAttribute("role", "status"); s.textContent = "¡Nuevo logro!";
-  g.appendChild(s);
-  const pila = g.querySelector(".escenario .pila").getBoundingClientRect(), caja = g.getBoundingClientRect();
-  // Bajo la carta; en pantallas bajas, sin pisar el pie (sube sobre el borde de la carta)
-  const pie = g.querySelector(".pie-juego").getBoundingClientRect();
-  if (pila.height) s.style.top = Math.min(pila.bottom + 14, pie.top - s.offsetHeight - 8) - caja.top + "px";
-  if (!animar()) { avisoMenu(); setTimeout(() => s.remove(), 1500); return; }
-  s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1.8)", opacity: 0 }, { transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 }],
-    { duration: 260, easing: "cubic-bezier(.3,1.6,.6,1)", fill: "both" });
-  setTimeout(() => {
-    const a = s.getBoundingClientRect(), m = $("btn-logros").getBoundingClientRect();
-    const dx = m.left + m.width / 2 - (a.left + a.width / 2), dy = m.top + m.height / 2 - (a.top + a.height / 2);
-    const vuelo = s.animate([{ transform: "translateX(-50%) rotate(-4deg) scale(1)", opacity: 1 },
-      { transform: `translate(calc(-50% + ${dx}px), ${dy}px) rotate(0deg) scale(.12)`, opacity: .6 }],
-      { duration: 520, easing: "cubic-bezier(.5,0,.8,.4)", fill: "both" });
-    vuelo.onfinish = () => {
-      s.remove(); avisoMenu();
-      estallidoEstrella();
-      if (navigator.vibrate) navigator.vibrate([30, 40, 60]);
-    };
-  }, 1500);
-}
-
-/* La animación de LottieFiles «Star» (assets/lottie/Star-original.json), recoloreada con la paleta (estrella amarilla sin la sombra
-   oscura, contorno en la tinta): nace del contorno de la estrella del menú, hace su pop con aro y chispas, y se encoge hasta
-   quedarse como el icono. Dura 50 fotogramas a 30 por segundo. Sin Lottie o con «reducir movimiento», un saltito. */
-function estallidoEstrella() {
-  const b = $("btn-logros"), g = $("screen-game");
-  b.classList.remove("salto");
-  if (!animar() || !window.lottie) { void b.offsetWidth; b.classList.add("salto"); return; }
-  const r = b.getBoundingClientRect(), caja = g.getBoundingClientRect(), S = 150;
-  const o = document.createElement("div");
-  o.className = "estrella-lottie"; o.style.width = o.style.height = S + "px";
-  o.style.left = (r.left - caja.left + r.width / 2 - S / 2) + "px"; o.style.top = (r.top - caja.top + r.height / 2 - S / 2) + "px";
-  g.appendChild(o); b.classList.add("animando");
-  const an = lottie.loadAnimation({ container: o, renderer: "svg", loop: false, autoplay: true, animationData: ESTRELLA });
-  setTimeout(() => o.animate([{ transform: "scale(1)" }, { transform: `scale(${24 / (S * 0.45)})` }], { duration: 380, easing: "ease-in-out", fill: "forwards" }), 1000);
-  setTimeout(() => { an.destroy(); o.remove(); b.classList.remove("animando"); }, 1400);
+/* «¡Nuevo logro!» se escribe a mano, en cursiva, donde van el nombre y los años (que se esconden un momento); se queda un
+   instante y se borra de izquierda a derecha, como la animación «hello» de LottieFiles que eligió Jorge pero más rápida. */
+const LOGRO_MS = 2300;
+function anunciarLogro() {
+  const z = document.querySelector("#screen-game .zona-nombre"), t = $("logro-escribe");
+  avisoMenu();
+  t.textContent = "¡Nuevo logro!";
+  t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
+  z.classList.add("con-logro");
+  if (navigator.vibrate) navigator.vibrate(25);
+  clearTimeout(z._t);
+  z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
 }
 
 /* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */

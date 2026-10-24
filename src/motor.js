@@ -1614,7 +1614,7 @@ function comprobarLogros(op) {
   guardarLogros(l);
   lanzarSello();
 }
-/* El icono de logros es un sobre a línea; se rellena de tinta mientras haya logros sin abrir */
+/* El icono de logros es una estrella a línea; se rellena de amarillo mientras haya logros sin abrir */
 function avisoMenu() {
   const n = sinAbrir();
   $("btn-logros").classList.toggle("pendiente", n > 0);

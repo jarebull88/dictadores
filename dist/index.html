@@ -551,9 +551,8 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 .boton-menu, .boton-logros { position: relative; flex: none; width: 24px; height: 24px; padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .boton-menu svg, .boton-logros svg { display: block; width: 24px; height: 24px; }
 .boton-menu svg { fill: currentColor; }   /* tres líneas del grosor del contorno de las cartas (1,5 px) */
-.boton-logros svg { fill: none; stroke: currentColor; stroke-width: 1.5; }   /* un sobre a línea, que se rellena de tinta con logros sin abrir */
-.boton-logros.pendiente .cuerpo { fill: currentColor; }
-.boton-logros.pendiente .solapa { stroke: var(--p-crema); }
+.boton-logros svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: miter; overflow: visible; }   /* una estrella a línea, que se rellena de amarillo con logros sin abrir */
+.boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
 .boton-menu::after, .boton-logros::after { content: ""; position: absolute; inset: -3px; }   /* zona de toque algo mayor que el dibujo */
 .menu-juego { position: absolute; right: 0; top: calc(24px + var(--lado-icono, 60px) + 6px); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: 1.5px solid var(--p-tinta); }
 .menu-juego.hidden { display: none; }
@@ -654,7 +653,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
    ===================================================================================================== */
 .sello-logro { position: absolute; left: 50%; top: 72%; z-index: 25; transform: translateX(-50%) rotate(-4deg); white-space: nowrap; pointer-events: none;
   color: var(--p-rojo); background: var(--p-crema); border: 3px solid var(--p-rojo); padding: 6px 14px 4px; }
-.boton-logros.salto { animation: salto-menu .45s ease-out; }
+.boton-logros.salto { animation: salto-menu .45s ease-out; }   /* provisional: Jorge quiere usar una animación Lottie suya */
 @keyframes salto-menu { 0% { transform: scale(1); } 35% { transform: scale(1.4); } 100% { transform: scale(1); } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
@@ -734,7 +733,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
       <div class="barras" id="barras"></div>
       <div class="lateral">
         <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v1.5H0zM0 11.25h24v1.5H0zM0 22.5h24V24H0z"/></svg></button>
-        <button class="boton-logros" id="btn-logros" type="button" aria-label="Logros"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="cuerpo" x=".75" y=".75" width="22.5" height="22.5"/><path class="solapa" d="M.75 .75L12 13L23.25 .75"/></svg></button>
+        <button class="boton-logros" id="btn-logros" type="button" aria-label="Logros"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="cuerpo" d="M12.00 0.75L15.35 8.54L23.79 9.32L17.42 14.91L19.29 23.18L12.00 18.85L4.71 23.18L6.58 14.91L0.21 9.32L8.65 8.54Z"/></svg></button>
       </div>
       <div class="menu-juego hidden" id="menu-juego" role="menu">
         <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
@@ -3875,7 +3874,7 @@ function comprobarLogros(op) {
   guardarLogros(l);
   lanzarSello();
 }
-/* El icono de logros es un sobre a línea; se rellena de tinta mientras haya logros sin abrir */
+/* El icono de logros es una estrella a línea; se rellena de amarillo mientras haya logros sin abrir */
 function avisoMenu() {
   const n = sinAbrir();
   $("btn-logros").classList.toggle("pendiente", n > 0);

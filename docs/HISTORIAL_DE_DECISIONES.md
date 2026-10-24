@@ -481,3 +481,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **24 oct — Línea de tinta (1,5 px, sin margen crema) en los iconos de fuerzas y estados, en las barras y en las casillas de estado (también las vacías).**
 - **24 oct — Barra en peligro:** además del relleno rojo y el «!», el contorno de la barra pasa a rojo.
 - **24 oct — Zoom al coger la carta:** al poner el dedo, la carta se despega del mazo con un zoom sutil (×1,035, `scale` en CSS, que no choca con el `transform` del arrastre) y crece un poco más según se arrastra (hasta ×1,06); al soltar sin decidir vuelve a su tamaño. **Arreglado el volteo de las cartas nuevas:** se había perdido (solo lo hacía la carta del Comandante) porque dependía de que el reverso fuera un elemento recién creado; cualquier medida previa (por ejemplo, la de la ficha) lo rompía. Ahora `entrarCarta()` pone la carta boca abajo sin transición y luego la gira, igual que `entrarNombre()`.
+- **24 oct — Tres ajustes:**
+  (1) **la pregunta** (y los textos de la pantalla del nombre y de la era) ocupa el 90 % del ancho de la carta, con un 5 % de aire a cada lado; no cambia el tamaño de letra de ninguna carta;
+  (2) **el reparto** de cartas pasa por delante de las casillas y del pie (antes iba por detrás);
+  (3) **toque y zoom ya no chocan:** el zoom solo sale si sujetas la carta 150 ms o si la arrastras; un toque seco solo la gira.

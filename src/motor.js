@@ -1408,14 +1408,22 @@ function arrastrable(carta, op) {
     carta.style.transition = ""; carta.style.transform = ""; carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
     op.mostrar(0);
   }
+  function coger() {
+    if (!drag || carta.classList.contains("cogida")) return;
+    clearTimeout(drag.cogida);
+    carta.style.transition = "scale .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
+    carta.classList.add("cogida");                // crece algo más al arrastrar (ver estilos.css)
+  }
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
     ancho = carta.offsetWidth;
     drag = { x: e.clientX, dx: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
-    carta.style.transition = "scale .18s ease";   // 24 oct: solo el zoom se anima; el movimiento sigue al dedo
-    carta.classList.add("cogida");                // y se despega un poco del mazo (crece algo más al arrastrar, ver estilos.css)
+    carta.style.transition = "none";
+    /* 24 oct: el zoom (se despega del mazo) es solo si la SUJETAS: pasados 150 ms con el dedo puesto, o en cuanto se
+       arrastra. Un toque seco no hace zoom: solo gira la carta. */
+    drag.cogida = setTimeout(coger, 150);
     ocultarInfo();
   });
   // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)
@@ -1436,6 +1444,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
+    if (Math.abs(drag.dx) > 6) coger();
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
@@ -1445,6 +1454,7 @@ function arrastrable(carta, op) {
   function soltar(e) {
     if (!drag) return;
     const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    clearTimeout(drag.cogida);
     drag = null;
     arrastrando = false;
     if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(dx) < 30)) op.toque(); return; }
@@ -1456,6 +1466,7 @@ function arrastrable(carta, op) {
   }
   function cancelar() {
     if (!drag) return;
+    clearTimeout(drag.cogida);
     drag = null; arrastrando = false; volver();
   }
   carta.addEventListener("pointerup", soltar);

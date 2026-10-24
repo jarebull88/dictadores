@@ -70,9 +70,7 @@ def main():
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
                + leer("assets/iconos/escenas.json").strip() + ';\nconst PORTADA = '
-               + json.dumps(portada(), ensure_ascii=False) + ';\nconst ESTRELLA = '
-               + json.dumps(json.loads(leer("assets/lottie/estrella.json")), separators=(",", ":")) + ';\n</script>\n')
-    lottie = '<script>\n/* lottie-web (versión ligera, MIT) para la animación de la estrella de logros */\n' + leer("assets/lottie/lottie_light.min.js") + '\n</script>\n'
+               + json.dumps(portada(), ensure_ascii=False) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>
@@ -86,7 +84,7 @@ def main():
 </head>
 <body>
 {cuerpo}
-{lottie}{activos}<script>
+{activos}<script>
 "use strict";
 
 {datos}{motor}</script>

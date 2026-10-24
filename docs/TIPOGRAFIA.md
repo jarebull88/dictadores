@@ -1,9 +1,10 @@
 # Tipografía del juego (24 oct)
 
-**Solo hay dos estilos de letra**, definidos en un único bloque de `src/estilos.css` (entre `TIPOGRAFIA:INICIO` y `TIPOGRAFIA:FIN`). El test `tests/tipografia.test.js` falla si alguien pone letra, tamaño, peso, mayúsculas, espaciado o interlineado en otra parte del CSS, o en línea en el HTML o en `motor.js`.
+**Solo hay tres estilos de letra**, definidos en un único bloque de `src/estilos.css` (entre `TIPOGRAFIA:INICIO` y `TIPOGRAFIA:FIN`). El test `tests/tipografia.test.js` falla si alguien pone letra, tamaño, peso, mayúsculas, espaciado o interlineado en otra parte del CSS, o en línea en el HTML o en `motor.js`.
 
 - **TITULAR:** Londrina Solid, siempre en mayúsculas, peso normal.
 - **CUERPO:** Baloo 2, en negrita (700) o normal (400).
+- **CURSIVA:** Playwrite IT Moderna, normal. Solo para «¡Nuevo logro!» (`--f-cursiva`, `--t-cursiva`: 26 px).
 
 ## Cómo cambiar un estilo
 - **Para cambiar una letra, un tamaño o un peso:** se cambia el valor del papel en el bloque (variables `--f-*`, `--t-*`, `--c-*`) y se aplica a todo el juego a la vez.
@@ -17,6 +18,7 @@
 | **Titular M** | Londrina, mayúsculas | `--t-m`: 26 px | títulos de las ventanas de fuerzas y estados, nombre del estado en su carta, «Comenzar partida» y «Cómo se juega», título de la esquela y de las cartas de caída, la causa al final |
 | **Titular S** | Londrina, mayúsculas | `--t-s`: 21 px | cintas del tutorial, efecto del estado, «Has gobernado N años», estados con nombre muy largo |
 | **Logo** | Londrina, mayúsculas | 46 px y 92 px | «Comandante, ¡Ordene!» de la portada |
+| **Cursiva** | Playwrite, normal | `--t-cursiva`: 26 px | «¡Nuevo logro!», que se escribe en el sitio del nombre y los años |
 | **Pregunta** | Baloo 2, negrita | `--c-pregunta`: 19 px (17 px en pantallas bajas) | la pregunta de cada carta, el texto de la pantalla del nombre, el de la pantalla de era, el campo del nombre |
 | **Respuesta** | Baloo 2, negrita | `--c-respuesta`: 23 px (menos si la carta es estrecha) | la respuesta que sale al arrastrar |
 | **Texto** | Baloo 2, normal (negrita en destacados) | `--c-texto`: 16 px | ventanas, fichas, informes, relato final, esquela, errores, botones |

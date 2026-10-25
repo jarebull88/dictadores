@@ -1,5 +1,5 @@
 // Auditoría de estilos (25 oct): recorre todas las pantallas del juego y agrupa cada texto visible por letra, tamaño, peso y mayúsculas.
-// Sirve para ver de un vistazo si algo se sale de los tres estilos (Londrina, Sofia, Playwrite) o de los pesos 400/800.
+// Sirve para ver de un vistazo si algo se sale de los dos estilos (Londrina y Sofia) o de los pesos 400/800.
 // Uso: node tools/auditar_estilos.js   (necesita Playwright; en la sesión de Claude Code ya está instalado)
 const path = require("path");
 let chromium; try { ({ chromium } = require("playwright")); } catch (e) { ({ chromium } = require(require("child_process").execSync("npm root -g").toString().trim() + "/playwright")); }
@@ -31,9 +31,9 @@ const juego = "file://" + path.join(__dirname, "..", "dist", "index.html") + "?c
   await p.evaluate(()=>{ document.getElementById("carta-era").classList.add("volteada"); }); await p.waitForTimeout(600); await coger("era-informe");
   await p.evaluate(()=>{ empezar(); terminar("pueblo_0"); }); await p.waitForTimeout(800); await coger("caida");
   await p.evaluate(()=>{ empezar(); E.era=4; E.banderas.add("base.mausoleo_construido"); terminar(null); }); await p.waitForTimeout(800); await coger("victoria");
-  const permitidas = ["Londrina Solid", "Sofia Sans Semi Condensed", "Playwrite IT Moderna"];
+  const permitidas = ["Londrina Solid", "Sofia Sans Semi Condensed"];
   let raros = 0;
   for (const k of Object.keys(todo).sort()) { const [fam, , w] = k.split(" | "); const raro = !permitidas.includes(fam) || !["400", "800"].includes(w); if (raro) raros++;
     console.log((raro ? "⚠ " : "") + k, "\n    ", [...todo[k]].slice(0, 4).join("\n     ")); }
-  console.log(raros ? `\n${raros} combinación(es) fuera de los estilos (marcadas con ⚠; las de .solo-lector no se ven)` : "\nTodo en los tres estilos.");
+  console.log(raros ? `\n${raros} combinación(es) fuera de los estilos (marcadas con ⚠; las de .solo-lector no se ven)` : "\nTodo en los dos estilos.");
   await b.close(); })();

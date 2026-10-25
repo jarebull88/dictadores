@@ -41,8 +41,7 @@ def fuentes():
                                    ("Sofia Sans Semi Condensed", "sofia-sans-semi-condensed-latin-800-normal", 800),   # la negrita
                                    # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
-                                   ("Londrina Solid", "londrina-solid-latin-400-normal", 400),
-                                   ("Playwrite IT Moderna", "playwrite-it-moderna-latin-400-normal", 400)):   # 23 oct: caligráfica (Playwrite Italia), instalada para usarla más adelante   # 23 oct: letra recortada a mano, como los carteles cubanos
+                                   ("Londrina Solid", "londrina-solid-latin-400-normal", 400)):
         datos = base64.b64encode((RAIZ / f"assets/fuentes/{archivo}.woff2").read_bytes()).decode()
         css += ('@font-face { font-family: "%s"; font-style: normal; font-weight: %d; font-display: swap; '
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))

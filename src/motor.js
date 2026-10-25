@@ -1605,19 +1605,36 @@ function comprobarLogros(op) {
   guardarLogros(l);
   anunciarLogro();
 }
-/* La estrella de logros (abajo a la izquierda) se rellena de amarillo mientras haya logros sin abrir */
+/* La estrella de logros (abajo a la izquierda) se rellena de amarillo mientras haya logros sin abrir. Si el jugador no la toca,
+   hace un zoom sutil cada cierto rato (como el amago de las cartas) para recordarle que tiene algo por abrir. */
+const RECUERDO_MS = 7000;
+let recuerdoEstrella = null;
+function zoomEstrella(clase) {
+  const st = $("btn-logros");
+  st.classList.remove("salto", "recuerda"); void st.offsetWidth; st.classList.add(clase);
+  clearTimeout(st._z); st._z = setTimeout(() => st.classList.remove(clase), 1300);
+}
+function vigilarEstrella() {
+  clearTimeout(recuerdoEstrella);
+  if (sinAbrir() > 0) recuerdoEstrella = setTimeout(() => {
+    const quieta = animar() && !$("screen-game").classList.contains("hidden") && !archivoAbierto() && !E.tutorial && !$("btn-logros").classList.contains("hidden");
+    if (quieta) zoomEstrella("recuerda");
+    vigilarEstrella();
+  }, RECUERDO_MS);
+}
 function avisoMenu() {
   const n = sinAbrir();
   $("btn-logros").classList.toggle("pendiente", n > 0);
   $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
+  vigilarEstrella();
 }
-/* «¡Nuevo logro!» se escribe a mano, en cursiva, donde van el nombre y los años (que se esconden un momento); se queda un
-   instante y se borra de izquierda a derecha, como la animación «hello» de LottieFiles que eligió Jorge pero más rápida. */
-const LOGRO_MS = 2300;
+/* «¡Nuevo logro!» aparece disolviéndose con un zoom lento, en el sitio del nombre y los años (que se esconden un momento), y se disuelve.
+   La estrella hace su zoom grande. */
+const LOGRO_MS = 2200;
 function anunciarLogro() {
   const z = document.querySelector("#screen-game .zona-nombre"), t = $("logro-escribe");
   avisoMenu();
-  const st = $("btn-logros"); st.classList.remove("salto"); void st.offsetWidth; st.classList.add("salto");   // zoom de la estrella para resaltar
+  zoomEstrella("salto");
   t.textContent = "¡Nuevo logro!";
   t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
   z.classList.add("con-logro");
@@ -1629,7 +1646,7 @@ function anunciarLogro() {
 /* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 function abrirArchivo() {
-  cerrarMenu(); ocultarInfo();
+  cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoEstrella);
   pintarArchivo();
   $("archivo").classList.remove("hidden");
 }

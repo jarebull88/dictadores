@@ -49,7 +49,7 @@ Las cuatro eras:
 - **Inspiración real:** el hermano que fue ministro de las Fuerzas Armadas de 1959 a 2008 y acabó de sucesor.
 - **Idea visual:** **el hermano pequeño a la sombra**, siempre un poco más bajo y detrás. **Algo afeminado** (Jorge, 23 oct): con sutileza, en el gesto y el cuidado (el meñique levantado, una florecita en el ojal), nunca como burla gruesa. Bigote fino y nunca barba, que es la diferencia con el Comandante. Gorra de plato que va creciendo.
 - **Etapas:**
-  1. Guerrillero delgado y serio, con bigotito y el uniforme bien abrochado (el único que lo lleva así). Cargo: «Capitán de columna».
+  1. Guerrillero delgado y serio, con bigotito y el uniforme bien abrochado (el único que lo lleva así). Cargo: «Jefe del segundo frente».
   2. General ordenado, con gafas de pasta, gorra de plato y un maletín. Cargo: «Ministro de las Fuerzas Armadas».
   3. Mariscal con más medallas que el Comandante. Recibe a los embajadores y cuelga sus propios retratos. Cargo: «General de Ejército».
   4. Por fin en el sillón y ya viejo: el heredero que llega tarde, con la banda presidencial demasiado grande. Cargo: «Primer vicepresidente».

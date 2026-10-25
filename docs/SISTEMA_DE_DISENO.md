@@ -9,6 +9,7 @@ Igual que la tipografía (`docs/TIPOGRAFIA.md`), **las medidas que se repiten vi
 | `--margen-carta` | 3,5 % | margen crema de las cartas |
 | `--cuadro` | 46 px (40 en pantallas estrechas) | lado de las casillas de estado |
 | `--menu` | `--cuadro` / 2 | tamaño del menú (☰) |
+| `--logros` | `--menu` × 1,13 | la insignia de logros: un 13 % mayor que el menú, porque por sus muescas parece más pequeña |
 | `--aviso` | (`--cuadro` − `--menu`) / 2 | la bolita amarilla del menú: llena el hueco hasta el borde de las casillas |
 | `--mazo-cartas` | 4 | cartas que se ven debajo de la de arriba |
 | `--mazo-paso` | 3,5 px | lo que asoma cada una |

@@ -56,6 +56,7 @@
   --margen-carta: 3.5%;                             /* el margen crema de las cartas */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
   --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
+  --logros: calc(var(--menu) * 1.13);               /* la insignia de logros, un 13 % mayor: por sus muescas parece más pequeña que las líneas del menú */
   --aviso: calc((var(--cuadro) - var(--menu)) / 2); /* la bolita amarilla del menú: justo el hueco hasta el borde de las casillas */
   --mazo-cartas: 4;                                 /* cartas que se ven debajo de la de arriba */
   --mazo-paso: 3.5px;                               /* lo que asoma cada una */
@@ -574,11 +575,12 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 25 oct: los logros, una estrella a línea abajo a la izquierda (al lado opuesto del menú, mismo tamaño y misma línea). Con logros sin abrir se rellena
    de amarillo y hace un zoom para resaltar. */
-.boton-logros { position: absolute; left: calc((1 - var(--zoom-ahora, 1)) / 2 * var(--menu)); bottom: calc(var(--aviso) + (1 - var(--zoom-ahora, 1)) / 2 * var(--menu)); width: calc(var(--menu) * var(--zoom-ahora, 1)); height: calc(var(--menu) * var(--zoom-ahora, 1)); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; -webkit-tap-highlight-color: transparent; }
+.boton-logros { position: absolute; left: calc((1 - var(--zoom-ahora, 1)) / 2 * var(--logros)); bottom: calc(var(--aviso) - (var(--logros) - var(--menu)) / 2 + (1 - var(--zoom-ahora, 1)) / 2 * var(--logros)); width: calc(var(--logros) * var(--zoom-ahora, 1)); height: calc(var(--logros) * var(--zoom-ahora, 1)); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; -webkit-tap-highlight-color: transparent; }   /* centrada en vertical con el menú */
 .boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: miter; overflow: visible; }
 .boton-logros .centro { fill: currentColor; stroke: none; }   /* la estrella del centro, maciza, como en «award star» de Google */
 .boton-logros .cuerpo { vector-effect: non-scaling-stroke; transition: fill .3s ease; }
 .boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
+.boton-logros.pendiente .centro { fill: var(--p-rosa); }   /* con logros sin abrir: insignia amarilla y estrella rosa */
 .boton-logros::after { content: ""; position: absolute; inset: -6px; }
 /* El zoom cambia el TAMAÑO (no un transform), así la línea sigue siendo la misma de todo el juego. Al llegar un logro, grande; el recordatorio, más sutil. */
 .boton-logros.salto { --zoom: 1.9; animation: zoom-logro 1.2s ease-in-out; }

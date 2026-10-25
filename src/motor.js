@@ -598,13 +598,13 @@ function mostrarFuerza(id, el) {
 function ajustarMensaje() {
   const m = $("mensaje");
   m.style.fontSize = ""; m.style.height = "";
-  let px = parseFloat(getComputedStyle(m).fontSize) || 19;
-  while (m.scrollHeight > m.clientHeight + 1 && px > 15) { px -= 1; m.style.fontSize = px + "px"; }
+  let px = parseFloat(getComputedStyle(m).fontSize) || 22;
+  while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
 window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); } });
 
-/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12 px */
+/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12,5 px */
 function ajustarFicha(carta = $("carta")) {
   const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
@@ -613,12 +613,12 @@ function ajustarFicha(carta = $("carta")) {
   const nom = h.querySelector(".ficha-nombre");
   if (nom) {
     let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
-    const ancho = () => Math.max(...[...nom.children].map(c => c.scrollWidth));
+    const ancho = () => nom.children.length ? Math.max(...[...nom.children].map(c => c.scrollWidth)) : nom.scrollWidth;   // el expediente del Comandante pone el nombre como texto suelto
     while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
   }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
-  for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
-  for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
+  for (const w of [72, 60, 48]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
+  for (let px = 16.5; px >= 12.5 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
 }
 
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
@@ -1129,8 +1129,8 @@ function ajustarCabeceraFin() {
   const cab = document.querySelector("#screen-end .fin-cab"), rel = $("fin-texto"), h1 = $("fin-principal");
   rel.style.fontSize = ""; h1.style.fontSize = "";
   if (!cab.clientHeight) return;
-  let px = parseFloat(getComputedStyle(rel).fontSize) || 15;
-  while (cab.scrollHeight > cab.clientHeight + 1 && px > 13) { px -= 0.5; rel.style.fontSize = px + "px"; }
+  let px = parseFloat(getComputedStyle(rel).fontSize) || 17;
+  while (cab.scrollHeight > cab.clientHeight + 1 && px > 15) { px -= 0.5; rel.style.fontSize = px + "px"; }
   let t = parseFloat(getComputedStyle(h1).fontSize) || 56;
   while (cab.scrollHeight > cab.clientHeight + 1 && t > 36) { t -= 2; h1.style.fontSize = t + "px"; }
 }
@@ -1367,7 +1367,7 @@ function ajustarIntro() {
   if (!p || $("screen-name").classList.contains("hidden")) return;
   p.style.fontSize = "";
   let px = 19;
-  while ((p.offsetHeight > caja.clientHeight || caja.scrollHeight > caja.clientHeight) && px > 14) { px -= 1; p.style.fontSize = px + "px"; }
+  while ((p.offsetHeight > caja.clientHeight || caja.scrollHeight > caja.clientHeight) && px > 16) { px -= 1; p.style.fontSize = px + "px"; }
 }
 window.addEventListener("resize", ajustarIntro);
 /* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */

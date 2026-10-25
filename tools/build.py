@@ -44,8 +44,8 @@ def portada():
 
 def fuentes():
     css = ""
-    for familia, archivo, peso in (("Baloo 2", "baloo-2-latin-400-normal", 400),   # 23 oct: texto (antes Courier Prime, que sigue en assets/fuentes)
-                                   ("Baloo 2", "baloo-2-latin-700-normal", 700),
+    for familia, archivo, peso in (("Sofia Sans Semi Condensed", "sofia-sans-semi-condensed-latin-400-normal", 400),   # 24 oct: texto (antes Baloo 2 y Courier Prime, que siguen en assets/fuentes)
+                                   ("Sofia Sans Semi Condensed", "sofia-sans-semi-condensed-latin-800-normal", 800),   # la negrita
                                    # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
                                    ("Londrina Solid", "londrina-solid-latin-400-normal", 400),

@@ -4,7 +4,7 @@
     python3 tools/build.py
 
 Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
-(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), la escena de la portada, las texturas de cartulina (assets/fondos/web/) y las fuentes
+(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), el cartel de la portada, las texturas de cartulina (assets/fondos/web/) y las fuentes
 (Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
 import base64, json, pathlib, sys
@@ -34,13 +34,6 @@ def reversos():
     """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
     return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
             for f in sorted((RAIZ / "assets/reversos").glob("era-*.webp"))}
-
-def portada():
-    """Escena del triunfo de la portada (17 oct): versión ancha y de móvil, con la posición de ojos y farol."""
-    info = json.loads(leer("assets/portada/escena.json"))
-    for v, d in info.items():
-        d["src"] = datos_uri(f"assets/portada/recortados/escena-{v}.webp", "image/webp")
-    return info
 
 def fuentes():
     css = ""
@@ -74,8 +67,8 @@ def main():
     activos = ('<script>\n/* Personajes e iconos de papel recortado (WebP con transparencia, incrustados) */\nconst RETRATOS = '
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
-               + leer("assets/iconos/escenas.json").strip() + ';\nconst PORTADA = '
-               + json.dumps(portada(), ensure_ascii=False) + ';\nconst REVERSOS = '
+               + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
+               + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
                + json.dumps(reversos()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">

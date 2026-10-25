@@ -166,18 +166,6 @@ function svgPersonaje(slug, nombre) {
     `<image class="base" href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/>${ojos}</svg>`;
 }
 
-/* Brillo que late sobre una luz del dibujo (16 oct: el farol de Hortensia; 23 oct: ya solo en la escena de la portada).
-   "brillo": {"x", "y", "r"} en coordenadas de la imagen; un halo cálido en «trama» que respira. */
-function svgBrillo(slug, b) {
-  const id = "brillo-" + slug;
-  return `<defs><radialGradient id="${id}"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/>` +
-    `<stop offset=".18" stop-color="#FFE27A" stop-opacity=".85"/><stop offset=".45" stop-color="#FFC24A" stop-opacity=".35"/>` +
-    `<stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>` +
-    `<radialGradient id="${id}-halo"><stop offset="0" stop-color="#FFD25A" stop-opacity=".55"/><stop offset=".5" stop-color="#FFC03A" stop-opacity=".22"/>` +
-    `<stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient></defs>` +
-    `<circle class="brillo halo" cx="${b.x}" cy="${b.y}" r="${Math.round(b.r * 1.7)}" fill="url(#${id}-halo)"/>` +
-    `<circle class="brillo" cx="${b.x}" cy="${b.y}" r="${b.r}" fill="url(#${id})"/>`;
-}
 
 /* =====================================================
    LAS CUATRO FUERZAS: un icono, una barra horizontal debajo y los puntos de pista bajo la barra
@@ -1736,20 +1724,8 @@ $("btn-repetir").addEventListener("click", empezar);
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
 if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
-// 16 oct: el logo, provisional, escrito a rotulador
-$("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span><i>¡</i>ordene<i>!</i></span></span>`);
-/* 17 oct: la escena del triunfo, abajo en la portada (como la foto de la entrada en la capital). Dos versiones:
-   «movil» (más juntos) y «ancha» (en fila, para pantallas anchas); el CSS enseña la que toca. Los ojos miran a los
-   lados como en las cartas y el farol de Hortensia late (PORTADA sale de tools/recortar.py portada). */
-function svgEscenaPortada(v) {
-  const d = PORTADA[v];
-  const ojos = d.ojos.map(o => `<g transform="translate(${o.x} ${o.y}) scale(${o.k})"><g class="ojos" style="animation-delay:${-(Math.random() * 7).toFixed(2)}s">` +
-    [o.izq, o.der].filter(Boolean).map(e => `<circle cx="${e[0]}" cy="${e[1]}" r="${o.r}"/>`).join("") + `</g></g>`).join("");   // sin los ojos tapados
-  // la «ventana» es el trozo central que se ve (en el móvil, los de los lados se cortan): «slice» llena la caja y recorta
-  // (la ancha, de escritorio, se ve siempre entera: «meet», centrada abajo aunque no llegue a los bordes)
-  const ajuste = v === "movil" ? `preserveAspectRatio="xMidYMin slice" style="aspect-ratio:${d.ventana} / ${d.alto}"` : `preserveAspectRatio="xMidYMax meet"`;
-  return `<svg class="personaje escena-${v}" viewBox="0 0 ${d.ancho} ${d.alto}" ${ajuste}>` +
-    `<image href="${d.src}" x="0" y="0" width="${d.ancho}" height="${d.alto}"/>${svgBrillo("portada-" + v, d.brillo)}${ojos}</svg>`;
-}
-if (typeof PORTADA !== "undefined") $("escena-portada").innerHTML = svgEscenaPortada("movil") + svgEscenaPortada("ancha");
+// 24 oct: el título del cartel, recto: «COMANDANTE,» en tinta y «¡ORDENE!» en rojo, como la diana del sillón
+$("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span>¡ordene!</span></span>`);
+/* 24 oct: el cartel del juego (el sillón vacío) en la portada; su crema es el fondo de la portada */
+if (typeof CARTEL_PORTADA !== "undefined") $("cartel-portada").src = CARTEL_PORTADA;
 mostrar("screen-start");

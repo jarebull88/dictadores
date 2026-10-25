@@ -586,13 +586,13 @@ function mostrarFuerza(id, el) {
 function ajustarMensaje() {
   const m = $("mensaje");
   m.style.fontSize = ""; m.style.height = "";
-  let px = parseFloat(getComputedStyle(m).fontSize) || 19;
-  while (m.scrollHeight > m.clientHeight + 1 && px > 15) { px -= 1; m.style.fontSize = px + "px"; }
+  let px = parseFloat(getComputedStyle(m).fontSize) || 22;
+  while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
 window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); } });
 
-/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12 px */
+/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12,5 px */
 function ajustarFicha(carta = $("carta")) {
   const h = carta.querySelector(".dorso .hoja");
   if (!h) return;
@@ -601,12 +601,12 @@ function ajustarFicha(carta = $("carta")) {
   const nom = h.querySelector(".ficha-nombre");
   if (nom) {
     let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
-    const ancho = () => Math.max(...[...nom.children].map(c => c.scrollWidth));
+    const ancho = () => nom.children.length ? Math.max(...[...nom.children].map(c => c.scrollWidth)) : nom.scrollWidth;   // el expediente del Comandante pone el nombre como texto suelto
     while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
   }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
-  for (const w of [72, 60]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
-  for (let px = 14.5; px >= 12 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
+  for (const w of [72, 60, 48]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
+  for (let px = 16.5; px >= 12.5 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
 }
 
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
@@ -615,14 +615,28 @@ const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D
 /* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
    Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
 function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
+/* 25 oct: la foto del expediente es 1:1, derecha y encuadrada en la cara. En los carteles, la cara no se encuentra sola: aquí se
+   marca para cada uno el centro (x, y) y el lado de la ventana, como fracciones del cartel. */
+const CARA_FICHA = {
+  vicepresidente: [.50, .44, .60], economia: [.49, .22, .24], comercio: [.54, .18, .38], educacion: [.50, .62, .50],
+  trabajo: [.40, .38, .56], cultura: [.50, .42, .56], "fuerzas-armadas": [.60, .42, .36], interior: [.50, .30, .76],
+  "embajador-oriental": [.36, .56, .30], "embajador-occidental": [.50, .22, .42], "dictador-joven": [.47, .31, .56]
+};
 function fotoDe(slug) {
   const p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
   if (!p) return "";
+  const cara = CARA_FICHA[(RETRATOS[slug] || {}).foto || slug];
+  if (!p.ojos && cara) {
+    const lado = cara[2] * Math.min(p.ancho, p.alto);
+    const x = Math.max(0, Math.min(p.ancho - lado, cara[0] * p.ancho - lado / 2)), y = Math.max(0, Math.min(p.alto - lado, cara[1] * p.alto - lado / 2));
+    return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${x.toFixed(0)} ${y.toFixed(0)} ${lado.toFixed(0)} ${lado.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
+      `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
+  }
   if (!p.ojos)   // 23 oct: los carteles van enteros, sin encuadrar desde los ojos
     return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
       `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
+  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w;   // 25 oct: foto cuadrada
   return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
     `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/><g class="ojos-foto"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></div>`;
 }
@@ -694,9 +708,11 @@ function ajustarRespuesta(r) {
   s.style.fontSize = "";   // 22 oct, Jorge: la letra ya no se achica; el límite de caracteres asegura las 2 líneas
 }
 function pintarEleccion(dir) {
-  if (modoEstado) return;                             // la carta de estado no tiene respuestas (ni se arrastra)
+  if (modoEstado && !(E && E.tutorial)) return;       // la carta de estado no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
-  const op = c && dir !== 0 ? opcionDe(dir) : null;
+  let op = c && dir !== 0 && !modoEstado ? opcionDe(dir) : null;
+  if (E && E.tutorial && dir < 0) op = { accion: E.tutorial.i === 0 ? "Volver al inicio" : "Lección anterior", efectos: {} };   // 25 oct: la izquierda vuelve atrás
+  else if (modoEstado) op = null;
   const r = $("respuesta");
   if (r) {
     if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
@@ -826,7 +842,15 @@ function lanzarCarta(carta, dir) {
   carta.style.opacity = "0";
 }
 function decidir(dir) {
-  if (modoEstado) { recogerEstado(); return; }
+  if (E && E.tutorial && dir < 0 && !ocupado) {        // 25 oct: en el tutorial, la izquierda vuelve a la lección anterior (o a la portada, en la primera)
+    ocupado = true; ocultarInfo();
+    const carta = $("carta"); carta.classList.remove("volteada");
+    pintarEleccion(dir); carta.classList.add("listo");
+    lanzarCarta(carta, dir);
+    setTimeout(() => volverTutorial(), 240);
+    return;
+  }
+  if (modoEstado) { if (!(E && E.tutorial && dir > 0)) recogerEstado(); return; }
   if (ocupado || tutorialBloquea()) return;
   ocupado = true;
   ocultarInfo();
@@ -1117,8 +1141,8 @@ function ajustarCabeceraFin() {
   const cab = document.querySelector("#screen-end .fin-cab"), rel = $("fin-texto"), h1 = $("fin-principal");
   rel.style.fontSize = ""; h1.style.fontSize = "";
   if (!cab.clientHeight) return;
-  let px = parseFloat(getComputedStyle(rel).fontSize) || 15;
-  while (cab.scrollHeight > cab.clientHeight + 1 && px > 13) { px -= 0.5; rel.style.fontSize = px + "px"; }
+  let px = parseFloat(getComputedStyle(rel).fontSize) || 17;
+  while (cab.scrollHeight > cab.clientHeight + 1 && px > 15) { px -= 0.5; rel.style.fontSize = px + "px"; }
   let t = parseFloat(getComputedStyle(h1).fontSize) || 56;
   while (cab.scrollHeight > cab.clientHeight + 1 && t > 36) { t -= 2; h1.style.fontSize = t + "px"; }
 }
@@ -1197,6 +1221,11 @@ function pasoTutorial(i, sinEntrada) {
   if (i >= TUTORIAL.length) { terminarTutorial(); return; }
   t.i = i; t.vista = t.girada = t.casilla = t.fuerzaVista = false;
   $("barras").classList.remove("destacar");
+  // 25 oct: al volver atrás, cada lección se encuentra como la primera vez (fuerzas apagadas hasta «fuerzas», casilla de estado vacía hasta guardarlo)
+  const iFuerzas = TUTORIAL.findIndex(x => x.paso === "fuerzas"), iEstado = TUTORIAL.findIndex(x => x.paso === "estado");
+  if (i <= iFuerzas) { $("barras").classList.add("apagadas"); $("barras").querySelectorAll(".barra").forEach(b => b.classList.remove("encendida")); }
+  if (i <= iEstado && E.estados.length) { E.estados = []; pintarRanuras(); }
+  clearTimeout(relojEstado); modoEstado = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   $("nombre-dictador").textContent = "La víspera";
@@ -1213,6 +1242,7 @@ function pasoTutorial(i, sinEntrada) {
     izq: { accion: p.izq, efectos: ef.izq || {} }, der: { accion: p.der, efectos: ef.der || {} } };
   E.actual = c;
   barajarLados();
+  E.lados = { id: c.id, izq: c.izq, der: c.der };       // 25 oct: en el tutorial no se mezclan los lados (la izquierda es «atrás»)
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
   pintarCarta(c);
@@ -1222,7 +1252,7 @@ function pasoTutorial(i, sinEntrada) {
   carta.classList.toggle("giro-destacado", p.paso === "girar");
   $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
-  else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
+  else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
   if (p.paso === "deslizar") demostrarArrastre();
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
@@ -1285,14 +1315,21 @@ function encenderFuerzas() {
   setTimeout(() => { if (E && E.tutorial && E.tutorial.i === i && !E.tutorial.fuerzaVista) $("barras").classList.add("destacar"); },
     350 + barras.length * 450);
 }
-function terminarTutorial() {
+/* 25 oct: la izquierda en el tutorial vuelve a la lección anterior; en la primera, a la portada */
+function volverTutorial() {
+  const t = E.tutorial;
+  if (t.i === 0) { terminarTutorial("portada"); return; }
+  E.barras = { pueblo: 50, ejercito: 50, elite: 50, potencias: 50 }; pintarBarras();
+  pasoTutorial(t.i - 1);
+}
+function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
-  irANombre();
+  if (destino === "portada") mostrar("screen-start"); else irANombre();
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
    (17 oct: sustituye a «Sigues en el poder»; debajo de la carta ya dice cuántos años llevas) */
@@ -1355,7 +1392,7 @@ function ajustarIntro() {
   if (!p || $("screen-name").classList.contains("hidden")) return;
   p.style.fontSize = "";
   let px = 19;
-  while ((p.offsetHeight > caja.clientHeight || caja.scrollHeight > caja.clientHeight) && px > 14) { px -= 1; p.style.fontSize = px + "px"; }
+  while ((p.offsetHeight > caja.clientHeight || caja.scrollHeight > caja.clientHeight) && px > 16) { px -= 1; p.style.fontSize = px + "px"; }
 }
 window.addEventListener("resize", ajustarIntro);
 /* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */
@@ -1404,7 +1441,7 @@ function arrastrable(carta, op) {
     op.mostrar(0);
   }
   function coger() {
-    if (!drag || carta.classList.contains("cogida")) return;
+    if (!drag || carta.classList.contains("cogida") || carta.classList.contains("volteada")) return;   // 25 oct: por detrás (la ficha) no hay zoom: solo se toca para girarla
     clearTimeout(drag.cogida);
     carta.style.transition = "scale .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
     carta.classList.add("cogida");                // crece algo más al arrastrar (ver estilos.css)
@@ -1436,6 +1473,8 @@ function arrastrable(carta, op) {
     marcarListo(dir !== 0);
   }
   carta._mover = mover; carta._volver = volver; carta._umbral = umbral;
+  // 25 oct: en el tutorial, mientras falta una acción (girar, tocar un icono…), solo se puede arrastrar a la izquierda (volver)
+  const efectivo = dx => (op.bloqueaDer && op.bloqueaDer() && dx > 0 ? 0 : dx);
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
@@ -1444,18 +1483,18 @@ function arrastrable(carta, op) {
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
     // un solo repintado por fotograma, aunque el dedo mande más eventos
-    if (!drag.cuadro) drag.cuadro = requestAnimationFrame(() => { if (drag) { drag.cuadro = 0; mover(drag.dx, drag); } });
+    if (!drag.cuadro) drag.cuadro = requestAnimationFrame(() => { if (drag) { drag.cuadro = 0; mover(efectivo(drag.dx), drag); } });
   });
   function soltar(e) {
     if (!drag) return;
-    const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    const bruto = drag.dx, dx = efectivo(bruto), h = drag.hist, toque = Math.abs(bruto) < 8 && e.timeStamp - drag.t0 < 450;
     clearTimeout(drag.cogida);
     drag = null;
     arrastrando = false;
-    if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(dx) < 30)) op.toque(); return; }
+    if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(bruto) < 30)) op.toque(); return; }
     if (carta.classList.contains("volteada")) { volver(); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
-    const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
+    const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx) && dx === bruto;
     if (Math.abs(dx) > umbral() || lanzada) op.decidir(Math.sign(dx));
     else volver();
   }
@@ -1468,7 +1507,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, fija: () => modoEstado || tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });
+arrastrable($("carta"), { activa: () => !ocupado, fija: () => modoEstado && !(E && E.tutorial), bloqueaDer: () => !!(E && E.tutorial) && (modoEstado || tutorialBloquea()), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */
@@ -1587,8 +1626,8 @@ arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, d
 
 /* =====================================================
    LOGROS (24 oct, prototipo). Al decidir algo que da un coleccionable cae el sello «¡Nuevo logro!» bajo la carta y
-   vuela al menú, que se queda con un punto rojo. En el archivo, el logro espera como un sobre cerrado: al abrirlo
-   sale una carta boca abajo y, al girarla, se descubre cuál es. Se guardan entre partidas.
+   (la estrella se rellena). En el archivo, el logro nuevo espera en la cuadrícula: al tocarlo
+   sale su carta ya descubierta, que se gira para ver sus efectos. Se guardan entre partidas.
    ===================================================== */
 const CLAVE_LOGROS = "dictadores_logros_v1";
 let logrosMem = {};                                   // si el navegador no deja guardar, al menos dura la sesión
@@ -1605,18 +1644,36 @@ function comprobarLogros(op) {
   guardarLogros(l);
   anunciarLogro();
 }
-/* Con logros sin abrir, una bolita amarilla encima del menú (☰) */
+/* La estrella de logros (abajo a la izquierda) se rellena de amarillo mientras haya logros sin abrir. Si el jugador no la toca,
+   hace un zoom sutil cada cierto rato (como el amago de las cartas) para recordarle que tiene algo por abrir. */
+const RECUERDO_MS = 7000;
+let recuerdoEstrella = null;
+function zoomEstrella(clase) {
+  const st = $("btn-logros");
+  st.classList.remove("salto", "recuerda"); void st.offsetWidth; st.classList.add(clase);
+  clearTimeout(st._z); st._z = setTimeout(() => st.classList.remove(clase), 1300);
+}
+function vigilarEstrella() {
+  clearTimeout(recuerdoEstrella);
+  if (sinAbrir() > 0) recuerdoEstrella = setTimeout(() => {
+    const quieta = animar() && !$("screen-game").classList.contains("hidden") && !archivoAbierto() && !E.tutorial && !$("btn-logros").classList.contains("hidden");
+    if (quieta) zoomEstrella("recuerda");
+    vigilarEstrella();
+  }, RECUERDO_MS);
+}
 function avisoMenu() {
   const n = sinAbrir();
-  $("btn-menu").classList.toggle("con-aviso", n > 0);
-  $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} logros sin abrir)` : "Menú");
+  $("btn-logros").classList.toggle("pendiente", n > 0);
+  $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
+  vigilarEstrella();
 }
-/* «¡Nuevo logro!» se escribe a mano, en cursiva, donde van el nombre y los años (que se esconden un momento); se queda un
-   instante y se borra de izquierda a derecha, como la animación «hello» de LottieFiles que eligió Jorge pero más rápida. */
-const LOGRO_MS = 2300;
+/* «¡Nuevo logro!» aparece disolviéndose con un zoom lento, en el sitio del nombre y los años (que se esconden un momento), y se disuelve.
+   La estrella hace su zoom grande. */
+const LOGRO_MS = 2200;
 function anunciarLogro() {
   const z = document.querySelector("#screen-game .zona-nombre"), t = $("logro-escribe");
   avisoMenu();
+  zoomEstrella("salto");
   t.textContent = "¡Nuevo logro!";
   t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
   z.classList.add("con-logro");
@@ -1625,10 +1682,10 @@ function anunciarLogro() {
   z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
 }
 
-/* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
+/* El archivo: una rejilla de huecos (siluetas, logros nuevos y logros descubiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 function abrirArchivo() {
-  cerrarMenu(); ocultarInfo();
+  cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoEstrella);
   pintarArchivo();
   $("archivo").classList.remove("hidden");
 }
@@ -1639,38 +1696,40 @@ function pintarArchivo() {
   for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
     const g = LOGROS[i], estado = g && l[g.id];
     if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
-    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>¡Nuevo!</span></button>`;
+    else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo"><span>¡Nuevo!</span></button>`;
     else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
   }
   $("archivo-rejilla").innerHTML = html;
   $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
 }
-/* Un logro a pantalla completa, con la medida y el sitio de las cartas del juego: arriba el título (que no sale hasta
-   abrirlo), en medio la carta (cuadrada) y debajo la decisión que lo dio. Si está sin abrir, un solo toque abre el sobre
-   y la carta sale ya descubierta. */
+/* Un logro a pantalla completa, con la medida y el sitio de las cartas del juego (docs/COLECCIONABLES.md): arriba el título y el
+   subtítulo, en medio la carta (por delante, el objeto; al tocarla se gira y enseña su descripción y sus efectos) y debajo la
+   decisión que lo dio. Sin sobre: desde la cuadrícula, un toque y ya está descubierta. */
 function verLogro(id) {
-  const g = LOGROS.find(x => x.id === id), cerrado = !logros()[id].abierto;
+  const g = LOGROS.find(x => x.id === id), nuevo = !logros()[id].abierto;
   const v = $("archivo-abrir");
   v.className = "logro-vista";
-  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo"></h2></div>
-    <div class="sobre-escena${cerrado ? "" : " ya"}">
-      <div class="logro-carta"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
-      ${cerrado ? '<div class="sobre"><svg class="sobre-solapa" viewBox="0 0 100 52" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 50Z"/></svg><span class="sello-conf">Confidencial</span></div>' : ""}
+  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
+    <div class="logro-escena">
+      <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
+        <div class="logro-cara"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
+        <div class="logro-dorso"><div class="logro-hoja"><b class="logro-objeto-nombre">${esc(g.objeto)}</b>
+          <p class="logro-descripcion">${esc(g.descripcion)}</p>
+          <p class="logro-efecto"><b>Efecto:</b> ${esc(g.efecto)}</p>
+          <p class="logro-efecto"><b>Efecto secundario:</b> ${esc(g.secundario)}</p></div></div>
+      </div></div>
     </div>
-    <p class="archivo-pista"></p>`;
+    <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;
   $("archivo").classList.add("viendo");
   v.style.paddingTop = "";
-  const dy = $("carta").getBoundingClientRect().top - v.querySelector(".sobre-escena").getBoundingClientRect().top;   // la carta, justo donde está la del juego
+  const escena = v.querySelector(".logro-escena");
+  const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
   if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
-  const escena = v.querySelector(".sobre-escena"), titulo = v.querySelector(".logro-titulo"), pista = v.querySelector(".archivo-pista");
-  const descubrir = () => { titulo.textContent = g.titulo; pista.textContent = `Por «${g.decision}»`; v.classList.add("abierto"); };
-  if (!cerrado) { descubrir(); return; }
-  pista.textContent = "Toca el sobre para abrirlo";
-  escena.addEventListener("click", () => {
-    if (v.classList.contains("abierto")) return;
-    descubrir();
-    const l = logros(); l[id].abierto = true; guardarLogros(l);
-  });
+  const carta = v.querySelector(".logro-carta"), pista = v.querySelector(".pista-girar");
+  const girar = () => { carta.classList.toggle("volteada"); if (pista) pista.remove(); };
+  carta.addEventListener("click", girar);
+  carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
+  if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
 }
 $("archivo-cerrar").addEventListener("click", () => {
   if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }

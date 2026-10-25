@@ -59,10 +59,10 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
 
-**Carta:** «Un autobús ha embestido la verja de una embajada y diez mil personas se han metido dentro.»
+**Carta:** «Un autobús ha entrado en una embajada por la verja y detrás diez mil personas.»
 
-- **A. Abran el puerto a quien quiera irse** Pueblo +3 · Ejército −4
-- **B. Corten el agua y espérenlos fuera** Ejército +4 · Pueblo −3
+- **A. Abran el puerto a quien quiera irse** Pueblo −4 · Potencias +4 · Crisis −2
+- **B. Corten el agua y espérenlos fuera** Ejército +4 · Potencias −4
 
 ### 7. El diálogo con el exilio
 
@@ -295,7 +295,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 5 a 7 de su era.
 
-**Carta:** «Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos.»
+**Carta:** «Los terroristas del exilio han volado uno de nuestros aviones con setenta y tres pasajeros.»
 
 - **A. Funeral con un millón en la plaza** Pueblo +4 · Élite +2 · Encola: `los_que_celebran` en 1 a 2 años
 - **B. Habrá que defenderse infiltrándolos** Ejército +4 · Potencias −3 · Bandera: `atentado_investigado`
@@ -319,7 +319,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Los acusados del atentado lo niegan todo. Uno de ellos lleva dos años muerto.»
+**Carta:** «Los acusados del atentado lo niegan todo. A uno de ellos lo enterraron hace dos años.»
 
 - **A. Que confiese también el difunto** Ejército +5 · Pueblo −5
 - **B. Suéltenlos sin pedirles perdón** Ejército −5 · Pueblo +5

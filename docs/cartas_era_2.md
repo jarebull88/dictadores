@@ -9,7 +9,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 1 a 2 de su era.
 
-**Carta:** «Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.»
+**Carta:** «Llega el aniversario: el Ejército quiere desfile de tanques y el Pueblo, ron. No hay para los dos.»
 
 - **A. Un gran desfile con tanques** Ejército +8 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
 - **B. Ron gratis para todo el Pueblo** Pueblo +7 · Ejército −8
@@ -43,10 +43,10 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `exiliados_vocales`.
 
-**Carta:** «Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.»
+**Carta:** «Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha bajito.»
 
 - **A. Interfieran la emisora con música** Pueblo −6 · Ejército +3 · Élite +2
-- **B. Acúsenlos de agentes extranjeros** Ejército +4 · Potencias −4 · Pueblo −3
+- **B. Que la radio diga que son espías** Ejército +4 · Potencias −4 · Pueblo −3
 
 ### 5. El hambre
 
@@ -55,7 +55,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 
 **Carta:** «Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»
 
-- **A. El Estado dará mejor uso a la tierra** Pueblo −5 · Élite +2
+- **A. El Estado sabe sembrar mejor que nadie** Pueblo −5 · Élite +2
 - **B. Importen comida a cualquier precio** Pueblo +6 · Potencias +5
 
 ### 6. El periodista oficial
@@ -117,20 +117,20 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige alguna de `exodo_elite`, `juicios_publicos`, `nacionalizo_empresas`.
 
-**Carta:** «Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.»
+**Carta:** «Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.»
 
 - **A. Prohíban salir a los titulados** Ejército +4 · Pueblo −4
-- **B. Cursos acelerados de todo para todos** Élite +2 · Pueblo +3
+- **B. Cursos de ingeniería en seis meses** Élite +2 · Pueblo +3
 
 ### 12. Intentos de fuga
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `frontera_cerrada`, `criticos_detenidos`, `exiliados_vocales`.
 
-**Carta:** «Cada semana huyen más familias en balsas. Las patrullas no dan abasto.»
+**Carta:** «Cada semana huyen más familias en balsas. Ya no quedan neumáticos ni puertas en los barrios.»
 
 - **A. Refuercen la frontera** Ejército +6 · Pueblo −5
-- **B. Dejen que se vaya quien quiera** Pueblo +5 · Ejército −4 · Potencias +3
+- **B. Que se vayan y nos dejen sus casas** Pueblo +5 · Ejército −4 · Potencias +3
 
 ### 13. La deuda llama
 
@@ -167,10 +167,10 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 8.
 
-**Carta:** «Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.»
+**Carta:** «Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.»
 
-- **A. Detengan a quien lo cuente** Pueblo −5 · Ejército +4
-- **B. Reírse es gratis** Pueblo +4 · Ejército −3
+- **A. Detengan al que se ría primero** Pueblo −5 · Ejército +4
+- **B. Reírse también es de revolucionarios** Pueblo +4 · Ejército −3
 
 ### 17. Los satélites
 

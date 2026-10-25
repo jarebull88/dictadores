@@ -125,10 +125,10 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.»
+**Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o no les venderemos ni un tornillo.»
 
 - **A. Aquí no se paga nada** Pueblo +3 · Potencias −9 · Crisis +2 · Bandera: `embargo_en_marcha`
-- **B. Pagar compensación** Potencias +9 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
+- **B. Pagaremos, que somos gente seria** Potencias +9 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
@@ -179,7 +179,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Carta:** «El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.»
 
-- **A. Convoquen elecciones en seis meses** Pueblo +9 · Élite −5 · Bandera: `elecciones_prometidas`
+- **A. Elecciones ya, que seguro gano** Pueblo +9 · Élite −5 · Bandera: `elecciones_prometidas`
 - **B. La Revolución ya fue votada** Pueblo −9 · Élite +5 · Bandera: `elecciones_aplazadas`
 
 **Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
@@ -201,10 +201,10 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
 
-**Carta:** «El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.»
+**Carta:** «El exilio nos ha bombardeado y la plaza se llena de luto. Habrá que decir qué es la Revolución.»
 
 - **A. Hoy la Revolución será socialista** Potencias +5 · Élite +3
-- **B. Que la palabra sea patria y nada más** Potencias −5 · Ejército +3
+- **B. Que la palabra sea patria y nada más** Potencias −5 · Élite −3
 
 ### 17. Se acabó el profesional
 
@@ -213,8 +213,8 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Carta:** «Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.»
 
-- **A. Ahora se jugará por amor a la patria** Pueblo +4 · Potencias −4
-- **B. Que sigan cobrando en divisas** Potencias +4 · Pueblo −4
+- **A. La pelota libre le gana a la esclava** Élite +4 · Potencias −4
+- **B. Que sigan bateando en divisas** Potencias +4 · Élite −4
 
 ### 18. Las escuelas para todos
 
@@ -254,7 +254,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Carta:** «Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.»
 
 - **A. Cámbienlos por compotas** Potencias −6 · Pueblo +2 · Ejército −4
-- **B. Juicio televisado y paredón** Potencias −3 · Pueblo +5 · Ejército +5 · Crisis +2
+- **B. Juicio televisado y luego al «patio»** Potencias −3 · Pueblo +5 · Ejército +5 · Crisis +2
 
 ### 22. Los niños que se van
 
@@ -306,7 +306,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 **Carta:** «Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.»
 
 - **A. Jubílenlos** Ejército −5 · Crisis +1 · Bandera: `viejos_oficiales`
-- **B. Paredón y ascensos para los nuestros** Ejército +5 · Pueblo +4 · Bandera: `purga_inicial`
+- **B. Purga y ascensos para los nuestros** Ejército +5 · Pueblo +4 · Bandera: `purga_inicial`
 
 **Consecuencia futura de `viejos_oficiales`:** Conspiración de oficiales retirados.
 

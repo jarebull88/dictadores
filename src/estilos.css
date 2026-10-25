@@ -42,6 +42,7 @@
   --margen-carta: 3.5%;                             /* el margen crema de las cartas */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
   --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
+  --logros: calc(var(--menu) * 1.13);               /* la insignia de logros, un 13 % mayor: por sus muescas parece más pequeña que las líneas del menú */
   --aviso: calc((var(--cuadro) - var(--menu)) / 2); /* la bolita amarilla del menú: justo el hueco hasta el borde de las casillas */
   --mazo-cartas: 4;                                 /* cartas que se ven debajo de la de arriba */
   --mazo-paso: 3.5px;                               /* lo que asoma cada una */
@@ -63,44 +64,45 @@ body {
 .titulo { }
 /* TIPOGRAFIA:INICIO ==========================================================================================
    TIPOGRAFÍA: LA ÚNICA FUENTE DE VERDAD (24 oct)
-   Solo hay TRES estilos de letra (la cursiva solo se usa en «¡Nuevo logro!»):
+   Solo hay DOS estilos de letra:
      · TITULAR: Londrina Solid, siempre en MAYÚSCULAS (cuatro tamaños: XL, L, M y S).
-     · CUERPO:  Baloo 2 (cuatro tamaños: pregunta, respuesta, texto y pequeño; en negrita o normal).
+     · CUERPO:  Sofia Sans Semi Condensed (cuatro tamaños: pregunta, respuesta, texto y pequeño; en negrita o normal).
    Cada texto del juego (partida, tutorial, fichas, ventanas, pantallas de nombre, era y final) elige un papel de esta
    lista. Para cambiar la fuente, el tamaño o el peso de un papel se cambia AQUÍ y solo aquí. Fuera de este bloque no
    debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height (lo vigila
    tests/tipografia.test.js). Para un texto nuevo: añade su selector a un papel; no le des estilo propio.
    La tabla de papeles está en docs/TIPOGRAFIA.md. */
 :root {
-  --f-titular: "Londrina Solid", "Baloo 2", system-ui, sans-serif;
-  --f-cuerpo: "Baloo 2", system-ui, sans-serif;
-  --f-cursiva: "Playwrite IT Moderna", cursive;           /* «¡Nuevo logro!», escrito a mano */
-  --t-cursiva: 26px;
+  --f-titular: "Londrina Solid", "Sofia Sans Semi Condensed", system-ui, sans-serif;
+  --f-cuerpo: "Sofia Sans Semi Condensed", system-ui, sans-serif;   /* 24 oct: condensada, como la del titular (antes Baloo 2); sus tamaños son los de Baloo × 1,16 */
+  --peso-negrita: 800;
   /* tamaños del TITULAR */
   --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
   --t-l: min(calc(var(--carta-w, 360px) * .10), 44px);    /* el título de la era y el de la pantalla del nombre */
   --t-m: 26px;                                              /* títulos de ventanas, de estados, de la portada, de la esquela */
   --t-s: 21px;                                              /* cintas del tutorial y de efectos, «Has gobernado N años» */
   /* tamaños del CUERPO */
-  --c-pregunta: 19px;   /* la pregunta y todo texto que hable al jugador sobre una carta (17 px en pantallas bajas) */
-  --c-respuesta: min(23px, calc(var(--carta-w, 360px) / 16));
-  --c-texto: 16px;      /* párrafos: ventanas, fichas, informes, relato, esquela */
-  --c-pequeno: 14px;    /* pie, avisos, etiquetas, «abandonar» */
+  --c-pregunta: 22px;   /* la pregunta y todo texto que hable al jugador sobre una carta (20 px en pantallas bajas) */
+  --c-respuesta: min(27px, calc(var(--carta-w, 360px) / 14));
+  --c-texto: 18px;      /* párrafos: ventanas, fichas, informes, relato, esquela */
+  --c-pequeno: 16px;    /* pie, avisos, etiquetas, «abandonar» */
 }
 body { font-family: var(--f-cuerpo); font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
-button, input, textarea { font-family: inherit; }   /* los botones y campos no heredan la letra solos */
+button, input, textarea { font-family: inherit; }
+b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta es la negrita del cuerpo (800), no la 700 del navegador */   /* los botones y campos no heredan la letra solos */
 
 /* — TITULAR — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
+.titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .etiqueta-boli b, .cinta-tutorial span, .popup .efecto, .esquela b, .titulo-caida,
-.opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .sello-conf, .hueco-logro {
+.opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
 .ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
-.titulo, .cabecera-carta h1 { font-size: var(--t-l); }
+.titulo, .cabecera-carta h1, .logro-escribe { font-size: var(--t-l); }
 #screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
-.sello-conf, .hueco-logro { font-size: var(--t-s); }
+.hueco-logro { font-size: var(--t-s); }
+.logro-objeto-nombre { font-size: var(--t-m); }
 .etiqueta-boli.larga b, .cinta-tutorial span, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
 .logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
 .logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
@@ -109,25 +111,24 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 
 /* — CUERPO — */
 /* la pregunta: negrita, 19 px */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema { font-size: var(--c-pregunta); line-height: 1.28; font-weight: 700; }
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .logro-subtitulo { font-size: var(--c-pregunta); line-height: 1.28; font-weight: var(--peso-negrita); }
 /* la respuesta al arrastrar: negrita, grande */
-.texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: 700; }
+.texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: var(--peso-negrita); }
 /* texto corrido: 16 px */
 .popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .texto-respuesta span { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
-.modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: 700; }
-.archivo-pista { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
+.modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: var(--peso-negrita); }
+.archivo-pista, .logro-descripcion, .logro-efecto { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
+.logro-efecto b { font-weight: var(--peso-negrita); }
 .ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
-.ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: 700; }
+.ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: var(--peso-negrita); }
 /* texto pequeño: 14 px */
 .dictador b, .dictador small, .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
-.dictador b, .alerta, .popup .etiqueta-pop { font-weight: 700; }
+.dictador b, .alerta, .popup .etiqueta-pop { font-weight: var(--peso-negrita); }
 /* portada: «Cómo se juega», en cuerpo, como acción secundaria */
-.opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: 700; line-height: 1.4; }
-/* — CURSIVA — */
-.logro-escribe { font-family: var(--f-cursiva); font-size: var(--t-cursiva); font-weight: 400; line-height: 1.6; text-transform: none; letter-spacing: 0; }
+.opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: var(--peso-negrita); line-height: 1.4; }
 .alerta { line-height: 1; }
-@media (max-height: 760px) { :root { --c-pregunta: 17px; } }
+@media (max-height: 760px) { :root { --c-pregunta: 20px; } }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -266,7 +267,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .barra .punto-zona { height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
 /* Arriba del todo, encima de los iconos: bajan desde fuera de la pantalla al ritmo del arrastre */
 #screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .32s cubic-bezier(.25, .8, .3, 1); }   /* al ritmo del panel */
-.barra .punto { width: 0; height: 0; border-radius: 50%; background: #2E2C29; transition: width .12s, height .12s; }
+.barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--p-rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
    Al entrar en la zona crítica el móvil vibra (motor.js). */
@@ -336,6 +337,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
   transition: transform .6s cubic-bezier(.3, .1, .2, 1);
 }
 .carta.volteada .giro { transform: rotateY(180deg); }
+.carta.volteada { cursor: pointer; }   /* por detrás solo se toca para girarla */
 /* Boca abajo: la carta nueva aparece sobre el mazo enseñando la tapa (el mismo cartón oscuro del mazo) y da la vuelta.
    Mientras se revela (.revelando), la tapa sustituye a la ficha por detrás. */
 .carta.boca-abajo .giro { transform: rotateY(180deg); }
@@ -362,14 +364,13 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .icono-giro { display: none; }
 .carta.con-giro .icono-giro { display: block; }
 .carta.giro-destacado .icono-giro { animation: parpadeo-giro 1.1s ease-in-out infinite; }
-#ranuras.destacar button.ranura { animation: parpadeo-giro 1.1s ease-in-out infinite; }
+#ranuras.destacar button.ranura { animation: none; }   /* 25 oct: sin zoom: solo se alumbra en rojo (la capa de abajo) */
 /* 17 oct: y encima, una capa roja translúcida que destella, para que se vea que hay que tocarla */
-#ranuras.destacar button.ranura.llena { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }   /* la casilla no se desvanece: palpita, y destella el rojo */
-@keyframes latido-casilla { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+#ranuras.destacar button.ranura.llena { position: relative; }   /* la casilla no se mueve: solo destella el rojo */
 #ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
-#barras.destacar .icono-fuerza { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }
+#barras.destacar .icono-fuerza { position: relative; }
 #barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 @keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
@@ -495,13 +496,13 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 
 }
 .ficha-foto {
-  flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 4 / 5; margin-bottom: 6px; overflow: hidden;
+  flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 1; margin-bottom: 6px; overflow: hidden;
   background: var(--fondo-escena, #CFCBC2); filter: grayscale(1) contrast(1.08);
   border: 4px solid #FAF6EC;
 }
 .ficha-foto svg { display: block; width: 100%; height: 100%; }
 /* 21 oct: la foto de carné, pegada a la hoja con un trozo de cinta de carrocero (como la de las cartas de estado) */
-.foto-grapada { position: relative; flex: none; margin-bottom: 6px; transform: rotate(-1.5deg); }
+.foto-grapada { position: relative; flex: none; margin-bottom: 6px; }   /* 25 oct: la foto, derecha */
 .foto-grapada .ficha-foto { margin-bottom: 0; }
 .cinta-foto { position: absolute; top: -7px; left: 50%; width: 62%; height: 15px; translate: -50% 0; rotate: -4deg; opacity: .85;
   background: #E9C77A;
@@ -556,12 +557,25 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* 24 oct: el menú (☰), abajo a la derecha: al borde de la carta y centrado en vertical con las casillas, a la mitad de su tamaño.
-   Con logros sin abrir lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas.
-   Dentro: Logros, Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
+   Dentro: Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
 .boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
-.boton-menu.con-aviso::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: var(--aviso); height: var(--aviso); margin-left: calc(var(--aviso) / -2); border-radius: 50%; background: var(--p-mostaza); border: var(--borde); }
+/* 25 oct: los logros, una estrella a línea abajo a la izquierda (al lado opuesto del menú, mismo tamaño y misma línea). Con logros sin abrir se rellena
+   de amarillo y hace un zoom para resaltar. */
+.boton-logros { position: absolute; left: calc((1 - var(--zoom-ahora, 1)) / 2 * var(--logros)); bottom: calc(var(--aviso) - (var(--logros) - var(--menu)) / 2 + (1 - var(--zoom-ahora, 1)) / 2 * var(--logros)); width: calc(var(--logros) * var(--zoom-ahora, 1)); height: calc(var(--logros) * var(--zoom-ahora, 1)); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; -webkit-tap-highlight-color: transparent; }   /* centrada en vertical con el menú */
+.boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: miter; overflow: visible; }
+.boton-logros .centro { fill: currentColor; stroke: none; }   /* la estrella del centro, maciza, como en «award star» de Google */
+.boton-logros .cuerpo { vector-effect: non-scaling-stroke; transition: fill .3s ease; }
+.boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
+.boton-logros.pendiente .centro { fill: var(--p-rosa); }   /* con logros sin abrir: insignia amarilla y estrella rosa */
+.boton-logros::after { content: ""; position: absolute; inset: -6px; }
+/* El zoom cambia el TAMAÑO (no un transform), así la línea sigue siendo la misma de todo el juego. Al llegar un logro, grande; el recordatorio, más sutil. */
+.boton-logros.salto { --zoom: 1.9; animation: zoom-logro 1.2s ease-in-out; }
+.boton-logros.recuerda { --zoom: 1.4; animation: zoom-logro .9s ease-in-out; }
+@property --zoom-ahora { syntax: "<number>"; inherits: false; initial-value: 1; }
+@keyframes zoom-logro { 0%, 100% { --zoom-ahora: 1; } 25%, 60% { --zoom-ahora: var(--zoom); } }
+@media (prefers-reduced-motion: reduce) { .boton-logros.salto, .boton-logros.recuerda { animation: none; } }
 .pie-juego { position: relative; }
 .menu-juego { position: absolute; right: 0; bottom: calc(var(--cuadro) + var(--separacion)); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: var(--borde); }
 .menu-juego.hidden { display: none; }
@@ -655,19 +669,14 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
 
 /* =====================================================================================================
-   24 oct: LOGROS (prototipo). El sello «¡Nuevo logro!» bajo la carta, el sobre del menú y el archivo
+   24 oct: LOGROS (prototipo). La estrella, «¡Nuevo logro!» y el archivo (cuadrícula → carta que se gira)
    ===================================================================================================== */
-/* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Se escribe de izquierda a derecha, se queda y se borra */
+/* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Aparece disolviéndose con un zoom lento y se disuelve */
 .logro-escribe { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; color: var(--p-rojo); white-space: nowrap; pointer-events: none; }
 .zona-nombre.con-logro .dictador { visibility: hidden; }
 .zona-nombre.con-logro .logro-escribe { display: flex; }
-.logro-escribe.escribiendo { animation: escribir 2.3s linear both; }
-@keyframes escribir {
-  0% { clip-path: inset(-30% 100% -30% 0); animation-timing-function: cubic-bezier(.3, .1, .4, 1); }
-  40% { clip-path: inset(-30% 0 -30% 0); }
-  72% { clip-path: inset(-30% 0 -30% 0); animation-timing-function: cubic-bezier(.6, 0, .8, .6); }
-  100% { clip-path: inset(-30% 0 -30% 100%); }
-}
+.logro-escribe.escribiendo { animation: disolver 2.2s ease-in-out both; }
+@keyframes disolver { 0% { opacity: 0; transform: scale(.82); } 25% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; transform: scale(1.14); } }
 @media (prefers-reduced-motion: reduce) { .logro-escribe.escribiendo { animation: none; } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
@@ -682,33 +691,28 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .hueco-logro { aspect-ratio: 1; min-width: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; box-sizing: border-box;
   border: var(--borde); border-radius: 0; background: var(--hueco-carton); color: var(--p-tinta); }
 .hueco-logro.vacio { color: transparent; }
-.hueco-logro.sobre-mini { background: var(--manila); cursor: pointer; }
-.hueco-logro.sobre-mini span { color: var(--p-rojo); border: 2px solid var(--p-rojo); padding: 2px 4px 0; transform: rotate(-8deg); }
+.hueco-logro.nuevo-logro { background: var(--manila); cursor: pointer; }
+.hueco-logro.nuevo-logro span { color: var(--p-rojo); border: 2px solid var(--p-rojo); padding: 2px 4px 0; transform: rotate(-8deg); }
 .hueco-logro.abierto { background: var(--p-crema); cursor: pointer; }
 
-/* Un logro: el mismo sitio y la misma medida que las cartas de la partida (título arriba, carta 1:1, decisión debajo) */
+/* Un logro: el mismo sitio y la misma medida que las cartas de la partida (título y subtítulo arriba, carta 1:1, decisión debajo).
+   La carta se gira al tocarla, como la ficha de los personajes. */
 .logro-vista { position: absolute; inset: 0; padding: 8px 12px 6px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; background: var(--p-crema); }
-.logro-cab { flex: none; width: var(--carta-w, 100%); max-width: 100%; height: var(--cabecera-h, 150px); display: flex; align-items: center; justify-content: center; text-align: center; }
-.logro-titulo { margin: 0; color: var(--p-rojo); opacity: 0; transition: opacity .4s ease .55s; }
-.logro-vista.abierto .logro-titulo { opacity: 1; }
-.sobre-escena { position: relative; flex: none; width: var(--carta-w, 100%); max-width: 100%; aspect-ratio: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.sobre-escena.ya { cursor: default; }
-.logro-carta { position: absolute; inset: 0; z-index: 1; box-sizing: border-box; padding: var(--margen-carta); background: var(--p-crema); border: var(--borde); }
+.logro-cab { flex: none; width: var(--carta-w, 100%); max-width: 100%; height: var(--cabecera-h, 150px); display: flex; flex-direction: column; gap: 6px; align-items: center; justify-content: center; text-align: center; }
+.logro-titulo { margin: 0; color: var(--p-rojo); }
+.logro-subtitulo { margin: 0; padding: 0 5%; }
+.logro-escena { position: relative; flex: none; width: var(--carta-w, 100%); max-width: 100%; aspect-ratio: 1; }
+.logro-carta { position: absolute; inset: 0; perspective: 2200px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.logro-carta .giro { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3, .1, .2, 1); }
+.logro-carta.volteada .giro { transform: rotateY(180deg); }
+.logro-cara, .logro-dorso { position: absolute; inset: 0; box-sizing: border-box; padding: var(--margen-carta); background: var(--p-crema); border: var(--borde); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.logro-dorso { transform: rotateY(180deg); }
 .logro-ilustracion { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--manila); }
 .logro-objeto { color: var(--tinta-suave); }
-.sobre { position: absolute; inset: 0; z-index: 2; background: var(--manila); border: var(--borde); box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
-.sello-conf { color: var(--p-rojo); border: 2.5px solid var(--p-rojo); padding: 4px 10px 2px; transform: rotate(-8deg); margin-top: 20%; }
-.sobre-solapa { position: absolute; left: 0; top: 0; width: 100%; height: 52%; transform-origin: top; fill: color-mix(in srgb, var(--p-mostaza) 60%, var(--p-crema)); stroke: var(--p-tinta); stroke-width: 1.5; vector-effect: non-scaling-stroke; overflow: visible; }
-.sobre-escena:not(.ya) .logro-carta { opacity: 0; }
-.logro-vista.abierto .sobre-solapa { animation: solapa .25s ease-in forwards; }
-.logro-vista.abierto .sobre { animation: sobre-fuera .5s ease-in .25s forwards; }
-.logro-vista.abierto .sobre-escena:not(.ya) .logro-carta { animation: carta-crece .55s ease-out .25s forwards; }
-@keyframes solapa { to { transform: rotateX(180deg); } }
-@keyframes sobre-fuera { to { opacity: 0; transform: translateY(8%); visibility: hidden; } }
-@keyframes carta-crece { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
-.archivo-pista { margin: 14px 0 0; min-height: 1.4em; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }
-@media (prefers-reduced-motion: reduce) {
-  .logro-vista.abierto .sobre { animation: none; display: none; }
-  .logro-vista.abierto .sobre-escena:not(.ya) .logro-carta { animation: none; opacity: 1; }
-  .logro-titulo { transition: none; }
+.logro-hoja { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 12px 14px; overflow: hidden; text-align: left; }
+.logro-hoja p, .logro-hoja b { margin: 0; }
+.logro-hoja b.logro-objeto-nombre { color: var(--p-rojo); }
+.archivo-pista { margin: 14px 0 0; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }
+.archivo-pista + .archivo-pista { margin-top: 4px; }
+@media (prefers-reduced-motion: reduce) { .logro-carta .giro { transition: none; } }
 }

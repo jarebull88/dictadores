@@ -142,25 +142,30 @@ test("«Saltar tutorial» lleva directo al nombre", () => {
 });
 
 
-test("logros: «Que cada vecino vigile a su vecino» da un sobre sin abrir; al abrirlo, se descubre «Chivatón de barrio»", () => {
+test("logros: «Que cada vecino vigile a su vecino» da un logro nuevo; con un toque en la cuadrícula se descubre «Chivatón de barrio» y la carta se gira", () => {
   const j = cargar();
   j.empezar();
   const id = j.w.eval(`CARTAS.find(c => [c.izq, c.der].some(o => (o.banderas || []).includes("base.comites_vigilancia"))).id`);
   j.w.eval(`E.actual = CARTAS.find(c => c.id === "${id}"); mezclarLados = false; E.lados = null;`);
   const dir = j.w.eval(`(E.actual.izq.banderas || []).includes("base.comites_vigilancia") ? -1 : 1`);
   j.w.eval(`resolver(${dir})`);
-  assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú lleva la bolita amarilla");
-  assert.match(j.$("btn-menu").getAttribute("aria-label"), /1 logros sin abrir/);
+  assert.ok(j.$("btn-logros").classList.contains("pendiente"), "la estrella de logros se rellena");
+  assert.match(j.$("btn-logros").getAttribute("aria-label"), /1 sin abrir/);
+  assert.ok(!j.$("menu-juego").contains(j.$("btn-logros")), "los logros ya no están dentro del menú");
   j.$("btn-logros").click();
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
-  j.d.querySelector(".sobre-mini").click();
-  assert.equal(j.d.querySelector(".logro-titulo").textContent, "", "el título no sale hasta abrir el sobre");
-  j.d.querySelector(".sobre-escena").click();      // un solo toque: abre el sobre y descubre la carta
+  j.d.querySelector(".nuevo-logro").click();       // un solo toque en la cuadrícula: la carta ya está descubierta
   assert.equal(j.d.querySelector(".logro-titulo").textContent, "Chivatón de barrio");
+  assert.ok(j.d.querySelector(".logro-subtitulo").textContent.length > 0, "lleva subtítulo");
   assert.match(j.d.querySelector(".archivo-pista").textContent, /Que cada vecino vigile a su vecino/);
+  assert.ok(!j.$("btn-logros").classList.contains("pendiente"), "descubierto, la estrella se vacía");
+  assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));
+  j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción y los efectos
+  assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
+  assert.match(j.d.querySelector(".logro-dorso").textContent, /Efecto secundario/);
   j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
-  assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");
+  assert.ok(!j.$("btn-logros").classList.contains("pendiente"), "abierto, la estrella se vacía");
   assert.deepEqual(j.errores, []);
 });

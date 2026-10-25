@@ -123,9 +123,9 @@ const CARTAS = [
   {
     id: "embargo", tipo: "cola", titulo: "El embargo",
     personaje: "Embajador de la potencia del norte",
-    texto: "Han expropiado nuestras refinerías. Exigimos compensación o habrá embargo.",
+    texto: "Han expropiado nuestras refinerías. Exigimos compensación o no les venderemos ni un tornillo.",
     izq: { accion: "Aquí no se paga nada", efectos: { pueblo: 3, potencias: -9, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Pagar compensación", efectos: { potencias: 9, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
+    der: { accion: "Pagaremos, que somos gente seria", efectos: { potencias: 9, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
   },
   {
     id: "depuracion_criticos", tipo: "cola", borrador: true, titulo: "La lista",
@@ -154,7 +154,7 @@ const CARTAS = [
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.",
-    izq: { accion: "Convoquen elecciones en seis meses", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
+    izq: { accion: "Elecciones ya, que seguro gano", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
     der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, elite: 5 }, banderas: ["base.elecciones_aplazadas"] }
   },
   {
@@ -168,17 +168,17 @@ const CARTAS = [
     // 23 oct, Jorge: la declaración del carácter socialista (abril de 1961), en el entierro de las víctimas del bombardeo del exilio
     id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El exilio nos ha bombardeado y hay muertos inocentes. En el entierro habrá que decir qué es la Revolución.",
+    texto: "El exilio nos ha bombardeado y la plaza se llena de luto. Habrá que decir qué es la Revolución.",
     izq: { accion: "Hoy la Revolución será socialista", efectos: { potencias: 5, elite: 3 } },
-    der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, ejercito: 3 } }
+    der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, elite: -3 } }
   },
   {
     // 23 oct, Jorge: el fin del béisbol profesional (1961), «el deporte, derecho del Pueblo»; las estrellas se quedan fuera
     id: "fin_pelota", tipo: "sorteo", peso: 10, titulo: "Se acabó el profesional",
     personaje: "Ministra de Educación",
     texto: "Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.",
-    izq: { accion: "Ahora se jugará por amor a la patria", efectos: { pueblo: 4, potencias: -4 } },
-    der: { accion: "Que sigan cobrando en divisas", efectos: { potencias: 4, pueblo: -4 } }
+    izq: { accion: "La pelota libre le gana a la esclava", efectos: { elite: 4, potencias: -4 } },
+    der: { accion: "Que sigan bateando en divisas", efectos: { potencias: 4, elite: -4 } }
   },
   {
     id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",
@@ -206,7 +206,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.",
     izq: { accion: "Cámbienlos por compotas", efectos: { potencias: -6, pueblo: 2, ejercito: -4 } },
-    der: { accion: "Juicio televisado y paredón", efectos: { potencias: -3, pueblo: 5, ejercito: 5, crisis: 2 } }
+    der: { accion: "Juicio televisado y luego al «patio»", efectos: { potencias: -3, pueblo: 5, ejercito: 5, crisis: 2 } }
   },
   {
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
@@ -242,7 +242,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.",
     izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "Paredón y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
+    der: { accion: "Purga y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
   },
   {
     id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",
@@ -313,7 +313,7 @@ const CARTAS = [
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Se acerca el aniversario de la Revolución. Los militares quieren desfile con tanques y el Pueblo ron. No hay para los dos.",
+    texto: "Llega el aniversario: el Ejército quiere desfile de tanques y el Pueblo, ron. No hay para los dos.",
     izq: { accion: "Un gran desfile con tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
     der: { accion: "Ron gratis para todo el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
   },
@@ -353,9 +353,9 @@ const CARTAS = [
   {
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
-    texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha.",
+    texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha bajito.",
     izq: { accion: "Interfieran la emisora con música", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
-    der: { accion: "Acúsenlos de agentes extranjeros", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
+    der: { accion: "Que la radio diga que son espías", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
   {
@@ -370,7 +370,7 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "El Estado dará mejor uso a la tierra", efectos: { pueblo: -5, elite: 2 } },
+    izq: { accion: "El Estado siembra mejor que nadie", efectos: { pueblo: -5, elite: 2 } },
     der: { accion: "Importen comida a cualquier precio", efectos: { pueblo: 6, potencias: 5 } }
   },
 
@@ -457,17 +457,17 @@ const CARTAS = [
   {
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
-    texto: "Se han ido ingenieros, médicos y contables. Las fábricas funcionan por pura voluntad.",
+    texto: "Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.",
     izq: { accion: "Prohíban salir a los titulados", efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Cursos acelerados de todo para todos", efectos: { elite: 2, pueblo: 3 } }
+    der: { accion: "Cursos de ingeniería en seis meses", efectos: { elite: 2, pueblo: 3 } }
   },
 
   {
     id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga",
     personaje: "Ministro del Interior",
-    texto: "Cada semana huyen más familias en balsas. Las patrullas no dan abasto.",
+    texto: "Cada semana huyen más familias en balsas. Ya no quedan neumáticos ni puertas en los barrios.",
     izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Dejen que se vaya quien quiera", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
+    der: { accion: "Que se vayan y nos dejen sus casas", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
   },
 
   {
@@ -514,9 +514,9 @@ const CARTAS = [
     // 23 oct, Jorge: la embajada asaltada y el éxodo del Mariel (1980)
     id: "diez_mil_embajada", era: 3, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "Diez mil en una embajada",
     personaje: "Ministro del Interior",
-    texto: "Un autobús ha embestido la verja de una embajada y diez mil personas se han metido dentro.",
-    izq: { accion: "Abran el puerto a quien quiera irse", efectos: { pueblo: 3, ejercito: -4 } },
-    der: { accion: "Corten el agua y espérenlos fuera", efectos: { ejercito: 4, pueblo: -3 } }
+    texto: "Un autobús ha entrado en una embajada por la verja y detrás diez mil personas.",
+    izq: { accion: "Abran el puerto a quien quiera irse", efectos: { pueblo: -4, potencias: 4, crisis: -2 } },
+    der: { accion: "Corten el agua y espérenlos fuera", efectos: { ejercito: 4, potencias: -4 } }
   },
   {
     // 23 oct, Jorge: el diálogo con el exilio (1978): los «gusanos» vuelven de visita convertidos en «mariposas»
@@ -569,9 +569,9 @@ const CARTAS = [
   {
     id: "los_chistes", era: 2, tipo: "sorteo", peso: 8, titulo: "Los chistes",
     personaje: "Ministra de Cultura",
-    texto: "Circula un chiste sobre usted. Lo cuentan en las colas y lo repiten en el Consejo de Ministros.",
-    izq: { accion: "Detengan a quien lo cuente", efectos: { pueblo: -5, ejercito: 4 } },
-    der: { accion: "Reírse es gratis", efectos: { pueblo: 4, ejercito: -3 } }
+    texto: "Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.",
+    izq: { accion: "Detengan al que se ría primero", efectos: { pueblo: -5, ejercito: 4 } },
+    der: { accion: "Reírse también es de revolucionarios", efectos: { pueblo: 4, ejercito: -3 } }
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {
@@ -796,7 +796,7 @@ const CARTAS = [
   {
     id: "el_atentado", era: 3, tipo: "ancla", ventana: [5, 7], titulo: "El atentado",
     personaje: "Ministro del Interior",
-    texto: "Los terroristas del exilio han volado uno de nuestros aviones. Setenta y tres muertos.",
+    texto: "Los terroristas del exilio han volado uno de nuestros aviones con setenta y tres pasajeros.",
     izq: { accion: "Funeral con un millón en la plaza", efectos: { pueblo: 4, elite: 2 }, encolar: [{ carta: "los_que_celebran", min: 1, max: 2 }] },
     der: { accion: "Habrá que defenderse infiltrándolos", efectos: { ejercito: 4, potencias: -3 }, banderas: ["base.atentado_investigado"] }
   },
@@ -810,7 +810,7 @@ const CARTAS = [
   {
     id: "la_investigacion", era: 3, tipo: "cola", titulo: "La investigación",
     personaje: "Ministro del Interior",
-    texto: "Los acusados del atentado lo niegan todo. Uno de ellos lleva dos años muerto.",
+    texto: "Los acusados del atentado lo niegan todo. A uno de ellos lo enterraron hace dos años.",
     izq: { accion: "Que confiese también el difunto", efectos: { ejercito: 5, pueblo: -5 } },
     der: { accion: "Suéltenlos sin pedirles perdón", efectos: { ejercito: -5, pueblo: 5 } }
   },
@@ -898,9 +898,9 @@ const CARTAS = [
   {
     id: "la_salud", era: 4, tipo: "ancla", ventana: [1, 3], titulo: "La salud",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Corren rumores de que usted está muy enfermo. Algunos ya se pelean por su despacho.",
+    texto: "La radio del exilio lo ha dado por muerto tres veces este mes. Algunos se pelean por su despacho.",
     izq: { accion: "Apunten quién se pelea por mi silla", efectos: { ejercito: 4, elite: -5 } },
-    der: { accion: "Daré un discurso de siete horas", efectos: { elite: 3, crisis: -1 } }
+    der: { accion: "Que me graben corriendo en chándal", efectos: { elite: 3, crisis: -1 } }
   },
   {
     id: "el_doble", retirada: true, era: 4, tipo: "cola", titulo: "El doble",
@@ -971,8 +971,8 @@ const CARTAS = [
     // 23 oct, Jorge: el hijo mayor del Comandante dirigió el programa nuclear y fue destituido en 1992; la central nunca se terminó
     id: "hijo_mayor", era: 4, tipo: "sorteo", peso: 10, titulo: "La central del hijo",
     personaje: "Ministro de Economía",
-    texto: "Su hijo mayor dirige la central nuclear que nos regaló el aliado. Sin ellos no hay dinero ni uranio.",
-    izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { pueblo: 4, elite: -3 } },
+    texto: "Su hijo mayor dirige la central nuclear del aliado, pero el aliado se ha hundido y no hay uranio.",
+    izq: { accion: "Destitúyanlo: el fracaso es suyo", efectos: { elite: -3, crisis: -1 } },
     der: { accion: "Quiten de donde sea para su central", efectos: { elite: 3, pueblo: -4 } }
   },
   {
@@ -995,8 +995,8 @@ const CARTAS = [
     // 23 oct, Jorge: la revolución energética (2005-06): bombillas y ollas arroceras casa por casa
     id: "revolucion_energetica", era: 4, tipo: "sorteo", peso: 10, cond: { turnoMin: 5 }, titulo: "La revolución energética",
     personaje: "Ministro de Economía",
-    texto: "Tenemos bombillas y ollas que gastan menos luz. Podemos regalarlas casa por casa o venderlas.",
-    izq: { accion: "Regálenlas con mi foto pegada", efectos: { pueblo: 4, ejercito: -4 } },
+    texto: "Tenemos bombillas que ahorran luz y ollas que ahorran arroz. Podemos regalarlas o venderlas.",
+    izq: { accion: "Regálenlas y enseñaré a hacer arroz", efectos: { pueblo: 4, ejercito: -4 } },
     der: { accion: "Que las venda el Ejército en dólares", efectos: { ejercito: 4, pueblo: -4 } }
   },
   {
@@ -1046,8 +1046,8 @@ const CARTAS = [
   {
     id: "el_concierto", era: 4, tipo: "sorteo", peso: 10, titulo: "El concierto",
     personaje: "Ministra de Cultura",
-    texto: "Una banda de rock extranjera pide tocar en el estadio. La juventud ya se sabe todas las canciones.",
-    izq: { accion: "Que toquen, que yo también fui joven", efectos: { pueblo: 5, elite: -3 } },
+    texto: "Una banda de rock extranjera pide tocar en el estadio. Hace treinta años sus discos eran delito.",
+    izq: { accion: "Que toquen, que yo también tuve pelo", efectos: { pueblo: 5, elite: -3 } },
     der: { accion: "Que toque la orquesta del Ministerio", efectos: { elite: 3, pueblo: -5 } }
   },
   {
@@ -1067,9 +1067,9 @@ const CARTAS = [
   {
     id: "los_turistas", era: 4, tipo: "sorteo", peso: 10, titulo: "Los turistas",
     personaje: "Ministro de Comercio",
-    texto: "Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los exiliados manden dólares.",
-    izq: { accion: "Que los turistas gocen la Revolución", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
-    der: { accion: "Que el exilio mantenga la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
+    texto: "Hacen falta divisas. Podemos llenar las playas de turistas o dejar que los gusanos manden dólares.",
+    izq: { accion: "Que los turistas gocen el socialismo", efectos: { potencias: 5, elite: 3, pueblo: -4 } },
+    der: { accion: "Que los gusanos paguen la Revolución", efectos: { pueblo: 4, potencias: 3, elite: -4 } }
   },
   {
     id: "bomba_interior", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.atentado_investigado"] }, titulo: "Los cinco", ilustracion: null,
@@ -1118,9 +1118,9 @@ const FICHAS = {
   "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Locutora de Radio Machete",
     historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas.",
     nota: "Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
-  "Ministro de las Fuerzas Armadas": { nombre: "Domingo Cuesta", cargo: "Capitán de columna",
-    historia: "Campesino de la sierra que aprendió a mandar a tiros y al que la tropa seguiría a cualquier parte, lo que conviene tener presente.",
-    nota: "Hasta la fecha ha rechazado todas las medallas que se le han ofrecido." },
+  "Ministro de las Fuerzas Armadas": { nombre: "Domingo", cargo: "Jefe del segundo frente",
+    historia: "Hermano pequeño del Comandante. Era del bloque oriental antes de que el bloque supiera que existíamos.",
+    nota: "Se cuida el bigote con un esmero impropio de la sierra." },
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
     historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",
     nota: "Este informe lo ha redactado él mismo." },
@@ -1263,9 +1263,9 @@ const PREVISION = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "Eso ni se pregunta" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada nueva etapa, Interior preparará un expediente. Solo tendrá que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, Capitán Cuesta", der: "¡Vas bien, Domingo!" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada nueva etapa, Interior preparará un expediente. Solo tendrá que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, mi hermanito", der: "Me suena su cara, ¿nos conocemos?" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Contentaré a todos", der: "Mano firme" },
-  { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Primero el Pueblo, Capitán", der: "No les faltará el ron", efectos: { izq: { pueblo: 24, ejercito: -10 }, der: { ejercito: 24, pueblo: -10 } } },
+  { paso: "pistas", texto: "Por ejemplo, el Ejército está en rojo y ninguna fuerza debe caer.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Sí, sí, pero primero el Pueblo", der: "Que no le falte ron a tu tropa", efectos: { izq: { pueblo: 24, ejercito: -10 }, der: { ejercito: 24, pueblo: -10 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 7 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },
@@ -1277,9 +1277,10 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
    llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
    de redacción en docs/COLECCIONABLES.md. */
 const LOGROS = [
-  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", objeto: "Carné del comité de barrio",
-    frase: "Ser miembro del comité significa vigilar a tus vecinos. Y que ellos te vigilen a ti.",
-    decision: "Que cada vecino vigile a su vecino" }
+  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
+    objeto: "Carné del comité de barrio", decision: "Que cada vecino vigile a su vecino",
+    descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional, lo cierra la conversación de coleccionables
+    efecto: "+1 vecino que te lo cuenta todo.", secundario: "Tú también eres vecino de alguien." }
 ];
 /* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
 const HUECOS_ARCHIVO = 6;

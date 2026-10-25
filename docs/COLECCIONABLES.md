@@ -8,6 +8,29 @@ Reglas: inspirarse en cosas reales (solo se inventa si el chiste lo vale); ning�
 
 Estado: **propuesto** (en revisión con Jorge) · **aprobado**.
 
+## Pantalla del logro (25 oct, Jorge) — para programar
+
+Usa la disposición de la partida: textos arriba (en el hueco de las barras y la pregunta), la carta en medio (en el mismo sitio y con la misma medida que la del juego) y textos debajo.
+
+- **Arriba:** el **título** del logro (estilo Titular) y, debajo, el **subtítulo**: una sola frase corta (estilo Cuerpo, en negrita, donde va la pregunta en la partida).
+- **La carta, por delante:** la ilustración del objeto ocupa la carta (mientras no haya ilustración, un hueco con el nombre del objeto).
+- **Debajo de la carta:** «Por «decisión»» (la respuesta que dio el logro).
+- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): el nombre del objeto, la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Efecto** (una línea, lo positivo) y el **Efecto secundario** (una línea, lo negativo). Nada más: sin puntos, valores ni rarezas.
+- **Primera vez:** sin sobre (25 oct, Jorge: «eliminamos la animación del sobre»). El jugador toca la estrella, ve la cuadrícula con el logro nuevo («¡Nuevo!») y, al tocarlo, sale directamente la carta por delante, con la pista «Toca la carta para girarla» (solo la primera vez).
+- **Datos de cada logro** (`LOGROS` en `datos.js`): `id, bandera, titulo, subtitulo, objeto, decision, descripcion, efecto, secundario` (`frase` pasa a llamarse `descripcion`).
+- **Límites orientativos:** título ≤24 caracteres, subtítulo ≤60, descripción ≤220, efecto y efecto secundario ≤60 cada uno.
+
+**Estilo de los textos (como los logros de *Dungeon Crawler Carl*):** los anuncia la voz del «Sistema», burocrática, sarcástica y algo condescendiente, que habla de tú, se ríe del jugador y le pone a cada objeto un efecto absurdo y su efecto secundario.
+
+**Ejemplo (el logro del tutorial, propuesto):**
+- titulo: «Paloma amaestrada»
+- subtitulo: «Tu primer milagro, cortesía de tu hermano.»
+- objeto: «Paloma blanca»
+- decision: «Si se posa en mi hombro, asciendes»
+- descripcion: «Tu hermano pequeño la ha entrenado tres meses en el monte con paciencia y maíz. Cada vez que alces el brazo en un discurso, se posará en tu hombro y medio país verá en ti al elegido.»
+- efecto: «+100 de aura divina.»
+- secundario: «Tu uniforme de gala nunca volverá a estar limpio.»
+
 ## Era 1
 
 ### 1. Carné del comité de barrio — *propuesto*

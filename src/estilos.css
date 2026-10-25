@@ -265,7 +265,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .barra .punto-zona { height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
 /* Arriba del todo, encima de los iconos: bajan desde fuera de la pantalla al ritmo del arrastre */
 #screen-game .barra .punto-zona { translate: 0 calc((var(--bajada-pistas, 0) - 1) * 64px); transition: translate .32s cubic-bezier(.25, .8, .3, 1); }   /* al ritmo del panel */
-.barra .punto { width: 0; height: 0; border-radius: 50%; background: #2E2C29; transition: width .12s, height .12s; }
+.barra .punto { width: 0; height: 0; border-radius: 50%; background: var(--p-rojo); transition: width .12s, height .12s; }
 
 /* Alerta: no solo color. La barra se vuelve roja y rayada (rota), parpadea, y aparece un «!» junto al icono.
    Al entrar en la zona crítica el móvil vibra (motor.js). */
@@ -335,6 +335,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
   transition: transform .6s cubic-bezier(.3, .1, .2, 1);
 }
 .carta.volteada .giro { transform: rotateY(180deg); }
+.carta.volteada { cursor: pointer; }   /* por detrás solo se toca para girarla */
 /* Boca abajo: la carta nueva aparece sobre el mazo enseñando la tapa (el mismo cartón oscuro del mazo) y da la vuelta.
    Mientras se revela (.revelando), la tapa sustituye a la ficha por detrás. */
 .carta.boca-abajo .giro { transform: rotateY(180deg); }
@@ -361,14 +362,13 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .icono-giro { display: none; }
 .carta.con-giro .icono-giro { display: block; }
 .carta.giro-destacado .icono-giro { animation: parpadeo-giro 1.1s ease-in-out infinite; }
-#ranuras.destacar button.ranura { animation: parpadeo-giro 1.1s ease-in-out infinite; }
+#ranuras.destacar button.ranura { animation: none; }   /* 25 oct: sin zoom: solo se alumbra en rojo (la capa de abajo) */
 /* 17 oct: y encima, una capa roja translúcida que destella, para que se vea que hay que tocarla */
-#ranuras.destacar button.ranura.llena { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }   /* la casilla no se desvanece: palpita, y destella el rojo */
-@keyframes latido-casilla { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+#ranuras.destacar button.ranura.llena { position: relative; }   /* la casilla no se mueve: solo destella el rojo */
 #ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
-#barras.destacar .icono-fuerza { position: relative; animation: latido-casilla 1.1s ease-in-out infinite; }
+#barras.destacar .icono-fuerza { position: relative; }
 #barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 @keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
@@ -494,13 +494,13 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 
 }
 .ficha-foto {
-  flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 4 / 5; margin-bottom: 6px; overflow: hidden;
+  flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 1; margin-bottom: 6px; overflow: hidden;
   background: var(--fondo-escena, #CFCBC2); filter: grayscale(1) contrast(1.08);
   border: 4px solid #FAF6EC;
 }
 .ficha-foto svg { display: block; width: 100%; height: 100%; }
 /* 21 oct: la foto de carné, pegada a la hoja con un trozo de cinta de carrocero (como la de las cartas de estado) */
-.foto-grapada { position: relative; flex: none; margin-bottom: 6px; transform: rotate(-1.5deg); }
+.foto-grapada { position: relative; flex: none; margin-bottom: 6px; }   /* 25 oct: la foto, derecha */
 .foto-grapada .ficha-foto { margin-bottom: 0; }
 .cinta-foto { position: absolute; top: -7px; left: 50%; width: 62%; height: 15px; translate: -50% 0; rotate: -4deg; opacity: .85;
   background: #E9C77A;

@@ -615,14 +615,28 @@ const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D
 /* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
    Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
 function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
+/* 25 oct: la foto del expediente es 1:1, derecha y encuadrada en la cara. En los carteles, la cara no se encuentra sola: aquí se
+   marca para cada uno el centro (x, y) y el lado de la ventana, como fracciones del cartel. */
+const CARA_FICHA = {
+  vicepresidente: [.50, .44, .60], economia: [.49, .22, .24], comercio: [.54, .18, .38], educacion: [.50, .62, .50],
+  trabajo: [.40, .38, .56], cultura: [.50, .42, .56], "fuerzas-armadas": [.60, .42, .36], interior: [.50, .30, .76],
+  "embajador-oriental": [.36, .56, .30], "embajador-occidental": [.50, .22, .42], "dictador-joven": [.47, .31, .56]
+};
 function fotoDe(slug) {
   const p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
   if (!p) return "";
+  const cara = CARA_FICHA[(RETRATOS[slug] || {}).foto || slug];
+  if (!p.ojos && cara) {
+    const lado = cara[2] * Math.min(p.ancho, p.alto);
+    const x = Math.max(0, Math.min(p.ancho - lado, cara[0] * p.ancho - lado / 2)), y = Math.max(0, Math.min(p.alto - lado, cara[1] * p.alto - lado / 2));
+    return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${x.toFixed(0)} ${y.toFixed(0)} ${lado.toFixed(0)} ${lado.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
+      `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
+  }
   if (!p.ojos)   // 23 oct: los carteles van enteros, sin encuadrar desde los ojos
     return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
       `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
   const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w * 1.25;
+  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w;   // 25 oct: foto cuadrada
   return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
     `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/><g class="ojos-foto"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></div>`;
 }
@@ -694,9 +708,11 @@ function ajustarRespuesta(r) {
   s.style.fontSize = "";   // 22 oct, Jorge: la letra ya no se achica; el límite de caracteres asegura las 2 líneas
 }
 function pintarEleccion(dir) {
-  if (modoEstado) return;                             // la carta de estado no tiene respuestas (ni se arrastra)
+  if (modoEstado && !(E && E.tutorial)) return;       // la carta de estado no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
-  const op = c && dir !== 0 ? opcionDe(dir) : null;
+  let op = c && dir !== 0 && !modoEstado ? opcionDe(dir) : null;
+  if (E && E.tutorial && dir < 0) op = { accion: E.tutorial.i === 0 ? "Volver al inicio" : "Lección anterior", efectos: {} };   // 25 oct: la izquierda vuelve atrás
+  else if (modoEstado) op = null;
   const r = $("respuesta");
   if (r) {
     if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
@@ -826,7 +842,15 @@ function lanzarCarta(carta, dir) {
   carta.style.opacity = "0";
 }
 function decidir(dir) {
-  if (modoEstado) { recogerEstado(); return; }
+  if (E && E.tutorial && dir < 0 && !ocupado) {        // 25 oct: en el tutorial, la izquierda vuelve a la lección anterior (o a la portada, en la primera)
+    ocupado = true; ocultarInfo();
+    const carta = $("carta"); carta.classList.remove("volteada");
+    pintarEleccion(dir); carta.classList.add("listo");
+    lanzarCarta(carta, dir);
+    setTimeout(() => volverTutorial(), 240);
+    return;
+  }
+  if (modoEstado) { if (!(E && E.tutorial && dir > 0)) recogerEstado(); return; }
   if (ocupado || tutorialBloquea()) return;
   ocupado = true;
   ocultarInfo();
@@ -1197,6 +1221,11 @@ function pasoTutorial(i, sinEntrada) {
   if (i >= TUTORIAL.length) { terminarTutorial(); return; }
   t.i = i; t.vista = t.girada = t.casilla = t.fuerzaVista = false;
   $("barras").classList.remove("destacar");
+  // 25 oct: al volver atrás, cada lección se encuentra como la primera vez (fuerzas apagadas hasta «fuerzas», casilla de estado vacía hasta guardarlo)
+  const iFuerzas = TUTORIAL.findIndex(x => x.paso === "fuerzas"), iEstado = TUTORIAL.findIndex(x => x.paso === "estado");
+  if (i <= iFuerzas) { $("barras").classList.add("apagadas"); $("barras").querySelectorAll(".barra").forEach(b => b.classList.remove("encendida")); }
+  if (i <= iEstado && E.estados.length) { E.estados = []; pintarRanuras(); }
+  clearTimeout(relojEstado); modoEstado = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   $("nombre-dictador").textContent = "La víspera";
@@ -1213,6 +1242,7 @@ function pasoTutorial(i, sinEntrada) {
     izq: { accion: p.izq, efectos: ef.izq || {} }, der: { accion: p.der, efectos: ef.der || {} } };
   E.actual = c;
   barajarLados();
+  E.lados = { id: c.id, izq: c.izq, der: c.der };       // 25 oct: en el tutorial no se mezclan los lados (la izquierda es «atrás»)
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
   pintarCarta(c);
@@ -1222,7 +1252,7 @@ function pasoTutorial(i, sinEntrada) {
   carta.classList.toggle("giro-destacado", p.paso === "girar");
   $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
-  else if (i > TUTORIAL.findIndex(x => x.paso === "fuerzas")) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
+  else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
   if (p.paso === "deslizar") demostrarArrastre();
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
@@ -1285,14 +1315,21 @@ function encenderFuerzas() {
   setTimeout(() => { if (E && E.tutorial && E.tutorial.i === i && !E.tutorial.fuerzaVista) $("barras").classList.add("destacar"); },
     350 + barras.length * 450);
 }
-function terminarTutorial() {
+/* 25 oct: la izquierda en el tutorial vuelve a la lección anterior; en la primera, a la portada */
+function volverTutorial() {
+  const t = E.tutorial;
+  if (t.i === 0) { terminarTutorial("portada"); return; }
+  E.barras = { pueblo: 50, ejercito: 50, elite: 50, potencias: 50 }; pintarBarras();
+  pasoTutorial(t.i - 1);
+}
+function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
   E = null; modoEstado = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
-  irANombre();
+  if (destino === "portada") mostrar("screen-start"); else irANombre();
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
    (17 oct: sustituye a «Sigues en el poder»; debajo de la carta ya dice cuántos años llevas) */
@@ -1404,7 +1441,7 @@ function arrastrable(carta, op) {
     op.mostrar(0);
   }
   function coger() {
-    if (!drag || carta.classList.contains("cogida")) return;
+    if (!drag || carta.classList.contains("cogida") || carta.classList.contains("volteada")) return;   // 25 oct: por detrás (la ficha) no hay zoom: solo se toca para girarla
     clearTimeout(drag.cogida);
     carta.style.transition = "scale .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
     carta.classList.add("cogida");                // crece algo más al arrastrar (ver estilos.css)
@@ -1436,6 +1473,8 @@ function arrastrable(carta, op) {
     marcarListo(dir !== 0);
   }
   carta._mover = mover; carta._volver = volver; carta._umbral = umbral;
+  // 25 oct: en el tutorial, mientras falta una acción (girar, tocar un icono…), solo se puede arrastrar a la izquierda (volver)
+  const efectivo = dx => (op.bloqueaDer && op.bloqueaDer() && dx > 0 ? 0 : dx);
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x;
@@ -1444,18 +1483,18 @@ function arrastrable(carta, op) {
     drag.hist.push({ t: e.timeStamp, x: e.clientX });
     if (drag.hist.length > 6) drag.hist.shift();
     // un solo repintado por fotograma, aunque el dedo mande más eventos
-    if (!drag.cuadro) drag.cuadro = requestAnimationFrame(() => { if (drag) { drag.cuadro = 0; mover(drag.dx, drag); } });
+    if (!drag.cuadro) drag.cuadro = requestAnimationFrame(() => { if (drag) { drag.cuadro = 0; mover(efectivo(drag.dx), drag); } });
   });
   function soltar(e) {
     if (!drag) return;
-    const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    const bruto = drag.dx, dx = efectivo(bruto), h = drag.hist, toque = Math.abs(bruto) < 8 && e.timeStamp - drag.t0 < 450;
     clearTimeout(drag.cogida);
     drag = null;
     arrastrando = false;
-    if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(dx) < 30)) op.toque(); return; }
+    if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(bruto) < 30)) op.toque(); return; }
     if (carta.classList.contains("volteada")) { volver(); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
-    const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx);
+    const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx) && dx === bruto;
     if (Math.abs(dx) > umbral() || lanzada) op.decidir(Math.sign(dx));
     else volver();
   }
@@ -1468,7 +1507,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, fija: () => modoEstado || tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });
+arrastrable($("carta"), { activa: () => !ocupado, fija: () => modoEstado && !(E && E.tutorial), bloqueaDer: () => !!(E && E.tutorial) && (modoEstado || tutorialBloquea()), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */

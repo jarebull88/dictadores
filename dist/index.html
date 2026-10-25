@@ -2123,7 +2123,7 @@ const FICHAS = {
   "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Locutora de Radio Machete",
     historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas.",
     nota: "Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
-  "Ministro de las Fuerzas Armadas": { nombre: "Domingo", cargo: "Capitán de columna",
+  "Ministro de las Fuerzas Armadas": { nombre: "Domingo", cargo: "Jefe del segundo frente",
     historia: "Hermano pequeño del Comandante. Era del bloque oriental antes de que el bloque supiera que existíamos.",
     nota: "Se cuida el bigote con un esmero impropio de la sierra." },
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
@@ -2268,9 +2268,9 @@ const PREVISION = {
    ===================================================== */
 const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "Eso ni se pregunta" },
-  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada nueva etapa, Interior preparará un expediente. Solo tendrá que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, Capitán Cuesta", der: "¡Vas bien, Domingo!" },
+  { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada nueva etapa, Interior preparará un expediente. Solo tendrá que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, mi hermanito", der: "Me suena su cara, ¿nos conocemos?" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Contentaré a todos", der: "Mano firme" },
-  { paso: "pistas", texto: "Por ejemplo, conviene mantener la lealtad del Ejército. No querrá que olviden quién manda.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Primero el Pueblo, Capitán", der: "No les faltará el ron", efectos: { izq: { pueblo: 24, ejercito: -10 }, der: { ejercito: 24, pueblo: -10 } } },
+  { paso: "pistas", texto: "Por ejemplo, el Ejército está en rojo y ninguna fuerza debe caer.", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "Sí, sí, pero primero el Pueblo", der: "Que no le falte ron a tu tropa", efectos: { izq: { pueblo: 24, ejercito: -10 }, der: { ejercito: 24, pueblo: -10 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 7 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },

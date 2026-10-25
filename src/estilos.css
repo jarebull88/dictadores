@@ -63,42 +63,42 @@ body {
 .titulo { }
 /* TIPOGRAFIA:INICIO ==========================================================================================
    TIPOGRAFÍA: LA ÚNICA FUENTE DE VERDAD (24 oct)
-   Solo hay TRES estilos de letra (la cursiva solo se usa en «¡Nuevo logro!»):
+   Solo hay DOS estilos de letra:
      · TITULAR: Londrina Solid, siempre en MAYÚSCULAS (cuatro tamaños: XL, L, M y S).
-     · CUERPO:  Baloo 2 (cuatro tamaños: pregunta, respuesta, texto y pequeño; en negrita o normal).
+     · CUERPO:  Sofia Sans Semi Condensed (cuatro tamaños: pregunta, respuesta, texto y pequeño; en negrita o normal).
    Cada texto del juego (partida, tutorial, fichas, ventanas, pantallas de nombre, era y final) elige un papel de esta
    lista. Para cambiar la fuente, el tamaño o el peso de un papel se cambia AQUÍ y solo aquí. Fuera de este bloque no
    debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height (lo vigila
    tests/tipografia.test.js). Para un texto nuevo: añade su selector a un papel; no le des estilo propio.
    La tabla de papeles está en docs/TIPOGRAFIA.md. */
 :root {
-  --f-titular: "Londrina Solid", "Baloo 2", system-ui, sans-serif;
-  --f-cuerpo: "Baloo 2", system-ui, sans-serif;
-  --f-cursiva: "Playwrite IT Moderna", cursive;           /* «¡Nuevo logro!», escrito a mano */
-  --t-cursiva: 26px;
+  --f-titular: "Londrina Solid", "Sofia Sans Semi Condensed", system-ui, sans-serif;
+  --f-cuerpo: "Sofia Sans Semi Condensed", system-ui, sans-serif;   /* 24 oct: condensada, como la del titular (antes Baloo 2); sus tamaños son los de Baloo × 1,16 */
+  --peso-negrita: 800;
   /* tamaños del TITULAR */
   --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
   --t-l: min(calc(var(--carta-w, 360px) * .10), 44px);    /* el título de la era y el de la pantalla del nombre */
   --t-m: 26px;                                              /* títulos de ventanas, de estados, de la portada, de la esquela */
   --t-s: 21px;                                              /* cintas del tutorial y de efectos, «Has gobernado N años» */
   /* tamaños del CUERPO */
-  --c-pregunta: 19px;   /* la pregunta y todo texto que hable al jugador sobre una carta (17 px en pantallas bajas) */
-  --c-respuesta: min(23px, calc(var(--carta-w, 360px) / 16));
-  --c-texto: 16px;      /* párrafos: ventanas, fichas, informes, relato, esquela */
-  --c-pequeno: 14px;    /* pie, avisos, etiquetas, «abandonar» */
+  --c-pregunta: 22px;   /* la pregunta y todo texto que hable al jugador sobre una carta (20 px en pantallas bajas) */
+  --c-respuesta: min(27px, calc(var(--carta-w, 360px) / 14));
+  --c-texto: 18px;      /* párrafos: ventanas, fichas, informes, relato, esquela */
+  --c-pequeno: 16px;    /* pie, avisos, etiquetas, «abandonar» */
 }
 body { font-family: var(--f-cuerpo); font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
-button, input, textarea { font-family: inherit; }   /* los botones y campos no heredan la letra solos */
+button, input, textarea { font-family: inherit; }
+b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta es la negrita del cuerpo (800), no la 700 del navegador */   /* los botones y campos no heredan la letra solos */
 
 /* — TITULAR — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
+.titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .etiqueta-boli b, .cinta-tutorial span, .popup .efecto, .esquela b, .titulo-caida,
 .opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .sello-conf, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
 .ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
-.titulo, .cabecera-carta h1 { font-size: var(--t-l); }
+.titulo, .cabecera-carta h1, .logro-escribe { font-size: var(--t-l); }
 #screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .sello-conf, .hueco-logro { font-size: var(--t-s); }
 .etiqueta-boli.larga b, .cinta-tutorial span, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
@@ -109,25 +109,23 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 
 /* — CUERPO — */
 /* la pregunta: negrita, 19 px */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema { font-size: var(--c-pregunta); line-height: 1.28; font-weight: 700; }
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema { font-size: var(--c-pregunta); line-height: 1.28; font-weight: var(--peso-negrita); }
 /* la respuesta al arrastrar: negrita, grande */
-.texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: 700; }
+.texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: var(--peso-negrita); }
 /* texto corrido: 16 px */
 .popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .texto-respuesta span { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
-.modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: 700; }
+.modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: var(--peso-negrita); }
 .archivo-pista { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
 .ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
-.ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: 700; }
+.ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: var(--peso-negrita); }
 /* texto pequeño: 14 px */
 .dictador b, .dictador small, .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
-.dictador b, .alerta, .popup .etiqueta-pop { font-weight: 700; }
+.dictador b, .alerta, .popup .etiqueta-pop { font-weight: var(--peso-negrita); }
 /* portada: «Cómo se juega», en cuerpo, como acción secundaria */
-.opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: 700; line-height: 1.4; }
-/* — CURSIVA — */
-.logro-escribe { font-family: var(--f-cursiva); font-size: var(--t-cursiva); font-weight: 400; line-height: 1.6; text-transform: none; letter-spacing: 0; }
+.opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: var(--peso-negrita); line-height: 1.4; }
 .alerta { line-height: 1; }
-@media (max-height: 760px) { :root { --c-pregunta: 17px; } }
+@media (max-height: 760px) { :root { --c-pregunta: 20px; } }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -556,12 +554,24 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* 24 oct: el menú (☰), abajo a la derecha: al borde de la carta y centrado en vertical con las casillas, a la mitad de su tamaño.
-   Con logros sin abrir lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas.
-   Dentro: Logros, Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
+   Dentro: Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
 .boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
-.boton-menu.con-aviso::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: var(--aviso); height: var(--aviso); margin-left: calc(var(--aviso) / -2); border-radius: 50%; background: var(--p-mostaza); border: var(--borde); }
+/* 25 oct: los logros, una estrella a línea abajo a la izquierda (al lado opuesto del menú, mismo tamaño y misma línea). Con logros sin abrir se rellena
+   de amarillo y hace un zoom para resaltar. */
+.boton-logros { position: absolute; left: calc((1 - var(--zoom-ahora, 1)) / 2 * var(--menu)); bottom: calc(var(--aviso) + (1 - var(--zoom-ahora, 1)) / 2 * var(--menu)); width: calc(var(--menu) * var(--zoom-ahora, 1)); height: calc(var(--menu) * var(--zoom-ahora, 1)); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; -webkit-tap-highlight-color: transparent; }
+.boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: miter; overflow: visible; }
+.boton-logros .centro { fill: currentColor; stroke: none; }   /* la estrella del centro, maciza, como en «award star» de Google */
+.boton-logros .cuerpo { vector-effect: non-scaling-stroke; transition: fill .3s ease; }
+.boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
+.boton-logros::after { content: ""; position: absolute; inset: -6px; }
+/* El zoom cambia el TAMAÑO (no un transform), así la línea sigue siendo la misma de todo el juego. Al llegar un logro, grande; el recordatorio, más sutil. */
+.boton-logros.salto { --zoom: 1.9; animation: zoom-logro 1.2s ease-in-out; }
+.boton-logros.recuerda { --zoom: 1.4; animation: zoom-logro .9s ease-in-out; }
+@property --zoom-ahora { syntax: "<number>"; inherits: false; initial-value: 1; }
+@keyframes zoom-logro { 0%, 100% { --zoom-ahora: 1; } 25%, 60% { --zoom-ahora: var(--zoom); } }
+@media (prefers-reduced-motion: reduce) { .boton-logros.salto, .boton-logros.recuerda { animation: none; } }
 .pie-juego { position: relative; }
 .menu-juego { position: absolute; right: 0; bottom: calc(var(--cuadro) + var(--separacion)); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: var(--borde); }
 .menu-juego.hidden { display: none; }
@@ -657,17 +667,12 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 /* =====================================================================================================
    24 oct: LOGROS (prototipo). El sello «¡Nuevo logro!» bajo la carta, el sobre del menú y el archivo
    ===================================================================================================== */
-/* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Se escribe de izquierda a derecha, se queda y se borra */
+/* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Aparece disolviéndose con un zoom lento y se disuelve */
 .logro-escribe { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; color: var(--p-rojo); white-space: nowrap; pointer-events: none; }
 .zona-nombre.con-logro .dictador { visibility: hidden; }
 .zona-nombre.con-logro .logro-escribe { display: flex; }
-.logro-escribe.escribiendo { animation: escribir 2.3s linear both; }
-@keyframes escribir {
-  0% { clip-path: inset(-30% 100% -30% 0); animation-timing-function: cubic-bezier(.3, .1, .4, 1); }
-  40% { clip-path: inset(-30% 0 -30% 0); }
-  72% { clip-path: inset(-30% 0 -30% 0); animation-timing-function: cubic-bezier(.6, 0, .8, .6); }
-  100% { clip-path: inset(-30% 0 -30% 100%); }
-}
+.logro-escribe.escribiendo { animation: disolver 2.2s ease-in-out both; }
+@keyframes disolver { 0% { opacity: 0; transform: scale(.82); } 25% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; transform: scale(1.14); } }
 @media (prefers-reduced-motion: reduce) { .logro-escribe.escribiendo { animation: none; } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */

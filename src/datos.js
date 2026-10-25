@@ -370,7 +370,7 @@ const CARTAS = [
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
     personaje: "Ministro de Trabajo",
     texto: "Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.",
-    izq: { accion: "El Estado sabe sembrar mejor que nadie", efectos: { pueblo: -5, elite: 2 } },
+    izq: { accion: "El Estado siembra mejor que nadie", efectos: { pueblo: -5, elite: 2 } },
     der: { accion: "Importen comida a cualquier precio", efectos: { pueblo: 6, potencias: 5 } }
   },
 

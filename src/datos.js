@@ -1269,6 +1269,10 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   // Carta de estado: no hay personaje, así que arriba se habla al jugador. Si no se toca, se guarda sola a los 7 s.
   { paso: "estado", texto: "Tus decisiones tienen efectos a largo plazo." },
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },
+  // 25 oct: los logros. La decisión da el primer logro (sea cual sea la respuesta); luego hay que tocar la estrella y abrirlo (`despues`)
+  { paso: "logro", texto: "Le he entrenado una paloma. Se le posará en el hombro cada vez que levante el brazo en un discurso.", cinta: "Algunas decisiones te dan un logro. Esta, seguro.",
+    despues: { texto: "Ahí tiene su primer logro. Es más fiable que la paloma.", cinta: "Toca la estrella de abajo para ver tu logro." },
+    izq: "Que baje del cielo, como un milagro", der: "Dale maíz, que el milagro es caro" },
   { paso: "fin", texto: "La nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "Seré breve: cinco horas", der: "Quiero una paloma en mi hombro" }
 ];
 
@@ -1280,7 +1284,12 @@ const LOGROS = [
   { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
     objeto: "Carné del comité de barrio", decision: "Que cada vecino vigile a su vecino",
     descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional, lo cierra la conversación de coleccionables
-    efecto: "+1 vecino que te lo cuenta todo.", secundario: "Tú también eres vecino de alguien." }
+    efecto: "+1 vecino que te lo cuenta todo.", secundario: "Tú también eres vecino de alguien." },
+  // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
+  { id: "paloma", bandera: "tutorial.paloma", titulo: "Paloma amaestrada", subtitulo: "Tu primer milagro, cortesía de tu hermano.",
+    objeto: "Paloma blanca", decision: "Aceptar la paloma de tu hermano",
+    descripcion: "Tu hermano pequeño la ha entrenado tres meses en el monte con paciencia y maíz. Cada vez que alces el brazo en un discurso, se posará en tu hombro y medio país verá en ti al elegido.",
+    efecto: "+100 de aura divina.", secundario: "Tu uniforme de gala nunca volverá a estar limpio." }
 ];
 /* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
 const HUECOS_ARCHIVO = 6;

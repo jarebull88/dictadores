@@ -55,7 +55,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 
 **Carta:** «Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»
 
-- **A. El Estado sabe sembrar mejor que nadie** Pueblo −5 · Élite +2
+- **A. El Estado siembra mejor que nadie** Pueblo −5 · Élite +2
 - **B. Importen comida a cualquier precio** Pueblo +6 · Potencias +5
 
 ### 6. El periodista oficial

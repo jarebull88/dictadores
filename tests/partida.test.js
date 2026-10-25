@@ -92,7 +92,7 @@ test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (
   assert.ok(j.visible("screen-game"), "con nombre, a la derecha empieza");
 });
 
-test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {
+test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {
   const j = cargar();
   j.w.eval("empezarTutorial()");
   assert.ok(j.visible("screen-game"));
@@ -124,8 +124,19 @@ test("tutorial «La víspera»: siete pasos, solo se gira la carta cuando toca, 
   assert.equal(j.w.eval("E.tutorial.i"), 5, "hay que tocar la casilla antes de seguir");
   j.w.eval("mostrarInfo(0); ocultarInfo();");
   j.tecla(1);
+  assert.equal(j.w.eval("E.tutorial.i"), 6);                         // 7: logro
+  assert.ok(j.$("btn-logros").classList.contains("hidden"), "la estrella no sale hasta ganar el logro");
+  j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6);
-  j.tecla(1);                                                        // 7: fin → nombre
+  assert.ok(j.w.eval("E.tutorial.logroGanado"), "la decisión da el primer logro");
+  assert.ok(!j.$("btn-logros").classList.contains("hidden") && j.$("btn-logros").classList.contains("destacar"), "sale la estrella, destacada");
+  j.tecla(1);
+  assert.equal(j.w.eval("E.tutorial.i"), 6, "hay que abrir el logro antes de seguir");
+  j.w.eval("abrirArchivo()");
+  assert.ok(j.d.querySelector("#archivo-abrir .logro-carta img"), "el logro enseña su ilustración");
+  j.$("archivo-cerrar").click();
+  assert.equal(j.w.eval("E.tutorial.i"), 7);
+  j.tecla(1);                                                        // 8: fin → nombre
   assert.ok(j.visible("screen-name"));
   j.$("input-nombre").value = "aureliano"; j.w.eval("decidirNombre(1)");
   assert.ok(j.visible("screen-game"));

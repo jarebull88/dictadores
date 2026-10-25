@@ -370,6 +370,8 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 #ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
+/* 25 oct: la estrella del tutorial destella en rojo hasta que se toca */
+#btn-logros.destacar::after { content: ""; position: absolute; inset: -6px; background: rgba(176, 54, 42, .5); animation: destello-rojo 1.2s ease-in-out infinite; pointer-events: none; }
 #barras.destacar .icono-fuerza { position: relative; }
 #barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
@@ -709,6 +711,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .logro-dorso { transform: rotateY(180deg); }
 .logro-ilustracion { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--manila); }
 .logro-objeto { color: var(--tinta-suave); }
+.logro-ilustracion img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .logro-hoja { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 12px 14px; overflow: hidden; text-align: left; }
 .logro-hoja p, .logro-hoja b { margin: 0; }
 .logro-hoja b.logro-objeto-nombre { color: var(--p-rojo); }

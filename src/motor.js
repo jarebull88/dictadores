@@ -874,6 +874,7 @@ function resolver(dir) {
       setTimeout(() => { if (E && E.tutorial === t) pasoTutorial(t.i + 1); }, animar() ? 1100 : 0);
       return;
     }
+    if (TUTORIAL[t.i].paso === "logro" && !(logros().paloma && logros().paloma.abierto)) { ganarLogroTutorial(t); return; }
     pasoTutorial(t.i + 1); return;
   }
   const c = E.actual;
@@ -1200,7 +1201,7 @@ const tutorialBloquea = () => {
   const t = E && E.tutorial; if (!t) return false;
   const paso = TUTORIAL[t.i].paso;
   return (paso === "girar" && !t.girada) || (paso === "guardar" && !t.casilla) ||
-    (paso === "fuerzas" && !t.fuerzaVista);   // hay que girar la carta / tocar la casilla / tocar un icono (17 oct)
+    (paso === "fuerzas" && !t.fuerzaVista) || (paso === "logro" && t.logroGanado);   // hay que girar la carta / tocar la casilla / tocar un icono (17 oct)
 };
 
 function empezarTutorial() {
@@ -1219,6 +1220,7 @@ function empezarTutorial() {
 function pasoTutorial(i, sinEntrada) {
   const t = E.tutorial;
   if (i >= TUTORIAL.length) { terminarTutorial(); return; }
+  if (t.i !== i) t.logroGanado = false;
   t.i = i; t.vista = t.girada = t.casilla = t.fuerzaVista = false;
   $("barras").classList.remove("destacar");
   // 25 oct: al volver atrás, cada lección se encuentra como la primera vez (fuerzas apagadas hasta «fuerzas», casilla de estado vacía hasta guardarlo)
@@ -1238,7 +1240,8 @@ function pasoTutorial(i, sinEntrada) {
     return;
   }
   const ef = p.efectos || {};
-  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: p.texto, cinta: p.cinta,
+  const fase2 = p.paso === "logro" && t.logroGanado, ver = fase2 ? p.despues : p;   // 25 oct: ya con el logro ganado, solo falta abrirlo
+  const c = { id: "tutorial-" + i, personaje: "Ministro de las Fuerzas Armadas", texto: ver.texto, cinta: ver.cinta,
     izq: { accion: p.izq, efectos: ef.izq || {} }, der: { accion: p.der, efectos: ef.der || {} } };
   E.actual = c;
   barajarLados();
@@ -1255,6 +1258,8 @@ function pasoTutorial(i, sinEntrada) {
   else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
   if (p.paso === "deslizar") demostrarArrastre();
+  $("btn-logros").classList.toggle("hidden", p.paso !== "logro" || !t.logroGanado);   // la estrella solo sale cuando hay algo que abrir
+  $("btn-logros").classList.toggle("destacar", fase2);
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
   ocupado = false;
   pintarEleccion(0);
@@ -1644,6 +1649,18 @@ function comprobarLogros(op) {
   guardarLogros(l);
   anunciarLogro();
 }
+/* 25 oct: el logro del tutorial. La decisión del paso «logro» da la paloma (sea cual sea la respuesta); la carta vuelve con otro
+   mensaje y la estrella, destacada, hasta que el jugador abre el logro (al cerrarlo, sigue el tutorial). */
+function ganarLogroTutorial(t) {
+  const l = logros();
+  if (!l.paloma) { l.paloma = { abierto: false }; guardarLogros(l); }
+  setTimeout(() => {
+    if (!E || E.tutorial !== t) return;
+    t.logroGanado = true;
+    pasoTutorial(t.i);
+    anunciarLogro();
+  }, animar() ? 450 : 0);
+}
 /* La estrella de logros (abajo a la izquierda) se rellena de amarillo mientras haya logros sin abrir. Si el jugador no la toca,
    hace un zoom sutil cada cierto rato (como el amago de las cartas) para recordarle que tiene algo por abrir. */
 const RECUERDO_MS = 7000;
@@ -1688,6 +1705,7 @@ function abrirArchivo() {
   cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoEstrella);
   pintarArchivo();
   $("archivo").classList.remove("hidden");
+  if (E && E.tutorial) verLogro("paloma");                  // en el tutorial, la estrella lleva directa al logro
 }
 function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); avisoMenu(); }
 function pintarArchivo() {
@@ -1712,7 +1730,7 @@ function verLogro(id) {
   v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
-        <div class="logro-cara"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
+        <div class="logro-cara"><div class="logro-ilustracion">${IMG_LOGROS[g.id] ? `<img src="${IMG_LOGROS[g.id]}" alt="${esc(g.objeto)}" draggable="false">` : `<span class="logro-objeto">${esc(g.objeto)}</span>`}</div></div>
         <div class="logro-dorso"><div class="logro-hoja"><b class="logro-objeto-nombre">${esc(g.objeto)}</b>
           <p class="logro-descripcion">${esc(g.descripcion)}</p>
           <p class="logro-efecto"><b>Efecto:</b> ${esc(g.efecto)}</p>
@@ -1732,6 +1750,9 @@ function verLogro(id) {
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
 }
 $("archivo-cerrar").addEventListener("click", () => {
+  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) {   // 25 oct: al cerrar el logro, sigue el tutorial
+    const t = E.tutorial; cerrarArchivo(); pasoTutorial(t.i + 1); return;
+  }
   if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
   cerrarArchivo();
 });

@@ -30,6 +30,10 @@ def iconos():
            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
     return img
 
+def logros():
+    """Ilustraciones de las cartas de logro (assets/logros/<id>.webp), como {id: data-uri}."""
+    return {f.stem: datos_uri(f.relative_to(RAIZ), "image/webp") for f in sorted((RAIZ / "assets/logros").glob("*.webp"))}
+
 def reversos():
     """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
     return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
@@ -68,7 +72,7 @@ def main():
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
                + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
                + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
-               + json.dumps(reversos()) + ';\n</script>\n')
+               + json.dumps(reversos()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

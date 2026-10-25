@@ -119,6 +119,8 @@ button, input, textarea { font-family: inherit; }   /* los botones y campos no h
 .etiqueta-boli.larga b, .cinta-tutorial span, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
 .logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
 .logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
+.logo-texto > span { line-height: .86; }                            /* 24 oct: las dos líneas del título, pegadas */
+.lema { line-height: 1.1; }
 
 /* — CUERPO — */
 /* la pregunta: negrita, 19 px */
@@ -212,11 +214,10 @@ body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por
 body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .portada .logo { margin: 0; width: min(100%, 400px); }
 .logo-texto { display: grid; justify-items: center; }
-.logo-texto > span:first-child { color: var(--p-tinta); }
-.logo-texto > span + span { color: var(--p-rojo); }
-.lema { margin: 6px 0 0; color: var(--p-tinta); }
+.logo-texto > span { color: var(--p-rojo); }   /* 24 oct: el título entero en rojo, como la diana */
+.lema { margin: 2px 0 0; color: var(--p-tinta); }
 .cartel-portada {
-  display: block; width: min(92vw, 52vh, 560px); aspect-ratio: 1; margin: 1vh 0;
+  display: block; width: min(96vw, 60vh, 640px); aspect-ratio: 1; margin: 0;
   /* solo el filo se funde con el fondo (un 3 %), para no tocar las patas del sillón */
   -webkit-mask: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(transparent, #000 3%, #000 97%, transparent);
   -webkit-mask-composite: source-in;
@@ -660,7 +661,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 }
 
 /* 23 oct: sin vetas de rotulador; letra de color plano */
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta, .logo-texto > span:first-child { color: var(--p-tinta); }
+.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta { color: var(--p-tinta); }
 /* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
 .ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
 .ficha-cab .foto-grapada { margin-bottom: 0; }

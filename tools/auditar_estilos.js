@@ -26,7 +26,7 @@ const juego = "file://" + path.join(__dirname, "..", "dist", "index.html") + "?c
   await p.click("#btn-menu"); await p.waitForTimeout(300); await coger("menu"); await p.evaluate(()=>cerrarMenu());
   await p.evaluate(()=>{ anunciarLogro(); }); await p.waitForTimeout(800); await coger("logro-texto");
   await p.waitForTimeout(2000); await p.evaluate(()=>{ guardarLogros({chivaton:{abierto:false}}); abrirArchivo(); }); await p.waitForTimeout(300); await coger("archivo");
-  await p.click(".sobre-mini"); await p.waitForTimeout(300); await coger("logro-sobre"); await p.click(".sobre-escena"); await p.waitForTimeout(1200); await coger("logro-carta");
+  await p.click(".nuevo-logro"); await p.waitForTimeout(400); await coger("logro-carta"); await p.click(".logro-carta"); await p.waitForTimeout(800); await coger("logro-carta-girada");
   await p.evaluate(()=>{ cerrarArchivo(); E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra(); }); await p.waitForTimeout(800); await coger("era");
   await p.evaluate(()=>{ document.getElementById("carta-era").classList.add("volteada"); }); await p.waitForTimeout(600); await coger("era-informe");
   await p.evaluate(()=>{ empezar(); terminar("pueblo_0"); }); await p.waitForTimeout(800); await coger("caida");

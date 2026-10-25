@@ -1277,9 +1277,10 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
    llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
    de redacción en docs/COLECCIONABLES.md. */
 const LOGROS = [
-  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", objeto: "Carné del comité de barrio",
-    frase: "Ser miembro del comité significa vigilar a tus vecinos. Y que ellos te vigilen a ti.",
-    decision: "Que cada vecino vigile a su vecino" }
+  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
+    objeto: "Carné del comité de barrio", decision: "Que cada vecino vigile a su vecino",
+    descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional, lo cierra la conversación de coleccionables
+    efecto: "+1 vecino que te lo cuenta todo.", secundario: "Tú también eres vecino de alguien." }
 ];
 /* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
 const HUECOS_ARCHIVO = 6;

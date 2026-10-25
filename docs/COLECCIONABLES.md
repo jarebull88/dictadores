@@ -16,7 +16,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **La carta, por delante:** la ilustración del objeto ocupa la carta (mientras no haya ilustración, un hueco con el nombre del objeto).
 - **Debajo de la carta:** «Por «decisión»» (la respuesta que dio el logro).
 - **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): el nombre del objeto, la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Efecto** (una línea, lo positivo) y el **Efecto secundario** (una línea, lo negativo). Nada más: sin puntos, valores ni rarezas.
-- **Primera vez:** se ve el sobre «Confidencial»; un toque lo abre y sale la carta por delante, con la pista «Toca la carta para girarla». Las siguientes veces sale directamente la carta.
+- **Primera vez:** sin sobre (25 oct, Jorge: «eliminamos la animación del sobre»). El jugador toca la estrella, ve la cuadrícula con el logro nuevo («¡Nuevo!») y, al tocarlo, sale directamente la carta por delante, con la pista «Toca la carta para girarla» (solo la primera vez).
 - **Datos de cada logro** (`LOGROS` en `datos.js`): `id, bandera, titulo, subtitulo, objeto, decision, descripcion, efecto, secundario` (`frase` pasa a llamarse `descripcion`).
 - **Límites orientativos:** título ≤24 caracteres, subtítulo ≤60, descripción ≤220, efecto y efecto secundario ≤60 cada uno.
 

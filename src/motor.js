@@ -1626,8 +1626,8 @@ arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, d
 
 /* =====================================================
    LOGROS (24 oct, prototipo). Al decidir algo que da un coleccionable cae el sello «¡Nuevo logro!» bajo la carta y
-   vuela al menú, que se queda con un punto rojo. En el archivo, el logro espera como un sobre cerrado: al abrirlo
-   sale una carta boca abajo y, al girarla, se descubre cuál es. Se guardan entre partidas.
+   (la estrella se rellena). En el archivo, el logro nuevo espera en la cuadrícula: al tocarlo
+   sale su carta ya descubierta, que se gira para ver sus efectos. Se guardan entre partidas.
    ===================================================== */
 const CLAVE_LOGROS = "dictadores_logros_v1";
 let logrosMem = {};                                   // si el navegador no deja guardar, al menos dura la sesión
@@ -1682,7 +1682,7 @@ function anunciarLogro() {
   z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
 }
 
-/* El archivo: una rejilla de huecos (siluetas, sobres cerrados y carnés abiertos) */
+/* El archivo: una rejilla de huecos (siluetas, logros nuevos y logros descubiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 function abrirArchivo() {
   cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoEstrella);
@@ -1696,38 +1696,40 @@ function pintarArchivo() {
   for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
     const g = LOGROS[i], estado = g && l[g.id];
     if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
-    else if (!estado.abierto) html += `<button class="hueco-logro sobre-mini" type="button" data-id="${g.id}" aria-label="Sobre sin abrir"><span>¡Nuevo!</span></button>`;
+    else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo"><span>¡Nuevo!</span></button>`;
     else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
   }
   $("archivo-rejilla").innerHTML = html;
   $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
 }
-/* Un logro a pantalla completa, con la medida y el sitio de las cartas del juego: arriba el título (que no sale hasta
-   abrirlo), en medio la carta (cuadrada) y debajo la decisión que lo dio. Si está sin abrir, un solo toque abre el sobre
-   y la carta sale ya descubierta. */
+/* Un logro a pantalla completa, con la medida y el sitio de las cartas del juego (docs/COLECCIONABLES.md): arriba el título y el
+   subtítulo, en medio la carta (por delante, el objeto; al tocarla se gira y enseña su descripción y sus efectos) y debajo la
+   decisión que lo dio. Sin sobre: desde la cuadrícula, un toque y ya está descubierta. */
 function verLogro(id) {
-  const g = LOGROS.find(x => x.id === id), cerrado = !logros()[id].abierto;
+  const g = LOGROS.find(x => x.id === id), nuevo = !logros()[id].abierto;
   const v = $("archivo-abrir");
   v.className = "logro-vista";
-  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo"></h2></div>
-    <div class="sobre-escena${cerrado ? "" : " ya"}">
-      <div class="logro-carta"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
-      ${cerrado ? '<div class="sobre"><svg class="sobre-solapa" viewBox="0 0 100 52" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H100L50 50Z"/></svg><span class="sello-conf">Confidencial</span></div>' : ""}
+  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
+    <div class="logro-escena">
+      <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
+        <div class="logro-cara"><div class="logro-ilustracion"><span class="logro-objeto">${esc(g.objeto)}</span></div></div>
+        <div class="logro-dorso"><div class="logro-hoja"><b class="logro-objeto-nombre">${esc(g.objeto)}</b>
+          <p class="logro-descripcion">${esc(g.descripcion)}</p>
+          <p class="logro-efecto"><b>Efecto:</b> ${esc(g.efecto)}</p>
+          <p class="logro-efecto"><b>Efecto secundario:</b> ${esc(g.secundario)}</p></div></div>
+      </div></div>
     </div>
-    <p class="archivo-pista"></p>`;
+    <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;
   $("archivo").classList.add("viendo");
   v.style.paddingTop = "";
-  const dy = $("carta").getBoundingClientRect().top - v.querySelector(".sobre-escena").getBoundingClientRect().top;   // la carta, justo donde está la del juego
+  const escena = v.querySelector(".logro-escena");
+  const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
   if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
-  const escena = v.querySelector(".sobre-escena"), titulo = v.querySelector(".logro-titulo"), pista = v.querySelector(".archivo-pista");
-  const descubrir = () => { titulo.textContent = g.titulo; pista.textContent = `Por «${g.decision}»`; v.classList.add("abierto"); };
-  if (!cerrado) { descubrir(); return; }
-  pista.textContent = "Toca el sobre para abrirlo";
-  escena.addEventListener("click", () => {
-    if (v.classList.contains("abierto")) return;
-    descubrir();
-    const l = logros(); l[id].abierto = true; guardarLogros(l);
-  });
+  const carta = v.querySelector(".logro-carta"), pista = v.querySelector(".pista-girar");
+  const girar = () => { carta.classList.toggle("volteada"); if (pista) pista.remove(); };
+  carta.addEventListener("click", girar);
+  carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
+  if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
 }
 $("archivo-cerrar").addEventListener("click", () => {
   if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }

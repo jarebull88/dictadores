@@ -561,7 +561,8 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* 25 oct: los logros, una estrella a línea abajo a la izquierda (al lado opuesto del menú, mismo tamaño y misma línea). Con logros sin abrir se rellena
    de amarillo y hace un zoom para resaltar. */
 .boton-logros { position: absolute; left: calc((1 - var(--zoom-ahora, 1)) / 2 * var(--menu)); bottom: calc(var(--aviso) + (1 - var(--zoom-ahora, 1)) / 2 * var(--menu)); width: calc(var(--menu) * var(--zoom-ahora, 1)); height: calc(var(--menu) * var(--zoom-ahora, 1)); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; -webkit-tap-highlight-color: transparent; }
-.boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: round; overflow: visible; }
+.boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: miter; overflow: visible; }
+.boton-logros .centro { fill: currentColor; stroke: none; }   /* la estrella del centro, maciza, como en «award star» de Google */
 .boton-logros .cuerpo { vector-effect: non-scaling-stroke; transition: fill .3s ease; }
 .boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
 .boton-logros::after { content: ""; position: absolute; inset: -6px; }

@@ -89,7 +89,8 @@ body {
   --c-pequeno: 16px;    /* pie, avisos, etiquetas, «abandonar» */
 }
 body { font-family: var(--f-cuerpo); font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
-button, input, textarea { font-family: inherit; }   /* los botones y campos no heredan la letra solos */
+button, input, textarea { font-family: inherit; }
+b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta es la negrita del cuerpo (800), no la 700 del navegador */   /* los botones y campos no heredan la letra solos */
 
 /* — TITULAR — */
 .titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
@@ -557,12 +558,20 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 @keyframes entra { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* 24 oct: el menú (☰), abajo a la derecha: al borde de la carta y centrado en vertical con las casillas, a la mitad de su tamaño.
-   Con logros sin abrir lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas.
-   Dentro: Logros, Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
+   Dentro: Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
 .boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
-.boton-menu.con-aviso::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: var(--aviso); height: var(--aviso); margin-left: calc(var(--aviso) / -2); border-radius: 50%; background: var(--p-mostaza); border: var(--borde); }
+/* 25 oct: los logros, una estrella a línea abajo a la izquierda (al lado opuesto del menú, mismo tamaño y misma línea). Con logros sin abrir se rellena
+   de amarillo y hace un zoom para resaltar. */
+.boton-logros { position: absolute; left: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; transform-origin: left center; -webkit-tap-highlight-color: transparent; }
+.boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: round; overflow: visible; }
+.boton-logros .cuerpo { vector-effect: non-scaling-stroke; transition: fill .3s ease; }
+.boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
+.boton-logros::after { content: ""; position: absolute; inset: -6px; }
+.boton-logros.salto { animation: zoom-logro 1.2s ease-in-out; }
+@keyframes zoom-logro { 0% { transform: scale(1); } 22% { transform: scale(2.4); } 70% { transform: scale(2.4); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .boton-logros.salto { animation: none; } }
 .pie-juego { position: relative; }
 .menu-juego { position: absolute; right: 0; bottom: calc(var(--cuadro) + var(--separacion)); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: var(--borde); }
 .menu-juego.hidden { display: none; }

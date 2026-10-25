@@ -1605,11 +1605,11 @@ function comprobarLogros(op) {
   guardarLogros(l);
   anunciarLogro();
 }
-/* Con logros sin abrir, una bolita amarilla encima del menú (☰) */
+/* La estrella de logros (abajo a la izquierda) se rellena de amarillo mientras haya logros sin abrir */
 function avisoMenu() {
   const n = sinAbrir();
-  $("btn-menu").classList.toggle("con-aviso", n > 0);
-  $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} logros sin abrir)` : "Menú");
+  $("btn-logros").classList.toggle("pendiente", n > 0);
+  $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
 }
 /* «¡Nuevo logro!» se escribe a mano, en cursiva, donde van el nombre y los años (que se esconden un momento); se queda un
    instante y se borra de izquierda a derecha, como la animación «hello» de LottieFiles que eligió Jorge pero más rápida. */
@@ -1617,6 +1617,7 @@ const LOGRO_MS = 2300;
 function anunciarLogro() {
   const z = document.querySelector("#screen-game .zona-nombre"), t = $("logro-escribe");
   avisoMenu();
+  const st = $("btn-logros"); st.classList.remove("salto"); void st.offsetWidth; st.classList.add("salto");   // zoom de la estrella para resaltar
   t.textContent = "¡Nuevo logro!";
   t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
   z.classList.add("con-logro");

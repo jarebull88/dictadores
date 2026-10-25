@@ -26,3 +26,9 @@ test("el código no pone letra ni tamaño en línea (solo los ajustes de «caber
   const enLinea = (motor + html).match(/style="[^"]*(font-family|font-size|font-weight|text-transform)[^"]*"/g) || [];
   assert.deepEqual(enLinea, [], "estilos tipográficos en línea: " + enLinea.join(" | "));
 });
+
+test("ninguna negrita suelta es de peso 700: todo es el peso del cuerpo (--peso-negrita)", () => {
+  const bloque = css.slice(css.indexOf("TIPOGRAFIA:INICIO"), css.indexOf("TIPOGRAFIA:FIN"));
+  assert.ok(!/font-weight:\s*(700|bold)/.test(bloque), "peso 700 o bold suelto en el bloque TIPOGRAFIA");
+  assert.ok(/b, strong \{ font-weight: var\(--peso-negrita\)/.test(css), "falta la regla de b, strong");
+});

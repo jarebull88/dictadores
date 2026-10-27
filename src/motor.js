@@ -632,8 +632,8 @@ function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
 /* 25 oct: la foto del expediente es 1:1, derecha y encuadrada en la cara. En los carteles, la cara no se encuentra sola: aquí se
    marca para cada uno el centro (x, y) y el lado de la ventana, como fracciones del cartel. */
 const CARA_FICHA = {
-  vicepresidente: [.50, .44, .60], economia: [.49, .22, .24], comercio: [.54, .18, .38], educacion: [.50, .62, .50],
-  trabajo: [.40, .38, .56], cultura: [.50, .42, .56], "fuerzas-armadas": [.60, .42, .36], interior: [.50, .30, .76],
+  vicepresidente: [.50, .44, .60], economia: [.49, .22, .24], comercio: [.62, .14, .30], educacion: [.50, .62, .50],
+  trabajo: [.40, .30, .62], cultura: [.50, .42, .56], "fuerzas-armadas": [.60, .42, .36], interior: [.50, .30, .76],
   "embajador-oriental": [.36, .56, .30], "embajador-occidental": [.50, .22, .42], "dictador-joven": [.47, .31, .56]
 };
 function fotoDe(slug) {

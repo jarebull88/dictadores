@@ -6,10 +6,10 @@ Igual que la tipografía (`docs/TIPOGRAFIA.md`), **las medidas que se repiten vi
 |---|---|---|
 | `--linea` | 1,5 px | grosor de todo contorno de tinta |
 | `--borde` | `--linea` sólida, tinta | contorno de cartas, iconos, barras, casillas, mazo, logros y menú |
-| `--margen-carta` | 3,5 % | margen crema de las cartas |
+| `--margen-carta` | 3,5 % | margen de las cartas (blanco, `--p-blanco`) |
 | `--cuadro` | 46 px (40 en pantallas estrechas) | lado de las casillas de estado |
 | `--menu` | `--cuadro` / 2 | tamaño del menú (☰) |
-| `--logros` | `--menu` × 1,13 | la insignia de logros: un 13 % mayor que el menú, porque por sus muescas parece más pequeña |
+| `--alto-leyenda` | `--t-l` × 1,15 | la franja bajo la carta (cargo, nombre del estado, instrucción del tutorial) |
 | `--aviso` | (`--cuadro` − `--menu`) / 2 | la bolita amarilla del menú: llena el hueco hasta el borde de las casillas |
 | `--mazo-cartas` | 4 | cartas que se ven debajo de la de arriba |
 | `--mazo-paso` | 3,5 px | lo que asoma cada una |

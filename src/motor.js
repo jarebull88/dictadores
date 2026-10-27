@@ -423,6 +423,7 @@ function mostrar(id) {
   ocultarInfo();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
+  if (id === "screen-game") ajustarLeyenda();
 }
 
 function parBarra(id) {
@@ -469,7 +470,7 @@ function pintarBarras() {
 
 function pintarCabecera() {
   const n = anios();
-  $("anios-poder").textContent = n === 0 ? "Recién llegado" : `${n} ${n === 1 ? "año" : "años"} al poder`;   // 15 oct: más corto, para que quepa
+  $("anios-poder").textContent = `${n} ${n === 1 ? "año" : "años"}`;   // 27 oct: abajo a la izquierda, en Londrina Light; el nombre del Comandante ya no sale
 }
 
 function moverRanuras(cont, antes) {
@@ -583,6 +584,19 @@ function mostrarFuerza(id, el) {
 
 /* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);
    si aun así no cabe (pantallas muy estrechas), la caja crece lo justo para ese mensaje. */
+/* 27 oct: la franja bajo la carta: el nombre del estado, el cargo del personaje o la instrucción del tutorial. Londrina Light, mayúsculas y
+   centrada; empieza al tamaño del título de la era y baja sola hasta que quepa (como mucho, dos líneas). */
+function ajustarLeyenda() {
+  const l = $("leyenda");
+  if (!l || !l.clientHeight) return;
+  l.style.removeProperty("--leyenda-px");
+  let px = parseFloat(getComputedStyle(l).fontSize) || 36;
+  while ((l.scrollHeight > l.clientHeight + 1 || l.scrollWidth > l.clientWidth + 1) && px > 12) { px -= 1; l.style.setProperty("--leyenda-px", px + "px"); }
+}
+function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; ajustarLeyenda(); }
+/* La pregunta se cambia siempre por aquí: quita el hundimiento de la anterior (ver estilos.css, .hundiendo y .emerge) */
+function ponerMensaje(html) { const m = $("mensaje"); m.classList.remove("hundiendo"); m.innerHTML = html; }
+const hundirMensaje = () => { if (animar()) $("mensaje").classList.add("hundiendo"); };
 function ajustarMensaje() {
   const m = $("mensaje");
   m.style.fontSize = ""; m.style.height = "";
@@ -590,7 +604,7 @@ function ajustarMensaje() {
   while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); } });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
 
 /* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12,5 px */
 function ajustarFicha(carta = $("carta")) {
@@ -666,20 +680,20 @@ function pintarCarta(c) {
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
     : `<div class="ph"><b>Sin retrato</b></div>`;
-  $("mensaje").innerHTML = conNegritas(c.texto);
+  ponerMensaje(conNegritas(c.texto));
   ajustarMensaje();
+  ponerLeyenda(c.cinta || (FICHAS[c.personaje] || {}).cargo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
-    `${c.cinta ? `<div class="etiqueta-boli cinta-tutorial"><span>${esc(c.cinta)}</span></div>` : ""}` +   // tutorial: la instrucción al jugador, en cinta de carrocero
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
   ajustarFicha();
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
-  if (modoEstado) { recogerEstado(); return; }
+  if (modoEstado) return;                              // 27 oct: la carta de estado no se toca: se desliza
   if (ocupado) return;
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso !== "girar") return;   // 17 oct: en el tutorial solo se gira en su paso
   pintarEleccion(0);
@@ -694,7 +708,7 @@ function voltear() {
       const msg = $("mensaje");
       clearTimeout(msg._revela);
       msg.classList.add("oculto");
-      msg.innerHTML = conNegritas(volteada ? paso.girada : paso.texto); ajustarMensaje();
+      ponerMensaje(conNegritas(volteada ? paso.girada : paso.texto)); ajustarMensaje();
       msg._revela = setTimeout(() => msg.classList.remove("oculto"), animar() ? 300 : 0);
     }
   }
@@ -737,7 +751,6 @@ function empezar() {
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
-  $("nombre-dictador").textContent = nombreCompleto();
   E.avisoPendiente = null;
   E.estadoNuevo = null; modoEstado = false;
   $("carta").classList.remove("hidden", "listo");
@@ -789,7 +802,12 @@ function entrarCarta(carta) {
   carta.style.transition = "";
   carta.classList.remove("boca-abajo");
   clearTimeout(carta._revela); clearTimeout(msg._revela);
-  msg._revela = setTimeout(() => msg.classList.remove("oculto"), VOLTEO_MS / 2);
+  msg._revela = setTimeout(() => {
+    msg.classList.remove("oculto");
+    clearTimeout(msg._fin);
+    msg.classList.remove("emerge"); void msg.offsetWidth; msg.classList.add("emerge");   // 27 oct: emerge desde el techo de su espacio
+    msg._fin = setTimeout(() => msg.classList.remove("emerge"), 520);
+  }, VOLTEO_MS / 2);
   carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
 }
 /* Si la carta lleva un rato quieta, hace un amago sutil de deslizar a un lado y a otro (para enseñar qué se puede hacer) */
@@ -843,17 +861,18 @@ function lanzarCarta(carta, dir) {
 }
 function decidir(dir) {
   if (E && E.tutorial && dir < 0 && !ocupado) {        // 25 oct: en el tutorial, la izquierda vuelve a la lección anterior (o a la portada, en la primera)
-    ocupado = true; ocultarInfo();
+    ocupado = true; ocultarInfo(); hundirMensaje();
     const carta = $("carta"); carta.classList.remove("volteada");
     pintarEleccion(dir); carta.classList.add("listo");
     lanzarCarta(carta, dir);
     setTimeout(() => volverTutorial(), 240);
     return;
   }
-  if (modoEstado) { if (!(E && E.tutorial && dir > 0)) recogerEstado(); return; }
+  if (modoEstado) { recogerEstado(); return; }   // 27 oct: la carta de estado se guarda al deslizarla a un lado u otro
   if (ocupado || tutorialBloquea()) return;
   ocupado = true;
   ocultarInfo();
+  hundirMensaje();
   const carta = $("carta");
   carta.classList.remove("volteada");
   pintarEleccion(dir);
@@ -952,26 +971,24 @@ const FRASE_ESTADO = {
 };
 const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
   embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A" };
-const ESPERA_ESTADO = 7000;   // 15 oct: si nadie toca la carta de estado, se guarda sola a los 7 s (también en el tutorial)
 let relojEstado = null;
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
   modoEstado = true; ocupado = false;
   clearTimeout(relojEstado);
-  const partida = E;
-  relojEstado = setTimeout(() => { if (modoEstado && E === partida && E.estadoNuevo === n && !$("screen-game").classList.contains("hidden")) recogerEstado(); }, ESPERA_ESTADO);
   // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
-  $("mensaje").textContent = FRASE_ESTADO[n.id] || "Nuevo estado del régimen.";
+  ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nuevo estado del régimen.")}</span>`);
   ajustarMensaje();
+  ponerLeyenda(d.nombre);                              // 27 oct: el nombre del estado, bajo la carta (sin cinta)
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
   cartonDe(carta, "");
-  carta.classList.add("purpurina");                  // el marco de las cartas de estado es de cartulina de purpurina
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  // 27 oct: sin escena propia: la imagen de la carta es el icono del estado (a tamaño grande); sin cinta ni panel de decisión
+  const grande = IMG["icono_" + n.id + "-cartel-grande"], pequeno = IMG["icono_" + n.id + "-cartel"];
+  const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
-    (svgEscena(n.id) || `<div class="icono-grande">${icono(n.id)}</div>`) +
-    `<div class="etiqueta-boli${d.nombre.split(" ").some(w => w.length > 12) ? " larga" : ""}"><b>${esc(d.nombre)}</b></div>` +
-    `<div class="respuesta" id="respuesta"></div></div></div></div>`;
+    `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div></div>`;
   entrarCarta(carta);
   pintarRanuras();
 }
@@ -1003,9 +1020,10 @@ function svgEscena(id, etiqueta) {
   return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}"${id.startsWith("caida-") ? ' preserveAspectRatio="xMidYMax meet"' : ""} role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
     `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}</svg>`;
 }
-/* La carta vuela, encogiéndose, hasta su casilla de abajo; después sale la carta siguiente */
+/* La carta se desliza hasta su casilla de abajo, encogiéndose; después sale la carta siguiente */
 function recogerEstado() {
   if (!modoEstado || ocupado) return;
+  hundirMensaje();
   clearTimeout(relojEstado);
   ocupado = true;
   const carta = $("carta"), id = E.estadoNuevo.id;
@@ -1097,7 +1115,6 @@ function finDeEra() {
 function continuarEra() {
   iniciarEra(E.era + 1);
   E.avisoPendiente = null;
-  $("nombre-dictador").textContent = nombreCompleto();
   mostrar("screen-game");
   siguiente();
 }
@@ -1230,13 +1247,12 @@ function pasoTutorial(i, sinEntrada) {
   clearTimeout(relojEstado); modoEstado = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
-  $("nombre-dictador").textContent = "La víspera";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
     E.estados = [{ id: "luna", edad: 0 }];
     E.estadoNuevo = { id: "luna", sale: "" };
     mostrarCartaEstado();
-    $("mensaje").innerHTML = conNegritas(p.texto); ajustarMensaje();   // la explicación, en vez de la frase del estado
+    ponerMensaje(conNegritas(p.texto)); ajustarMensaje();   // la explicación, en vez de la frase del estado
     return;
   }
   const ef = p.efectos || {};
@@ -1258,8 +1274,8 @@ function pasoTutorial(i, sinEntrada) {
   else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
   if (p.paso === "deslizar") demostrarArrastre();
-  $("btn-logros").classList.toggle("hidden", p.paso !== "logro" || !t.logroGanado);   // la estrella solo sale cuando hay algo que abrir
-  $("btn-logros").classList.toggle("destacar", fase2);
+  $("btn-logros").classList.toggle("hidden", p.paso !== "logro" || !t.logroGanado);   // «Logros» solo sale en el menú cuando hay algo que abrir
+  $("btn-menu").classList.toggle("destacar", fase2); $("btn-logros").classList.toggle("destacar", fase2);
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
   ocupado = false;
   pintarEleccion(0);
@@ -1512,7 +1528,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, fija: () => modoEstado && !(E && E.tutorial), bloqueaDer: () => !!(E && E.tutorial) && (modoEstado || tutorialBloquea()), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
+arrastrable($("carta"), { activa: () => !ocupado, bloqueaDer: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */
@@ -1661,36 +1677,36 @@ function ganarLogroTutorial(t) {
     anunciarLogro();
   }, animar() ? 450 : 0);
 }
-/* La estrella de logros (abajo a la izquierda) se rellena de amarillo mientras haya logros sin abrir. Si el jugador no la toca,
-   hace un zoom sutil cada cierto rato (como el amago de las cartas) para recordarle que tiene algo por abrir. */
+/* Con logros sin abrir, el menú (☰) lleva encima una bolita amarilla. Si el jugador no lo toca, la bolita hace un zoom sutil cada cierto
+   rato (como el amago de las cartas) para recordarle que tiene algo por abrir. */
 const RECUERDO_MS = 7000;
-let recuerdoEstrella = null;
-function zoomEstrella(clase) {
-  const st = $("btn-logros");
-  st.classList.remove("salto", "recuerda"); void st.offsetWidth; st.classList.add(clase);
-  clearTimeout(st._z); st._z = setTimeout(() => st.classList.remove(clase), 1300);
+let recuerdoAviso = null;
+function zoomAviso(clase) {
+  const b = $("btn-menu");
+  b.classList.remove("salto", "recuerda"); void b.offsetWidth; b.classList.add(clase);
+  clearTimeout(b._z); b._z = setTimeout(() => b.classList.remove(clase), 1300);
 }
-function vigilarEstrella() {
-  clearTimeout(recuerdoEstrella);
-  if (sinAbrir() > 0) recuerdoEstrella = setTimeout(() => {
-    const quieta = animar() && !$("screen-game").classList.contains("hidden") && !archivoAbierto() && !E.tutorial && !$("btn-logros").classList.contains("hidden");
-    if (quieta) zoomEstrella("recuerda");
-    vigilarEstrella();
+function vigilarAviso() {
+  clearTimeout(recuerdoAviso);
+  if (sinAbrir() > 0) recuerdoAviso = setTimeout(() => {
+    const quieta = animar() && !$("screen-game").classList.contains("hidden") && !archivoAbierto() && !E.tutorial && $("menu-juego").classList.contains("hidden");
+    if (quieta) zoomAviso("recuerda");
+    vigilarAviso();
   }, RECUERDO_MS);
 }
 function avisoMenu() {
   const n = sinAbrir();
-  $("btn-logros").classList.toggle("pendiente", n > 0);
-  $("btn-logros").setAttribute("aria-label", n ? `Logros (${n} sin abrir)` : "Logros");
-  vigilarEstrella();
+  $("btn-menu").classList.toggle("con-aviso", n > 0);
+  $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} ${n === 1 ? "logro sin abrir" : "logros sin abrir"})` : "Menú");
+  vigilarAviso();
 }
-/* «¡Nuevo logro!» aparece disolviéndose con un zoom lento, en el sitio del nombre y los años (que se esconden un momento), y se disuelve.
-   La estrella hace su zoom grande. */
+/* «¡Nuevo logro!» aparece disolviéndose con un zoom lento, en el sitio de la leyenda (que se esconde un momento), y se disuelve.
+   La bolita del menú hace su zoom grande. */
 const LOGRO_MS = 2200;
 function anunciarLogro() {
-  const z = document.querySelector("#screen-game .zona-nombre"), t = $("logro-escribe");
+  const z = document.querySelector("#screen-game .zona-leyenda"), t = $("logro-escribe");
   avisoMenu();
-  zoomEstrella("salto");
+  zoomAviso("salto");
   t.textContent = "¡Nuevo logro!";
   t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
   z.classList.add("con-logro");
@@ -1702,7 +1718,7 @@ function anunciarLogro() {
 /* El archivo: una rejilla de huecos (siluetas, logros nuevos y logros descubiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 function abrirArchivo() {
-  cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoEstrella);
+  cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoAviso);
   pintarArchivo();
   $("archivo").classList.remove("hidden");
   if (E && E.tutorial) verLogro("paloma");                  // en el tutorial, la estrella lleva directa al logro
@@ -1715,7 +1731,7 @@ function pintarArchivo() {
     const g = LOGROS[i], estado = g && l[g.id];
     if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
     else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo"><span>¡Nuevo!</span></button>`;
-    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}"><span>${esc(g.titulo)}</span></button>`;
+    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}" aria-label="${esc(g.titulo)}"><div class="logro-ilustracion">${IMG_LOGROS[g.id] ? `<img src="${IMG_LOGROS[g.id]}" alt="" draggable="false">` : `<span class="logro-objeto">${esc(g.objeto)}</span>`}</div></button>`;   // 27 oct: la miniatura de la carta
   }
   $("archivo-rejilla").innerHTML = html;
   $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));

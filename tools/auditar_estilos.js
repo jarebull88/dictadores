@@ -33,7 +33,7 @@ const juego = "file://" + path.join(__dirname, "..", "dist", "index.html") + "?c
   await p.evaluate(()=>{ empezar(); E.era=4; E.banderas.add("base.mausoleo_construido"); terminar(null); }); await p.waitForTimeout(800); await coger("victoria");
   const permitidas = ["Londrina Solid", "Sofia Sans Semi Condensed"];
   let raros = 0;
-  for (const k of Object.keys(todo).sort()) { const [fam, , w] = k.split(" | "); const raro = !permitidas.includes(fam) || !["400", "800"].includes(w); if (raro) raros++;
+  for (const k of Object.keys(todo).sort()) { const [fam, , w] = k.split(" | "); const raro = !permitidas.includes(fam) || !["300", "400", "800"].includes(w); if (raro) raros++;
     console.log((raro ? "⚠ " : "") + k, "\n    ", [...todo[k]].slice(0, 4).join("\n     ")); }
   console.log(raros ? `\n${raros} combinación(es) fuera de los estilos (marcadas con ⚠; las de .solo-lector no se ven)` : "\nTodo en los dos estilos.");
   await b.close(); })();

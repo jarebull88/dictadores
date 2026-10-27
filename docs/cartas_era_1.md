@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 8 y 10 cartas. 39 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. La casa vacía
 
@@ -54,21 +54,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
 
-### 5. El general querido
-
-**Personaje:** Ministro del Interior  
-**Condición:** ancla de los años 1 a 3 de su era.
-
-**Carta:** «El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.»
-
-- **A. Denle el Estado Mayor** Ejército +9 · Élite −4 · Bandera: `general_popular`
-- **B. Embajador en el país más lejano** Ejército −9 · Élite +4 · Bandera: `general_apartado`
-
-**Consecuencia futura de `general_popular`:** (Obsoleta, 22 oct) Cienfuegos conspira si el Ejército baja de 40.
-
-**Consecuencia futura de `general_apartado`:** Cienfuegos regresa como candidato de los descontentos.
-
-### 6. Las refinerías
+### 5. Las refinerías
 
 **Personaje:** Ministro de Comercio  
 **Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
@@ -82,7 +68,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 
-### 7. El visitante del bloque oriental
+### 6. El visitante del bloque oriental
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
@@ -96,7 +82,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `no_alineado`:** La potencia del norte se acerca y el aislamiento económico se agrava.
 
-### 8. Los alfabetizadores en el monte
+### 7. Los alfabetizadores en el monte
 
 **Personaje:** Ministra de Educación  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -106,7 +92,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Que el Ejército suba con ellos** Ejército +5 · Élite −3
 - **B. Que suban todos aunque tengan miedo** Élite +3 · Ejército −5
 
-### 9. El avión de Diezfuegos
+### 8. El avión de Diezfuegos
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -120,7 +106,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Diezfuegos.
 
-### 10. El embargo
+### 9. El embargo
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -134,7 +120,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `compensaciones`:** Una deuda que alimenta una carta de crisis.
 
-### 11. La lista *(borrador)*
+### 10. La lista *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -146,7 +132,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
 
-### 12. La tierra
+### 11. La tierra
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
@@ -158,7 +144,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
-### 13. Los periódicos
+### 12. Los periódicos
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
@@ -168,11 +154,9 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Que publiquen lo que quieran** Pueblo +6 · Élite −5 · Bandera: `prensa_libre`
 - **B. Nacionalicen las imprentas** Pueblo −6 · Élite +5 · Bandera: `censura_previa`
 
-**Consecuencia futura de `prensa_libre`:** Un reportaje destapa un escándalo.
-
 **Consecuencia futura de `censura_previa`:** Aparecen el periodista oficial y los rumores.
 
-### 14. Las urnas prometidas
+### 13. Las urnas prometidas
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 2 de la era.
@@ -186,7 +170,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `elecciones_aplazadas`:** Protestas estudiantiles.
 
-### 15. La campaña de alfabetización
+### 14. La campaña de alfabetización
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6.
@@ -196,7 +180,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Un Pueblo culto y agradecido** Pueblo +10 · Encola: `alfabetizadores_monte` en 2 a 3 años
 - **B. Un Pueblo que lee pregunta demasiado** Pueblo −10
 
-### 16. La declaración socialista
+### 15. La declaración socialista
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
@@ -206,7 +190,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Hoy la Revolución será socialista** Potencias +5 · Élite +3
 - **B. Que la palabra sea patria y nada más** Potencias −5 · Élite −3
 
-### 17. Se acabó el profesional
+### 16. Se acabó el profesional
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 10.
@@ -216,7 +200,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. La pelota libre le gana a la esclava** Élite +4 · Potencias −4
 - **B. Que sigan bateando en divisas** Potencias +4 · Élite −4
 
-### 18. Las escuelas para todos
+### 17. Las escuelas para todos
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6.
@@ -226,7 +210,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Que todos aprendan lo mismo** Pueblo +7 · Élite +5
 - **B. Que pague quien quiera otra escuela** Pueblo −7 · Élite −5
 
-### 19. Los asesores
+### 18. Los asesores
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 6; a partir del año 2 de la era.
@@ -236,7 +220,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Aprenderemos de los mejores** Potencias +9 · Ejército +5 · Élite +5
 - **B. Gracias, aquí nos asesoramos solos** Potencias −9 · Ejército −5 · Élite −5
 
-### 20. El club de golf
+### 19. El club de golf
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 6.
@@ -246,7 +230,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Las propiedades y el golf son suyas** Potencias +9 · Pueblo −8 · Élite −4
 - **B. Empezaremos nacionalizando el golf** Potencias −9 · Pueblo +8 · Élite +4
 
-### 21. La bahía
+### 20. La bahía
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 5 a 7 de su era.
@@ -256,7 +240,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Cámbienlos por compotas** Potencias −6 · Pueblo +2 · Ejército −4
 - **B. Juicio televisado y luego al «patio»** Potencias −3 · Pueblo +5 · Ejército +5 · Crisis +2
 
-### 22. Los niños que se van
+### 21. Los niños que se van
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6; a partir del año 3 de la era.
@@ -266,7 +250,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Dejen salir a los niños** Pueblo +5 · Ejército −4 · Potencias +3
 - **B. Nadie se lleva a nuestros niños** Pueblo −5 · Ejército +4 · Potencias −3
 
-### 23. La reforma urbana
+### 22. La reforma urbana
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 6.
@@ -276,7 +260,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Ahora el casero es el Estado** Pueblo +8 · Élite +4
 - **B. Los caseros mantienen sus casas** Pueblo −8 · Élite −4
 
-### 24. Las milicias
+### 23. Las milicias
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 6.
@@ -286,7 +270,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Que el Pueblo se arme** Pueblo +6 · Ejército −6
 - **B. Las armas solo son para el Ejército** Pueblo −6 · Ejército +6
 
-### 25. Las mil flores
+### 24. Las mil flores
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
@@ -298,7 +282,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 
-### 26. Los oficiales de antes
+### 25. Los oficiales de antes
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -312,7 +296,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `purga_inicial`:** El Ministro del Interior pide más poder.
 
-### 27. El puerto parado
+### 26. El puerto parado
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8; a partir del año 3 de la era.
@@ -326,7 +310,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `huelga_reprimida`:** Malestar en las universidades.
 
-### 28. Los ojos del barrio
+### 27. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `purga_inicial`, `censura_previa`.
@@ -340,7 +324,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `policia_tradicional`:** La oposición se organiza con más facilidad.
 
-### 29. El retrato
+### 28. El retrato
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 6; a partir del año 4 de la era.
@@ -350,11 +334,9 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Si insisten…** Pueblo −3 · Élite +6 · Crisis +1 · Bandera: `culto_iniciado`
 - **B. Los monumentos son para los mártires** Pueblo +3 · Élite −6 · Bandera: `modestia_aparente`
 
-**Consecuencia futura de `culto_iniciado`:** Tratamiento de Excelencia y monumentos cada vez más costosos.
-
 **Consecuencia futura de `modestia_aparente`:** El Partido exige otros símbolos de lealtad.
 
-### 30. Los que se marchan
+### 29. Los que se marchan
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
@@ -368,7 +350,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
 
-### 31. La factura *(borrador)*
+### 30. La factura *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -382,7 +364,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
 
-### 32. Las tiendas vacías *(borrador)*
+### 31. Las tiendas vacías *(borrador)*
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -394,7 +376,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
-### 33. La calle y los cuarteles *(borrador)*
+### 32. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -404,7 +386,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Asciendan a los que no se reúnen** Ejército +8 · Élite −4
 - **B. Arresten a los oficiales reunidos** Ejército −6 · Pueblo −3 · Crisis +2
 
-### 34. El dinero se va *(borrador)*
+### 33. El dinero se va *(borrador)*
 
 **Personaje:** Ministro de Economía  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -414,7 +396,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Mimen a los empresarios** Potencias +6 · Pueblo −8 · Élite −5
 - **B. Intervengan sus empresas** Potencias −8 · Pueblo +6 · Élite +5 · Crisis +2
 
-### 35. Los nuevos vecinos
+### 34. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 8 a 10 de su era; exige `alineado_bloque_oriental`.
@@ -428,7 +410,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `misiles_rechazados`:** El aliado recuerda tu negativa.
 
-### 36. El ultimátum
+### 35. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -440,19 +422,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 37. El general murmura
-
-**Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** sorteo con peso 14; exige `general_popular`; solo si Ejército está en 40 o menos.
-
-**Carta:** «El general Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.»
-
-- **A. Pregúntenle cómo están sus hijos** Ejército −3 · Crisis +1
-- **B. Que tenga un accidente heroico** Ejército −6 · Pueblo −4 · Élite +3 · Bandera: `accidente_cienfuegos`
-
-**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Diezfuegos.
-
-### 38. Las garantías
+### 36. Las garantías
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 14; exige `negocio_refinerias`.
@@ -462,7 +432,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Les doy mi palabra de revolucionario** Potencias +6 · Élite −4 · Pueblo −5 · Crisis −1
 - **B. Aquí no se firma nada** Potencias −6 · Pueblo +4 · Élite +4 · Crisis +1
 
-### 39. Estudiantes en la calle
+### 37. Estudiantes en la calle
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 14; exige `elecciones_aplazadas`.
@@ -476,7 +446,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `estudiantes_reprimidos`:** La universidad se convierte en foco de oposición.
 
-### 40. La marcha de los eléctricos
+### 38. La marcha de los eléctricos
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `sindicato_libre`.
@@ -486,7 +456,7 @@ Duración: entre 8 y 10 cartas. 41 cartas. Los efectos están en la escala peque
 - **A. Que también tengan su sindicato** Pueblo +6 · Élite −4 · Crisis +2
 - **B. Calabozo por contrarrevolución** Pueblo −6 · Ejército +4 · Élite +4
 
-### 41. Embargo total
+### 39. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 14; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.

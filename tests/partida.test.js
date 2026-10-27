@@ -31,14 +31,14 @@ test("el paso de era conserva barras y cambia la numeración de años", () => {
 test("al pasar a la era 3 el tratamiento cambia de «Comandante» a «Excelencia»", () => {
   const j = cargar();
   j.empezar();
-  assert.match(j.$("nombre-dictador").textContent, /^Comandante /);
+  assert.match(j.w.eval("nombreCompleto()"), /^Comandante /);
   j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
   j.w.eval("decidirEra(1)");
   j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
   assert.ok(j.visible("screen-era"), "debería haber paso a la era 3");
   j.w.eval("decidirEra(1)");
   assert.equal(j.w.eval("E.era"), 3);
-  assert.match(j.$("nombre-dictador").textContent, /^Excelencia /);
+  assert.match(j.w.eval("nombreCompleto()"), /^Excelencia /);
 });
 
 test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has ganado!» con esquela", () => {
@@ -49,7 +49,7 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
     j.w.eval("decidirEra(1)");
   }
   assert.equal(j.w.eval("E.era"), 4);
-  assert.match(j.$("nombre-dictador").textContent, /, Padre de la Patria$/);
+  assert.match(j.w.eval("nombreCompleto()"), /, Padre de la Patria$/);
   j.w.eval("E.banderas.add('base.mausoleo_construido'); E.turno=finEra()+1; finDeEra();");
   assert.equal(j.w.eval("E.actual.id"), "ultimas_palabras", "antes de la esquela salen las últimas palabras");
   j.w.eval("resolver(1)");
@@ -110,7 +110,8 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 2);
   assert.ok(!j.d.querySelector("#carta").classList.contains("con-giro"), "después, el icono se va");
-  assert.ok(j.d.querySelector("#carta .cinta-tutorial"), "la instrucción va en cinta");
+  assert.ok(j.$("leyenda").textContent.length > 0, "la instrucción va bajo la carta, en la leyenda (ya no hay cinta)");
+  assert.ok(!j.d.querySelector("#carta .cinta-tutorial"));
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 2, "hay que tocar un icono antes de seguir");
   j.w.eval(`mostrarFuerza("pueblo", document.querySelector('.barra[data-b="pueblo"]')); ocultarInfo();`);
@@ -125,11 +126,11 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   j.w.eval("mostrarInfo(0); ocultarInfo();");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6);                         // 7: logro
-  assert.ok(j.$("btn-logros").classList.contains("hidden"), "la estrella no sale hasta ganar el logro");
+  assert.ok(j.$("btn-logros").classList.contains("hidden"), "«Logros» no sale en el menú hasta ganar el logro");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6);
   assert.ok(j.w.eval("E.tutorial.logroGanado"), "la decisión da el primer logro");
-  assert.ok(!j.$("btn-logros").classList.contains("hidden") && j.$("btn-logros").classList.contains("destacar"), "sale la estrella, destacada");
+  assert.ok(!j.$("btn-logros").classList.contains("hidden") && j.$("btn-logros").classList.contains("destacar"), "sale «Logros» en el menú, destacado");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6, "hay que abrir el logro antes de seguir");
   j.w.eval("abrirArchivo()");
@@ -160,9 +161,9 @@ test("logros: «Que cada vecino vigile a su vecino» da un logro nuevo; con un t
   j.w.eval(`E.actual = CARTAS.find(c => c.id === "${id}"); mezclarLados = false; E.lados = null;`);
   const dir = j.w.eval(`(E.actual.izq.banderas || []).includes("base.comites_vigilancia") ? -1 : 1`);
   j.w.eval(`resolver(${dir})`);
-  assert.ok(j.$("btn-logros").classList.contains("pendiente"), "la estrella de logros se rellena");
-  assert.match(j.$("btn-logros").getAttribute("aria-label"), /1 sin abrir/);
-  assert.ok(!j.$("menu-juego").contains(j.$("btn-logros")), "los logros ya no están dentro del menú");
+  assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú lleva la bolita amarilla");
+  assert.match(j.$("btn-menu").getAttribute("aria-label"), /1 logro sin abrir/);
+  assert.ok(j.$("menu-juego").contains(j.$("btn-logros")), "los logros vuelven a estar dentro del menú");
   j.$("btn-logros").click();
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
@@ -170,13 +171,28 @@ test("logros: «Que cada vecino vigile a su vecino» da un logro nuevo; con un t
   assert.equal(j.d.querySelector(".logro-titulo").textContent, "Chivatón de barrio");
   assert.ok(j.d.querySelector(".logro-subtitulo").textContent.length > 0, "lleva subtítulo");
   assert.match(j.d.querySelector(".archivo-pista").textContent, /Que cada vecino vigile a su vecino/);
-  assert.ok(!j.$("btn-logros").classList.contains("pendiente"), "descubierto, la estrella se vacía");
+  assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "descubierto, la bolita se va");
   assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));
   j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción y los efectos
   assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
   assert.match(j.d.querySelector(".logro-dorso").textContent, /Efecto secundario/);
   j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
-  assert.ok(!j.$("btn-logros").classList.contains("pendiente"), "abierto, la estrella se vacía");
+  assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");
   assert.deepEqual(j.errores, []);
+});
+
+test("bajo la carta va el cargo del personaje (o el nombre del estado), y los años abajo a la izquierda", () => {
+  const j = cargar();
+  j.empezar();
+  const cargo = j.w.eval("(FICHAS[E.actual.personaje] || {}).cargo || E.actual.personaje");
+  assert.equal(j.$("leyenda").textContent, cargo);
+  assert.match(j.$("anios-poder").textContent, /^\d+ años?$/);
+  j.w.eval(`E.estadoNuevo = { id: "censura", sale: "" }; E.estados = [{ id: "censura", edad: 0 }]; mostrarCartaEstado();`);
+  assert.equal(j.$("leyenda").textContent, j.w.eval("ESTADOS.censura.nombre"));
+  assert.ok(j.d.querySelector("#carta .carta-estado img.icono"), "la imagen de la carta de estado es su icono");
+  assert.ok(!j.d.querySelector("#carta .etiqueta-boli"), "sin cinta con el nombre");
+  assert.ok(j.w.eval("modoEstado"), "la carta de estado espera a que la deslicen (no se guarda sola)");
+  j.tecla(-1);                                                       // a la izquierda o a la derecha, se guarda
+  assert.ok(!j.w.eval("modoEstado"));
 });

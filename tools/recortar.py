@@ -4,11 +4,10 @@
     python3 tools/recortar.py            # todo
     python3 tools/recortar.py carteles   # 23 oct: personajes e iconos al estilo Bachs (sin croma): reducir y pasar a WebP
                                          #   assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp (720 px)
-                                         #   assets/iconos/originales/cartel-<id>.jpg -> recortados/<id>-cartel.webp (144 px)
+                                         #   assets/iconos/originales/cartel-<id>.jpg -> recortados/<id>-cartel.webp (144 px; los estados, además -cartel-grande.webp a 540 px)
     python3 tools/recortar.py personajes # papel recortado con croma: solo lo que queda (dictador, etapas 2–4)
     python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp (ya solo el reverso)
     python3 tools/recortar.py escenas    # assets/iconos/originales/escena-<id>.jpg -> recortados/<id>-escena.webp (+ escenas.json)
-    python3 tools/recortar.py fondos     # assets/fondos/*.jpg -> fondos/web/ (versiones ligeras)
                                          #   assets/portada/cartel.jpg -> cartel.webp (24 oct: el cartel del juego, el sillón vacío)
 
 El recorte sigue docs/PIPELINE_PERSONAJES.md: alfa en rampa (no umbral binario), se descartan islas
@@ -187,14 +186,6 @@ def anotar_arriba(slug, imagen):
     ruta.write_text("{\n" + ",\n".join(f'  "{k}": ' + json.dumps(v, ensure_ascii=False) for k, v in mapa.items()) + "\n}\n", encoding="utf-8")
 
 
-def aligerar_fondos(carpeta):
-    """Texturas de cartulina (assets/fondos/*.jpg) -> versiones ligeras en assets/fondos/web/ para incrustar en el HTML."""
-    dst = carpeta / "web"; dst.mkdir(exist_ok=True)
-    for f in sorted(carpeta.glob("*.jpg")):
-        im = Image.open(f).convert("RGB")
-        im = im.resize((ANCHO_FONDO, round(im.height * ANCHO_FONDO / im.width)), Image.LANCZOS)
-        im.save(dst / f.name, "JPEG", quality=70, optimize=True)
-        print(f"fondo {f.stem}: {im.width}×{im.height}, {(dst / f.name).stat().st_size // 1024} KB")
 
 
 # Ajustes por dibujo: «recorte» = caja (x0, y0, x1, y1) en el original, para quitar un marco dibujado;
@@ -238,12 +229,7 @@ def recortar_dibujo(entrada, salida, recorte=None, principal=False, lado=None, c
 # Los marcos vacíos (papel crema) llevan dentro la cara del dictador de la etapa: aquí se da un punto de cada
 # hueco (en píxeles del original) y el giro del marco; el hueco visible se busca por color y se guarda como máscara.
 ANCHO_ESCENA = 900
-MARCOS = {
-    "nacionalizado": [((684, 1303), 0)],   # 16 oct: escena nueva, el ingenio con el retrato en la fachada
-    # 16 oct: escena nueva del culto, un tendedero de retratos y uno grande en medio (todos rectos)
-    "culto": [((238, 339), 0), ((564, 385), 0), ((898, 399), 0), ((1230, 383), 0), ((1554, 338), 0),
-              ((896, 1267), 0), ((576, 2106), 0), ((891, 2140), 0), ((1211, 2108), 0)],
-}
+MARCOS = {}   # 27 oct: los marcos vacíos eran de las escenas de estado (Culto, Nacionalizaciones), que ya no existen: los estados usan su icono
 
 def recortar_escena(entrada, salida, marcos):
     im = Image.open(entrada).convert("RGB")
@@ -304,6 +290,8 @@ def recortar_escena(entrada, salida, marcos):
 
 
 LADO_CARTEL_PERSONAJE, LADO_CARTEL_ICONO = 720, 144
+LADO_CARTEL_ESTADO = 540   # 27 oct: el icono del estado, a tamaño de carta
+ESTADOS_CON_CARTA = {"censura", "vigilancia", "culto", "alineado", "embargo", "frontera", "nacionalizado", "deuda", "luna"}
 
 
 def reducir_cartel(entrada, salida, lado, calidad):
@@ -325,7 +313,10 @@ def main():
             reducir_cartel(f, f.with_suffix(".webp"), 600, 86)
             print(f"reverso {f.stem}")
         for f in sorted((RAIZ / "assets/iconos/originales").glob("cartel-*.jpg")):
-            reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{f.stem[len('cartel-'):]}-cartel.webp", LADO_CARTEL_ICONO, 88)
+            nombre = f.stem[len('cartel-'):]
+            reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{nombre}-cartel.webp", LADO_CARTEL_ICONO, 88)
+            if nombre in ESTADOS_CON_CARTA:     # 27 oct: los estados salen en una carta, con su icono como imagen principal: versión grande
+                reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{nombre}-cartel-grande.webp", LADO_CARTEL_ESTADO, 86)
             print(f"icono {f.stem}")
     if que in ("todo", "personajes"):
         dst = RAIZ / "assets/personajes/recortados"; dst.mkdir(parents=True, exist_ok=True)
@@ -349,8 +340,6 @@ def main():
             info[id] = {"ancho": w, "alto": h, "marcos": marcos}
             print(f"escena {id}: {w}×{h}, {len(marcos)} marcos, {(dst / f'{id}-escena.webp').stat().st_size // 1024} KB")
         (RAIZ / "assets/iconos/escenas.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
-    if que in ("todo", "fondos"):
-        aligerar_fondos(RAIZ / "assets/fondos")
 
 
 if __name__ == "__main__":

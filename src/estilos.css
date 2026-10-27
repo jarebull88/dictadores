@@ -15,7 +15,7 @@
 
   /* 23 oct: la paleta del cartel (docs/PALETA.md): seis tintas planas */
   --p-rojo: #B0362A; --p-mostaza: #D8A02A; --p-oliva: #86762C; --p-azul: #1D51A0; --p-crema: #F0E9D6; --p-tinta: #201D14;
-  --p-rosa: #DF8178; --p-granate: #7A2A1D; --p-mostaza-oscura: #9C7A26;
+  --p-rosa: #DF8178; --p-blanco: #FFFFFF;   /* 27 oct: el blanco, para el borde de las cartas */ --p-granate: #7A2A1D; --p-mostaza-oscura: #9C7A26;
   --bloque: var(--p-crema);  /* bloques claros (carta, mensaje, botones) */
   --gris: #E2D8C2;           /* gris imprenta: bloques informativos y pistas vacías */
   --carbon: var(--p-tinta);         /* contornos y rellenos */
@@ -39,10 +39,10 @@
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
   --borde: var(--linea) solid var(--p-tinta);       /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
-  --margen-carta: 3.5%;                             /* el margen crema de las cartas */
+  --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
   --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
-  --logros: calc(var(--menu) * 1.13);               /* la insignia de logros, un 13 % mayor: por sus muescas parece más pequeña que las líneas del menú */
+  --alto-leyenda: calc(var(--t-l) * 1.15);          /* la franja bajo la carta: nombre del estado, cargo del personaje o instrucción del tutorial */
   --aviso: calc((var(--cuadro) - var(--menu)) / 2); /* la bolita amarilla del menú: justo el hueco hasta el borde de las casillas */
   --mazo-cartas: 4;                                 /* cartas que se ven debajo de la de arriba */
   --mazo-paso: 3.5px;                               /* lo que asoma cada una */
@@ -76,6 +76,7 @@ body {
   --f-titular: "Londrina Solid", "Sofia Sans Semi Condensed", system-ui, sans-serif;
   --f-cuerpo: "Sofia Sans Semi Condensed", system-ui, sans-serif;   /* 24 oct: condensada, como la del titular (antes Baloo 2); sus tamaños son los de Baloo × 1,16 */
   --peso-negrita: 800;
+  --peso-ligero: 300;   /* Londrina Light: leyendas bajo la carta y años */
   /* tamaños del TITULAR */
   --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
   --t-l: min(calc(var(--carta-w, 360px) * .10), 44px);    /* el título de la era y el de la pantalla del nombre */
@@ -93,7 +94,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 
 /* — TITULAR — */
 .titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
-.popup b, .etiqueta-boli b, .cinta-tutorial span, .popup .efecto, .esquela b, .titulo-caida,
+.popup b, .etiqueta-boli b, .leyenda, .anios, .popup .efecto, .esquela b, .titulo-caida,
 .opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
@@ -103,7 +104,11 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 #screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .hueco-logro { font-size: var(--t-s); }
 .logro-objeto-nombre { font-size: var(--t-m); }
-.etiqueta-boli.larga b, .cinta-tutorial span, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
+/* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
+.leyenda, .anios { font-weight: var(--peso-ligero); }
+.leyenda { font-size: var(--leyenda-px, var(--t-l)); }
+.anios { font-size: var(--t-s); }
+.etiqueta-boli.larga b, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
 .logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
 .logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
 .logo-texto > span { line-height: .86; }                            /* 24 oct: las dos líneas del título, pegadas */
@@ -122,9 +127,9 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
 .ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: var(--peso-negrita); }
 /* texto pequeño: 14 px */
-.dictador b, .dictador small, .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
+.logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
-.dictador b, .alerta, .popup .etiqueta-pop { font-weight: var(--peso-negrita); }
+.alerta, .popup .etiqueta-pop { font-weight: var(--peso-negrita); }
 /* portada: «Cómo se juega», en cuerpo, como acción secundaria */
 .opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: var(--peso-negrita); line-height: 1.4; }
 .alerta { line-height: 1; }
@@ -370,8 +375,9 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 #ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
-/* 25 oct: la estrella del tutorial destella en rojo hasta que se toca */
-#btn-logros.destacar::after { content: ""; position: absolute; inset: -6px; background: rgba(176, 54, 42, .5); animation: destello-rojo 1.2s ease-in-out infinite; pointer-events: none; }
+/* 27 oct: en el paso del logro del tutorial, el menú destella en rojo hasta que se abre */
+#btn-menu.destacar::after { background: rgba(176, 54, 42, .5); animation: destello-rojo 1.2s ease-in-out infinite; }
+.opcion-menu.destacar { background: rgba(176, 54, 42, .35); }
 #barras.destacar .icono-fuerza { position: relative; }
 #barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
   box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
@@ -401,6 +407,13 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelando .tapa::after { content: none; }
 .mensaje { transition: opacity .35s ease; }   /* 17 oct: la pregunta aparece con un fundido rápido, no de golpe */
 .mensaje.oculto { opacity: 0; transition: none; }
+/* 27 oct: la pregunta que se va se HUNDE por el borde de abajo de su espacio (recortada, sin salirse) y la nueva EMERGE desde el techo */
+.mensaje.hundiendo > * { animation: hundir .24s ease-in forwards; }
+.mensaje.emerge { transition: none; }
+.mensaje.emerge > * { animation: emerge .45s cubic-bezier(.2, .8, .3, 1) both; }
+@keyframes hundir { to { transform: translateY(var(--alto-mensaje)); opacity: 0; } }
+@keyframes emerge { from { transform: translateY(calc(var(--alto-mensaje) * -1)); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .mensaje.hundiendo > *, .mensaje.emerge > * { animation: none; } }
 .carta.revelando .giro { transition-duration: .56s; }
 /* Reparto al empezar: las cartas que llegan al mazo; mientras tanto, ni carta ni mazo propio */
 .pila.reparto .capa { transform: none; }
@@ -412,7 +425,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .cara, .dorso {
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
   padding: var(--margen-carta); border-radius: 0;   /* 24 oct: margen crema fino, como el papel de una serigrafía, y línea de tinta (solo en las cartas) */
-  background-color: var(--p-crema); border: var(--borde);
+  background-color: var(--p-blanco); border: var(--borde);   /* 27 oct: el margen de la carta es blanco, por delante y por detrás (la hoja de la ficha sigue crema) */
 
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
@@ -442,8 +455,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .ilustracion.ph { display: flex; align-items: center; justify-content: center; background-color: var(--gris); color: var(--tinta-suave); }
 /* Personaje: SVG a todo el ancho de la carta, apoyado abajo (margin-top: auto). Si es más alto que el hueco,
    el margen automático se anula y se recorta por abajo, nunca la cabeza. */
-.carta-estado .ilustracion { align-items: center; justify-content: center; gap: 6%; padding: 6% 0; }
-.carta-estado .icono-grande { width: 66%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+.carta-estado .ilustracion { align-items: center; justify-content: center; }
+.carta-estado .icono-grande { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }   /* 27 oct: la imagen de la carta es el icono del estado */
+.carta-estado .respuesta { display: none; }   /* la carta de estado no lleva panel ni texto de decisión */
 /* Etiqueta de papel blanco pegada con el nombre del estado, a máquina */
 /* Como un trozo de cinta de carrocero: papel crema algo translúcido (se ve sutilmente lo de debajo), con los
    extremos cortados en zigzag y casi sin sombra */
@@ -465,15 +479,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; }
 .carta-estado .escena .ojos-fijos { fill: #161618; }
 .carta-estado .escena + .etiqueta-boli { position: absolute; left: 8%; bottom: 5%; }
-/* Tutorial: la instrucción al jugador, en cinta de carrocero pegada abajo en la cartulina de Cuesta */
-.cinta-tutorial { position: absolute; left: 6%; width: 88%; bottom: 5%; z-index: 2; pointer-events: none; transform: rotate(1.2deg); }
-.cinta-tutorial::before { opacity: .95; }   /* menos translúcida que la del nombre de los estados: aquí hay frases que leer */
-.cinta-tutorial span { display: block; color: var(--tinta-marcador); }   /* la letra del mensaje de arriba, en negrita */
-/* Al girar la carta, la cinta se desvanece enseguida (la vuelta llega a 90° muy pronto y con retardo se veía
-   por detrás); al volver, reaparece cuando la cara ya mira de frente */
-.cinta-tutorial { -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: opacity .2s ease .3s; }
-.carta.volteada .cinta-tutorial { opacity: 0; transition: opacity .08s; }
-.carta-estado .icono-grande .icono { width: 100%; height: 100%; }
+.carta-estado .icono-grande .icono { width: 100%; height: 100%; border: none; }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
 .personaje .ojos { fill: var(--ojo, #161618); animation: mirar 7s ease-in-out infinite; }
@@ -528,7 +534,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */
 }
 /* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
-.texto-respuesta { opacity: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, .75), 0 0 6px rgba(0, 0, 0, .45); }   /* 23 oct: la excepción de Jorge al «todo plano»: la respuesta sí lleva sombra */
+.texto-respuesta { opacity: 0; }   /* 27 oct: sin sombra (Jorge): todo plano */
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
@@ -542,11 +548,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* Las barras, la pregunta y el pie van alineados con los bordes de la carta (--carta-w lo mide medirCartaJuego) */
 #screen-game .cabecera, #screen-game .mensaje, #screen-game .pie-juego { width: var(--carta-w, 100%); max-width: 100%; margin-left: auto; margin-right: auto; box-sizing: border-box; align-self: center; }
 .pie-juego { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; padding: 2px 0 0; }   /* 24 oct: el nombre y los años arriba, las casillas de estado debajo, todo centrado */
-.zona-nombre { position: relative; width: 100%; min-height: 38px; display: flex; align-items: center; justify-content: center; }
-.dictador { min-width: 0; text-align: center; }
-.dictador b { display: block; overflow-wrap: anywhere; }
-.dictador small { display: block; margin-top: 2px; color: var(--tinta-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dictador small.hidden { display: none; }
+.zona-leyenda { position: relative; width: 100%; height: var(--alto-leyenda); }
+.leyenda { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; color: var(--p-tinta); }
+.anios { position: absolute; left: 0; bottom: 0; height: var(--cuadro); display: flex; align-items: center; color: var(--p-tinta); white-space: nowrap; }   /* abajo a la izquierda, a la altura de las casillas */
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; justify-content: center; gap: var(--separacion); flex-shrink: 0; position: relative; }
 .ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */
@@ -563,21 +567,17 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
 .boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
-/* 25 oct: los logros, una estrella a línea abajo a la izquierda (al lado opuesto del menú, mismo tamaño y misma línea). Con logros sin abrir se rellena
-   de amarillo y hace un zoom para resaltar. */
-.boton-logros { position: absolute; left: calc((1 - var(--zoom-ahora, 1)) / 2 * var(--logros)); bottom: calc(var(--aviso) - (var(--logros) - var(--menu)) / 2 + (1 - var(--zoom-ahora, 1)) / 2 * var(--logros)); width: calc(var(--logros) * var(--zoom-ahora, 1)); height: calc(var(--logros) * var(--zoom-ahora, 1)); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; z-index: 3; -webkit-tap-highlight-color: transparent; }   /* centrada en vertical con el menú */
-.boton-logros svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: var(--linea); stroke-linejoin: miter; overflow: visible; }
-.boton-logros .centro { fill: currentColor; stroke: none; }   /* la estrella del centro, maciza, como en «award star» de Google */
-.boton-logros .cuerpo { vector-effect: non-scaling-stroke; transition: fill .3s ease; }
-.boton-logros.pendiente .cuerpo { fill: var(--p-mostaza); }
-.boton-logros.pendiente .centro { fill: var(--p-rosa); }   /* con logros sin abrir: insignia amarilla y estrella rosa */
-.boton-logros::after { content: ""; position: absolute; inset: -6px; }
-/* El zoom cambia el TAMAÑO (no un transform), así la línea sigue siendo la misma de todo el juego. Al llegar un logro, grande; el recordatorio, más sutil. */
-.boton-logros.salto { --zoom: 1.9; animation: zoom-logro 1.2s ease-in-out; }
-.boton-logros.recuerda { --zoom: 1.4; animation: zoom-logro .9s ease-in-out; }
+/* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un
+   logro (y de vez en cuando, más sutil, si no se toca) la bolita crece y vuelve. El zoom cambia el TAMAÑO, no un transform: la línea no engorda. */
+.boton-menu::before { content: ""; position: absolute; left: 50%; display: none; border-radius: 50%; background: var(--p-mostaza); border: var(--borde); box-sizing: border-box;
+  width: calc(var(--aviso) * var(--zoom-ahora, 1)); height: calc(var(--aviso) * var(--zoom-ahora, 1));
+  margin-left: calc(var(--aviso) * var(--zoom-ahora, 1) / -2); bottom: calc(100% - (var(--zoom-ahora, 1) - 1) * var(--aviso) / 2); }
+.boton-menu.con-aviso::before { display: block; }
+.boton-menu.salto { --zoom: 2.4; animation: zoom-logro 1.2s ease-in-out; }
+.boton-menu.recuerda { --zoom: 1.6; animation: zoom-logro .9s ease-in-out; }
 @property --zoom-ahora { syntax: "<number>"; inherits: false; initial-value: 1; }
 @keyframes zoom-logro { 0%, 100% { --zoom-ahora: 1; } 25%, 60% { --zoom-ahora: var(--zoom); } }
-@media (prefers-reduced-motion: reduce) { .boton-logros.salto, .boton-logros.recuerda { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .boton-menu.salto, .boton-menu.recuerda { animation: none; } }
 .pie-juego { position: relative; }
 .menu-juego { position: absolute; right: 0; bottom: calc(var(--cuadro) + var(--separacion)); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: var(--borde); }
 .menu-juego.hidden { display: none; }
@@ -662,7 +662,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 }
 
 /* 23 oct: sin vetas de rotulador; letra de color plano */
-.etiqueta-boli b, .popup b, .cinta-tutorial span, .popup .efecto .tinta { color: var(--p-tinta); }
+.etiqueta-boli b, .popup b, .popup .efecto .tinta { color: var(--p-tinta); }
 /* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
 .ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
 .ficha-cab .foto-grapada { margin-bottom: 0; }
@@ -675,8 +675,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
    ===================================================================================================== */
 /* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Aparece disolviéndose con un zoom lento y se disuelve */
 .logro-escribe { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; color: var(--p-rojo); white-space: nowrap; pointer-events: none; }
-.zona-nombre.con-logro .dictador { visibility: hidden; }
-.zona-nombre.con-logro .logro-escribe { display: flex; }
+.zona-leyenda.con-logro .leyenda { visibility: hidden; }
+.zona-leyenda.con-logro .logro-escribe { display: flex; }
 .logro-escribe.escribiendo { animation: disolver 2.2s ease-in-out both; }
 @keyframes disolver { 0% { opacity: 0; transform: scale(.82); } 25% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; transform: scale(1.14); } }
 @media (prefers-reduced-motion: reduce) { .logro-escribe.escribiendo { animation: none; } }
@@ -695,7 +695,9 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .hueco-logro.vacio { color: transparent; }
 .hueco-logro.nuevo-logro { background: var(--manila); cursor: pointer; }
 .hueco-logro.nuevo-logro span { color: var(--p-rojo); border: 2px solid var(--p-rojo); padding: 2px 4px 0; transform: rotate(-8deg); }
-.hueco-logro.abierto { background: var(--p-crema); cursor: pointer; }
+.hueco-logro.abierto { padding: var(--margen-carta); background: var(--p-blanco); cursor: pointer; }   /* 27 oct: la miniatura de la carta, con su borde blanco y su contorno de tinta */
+.hueco-logro.abierto .logro-ilustracion { width: 100%; height: 100%; }
+.hueco-logro.abierto img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* Un logro: el mismo sitio y la misma medida que las cartas de la partida (título y subtítulo arriba, carta 1:1, decisión debajo).
    La carta se gira al tocarla, como la ficha de los personajes. */
@@ -707,12 +709,12 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .logro-carta { position: absolute; inset: 0; perspective: 2200px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .logro-carta .giro { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3, .1, .2, 1); }
 .logro-carta.volteada .giro { transform: rotateY(180deg); }
-.logro-cara, .logro-dorso { position: absolute; inset: 0; box-sizing: border-box; padding: var(--margen-carta); background: var(--p-crema); border: var(--borde); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.logro-cara, .logro-dorso { position: absolute; inset: 0; box-sizing: border-box; padding: var(--margen-carta); background: var(--p-blanco); border: var(--borde); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .logro-dorso { transform: rotateY(180deg); }
 .logro-ilustracion { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--manila); }
 .logro-objeto { color: var(--tinta-suave); }
 .logro-ilustracion img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.logro-hoja { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 12px 14px; overflow: hidden; text-align: left; }
+.logro-hoja { height: 100%; background: var(--p-crema); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 12px 14px; overflow: hidden; text-align: left; }
 .logro-hoja p, .logro-hoja b { margin: 0; }
 .logro-hoja b.logro-objeto-nombre { color: var(--p-rojo); }
 .archivo-pista { margin: 14px 0 0; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }

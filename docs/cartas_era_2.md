@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 8 y 10 cartas. 27 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. El aniversario
 
@@ -16,19 +16,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `desfile_militar`:** El Ejército espera cada año un desfile mayor.
 
-### 2. La mano del norte
-
-**Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 14; exige `no_alineado`.
-
-**Carta:** «Nuestro país ofrece créditos y comercio si acepta una auditoría de sus cuentas.»
-
-- **A. Será un honor rendir cuentas** Potencias +8 · Élite −5 · Crisis +1 · Bandera: `deuda_externa`
-- **B. Aquí solo audita el Pueblo** Potencias −8 · Pueblo +4 · Élite +4
-
-**Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
-
-### 3. Las potencias se enfadan
+### 2. Las potencias se enfadan
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `juicios_publicos`.
@@ -38,7 +26,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Que se les asignen abogados** Potencias +7 · Élite −3
 - **B. Los juicios son asunto nuestro** Potencias −7 · Ejército +4 · Élite +3
 
-### 4. La voz del exilio
+### 3. La voz del exilio
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `exiliados_vocales`.
@@ -48,7 +36,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Interfieran la emisora con música** Pueblo −6 · Ejército +3 · Élite +2
 - **B. Que la radio diga que son espías** Ejército +4 · Potencias −4 · Pueblo −3
 
-### 5. El hambre
+### 4. El hambre
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `reforma_agraria`.
@@ -58,7 +46,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. El Estado siembra mejor que nadie** Pueblo −5 · Élite +2
 - **B. Importen comida a cualquier precio** Pueblo +6 · Potencias +5
 
-### 6. El periodista oficial
+### 5. El periodista oficial
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `censura_previa`.
@@ -70,7 +58,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `periodista_oficial`:** La prensa del régimen exige titulares cada vez más generosos.
 
-### 7. El club de ajedrez
+### 6. El club de ajedrez
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `viejos_oficiales`.
@@ -80,7 +68,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Jaque mate: todos detenidos** Ejército +3 · Potencias −5
 - **B. Metan un topo en el club** Ejército +6
 
-### 8. El jefe pide más
+### 7. El jefe pide más
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `purga_inicial`.
@@ -92,7 +80,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `jefe_poderoso`:** El Ministro del Interior pide cada vez más poder.
 
-### 9. El puerto lento
+### 8. El puerto lento
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `huelga_reprimida`.
@@ -102,7 +90,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Militaricen el puerto** Ejército +5 · Pueblo −5
 - **B. Que puedan elegir a su delegado** Pueblo +5 · Élite −5
 
-### 10. Denuncias falsas
+### 9. Denuncias falsas
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `comites_vigilancia`, `purga_inicial`, `criticos_detenidos`.
@@ -112,7 +100,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Que se investigue hasta la gallina** Ejército +6 · Pueblo −6
 - **B. Solo cuentan las denuncias políticas** Pueblo +4 · Ejército −4
 
-### 11. Faltan técnicos
+### 10. Faltan técnicos
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige alguna de `exodo_elite`, `juicios_publicos`, `nacionalizo_empresas`.
@@ -122,7 +110,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Prohíban salir a los titulados** Ejército +4 · Pueblo −4
 - **B. Cursos de ingeniería en seis meses** Élite +2 · Pueblo +3
 
-### 12. Intentos de fuga
+### 11. Intentos de fuga
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `frontera_cerrada`, `criticos_detenidos`, `exiliados_vocales`.
@@ -132,7 +120,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Refuercen la frontera** Ejército +6 · Pueblo −5
 - **B. Que se vayan y nos dejen sus casas** Pueblo +5 · Ejército −4 · Potencias +3
 
-### 13. La deuda llama
+### 12. La deuda llama
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 14; exige alguna de `compensaciones`, `deuda_externa`.
@@ -142,7 +130,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Paguen aunque el Pueblo no coma** Potencias +5 · Pueblo −5
 - **B. No se le paga al explotador** Potencias −6 · Élite +2
 
-### 14. La cosecha récord
+### 13. La cosecha récord
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 8.
@@ -152,7 +140,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Que la radio anuncie el récord** Élite +5
 - **B. Detengan al que infló las cifras** Élite −5 · Ejército +3
 
-### 15. El diplomático curioso
+### 14. El diplomático curioso
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 8.
@@ -162,7 +150,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Expúlsenlo del país** Potencias −3
 - **B. A la cárcel, por espía** Potencias −6 · Ejército +5
 
-### 16. Los chistes
+### 15. Los chistes
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 8.
@@ -172,7 +160,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Detengan al que se ría primero** Pueblo −5 · Ejército +4
 - **B. Reírse también es de revolucionarios** Pueblo +4 · Ejército −3
 
-### 17. Los satélites
+### 16. Los satélites
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `misiles_instalados`.
@@ -182,7 +170,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Inspeccionen lo que quieran** Potencias +8 · Ejército −5
 - **B. Revisen primero sus propias bases** Potencias −8 · Ejército +5
 
-### 18. El aliado enfadado
+### 17. El aliado enfadado
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 14; exige `misiles_rechazados`.
@@ -192,7 +180,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Apoyaremos su próxima invasión** Potencias +7
 - **B. Guarden su petróleo, iremos en bici** Potencias −6 · Pueblo −4
 
-### 19. La zafra de los diez millones
+### 18. La zafra de los diez millones
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
@@ -202,7 +190,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
 - **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
 
-### 20. El compañero incómodo
+### 19. El compañero incómodo
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10.
@@ -212,7 +200,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Lo mandaré a una misión bien lejos** Potencias +4 · Ejército −3 · Encola: `guerrilla_perdida` en 2 a 3 años
 - **B. Quien calla a Ferro me calla a mí** Potencias −4 · Ejército +3
 
-### 21. La ofensiva revolucionaria
+### 20. La ofensiva revolucionaria
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
@@ -222,7 +210,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. El Estado hará las mejores frituras** Élite +5 · Pueblo −4
 - **B. Dejen vivir al pequeño negocio** Pueblo +4 · Élite −5
 
-### 22. El servicio militar
+### 21. El servicio militar
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -232,7 +220,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Que cada joven sirva a la patria** Ejército +5 · Pueblo −4
 - **B. La patria no se defiende obligado** Pueblo +4 · Ejército −5
 
-### 23. La invasión del aliado
+### 22. La invasión del aliado
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
@@ -242,7 +230,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Tienen todo nuestro apoyo fraterno** Potencias +5
 - **B. Aquí no opinamos de casas ajenas** Potencias −5
 
-### 24. La guerrilla perdida
+### 23. La guerrilla perdida
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -252,7 +240,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Mándenle a nuestros mejores hombres** Ejército +4 · Potencias −4
 - **B. Ferro será un millón de camisetas** Potencias +3 · Ejército −3 · Bandera: `ferro_martir`
 
-### 25. La cifra que no llega
+### 24. La cifra que no llega
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -262,7 +250,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Manden a todo el país al cañaveral** Élite +4 · Pueblo −5 · Encola: `discurso_derrota` en 1 a 2 años
 - **B. Busquen cómo hacer que la cuenta dé** Pueblo +3 · Élite −3 · Encola: `discurso_derrota` en 1 a 2 años
 
-### 26. El discurso de la derrota
+### 25. El discurso de la derrota
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -272,7 +260,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
 - **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
 
-### 27. Las flores en el mar
+### 26. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
@@ -282,7 +270,7 @@ Duración: entre 8 y 10 cartas. 28 cartas. Los efectos están en la escala peque
 - **A. Que se olvide sin acto oficial** Pueblo +3 · Élite −4
 - **B. Encabezaré yo los homenajes** Élite +4 · Pueblo −3
 
-### 28. Los campos de trabajo
+### 27. Los campos de trabajo
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.

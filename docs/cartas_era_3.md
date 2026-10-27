@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.7.
+Duración: entre 8 y 10 cartas. 24 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.7.
 
 ### 1. Elecciones controladas
 
@@ -104,27 +104,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Que el éxito quede por escrito** Élite +5 · Pueblo −4 · Crisis +2
 - **B. Que el mercado fije los precios** Pueblo +4 · Élite −4
 
-### 11. El monumento
-
-**Personaje:** Vicepresidente del Consejo de Ministros  
-**Condición:** ancla de los años 1 a 3 de su era; exige `culto_iniciado`.
-
-**Carta:** «El Partido propone un monumento de 40m en su honor, visible desde toda la costa y los barrios»
-
-- **A. Cuarenta metros, ni uno menos** Élite +5 · Pueblo −4 · Crisis +2 · Bandera: `monumento_colosal` · Encola: `pedestal` en 2 a 3 años
-- **B. Que el dinero se gaste en escuelas** Élite −4 · Pueblo +4 · Bandera: `monumento_modesto`
-
-### 12. El pedestal
-
-**Personaje:** Ministro de Economía  
-**Condición:** carta de cola: solo sale si una decisión anterior la encola.
-
-**Carta:** «El monumento costó el doble y no se terminó: la estatua tiene un solo brazo.»
-
-- **A. Termínenla, cueste lo que cueste** Élite +4 · Pueblo −4 · Crisis +2
-- **B. Un brazo basta para saludar** Élite −3 · Pueblo +3 · Crisis −1
-
-### 13. La modestia sospechosa
+### 11. La modestia sospechosa
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14; exige `modestia_aparente`.
@@ -134,7 +114,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Que cuelguen mi retrato en cada sede** Élite +4 · Pueblo −4
 - **B. Que el Partido trabaje y no adore** Élite −4 · Pueblo +4
 
-### 14. El desfile del año
+### 12. El desfile del año
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `desfile_militar`.
@@ -144,7 +124,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Desfile por todo lo alto** Ejército +7 · Pueblo −5 · Crisis +2
 - **B. Desfile austero, con lo que haya** Ejército −6 · Pueblo +4
 
-### 15. El jefe insaciable
+### 13. El jefe insaciable
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `jefe_poderoso`.
@@ -156,7 +136,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `estado_policial`:** El batallón del Interior pide más sueldos y más cárceles.
 
-### 16. Las aulas vacías
+### 14. Las aulas vacías
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 14; exige alguna de `estudiantes_reprimidos`, `huelga_reprimida`.
@@ -166,7 +146,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Enseñen que la historia me absolverá** Élite +5 · Pueblo −5
 - **B. Libertad de cátedra, de momento** Pueblo +5 · Élite −5
 
-### 17. Los titulares
+### 15. Los titulares
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `periodista_oficial`.
@@ -176,7 +156,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Seis páginas y el horóscopo** Élite +5 · Pueblo −3
 - **B. Con tres páginas es suficiente** Élite −4 · Pueblo +3
 
-### 18. Los presos en la agenda
+### 16. Los presos en la agenda
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 14; exige `criticos_detenidos`.
@@ -186,7 +166,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Liberaré a algunos, por mi cumple** Potencias +6 · Ejército −5 · Pueblo +3
 - **B. ¿Qué presos? Que revisen su lista** Potencias −6 · Ejército +5 · Pueblo −3
 
-### 19. El mercado mayor
+### 17. El mercado mayor
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 14; exige `mercado_paralelo`.
@@ -196,47 +176,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Permitan pequeños negocios privados** Pueblo +6 · Élite −5 · Crisis −1
 - **B. Persigan a los vendedores** Pueblo −6 · Élite +3 · Ejército +3 · Crisis +1
 
-### 20. La ciudad con su nombre
-
-**Personaje:** Vicepresidente del Consejo de Ministros  
-**Condición:** sorteo con peso 10.
-
-**Carta:** «El Partido propone rebautizar la capital con su nombre.»
-
-- **A. Que la capital lleve mi nombre** Élite +5 · Pueblo −3 · Bandera: `capital_rebautizada`
-- **B. Basta con el estadio y el aeropuerto** Élite −3 · Pueblo +3
-
-### 21. El himno nuevo
-
-**Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 10.
-
-**Carta:** «El himno nacional no le menciona. Proponemos una nueva versión.»
-
-- **A. Y que se cante a diario en clase** Élite +4 · Pueblo −3
-- **B. Dejen el himno como está** Élite −3 · Pueblo +3
-
-### 22. El libro de texto
-
-**Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 10.
-
-**Carta:** «Tenemos listo un libro con su vida y sus ideas. Lo exigiremos en todas las escuelas.»
-
-- **A. Que se evalúe en los exámenes** Élite +5 · Pueblo −5 · Bandera: `libro_obligatorio`
-- **B. Libro opcional, en las bibliotecas** Élite −4 · Pueblo +4
-
-### 23. El cumpleaños nacional
-
-**Personaje:** Vicepresidente del Consejo de Ministros  
-**Condición:** sorteo con peso 10.
-
-**Carta:** «Su cumpleaños merece ser fiesta nacional, con discursos y día libre.»
-
-- **A. Que todo el país sople las velas** Pueblo −2 · Élite +4 · Crisis +2
-- **B. Ese día, todos a trabajar** Pueblo −2 · Élite −2 · Crisis −1
-
-### 24. El documental
+### 18. El documental
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
@@ -246,19 +186,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Repitan con un actor con abdominales** Élite +4 · Pueblo −3
 - **B. La hamaca fue mi trinchera** Élite −3 · Pueblo +3
 
-### 25. El palacio del Pueblo
-
-**Personaje:** Ministro de Economía  
-**Condición:** sorteo con peso 10.
-
-**Carta:** «Proponemos un nuevo palacio de gobierno. Cuesta cinco años de presupuesto y tres barrios enteros.»
-
-- **A. El viejo palacio se nos queda chico** Élite +3 · Pueblo −6 · Crisis +3 · Bandera: `palacio_del_pueblo`
-- **B. Ese dinero, para viviendas** Pueblo +4 · Crisis −1
-
-**Consecuencia futura de `palacio_del_pueblo`:** Las deudas del palacio siguen sin pagarse.
-
-### 26. La sucesión
+### 19. La sucesión
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 8.
@@ -270,7 +198,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `sucesor_designado`:** El sucesor empieza a hacerse notar.
 
-### 27. El beso fraterno
+### 20. El beso fraterno
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 8.
@@ -280,7 +208,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Abrazo que todos digan «¡Ohhh!»** Potencias +6
 - **B. Apretón de manos, que hace calor** Potencias −5
 
-### 28. El viaje oficial
+### 21. El viaje oficial
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 8.
@@ -290,7 +218,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Encantado, llevaré los puros** Potencias +6
 - **B. Imposible, tengo mucho que dirigir** Potencias −5
 
-### 29. El atentado
+### 22. El atentado
 
 **Personaje:** Ministro del Interior  
 **Condición:** ancla de los años 5 a 7 de su era.
@@ -302,7 +230,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `atentado_investigado`:** Tus agentes en el exilio corren peligro.
 
-### 30. Los que celebran
+### 23. Los que celebran
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -314,7 +242,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 
 **Consecuencia futura de `oposicion_culpada`:** La oposición recuerda al acusado injusto.
 
-### 31. La investigación
+### 24. La investigación
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.

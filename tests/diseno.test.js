@@ -14,6 +14,6 @@ test("el grosor de la línea y el margen de las cartas solo se escriben dentro d
 
 test("el bloque DISENO define las variables que usa el resto del CSS", () => {
   const bloque = css.slice(css.indexOf("DISENO:INICIO"), css.indexOf("DISENO:FIN"));
-  for (const v of ["--linea", "--borde", "--margen-carta", "--cuadro", "--menu", "--logros", "--mazo-cartas", "--mazo-paso", "--mazo-alto"])
+  for (const v of ["--linea", "--borde", "--margen-carta", "--cuadro", "--menu", "--alto-leyenda", "--mazo-cartas", "--mazo-paso", "--mazo-alto"])
     assert.ok(bloque.includes(v + ":"), "falta " + v);
 });

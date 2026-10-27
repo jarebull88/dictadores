@@ -57,13 +57,6 @@ const CARTAS = [
            encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] }
   },
   {
-    id: "general_querido", retirada: true, tipo: "ancla", ventana: [1, 3], titulo: "El general querido",
-    personaje: "Ministro del Interior",
-    texto: "El general Cienfuegos es el más querido del Ejército y pide el Estado Mayor.",
-    izq: { accion: "Denle el Estado Mayor", efectos: { ejercito: 9, elite: -4 }, banderas: ["base.general_popular"] },
-    der: { accion: "Embajador en el país más lejano", efectos: { ejercito: -9, elite: 4 }, banderas: ["base.general_apartado"] }
-  },
-  {
     id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
     texto: "Las petroleras extranjeras exigen condiciones o cierran el grifo.",
@@ -334,13 +327,6 @@ const CARTAS = [
     der: { accion: "Tranquilo, mañana no estarán", efectos: { ejercito: -6, potencias: 6, crisis: -1 } }
   },
 
-  {
-    id: "mano_norte", retirada: true, era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.no_alineado"] }, titulo: "La mano del norte",
-    personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país ofrece créditos y comercio si acepta una auditoría de sus cuentas.",
-    izq: { accion: "Será un honor rendir cuentas", efectos: { potencias: 8, elite: -5, crisis: 1 }, banderas: ["base.deuda_externa"] },
-    der: { accion: "Aquí solo audita el Pueblo", efectos: { potencias: -8, pueblo: 4, elite: 4 } }
-  },
 
   {
     id: "potencias_enfadan", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.juicios_publicos"] }, titulo: "Las potencias se enfadan",
@@ -358,13 +344,6 @@ const CARTAS = [
     der: { accion: "Que la radio diga que son espías", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
   },
 
-  {
-    id: "general_murmura", retirada: true, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_popular"], barraMax: { ejercito: 40 } }, titulo: "El general murmura",
-    personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El general Cienfuegos recibe oficiales en su casa. Dicen que habla de usted en pasado.",
-    izq: { accion: "Pregúntenle cómo están sus hijos", efectos: { ejercito: -3, crisis: 1 } },
-    der: { accion: "Que tenga un accidente heroico", efectos: { ejercito: -6, pueblo: -4, elite: 3 }, banderas: ["base.accidente_cienfuegos"] }
-  },
 
   {
     id: "hambre", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.reforma_agraria"] }, titulo: "El hambre",
@@ -575,20 +554,6 @@ const CARTAS = [
   },
   /* ---------- Era 3 · Culto ---------- (tratamiento: «Excelencia»; límites: mensaje ≤150 caracteres, acción ≤5 palabras, remate ≤75) */
   {
-    id: "el_monumento", retirada: true, era: 3, tipo: "ancla", ventana: [1, 3], cond: { requiere: ["base.culto_iniciado"] }, titulo: "El monumento",
-    personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido propone un monumento de 40m en su honor, visible desde toda la costa y los barrios",
-    izq: { accion: "Cuarenta metros, ni uno menos", efectos: { elite: 5, pueblo: -4, crisis: 2 }, banderas: ["base.monumento_colosal"], encolar: [{ carta: "pedestal", min: 2, max: 3 }] },
-    der: { accion: "Que el dinero se gaste en escuelas", efectos: { elite: -4, pueblo: 4 }, banderas: ["base.monumento_modesto"] }
-  },
-  {
-    id: "pedestal", retirada: true, era: 3, tipo: "cola", titulo: "El pedestal",
-    personaje: "Ministro de Economía",
-    texto: "El monumento costó el doble y no se terminó: la estatua tiene un solo brazo.",
-    izq: { accion: "Termínenla, cueste lo que cueste", efectos: { elite: 4, pueblo: -4, crisis: 2 } },
-    der: { accion: "Un brazo basta para saludar", efectos: { elite: -3, pueblo: 3, crisis: -1 } }
-  },
-  {
     id: "modestia_sospechosa", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.modestia_aparente"] }, titulo: "La modestia sospechosa",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su rechazo a los retratos se toma por desapego al Partido. Quieren una demostración de lealtad.",
@@ -660,34 +625,6 @@ const CARTAS = [
   },
 
   {
-    id: "ciudad_con_nombre", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "La ciudad con su nombre",
-    personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido propone rebautizar la capital con su nombre.",
-    izq: { accion: "Que la capital lleve mi nombre", efectos: { elite: 5, pueblo: -3 }, banderas: ["base.capital_rebautizada"] },
-    der: { accion: "Basta con el estadio y el aeropuerto", efectos: { elite: -3, pueblo: 3 } }
-  },
-  {
-    id: "himno_nuevo", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El himno nuevo",
-    personaje: "Ministra de Cultura",
-    texto: "El himno nacional no le menciona. Proponemos una nueva versión.",
-    izq: { accion: "Y que se cante a diario en clase", efectos: { elite: 4, pueblo: -3 } },
-    der: { accion: "Dejen el himno como está", efectos: { elite: -3, pueblo: 3 } }
-  },
-  {
-    id: "libro_texto", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El libro de texto",
-    personaje: "Ministra de Educación",
-    texto: "Tenemos listo un libro con su vida y sus ideas. Lo exigiremos en todas las escuelas.",
-    izq: { accion: "Que se evalúe en los exámenes", efectos: { elite: 5, pueblo: -5 }, banderas: ["base.libro_obligatorio"] },
-    der: { accion: "Libro opcional, en las bibliotecas", efectos: { elite: -4, pueblo: 4 } }
-  },
-  {
-    id: "cumpleanos", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El cumpleaños nacional",
-    personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Su cumpleaños merece ser fiesta nacional, con discursos y día libre.",
-    izq: { accion: "Que todo el país sople las velas", efectos: { pueblo: -2, elite: 4, crisis: 2 } },
-    der: { accion: "Ese día, todos a trabajar", efectos: { pueblo: -2, elite: -2, crisis: -1 } }
-  },
-  {
     id: "biografia", era: 3, tipo: "sorteo", peso: 10, titulo: "El documental",
     personaje: "Ministra de Cultura",
     texto: "El documental de la Revolución está listo, pero en las tomas de la sierra se le ve algo rellenito.",
@@ -700,13 +637,6 @@ const CARTAS = [
     texto: "El Partido ya diseña su tumba: un cacho de roca gigante que dicen que se parece a usted.",
     izq: { accion: "Seré una piedra eterna", efectos: { elite: 4, pueblo: -4, crisis: 2 }, banderas: ["base.mausoleo_construido"] },
     der: { accion: "Entiérrenme como viví: con humildad", efectos: { elite: -3, crisis: -1 } }
-  },
-  {
-    id: "palacio_pueblo", retirada: true, era: 3, tipo: "sorteo", peso: 10, titulo: "El palacio del Pueblo",
-    personaje: "Ministro de Economía",
-    texto: "Proponemos un nuevo palacio de gobierno. Cuesta cinco años de presupuesto y tres barrios enteros.",
-    izq: { accion: "El viejo palacio se nos queda chico", efectos: { elite: 3, pueblo: -6, crisis: 3 }, banderas: ["base.palacio_del_pueblo"] },
-    der: { accion: "Ese dinero, para viviendas", efectos: { pueblo: 4, crisis: -1 } }
   },
   {
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
@@ -831,20 +761,6 @@ const CARTAS = [
   },
   /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {
-    id: "el_reportaje", retirada: true, era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.prensa_libre"] }, titulo: "El reportaje",
-    personaje: "Ministra de Cultura",
-    texto: "Un periódico al que dejamos publicar ha destapado las cuentas del gobierno.",
-    izq: { accion: "Ciérrenlo por... falta de papel", efectos: { elite: 3, pueblo: -5 } },
-    der: { accion: "Busquen un viceministro culpable", efectos: { pueblo: 3, elite: -5, crisis: 1 } }
-  },
-  {
-    id: "varela_vuelve", retirada: true, era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.general_apartado"] }, titulo: "Cienfuegos vuelve",
-    personaje: "Ministro del Interior",
-    texto: "El general Cienfuegos vuelve de su embajada. En el aeropuerto lo recibe una multitud con pancartas.",
-    izq: { accion: "Jubílenlo con honores y escolta", efectos: { ejercito: -4, elite: 3 } },
-    der: { accion: "Denle un cuartel y un espía al lado", efectos: { ejercito: 6, elite: -4 } }
-  },
-  {
     id: "delfin_impaciente", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.sucesor_designado"] }, titulo: "El delfín impaciente",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Su hermano ya recibe embajadores en su despacho y reparte sus propios retratos por las escuelas.",
@@ -864,21 +780,6 @@ const CARTAS = [
     texto: "Han estallado bombas en tres hoteles. El detenido confiesa que le pagaban desde el extranjero por cada bomba.",
     izq: { accion: "Que los turistas no se enteren", efectos: { ejercito: 3, potencias: 3, pueblo: -2 } },
     der: { accion: "Juicio para que lo vea el mundo", efectos: { potencias: -5, elite: 3, crisis: 1 } }
-  },
-  {
-    id: "mausoleo_vacio", era: 4, tipo: "sorteo", peso: 0,   // retirada (22 oct, Jorge): el mantenimiento antes de morir no tiene sentido; peso 0 = no sale
-    cond: { requiere: ["base.mausoleo_construido"] }, titulo: "El mausoleo vacío",
-    personaje: "Ministro de Economía",
-    texto: "Su roca eterna pide mantenimiento: la gente se sube a hacerse fotos y las palomas la usan a diario.",
-    izq: { accion: "Guardia de honor día y noche", efectos: { ejercito: 3, pueblo: -3, crisis: 1 } },
-    der: { accion: "Cobren la entrada en dólares", efectos: { potencias: 3, elite: -2 } }
-  },
-  {
-    id: "palacio_sin_terminar", retirada: true, era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.palacio_del_pueblo"] }, titulo: "El palacio sin terminar",
-    personaje: "Ministro de Economía",
-    texto: "Su palacio sigue sin terminar y ya ha costado más que todos los hospitales del país.",
-    izq: { accion: "La Revolución merece su palacio", efectos: { elite: 5, pueblo: -5, crisis: 3 } },
-    der: { accion: "Conviértanlo en un hospital", efectos: { pueblo: 5, elite: -4 } }
   },
   {
     id: "dos_ejercitos", era: 4, tipo: "sorteo", peso: 14, titulo: "Los militares empresarios",
@@ -903,20 +804,6 @@ const CARTAS = [
     der: { accion: "Que me graben corriendo en chándal", efectos: { elite: 3, crisis: -1 } }
   },
   {
-    id: "el_doble", retirada: true, era: 4, tipo: "cola", titulo: "El doble",
-    personaje: "Ministro del Interior",
-    texto: "Su doble ya hace los actos mejor que usted y obedece a este ministerio. El Pueblo lo prefiere.",
-    izq: { accion: "Que el doble desaparezca", efectos: { ejercito: -5, crisis: 1 } },
-    der: { accion: "Que haga él los actos y yo descanso", efectos: { ejercito: 5, elite: -3 } }
-  },
-  {
-    id: "las_medallas", retirada: true, era: 4, tipo: "sorteo", peso: 10, titulo: "Las medallas",
-    personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los generales quieren lo que usted tiene: medallas en el pecho y una pensión para toda la vida.",
-    izq: { accion: "Medalla y pensión para cada general", efectos: { ejercito: 5, crisis: 1 } },
-    der: { accion: "Mi chándal es el único condecorado", efectos: { elite: 3, ejercito: -3 } }
-  },
-  {
     id: "el_plebiscito", era: 4, tipo: "sorteo", peso: 10, titulo: "El plebiscito",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "La oposición quiere votar si hay elecciones libres. Y la Constitución se lo permite, por desgracia.",
@@ -936,13 +823,6 @@ const CARTAS = [
     texto: "Nuestro país se disuelve. Le dejo el último barril de petróleo y mi abrigo de piel.",
     izq: { accion: "Lo llamaré... «período especial»", efectos: { potencias: -6, pueblo: -5, elite: 3, crisis: 2 } },
     der: { accion: "Ya me buscaré un amigo con dólares", efectos: { potencias: 5, elite: -4 } }
-  },
-  {
-    id: "salida_honrosa", retirada: true, era: 4, tipo: "sorteo", peso: 10, titulo: "La salida honrosa",
-    personaje: "Embajador de la potencia del norte",
-    texto: "Si convoca elecciones, nuestro país le garantiza inmunidad y una casa con piscina en nuestra costa.",
-    izq: { accion: "Guárdenme la casa por si acaso", efectos: { potencias: 6, elite: -3 } },
-    der: { accion: "Váyase, que me espera la plaza llena", efectos: { potencias: -6, elite: 3 } }
   },
   {
     id: "las_memorias", era: 4, tipo: "sorteo", peso: 10, titulo: "Las memorias",
@@ -1157,16 +1037,13 @@ const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de intel
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                         bajo: "En el exterior nadie te quiere, salvo quien te teme." }
 };
 
-const FUTURO_ERA = {"base.campos_trabajo": 3, "base.culto_iniciado": 3, "base.modestia_aparente": 3, "base.prensa_libre": 4, "base.general_apartado": 4, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.mausoleo_construido": 4, "base.palacio_del_pueblo": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.mota_juzgado": 4, "base.alineado_bloque_oriental": 1, "base.general_popular": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.campos_trabajo": 3, "base.modestia_aparente": 3, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.mota_juzgado": 4, "base.alineado_bloque_oriental": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
-  "base.general_popular": "(Obsoleta, 22 oct) Cienfuegos conspira si el Ejército baja de 40.",
   "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Diezfuegos.",
   "base.mota_juzgado": "Los nietos de Mota piden que los libros hablen de él.",
-  "base.general_apartado": "Cienfuegos regresa como candidato de los descontentos.",
   "base.reforma_agraria": "Escasez de alimentos dos años después.",
-  "base.prensa_libre": "Un reportaje destapa un escándalo.",
   "base.censura_previa": "Aparecen el periodista oficial y los rumores.",
   "base.negocio_refinerias": "Las empresas exigen garantías que limitan tus decisiones económicas.",
   "base.nacionalizo_empresas": "Sanciones de la potencia del norte.",
@@ -1180,7 +1057,6 @@ const FUTURO = {
   "base.huelga_reprimida": "Malestar en las universidades.",
   "base.comites_vigilancia": "Denuncias falsas entre vecinos.",
   "base.policia_tradicional": "La oposición se organiza con más facilidad.",
-  "base.culto_iniciado": "Tratamiento de Excelencia y monumentos cada vez más costosos.",
   "base.modestia_aparente": "El Partido exige otros símbolos de lealtad.",
   "base.exodo_elite": "Faltan técnicos y gestores.",
   "base.frontera_cerrada": "Intentos de fuga.",
@@ -1200,7 +1076,6 @@ const FUTURO = {
   "base.sucesor_designado": "El sucesor empieza a hacerse notar.",
   "base.oposicion_culpada": "La oposición recuerda al acusado injusto.",
   "base.mausoleo_construido": "La roca eterna espera a su inquilino.",
-  "base.palacio_del_pueblo": "Las deudas del palacio siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldos y más cárceles.",
   "base.atentado_investigado": "Tus agentes en el exilio corren peligro."
 };
@@ -1209,12 +1084,9 @@ const FUTURO = {
 const PREVISION = {
   "base.juicios_publicos": "Las potencias extranjeras toman nota de los juicios públicos.",
   "base.exiliados_vocales": "Los exiliados hablan cada vez más alto desde fuera.",
-  "base.general_popular": "El general Cienfuegos recibe oficiales en su casa.",
   "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del general Diezfuegos.",
   "base.mota_juzgado": "La familia de Mota sigue contando su versión.",
-  "base.general_apartado": "El general Cienfuegos prepara su regreso.",
   "base.reforma_agraria": "Las cosechas del reparto de tierras no llegarán a tiempo.",
-  "base.prensa_libre": "Hay periodistas que siguen haciendo preguntas.",
   "base.censura_previa": "Circulan más rumores que periódicos.",
   "base.negocio_refinerias": "Las empresas extranjeras quieren garantías por escrito.",
   "base.nacionalizo_empresas": "La potencia del norte prepara sanciones.",
@@ -1228,7 +1100,6 @@ const PREVISION = {
   "base.huelga_reprimida": "En las universidades no se olvida la huelga.",
   "base.comites_vigilancia": "Los vecinos se denuncian unos a otros.",
   "base.policia_tradicional": "La oposición se organiza sin demasiadas molestias.",
-  "base.culto_iniciado": "Los monumentos al Comandante salen cada vez más caros.",
   "base.modestia_aparente": "El Partido echa de menos algún monumento.",
   "base.exodo_elite": "Faltan técnicos, ingenieros y gestores.",
   "base.frontera_cerrada": "Hay quien intenta cruzar la frontera de noche.",
@@ -1248,7 +1119,6 @@ const PREVISION = {
   "base.sucesor_designado": "El sucesor empieza a hacerse notar.",
   "base.oposicion_culpada": "La oposición recuerda al acusado injustamente.",
   "base.mausoleo_construido": "Tu roca eterna ya espera inquilino.",
-  "base.palacio_del_pueblo": "Las deudas del Palacio del Pueblo siguen sin pagarse.",
   "base.estado_policial": "El batallón del Interior pide más sueldo y más cárceles.",
   "base.atentado_investigado": "Tus agentes en el exilio corren peligro."
 };
@@ -1271,7 +1141,7 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
   { paso: "guardar", texto: "Esta carta aumenta el apoyo popular, pero tanto amor puede ser peligroso.", cinta: "Toca la casilla de abajo para saber más.", izq: "Por eso el amor se raciona", der: "Disfrutemos mientras dure" },
   // 25 oct: los logros. La decisión da el primer logro (sea cual sea la respuesta); luego hay que tocar la estrella y abrirlo (`despues`)
   { paso: "logro", texto: "Le he entrenado una paloma. Se le posará en el hombro cada vez que levante el brazo en un discurso.", cinta: "Algunas decisiones te dan un logro. Esta, seguro.",
-    despues: { texto: "Ahí tiene su primer logro. Es más fiable que la paloma.", cinta: "Toca la estrella de abajo para ver tu logro." },
+    despues: { texto: "Ahí tiene su primer logro. Es más fiable que la paloma.", cinta: "Abre el menú de abajo y toca «Logros» para ver tu logro." },
     izq: "Que baje del cielo, como un milagro", der: "Dale maíz, que el milagro es caro" },
   { paso: "fin", texto: "La nación aguarda sus primeras palabras. Ha llegado el momento de presentarse.", cinta: "A partir de aquí, gobiernas tú.", izq: "Seré breve: cinco horas", der: "Quiero una paloma en mi hombro" }
 ];

@@ -2,7 +2,7 @@
 
 **Solo hay dos estilos de letra**, definidos en un único bloque de `src/estilos.css` (entre `TIPOGRAFIA:INICIO` y `TIPOGRAFIA:FIN`). El test `tests/tipografia.test.js` falla si alguien pone letra, tamaño, peso, mayúsculas, espaciado o interlineado en otra parte del CSS, o en línea en el HTML o en `motor.js`.
 
-- **TITULAR:** Londrina Solid, siempre en mayúsculas, peso normal.
+- **TITULAR:** Londrina Solid, siempre en mayúsculas, peso normal (400) o **Light (300, `--peso-ligero`)** para la leyenda bajo la carta y los años.
 - **CUERPO:** Sofia Sans Semi Condensed (condensada, como Londrina; desde el 24 oct, antes Baloo 2), en negrita (800, `--peso-negrita`) o normal (400). Sus tamaños son los de Baloo × 1,16.
 
 ## Cómo cambiar un estilo
@@ -16,6 +16,8 @@
 | **Titular L** | Londrina, mayúsculas | `--t-l`: 10 % del ancho de la carta, máx. 44 px | el título de la era («La Purga»…), el de la pantalla del nombre y «¡NUEVO LOGRO!» |
 | **Titular M** | Londrina, mayúsculas | `--t-m`: 26 px | títulos de las ventanas de fuerzas y estados, nombre del estado en su carta, «Comenzar partida» y «Cómo se juega», título de la esquela y de las cartas de caída, la causa al final |
 | **Titular S** | Londrina, mayúsculas | `--t-s`: 21 px | cintas del tutorial, efecto del estado, «Has gobernado N años», estados con nombre muy largo |
+| **Leyenda** | Londrina Light, mayúsculas, centrada | `--leyenda-px`: empieza en `--t-l` (el tamaño de «LA REVOLUCIÓN») y baja sola hasta que quepa (dos líneas) | el cargo del personaje, el nombre del estado y la instrucción del tutorial, bajo la carta |
+| **Años** | Londrina Light, mayúsculas | `--t-s`: 21 px | «1 AÑO», «2 AÑOS», abajo a la izquierda |
 | **Logo** | Londrina, mayúsculas | 46 px y 92 px | «Comandante, ¡Ordene!» de la portada |
 | **Pregunta** | Sofia, negrita | `--c-pregunta`: 22 px (20 px en pantallas bajas) | la pregunta de cada carta, el texto de la pantalla del nombre, el de la pantalla de era, el campo del nombre |
 | **Respuesta** | Sofia, negrita | `--c-respuesta`: 27 px (menos si la carta es estrecha) | la respuesta que sale al arrastrar |

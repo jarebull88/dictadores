@@ -4,7 +4,7 @@
     python3 tools/build.py
 
 Une src/ (datos, motor, estilos y cuerpo), incrusta los personajes recortados y sus datos
-(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), el cartel de la portada, las texturas de cartulina (assets/fondos/web/) y las fuentes
+(assets/personajes/personajes.json), los iconos y escenas (assets/iconos/recortados/), el cartel de la portada y las fuentes
 (Courier Prime y Special Elite). Los recortes se generan antes con tools/recortar.py.
 """
 import base64, json, pathlib, sys
@@ -45,25 +45,15 @@ def fuentes():
                                    ("Sofia Sans Semi Condensed", "sofia-sans-semi-condensed-latin-800-normal", 800),   # la negrita
                                    # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
+                                   ("Londrina Solid", "londrina-solid-latin-300-normal", 300),   # 27 oct: Londrina Light (leyendas bajo la carta y años)
                                    ("Londrina Solid", "londrina-solid-latin-400-normal", 400)):
         datos = base64.b64encode((RAIZ / f"assets/fuentes/{archivo}.woff2").read_bytes()).decode()
         css += ('@font-face { font-family: "%s"; font-style: normal; font-weight: %d; font-display: swap; '
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))
     return css
 
-def texturas():
-    """Texturas de cartulina como variables CSS (--tex-cartulinablanca, oro, plata, purpurina): capa «multiplicar» de cartones y cartulinas."""
-    css = ":root {\n"
-    estilos = leer("src/estilos.css")
-    for f in sorted((RAIZ / "assets/fondos/web").glob("*.jpg")):
-        if f"var(--tex-{f.stem})" not in estilos:
-            continue                      # solo se incrustan las texturas que usan los estilos
-        css += f'  --tex-{f.stem}: url({datos_uri(f.relative_to(RAIZ), "image/jpeg")});\n'
-    # 23 oct: los desgastes (assets/fondos/desgaste) ya no se incrustan: cartas de color plano
-    return css + "}\n"
-
 def main():
-    css = fuentes() + texturas() + leer("src/estilos.css")
+    css = fuentes() + leer("src/estilos.css")
     cuerpo = leer("src/cuerpo.html")
     datos = leer("src/datos.js")
     motor = leer("src/motor.js")

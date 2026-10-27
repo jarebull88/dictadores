@@ -48,3 +48,6 @@ Slight misregistration between inks and visible paper grain. Square 1:1.
   - Alineado: rojo
   - Nacionalizaciones: oliva
   - Deuda externa: oliva (23 oct, Jorge: el rosa no contrasta con mostaza)
+
+## Blanco (27 oct, Jorge)
+Se añade a la paleta el **blanco** `#FFFFFF` (`--p-blanco`). Por ahora solo se usa en el **margen de las cartas** (por delante y por detrás: la hoja de la ficha y la de los logros siguen en crema) y en la miniatura de los logros del archivo. Los iconos pequeños (casillas, fuerzas) no llevan borde blanco.

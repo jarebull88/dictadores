@@ -353,6 +353,8 @@ Añadidos el 28 oct (Jorge; los repetidos de *Desierto rojo* y *En las tinieblas
 45. `45-semana-de-cine-1982.jpg`: *Semana de cine cubano en Venezuela* (1982). Lleva una bandera real: solo de referencia, no se copia.
 46. `46-la-momia.jpg`: *La momia*.
 
+**Una imagen por personaje, para siempre** (28 oct, Jorge): no se dibujan etapas por era.
+
 ### La regla de oro de los personajes (23 oct, Jorge)
 **Que el jugador diga «esto me suena».** Cada personaje es un homenaje reconocible a su cartel: la misma composición, el mismo truco y la misma técnica, casi literales, con nuestro personaje y nuestra paleta. Los modelos son el Comandante joven v2 (*Por primera vez*) y Sarria v3 (*Zorro*). **Pero el personaje va primero** (23 oct, Rigoberto v3: copió tanto *El deporte nacional* que salió un pelotero viejo con guante, sin nada de Rigoberto). Del cartel se toman la composición, el truco y la técnica, no sus objetos ni su tema (el uniforme de rayas, el guante); la historia, la edad y los objetos son del personaje. **La fidelidad al cartel manda sobre la regla del busto**: el encuadre y la escala los pone el cartel (los ojos animados se colocan por personaje en `personajes.json`).
 

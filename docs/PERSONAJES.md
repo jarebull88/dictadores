@@ -3,6 +3,7 @@
 El reparto del juego, con su historia, para que la conversación de arte (`docs/GUIA_ARTE_BACHS.md`) tenga de dónde inspirarse.
 
 ## Cómo es el reparto
+- **28 oct (Jorge): una sola imagen por personaje, para siempre.** Ya no se hacen etapas por era; lo que sigue sobre etapas queda como historia y para el texto, no para el arte. (Las etapas del Comandante en el paso de era siguen como están hasta que Jorge diga otra cosa.)
 - **Hay un reparto fijo de nueve** —el Comandante y ocho personajes— que **envejecen y se corrompen a la vista**, con una etapa por era (4 imágenes cada uno).
 - **Hay relevos con sentido narrativo:**
   - el embajador del Norte cambia en cada era;

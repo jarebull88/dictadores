@@ -39,6 +39,13 @@ def reversos():
     return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
             for f in sorted((RAIZ / "assets/reversos").glob("era-*.webp"))}
 
+def sonidos():
+    """Efectos de sonido (assets/sonidos/<evento>.mp3|ogg|wav|m4a), como {evento: data-uri}. Sin archivo, el juego sintetiza el suyo."""
+    tipos = {".mp3": "audio/mpeg", ".ogg": "audio/ogg", ".wav": "audio/wav", ".m4a": "audio/mp4"}
+    carpeta = RAIZ / "assets/sonidos"
+    return {f.stem: datos_uri(f.relative_to(RAIZ), tipos[f.suffix.lower()])
+            for f in sorted(carpeta.glob("*")) if f.suffix.lower() in tipos} if carpeta.exists() else {}
+
 def fuentes():
     css = ""
     for familia, archivo, peso in (("Sofia Sans Semi Condensed", "sofia-sans-semi-condensed-latin-400-normal", 400),   # 24 oct: texto (antes Baloo 2 y Courier Prime, que siguen en assets/fuentes)
@@ -62,7 +69,7 @@ def main():
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
                + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
                + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
-               + json.dumps(reversos()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\n</script>\n')
+               + json.dumps(reversos()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

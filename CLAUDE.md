@@ -19,6 +19,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - `src/datos.js` — **fuente única** de cartas, eras, finales y consecuencias futuras. Aquí se editan textos y efectos.
 - `src/motor.js` — reglas, estados del régimen, interfaz y gestos. `src/estilos.css`, `src/cuerpo.html` — aspecto y pantallas.
 - `assets/fondos/` — solo queda `cartulinablanca.jpg`, la textura que `recortar.py` hornea en la piel del papel recortado de las etapas 2–4 del dictador. Las demás texturas y marcos del arte antiguo se borraron el 27 oct.
+- `assets/sonidos/` — efectos de sonido (28 oct): un archivo por evento (`repartir`, `voltear`, `deslizar`, `volver`; mp3, ogg, wav o m4a) que `build.py` incrusta (`SONIDOS`); sin archivo, el juego sintetiza el suyo (`SINTETICOS` en `motor.js`). Si el de `repartir` es más largo o más corto, la animación del reparto se adapta a su duración. «Sonido» del menú lo quita y lo pone (`dictadores_sonido_v1`).
 - `assets/experimentos/` — farol y fuego (27 oct), guardados sin integrar.
 - `assets/referencias/bachs/` — carteles de Muñoz Bachs que inspiran el arte nuevo (23 oct), numerados; la lista está en `docs/GUIA_ARTE_BACHS.md`.
 - `assets/portada/` — el cartel del juego para la portada (24 oct: el sillón vacío, homenaje a *Cría cuervos*; `cartel.jpg` → `cartel.webp` con `python3 tools/recortar.py carteles`). La escena del triunfo antigua se borró (sigue en git).

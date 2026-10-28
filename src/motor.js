@@ -5,6 +5,63 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const limitar = v => Math.max(0, Math.min(100, v));
 
+/* =====================================================
+   SONIDO (28 oct)
+   Eventos: repartir · voltear · deslizar (la carta se decide y se va) · volver (se suelta sin decidir).
+   Si existe assets/sonidos/<evento>.mp3|ogg|wav, build.py lo incrusta (SONIDOS) y suena ese; si no, un sonido sintetizado.
+   Arranca con el primer toque (los móviles bloquean el audio antes). «Sonido» del menú lo quita y lo pone; se guarda.
+   ===================================================== */
+const CLAVE_SONIDO = "dictadores_sonido_v1";
+let sonidoActivo = true;
+try { sonidoActivo = localStorage.getItem(CLAVE_SONIDO) !== "no"; } catch (e) {}
+let ctxAudio = null;
+const bufferesAudio = {};
+function audio() {
+  if (ctxAudio) return ctxAudio;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return null;
+  try { ctxAudio = new AC(); } catch (e) { return null; }
+  if (typeof SONIDOS !== "undefined") Object.entries(SONIDOS).forEach(([ev, uri]) => {
+    fetch(uri).then(r => r.arrayBuffer()).then(b => ctxAudio.decodeAudioData(b)).then(buf => { bufferesAudio[ev] = buf; }).catch(() => {});
+  });
+  return ctxAudio;
+}
+["pointerdown", "keydown"].forEach(t => document.addEventListener(t, () => { const c = audio(); if (c && c.state === "suspended") c.resume(); }, { passive: true }));
+/* Duración (en ms) del sonido de un evento, si hay archivo: el reparto adapta su animación a ella */
+const duracionSonido = ev => (bufferesAudio[ev] ? bufferesAudio[ev].duration * 1000 : 0);
+/* Un soplo de ruido filtrado que barre de f0 a f1 Hz: el roce de la cartulina */
+function roce(c, t, dur, f0, f1, vol) {
+  const n = Math.max(1, Math.floor(c.sampleRate * dur)), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+  const fuente = c.createBufferSource(), filtro = c.createBiquadFilter(), g = c.createGain();
+  fuente.buffer = buf; filtro.type = "bandpass"; filtro.Q.value = 0.9;
+  filtro.frequency.setValueAtTime(f0, t); filtro.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + dur * 0.25); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  fuente.connect(filtro); filtro.connect(g); g.connect(c.destination); fuente.start(t); fuente.stop(t + dur);
+}
+function golpe(c, t, hz, dur, vol) {
+  const o = c.createOscillator(), g = c.createGain();
+  o.type = "triangle"; o.frequency.setValueAtTime(hz, t); o.frequency.exponentialRampToValueAtTime(hz * 0.5, t + dur);
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + dur);
+}
+const SINTETICOS = {
+  repartir: c => { const t = c.currentTime; for (let i = 0; i < 9; i++) roce(c, t + i * 0.09, 0.14, 2200, 700, 0.18); },
+  voltear: c => { const t = c.currentTime; roce(c, t, 0.07, 3500, 1500, 0.2); golpe(c, t + 0.05, 240, 0.06, 0.18); },
+  deslizar: c => { const t = c.currentTime; roce(c, t, 0.24, 500, 2600, 0.3); },
+  volver: c => { const t = c.currentTime; roce(c, t, 0.16, 1500, 600, 0.12); }
+};
+function sonar(evento) {
+  if (!sonidoActivo) return;
+  const c = audio();
+  if (!c) return;
+  if (c.state === "suspended") c.resume();
+  const buf = bufferesAudio[evento];
+  if (buf) { const f = c.createBufferSource(); f.buffer = buf; f.connect(c.destination); f.start(); return; }
+  if (SINTETICOS[evento]) SINTETICOS[evento](c);
+}
+function ponerTextoSonido() { const b = $("btn-sonido"); if (b) b.textContent = sonidoActivo ? "Sonido: sí" : "Sonido: no"; }
+
 const CLAVE_NOMBRE = "dictadores_nombre_v2";
 let nombreDictador = "";
 /* ?cero en la dirección: empezar como la primera vez (16 oct): se olvida el nombre guardado */
@@ -599,7 +656,7 @@ function quitarInfo() { if (cartaInfo) { clearTimeout(cartaInfo._fin); cartaInfo
 function cerrarInfo() {
   const c = cartaInfo;
   if (!c || c._cerrando) return;
-  c._cerrando = true;
+  c._cerrando = true; sonar("deslizar");
   if (!animar()) { quitarInfo(); return; }
   c.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
   c.style.transform = transformDesde(c, origenInfo(c));
@@ -645,9 +702,10 @@ function abrirInfo(clave, id, fondo, origen, html) {
     const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
     drag = null;
     c.style.transition = ""; c.style.transform = "";
-    if (toque) { c.classList.toggle("volteada"); return; }
+    if (toque) { c.classList.toggle("volteada"); sonar("voltear"); return; }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);
     if (Math.abs(dx) > umbral() || (Math.abs(v) > 0.55 && Math.abs(dx) > 36)) cerrarInfo();
+    else if (Math.abs(dx) > 8) sonar("volver");
   };
   c.addEventListener("pointerup", soltar);
   c.addEventListener("pointercancel", soltar);
@@ -737,6 +795,7 @@ function voltear() {
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso !== "girar") return;   // 17 oct: en el tutorial solo se gira en su paso
   pintarEleccion(0);
   const volteada = $("carta").classList.toggle("volteada");
+  sonar("voltear");
   const t = E && E.tutorial;
   if (t && TUTORIAL[t.i].paso === "girar") {               // tutorial: hay que darle la vuelta y volver a girarla
     if (volteada) t.vista = true;
@@ -873,7 +932,10 @@ function repartir() {
   esc.classList.add("repartiendo");
   entrarCarta(carta);                                  // boca abajo y sin pregunta hasta que acabe el reparto
   esc.querySelectorAll(".pila.reparto").forEach(n => n.remove());
-  const N = 9, PASO = 90, DURA = 420;
+  const N = 9, DURA = 420;
+  /* con un archivo de sonido para el reparto, la animación dura lo mismo que él; sin archivo, 90 ms entre cartas */
+  const total = duracionSonido("repartir"), PASO = total ? Math.max(30, (total - DURA - 60) / (N - 1)) : 90;
+  sonar("repartir");
   const ancho = window.innerWidth, alto = window.innerHeight;
   for (let i = 0; i < N; i++) {
     const p = document.createElement("div");
@@ -894,6 +956,7 @@ function repartir() {
 
 /* La carta sale volando hacia el lado elegido (en todas las pantallas con carta) */
 function lanzarCarta(carta, dir) {
+  sonar("deslizar");
   carta.style.transition = "";
   carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
@@ -1062,7 +1125,7 @@ function svgEscena(id, etiqueta) {
 /* La carta se desliza hasta su casilla de abajo, encogiéndose; después sale la carta siguiente */
 function recogerEstado() {
   if (!modoEstado || ocupado) return;
-  hundirMensaje();
+  hundirMensaje(); sonar("deslizar");
   clearTimeout(relojEstado);
   ocupado = true;
   const carta = $("carta"), id = E.estadoNuevo.id;
@@ -1555,7 +1618,7 @@ function arrastrable(carta, op) {
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx) && dx === bruto;
     if (Math.abs(dx) > umbral() || lanzada) op.decidir(Math.sign(dx));
-    else volver();
+    else { volver(); if (Math.abs(bruto) > 8) sonar("volver"); }
   }
   function cancelar() {
     if (!drag) return;
@@ -1842,12 +1905,13 @@ $("btn-menu").addEventListener("click", () => {
 });
 $("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
 $("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo(); });
-for (const [id, titulo, texto] of [
-  ["btn-sonido", "Sonido", "Muy pronto: música y sonidos, y aquí podrás quitarlos."],
-]) $(id).addEventListener("click", ev => {
+ponerTextoSonido();
+$("btn-sonido").addEventListener("click", ev => {   // 28 oct: quita y pone el sonido (se guarda)
   ev.stopPropagation();
-  cerrarMenu();
-  abrirPopup(id, `<b>${titulo}</b><span>${texto}</span>`, $("btn-menu"), 4500);
+  sonidoActivo = !sonidoActivo;
+  try { localStorage.setItem(CLAVE_SONIDO, sonidoActivo ? "si" : "no"); } catch (e) {}
+  ponerTextoSonido();
+  if (sonidoActivo) sonar("voltear");
 });
 // 17 oct: el tutorial ya no es obligatorio, ni la primera vez: «Cómo se juega» está siempre en la portada
 $("btn-comenzar").addEventListener("click", irANombre);

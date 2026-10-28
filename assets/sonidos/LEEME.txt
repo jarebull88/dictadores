@@ -1,0 +1,1 @@
+Efectos de sonido del juego. Un archivo por evento, con el nombre del evento: repartir, voltear, deslizar, volver (.mp3, .ogg, .wav o .m4a). Si falta, el juego usa uno sintetizado.

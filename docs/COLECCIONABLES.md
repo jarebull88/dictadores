@@ -64,7 +64,15 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Beneficio / Perjuicio:** *pendiente* (Jorge no se decide por las propuestas del 28 oct: el beneficio y el perjuicio deben ser algo concreto y real que le pasa al Comandante).
 - **Referencia real:** la libreta de abastecimiento se creó en marzo de 1962 (cuadrícula de productos por persona y mes, sellada por el bodeguero).
 
+### Recompensa 3 · Compota importada — *en curso* (28 oct)
+- **Se gana con:** carta `la_bahia` (Ministro de las Fuerzas Armadas), opción «Cámbienlos por compotas».
+- **titulo:** *pendiente* (propuestos: Canje de compotas, Fruta de primera, Postre de Estado)
+- **subtitulo:** El postre favorito del Comandante
+- **objeto:** Compota importada
+- **descripcion:** Mil doscientos presos por un cargamento de compota de calidad, de la de fuera, un producto de primera que no volverás a ver en tu vida. Se recomienda saborearla despacio.
+- **Beneficio / Perjuicio:** *pendiente*
+- **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
+
 ### Pendientes (elegidos por Jorge, sin redactar)
-3. Etiqueta de compota (canje de los prisioneros de la bahía, 1962) — «Cámbienlos por compotas».
 4. Postal de la bahía con un misil (inventada) — aceptar los misiles (`base.misiles_instalados`).
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).

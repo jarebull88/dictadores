@@ -570,3 +570,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Ficha de Papá Ernesto aprobada** (cargo «Novelista»; en `docs/INVITADOS.md`).
 - **28 oct — Expedientes: Sarria se queda igual. Strenko rehecho** (los embajadores cambiarán en cada era): «Enviado del bloque oriental para convertir una revolución en cliente. Ofrece petróleo y asesores. Todo se paga en azúcar y favores.» Nota: «Este servicio ya ha perdido la cuenta de lo que debemos.»
 - **28 oct — Expedientes: Pembrook, Eusebio, Mirta y el Comandante se quedan igual** (solo cambian los cargos permanentes). Revisión de expedientes cerrada: cambiados Domingo, Anselmo y Strenko; nuevos Padrino Pupo y Papá Ernesto (en `docs/INVITADOS.md`).
+- **28 oct — Cuesta desaparece:** lo sustituye Domingo, el hermano del Comandante, que también es el guía del tutorial. Corregidos `CLAUDE.md`, los comentarios del tutorial en `datos.js` y de `motor.js`.

@@ -1132,13 +1132,13 @@ const PREVISION = {
 
 
 /* =====================================================
-   TUTORIAL (15 oct): «La víspera». El capitán Domingo Cuesta (Fuerzas Armadas) acompaña al Comandante el día
+   TUTORIAL (15 oct): «La víspera». Domingo, el hermano del Comandante (Ministro de las Fuerzas Armadas), acompaña al Comandante el día
    que entran en la capital. Cada carta enseña una sola cosa; las decisiones no cuentan para la partida.
    - paso: deslizar · girar (no se puede decidir hasta volver a girarla) · fuerzas (se encienden las barras)
            · pistas (puntos rojos de tres tamaños y el Ejército en peligro) · estado (entra «Luna de miel») · guardar · fin
-   - arriba habla Cuesta (de usted); la instrucción al jugador va en la cinta (de tú)
+   - arriba habla Domingo (de usted); la instrucción al jugador va en la cinta (de tú)
    ===================================================== */
-const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
+const TUTORIAL = [   // texto: lo que Domingo dice al Comandante (de usted); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "Comandante, la capital es nuestra. ¿Entramos?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "¡Adelante!", der: "Eso ni se pregunta" },
   { paso: "girar", texto: "Antes de entrar, ¿sabe usted quién soy?", girada: "En cada nueva etapa, Interior preparará un expediente. Solo tendrá que girar la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Claro, mi hermanito", der: "Me suena su cara, ¿nos conocemos?" },
   { paso: "fuerzas", texto: "Mantenga bajo control las cuatro fuerzas. Si alguna llega al límite, caerá su gobierno.", cinta: "Toca los iconos de arriba para saber más.", izq: "Contentaré a todos", der: "Mano firme" },

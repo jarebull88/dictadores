@@ -166,7 +166,7 @@ El Norte rompió relaciones en 1961 y no volvió a tener embajada hasta 2015. Po
 ---
 
 ## Pendiente de textos (para la conversación de redacción)
-- **Cuesta → el hermano:** revisar la ficha (`FICHAS`) y el tutorial (`TUTORIAL`). Las cartas que hablan del hermano en tercera persona (la sucesión, el delfín y el parte médico) tienen que encajar con que el hermano sea el ministro de las Fuerzas Armadas; algunas puede decirlas él mismo.
+- **(Hecho el 28 oct) Cuesta desaparece: lo sustituye Domingo, el hermano, también en el tutorial.** revisar la ficha (`FICHAS`) y el tutorial (`TUTORIAL`). Las cartas que hablan del hermano en tercera persona (la sucesión, el delfín y el parte médico) tienen que encajar con que el hermano sea el ministro de las Fuerzas Armadas; algunas puede decirlas él mismo.
 - **Anselmo → presidente florero:** revisar su ficha y su cargo, y repartir sus 11 cartas de la era 4 con el hermano.
 - **Fichas del embajador del Norte por era:** nombre e historia de los tres que faltan.
 - **Equilibrio:** Educación en la era 2, Trabajo en la era 3, las Fuerzas Armadas en la era 4 (ahora tienen 1 carta).

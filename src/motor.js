@@ -815,7 +815,7 @@ function voltear() {
   if (t && TUTORIAL[t.i].paso === "girar") {               // tutorial: hay que darle la vuelta y volver a girarla
     if (volteada) t.vista = true;
     else if (t.vista) t.girada = true;
-    // 16 oct: con la carta girada, Cuesta avisa de que el Comandante también tendrá su expediente al cambiar de etapa
+    // 16 oct: con la carta girada, Domingo avisa de que el Comandante también tendrá su expediente al cambiar de etapa
     const paso = TUTORIAL[t.i];
     if (paso.girada) {                                     // 17 oct: el texto nuevo también entra con el fundido
       const msg = $("mensaje");

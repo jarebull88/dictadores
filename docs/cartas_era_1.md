@@ -129,7 +129,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 11. La tierra
 
 **Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 12.
+**Condición:** sorteo con peso 20.
 
 **Carta:** «Las fincas de los ricos ya son de la Revolución. ¿Para los campesinos o para el Estado?»
 
@@ -143,7 +143,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 12. Los periódicos
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 10.
+**Condición:** sorteo con peso 5.
 
 **Carta:** «La prensa critica cada decreto. Los tipógrafos quieren aclarar al pie que es propaganda enemiga.»
 
@@ -155,7 +155,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 13. Las urnas prometidas
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
-**Condición:** sorteo con peso 10; a partir del año 2 de la era.
+**Condición:** sorteo con peso 20; a partir del año 2 de la era.
 
 **Carta:** «Se acerca la fecha de las elecciones que prometimos. ¿Qué le decimos al Pueblo?»
 
@@ -173,7 +173,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 14. La campaña de alfabetización
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 6.
+**Condición:** sorteo con peso 20.
 
 **Carta:** «Los estudiantes irán al campo a enseñar a leer y escribir. ¿Cuál será la primera lección?»
 
@@ -193,7 +193,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 16. Se acabó el profesional
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 10.
+**Condición:** sorteo con peso 5.
 
 **Carta:** «Nuestros mejores deportistas juegan en las ligas extranjeras. ¿Abolimos el deporte profesional?»
 
@@ -203,7 +203,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 17. Los colegios de los curas
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 6.
+**Condición:** sorteo con peso 20.
 
 **Carta:** «Como nacionalizamos los colegios religiosos, los curas dan misas contra la Revolución.»
 
@@ -213,7 +213,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 18. El club de golf
 
 **Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 6.
+**Condición:** sorteo con peso 3.
 
 **Carta:** «Nuestro país romperá relaciones si sigue expropiando. Empezando por el club de golf.»
 
@@ -233,7 +233,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 20. Los niños que se van
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 6; a partir del año 3 de la era.
+**Condición:** sorteo con peso 3; a partir del año 3 de la era.
 
 **Carta:** «Corre el rumor de que el Estado se quedará con los niños. Los padres los suben solos a los aviones.»
 
@@ -243,7 +243,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 21. La reforma urbana
 
 **Personaje:** Ministro de Economía  
-**Condición:** sorteo con peso 6.
+**Condición:** sorteo con peso 20.
 
 **Carta:** «Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.»
 
@@ -253,7 +253,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 22. Las milicias
 
 **Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** sorteo con peso 6.
+**Condición:** sorteo con peso 3.
 
 **Carta:** «Crearemos milicias de obreros y estudiantes por si vuelve el tirano. Falta decidir quién las manda.»
 
@@ -263,7 +263,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 23. Las mil flores
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 6.
+**Condición:** sorteo con peso 3.
 
 **Carta:** «Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.»
 
@@ -275,7 +275,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 24. Los oficiales de antes
 
 **Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** sorteo con peso 10.
+**Condición:** sorteo con peso 5.
 
 **Carta:** «Los oficiales del tirano que se rindieron piden un puesto en el nuevo Ejército.»
 
@@ -289,7 +289,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 25. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 14; exige alguna de `purga_inicial`, `censura_previa`.
+**Condición:** sorteo con peso 30; a partir del año 3 de la era.
 
 **Carta:** «Cada cuadra tendrá su comité de vecinos vigilantes. Falta decidir a quién le cuentan lo que ven.»
 
@@ -301,7 +301,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 26. El retrato
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 6; a partir del año 4 de la era.
+**Condición:** sorteo con peso 3; a partir del año 4 de la era.
 
 **Carta:** «Propongo su retrato en cada aula. El fotógrafo pregunta cuál es su perfil bueno.»
 
@@ -313,7 +313,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 27. Los que se marchan
 
 **Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 14; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
+**Condición:** sorteo con peso 7; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
 
 **Carta:** «Los ricos se marchan con las joyas cosidas al forro. Propongo registrarlos en el aeropuerto.»
 
@@ -329,7 +329,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 28. El partido
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 12.
 
 **Carta:** «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
 
@@ -339,7 +339,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 29. El economista
 
 **Personaje:** Ministro de Economía  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 12.
 
 **Carta:** «Pedimos un economista para el Banco Nacional y el comandante Cabaña alzó la mano. Oyó «comunista».»
 
@@ -349,7 +349,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 30. Las barbas
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 12.
 
 **Carta:** «El barbero de palacio quiere saber si los comandantes se afeitarán ahora que gobiernan.»
 
@@ -359,7 +359,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 31. El refresco
 
 **Personaje:** Ministro de Comercio  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 12.
 
 **Carta:** «Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.»
 
@@ -417,7 +417,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 ### 36. Embargo total
 
 **Personaje:** Ministro de Comercio  
-**Condición:** sorteo con peso 14; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.
+**Condición:** sorteo con peso 20; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.
 
 **Carta:** «El embargo es total y las tiendas se vacían. Propongo repartir la comida con una libreta.»
 

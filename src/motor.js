@@ -29,6 +29,7 @@ function audio() {
 /* iOS solo desbloquea el audio con touchend o click (no con pointerdown), y otros navegadores con cualquiera: se prueban todos y se emite un instante de silencio */
 let audioDesbloqueado = false;
 function desbloquearAudio() {
+  try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}   // Safari 16.4+: suena aunque el móvil esté en silencio
   const c = audio();
   if (!c) return;
   if (c.state !== "running") c.resume().catch(() => {});

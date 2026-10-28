@@ -15,9 +15,9 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Arriba:** el **título** del logro (estilo Titular) y, debajo, el **subtítulo**: una sola frase corta (estilo Cuerpo, en negrita, donde va la pregunta en la partida).
 - **La carta, por delante:** la ilustración del objeto ocupa la carta (mientras no haya ilustración, un hueco con el nombre del objeto).
 - **Debajo de la carta:** «Por «decisión»» (la respuesta que dio el logro).
-- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): el nombre del objeto, la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Beneficio** (una línea, lo positivo) y el **Perjuicio** (una línea, lo negativo, que tiene que ser *real*: algo que le pasa al Comandante, como lo de la paloma y el uniforme; 28 oct, Jorge: ya no se llaman «Efecto» y «Efecto secundario»). Nada más: sin puntos, valores ni rarezas.
+- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Beneficio** (una línea, lo positivo) y el **Perjuicio** (una línea, lo negativo, que tiene que ser *real*: algo que le pasa al Comandante, como lo de la paloma y el uniforme; 28 oct, Jorge: ya no se llaman «Efecto» y «Efecto secundario»). Nada más: sin puntos, valores ni rarezas.
 - **Primera vez:** sin sobre (25 oct, Jorge: «eliminamos la animación del sobre»). El jugador toca la estrella, ve la cuadrícula con el logro nuevo («¡Nuevo!») y, al tocarlo, sale directamente la carta por delante, con la pista «Toca la carta para girarla» (solo la primera vez).
-- **Datos de cada logro** (`LOGROS` en `datos.js`): `id, bandera, titulo, subtitulo, objeto, decision, descripcion, efecto, secundario` (`frase` pasa a llamarse `descripcion`).
+- **Datos de cada logro** (`LOGROS` en `datos.js`): `id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio` (28 oct, Jorge: título y objeto son lo mismo, así que el campo `objeto` desaparece; `efecto` y `secundario` pasan a `beneficio` y `perjuicio`) (`frase` pasa a llamarse `descripcion`).
 - **Límites orientativos:** título ≤24 caracteres, subtítulo ≤60, descripción ≤220, efecto y efecto secundario ≤60 cada uno.
 
 **Estilo de los textos (como los logros de *Dungeon Crawler Carl*):** los anuncia la voz del «Sistema», burocrática, sarcástica y algo condescendiente, que habla de tú, se ríe del jugador y le pone a cada objeto un efecto absurdo y su efecto secundario.
@@ -45,11 +45,10 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Referencia real:** el carné de los Comités de Defensa de la Revolución (CDR), con el ojo, la cinta «con la guardia en alto» y una cita firmada por Fidel. Los CDR se fundaron el 28 sep 1960, en un acto ante el Palacio Presidencial, mientras estallaban petardos; Fidel anunció «un sistema de vigilancia colectiva revolucionaria» (verificado). El texto exacto de la cita del carné sale de la imagen que tiene Jorge; no lo he encontrado transcrito en la red.
 - **Se desbloquea con** (28 oct, Jorge: «por ser literalmente un chivatón»): carta `denuncias_falsas` de la **era 2** (Ministro del Interior), opción «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). Antes, `ojos_barrio`, que ahora crea los comités siempre.
 
-### Recompensa 1 · Licencia de electricista — *aprobada* (28 oct)
+### Recompensa 1 · Licencia de electricista — *aprobada* (28 oct; faltan solo los números que el motor necesite)
 - **Se gana con:** carta `fin_pelota` («Se acabó el profesional», Ministra de Educación), opción «Se juega por amor» (no pone bandera: el motor tendrá que reconocer la opción).
-- **titulo:** Amateur de élite
+- **titulo:** Licencia de electricista (28 oct: título y objeto son lo mismo; «Amateur de élite» se descarta)
 - **subtitulo:** Tu mejor atleta ya tiene oficio
-- **objeto:** Licencia de electricista
 - **descripcion:** Felicidades: tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.
 - **Beneficio:** +20 medallas por competir contra universitarios.
 - **Perjuicio:** Tu aire acondicionado lo montó un boxeador y ahora gotea.
@@ -57,18 +56,16 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 
 ### Recompensa 2 · Libreta de abastecimiento — *en curso* (28 oct)
 - **Se gana con:** carta `embargo_total` (Ministro de Comercio), opción «Una libreta por familia».
-- **titulo:** Cuota cumplida *(propuesto; Jorge no lo ha confirmado)*
+- **titulo:** Libreta de abastecimiento
 - **subtitulo:** Todo el país come lo mismo
-- **objeto:** Libreta de abastecimiento
 - **descripcion:** Tu libreta incluye una casilla por producto y mes. Lo básico: café, cigarros y arroz para todos, y cuarenta casillas más para productos que nunca han llegado ni se esperan.
 - **Beneficio / Perjuicio:** *pendiente* (Jorge no se decide por las propuestas del 28 oct: el beneficio y el perjuicio deben ser algo concreto y real que le pasa al Comandante).
 - **Referencia real:** la libreta de abastecimiento se creó en marzo de 1962 (cuadrícula de productos por persona y mes, sellada por el bodeguero).
 
 ### Recompensa 3 · Compota importada — *en curso* (28 oct)
 - **Se gana con:** carta `la_bahia` (Ministro de las Fuerzas Armadas), opción «Cámbienlos por compotas».
-- **titulo:** *pendiente* (propuestos: Canje de compotas, Fruta de primera, Postre de Estado)
+- **titulo:** Compota importada
 - **subtitulo:** El postre favorito del Comandante
-- **objeto:** Compota importada
 - **descripcion:** Mil doscientos presos por un cargamento de compota de calidad, de la de fuera, un producto de primera que no volverás a ver en tu vida. Se recomienda saborearla despacio.
 - **Beneficio / Perjuicio:** *pendiente*
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».

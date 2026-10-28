@@ -581,3 +581,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Recompensa 1 aprobada:** «Amateur de élite» (objeto: Licencia de electricista, por «Se juega por amor»). Las etiquetas del reverso pasan a **Beneficio / Perjuicio**; el perjuicio debe ser algo real que le pasa al Comandante. Texto completo en `docs/COLECCIONABLES.md`.
 - **28 oct — Recompensa 2 (libreta) a medias:** objeto, subtítulo y descripción aprobados; título y Beneficio/Perjuicio pendientes.
 - **28 oct — Recompensa 3 (compota) a medias:** objeto, subtítulo y descripción aprobados; título y Beneficio/Perjuicio pendientes.
+- **28 oct — Recompensas: título y objeto son el mismo campo** (Jorge): desaparece `objeto`; el título es el nombre de la cosa (Licencia de electricista, Libreta de abastecimiento, Compota importada, Botella de Revolukola). `efecto`/`secundario` pasan a `beneficio`/`perjuicio`.

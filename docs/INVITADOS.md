@@ -5,6 +5,7 @@ Se escribe a mano. Los invitados son personajes con un papel propio que no son p
 ## Fijos
 ### Padrino Pupo (babalawo)
 - **Quién es:** un babalawo descarado y aprovechado, como todos los gurús. Trata al Comandante de **«mijo»** (el único que lo hace), primero mete el miedo (mal de ojo, envidias, sombras) y luego pide «para el santo» una lista exagerada que acaba en una puya.
+- **Expediente (28 oct, aprobado por Jorge):** nombre «Padrino Pupo», cargo «Babalawo oficial». Historia: «Babalawo de barrio que lee el futuro en un collar de caracoles. Ve el mal de ojo en cualquier cara, sobre todo en las que pagan.» Nota: «Es el único que llama «mijo» al Comandante.» (Pasa a `FICHAS` cuando el motor admita invitados.)
 - **Cómo sale:** solo si lo llaman. En **«Las colas»** la respuesta B pasa a ser **«Llamen a un experto»**: entonces sale una de sus cuatro amenazas (al azar) y, si le haces caso, el remedio. Las dos cartas son segundos pasos (`enlace`): no cuentan. Si no lo llamas, no sale. Una vez por era como mucho.
 - **Fuerzas:** dejarse enredar (A) sube un poco el Pueblo creyente; plantarse (B) sube un poco el Partido.
 - **Idea para las otras eras:** su lista encoge con la economía (era 2: arroz, frijoles, cigarros; era 3: café, queso, cerveza; era 4: leche en polvo, pollo congelado, una jaba de boniato). Ideas de Jorge guardadas: «muchos ojos encima y no todos de admiración», «cuando uno manda tanto, despierta envidias», «le han echado mal de ojo, y del fuerte».

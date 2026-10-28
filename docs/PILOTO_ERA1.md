@@ -22,5 +22,5 @@ Se escribe a mano. Es la fase 3 de `docs/PLAN_NARRATIVO.md`: qué cartas tiene l
 - **Efectos fuera de la era 1:** se va `universidades` (era 2), cambia `club_ajedrez` con `oficiales`, `aliado_enfadado` necesita otro motivo y `la_memoria` (era 4) se queda sin Mota.
 
 ## Humor (una de cada tres)
-- **Entra:** el béisbol de los barbudos (el Comandante lanza en un partido de exhibición).
-- **No entran:** la paloma en el hombro (es el chiste del tutorial y desbloquea un logro); el discurso de cuatro horas (se guarda: puede repetirse en varias eras y no hay que quemarlo); los cuarteles convertidos en escuelas (no es ridículo).
+- **Entran:** el béisbol de los barbudos (el Comandante lanza en un partido de exhibición); «¿hay algún economista?» (Ferro levanta la mano porque entiende «comunista» y acaba presidiendo el Banco Nacional, firmando los billetes con su apodo; estrena a Ferro en la era 1); las barbas (¿se afeitan los barbudos ahora que gobiernan?; prepara el atentado de la crema para la barba); los casinos (se cierran, los crupieres protestan y se reabren); el refresco del norte nacionalizado (hay que ponerle nombre revolucionario).
+- **No entran:** la paloma en el hombro (es el chiste del tutorial y desbloquea un logro); el discurso de cuatro horas (se guarda: puede repetirse en varias eras y no hay que quemarlo); los cuarteles convertidos en escuelas (no es ridículo); el hotel de la asamblea de naciones y el hotel de lujo como cuartel general (se prefieren las otras).

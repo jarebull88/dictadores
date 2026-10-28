@@ -25,7 +25,9 @@ Cada barra mide el **peso político** de esa fuerza en el régimen, no lo conten
 - Las dos opciones pueden ser malas para la misma fuerza (un coste común): no hace falta que una la beneficie. Lo que cuesta a largo plazo va en banderas y cartas futuras, no en la barra de hoy.
 
 ## La pregunta (el texto de la carta)
-- La pregunta va **implícita**: se presenta la situación, la exigencia o el problema de forma natural y las opciones responden a ella. No se termina por sistema con «¿Qué decide?» o «¿Aceptamos?».
+- **La pregunta plantea el dilema** (28 oct; antes iba implícita): quién pide qué y qué está en juego. A veces el personaje la hace con «?», como en Reigns, pero no se termina por sistema con «¿Qué decide?».
+- **Basta con una propuesta**: si el personaje propone algo («invadimos»), la respuesta ya puede aceptarlo o negarlo. Las dos salidas solo se ponen en la pregunta cuando son muy distintas (¿juicio en el estadio o un barco al exilio?).
+- **Grandes hechos (D): las dos opciones son *cómo* se hace, no *si* se hace** (28 oct): el hecho real llega siempre. En las cartas menores se puede decir que no.
 - Cuando la carta es un **dilema entre fuerzas** («El aniversario»: tanques para el Ejército o ron para el Pueblo), la pregunta deja claro entre quiénes se elige, para que la respuesta tenga sentido.
 - Cuando es una **propuesta tentadora** («Los nuevos vecinos»: misiles regalados), el personaje solo la plantea y tú aceptas o rechazas. **No se avisa de las consecuencias** ni de cómo reaccionará cada fuerza: eso lo descubre el jugador.
 - Sin pistas del país real: nada de «su isla» y similares.
@@ -35,7 +37,7 @@ Cada barra mide el **peso político** de esa fuerza en el régimen, no lo conten
 - **Humor en la pregunta, de vez en cuando** (22 oct): el personaje sigue hablando en serio, pero la situación puede tener guasa («en las tomas de la sierra se le ve algo rellenito»). Funciona porque es raro: no abusar.
 
 ## Las respuestas A y B
-- **Hasta 36 caracteres, espacios incluidos** (22 oct; antes 5 palabras y ≤28): dos líneas en todos los móviles, sin achicar la letra. Sin límite de palabras: se puede usar ese espacio para que la decisión se entienda mejor. Sin punto final.
+- **Hasta 24 caracteres, espacios incluidos** (28 oct, provisional: quizá baje; antes 36, y el test aún vigila 36). Como la pregunta ya plantea el dilema, la respuesta es la orden con chulería, no la explicación. Sin punto final.
 - **Sin remate, en ninguna era** (16 oct): la respuesta es todo lo que se lee.
 - Una decisión clara: el jugador tiene que entender qué está eligiendo. No sacrifiques la claridad por el ingenio (negar que existen unos misiles no deja claro que los retiras).
 - **Si habla un embajador, la respuesta va dirigida a él** («Se irán como nunca vinieron», «Tranquilo, los retiraremos»), no como una orden a tu gente.
@@ -46,7 +48,7 @@ Cada barra mide el **peso político** de esa fuerza en el régimen, no lo conten
 - **La metáfora no puede tapar la decisión**: si el juego de palabras no deja claro qué se hace, se dice explícito («Arresto domiciliario para todos», mejor que «Que jueguen solos en casa»).
 - Nada genérico que sirviera para cualquier carta: cada opción responde al conflicto concreto.
 - A y B son decisiones realmente distintas.
-- Las dos llevan humor, también la opción «sensata». Funciona muy bien el **doble sentido** («Nuestro misil es el Pueblo»: el Pueblo como arma y como rehén).
+- **Humor siempre que se pueda, sin forzarlo** (28 oct), también en la opción «sensata». Funciona muy bien el **doble sentido** («Nuestro misil es el Pueblo»: el Pueblo como arma y como rehén).
 
 ## Cómo se entregan las propuestas
 Al revisar una carta que ya existe, primero la **original** (pregunta y respuestas) y debajo la propuesta, para que Jorge compruebe que se mantiene el sentido. **No se resume tanto que se pierda lo que se pide** («La mano del norte» pide auditorías, controlar el país; reducirlo a «algún favor» lo desvirtúa).
@@ -65,9 +67,9 @@ Sin títulos, explicaciones, análisis, efectos ni propuestas adicionales. Si se
 
 ## Lista de revisión
 Para cada carta, antes de proponerla o al revisarla:
-1. ¿La pregunta deja claro entre qué fuerzas se elige, sin acabar en una pregunta explícita?
+1. ¿La pregunta plantea el dilema (o una propuesta que se puede aceptar o negar)? Si es un gran hecho, ¿las dos opciones son *cómo* se hace?
 2. ¿La pregunta tiene 100 caracteres o menos y habla como su personaje (embajador en primera persona, ministro sobre asuntos internos)?
-3. ¿Cada respuesta tiene 36 caracteres o menos, sin remate ni punto final?
+3. ¿Cada respuesta tiene 24 caracteres o menos, sin remate ni punto final?
 4. ¿Es una orden o resolución del Comandante, clara, propia de esta carta y distinta de la otra?
 5. ¿La ironía está dentro de la decisión, sin explicar el chiste ni frases contrapuestas o telegráficas?
 6. ¿Hay algún país real, gentilicio o término propio de una potencia real («gringo», «camarada»)?
@@ -85,3 +87,8 @@ Para cada carta, antes de proponerla o al revisarla:
 - **Ni purgar ni despedir ministros**: los culpables son otros (viceministros, burócratas, saboteadores).
 - **Las respuestas necesitan cinismo político, oportunismo y humor negro** (23 oct, «La guerra lejana»): no basta con que sean correctas y claras. El Comandante saca partido de todo: el cinismo con que aprovecha la situación es el chiste.
 - **Lenguaje suavizado** (23 oct): nada de «matar», «fusilar», «suicidio», «asesinato» y parecidos, ni en preguntas ni en respuestas. La dureza se sugiere («se tiran solas a la vía del tren», «el caldero»). **Excepción** (23 oct): la palabra se puede quedar si no es agresiva y va en clave de humor («El tirano lo dio por muerto 3 veces»).
+
+## Notas de Jorge (28 oct, plan narrativo)
+- **Una de cada tres cartas, de humor**, en cada era: decisiones ridículas y cómicas. Las mejores son el absurdo que pasó de verdad (el Comandante lanzando en un partido de béisbol con un equipo de barbudos). Sus efectos, pequeños, para no torcer la partida; quizá con una muerte propia si eliges la tontería (te batean y la pelota te da en la cabeza), que se diseña junto con los atentados.
+- **Solo lleva nombre quien vuelve a salir.** Si un personaje aparece una vez, va sin nombre («un comandante de provincias dimite»).
+- Las redacciones nuevas se revisan una por una con Jorge.

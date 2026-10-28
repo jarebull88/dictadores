@@ -535,3 +535,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 28 oct (noche) — Fuera nombre y años del pie
 - Se quita del pie, abajo a la izquierda, el nombre del jugador y los años (y el «1 DE 8» del tutorial), con su ajuste de tamaño; Jorge los pondrá en otra zona más adelante. Se mantiene el máximo de 7 letras para el nombre (medido el 28 oct: 5 letras a 360 px, 7 a 390, 9 a 430).
+- **28 oct — Plan narrativo** (`docs/PLAN_NARRATIVO.md`): diagnóstico de las 119 cartas y plan por fases. Jorge aprueba la etiqueta histórica D/P/H/X, rompe la regla 2 (habrá personajes invitados, muchos) y la de la pregunta implícita (la pregunta plantea el dilema; respuestas más cortas), quiere el tutorial como el comienzo de la historia y empezar por la era 1. Sin subsistemas hasta terminar el juego. Pendiente: cómo ramificar sin traicionar la historia (Jorge propone la licencia creativa en las muertes). Se sigue en una conversación nueva.

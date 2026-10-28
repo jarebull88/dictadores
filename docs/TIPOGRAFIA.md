@@ -2,7 +2,7 @@
 
 **Solo hay dos estilos de letra**, definidos en un único bloque de `src/estilos.css` (entre `TIPOGRAFIA:INICIO` y `TIPOGRAFIA:FIN`). El test `tests/tipografia.test.js` falla si alguien pone letra, tamaño, peso, mayúsculas, espaciado o interlineado en otra parte del CSS, o en línea en el HTML o en `motor.js`.
 
-- **TITULAR:** Londrina Solid, siempre en mayúsculas, peso normal (400) o **Light (300, `--peso-ligero`)** para la leyenda bajo la carta y los años.
+- **TITULAR:** Londrina Solid, siempre en mayúsculas, peso normal (400) o **Light (300, `--peso-ligero`)** para la leyenda bajo la carta.
 - **CUERPO:** Sofia Sans Semi Condensed (condensada, como Londrina; desde el 24 oct, antes Baloo 2), en negrita (800, `--peso-negrita`) o normal (400). Sus tamaños son los de Baloo × 1,16.
 
 ## Cómo cambiar un estilo

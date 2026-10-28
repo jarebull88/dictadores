@@ -532,3 +532,6 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - Abajo a la izquierda: el nombre (Londrina, como los títulos) y debajo los años («1 AÑO», Londrina Light). En el tutorial solo salen los pasos.
 
 - Nombre y años forman un bloque cuadrado: las dos líneas miden lo mismo de ancho (cada una ajusta su tamaño de letra; `ajustarNombrePie()`), sin pasar de la primera casilla ni de la altura de las casillas.
+
+## 28 oct (noche) — Fuera nombre y años del pie
+- Se quita del pie, abajo a la izquierda, el nombre del jugador y los años (y el «1 DE 8» del tutorial), con su ajuste de tamaño; Jorge los pondrá en otra zona más adelante. Se mantiene el máximo de 7 letras para el nombre (medido el 28 oct: 5 letras a 360 px, 7 a 390, 9 a 430).

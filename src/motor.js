@@ -423,7 +423,7 @@ function mostrar(id) {
   ocultarInfo(); quitarInfo();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
-  if (id === "screen-game") { ajustarLeyenda(); ajustarNombrePie(); }
+  if (id === "screen-game") { ajustarLeyenda(); }
 }
 
 function parBarra(id) {
@@ -468,30 +468,7 @@ function pintarBarras() {
   });
 }
 
-/* 28 oct: el nombre del jugador (máx. 7 letras, maxlength del campo) y los años forman un bloque cuadrado: las dos líneas miden lo mismo de ancho
-   (cada una ajusta su tamaño de letra), sin pasar de la primera casilla (8 px de aire) ni de la altura de las casillas. */
-function ajustarNombrePie() {
-  const n = $("nombre-pie"), y = $("anios-poder"), r0 = $("ranuras").children[0];
-  if (!n || !y || !r0) return;
-  const caja = n.parentNode;
-  n.style.removeProperty("--nombre-pie-px"); caja.style.removeProperty("--anios-px");
-  if (!n.textContent) return;                           // tutorial: solo los pasos
-  const ancho = el => { try { const rg = document.createRange(); rg.selectNodeContents(el); return rg.getBoundingClientRect().width; } catch (e) { return 0; } };
-  const wn = ancho(n), wy = ancho(y), base = parseFloat(getComputedStyle(n).fontSize) || 21;
-  const libre = r0.getBoundingClientRect().left - caja.getBoundingClientRect().left - 8, alto = caja.getBoundingClientRect().height;
-  if (!(wn > 0 && wy > 0 && libre > 0)) return;
-  let W = Math.min(libre, Math.max(wn, wy));
-  let sn = base * W / wn, sy = base * W / wy;
-  const f = alto / ((sn + sy) * 1.05);                  // las dos líneas, a lo alto de una casilla
-  if (f < 1) { sn *= f; sy *= f; }
-  n.style.setProperty("--nombre-pie-px", sn.toFixed(1) + "px"); caja.style.setProperty("--anios-px", sy.toFixed(1) + "px");
-}
-function pintarCabecera() {
-  const n = anios();
-  $("nombre-pie").textContent = E && E.tutorial ? "" : nombreDictador;   // 28 oct: el nombre del jugador, sobre los años
-  $("anios-poder").textContent = `${n} ${n === 1 ? "año" : "años"}`;
-  ajustarNombrePie();   // 27 oct: abajo a la izquierda, en Londrina Light; el nombre del Comandante ya no sale
-}
+function pintarCabecera() {}   // 28 oct: el nombre y los años ya no salen en el pie (Jorge los pondrá en otra zona)
 
 function moverRanuras(cont, antes) {
   const base = cont.getBoundingClientRect();
@@ -698,7 +675,7 @@ function ajustarMensaje() {
   while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); ajustarNombrePie(); } });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
 
 /* Si el informe no cabe en la ficha (pantallas bajas), se achica la letra, hasta 12,5 px */
 function ajustarFicha(carta = $("carta")) {
@@ -1309,8 +1286,6 @@ function pasoTutorial(i, sinEntrada) {
   clearTimeout(relojEstado); modoEstado = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
-  $("nombre-pie").textContent = "";
-  $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
     E.estados = [{ id: "luna", edad: 0 }];
     E.estadoNuevo = { id: "luna", sale: "" };

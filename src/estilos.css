@@ -94,7 +94,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 
 /* — TITULAR — */
 .titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
-.popup b, .info-titulo, .nombre-pie, .etiqueta-boli b, .leyenda, .anios, .popup .efecto, .esquela b, .titulo-caida,
+.popup b, .info-titulo, .etiqueta-boli b, .leyenda, .popup .efecto, .esquela b, .titulo-caida,
 .opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
@@ -105,11 +105,8 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .hueco-logro { font-size: var(--t-s); }
 .logro-objeto-nombre { font-size: var(--t-m); }
 /* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
-.leyenda, .anios { font-weight: var(--peso-ligero); }
+.leyenda { font-weight: var(--peso-ligero); }
 .leyenda { font-size: var(--leyenda-px, var(--t-l)); }
-.anios { font-size: var(--anios-px, var(--t-s)); }
-.nombre-pie { font-size: var(--nombre-pie-px, var(--t-s)); }
-.nombre-pie { font-weight: 400; }   /* 28 oct: el nombre del jugador, en Londrina normal como los demás títulos; los años, en Light */
 .etiqueta-boli.larga b, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
 .logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
 .logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
@@ -539,7 +536,6 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .pie-juego { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; padding: 2px 0 0; }   /* 24 oct: el nombre y los años arriba, las casillas de estado debajo, todo centrado */
 .zona-leyenda { position: relative; width: 100%; height: var(--alto-leyenda); }
 .leyenda { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; color: var(--p-tinta); }
-.anios { position: absolute; left: 0; bottom: 0; height: var(--cuadro); display: flex; flex-direction: column; justify-content: center; color: var(--p-tinta); white-space: nowrap; }   /* abajo a la izquierda, a la altura de las casillas */
 @keyframes aparece { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .ranuras { display: flex; justify-content: center; gap: var(--separacion); flex-shrink: 0; position: relative; }
 .ranura.ranura-sale { position: absolute; margin: 0; pointer-events: none; z-index: 2; }   /* 17 oct: el estado que sale de las casillas */

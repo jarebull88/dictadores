@@ -186,12 +186,12 @@ test("logros: «Que cada vecino vigile a su vecino» da un logro nuevo; con un t
   assert.deepEqual(j.errores, []);
 });
 
-test("bajo la carta va el cargo del personaje (o el nombre del estado), y los años abajo a la izquierda", () => {
+test("bajo la carta va el cargo del personaje (o el nombre del estado), y abajo a la izquierda ya no sale nada (28 oct)", () => {
   const j = cargar();
   j.empezar();
   const cargo = j.w.eval("(FICHAS[E.actual.personaje] || {}).cargo || E.actual.personaje");
   assert.equal(j.$("leyenda").textContent, cargo);
-  assert.match(j.$("anios-poder").textContent, /^\d+ años?$/);
+  assert.ok(!j.d.getElementById("anios-poder"), "el nombre y los años ya no salen en el pie");
   j.w.eval(`E.estadoNuevo = { id: "censura", sale: "" }; E.estados = [{ id: "censura", edad: 0 }]; mostrarCartaEstado();`);
   assert.equal(j.$("leyenda").textContent, j.w.eval("ESTADOS.censura.nombre"));
   assert.ok(j.d.querySelector("#carta .carta-estado img.icono"), "la imagen de la carta de estado es su icono");

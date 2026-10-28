@@ -988,8 +988,8 @@ const CARTAS = [
    «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
 const FICHAS = {
   "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
-    historia: "Vicepresidente del tirano y del gobierno anterior. Recibió a la columna con café y con las llaves de los ministerios.",
-    nota: "Sus expedientes de los 2 regímenes anteriores han desaparecido de los archivos." },
+    historia: "Vicepresidente del tirano. Se pasó a la Revolución el último día, con el uniforme recién comprado y la etiqueta colgando.",
+    nota: "Sobrevive a todos los gobiernos. Este servicio estudia cómo." },
   "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Responsable de víveres",
     historia: "Bodeguero que fió víveres a la columna y la siguió al monte para cobrar una deuda que sigue pendiente.",
     nota: "Sus cuentas no cuadran nunca y este servicio aún no ha averiguado si es por torpeza." },

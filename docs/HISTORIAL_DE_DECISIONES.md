@@ -571,3 +571,10 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Expedientes: Sarria se queda igual. Strenko rehecho** (los embajadores cambiarán en cada era): «Enviado del bloque oriental para convertir una revolución en cliente. Ofrece petróleo y asesores. Todo se paga en azúcar y favores.» Nota: «Este servicio ya ha perdido la cuenta de lo que debemos.»
 - **28 oct — Expedientes: Pembrook, Eusebio, Mirta y el Comandante se quedan igual** (solo cambian los cargos permanentes). Revisión de expedientes cerrada: cambiados Domingo, Anselmo y Strenko; nuevos Padrino Pupo y Papá Ernesto (en `docs/INVITADOS.md`).
 - **28 oct — Cuesta desaparece:** lo sustituye Domingo, el hermano del Comandante, que también es el guía del tutorial. Corregidos `CLAUDE.md`, los comentarios del tutorial en `datos.js` y de `motor.js`.
+
+## 28 oct (noche) — Secuelas que se giran, sin contornos, respuestas más anchas, imágenes nuevas
+- La carta de estado nueva (la «secuela» de una decisión) ya se puede girar nada más salir: por detrás enseña la descripción y el efecto del estado. Antes había que guardarla y volver a sacarla desde su casilla.
+- Prueba: sin contornos negros (`--contorno: transparent`; las líneas de separación del mazo también). Reversible con una línea.
+- Respuestas: las líneas ocupan el 60 % del ancho de la carta (antes ~42 %), hasta 3 líneas.
+- El cargo bajo la carta tiene el tamaño del texto de las decisiones (`--c-respuesta`) en vez del del título de era.
+- Imágenes nuevas: se actualizan Vicepresidente, Economía, Educación, Interior y los dos embajadores; se guardan **Papá Ernesto** (`papa-ernesto.jpg`, el novelista del pez espada) y **Padrino Pupo** (`padrino-pupo.jpg`, el babalawo del puro y los collares) en `assets/personajes/originales/`, sin integrar (falta darlos de alta en `personajes.json`, `PERSONAJE_SLUG` y `FICHAS`).

@@ -38,7 +38,8 @@
    Un cambio aquí llega a cartas, barras, casillas, iconos, mazo, logros y menú. */
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
-  --borde: var(--linea) solid var(--p-tinta);       /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
+  --contorno: transparent;                          /* 28 oct, PRUEBA de Jorge: sin contornos negros (para volver a ellos: var(--p-tinta)) */
+  --borde: var(--linea) solid var(--contorno);      /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
   --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
@@ -106,7 +107,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .logro-objeto-nombre { font-size: var(--t-m); }
 /* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
 .leyenda { font-weight: var(--peso-ligero); }
-.leyenda { font-size: var(--leyenda-px, var(--t-l)); }
+.leyenda { font-size: var(--leyenda-px, var(--c-respuesta)); }   /* 28 oct: el cargo, al tamaño del texto de las decisiones */
 .etiqueta-boli.larga b, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }
 .logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
 .logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
@@ -326,7 +327,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 }
 .pila .capa::before {   /* las cartas intermedias del mazo: una línea de tinta cada --mazo-paso */
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: calc((var(--mazo-cartas) - 1) * var(--mazo-paso)); pointer-events: none;
-  background: repeating-linear-gradient(to top, transparent 0 calc(var(--mazo-paso) - var(--linea)), var(--p-tinta) calc(var(--mazo-paso) - var(--linea)) var(--mazo-paso));
+  background: repeating-linear-gradient(to top, transparent 0 calc(var(--mazo-paso) - var(--linea)), var(--contorno) calc(var(--mazo-paso) - var(--linea)) var(--mazo-paso));
 }
 .carta { margin-bottom: var(--mazo-alto); }   /* el mazo cuenta como parte del conjunto al centrar */
 /* La carta es solo el contenedor que se arrastra; el marco va en cada cara, para que gire entera.
@@ -523,8 +524,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .texto-respuesta { opacity: 0; color: var(--p-blanco); }   /* 28 oct: el texto de la decisión, en blanco */   /* 27 oct: sin sombra (Jorge): todo plano */
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
-.texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
-.texto-respuesta strong, .texto-respuesta span { max-width: 85%; overflow-wrap: break-word; }   /* 23 oct: hasta el 85 % (antes 100 %): al inclinar la carta, el borde ya no corta la respuesta */   /* 22 oct: todo el ancho (antes 88 %), para que quepan 2 líneas sin bajar la letra */
+.texto-respuesta { position: absolute; left: 20%; width: 60%; bottom: 0; padding: 0 0 12px;   /* 28 oct: las líneas ocupan el 60 % del ancho (antes 50 % menos aire), hasta 3 */
+  display: flex; flex-direction: column; }
+.texto-respuesta strong, .texto-respuesta span { max-width: 100%; overflow-wrap: break-word; }   /* 23 oct: hasta el 85 % (antes 100 %): al inclinar la carta, el borde ya no corta la respuesta */   /* 22 oct: todo el ancho (antes 88 %), para que quepan 2 líneas sin bajar la letra */
 .respuesta[data-dir="1"] .texto-respuesta { align-items: flex-start; text-align: left; }
 .respuesta[data-dir="-1"] .texto-respuesta { align-items: flex-end; text-align: right; }
 .texto-respuesta strong { display: block; }   /* 23 oct: más grande, hasta 3 líneas, siempre el mismo tamaño en cada móvil */   /* 22 oct: siempre el mismo tamaño en cada móvil (21 px; algo menos si la carta es estrecha), nunca según lo larga que sea la respuesta */

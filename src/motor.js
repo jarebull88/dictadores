@@ -632,14 +632,17 @@ function ocultarInfo() {
   pop.classList.add("hidden");
   delete pop.dataset.clave;
 }
+/* La información de un estado (la cara de la carta de información y el reverso de la carta de estado nuevo) */
+function htmlEstado(id) {
+  const d = ESTADOS[id];
+  return `<b class="info-titulo">${esc(d.nombre)}</b><p class="ficha-historia">${esc(d.descripcion)}</p>` +
+    `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[id] || "")}</p>`;
+}
 function mostrarInfo(i) {
   const s = E.estados[i];
   const el = $("ranuras").children[i];
   if (!s || !el) { quitarInfo(); return; }
-  const d = ESTADOS[s.id];
-  abrirInfo("estado-" + s.id, s.id, FONDO_ESTADO[s.id], el,
-    `<b class="info-titulo">${esc(d.nombre)}</b><p class="ficha-historia">${esc(d.descripcion)}</p>` +
-    `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[s.id] || "")}</p>`);
+  abrirInfo("estado-" + s.id, s.id, FONDO_ESTADO[s.id], el, htmlEstado(s.id));
   if (E.tutorial && TUTORIAL[E.tutorial.i].paso === "guardar") { E.tutorial.casilla = true; $("ranuras").classList.remove("destacar"); }
 }
 const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
@@ -805,7 +808,6 @@ function pintarCarta(c) {
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
-  if (modoEstado) return;                              // 27 oct: la carta de estado no se toca: se desliza
   if (ocupado) return;
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso !== "girar") return;   // 17 oct: en el tutorial solo se gira en su paso
   pintarEleccion(0);
@@ -1104,7 +1106,9 @@ function mostrarCartaEstado() {
   const grande = IMG["icono_" + n.id + "-cartel-grande"], pequeno = IMG["icono_" + n.id + "-cartel"];
   const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
-    `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div></div>`;
+    `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
+    `<div class="dorso"><div class="hoja info-hoja">${htmlEstado(n.id)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
+  ajustarFicha(carta);
   entrarCarta(carta);
   pintarRanuras();
 }
@@ -1143,6 +1147,7 @@ function recogerEstado() {
   clearTimeout(relojEstado);
   ocupado = true;
   const carta = $("carta"), id = E.estadoNuevo.id;
+  carta.classList.remove("volteada");
   const idx = E.estados.findIndex(s => s.id === id);
   const destino = $("ranuras").children[idx] || $("ranuras");
   const a = carta.getBoundingClientRect(), b = destino.getBoundingClientRect();

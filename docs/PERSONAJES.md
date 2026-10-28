@@ -173,3 +173,6 @@ El Norte rompió relaciones en 1961 y no volvió a tener embajada hasta 2015. Po
 
 ### Padrino Pupo (babalawo, invitado)
 - **Idea visual (28 oct, Jorge):** una sola imagen. Homenaje a *Vampiros en La Habana*: busto de frente, ojos cerrados de trance (uno se entreabre para ver qué le dan), puro, **vestido de blanco con su gorrito** y collares de cuentas. Prompt en `docs/GUIA_ARTE_BACHS.md`.
+
+### Padrino Pupo (babalawo, invitado)
+- **Idea visual (28 oct, Jorge):** una sola imagen. Homenaje a *Vampiros en La Habana*: busto de frente, piel azul como en el cartel, ojos cerrados de trance (uno se entreabre para ver qué le dan), puro, **vestido de babalawo, de blanco con su gorrito**, y collares de cuentas. Prompt en `docs/GUIA_ARTE_BACHS.md`.

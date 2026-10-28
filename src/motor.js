@@ -27,8 +27,6 @@ function audio() {
   return ctxAudio;
 }
 ["pointerdown", "keydown"].forEach(t => document.addEventListener(t, () => { const c = audio(); if (c && c.state === "suspended") c.resume(); }, { passive: true }));
-/* Duración (en ms) del sonido de un evento, si hay archivo: el reparto adapta su animación a ella */
-const duracionSonido = ev => (bufferesAudio[ev] ? bufferesAudio[ev].duration * 1000 : 0);   // (solo para eventos de un archivo, como repartir)
 /* Un soplo de ruido filtrado que barre de f0 a f1 Hz: el roce de la cartulina */
 function roce(c, t, dur, f0, f1, vol) {
   const n = Math.max(1, Math.floor(c.sampleRate * dur)), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
@@ -935,8 +933,7 @@ function repartir() {
   entrarCarta(carta);                                  // boca abajo y sin pregunta hasta que acabe el reparto
   esc.querySelectorAll(".pila.reparto").forEach(n => n.remove());
   const N = 9, DURA = 420;
-  /* con un archivo de sonido para el reparto, la animación dura lo mismo que él; sin archivo, 90 ms entre cartas */
-  const total = duracionSonido("repartir"), PASO = total ? Math.max(30, (total - DURA - 60) / (N - 1)) : 90;
+  const PASO = 90;                                     // 28 oct: la animación no depende del sonido (repartir.wav dura lo mismo: (N-1)·PASO + DURA + 60 ms)
   sonar("repartir");
   const ancho = window.innerWidth, alto = window.innerHeight;
   for (let i = 0; i < N; i++) {

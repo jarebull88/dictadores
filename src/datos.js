@@ -1006,7 +1006,7 @@ const FICHAS = {
     historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas.",
     nota: "Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
   "Ministro de las Fuerzas Armadas": { nombre: "Domingo", cargo: "Jefe del segundo frente",
-    historia: "Hermano pequeño del Comandante. Era del bloque oriental antes de que el bloque supiera que existíamos.",
+    historia: "Hermano pequeño del Comandante. Fue el primero en llamar «camaradas» a la tropa, y el único que lo pronunciaba bien.",
     nota: "Se cuida el bigote con un esmero impropio de la sierra." },
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Enlace de la columna",
     historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",

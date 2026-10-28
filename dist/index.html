@@ -1189,6 +1189,14 @@ const CARTAS = [
     izq: { accion: "Confisquen y repartan", efectos: { pueblo: -8, ejercito: 4, elite: 4, crisis: -3 } },
     der: { accion: "Yo también compro ahí", efectos: { pueblo: 3, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
   },
+  {
+    // 28 oct, plan narrativo: la crisis leve (antes «La factura»); las colas de 1961–62
+    id: "colas", tipo: "crisis", repetible: true, disparo: e => e.crisis >= 4, titulo: "Las colas",
+    personaje: "Ministro de Comercio",
+    texto: "Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.",
+    izq: { accion: "Primero los del Partido", efectos: { elite: 5, potencias: -5, pueblo: -3, crisis: -3 } },
+    der: { accion: "Pidan más al aliado", efectos: { potencias: 5, elite: -5, pueblo: 2, crisis: -3 } }
+  },
 
   /* ---------- Coalición (borrador) ---------- */
   {
@@ -1199,6 +1207,16 @@ const CARTAS = [
     texto: "Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.",
     izq: { accion: "Un ascenso y se calman", efectos: { ejercito: 8, elite: -4 } },
     der: { accion: "Arréstenlos a todos", efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
+  },
+  {
+    // 28 oct, plan narrativo: el Partido se acerca al aliado a espaldas del Comandante (el sectarismo de 1962, la microfracción de 1968)
+    id: "coalicion_partido_aliado", tipo: "coalicion", repetible: true,
+    disparo: e => e.barras.elite < UMBRAL_COALICION && e.barras.potencias < UMBRAL_COALICION,
+    titulo: "La embajada",
+    personaje: "Ministro del Interior",
+    texto: "Algunos jefes del Partido van mucho a la embajada de nuestro aliado. Dicen que van a cenar.",
+    izq: { accion: "Lo que pida el aliado", efectos: { potencias: 8, elite: -4 } },
+    der: { accion: "Casa y coche para todos", efectos: { elite: 8, potencias: -4 } }
   },
 
   /* ---------- Era 2 · La Purga ---------- */

@@ -10,7 +10,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | — | El aliado exige concesiones y armamento. (era 1) |
 | `atentado_investigado` | El atentado (B) | Los cinco | Tus agentes en el exilio corren peligro. (era 4) |
 | `campos_trabajo` | Los campos de trabajo (A) | Una carta con firmas | Intelectuales denuncian los campos de trabajo. (era 3) |
-| `censura_previa` | Los periódicos (A) | Los ojos del barrio; El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
+| `censura_previa` | Los periódicos (A) | El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
 | `comites_vigilancia` | Los ojos del barrio (B) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |
 | `compensaciones` | Las refinerías (B) | La deuda llama | Una deuda que alimenta una carta de crisis. (era 2) |
 | `critica_abierta` | Las mil flores (B) | Una carta con firmas | Depuración de críticos. (era 3) |
@@ -45,7 +45,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `periodista_oficial` | El periodista oficial (A) | Los titulares | La prensa del régimen exige titulares cada vez más generosos. (era 3) |
 | `policia_tradicional` | — | — | La oposición se organiza con más facilidad. (era 2) |
 | `prensa_libre` | Los periódicos (B) | — | — |
-| `purga_inicial` | Los oficiales de antes (B) | Los ojos del barrio; El jefe pide más; Denuncias falsas | El Ministro del Interior pide más poder. (era 2) |
+| `purga_inicial` | Los oficiales de antes (B) | El jefe pide más; Denuncias falsas | El Ministro del Interior pide más poder. (era 2) |
 | `recuento` | El escrutinio (B) | — | — |
 | `reforma_agraria` | La tierra (A); La tierra (B) | Los que se marchan; El hambre | Escasez de alimentos dos años después. (era 2) |
 | `sindicato_libre` | — | — | Los sindicatos libres quieren elegir a sus dirigentes sin el Partido. (era 1) |

@@ -300,6 +300,8 @@ function nuevaPartida() {
 /* Cada era dura entre min y max cartas (ERAS). Las ventanas de las anclas y turnoMin se cuentan desde el inicio de la era. */
 const anioEra = () => E.turno - E.inicioEra + 1;
 const finEra = () => E.inicioEra + E.N - 1;
+/* 28 oct: la era termina al pasar su última carta, salvo que quede pendiente el segundo paso de un miniflujo */
+const eraTerminada = () => E.turno > finEra() && !E.cola.some(q => POR_ID[q.carta].enlace);
 const deEra = c => (c.era || 1) === E.era;
 const libre = c => (!E.vistas.has(c.id) || (c.repetible && E.turno - (E.ultima[c.id] || 0) >= 10)) && !grupoVisto(c);
 /* Cartas de un mismo «grupo» (p. ej. las tres cartas iniciales): solo sale una por partida, sorteada */
@@ -439,6 +441,8 @@ function aplicar(c, op) {
   E.vistas.add(c.id);
   E.ultima[c.id] = E.turno;
   E.turno++;
+  // 28 oct: el segundo paso de un miniflujo (`enlace`) no cuenta para el largo de la era ni gasta meses
+  if (c.enlace) { E.N++; avanzarEstados(); return; }
   // 22 oct: cada era dura lo mismo tenga las cartas que tenga: sus meses se reparten entre sus cartas (±15 %)
   E.meses += Math.max(1, Math.round((MESES_ERA[E.era] || MESES_ERA[1]) / E.N * (0.85 + Math.random() * 0.3)));
   avanzarEstados();
@@ -1021,7 +1025,7 @@ function resolver(dir) {
   bajarPistas(0);
 
   const caida = comprobarCaida();
-  const eraCompleta = !caida && E.turno > finEra();
+  const eraCompleta = !caida && eraTerminada();
   let despues;
   if (caida) despues = () => terminar(caida);
   else if (eraCompleta) despues = finDeEra;

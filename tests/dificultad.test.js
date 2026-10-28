@@ -12,7 +12,7 @@ const SIM = `
       if (!E.actual) { nulos++; if (E.era < ERAS.length) { iniciarEra(E.era + 1); E.actual = siguienteCarta(); barajarLados(); continue; } return { caida: null, era: E.era, nulos }; }
       const c = E.actual; aplicar(c, opcionDe(Math.random() < .5 ? -1 : 1));
       const caida = comprobarCaida(); if (caida) return { caida, era: E.era, nulos };
-      if (E.turno > finEra()) { if (E.era < ERAS.length) iniciarEra(E.era + 1); else return { caida: null, era: E.era, nulos }; }
+      if (eraTerminada()) { if (E.era < ERAS.length) iniciarEra(E.era + 1); else return { caida: null, era: E.era, nulos }; }
       E.actual = siguienteCarta(); barajarLados();
     }
   };`;

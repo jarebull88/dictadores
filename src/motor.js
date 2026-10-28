@@ -423,7 +423,7 @@ function mostrar(id) {
   ocultarInfo(); quitarInfo();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
-  if (id === "screen-game") ajustarLeyenda();
+  if (id === "screen-game") { ajustarLeyenda(); ajustarNombrePie(); }
 }
 
 function parBarra(id) {
@@ -468,8 +468,20 @@ function pintarBarras() {
   });
 }
 
+/* 28 oct: el nombre del jugador (máx. 7 letras, maxlength del campo) va sobre los años, y la letra baja sola (hasta 12 px) si no llega hasta la primera casilla con 8 px de aire */
+function ajustarNombrePie() {
+  const n = $("nombre-pie"), r0 = $("ranuras").children[0];
+  if (!n || !r0) return;
+  n.style.removeProperty("--nombre-pie-px");
+  const rg = document.createRange(); rg.selectNodeContents(n);
+  const libre = r0.getBoundingClientRect().left - n.parentNode.getBoundingClientRect().left - 8;
+  let px = parseFloat(getComputedStyle(n).fontSize) || 21;
+  while (libre > 0 && rg.getBoundingClientRect().width > libre && px > 12) { px -= 1; n.style.setProperty("--nombre-pie-px", px + "px"); }
+}
 function pintarCabecera() {
   const n = anios();
+  $("nombre-pie").textContent = E && E.tutorial ? "" : nombreDictador;   // 28 oct: el nombre del jugador, sobre los años
+  ajustarNombrePie();
   $("anios-poder").textContent = `${n} ${n === 1 ? "año" : "años"}`;   // 27 oct: abajo a la izquierda, en Londrina Light; el nombre del Comandante ya no sale
 }
 
@@ -678,7 +690,7 @@ function ajustarMensaje() {
   while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
   if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); ajustarNombrePie(); } });
 
 /* Si el informe no cabe en la ficha (pantallas bajas), se achica la letra, hasta 12,5 px */
 function ajustarFicha(carta = $("carta")) {
@@ -1289,6 +1301,7 @@ function pasoTutorial(i, sinEntrada) {
   clearTimeout(relojEstado); modoEstado = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
+  $("nombre-pie").textContent = "";
   $("anios-poder").textContent = `${i + 1} de ${TUTORIAL.length}`;
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
     E.estados = [{ id: "luna", edad: 0 }];

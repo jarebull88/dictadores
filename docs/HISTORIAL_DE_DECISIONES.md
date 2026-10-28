@@ -525,3 +525,8 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - El texto de las respuestas al arrastrar va en blanco.
 - Tocar el icono de una fuerza o la casilla de un estado ya no abre una ventana: su carta vuela desde el icono hasta el mazo (animación inversa de `recogerEstado`) con la información (`abrirInfo()`, `#carta-info`). Un toque la gira y enseña el reverso, con el dibujo del icono; deslizarla (o una flecha/Esc) la devuelve encogiéndose a su icono (`cerrarInfo()`). `recortar.py` genera ahora también el icono grande de las cuatro fuerzas. La ventana (`#popup`) sigue para los avisos y el menú.
 - Arreglada una `}` sobrante al final de `estilos.css` que invalidaba la primera regla añadida después.
+
+## 28 oct (tarde) — Marco de la carta de información y nombre en el pie
+- La cara de información de fuerzas y estados lleva ahora la hoja crema dentro del margen blanco, como la ficha (antes la regla de la hoja no le llegaba).
+- Prueba del espacio entre el borde izquierdo y la primera casilla, con 8 px de aire y Londrina a 21 px: 63 px libres a 360 px de ancho (5 letras), 78 px a 390 (7) y 98 px a 430 (9); media de 9,5 px por letra mayúscula. **El nombre del jugador pasa de 14 a 7 letras como máximo** (`maxlength` del campo), y `ajustarNombrePie()` baja la letra (mín. 12 px) si aun así no llega.
+- Abajo a la izquierda: el nombre (Londrina, como los títulos) y debajo los años («1 AÑO», Londrina Light). En el tutorial solo salen los pasos.

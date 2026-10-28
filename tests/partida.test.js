@@ -197,8 +197,9 @@ test("bajo la carta va el cargo del personaje (o el nombre del estado), y abajo 
   assert.ok(j.d.querySelector("#carta .carta-estado img.icono"), "la imagen de la carta de estado es su icono");
   assert.ok(!j.d.querySelector("#carta .etiqueta-boli"), "sin cinta con el nombre");
   assert.ok(j.w.eval("modoEstado"), "la carta de estado espera a que la deslicen (no se guarda sola)");
+  assert.ok(!j.$("carta").classList.contains("volteada"), "la carta de estado sale de cara, no se gira sola");
   j.w.eval("voltear()");
-  assert.ok(j.$("carta").classList.contains("volteada") && j.d.querySelector("#carta .dorso .info-hoja"), "28 oct: la carta de estado nueva se gira nada más salir y enseña qué hace");
+  assert.ok(j.$("carta").classList.contains("volteada") && j.d.querySelector("#carta .dorso .info-hoja"), "28 oct: la carta de estado nueva se puede girar con un toque nada más salir y enseña qué hace");
   j.w.eval("voltear()");
   j.tecla(-1);                                                       // a la izquierda o a la derecha, se guarda
   assert.ok(!j.w.eval("modoEstado"));

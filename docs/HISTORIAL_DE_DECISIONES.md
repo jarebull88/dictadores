@@ -573,7 +573,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Cuesta desaparece:** lo sustituye Domingo, el hermano del Comandante, que también es el guía del tutorial. Corregidos `CLAUDE.md`, los comentarios del tutorial en `datos.js` y de `motor.js`.
 
 ## 28 oct (noche) — Secuelas que se giran, sin contornos, respuestas más anchas, imágenes nuevas
-- La carta de estado nueva (la «secuela» de una decisión) ya se puede girar nada más salir: por detrás enseña la descripción y el efecto del estado. Antes había que guardarla y volver a sacarla desde su casilla.
+- La carta de estado nueva (la «secuela» de una decisión) sale de cara y, con un toque, se puede girar desde el primer momento (no se gira sola): por detrás enseña la descripción y el efecto del estado. Antes había que guardarla y volver a sacarla desde su casilla.
 - Prueba: sin contornos negros (`--contorno: transparent`; las líneas de separación del mazo también). Reversible con una línea.
 - Respuestas: las líneas ocupan el 60 % del ancho de la carta (antes ~42 %), hasta 3 líneas.
 - El cargo bajo la carta tiene el tamaño del texto de las decisiones (`--c-respuesta`) en vez del del título de era.

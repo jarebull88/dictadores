@@ -7,7 +7,7 @@ El reparto del juego, con su historia, para que la conversación de arte (`docs/
 - **Hay relevos con sentido narrativo:**
   - el embajador del Norte cambia en cada era;
   - el embajador oriental se queda, pero su país desaparece en la era 4.
-- **Las figuras que nunca hablan** (Diezfuegos, Mota, Ferro, los hijos, el coronel del sur, el general héroe) solo aparecen en ilustraciones de cartas o escenas, no como portavoces.
+- **Las figuras que nunca hablan** (Milfuegos, Cabaña, los hijos, el coronel del sur, el general héroe) solo aparecen en ilustraciones de cartas o escenas, no como portavoces.
 - **Sobre la inspiración real:** todos los personajes son ficticios. La «inspiración real» de cada ficha es solo para orientar y **no se nombra nunca en el juego** (regla 1 de `CLAUDE.md`).
 - **Reglas de arte que valen para todos:**
   - la etapa 1 es pueblo de verdad, los jóvenes de la sierra;
@@ -154,9 +154,9 @@ El Norte rompió relaciones en 1961 y no volvió a tener embajada hasta 2015. Po
 ---
 
 ## Figuras que nunca hablan (solo en ilustraciones)
-- **Diezfuegos:** el general más querido de la tropa, de sombrero alón y sonrisa enorme. Su avión desaparece en 1959 y el pueblo echa flores al mar cada año. Inspirado en el comandante desaparecido en octubre de 1959.
-- **Mota:** el comandante que dimite porque ve llegar el comunismo y acaba juzgado. Inspirado en el caso de octubre de 1959.
-- **Ferro:** el héroe más famoso, fanático, que no sabe negociar. Se va a exportar la Revolución y vuelve como camiseta. Boina con estrella, puro y mirada al horizonte. Inspirado en el guerrillero heroico.
+- **Milfuegos** (28 oct; antes Diezfuegos): el Comandante más querido de la tropa, de sombrero alón y sonrisa enorme. Su avión desaparece en 1959 y el pueblo echa flores al mar cada año. Inspirado en el comandante desaparecido en octubre de 1959.
+- *(28 oct: Mota pierde el nombre: es «un comandante de provincias» que dimite y que Milfuegos va a detener; solo lleva nombre quien vuelve a salir.)*
+- **Cabaña** (28 oct; antes Ferro; por la fortaleza de los fusilamientos de 1959): el comandante y héroe más famoso; preside el Banco Nacional porque oyó «comunista» donde decían «economista»; fanático, que no sabe negociar. Se va a exportar la Revolución y vuelve como camiseta. Boina con estrella, puro y mirada al horizonte. Inspirado en el guerrillero heroico.
 - **El hijo mayor:** el científico de la central nuclear que nunca se terminó. Gafas y bata.
 - **El hijo menor:** el de los tres yates. Gafas de sol y mocasines.
 - **El coronel del sur:** el admirador que llega al poder con ayuda del Comandante y le paga en petróleo. Boina roja y uniforme de paracaidista. Inspirado en el presidente que se alió con el régimen en 1999–2006.

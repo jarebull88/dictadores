@@ -158,12 +158,12 @@ test("«Saltar tutorial» lleva directo al nombre", () => {
 });
 
 
-test("logros: «Que cada vecino vigile a su vecino» da un logro nuevo; con un toque en la cuadrícula se descubre «Chivatón de barrio» y la carta se gira", () => {
+test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un toque en la cuadrícula se descubre «Chivatón de barrio» y la carta se gira", () => {
   const j = cargar();
   j.empezar();
-  const id = j.w.eval(`CARTAS.find(c => [c.izq, c.der].some(o => (o.banderas || []).includes("base.comites_vigilancia"))).id`);
+  const id = j.w.eval(`CARTAS.find(c => [c.izq, c.der].some(o => (o.banderas || []).includes("base.denuncias_todas"))).id`);
   j.w.eval(`E.actual = CARTAS.find(c => c.id === "${id}"); mezclarLados = false; E.lados = null;`);
-  const dir = j.w.eval(`(E.actual.izq.banderas || []).includes("base.comites_vigilancia") ? -1 : 1`);
+  const dir = j.w.eval(`(E.actual.izq.banderas || []).includes("base.denuncias_todas") ? -1 : 1`);
   j.w.eval(`resolver(${dir})`);
   assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú lleva la bolita amarilla");
   assert.match(j.$("btn-menu").getAttribute("aria-label"), /1 logro sin abrir/);
@@ -174,7 +174,7 @@ test("logros: «Que cada vecino vigile a su vecino» da un logro nuevo; con un t
   j.d.querySelector(".nuevo-logro").click();       // un solo toque en la cuadrícula: la carta ya está descubierta
   assert.equal(j.d.querySelector(".logro-titulo").textContent, "Chivatón de barrio");
   assert.ok(j.d.querySelector(".logro-subtitulo").textContent.length > 0, "lleva subtítulo");
-  assert.match(j.d.querySelector(".archivo-pista").textContent, /Que cada vecino vigile a su vecino/);
+  assert.match(j.d.querySelector(".archivo-pista").textContent, /Que se investigue hasta la gallina/);
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "descubierto, la bolita se va");
   assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));
   j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción y los efectos

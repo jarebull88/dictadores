@@ -92,3 +92,13 @@ Para cada carta, antes de proponerla o al revisarla:
 - **Una de cada tres cartas, de humor**, en cada era: decisiones ridículas y cómicas. Las mejores son el absurdo que pasó de verdad (el Comandante lanzando en un partido de béisbol con un equipo de barbudos). Sus efectos, pequeños, para no torcer la partida; quizá con una muerte propia si eliges la tontería (te batean y la pelota te da en la cabeza), que se diseña junto con los atentados.
 - **Solo lleva nombre quien vuelve a salir.** Si un personaje aparece una vez, va sin nombre («un comandante de provincias dimite»).
 - Las redacciones nuevas se revisan una por una con Jorge.
+
+## Notas de Jorge (28 oct, piloto de la era 1)
+- **Nada de «el norte» en las preguntas:** «el extranjero», «fuera» o una imagen concreta (los aviones). El cargo interno del embajador no cambia.
+- **En los grandes hechos, cada *cómo* favorece a una fuerza distinta, y la respuesta lo deja ver** (si las dos opciones hacen lo mismo, el jugador no sabe qué mueve).
+- **Al proponer una carta, decir si es gran hecho (las dos opciones son *cómo*) o carta menor (se puede tomar licencia y una opción puede decir que no).**
+- **Cartas de humor:** efectos pequeños (±3 a ±5, en una o dos fuerzas), con la misma lógica de quién gana poder; quizá con muerte propia cuando se hagan los atentados.
+- **La pregunta da la premisa de lo que responden las dos opciones** (si la B se niega a una inspección, la pregunta tiene que decir que la quieren hacer) y no da por sabido nada que no se haya contado.
+- **Referencias reales disfrazadas para que se entiendan en el juego** («los barbudos» no se entiende: «ministros y comandantes»).
+- **Al embajador no se le desobedece a la cara:** si el Comandante no va a cumplir, lo dice con ironía («Discreto como mi barba»).
+- **Nombres:** Diezfuegos pasa a ser **Milfuegos**, y es Comandante; Ferro pasa a ser **Cabaña**.

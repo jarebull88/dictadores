@@ -24,3 +24,16 @@ Se escribe a mano. Es la fase 3 de `docs/PLAN_NARRATIVO.md`: qué cartas tiene l
 ## Humor (una de cada tres)
 - **Entran:** el béisbol de los barbudos (el Comandante lanza en un partido de exhibición); «¿hay algún economista?» (Ferro levanta la mano porque entiende «comunista» y acaba presidiendo el Banco Nacional, firmando los billetes con su apodo; estrena a Ferro en la era 1); las barbas (¿se afeitan los barbudos ahora que gobiernan?; prepara el atentado de la crema para la barba); los casinos (se cierran, los crupieres protestan y se reabren); el refresco del norte nacionalizado (hay que ponerle nombre revolucionario).
 - **No entran:** la paloma en el hombro (es el chiste del tutorial y desbloquea un logro); el discurso de cuatro horas (se guarda: puede repetirse en varias eras y no hay que quemarlo); los cuarteles convertidos en escuelas (no es ridículo); el hotel de la asamblea de naciones y el hotel de lujo como cuartel general (se prefieren las otras).
+
+## Textos (28 oct): guardados en `src/datos.js`
+Las 36 cartas de la era 1 están reescritas con el criterio nuevo (se leen en `docs/cartas_era_1.md`). Se quitan `puerto`, `arcas_vacias` (la sustituyen los casinos en el grupo `inicio`), `garantias`, `huelgas_crisis`, `crisis_factura`, `coalicion_dinero_sale`, `asesores` (entra en `visitante_oriental`) y `estudiantes_calle` (entra en `urnas`); en la era 2, `universidades`. Entran cinco cartas: los casinos, el partido de béisbol, el economista, las barbas y el refresco. Nombres nuevos: **Milfuegos** (antes Diezfuegos, Comandante) y **Cabaña** (antes Ferro); el comandante que dimite va sin nombre. El logro «Chivatón de barrio» pasa a `denuncias_falsas` (era 2).
+
+Cambios de estructura ya hechos, porque los textos los pedían: el aliado es un miniflujo (`visitante_oriental` → `refinerias`), los misiles salen siempre (sin exigir la alianza), y las dos opciones de los grandes hechos llevan a lo mismo (las dos respuestas de las refinerías encolan el azúcar).
+
+## Pendiente para la revisión de estructura (con Jorge)
+- **Estados que ahora casi siempre llegan:** solo los da una opción (Alineado: «Me cuadra»; Nacionalizaciones: «¡Exprópiese!» o «Ahora me quedo con todo»; Vigilancia: «Los chismes a la Policía»; Deuda externa: «Por la puerta de atrás», del embargo total, porque las dos cartas que la daban se quitaron). Revisar si así vale.
+- **Miniflujos que aún no lo son:** la declaración socialista antes de la bahía, y los segundos pasos que no deberían contar (necesita el motor).
+- **Orden y condiciones:** el béisbol (si sale antes o después de Milfuegos ya no importa: la B no lo nombra), `ojos_barrio` sale poco (gran hecho: debería salir siempre), «La voz del exilio» sale poco.
+- **Huecos:** sin `crisis_factura` no hay carta para la crisis leve; sin `coalicion_dinero_sale`, la coalición Partido–Potencias se queda sin carta en todas las eras.
+- **Era 2:** `aliado_enfadado` apagada (peso 0) hasta reescribirla, porque dependía de rechazar los misiles; el «humano» de `npm run simular` baja al 50 % en la era 2 (antes ~59 %). La era 1 sigue en el 62 %.
+- **Efectos en números:** los he puesto según las fuerzas acordadas en cada carta; se ajustan en la revisión.

@@ -26,50 +26,51 @@ const UMBRAL_COALICION = 30;
 const CARTAS = [
   /* ---------- Anclas ---------- */
   {
+    // 28 oct, plan narrativo (piloto de la era 1): los juicios de 1959; las dos opciones son cómo se juzga
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.",
-    izq: { accion: "Juicio público en el estadio", efectos: { pueblo: 8, ejercito: 4 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Tienen 24 horas para hacer maletas", efectos: { pueblo: -8, ejercito: -4, potencias: 5 }, banderas: ["base.exiliados_vocales"] }
+    texto: "Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.",
+    izq: { accion: "Con narrador de béisbol", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
+    der: { accion: "Esto no es un circo", efectos: { pueblo: -8, ejercito: 5 } }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",
     personaje: "Ministra de Cultura",
-    texto: "La mansión del tirano tiene piscina, cine y 20 habitaciones. Habrá que darle algún uso revolucionario.",
+    texto: "La mansión del tirano tiene piscina, cine y 20 habitaciones. Habrá que darle algún uso.",
     izq: { accion: "Museo del Pueblo", efectos: { pueblo: 8, elite: -6 } },
     der: { accion: "Me mudo yo", efectos: { pueblo: -8, elite: 6 } }
   },
   {
-    id: "arcas_vacias", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Las arcas vacías",
-    personaje: "Ministro de Economía",
-    texto: "El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.",
-    izq: { accion: "Impriman billetes hasta que alcance", efectos: { pueblo: 5, potencias: -5 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Pidan un préstamo y recorten gastos", efectos: { pueblo: -5, potencias: 5 }, banderas: ["base.deuda_externa"] }
+    // 28 oct, plan narrativo (piloto de la era 1): sustituye a «Las arcas vacías»; los casinos se cerraron en enero de 1959 y se reabrieron tras protestar los crupieres
+    id: "casinos", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Los casinos",
+    personaje: "Ministro de Trabajo",
+    texto: "Los crupieres protestan por el cierre de los casinos. Propongo reabrirlos con moral revolucionaria.",
+    izq: { accion: "Ruleta revolucionaria", efectos: { pueblo: 5, potencias: 4, elite: -4 } },
+    der: { accion: "Ni un vicio capitalista", efectos: { pueblo: -5, potencias: -4, elite: 4 } }
   },
   {
-    // 22 oct, Jorge: Huber Matos (1959), el comandante que dimite porque ve llegar el comunismo; sustituye a «El general querido»
+    // 28 oct, plan narrativo (piloto de la era 1): Huber Matos (1959), ya sin nombre: la trama es de Milfuegos
     id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El comandante Mota dimite con una carta: dice que la Revolución se está volviendo comunista.",
-    izq: { accion: "Veinte años de cárcel por traidor", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"],
-           encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] },
-    der: { accion: "La Revolución no retiene a nadie", efectos: { ejercito: 4, elite: -5 },
-           encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] }
+    texto: "Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.",
+    izq: { accion: "Que Milfuegos lo detenga", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] },
+    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] }
   },
   {
-    id: "refinerias", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "Las refinerías",
+    // 28 oct, plan narrativo (piloto de la era 1): segundo paso del aliado (1960): las refinerías se niegan a refinar el crudo del aliado y se intervienen
+    id: "refinerias", tipo: "cola", titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
-    texto: "Las petroleras extranjeras exigen condiciones o cierran el grifo.",
-    izq: { accion: "Aceptemos sus condiciones", efectos: { potencias: 10, elite: -5, pueblo: -4 }, banderas: ["base.negocio_refinerias"] },
-    der: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: 5, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"],
-           encolar: [{ carta: "embargo", min: 3, max: 8 }] }
+    texto: "Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.",
+    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: 5, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 3, max: 8 }] },
+    der: { accion: "Les pagaremos con azúcar", efectos: { pueblo: -8, elite: -5, potencias: 10 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 3, max: 8 }] }
   },
   {
-    id: "visitante_oriental", tipo: "ancla", ventana: [4, 7], cond: { turnoMin: 4 }, titulo: "El visitante del bloque oriental",
+    // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
+    id: "visitante_oriental", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro país le ofrece petróleo, armas y asesores. A cambio, solo pedimos su lealtad.",
-    izq: { accion: "Acepto su generosa ayuda", efectos: { potencias: 9, pueblo: 2, ejercito: 4, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"] },
-    der: { accion: "La Revolución no tiene dueño", efectos: { potencias: -9, pueblo: -5, ejercito: -4, crisis: 1 }, banderas: ["base.no_alineado"] }
+    texto: "Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.",
+    izq: { accion: "Me cuadra", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 2 }] },
+    der: { accion: "Solo petróleo", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 2 }] }
   },
 
   /* ---------- Cola ---------- */
@@ -98,188 +99,209 @@ const CARTAS = [
     der: { accion: "Lo recibirá su padre y nadie más", efectos: { pueblo: 3, elite: -4 } }
   },
   {
-    // 23 oct, Jorge: Conrado Benítez (1961), el maestro asesinado por los alzados; tras su muerte se apuntaron más brigadistas
+    // 23 oct, Jorge: Conrado Benítez (1961); 28 oct: seguir o parar la campaña
     id: "alfabetizadores_monte", tipo: "cola", titulo: "Los alfabetizadores en el monte",
     personaje: "Ministra de Educación",
-    texto: "Los alzados del monte han matado a un maestro de dieciocho años. Las brigadas temen subir.",
-    izq: { accion: "Que el Ejército suba con ellos", efectos: { ejercito: 5, elite: -3 } },
-    der: { accion: "Que suban todos aunque tengan miedo", efectos: { elite: 3, ejercito: -5 } }
+    texto: "Un maestro de 18 años no volverá del monte: los alzados lo encontraron. ¿Paramos la campaña?",
+    izq: { accion: "Será nuestro mártir", efectos: { elite: 5, pueblo: -5 } },
+    der: { accion: "Primero sus vidas", efectos: { pueblo: 5, elite: -5 } }
   },
   {
-    // 22 oct: Camilo Cienfuegos (oct. 1959), que desaparece con su avión al volver de relevar a Matos
-    id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Diezfuegos",
+    // 22 oct: Camilo Cienfuegos (oct. 1959); 28 oct: pasa a llamarse Milfuegos y es Comandante
+    id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "El general Diezfuegos, el más querido de la tropa, fue a relevar a Mota y su avión no ha vuelto.",
-    izq: { accion: "Búsquenlo aunque sequemos el mar", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
-    der: { accion: "Tres días de luto y todos a trabajar", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
+    texto: "El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?",
+    izq: { accion: "Quiero toda la verdad", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
+    der: { accion: "Accidente y punto", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
   },
   {
-    id: "embargo", tipo: "cola", titulo: "El embargo",
+    // 28 oct, plan narrativo (piloto de la era 1): el norte deja de comprar el azúcar (1960)
+    id: "embargo", tipo: "cola", titulo: "El azúcar",
     personaje: "Embajador de la potencia del norte",
-    texto: "Han expropiado nuestras refinerías. Exigimos compensación o no les venderemos ni un tornillo.",
-    izq: { accion: "Aquí no se paga nada", efectos: { pueblo: 3, potencias: -9, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Pagaremos, que somos gente seria", efectos: { potencias: 9, pueblo: -9, crisis: 2 }, banderas: ["base.compensaciones"] }
+    texto: "Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.",
+    izq: { accion: "Ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] },
+    der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 }, banderas: ["base.embargo_en_marcha"] }
   },
   {
-    id: "depuracion_criticos", tipo: "cola", borrador: true, titulo: "La lista",
+    id: "depuracion_criticos", tipo: "cola", titulo: "La lista",
     personaje: "Ministro del Interior",
-    texto: "Ya sabemos quiénes nos critican, gracias a unos vecinos muy colaboradores.",
-    izq: { accion: "Que protesten, pero bajito", efectos: { pueblo: 8, ejercito: -5 } },
-    der: { accion: "Detengan a todos en orden alfabético", efectos: { pueblo: -8, ejercito: 5 }, banderas: ["base.criticos_detenidos"] }
+    texto: "Los escritores se tomaron en serio lo de la libertad. Tengo la lista de criticones. ¿Los detenemos?",
+    izq: { accion: "Que critiquen bajito", efectos: { pueblo: 8, ejercito: -5 } },
+    der: { accion: "Memorias desde la celda", efectos: { pueblo: -8, ejercito: 5 }, banderas: ["base.criticos_detenidos"] }
   },
 
   /* ---------- Sorteo ---------- */
   {
+    // 28 oct, plan narrativo (piloto de la era 1): la reforma agraria (1959); se elige cómo
     id: "tierra", tipo: "sorteo", peso: 12, titulo: "La tierra",
     personaje: "Ministro de Trabajo",
-    texto: "Si repartimos las tierras entre los campesinos, el país será el granero del mundo en un año.",
-    izq: { accion: "Respeten la propiedad privada", efectos: { pueblo: -10, elite: -5 } },
-    der: { accion: "La tierra para quien la \"merece\"", efectos: { pueblo: 10, elite: 5, potencias: -4, crisis: 1 }, banderas: ["base.reforma_agraria"] }
+    texto: "Las fincas de los ricos ya son de la Revolución. ¿Para los campesinos o para el Estado?",
+    izq: { accion: "A los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
+    der: { accion: "El Estado ara mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
   },
   {
+    // 28 oct, plan narrativo (piloto de la era 1): las «coletillas» (1960)
     id: "periodicos", tipo: "sorteo", peso: 10, titulo: "Los periódicos",
     personaje: "Ministra de Cultura",
-    texto: "Los periódicos publican críticas contra cada decreto, uno detrás de otro.",
-    izq: { accion: "Que publiquen lo que quieran", efectos: { pueblo: 6, elite: -5 }, banderas: ["base.prensa_libre"] },
-    der: { accion: "Nacionalicen las imprentas", efectos: { pueblo: -6, elite: 5 }, banderas: ["base.censura_previa"] }
+    texto: "La prensa critica cada decreto. Los tipógrafos quieren aclarar al pie que es propaganda enemiga.",
+    izq: { accion: "Aclaren todo", efectos: { elite: 6, pueblo: -6 }, banderas: ["base.censura_previa"] },
+    der: { accion: "Prensa libre por ahora", efectos: { pueblo: 6, elite: -6 }, banderas: ["base.prensa_libre"] }
   },
   {
+    // 28 oct, plan narrativo (piloto de la era 1): incluye «Estudiantes en la calle»; las elecciones nunca se hacen, se elige cómo se justifica
     id: "urnas", tipo: "sorteo", peso: 10, cond: { turnoMin: 2 }, titulo: "Las urnas prometidas",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.",
-    izq: { accion: "Elecciones ya, que seguro gano", efectos: { pueblo: 9, elite: -5 }, banderas: ["base.elecciones_prometidas"] },
-    der: { accion: "La Revolución ya fue votada", efectos: { pueblo: -9, elite: 5 }, banderas: ["base.elecciones_aplazadas"] }
+    texto: "Se acerca la fecha de las elecciones que prometimos. ¿Qué le decimos al Pueblo?",
+    izq: { accion: "¿Elecciones para qué?", efectos: { pueblo: 6, elite: -6 }, banderas: ["base.elecciones_aplazadas", "base.estudiantes_reprimidos"] },
+    der: { accion: "Aplazadas por decreto", efectos: { pueblo: -6, elite: 6 }, banderas: ["base.elecciones_aplazadas", "base.elecciones_prometidas"] }
   },
   {
+    // 28 oct, plan narrativo (piloto de la era 1): la campaña (1961) se hace siempre; se elige qué se enseña
     id: "alfabetizacion", tipo: "sorteo", peso: 6, titulo: "La campaña de alfabetización",
     personaje: "Ministra de Educación",
-    texto: "Propongo una campaña de alfabetización: brigadas de jóvenes enseñando a leer en cada rincón.",
-    izq: { accion: "Un Pueblo culto y agradecido", efectos: { pueblo: 10 }, encolar: [{ carta: "alfabetizadores_monte", min: 2, max: 3 }] },
-    der: { accion: "Un Pueblo que lee pregunta demasiado", efectos: { pueblo: -10 } }
+    texto: "Los estudiantes irán al campo a enseñar a leer y escribir. ¿Cuál será la primera lección?",
+    izq: { accion: "La R de Revolución", efectos: { elite: 6, pueblo: -6 }, encolar: [{ carta: "alfabetizadores_monte", min: 2, max: 3 }] },
+    der: { accion: "El abecedario", efectos: { pueblo: 6, elite: -6 }, encolar: [{ carta: "alfabetizadores_monte", min: 2, max: 3 }] }
   },
   {
-    // 23 oct, Jorge: la declaración del carácter socialista (abril de 1961), en el entierro de las víctimas del bombardeo del exilio
+    // 23 oct, Jorge: la declaración socialista (abril de 1961); 28 oct: se elige en quién se apoya
     id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El exilio nos ha bombardeado y la plaza se llena de luto. Habrá que decir qué es la Revolución.",
-    izq: { accion: "Hoy la Revolución será socialista", efectos: { potencias: 5, elite: 3 } },
-    der: { accion: "Que la palabra sea patria y nada más", efectos: { potencias: -5, elite: -3 } }
+    texto: "Nos han bombardeado y el Pueblo llora en la plaza. Es el momento de decir qué es la Revolución.",
+    izq: { accion: "Para los humildes", efectos: { pueblo: 6, potencias: -5, elite: -3 } },
+    der: { accion: "Socialista importada", efectos: { pueblo: -6, potencias: 5, elite: 3 } }
   },
   {
-    // 23 oct, Jorge: el fin del béisbol profesional (1961), «el deporte, derecho del Pueblo»; las estrellas se quedan fuera
+    // 23 oct, Jorge: el fin del deporte profesional (1961-62)
     id: "fin_pelota", tipo: "sorteo", peso: 10, titulo: "Se acabó el profesional",
     personaje: "Ministra de Educación",
-    texto: "Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.",
-    izq: { accion: "La pelota libre le gana a la esclava", efectos: { elite: 4, potencias: -4 } },
-    der: { accion: "Que sigan bateando en divisas", efectos: { potencias: 4, elite: -4 } }
+    texto: "Nuestros mejores deportistas juegan en las ligas extranjeras. ¿Abolimos el deporte profesional?",
+    izq: { accion: "Se juega por amor", efectos: { elite: 4, potencias: -4 } },
+    der: { accion: "Que cobren en divisas", efectos: { potencias: 4, elite: -4 } }
   },
   {
-    id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Las escuelas para todos",
+    // 28 oct, plan narrativo (piloto de la era 1): la enseñanza nacionalizada y los curas expulsados en barco (1961)
+    id: "escuelas", tipo: "sorteo", peso: 6, titulo: "Los colegios de los curas",
     personaje: "Ministra de Educación",
-    texto: "Los colegios privados cobran por enseñar. Propongo que todas las escuelas sean del Estado.",
-    izq: { accion: "Que todos aprendan lo mismo", efectos: { pueblo: 7, elite: 5 } },
-    der: { accion: "Que pague quien quiera otra escuela", efectos: { pueblo: -7, elite: -5 } }
+    texto: "Como nacionalizamos los colegios religiosos, los curas dan misas contra la Revolución.",
+    izq: { accion: "Que recen en un barco", efectos: { elite: 6, pueblo: -6 } },
+    der: { accion: "Dios, pero sin tiza", efectos: { pueblo: 6, elite: -6 } }
   },
   {
-    id: "asesores", tipo: "sorteo", peso: 6, cond: { turnoMin: 2 }, titulo: "Los asesores",
-    personaje: "Embajador del bloque oriental",
-    texto: "Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.",
-    izq: { accion: "Aprenderemos de los mejores", efectos: { potencias: 9, ejercito: 5, elite: 5 } },
-    der: { accion: "Gracias, aquí nos asesoramos solos", efectos: { potencias: -9, ejercito: -5, elite: -5 } }
-  },
-  {
+    // 28 oct, plan narrativo (piloto de la era 1): la ruptura de relaciones (1961)
     id: "club_golf", tipo: "sorteo", peso: 6, titulo: "El club de golf",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestro país reconocerá su gobierno si respeta nuestras propiedades, empezando por el club de golf.",
-    izq: { accion: "Las propiedades y el golf son suyas", efectos: { potencias: 9, pueblo: -8, elite: -4 } },
-    der: { accion: "Empezaremos nacionalizando el golf", efectos: { potencias: -9, pueblo: 8, elite: 4 } }
+    texto: "Nuestro país romperá relaciones si sigue expropiando. Empezando por el club de golf.",
+    izq: { accion: "Su «hoyo» ahora es mío", efectos: { potencias: -9, pueblo: 8, elite: 4 } },
+    der: { accion: "No tocaremos nada más", efectos: { potencias: 9, pueblo: -8, elite: -4 } }
   },
   {
+    // 28 oct, plan narrativo (piloto de la era 1): la invasión de 1961; el canje por compotas es real, el fusilamiento de todos no
     id: "la_bahia", tipo: "ancla", ventana: [5, 7], titulo: "La bahía",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.",
-    izq: { accion: "Cámbienlos por compotas", efectos: { potencias: -6, pueblo: 2, ejercito: -4 } },
-    der: { accion: "Juicio televisado y luego al «patio»", efectos: { potencias: -3, pueblo: 5, ejercito: 5, crisis: 2 } }
+    texto: "Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?",
+    izq: { accion: "Cámbienlos por compotas", efectos: { pueblo: 5, potencias: 4, ejercito: -6 } },
+    der: { accion: "Un último cigarro", efectos: { pueblo: -5, potencias: -4, ejercito: 6, crisis: 2 } }
   },
   {
     id: "los_ninos", tipo: "sorteo", peso: 6, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
     personaje: "Ministra de Educación",
-    texto: "Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.",
-    izq: { accion: "Dejen salir a los niños", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
-    der: { accion: "Nadie se lleva a nuestros niños", efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
+    texto: "Corre el rumor de que el Estado se quedará con los niños. Los padres los suben solos a los aviones.",
+    izq: { accion: "Sus padres sabrán", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } },
+    der: { accion: "Los niños son del Estado", efectos: { pueblo: -5, ejercito: 4, potencias: -3 } }
   },
   {
     id: "reforma_urbana", tipo: "sorteo", peso: 6, titulo: "La reforma urbana",
     personaje: "Ministro de Economía",
-    texto: "El Estado expropiará las casas y las alquilará a mitad de precio hasta que el inquilino las compre.",
-    izq: { accion: "Ahora el casero es el Estado", efectos: { pueblo: 8, elite: 4 } },
-    der: { accion: "Los caseros mantienen sus casas", efectos: { pueblo: -8, elite: -4 } }
+    texto: "Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.",
+    izq: { accion: "La casa al que la habita", efectos: { pueblo: 8, elite: -5 } },
+    der: { accion: "Ahora el casero soy yo", efectos: { pueblo: -8, elite: 5 } }
   },
   {
     id: "milicias", tipo: "sorteo", peso: 6, titulo: "Las milicias",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los barrios piden fusiles para defender la Revolución por su cuenta.",
-    izq: { accion: "Que el Pueblo se arme", efectos: { pueblo: 6, ejercito: -6 } },
-    der: { accion: "Las armas solo son para el Ejército", efectos: { pueblo: -6, ejercito: 6 } }
+    texto: "Crearemos milicias de obreros y estudiantes por si vuelve el tirano. Falta decidir quién las manda.",
+    izq: { accion: "Que cada barrio mande", efectos: { pueblo: 6, ejercito: -6 } },
+    der: { accion: "Bajo mando militar", efectos: { pueblo: -6, ejercito: 6 } }
   },
   {
+    // 28 oct, plan narrativo (piloto de la era 1): «Dentro de la Revolución, todo» (1961)
     id: "mil_flores", tipo: "sorteo", peso: 6, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
-    texto: "Los intelectuales preguntan hasta dónde pueden criticar a la Revolución.",
-    izq: { accion: "Que critiquen todo lo que quieran", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"],
-           encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] },
-    der: { accion: "La Revolución no se cuestiona", efectos: { pueblo: -8, elite: 5 } }
+    texto: "Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.",
+    izq: { accion: "Dentro todo, fuera nada", efectos: { pueblo: -8, elite: 5 } },
+    der: { accion: "El arte es libre", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"], encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] }
   },
   {
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.",
-    izq: { accion: "Jubílenlos", efectos: { ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales"] },
-    der: { accion: "Purga y ascensos para los nuestros", efectos: { ejercito: 5, pueblo: 4 }, banderas: ["base.purga_inicial"] }
+    texto: "Los oficiales del tirano que se rindieron piden un puesto en el nuevo Ejército.",
+    izq: { accion: "Uniforme nuevo y listo", efectos: { ejercito: 5, pueblo: -5 } },
+    der: { accion: "Todos a la calle", efectos: { pueblo: 5, ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales", "base.purga_inicial"] }
   },
   {
-    id: "puerto", tipo: "sorteo", peso: 8, cond: { turnoMin: 3 }, titulo: "El puerto parado",
-    personaje: "Ministro de Trabajo",
-    texto: "El puerto lleva tres días parado. Los estibadores no quieren que el Partido elija a sus líderes.",
-    izq: { accion: "Que se organicen libremente", efectos: { pueblo: 10, elite: -7, ejercito: -4, crisis: 1 }, banderas: ["base.sindicato_libre"] },
-    der: { accion: "El Partido ya eligió por ellos", efectos: { pueblo: -10, elite: 7, ejercito: 4 }, banderas: ["base.huelga_reprimida"] }
-  },
-  {
+    // 28 oct, plan narrativo (piloto de la era 1): los comités de vigilancia (1960) se crean siempre; se elige a quién informan
     id: "ojos_barrio", tipo: "sorteo", peso: 14, cond: { alguna: ["base.purga_inicial", "base.censura_previa"] }, titulo: "Los ojos del barrio",
     personaje: "Ministro del Interior",
-    texto: "Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.",
-    izq: { accion: "Que cada vecino vigile a su vecino", efectos: { ejercito: 6, elite: 4, pueblo: -7 }, banderas: ["base.comites_vigilancia"] },
-    der: { accion: "No necesitamos chivatos", efectos: { pueblo: 7, ejercito: -6, elite: -4 }, banderas: ["base.policia_tradicional"] }
+    texto: "Cada cuadra tendrá su comité de vecinos vigilantes. Falta decidir a quién le cuentan lo que ven.",
+    izq: { accion: "Los chismes al Partido", efectos: { elite: 6, ejercito: -6, pueblo: -3 } },
+    der: { accion: "Los chismes a la Policía", efectos: { ejercito: 6, elite: -6, pueblo: -3 }, banderas: ["base.comites_vigilancia"] }
   },
   {
+    // 28 oct, plan narrativo (piloto de la era 1): en 1959 se prohibieron por ley las estatuas de dirigentes vivos
     id: "retrato", tipo: "sorteo", peso: 6, cond: { turnoMin: 4 }, titulo: "El retrato",
-    personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "El Partido quiere su retrato en cada aula y una estatua en la plaza.",
-    izq: { accion: "Si insisten…", efectos: { pueblo: -3, elite: 6, crisis: 1 }, banderas: ["base.culto_iniciado"] },
-    der: { accion: "Los monumentos son para los mártires", efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
+    personaje: "Ministra de Cultura",
+    texto: "Propongo su retrato en cada aula. El fotógrafo pregunta cuál es su perfil bueno.",
+    izq: { accion: "El izquierdo, claro", efectos: { pueblo: -3, elite: 6, crisis: 1 }, banderas: ["base.culto_iniciado"] },
+    der: { accion: "Mejor el de los mártires", efectos: { pueblo: 3, elite: -6 }, banderas: ["base.modestia_aparente"] }
   },
   {
     id: "marchan", tipo: "sorteo", peso: 14, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan",
     personaje: "Ministro del Interior",
-    texto: "Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.",
-    izq: { accion: "Que se vayan y dejen el dinero", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite"] },
-    der: { accion: "Nadie sale del país sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
+    texto: "Los ricos se marchan con las joyas cosidas al forro. Propongo registrarlos en el aeropuerto.",
+    izq: { accion: "Que viajen ligeros", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite", "base.exiliados_vocales"] },
+    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */
   {
-    id: "crisis_factura", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 4, titulo: "La factura",
+    // 28 oct, plan narrativo (piloto de la era 1): humor; el Comandante lanzó en un partido de exhibición (1959)
+    id: "beisbol", tipo: "sorteo", peso: 8, titulo: "El partido",
+    personaje: "Ministra de Educación",
+    texto: "Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.",
+    izq: { accion: "A mí nadie me batea", efectos: { pueblo: 4, ejercito: -3 } },
+    der: { accion: "Yo seré el árbitro", efectos: { ejercito: 3, pueblo: -4 } }
+  },
+  {
+    // 28 oct, plan narrativo (piloto de la era 1): humor; la anécdota del «¿hay algún economista?» (1959)
+    id: "economista", tipo: "sorteo", peso: 8, titulo: "El economista",
     personaje: "Ministro de Economía",
-    texto: "Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.",
-    izq: { accion: "Congelen los precios por decreto", efectos: { pueblo: 8, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] },
-    der: { accion: "Pidan otro préstamo y ya veremos", efectos: { potencias: 8, pueblo: -3, crisis: -3 }, banderas: ["base.deuda_externa"] }
+    texto: "Pedimos un economista para el Banco Nacional y el comandante Cabaña alzó la mano. Oyó «comunista».",
+    izq: { accion: "Me sirve igual", efectos: { ejercito: 4, elite: -4 } },
+    der: { accion: "Uno que sepa sumar", efectos: { elite: 4, ejercito: -4 } }
+  },
+  {
+    // 28 oct, plan narrativo (piloto de la era 1): humor; prepara el atentado de la crema para la barba
+    id: "barbas", tipo: "sorteo", peso: 8, titulo: "Las barbas",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "El barbero de palacio quiere saber si los comandantes se afeitarán ahora que gobiernan.",
+    izq: { accion: "Las barbas no se tocan", efectos: { ejercito: 4, elite: -3 } },
+    der: { accion: "Que se afeiten los demás", efectos: { elite: 3, ejercito: -4 } }
+  },
+  {
+    // 28 oct, plan narrativo (piloto de la era 1): humor; la cola nacionalizada sin receta
+    id: "refresco", tipo: "sorteo", peso: 8, titulo: "El refresco",
+    personaje: "Ministro de Comercio",
+    texto: "Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.",
+    izq: { accion: "Inventen la Revolukola", efectos: { elite: 4, pueblo: -3 } },
+    der: { accion: "Que beban guarapo", efectos: { pueblo: 3, elite: -4 } }
   },
   {
     id: "crisis_tiendas", tipo: "crisis", repetible: true, borrador: true, disparo: e => e.crisis >= 8, titulo: "Las tiendas vacías",
     personaje: "Ministro de Comercio",
-    texto: "No hay nada en las tiendas del Estado. En el mercado negro, de todo.",
-    izq: { accion: "Redadas en el mercado negro", efectos: { pueblo: -8, ejercito: 4, elite: 4, crisis: -3 } },
-    der: { accion: "Hagan la vista gorda", efectos: { pueblo: 3, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
+    texto: "En las tiendas del Estado no hay nada. En el mercado negro de todo a precio de oro.",
+    izq: { accion: "Confisquen y repartan", efectos: { pueblo: -8, ejercito: 4, elite: 4, crisis: -3 } },
+    der: { accion: "Yo también compro ahí", efectos: { pueblo: 3, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
   },
 
   /* ---------- Coalición (borrador) ---------- */
@@ -288,18 +310,9 @@ const CARTAS = [
     disparo: e => e.barras.pueblo < UMBRAL_COALICION && e.barras.ejercito < UMBRAL_COALICION,
     titulo: "La calle y los cuarteles",
     personaje: "Ministro del Interior",
-    texto: "Algunos oficiales se reúnen con los que protestan en la calle. Si se juntan, caemos.",
-    izq: { accion: "Asciendan a los que no se reúnen", efectos: { ejercito: 8, elite: -4 } },
-    der: { accion: "Arresten a los oficiales reunidos", efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
-  },
-  {
-    id: "coalicion_dinero_sale", tipo: "coalicion", repetible: true, borrador: true,
-    disparo: e => e.barras.elite < UMBRAL_COALICION && e.barras.potencias < UMBRAL_COALICION,
-    titulo: "El dinero se va",
-    personaje: "Ministro de Economía",
-    texto: "Los empresarios se reúnen con los embajadores. Si se alían, nos asfixian.",
-    izq: { accion: "Mimen a los empresarios", efectos: { potencias: 6, pueblo: -8, elite: -5 } },
-    der: { accion: "Intervengan sus empresas", efectos: { potencias: -8, pueblo: 6, elite: 5, crisis: 2 } }
+    texto: "Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.",
+    izq: { accion: "Un ascenso y se calman", efectos: { ejercito: 8, elite: -4 } },
+    der: { accion: "Arréstenlos a todos", efectos: { ejercito: -6, pueblo: -3, crisis: 2 } }
   },
 
   /* ---------- Era 2 · La Purga ---------- */
@@ -312,19 +325,21 @@ const CARTAS = [
   },
 
   {
-    id: "nuevos_vecinos", tipo: "ancla", ventana: [8, 10], cond: { requiere: ["base.alineado_bloque_oriental"] }, titulo: "Los nuevos vecinos",
+    // 28 oct, plan narrativo (piloto de la era 1): los misiles (1962) llegan siempre; el aliado pidió secreto y el Comandante quería anunciarlo
+    id: "nuevos_vecinos", tipo: "ancla", ventana: [8, 10], titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro país le ofrece misiles, instalados y apuntando a donde usted diga.",
-    izq: { accion: "Acepto y apúntenlos donde ya sabe", efectos: { ejercito: 6, potencias: 5, pueblo: -4, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
-    der: { accion: "Nuestro misil es el Pueblo", efectos: { ejercito: -6, potencias: -5, pueblo: 4 }, banderas: ["base.misiles_rechazados"] }
+    texto: "Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo hasta que estén apuntando.",
+    izq: { accion: "Ni a mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
+    der: { accion: "Discreto como mi barba", efectos: { potencias: -6, ejercito: 5, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] }
   },
 
   {
+    // 28 oct, plan narrativo (piloto de la era 1): el aliado retiró los misiles sin consultar al Comandante, que se negó a la inspección
     id: "ultimatum", tipo: "cola", titulo: "El ultimátum",
     personaje: "Embajador de la potencia del norte",
-    texto: "Nuestros barcos rodearán su costa hasta que retire los misiles.",
-    izq: { accion: "Que disfruten de la vista", efectos: { ejercito: 6, potencias: -6, pueblo: -3, crisis: 2 }, banderas: ["base.embargo_en_marcha"] },
-    der: { accion: "Tranquilo, mañana no estarán", efectos: { ejercito: -6, potencias: 6, crisis: -1 } }
+    texto: "Pactamos con su aliado que se lleva los misiles e iremos a comprobarlo. Creíamos que lo sabía.",
+    izq: { accion: "Fue idea mía", efectos: { potencias: 6, ejercito: -6, crisis: -1 } },
+    der: { accion: "Compruébeme esta", efectos: { potencias: -6, ejercito: 6, crisis: 2 }, banderas: ["base.embargo_en_marcha"] }
   },
 
 
@@ -361,13 +376,6 @@ const CARTAS = [
     der: { accion: "Que la prensa diga la verdad", efectos: { pueblo: 5, elite: -5 } }
   },
 
-  {
-    id: "garantias", tipo: "sorteo", peso: 14, cond: { requiere: ["base.negocio_refinerias"] }, titulo: "Las garantías",
-    personaje: "Ministro de Comercio",
-    texto: "Las empresas extranjeras quieren por escrito que no habrá más nacionalizaciones y que podrán llevarse sus ganancias.",
-    izq: { accion: "Les doy mi palabra de revolucionario", efectos: { potencias: 6, elite: -4, pueblo: -5, crisis: -1 } },
-    der: { accion: "Aquí no se firma nada", efectos: { potencias: -6, pueblo: 4, elite: 4, crisis: 1 } }
-  },
 
   {
     id: "elecciones_controladas", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_prometidas"] }, titulo: "Elecciones controladas",
@@ -377,13 +385,6 @@ const CARTAS = [
     der: { accion: "Abran las listas a la oposición", efectos: { pueblo: 6, elite: -5 } }
   },
 
-  {
-    id: "estudiantes_calle", tipo: "sorteo", peso: 14, cond: { requiere: ["base.elecciones_aplazadas"] }, titulo: "Estudiantes en la calle",
-    personaje: "Ministra de Educación",
-    texto: "Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.",
-    izq: { accion: "Habrá elecciones, palabra de honor", efectos: { pueblo: 5, elite: -4 }, banderas: ["base.elecciones_prometidas"] },
-    der: { accion: "¿Elecciones para qué?", efectos: { pueblo: -6, ejercito: 4 }, banderas: ["base.estudiantes_reprimidos"] }
-  },
 
   {
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
@@ -401,32 +402,18 @@ const CARTAS = [
     der: { accion: "Que la policía se vigile sola", efectos: { ejercito: -4, pueblo: 3, elite: 3 } }
   },
 
-  {
-    id: "huelgas_crisis", tipo: "sorteo", peso: 14, cond: { requiere: ["base.sindicato_libre"] }, titulo: "La marcha de los eléctricos",
-    personaje: "Ministro de Trabajo",
-    texto: "Los electricistas quieren un sindicato libre como el del puerto, o apagarán la capital.",
-    izq: { accion: "Que también tengan su sindicato", efectos: { pueblo: 6, elite: -4, crisis: 2 } },
-    der: { accion: "Calabozo por contrarrevolución", efectos: { pueblo: -6, ejercito: 4, elite: 4 } }
-  },
 
-  {
-    id: "universidades", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.huelga_reprimida"] }, titulo: "El puerto lento",
-    personaje: "Ministro de Trabajo",
-    texto: "Desde la huelga, los estibadores trabajan a medio ritmo. Los barcos esperan semanas para descargar.",
-    izq: { accion: "Militaricen el puerto", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Que puedan elegir a su delegado", efectos: { pueblo: 5, elite: -5 } }
-  },
 
   {
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
     texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.",
-    izq: { accion: "Que se investigue hasta la gallina", efectos: { ejercito: 6, pueblo: -6 } },
+    izq: { accion: "Que se investigue hasta la gallina", efectos: { ejercito: 6, pueblo: -6 }, banderas: ["base.denuncias_todas"] },
     der: { accion: "Solo cuentan las denuncias políticas", efectos: { pueblo: 4, ejercito: -4 } }
   },
 
   {
-    id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.policia_tradicional", "base.exiliados_vocales", "base.critica_abierta", "base.campos_trabajo"] }, titulo: "Una carta con firmas",
+    id: "oposicion_firma", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exiliados_vocales", "base.critica_abierta", "base.campos_trabajo"] }, titulo: "Una carta con firmas",
     personaje: "Ministra de Cultura",
     texto: "Un grupo de intelectuales firmó una carta reclamando los derechos que usted mismo prometió.",
     izq: { accion: "Abran un diálogo con los firmantes", efectos: { pueblo: 6, ejercito: -4, elite: -3 } },
@@ -450,11 +437,12 @@ const CARTAS = [
   },
 
   {
+    // 28 oct, plan narrativo (piloto de la era 1): la libreta de racionamiento (1962); comprar a intermediarios trae la deuda externa
     id: "embargo_total", tipo: "sorteo", peso: 14, cond: { turnoMin: 6, alguna: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] }, titulo: "Embargo total",
     personaje: "Ministro de Comercio",
-    texto: "El embargo ya es total: no entran comida, medicinas ni repuestos.",
-    izq: { accion: "Libreta de racionamiento por familia", efectos: { pueblo: -4, elite: 3, crisis: -1 } },
-    der: { accion: "Que un país amigo nos revenda", efectos: { pueblo: 4, potencias: 3, elite: 2, crisis: 1 } }
+    texto: "El embargo es total y las tiendas se vacían. Propongo repartir la comida con una libreta.",
+    izq: { accion: "Una libreta por familia", efectos: { elite: 5, potencias: -4, pueblo: -3, crisis: -1 } },
+    der: { accion: "Por la puerta de atrás", efectos: { potencias: 4, elite: -5, pueblo: 3, crisis: 1 }, banderas: ["base.deuda_externa"] }
   },
 
   {
@@ -575,7 +563,8 @@ const CARTAS = [
     der: { accion: "Revisen primero sus propias bases", efectos: { potencias: -8, ejercito: 5 } }
   },
   {
-    id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_rechazados"] }, titulo: "El aliado enfadado",
+    id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 0, borrador: true,   // 28 oct: apagada (peso 0) hasta reescribirla: ya no se pueden rechazar los misiles
+    cond: { turnoMin: 3 }, titulo: "El aliado enfadado",
     personaje: "Embajador del bloque oriental",
     texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
     izq: { accion: "Apoyaremos su próxima invasión", efectos: { potencias: 7 } },
@@ -589,7 +578,7 @@ const CARTAS = [
     der: { accion: "Que se apañen con lo que hay", efectos: { ejercito: -8, elite: 3, pueblo: 4 } }
   },
   {
-    id: "aulas_vacias", era: 3, tipo: "sorteo", peso: 14, cond: { alguna: ["base.estudiantes_reprimidos", "base.huelga_reprimida"] }, titulo: "Las aulas vacías",
+    id: "aulas_vacias", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.estudiantes_reprimidos"] }, titulo: "Las aulas vacías",
     personaje: "Ministra de Educación",
     texto: "Algunos profesores se atreven a enseñar historia sin citarle a usted.",
     izq: { accion: "Enseñen que la historia me absolverá", efectos: { elite: 5, pueblo: -5 } },
@@ -649,10 +638,10 @@ const CARTAS = [
     // 23 oct, Jorge: trama de traición inspirada en el Che (1965-67): el héroe fanático que critica al bloque y estorba al Comandante
     id: "companero_incomodo", era: 2, tipo: "sorteo", peso: 10, titulo: "El compañero incómodo",
     personaje: "Embajador del bloque oriental",
-    texto: "Ferro, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.",
+    texto: "Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.",
     izq: { accion: "Lo mandaré a una misión bien lejos", efectos: { potencias: 4, ejercito: -3 },
            encolar: [{ carta: "guerrilla_perdida", min: 2, max: 3 }] },
-    der: { accion: "Quien calla a Ferro me calla a mí", efectos: { potencias: -4, ejercito: 3 } }
+    der: { accion: "Quien calla a Cabaña me calla a mí", efectos: { potencias: -4, ejercito: 3 } }
   },
   {
     // 23 oct, Jorge: la ofensiva revolucionaria (1968), que nacionalizó unos 58 000 negocios pequeños; «El mercado mayor» (era 3) los vuelve a permitir
@@ -682,9 +671,9 @@ const CARTAS = [
     // 23 oct, Jorge: la guerrilla del Che en Bolivia (1967), sin refuerzos
     id: "guerrilla_perdida", era: 2, tipo: "cola", titulo: "La guerrilla perdida",
     personaje: "Ministro del Interior",
-    texto: "Ferro pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.",
+    texto: "Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.",
     izq: { accion: "Mándenle a nuestros mejores hombres", efectos: { ejercito: 4, potencias: -4 } },
-    der: { accion: "Ferro será un millón de camisetas", efectos: { potencias: 3, ejercito: -3 }, banderas: ["base.ferro_martir"] }
+    der: { accion: "Cabaña será un millón de camisetas", efectos: { potencias: 3, ejercito: -3 }, banderas: ["base.ferro_martir"] }
   },
   {
     // 23 oct, Jorge: la zafra de 1970 se queda en ocho millones y medio
@@ -747,7 +736,7 @@ const CARTAS = [
   {
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",
-    texto: "El Pueblo sigue tirando flores al mar por Diezfuegos. Muchos aún preguntan qué pasó.",
+    texto: "El Pueblo sigue tirando flores al mar por Milfuegos. Muchos aún preguntan qué pasó.",
     izq: { accion: "Que se olvide sin acto oficial", efectos: { pueblo: 3, elite: -4 } },
     der: { accion: "Encabezaré yo los homenajes", efectos: { elite: 4, pueblo: -3 } }
   },
@@ -1037,11 +1026,11 @@ const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de intel
   potencias: { alto: "Tienes aliados, y deudas con ellos.",                         bajo: "En el exterior nadie te quiere, salvo quien te teme." }
 };
 
-const FUTURO_ERA = {"base.campos_trabajo": 3, "base.modestia_aparente": 3, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.mota_juzgado": 4, "base.alineado_bloque_oriental": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.policia_tradicional": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
+const FUTURO_ERA = {"base.campos_trabajo": 3, "base.modestia_aparente": 3, "base.criticos_detenidos": 3, "base.mercado_paralelo": 3, "base.desfile_militar": 3, "base.periodista_oficial": 3, "base.estudiantes_reprimidos": 3, "base.jefe_poderoso": 3, "base.sucesor_designado": 4, "base.oposicion_culpada": 4, "base.estado_policial": 4, "base.accidente_cienfuegos": 2, "base.mota_juzgado": 4, "base.alineado_bloque_oriental": 1, "base.negocio_refinerias": 1, "base.sindicato_libre": 1, "base.elecciones_aplazadas": 1, "base.embargo_en_marcha": 1, "base.critica_abierta": 3, "base.elecciones_prometidas": 3, "base.atentado_investigado": 4};   // era en la que llegan las consecuencias; el resto llega en la era 2
 const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
-  "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Diezfuegos.",
+  "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Milfuegos.",
   "base.mota_juzgado": "Los nietos de Mota piden que los libros hablen de él.",
   "base.reforma_agraria": "Escasez de alimentos dos años después.",
   "base.censura_previa": "Aparecen el periodista oficial y los rumores.",
@@ -1084,7 +1073,7 @@ const FUTURO = {
 const PREVISION = {
   "base.juicios_publicos": "Las potencias extranjeras toman nota de los juicios públicos.",
   "base.exiliados_vocales": "Los exiliados hablan cada vez más alto desde fuera.",
-  "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del general Diezfuegos.",
+  "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del Comandante Milfuegos.",
   "base.mota_juzgado": "La familia de Mota sigue contando su versión.",
   "base.reforma_agraria": "Las cosechas del reparto de tierras no llegarán a tiempo.",
   "base.censura_previa": "Circulan más rumores que periódicos.",
@@ -1151,8 +1140,8 @@ const TUTORIAL = [   // texto: lo que Cuesta dice al Comandante (de usted); cint
    llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
    de redacción en docs/COLECCIONABLES.md. */
 const LOGROS = [
-  { id: "chivaton", bandera: "base.comites_vigilancia", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
-    objeto: "Carné del comité de barrio", decision: "Que cada vecino vigile a su vecino",
+  { id: "chivaton", bandera: "base.denuncias_todas", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
+    objeto: "Carné del comité de barrio", decision: "Que se investigue hasta la gallina",
     descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional, lo cierra la conversación de coleccionables
     efecto: "+1 vecino que te lo cuenta todo.", secundario: "Tú también eres vecino de alguien." },
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera

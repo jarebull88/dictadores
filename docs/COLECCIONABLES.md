@@ -39,7 +39,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Frase del archivo:** pendiente.
 - **Texto del objeto:** pendiente (cita en mayúsculas con guiones de partición, firmada «COMANDANTE [nombre]»; cinta con el lema; ojo).
 - **Referencia real:** el carné de los Comités de Defensa de la Revolución (CDR), con el ojo, la cinta «con la guardia en alto» y una cita firmada por Fidel. Los CDR se fundaron el 28 sep 1960, en un acto ante el Palacio Presidencial, mientras estallaban petardos; Fidel anunció «un sistema de vigilancia colectiva revolucionaria» (verificado). El texto exacto de la cita del carné sale de la imagen que tiene Jorge; no lo he encontrado transcrito en la red.
-- **Se desbloquea con:** carta `ojos_barrio` («Los ojos del barrio», Ministro del Interior), opción «Que cada vecino vigile a su vecino» (bandera `base.comites_vigilancia`).
+- **Se desbloquea con** (28 oct, Jorge: «por ser literalmente un chivatón»): carta `denuncias_falsas` de la **era 2** (Ministro del Interior), opción «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). Antes, `ojos_barrio`, que ahora crea los comités siempre.
 
 ### 6. Licencia de electricista del pelotero — *propuesto* (idea de Jorge, 24 oct)
 - **Idea:** la estrella del béisbol pasa a «aficionado» y necesita un oficio sobre el papel; esperamos que nadie le pida arreglar un enchufe.

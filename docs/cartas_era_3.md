@@ -17,7 +17,7 @@ Duración: entre 8 y 10 cartas. 24 cartas. Los efectos están en la escala peque
 ### 2. Una carta con firmas
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 14; exige alguna de `policia_tradicional`, `exiliados_vocales`, `critica_abierta`, `campos_trabajo`.
+**Condición:** sorteo con peso 14; exige alguna de `exiliados_vocales`, `critica_abierta`, `campos_trabajo`.
 
 **Carta:** «Un grupo de intelectuales firmó una carta reclamando los derechos que usted mismo prometió.»
 
@@ -139,7 +139,7 @@ Duración: entre 8 y 10 cartas. 24 cartas. Los efectos están en la escala peque
 ### 14. Las aulas vacías
 
 **Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 14; exige alguna de `estudiantes_reprimidos`, `huelga_reprimida`.
+**Condición:** sorteo con peso 14; exige `estudiantes_reprimidos`.
 
 **Carta:** «Algunos profesores se atreven a enseñar historia sin citarle a usted.»
 

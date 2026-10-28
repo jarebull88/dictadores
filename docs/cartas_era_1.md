@@ -2,133 +2,127 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 39 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. La casa vacía
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «Tenemos a los ministros del tirano. Los tribunales revolucionarios esperan y el Pueblo pide justicia.»
+**Carta:** «Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
 
-- **A. Juicio público en el estadio** Pueblo +8 · Ejército +4 · Bandera: `juicios_publicos`
-- **B. Tienen 24 horas para hacer maletas** Pueblo −8 · Ejército −4 · Potencias +5 · Bandera: `exiliados_vocales`
+- **A. Con narrador de béisbol** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
+- **B. Esto no es un circo** Pueblo −8 · Ejército +5
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
-
-**Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
 
 ### 2. La casa del tirano
 
 **Personaje:** Ministra de Cultura  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «La mansión del tirano tiene piscina, cine y 20 habitaciones. Habrá que darle algún uso revolucionario.»
+**Carta:** «La mansión del tirano tiene piscina, cine y 20 habitaciones. Habrá que darle algún uso.»
 
 - **A. Museo del Pueblo** Pueblo +8 · Élite −6
 - **B. Me mudo yo** Pueblo −8 · Élite +6
 
-### 3. Las arcas vacías
+### 3. Los casinos
 
-**Personaje:** Ministro de Economía  
+**Personaje:** Ministro de Trabajo  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «El tirano huyó con la reserva del Banco Nacional. No hay para pagar los sueldos de este mes.»
+**Carta:** «Los crupieres protestan por el cierre de los casinos. Propongo reabrirlos con moral revolucionaria.»
 
-- **A. Impriman billetes hasta que alcance** Pueblo +5 · Potencias −5 · Bandera: `mercado_paralelo`
-- **B. Pidan un préstamo y recorten gastos** Pueblo −5 · Potencias +5 · Bandera: `deuda_externa`
-
-**Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
-
-**Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
+- **A. Ruleta revolucionaria** Pueblo +5 · Potencias +4 · Élite −4
+- **B. Ni un vicio capitalista** Pueblo −5 · Potencias −4 · Élite +4
 
 ### 4. El comandante que dimite
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «El comandante Mota dimite con una carta: dice que la Revolución se está volviendo comunista.»
+**Carta:** «Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.»
 
-- **A. Veinte años de cárcel por traidor** Élite +5 · Ejército −4 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 1 a 2 años
-- **B. La Revolución no retiene a nadie** Ejército +4 · Élite −5 · Encola: `avion_diezfuegos` en 1 a 2 años
+- **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 1 a 2 años
+- **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Encola: `avion_diezfuegos` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
 
 ### 5. Las refinerías
 
 **Personaje:** Ministro de Comercio  
-**Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Las petroleras extranjeras exigen condiciones o cierran el grifo.»
+**Carta:** «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 
-- **A. Aceptemos sus condiciones** Potencias +10 · Élite −5 · Pueblo −4 · Bandera: `negocio_refinerias`
-- **B. ¡Exprópiese!** Pueblo +8 · Élite +5 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años
-
-**Consecuencia futura de `negocio_refinerias`:** Las empresas exigen garantías que limitan tus decisiones económicas.
+- **A. ¡Exprópiese!** Pueblo +8 · Élite +5 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años
+- **B. Les pagaremos con azúcar** Pueblo −8 · Élite −5 · Potencias +10 · Bandera: `compensaciones` · Encola: `embargo` en 3 a 8 años
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
+
+**Consecuencia futura de `compensaciones`:** Una deuda que alimenta una carta de crisis.
 
 ### 6. El visitante del bloque oriental
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** ancla de los años 4 a 7 de su era; a partir del año 4 de la era.
+**Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
 
-**Carta:** «Nuestro país le ofrece petróleo, armas y asesores. A cambio, solo pedimos su lealtad.»
+**Carta:** «Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
 
-- **A. Acepto su generosa ayuda** Potencias +9 · Pueblo +2 · Ejército +4 · Crisis +2 · Bandera: `alineado_bloque_oriental`
-- **B. La Revolución no tiene dueño** Potencias −9 · Pueblo −5 · Ejército −4 · Crisis +1 · Bandera: `no_alineado`
+- **A. Me cuadra** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 a 2 años
+- **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 a 2 años
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
-
-**Consecuencia futura de `no_alineado`:** La potencia del norte se acerca y el aislamiento económico se agrava.
 
 ### 7. Los alfabetizadores en el monte
 
 **Personaje:** Ministra de Educación  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Los alzados del monte han matado a un maestro de dieciocho años. Las brigadas temen subir.»
+**Carta:** «Un maestro de 18 años no volverá del monte: los alzados lo encontraron. ¿Paramos la campaña?»
 
-- **A. Que el Ejército suba con ellos** Ejército +5 · Élite −3
-- **B. Que suban todos aunque tengan miedo** Élite +3 · Ejército −5
+- **A. Será nuestro mártir** Élite +5 · Pueblo −5
+- **B. Primero sus vidas** Pueblo +5 · Élite −5
 
-### 8. El avión de Diezfuegos
+### 8. El avión de Milfuegos
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «El general Diezfuegos, el más querido de la tropa, fue a relevar a Mota y su avión no ha vuelto.»
+**Carta:** «El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?»
 
-- **A. Búsquenlo aunque sequemos el mar** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`
-- **B. Tres días de luto y todos a trabajar** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
+- **A. Quiero toda la verdad** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`
+- **B. Accidente y punto** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
 
-**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Diezfuegos.
+**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Milfuegos.
 
-**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Diezfuegos.
+**Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Milfuegos.
 
-### 9. El embargo
+### 9. El azúcar
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Han expropiado nuestras refinerías. Exigimos compensación o no les venderemos ni un tornillo.»
+**Carta:** «Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.»
 
-- **A. Aquí no se paga nada** Pueblo +3 · Potencias −9 · Crisis +2 · Bandera: `embargo_en_marcha`
-- **B. Pagaremos, que somos gente seria** Potencias +9 · Pueblo −9 · Crisis +2 · Bandera: `compensaciones`
+- **A. Ahora me quedo con todo** Élite +6 · Potencias −6 · Crisis +1 · Bandera: `embargo_en_marcha`, `nacionalizo_empresas`
+- **B. Ya tengo otro cliente** Potencias +6 · Élite −6 · Bandera: `embargo_en_marcha`
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-**Consecuencia futura de `compensaciones`:** Una deuda que alimenta una carta de crisis.
+**Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 
-### 10. La lista *(borrador)*
+**Consecuencia futura de `embargo_en_marcha`:** Embargo total.
+
+### 10. La lista
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Ya sabemos quiénes nos critican, gracias a unos vecinos muy colaboradores.»
+**Carta:** «Los escritores se tomaron en serio lo de la libertad. Tengo la lista de criticones. ¿Los detenemos?»
 
-- **A. Que protesten, pero bajito** Pueblo +8 · Ejército −5
-- **B. Detengan a todos en orden alfabético** Pueblo −8 · Ejército +5 · Bandera: `criticos_detenidos`
+- **A. Que critiquen bajito** Pueblo +8 · Ejército −5
+- **B. Memorias desde la celda** Pueblo −8 · Ejército +5 · Bandera: `criticos_detenidos`
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
 
@@ -137,10 +131,12 @@ Duración: entre 8 y 10 cartas. 39 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 12.
 
-**Carta:** «Si repartimos las tierras entre los campesinos, el país será el granero del mundo en un año.»
+**Carta:** «Las fincas de los ricos ya son de la Revolución. ¿Para los campesinos o para el Estado?»
 
-- **A. Respeten la propiedad privada** Pueblo −10 · Élite −5
-- **B. La tierra para quien la "merece"** Pueblo +10 · Élite +5 · Potencias −4 · Crisis +1 · Bandera: `reforma_agraria`
+- **A. A los campesinos** Pueblo +8 · Élite −6 · Crisis +1 · Bandera: `reforma_agraria`
+- **B. El Estado ara mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
+
+**Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
@@ -149,10 +145,10 @@ Duración: entre 8 y 10 cartas. 39 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Los periódicos publican críticas contra cada decreto, uno detrás de otro.»
+**Carta:** «La prensa critica cada decreto. Los tipógrafos quieren aclarar al pie que es propaganda enemiga.»
 
-- **A. Que publiquen lo que quieran** Pueblo +6 · Élite −5 · Bandera: `prensa_libre`
-- **B. Nacionalicen las imprentas** Pueblo −6 · Élite +5 · Bandera: `censura_previa`
+- **A. Aclaren todo** Élite +6 · Pueblo −6 · Bandera: `censura_previa`
+- **B. Prensa libre por ahora** Pueblo +6 · Élite −6 · Bandera: `prensa_libre`
 
 **Consecuencia futura de `censura_previa`:** Aparecen el periodista oficial y los rumores.
 
@@ -161,307 +157,271 @@ Duración: entre 8 y 10 cartas. 39 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 2 de la era.
 
-**Carta:** «El Pueblo recuerda que prometimos elecciones en dieciocho meses. Ya han pasado doce.»
+**Carta:** «Se acerca la fecha de las elecciones que prometimos. ¿Qué le decimos al Pueblo?»
 
-- **A. Elecciones ya, que seguro gano** Pueblo +9 · Élite −5 · Bandera: `elecciones_prometidas`
-- **B. La Revolución ya fue votada** Pueblo −9 · Élite +5 · Bandera: `elecciones_aplazadas`
-
-**Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
+- **A. ¿Elecciones para qué?** Pueblo +6 · Élite −6 · Bandera: `elecciones_aplazadas`, `estudiantes_reprimidos`
+- **B. Aplazadas por decreto** Pueblo −6 · Élite +6 · Bandera: `elecciones_aplazadas`, `elecciones_prometidas`
 
 **Consecuencia futura de `elecciones_aplazadas`:** Protestas estudiantiles.
+
+**Consecuencia futura de `estudiantes_reprimidos`:** La universidad se convierte en foco de oposición.
+
+**Consecuencia futura de `elecciones_aplazadas`:** Protestas estudiantiles.
+
+**Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
 
 ### 14. La campaña de alfabetización
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Propongo una campaña de alfabetización: brigadas de jóvenes enseñando a leer en cada rincón.»
+**Carta:** «Los estudiantes irán al campo a enseñar a leer y escribir. ¿Cuál será la primera lección?»
 
-- **A. Un Pueblo culto y agradecido** Pueblo +10 · Encola: `alfabetizadores_monte` en 2 a 3 años
-- **B. Un Pueblo que lee pregunta demasiado** Pueblo −10
+- **A. La R de Revolución** Élite +6 · Pueblo −6 · Encola: `alfabetizadores_monte` en 2 a 3 años
+- **B. El abecedario** Pueblo +6 · Élite −6 · Encola: `alfabetizadores_monte` en 2 a 3 años
 
 ### 15. La declaración socialista
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
 
-**Carta:** «El exilio nos ha bombardeado y la plaza se llena de luto. Habrá que decir qué es la Revolución.»
+**Carta:** «Nos han bombardeado y el Pueblo llora en la plaza. Es el momento de decir qué es la Revolución.»
 
-- **A. Hoy la Revolución será socialista** Potencias +5 · Élite +3
-- **B. Que la palabra sea patria y nada más** Potencias −5 · Élite −3
+- **A. Para los humildes** Pueblo +6 · Potencias −5 · Élite −3
+- **B. Socialista importada** Pueblo −6 · Potencias +5 · Élite +3
 
 ### 16. Se acabó el profesional
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Nuestras estrellas del béisbol juegan y cobran fuera. Si abolimos el deporte profesional no volverán.»
+**Carta:** «Nuestros mejores deportistas juegan en las ligas extranjeras. ¿Abolimos el deporte profesional?»
 
-- **A. La pelota libre le gana a la esclava** Élite +4 · Potencias −4
-- **B. Que sigan bateando en divisas** Potencias +4 · Élite −4
+- **A. Se juega por amor** Élite +4 · Potencias −4
+- **B. Que cobren en divisas** Potencias +4 · Élite −4
 
-### 17. Las escuelas para todos
+### 17. Los colegios de los curas
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Los colegios privados cobran por enseñar. Propongo que todas las escuelas sean del Estado.»
+**Carta:** «Como nacionalizamos los colegios religiosos, los curas dan misas contra la Revolución.»
 
-- **A. Que todos aprendan lo mismo** Pueblo +7 · Élite +5
-- **B. Que pague quien quiera otra escuela** Pueblo −7 · Élite −5
+- **A. Que recen en un barco** Élite +6 · Pueblo −6
+- **B. Dios, pero sin tiza** Pueblo +6 · Élite −6
 
-### 18. Los asesores
-
-**Personaje:** Embajador del bloque oriental  
-**Condición:** sorteo con peso 6; a partir del año 2 de la era.
-
-**Carta:** «Le enviaremos asesores para su economía y su policía. Nos ocuparemos de que todo vaya bien.»
-
-- **A. Aprenderemos de los mejores** Potencias +9 · Ejército +5 · Élite +5
-- **B. Gracias, aquí nos asesoramos solos** Potencias −9 · Ejército −5 · Élite −5
-
-### 19. El club de golf
+### 18. El club de golf
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Nuestro país reconocerá su gobierno si respeta nuestras propiedades, empezando por el club de golf.»
+**Carta:** «Nuestro país romperá relaciones si sigue expropiando. Empezando por el club de golf.»
 
-- **A. Las propiedades y el golf son suyas** Potencias +9 · Pueblo −8 · Élite −4
-- **B. Empezaremos nacionalizando el golf** Potencias −9 · Pueblo +8 · Élite +4
+- **A. Su «hoyo» ahora es mío** Potencias −9 · Pueblo +8 · Élite +4
+- **B. No tocaremos nada más** Potencias +9 · Pueblo −8 · Élite −4
 
-### 20. La bahía
+### 19. La bahía
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 5 a 7 de su era.
 
-**Carta:** «Hemos derrotado la invasión de la bahía. Tenemos mil doscientos prisioneros.»
+**Carta:** «Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?»
 
-- **A. Cámbienlos por compotas** Potencias −6 · Pueblo +2 · Ejército −4
-- **B. Juicio televisado y luego al «patio»** Potencias −3 · Pueblo +5 · Ejército +5 · Crisis +2
+- **A. Cámbienlos por compotas** Pueblo +5 · Potencias +4 · Ejército −6
+- **B. Un último cigarro** Pueblo −5 · Potencias −4 · Ejército +6 · Crisis +2
 
-### 21. Los niños que se van
+### 20. Los niños que se van
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 6; a partir del año 3 de la era.
 
-**Carta:** «Cada semana salen aviones llenos de niños sin sus padres. Temen que la Revolución se los quede.»
+**Carta:** «Corre el rumor de que el Estado se quedará con los niños. Los padres los suben solos a los aviones.»
 
-- **A. Dejen salir a los niños** Pueblo +5 · Ejército −4 · Potencias +3
-- **B. Nadie se lleva a nuestros niños** Pueblo −5 · Ejército +4 · Potencias −3
+- **A. Sus padres sabrán** Pueblo +5 · Ejército −4 · Potencias +3
+- **B. Los niños son del Estado** Pueblo −5 · Ejército +4 · Potencias −3
 
-### 22. La reforma urbana
+### 21. La reforma urbana
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «El Estado expropiará las casas y las alquilará a mitad de precio hasta que el inquilino las compre.»
+**Carta:** «Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.»
 
-- **A. Ahora el casero es el Estado** Pueblo +8 · Élite +4
-- **B. Los caseros mantienen sus casas** Pueblo −8 · Élite −4
+- **A. La casa al que la habita** Pueblo +8 · Élite −5
+- **B. Ahora el casero soy yo** Pueblo −8 · Élite +5
 
-### 23. Las milicias
+### 22. Las milicias
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Los barrios piden fusiles para defender la Revolución por su cuenta.»
+**Carta:** «Crearemos milicias de obreros y estudiantes por si vuelve el tirano. Falta decidir quién las manda.»
 
-- **A. Que el Pueblo se arme** Pueblo +6 · Ejército −6
-- **B. Las armas solo son para el Ejército** Pueblo −6 · Ejército +6
+- **A. Que cada barrio mande** Pueblo +6 · Ejército −6
+- **B. Bajo mando militar** Pueblo −6 · Ejército +6
 
-### 24. Las mil flores
+### 23. Las mil flores
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6.
 
-**Carta:** «Los intelectuales preguntan hasta dónde pueden criticar a la Revolución.»
+**Carta:** «Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.»
 
-- **A. Que critiquen todo lo que quieran** Pueblo +8 · Élite −5 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
-- **B. La Revolución no se cuestiona** Pueblo −8 · Élite +5
+- **A. Dentro todo, fuera nada** Pueblo −8 · Élite +5
+- **B. El arte es libre** Pueblo +8 · Élite −5 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 
-### 25. Los oficiales de antes
+### 24. Los oficiales de antes
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Los oficiales del antiguo régimen siguen al mando de la mitad de los cuarteles.»
+**Carta:** «Los oficiales del tirano que se rindieron piden un puesto en el nuevo Ejército.»
 
-- **A. Jubílenlos** Ejército −5 · Crisis +1 · Bandera: `viejos_oficiales`
-- **B. Purga y ascensos para los nuestros** Ejército +5 · Pueblo +4 · Bandera: `purga_inicial`
+- **A. Uniforme nuevo y listo** Ejército +5 · Pueblo −5
+- **B. Todos a la calle** Pueblo +5 · Ejército −5 · Crisis +1 · Bandera: `viejos_oficiales`, `purga_inicial`
 
 **Consecuencia futura de `viejos_oficiales`:** Conspiración de oficiales retirados.
 
 **Consecuencia futura de `purga_inicial`:** El Ministro del Interior pide más poder.
 
-### 26. El puerto parado
-
-**Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 8; a partir del año 3 de la era.
-
-**Carta:** «El puerto lleva tres días parado. Los estibadores no quieren que el Partido elija a sus líderes.»
-
-- **A. Que se organicen libremente** Pueblo +10 · Élite −7 · Ejército −4 · Crisis +1 · Bandera: `sindicato_libre`
-- **B. El Partido ya eligió por ellos** Pueblo −10 · Élite +7 · Ejército +4 · Bandera: `huelga_reprimida`
-
-**Consecuencia futura de `sindicato_libre`:** Los sindicatos libres quieren elegir a sus dirigentes sin el Partido.
-
-**Consecuencia futura de `huelga_reprimida`:** Malestar en las universidades.
-
-### 27. Los ojos del barrio
+### 25. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `purga_inicial`, `censura_previa`.
 
-**Carta:** «Los contrarrevolucionarios se esconden en los barrios. Los vecinos podrían ayudarnos a encontrarlos.»
+**Carta:** «Cada cuadra tendrá su comité de vecinos vigilantes. Falta decidir a quién le cuentan lo que ven.»
 
-- **A. Que cada vecino vigile a su vecino** Ejército +6 · Élite +4 · Pueblo −7 · Bandera: `comites_vigilancia`
-- **B. No necesitamos chivatos** Pueblo +7 · Ejército −6 · Élite −4 · Bandera: `policia_tradicional`
+- **A. Los chismes al Partido** Élite +6 · Ejército −6 · Pueblo −3
+- **B. Los chismes a la Policía** Ejército +6 · Élite −6 · Pueblo −3 · Bandera: `comites_vigilancia`
 
 **Consecuencia futura de `comites_vigilancia`:** Denuncias falsas entre vecinos.
 
-**Consecuencia futura de `policia_tradicional`:** La oposición se organiza con más facilidad.
+### 26. El retrato
 
-### 28. El retrato
-
-**Personaje:** Vicepresidente del Consejo de Ministros  
+**Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 6; a partir del año 4 de la era.
 
-**Carta:** «El Partido quiere su retrato en cada aula y una estatua en la plaza.»
+**Carta:** «Propongo su retrato en cada aula. El fotógrafo pregunta cuál es su perfil bueno.»
 
-- **A. Si insisten…** Pueblo −3 · Élite +6 · Crisis +1 · Bandera: `culto_iniciado`
-- **B. Los monumentos son para los mártires** Pueblo +3 · Élite −6 · Bandera: `modestia_aparente`
+- **A. El izquierdo, claro** Pueblo −3 · Élite +6 · Crisis +1 · Bandera: `culto_iniciado`
+- **B. Mejor el de los mártires** Pueblo +3 · Élite −6 · Bandera: `modestia_aparente`
 
 **Consecuencia futura de `modestia_aparente`:** El Partido exige otros símbolos de lealtad.
 
-### 29. Los que se marchan
+### 27. Los que se marchan
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
 
-**Carta:** «Los ricos hacen cola en el aeropuerto. Dicen que vuelven en cuanto caiga la Revolución.»
+**Carta:** «Los ricos se marchan con las joyas cosidas al forro. Propongo registrarlos en el aeropuerto.»
 
-- **A. Que se vayan y dejen el dinero** Pueblo +7 · Potencias +4 · Crisis −1 · Bandera: `exodo_elite`
-- **B. Nadie sale del país sin permiso** Ejército +6 · Pueblo −7 · Potencias −4 · Bandera: `frontera_cerrada`
+- **A. Que viajen ligeros** Pueblo +7 · Potencias +4 · Crisis −1 · Bandera: `exodo_elite`, `exiliados_vocales`
+- **B. Nadie sale sin permiso** Ejército +6 · Pueblo −7 · Potencias −4 · Bandera: `frontera_cerrada`
 
 **Consecuencia futura de `exodo_elite`:** Faltan técnicos y gestores.
 
+**Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
+
 **Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
 
-### 30. La factura *(borrador)*
+### 28. El partido
+
+**Personaje:** Ministra de Educación  
+**Condición:** sorteo con peso 8.
+
+**Carta:** «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
+
+- **A. A mí nadie me batea** Pueblo +4 · Ejército −3
+- **B. Yo seré el árbitro** Ejército +3 · Pueblo −4
+
+### 29. El economista
 
 **Personaje:** Ministro de Economía  
-**Condición:** carta de crisis: la dispara la crisis oculta (repetible).
+**Condición:** sorteo con peso 8.
 
-**Carta:** «Hemos prometido demasiado y no queda dinero. Los precios se disparan y el Pueblo protesta.»
+**Carta:** «Pedimos un economista para el Banco Nacional y el comandante Cabaña alzó la mano. Oyó «comunista».»
 
-- **A. Congelen los precios por decreto** Pueblo +8 · Élite +5 · Crisis −3 · Bandera: `mercado_paralelo`
-- **B. Pidan otro préstamo y ya veremos** Potencias +8 · Pueblo −3 · Crisis −3 · Bandera: `deuda_externa`
+- **A. Me sirve igual** Ejército +4 · Élite −4
+- **B. Uno que sepa sumar** Élite +4 · Ejército −4
 
-**Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
+### 30. Las barbas
 
-**Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 8.
 
-### 31. Las tiendas vacías *(borrador)*
+**Carta:** «El barbero de palacio quiere saber si los comandantes se afeitarán ahora que gobiernan.»
+
+- **A. Las barbas no se tocan** Ejército +4 · Élite −3
+- **B. Que se afeiten los demás** Élite +3 · Ejército −4
+
+### 31. El refresco
+
+**Personaje:** Ministro de Comercio  
+**Condición:** sorteo con peso 8.
+
+**Carta:** «Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.»
+
+- **A. Inventen la Revolukola** Élite +4 · Pueblo −3
+- **B. Que beban guarapo** Pueblo +3 · Élite −4
+
+### 32. Las tiendas vacías *(borrador)*
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
 
-**Carta:** «No hay nada en las tiendas del Estado. En el mercado negro, de todo.»
+**Carta:** «En las tiendas del Estado no hay nada. En el mercado negro de todo a precio de oro.»
 
-- **A. Redadas en el mercado negro** Pueblo −8 · Ejército +4 · Élite +4 · Crisis −3
-- **B. Hagan la vista gorda** Pueblo +3 · Élite +5 · Crisis −3 · Bandera: `mercado_paralelo`
+- **A. Confisquen y repartan** Pueblo −8 · Ejército +4 · Élite +4 · Crisis −3
+- **B. Yo también compro ahí** Pueblo +3 · Élite +5 · Crisis −3 · Bandera: `mercado_paralelo`
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
-### 32. La calle y los cuarteles *(borrador)*
+### 33. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
 
-**Carta:** «Algunos oficiales se reúnen con los que protestan en la calle. Si se juntan, caemos.»
+**Carta:** «Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.»
 
-- **A. Asciendan a los que no se reúnen** Ejército +8 · Élite −4
-- **B. Arresten a los oficiales reunidos** Ejército −6 · Pueblo −3 · Crisis +2
-
-### 33. El dinero se va *(borrador)*
-
-**Personaje:** Ministro de Economía  
-**Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
-
-**Carta:** «Los empresarios se reúnen con los embajadores. Si se alían, nos asfixian.»
-
-- **A. Mimen a los empresarios** Potencias +6 · Pueblo −8 · Élite −5
-- **B. Intervengan sus empresas** Potencias −8 · Pueblo +6 · Élite +5 · Crisis +2
+- **A. Un ascenso y se calman** Ejército +8 · Élite −4
+- **B. Arréstenlos a todos** Ejército −6 · Pueblo −3 · Crisis +2
 
 ### 34. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** ancla de los años 8 a 10 de su era; exige `alineado_bloque_oriental`.
+**Condición:** ancla de los años 8 a 10 de su era.
 
-**Carta:** «Nuestro país le ofrece misiles, instalados y apuntando a donde usted diga.»
+**Carta:** «Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo hasta que estén apuntando.»
 
-- **A. Acepto y apúntenlos donde ya sabe** Ejército +6 · Potencias +5 · Pueblo −4 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
-- **B. Nuestro misil es el Pueblo** Ejército −6 · Potencias −5 · Pueblo +4 · Bandera: `misiles_rechazados`
+- **A. Ni a mi hermano** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
+- **B. Discreto como mi barba** Potencias −6 · Ejército +5 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
-**Consecuencia futura de `misiles_rechazados`:** El aliado recuerda tu negativa.
+**Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
 ### 35. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Nuestros barcos rodearán su costa hasta que retire los misiles.»
+**Carta:** «Pactamos con su aliado que se lleva los misiles e iremos a comprobarlo. Creíamos que lo sabía.»
 
-- **A. Que disfruten de la vista** Ejército +6 · Potencias −6 · Pueblo −3 · Crisis +2 · Bandera: `embargo_en_marcha`
-- **B. Tranquilo, mañana no estarán** Ejército −6 · Potencias +6 · Crisis −1
+- **A. Fue idea mía** Potencias +6 · Ejército −6 · Crisis −1
+- **B. Compruébeme esta** Potencias −6 · Ejército +6 · Crisis +2 · Bandera: `embargo_en_marcha`
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 36. Las garantías
-
-**Personaje:** Ministro de Comercio  
-**Condición:** sorteo con peso 14; exige `negocio_refinerias`.
-
-**Carta:** «Las empresas extranjeras quieren por escrito que no habrá más nacionalizaciones y que podrán llevarse sus ganancias.»
-
-- **A. Les doy mi palabra de revolucionario** Potencias +6 · Élite −4 · Pueblo −5 · Crisis −1
-- **B. Aquí no se firma nada** Potencias −6 · Pueblo +4 · Élite +4 · Crisis +1
-
-### 37. Estudiantes en la calle
-
-**Personaje:** Ministra de Educación  
-**Condición:** sorteo con peso 14; exige `elecciones_aplazadas`.
-
-**Carta:** «Los estudiantes ocupan la universidad y exigen las elecciones que usted aplazó.»
-
-- **A. Habrá elecciones, palabra de honor** Pueblo +5 · Élite −4 · Bandera: `elecciones_prometidas`
-- **B. ¿Elecciones para qué?** Pueblo −6 · Ejército +4 · Bandera: `estudiantes_reprimidos`
-
-**Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
-
-**Consecuencia futura de `estudiantes_reprimidos`:** La universidad se convierte en foco de oposición.
-
-### 38. La marcha de los eléctricos
-
-**Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 14; exige `sindicato_libre`.
-
-**Carta:** «Los electricistas quieren un sindicato libre como el del puerto, o apagarán la capital.»
-
-- **A. Que también tengan su sindicato** Pueblo +6 · Élite −4 · Crisis +2
-- **B. Calabozo por contrarrevolución** Pueblo −6 · Ejército +4 · Élite +4
-
-### 39. Embargo total
+### 36. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 14; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.
 
-**Carta:** «El embargo ya es total: no entran comida, medicinas ni repuestos.»
+**Carta:** «El embargo es total y las tiendas se vacían. Propongo repartir la comida con una libreta.»
 
-- **A. Libreta de racionamiento por familia** Pueblo −4 · Élite +3 · Crisis −1
-- **B. Que un país amigo nos revenda** Pueblo +4 · Potencias +3 · Élite +2 · Crisis +1
+- **A. Una libreta por familia** Élite +5 · Potencias −4 · Pueblo −3 · Crisis −1
+- **B. Por la puerta de atrás** Potencias +4 · Élite −5 · Pueblo +3 · Crisis +1 · Bandera: `deuda_externa`
+
+**Consecuencia futura de `deuda_externa`:** El acreedor empieza a pedir favores.

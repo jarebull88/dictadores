@@ -32,8 +32,8 @@ Cambios de estructura ya hechos, porque los textos los pedían: el aliado es un 
 
 ## Pendiente para la revisión de estructura (con Jorge)
 - **Estados que ahora casi siempre llegan:** solo los da una opción (Alineado: «Me cuadra»; Nacionalizaciones: «¡Exprópiese!» o «Ahora me quedo con todo»; Vigilancia: «Los chismes a la Policía»; Deuda externa: «Por la puerta de atrás», del embargo total, porque las dos cartas que la daban se quitaron). Revisar si así vale.
-- **Miniflujos que aún no lo son:** la declaración socialista antes de la bahía, y los segundos pasos que no deberían contar (necesita el motor).
+- ~~Miniflujos~~ **Hecho (28 oct):** los segundos pasos no cuentan (`enlace`): el avión, las refinerías, la bahía (tras la declaración socialista, que pasa a ancla), el ultimátum, los maestros del monte y la lista. El azúcar es un tercer paso y cuenta (2–4 turnos después). La era 1 pasa a 10–12 cartas y ×1.15: salen unas 15 (11 cuentan), con ~4 de sorteo; los nueve hitos y pasos salen en todas las partidas; «humano» 63 %, azar 4 %.
 - **Orden y condiciones:** el béisbol (si sale antes o después de Milfuegos ya no importa: la B no lo nombra), `ojos_barrio` sale poco (gran hecho: debería salir siempre), «La voz del exilio» sale poco.
 - **Huecos:** sin `crisis_factura` no hay carta para la crisis leve; sin `coalicion_dinero_sale`, la coalición Partido–Potencias se queda sin carta en todas las eras.
-- **Era 2:** `aliado_enfadado` apagada (peso 0) hasta reescribirla, porque dependía de rechazar los misiles; el «humano» de `npm run simular` baja al 50 % en la era 2 (antes ~59 %). La era 1 sigue en el 62 %.
+- **Era 2:** `aliado_enfadado` apagada (peso 0) hasta reescribirla, porque dependía de rechazar los misiles. Con los cambios, el «humano» de la era 2 vuelve al 57 %.
 - **Efectos en números:** los he puesto según las fuerzas acordadas en cada carta; se ajustan en la revisión.

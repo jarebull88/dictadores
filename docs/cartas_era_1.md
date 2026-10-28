@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.15.
 
 ### 1. La casa vacía
 
@@ -43,8 +43,8 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.»
 
-- **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 1 a 2 años
-- **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Encola: `avion_diezfuegos` en 1 a 2 años
+- **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 1 años
+- **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Encola: `avion_diezfuegos` en 1 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
 
@@ -55,8 +55,8 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 
-- **A. ¡Exprópiese!** Pueblo +8 · Élite +5 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 3 a 8 años
-- **B. Les pagaremos con azúcar** Pueblo −8 · Élite −5 · Potencias +10 · Bandera: `compensaciones` · Encola: `embargo` en 3 a 8 años
+- **A. ¡Exprópiese!** Pueblo +8 · Élite +5 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 2 a 4 años
+- **B. Les pagaremos con azúcar** Pueblo −8 · Élite −5 · Potencias +10 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 
@@ -65,12 +65,12 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 6. El visitante del bloque oriental
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** ancla de los años 3 a 6 de su era; a partir del año 3 de la era.
+**Condición:** ancla de los años 3 a 7 de su era; a partir del año 3 de la era.
 
 **Carta:** «Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
 
-- **A. Me cuadra** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 a 2 años
-- **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 a 2 años
+- **A. Me cuadra** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
+- **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 
@@ -177,18 +177,18 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 
 **Carta:** «Los estudiantes irán al campo a enseñar a leer y escribir. ¿Cuál será la primera lección?»
 
-- **A. La R de Revolución** Élite +6 · Pueblo −6 · Encola: `alfabetizadores_monte` en 2 a 3 años
-- **B. El abecedario** Pueblo +6 · Élite −6 · Encola: `alfabetizadores_monte` en 2 a 3 años
+- **A. La R de Revolución** Élite +6 · Pueblo −6 · Encola: `alfabetizadores_monte` en 1 años
+- **B. El abecedario** Pueblo +6 · Élite −6 · Encola: `alfabetizadores_monte` en 1 años
 
 ### 15. La declaración socialista
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
-**Condición:** sorteo con peso 10; a partir del año 3 de la era.
+**Condición:** ancla de los años 6 a 10 de su era.
 
 **Carta:** «Nos han bombardeado y el Pueblo llora en la plaza. Es el momento de decir qué es la Revolución.»
 
-- **A. Para los humildes** Pueblo +6 · Potencias −5 · Élite −3
-- **B. Socialista importada** Pueblo −6 · Potencias +5 · Élite +3
+- **A. Para los humildes** Pueblo +6 · Potencias −5 · Élite −3 · Encola: `la_bahia` en 1 años
+- **B. Socialista importada** Pueblo −6 · Potencias +5 · Élite +3 · Encola: `la_bahia` en 1 años
 
 ### 16. Se acabó el profesional
 
@@ -223,7 +223,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 19. La bahía
 
 **Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** ancla de los años 5 a 7 de su era.
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
 **Carta:** «Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?»
 
@@ -268,7 +268,7 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 **Carta:** «Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.»
 
 - **A. Dentro todo, fuera nada** Pueblo −8 · Élite +5
-- **B. El arte es libre** Pueblo +8 · Élite −5 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 3 años
+- **B. El arte es libre** Pueblo +8 · Élite −5 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 1 años
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 
@@ -391,12 +391,12 @@ Duración: entre 8 y 10 cartas. 36 cartas. Los efectos están en la escala peque
 ### 34. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** ancla de los años 8 a 10 de su era.
+**Condición:** ancla de los años 10 a 14 de su era.
 
 **Carta:** «Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo hasta que estén apuntando.»
 
-- **A. Ni a mi hermano** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
-- **B. Discreto como mi barba** Potencias −6 · Ejército +5 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 a 2 años
+- **A. Ni a mi hermano** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
+- **B. Discreto como mi barba** Potencias −6 · Ejército +5 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 

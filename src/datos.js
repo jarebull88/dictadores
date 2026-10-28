@@ -15,7 +15,7 @@ const BARRAS = [
   { id: "potencias", nombre: "Potencias" }
 ];
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
-  { nombre: "La Revolución", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.25): con las cartas cubanas nuevas el «humano» la superaba el 75 %; ahora ~62 %
+  { nombre: "La Revolución", min: 10, max: 12, factor: 1.15 },   // 28 oct: 10–12 cartas (antes 8–10) y ×1.15 (antes ×1.35): los segundos pasos ya no cuentan y caben ~4 de sorteo; «humano» ~63 %
   { nombre: "La Purga", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.1): con las cartas cubanas nuevas el «humano» la superaba el 68 %; ahora ~59 %
   { nombre: "El Culto", min: 8, max: 10, factor: 1.7 },   // 23 oct: ×1.7 (antes 1.2): con las cartas cubanas nuevas el «humano» la superaba el 75 % y el azar el 37 %; ahora ~58 % y ~9 %
   { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.4 }   // 23 oct: con las cartas nuevas, ×1.0 dejaba al «humano» en 68 %; con ×1.4, ~57 %
@@ -53,24 +53,24 @@ const CARTAS = [
     id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.",
-    izq: { accion: "Que Milfuegos lo detenga", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] },
-    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, encolar: [{ carta: "avion_diezfuegos", min: 1, max: 2 }] }
+    izq: { accion: "Que Milfuegos lo detenga", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 1, max: 1 }] },
+    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, encolar: [{ carta: "avion_diezfuegos", min: 1, max: 1 }] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): segundo paso del aliado (1960): las refinerías se niegan a refinar el crudo del aliado y se intervienen
-    id: "refinerias", tipo: "cola", titulo: "Las refinerías",
+    id: "refinerias", tipo: "cola", enlace: true, titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
     texto: "Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.",
-    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: 5, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 3, max: 8 }] },
-    der: { accion: "Les pagaremos con azúcar", efectos: { pueblo: -8, elite: -5, potencias: 10 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 3, max: 8 }] }
+    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: 5, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
+    der: { accion: "Les pagaremos con azúcar", efectos: { pueblo: -8, elite: -5, potencias: 10 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
-    id: "visitante_oriental", tipo: "ancla", ventana: [3, 6], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
+    id: "visitante_oriental", tipo: "ancla", ventana: [3, 7], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
     texto: "Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.",
-    izq: { accion: "Me cuadra", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 2 }] },
-    der: { accion: "Solo petróleo", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 2 }] }
+    izq: { accion: "Me cuadra", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 1 }] },
+    der: { accion: "Solo petróleo", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
   },
 
   /* ---------- Cola ---------- */
@@ -100,7 +100,7 @@ const CARTAS = [
   },
   {
     // 23 oct, Jorge: Conrado Benítez (1961); 28 oct: seguir o parar la campaña
-    id: "alfabetizadores_monte", tipo: "cola", titulo: "Los alfabetizadores en el monte",
+    id: "alfabetizadores_monte", tipo: "cola", enlace: true, titulo: "Los alfabetizadores en el monte",
     personaje: "Ministra de Educación",
     texto: "Un maestro de 18 años no volverá del monte: los alzados lo encontraron. ¿Paramos la campaña?",
     izq: { accion: "Será nuestro mártir", efectos: { elite: 5, pueblo: -5 } },
@@ -108,7 +108,7 @@ const CARTAS = [
   },
   {
     // 22 oct: Camilo Cienfuegos (oct. 1959); 28 oct: pasa a llamarse Milfuegos y es Comandante
-    id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Milfuegos",
+    id: "avion_diezfuegos", tipo: "cola", enlace: true, titulo: "El avión de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?",
     izq: { accion: "Quiero toda la verdad", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
@@ -123,7 +123,7 @@ const CARTAS = [
     der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 }, banderas: ["base.embargo_en_marcha"] }
   },
   {
-    id: "depuracion_criticos", tipo: "cola", titulo: "La lista",
+    id: "depuracion_criticos", tipo: "cola", enlace: true, titulo: "La lista",
     personaje: "Ministro del Interior",
     texto: "Los escritores se tomaron en serio lo de la libertad. Tengo la lista de criticones. ¿Los detenemos?",
     izq: { accion: "Que critiquen bajito", efectos: { pueblo: 8, ejercito: -5 } },
@@ -160,16 +160,16 @@ const CARTAS = [
     id: "alfabetizacion", tipo: "sorteo", peso: 6, titulo: "La campaña de alfabetización",
     personaje: "Ministra de Educación",
     texto: "Los estudiantes irán al campo a enseñar a leer y escribir. ¿Cuál será la primera lección?",
-    izq: { accion: "La R de Revolución", efectos: { elite: 6, pueblo: -6 }, encolar: [{ carta: "alfabetizadores_monte", min: 2, max: 3 }] },
-    der: { accion: "El abecedario", efectos: { pueblo: 6, elite: -6 }, encolar: [{ carta: "alfabetizadores_monte", min: 2, max: 3 }] }
+    izq: { accion: "La R de Revolución", efectos: { elite: 6, pueblo: -6 }, encolar: [{ carta: "alfabetizadores_monte", min: 1, max: 1 }] },
+    der: { accion: "El abecedario", efectos: { pueblo: 6, elite: -6 }, encolar: [{ carta: "alfabetizadores_monte", min: 1, max: 1 }] }
   },
   {
     // 23 oct, Jorge: la declaración socialista (abril de 1961); 28 oct: se elige en quién se apoya
-    id: "declaracion_socialista", tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La declaración socialista",
+    id: "declaracion_socialista", tipo: "ancla", ventana: [6, 10], titulo: "La declaración socialista",
     personaje: "Vicepresidente del Consejo de Ministros",
     texto: "Nos han bombardeado y el Pueblo llora en la plaza. Es el momento de decir qué es la Revolución.",
-    izq: { accion: "Para los humildes", efectos: { pueblo: 6, potencias: -5, elite: -3 } },
-    der: { accion: "Socialista importada", efectos: { pueblo: -6, potencias: 5, elite: 3 } }
+    izq: { accion: "Para los humildes", efectos: { pueblo: 6, potencias: -5, elite: -3 }, encolar: [{ carta: "la_bahia", min: 1, max: 1 }] },
+    der: { accion: "Socialista importada", efectos: { pueblo: -6, potencias: 5, elite: 3 }, encolar: [{ carta: "la_bahia", min: 1, max: 1 }] }
   },
   {
     // 23 oct, Jorge: el fin del deporte profesional (1961-62)
@@ -197,7 +197,7 @@ const CARTAS = [
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): la invasión de 1961; el canje por compotas es real, el fusilamiento de todos no
-    id: "la_bahia", tipo: "ancla", ventana: [5, 7], titulo: "La bahía",
+    id: "la_bahia", tipo: "cola", enlace: true, titulo: "La bahía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?",
     izq: { accion: "Cámbienlos por compotas", efectos: { pueblo: 5, potencias: 4, ejercito: -6 } },
@@ -230,7 +230,7 @@ const CARTAS = [
     personaje: "Ministra de Cultura",
     texto: "Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.",
     izq: { accion: "Dentro todo, fuera nada", efectos: { pueblo: -8, elite: 5 } },
-    der: { accion: "El arte es libre", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"], encolar: [{ carta: "depuracion_criticos", min: 3, max: 3 }] }
+    der: { accion: "El arte es libre", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"], encolar: [{ carta: "depuracion_criticos", min: 1, max: 1 }] }
   },
   {
     id: "oficiales", tipo: "sorteo", peso: 10, titulo: "Los oficiales de antes",
@@ -326,16 +326,16 @@ const CARTAS = [
 
   {
     // 28 oct, plan narrativo (piloto de la era 1): los misiles (1962) llegan siempre; el aliado pidió secreto y el Comandante quería anunciarlo
-    id: "nuevos_vecinos", tipo: "ancla", ventana: [8, 10], titulo: "Los nuevos vecinos",
+    id: "nuevos_vecinos", tipo: "ancla", ventana: [10, 14], titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo hasta que estén apuntando.",
-    izq: { accion: "Ni a mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] },
-    der: { accion: "Discreto como mi barba", efectos: { potencias: -6, ejercito: 5, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 2 }] }
+    izq: { accion: "Ni a mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
+    der: { accion: "Discreto como mi barba", efectos: { potencias: -6, ejercito: 5, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] }
   },
 
   {
     // 28 oct, plan narrativo (piloto de la era 1): el aliado retiró los misiles sin consultar al Comandante, que se negó a la inspección
-    id: "ultimatum", tipo: "cola", titulo: "El ultimátum",
+    id: "ultimatum", tipo: "cola", enlace: true, titulo: "El ultimátum",
     personaje: "Embajador de la potencia del norte",
     texto: "Pactamos con su aliado que se lleva los misiles e iremos a comprobarlo. Creíamos que lo sabía.",
     izq: { accion: "Fue idea mía", efectos: { potencias: 6, ejercito: -6, crisis: -1 } },

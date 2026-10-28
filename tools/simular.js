@@ -18,7 +18,7 @@ w.eval(`
       const c=E.actual, dir=ESTR[e](c); window.__vistas[c.id]=(window.__vistas[c.id]||0)+1;
       aplicar(c,opcionDe(dir)); const caida=comprobarCaida();
       if(caida) return {caida,era:E.era,nulos,anios:E.turno-1};
-      if(E.turno>finEra()){ if(E.era<ERAS.length) iniciarEra(E.era+1); else return {caida:null,era:E.era,nulos,anios:E.turno-1}; }
+      if(eraTerminada()){ if(E.era<ERAS.length) iniciarEra(E.era+1); else return {caida:null,era:E.era,nulos,anios:E.turno-1}; }
       E.actual=siguienteCarta(); barajarLados();
     } }
   window.__run=(n,N)=>{ const r={cae:{},gana:0,nulos:0,errores:0,causas:{},anios:0}; window.__vistas={};

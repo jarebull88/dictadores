@@ -476,7 +476,7 @@ function ajustarNombrePie() {
   const caja = n.parentNode;
   n.style.removeProperty("--nombre-pie-px"); caja.style.removeProperty("--anios-px");
   if (!n.textContent) return;                           // tutorial: solo los pasos
-  const ancho = el => { const rg = document.createRange(); rg.selectNodeContents(el); return rg.getBoundingClientRect().width; };
+  const ancho = el => { try { const rg = document.createRange(); rg.selectNodeContents(el); return rg.getBoundingClientRect().width; } catch (e) { return 0; } };
   const wn = ancho(n), wy = ancho(y), base = parseFloat(getComputedStyle(n).fontSize) || 21;
   const libre = r0.getBoundingClientRect().left - caja.getBoundingClientRect().left - 8, alto = caja.getBoundingClientRect().height;
   if (!(wn > 0 && wy > 0 && libre > 0)) return;

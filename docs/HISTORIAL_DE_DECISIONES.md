@@ -578,3 +578,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - Respuestas: las líneas ocupan el 60 % del ancho de la carta (antes ~42 %), hasta 3 líneas.
 - El cargo bajo la carta tiene el tamaño del texto de las decisiones (`--c-respuesta`) en vez del del título de era.
 - Imágenes nuevas: se actualizan Vicepresidente, Economía, Educación, Interior y los dos embajadores; se guardan **Papá Ernesto** (`papa-ernesto.jpg`, el novelista del pez espada) y **Padrino Pupo** (`padrino-pupo.jpg`, el babalawo del puro y los collares) en `assets/personajes/originales/`, sin integrar (falta darlos de alta en `personajes.json`, `PERSONAJE_SLUG` y `FICHAS`).
+- **28 oct — Recompensa 1 aprobada:** «Amateur de élite» (objeto: Licencia de electricista, por «Se juega por amor»). Las etiquetas del reverso pasan a **Beneficio / Perjuicio**; el perjuicio debe ser algo real que le pasa al Comandante. Texto completo en `docs/COLECCIONABLES.md`.

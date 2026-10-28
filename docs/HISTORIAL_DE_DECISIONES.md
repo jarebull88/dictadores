@@ -519,3 +519,9 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 ## 27 oct (tarde) — ZIP de imágenes integrado
 - Sustituidas las 26 imágenes nuevas del ZIP (11 personajes, 12 iconos de fuerzas/estados, portada y paloma de los logros) y regenerados los recortes con `recortar.py carteles`; `paloma.webp` sale de `paloma.jpg` a 540 px.
 - Farol y fuego guardados sin integrar en `assets/experimentos/`. Borrado el ZIP. Reajustado `CARA_FICHA` de Comercio y Trabajo.
+
+## 28 oct — Expedientes sin foto, respuesta en blanco, cartas de información
+- Se quita la foto de todos los expedientes (personajes, Comandante, informe de era); fuera `CARA_FICHA`, `fotoDe` y sus estilos.
+- El texto de las respuestas al arrastrar va en blanco.
+- Tocar el icono de una fuerza o la casilla de un estado ya no abre una ventana: su carta vuela desde el icono hasta el mazo (animación inversa de `recogerEstado`) con la información (`abrirInfo()`, `#carta-info`). Un toque la gira y enseña el reverso, con el dibujo del icono; deslizarla (o una flecha/Esc) la devuelve encogiéndose a su icono (`cerrarInfo()`). `recortar.py` genera ahora también el icono grande de las cuatro fuerzas. La ventana (`#popup`) sigue para los avisos y el menú.
+- Arreglada una `}` sobrante al final de `estilos.css` que invalidaba la primera regla añadida después.

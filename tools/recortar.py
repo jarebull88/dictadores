@@ -291,7 +291,7 @@ def recortar_escena(entrada, salida, marcos):
 
 LADO_CARTEL_PERSONAJE, LADO_CARTEL_ICONO = 720, 144
 LADO_CARTEL_ESTADO = 540   # 27 oct: el icono del estado, a tamaño de carta
-ESTADOS_CON_CARTA = {"censura", "vigilancia", "culto", "alineado", "embargo", "frontera", "nacionalizado", "deuda", "luna"}
+ESTADOS_CON_CARTA = {"pueblo", "ejercito", "elite", "potencias", "censura", "vigilancia", "culto", "alineado", "embargo", "frontera", "nacionalizado", "deuda", "luna"}
 
 
 def reducir_cartel(entrada, salida, lado, calidad):

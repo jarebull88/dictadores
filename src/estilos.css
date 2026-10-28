@@ -94,14 +94,14 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 
 /* — TITULAR — */
 .titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
-.popup b, .etiqueta-boli b, .leyenda, .anios, .popup .efecto, .esquela b, .titulo-caida,
+.popup b, .info-titulo, .etiqueta-boli b, .leyenda, .anios, .popup .efecto, .esquela b, .titulo-caida,
 .opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
 .ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
 .titulo, .cabecera-carta h1, .logro-escribe { font-size: var(--t-l); }
-#screen-end h2.fin-causa, .popup b, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
+#screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .hueco-logro { font-size: var(--t-s); }
 .logro-objeto-nombre { font-size: var(--t-m); }
 /* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
@@ -364,7 +364,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .icono-giro { position: absolute; top: 12px; right: 12px; z-index: 2; width: 13%; max-width: 40px; height: auto; pointer-events: none;
   fill: color-mix(in oklab, var(--fondo-escena, #888) 72%, #000); }   /* del color de la cartulina, algo más intenso (como el dibujo del reverso) */
 /* En la ficha (el otro lado), en la misma esquina y con el mismo principio: el blanco de la hoja, algo más oscuro */
-.dorso .hoja { position: relative; --fondo-escena: var(--p-crema); }
+.dorso .hoja, .info-hoja { position: relative; --fondo-escena: var(--p-crema); }
 /* El 360 ya no sale en la partida (15 oct): se enseña en el tutorial, solo en el paso de girar, y parpadea */
 .icono-giro { display: none; }
 .carta.con-giro .icono-giro { display: block; }
@@ -503,19 +503,6 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
   background: var(--p-crema);
 
 }
-.ficha-foto {
-  flex: none; width: var(--foto-w, min(88px, 24vw)); aspect-ratio: 1; margin-bottom: 6px; overflow: hidden;
-  background: var(--fondo-escena, #CFCBC2); filter: grayscale(1) contrast(1.08);
-  border: 4px solid #FAF6EC;
-}
-.ficha-foto svg { display: block; width: 100%; height: 100%; }
-/* 21 oct: la foto de carné, pegada a la hoja con un trozo de cinta de carrocero (como la de las cartas de estado) */
-.foto-grapada { position: relative; flex: none; margin-bottom: 6px; }   /* 25 oct: la foto, derecha */
-.foto-grapada .ficha-foto { margin-bottom: 0; }
-.cinta-foto { position: absolute; top: -7px; left: 50%; width: 62%; height: 15px; translate: -50% 0; rotate: -4deg; opacity: .85;
-  background: #E9C77A;
-  clip-path: polygon(0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%, 0 100%, 3% 75%, 0 50%, 3% 25%); }
-.ficha-foto .ojos-foto { fill: #161618; }
 .ficha-nombre { }
 .ficha-cargo { margin-bottom: 4px; }
 .ficha-nota b { }
@@ -534,7 +521,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */
 }
 /* El texto va dentro del panel y baja con él desde el primer píxel (15 oct): no aparece de golpe */
-.texto-respuesta { opacity: 0; }   /* 27 oct: sin sombra (Jorge): todo plano */
+.texto-respuesta { opacity: 0; color: var(--p-blanco); }   /* 28 oct: el texto de la decisión, en blanco */   /* 27 oct: sin sombra (Jorge): todo plano */
 .respuesta.visible .texto-respuesta { opacity: 1; }
 /* El texto ocupa el ancho de la carta (el centro del panel) y se apoya en el borde horizontal */
 .texto-respuesta { position: absolute; left: 25%; width: 50%; bottom: 0; padding: 0 16px 12px; display: flex; flex-direction: column; }
@@ -665,7 +652,6 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .etiqueta-boli b, .popup b, .popup .efecto .tinta { color: var(--p-tinta); }
 /* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
 .ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
-.ficha-cab .foto-grapada { margin-bottom: 0; }
 .ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; min-width: 0; flex: 1; }
 .ficha-nombre span { display: block; white-space: nowrap; }
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
@@ -720,4 +706,9 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo-pista { margin: 14px 0 0; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }
 .archivo-pista + .archivo-pista { margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) { .logro-carta .giro { transition: none; } }
-}
+
+/* 28 oct: la carta de información de una fuerza o un estado: sobre el mazo, misma posición y medida que la carta de la partida */
+.carta-info { position: absolute; top: calc((100cqh - var(--lado) - var(--mazo-alto)) / 2); left: 0; right: 0; margin: 0 auto; z-index: 6; }
+body.carta-medida .pantalla-carta .carta-info { top: 0; }
+.info-titulo { display: block; margin-bottom: 4px; }
+.info-hoja .ficha-historia { max-width: none; }

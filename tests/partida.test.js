@@ -114,7 +114,9 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   assert.ok(!j.d.querySelector("#carta .cinta-tutorial"));
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 2, "hay que tocar un icono antes de seguir");
-  j.w.eval(`mostrarFuerza("pueblo", document.querySelector('.barra[data-b="pueblo"]')); ocultarInfo();`);
+  j.w.eval(`mostrarFuerza("pueblo", document.querySelector('.barra[data-b="pueblo"]'));`);
+  assert.ok(j.d.querySelector("#carta-info .info-hoja"), "28 oct: al tocar un icono sale su carta de información sobre el mazo");
+  j.w.eval("cerrarInfo()"); assert.ok(!j.d.querySelector("#carta-info"), "deslizarla la devuelve a su icono");
   assert.ok(!j.d.querySelector("#barras").classList.contains("destacar"), "al tocar uno se apagan los avisos");
   j.tecla(1); j.tecla(1);                                            // 3: fuerzas · 4: pistas
   assert.equal(j.w.eval("E.tutorial.i"), 4);
@@ -123,7 +125,9 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   assert.equal(j.w.eval("E.tutorial.i"), 5);                         // 6: guardar
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 5, "hay que tocar la casilla antes de seguir");
-  j.w.eval("mostrarInfo(0); ocultarInfo();");
+  j.w.eval("mostrarInfo(0)");
+  assert.ok(j.d.querySelector("#carta-info"), "tocar una casilla saca la carta del estado");
+  j.w.eval("cerrarInfo()");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6);                         // 7: logro
   assert.ok(j.$("btn-logros").classList.contains("hidden"), "«Logros» no sale en el menú hasta ganar el logro");

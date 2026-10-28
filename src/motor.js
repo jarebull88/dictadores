@@ -420,7 +420,7 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo();
+  ocultarInfo(); quitarInfo();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
   if (id === "screen-game") ajustarLeyenda();
@@ -522,7 +522,7 @@ function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-sonido").classList.toggle("hidden", tutorial);
-  cerrarMenu(); avisoMenu();
+  cerrarMenu(); avisoMenu(); quitarInfo();
 }
 function cerrarMenu() {
   $("menu-juego").classList.add("hidden");
@@ -563,23 +563,97 @@ function ocultarInfo() {
   pop.classList.add("hidden");
   delete pop.dataset.clave;
 }
-function contenidoEstado(id) {
-  const d = ESTADOS[id];
-  return `<b>${icono(id, "en-linea")}${esc(d.nombre)}</b><span>${esc(d.descripcion)}</span><span class="efecto"><span class="tinta">Efecto: ${esc(RESUMEN[id] || "")}</span></span>`;   // el ritmo y la duración van en el efecto (15 oct)
-}
 function mostrarInfo(i) {
   const s = E.estados[i];
   const el = $("ranuras").children[i];
-  if (!s || !el) { ocultarInfo(); return; }
-  abrirPopup("estado-" + s.id, contenidoEstado(s.id), el);
+  if (!s || !el) { quitarInfo(); return; }
+  const d = ESTADOS[s.id];
+  abrirInfo("estado-" + s.id, s.id, FONDO_ESTADO[s.id], el,
+    `<b class="info-titulo">${esc(d.nombre)}</b><p class="ficha-historia">${esc(d.descripcion)}</p>` +
+    `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[s.id] || "")}</p>`);
   if (E.tutorial && TUTORIAL[E.tutorial.i].paso === "guardar") { E.tutorial.casilla = true; $("ranuras").classList.remove("destacar"); }
 }
+const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
 function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
   const f = FUERZAS[id];
-  abrirPopup("fuerza-" + id,
-    `<b>${icono(id, "en-linea")}${esc(f.nombre)}</b><span>${esc(f.quien)}</span>` +
-    `<span class="sube-baja"><em>Lo sube:</em> ${esc(f.sube)}</span><span class="sube-baja"><em>Lo baja:</em> ${esc(f.baja)}</span>`, el);
+  abrirInfo("fuerza-" + id, id, FONDO_FUERZA[id], el,
+    `<b class="info-titulo">${esc(f.nombre)}</b><p class="ficha-historia">${esc(f.quien)}</p>` +
+    `<p class="ficha-historia ficha-nota"><b>Lo sube:</b> ${esc(f.sube)}</p><p class="ficha-historia ficha-nota"><b>Lo baja:</b> ${esc(f.baja)}</p>`);
+}
+
+/* 28 oct: tocar el icono de una fuerza o la casilla de un estado saca su carta: vuela desde el icono hasta el mazo (la animación inversa
+   de recogerEstado) y enseña la información. Un toque la gira y enseña el reverso, con el dibujo; deslizarla la devuelve, encogiéndose, a su sitio. */
+let cartaInfo = null;
+const infoAbierta = () => !!cartaInfo;
+function origenInfo(c) {
+  const [tipo, id] = c.dataset.clave.split("-");
+  const el = tipo === "fuerza" ? document.querySelector(`.barra[data-b="${id}"]`)
+    : $("ranuras").children[E ? E.estados.findIndex(s => s.id === id) : -1];
+  return el ? (el.querySelector("img") || el) : null;
+}
+function transformDesde(c, origen) {
+  if (!origen) return "translateY(40px) scale(.3)";
+  const a = c.getBoundingClientRect(), b = origen.getBoundingClientRect();
+  const dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+  return `translate(${dx}px, ${dy}px) scale(${a.width ? b.width / a.width : .2})`;
+}
+function quitarInfo() { if (cartaInfo) { clearTimeout(cartaInfo._fin); cartaInfo.remove(); cartaInfo = null; } }
+function cerrarInfo() {
+  const c = cartaInfo;
+  if (!c || c._cerrando) return;
+  c._cerrando = true;
+  if (!animar()) { quitarInfo(); return; }
+  c.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
+  c.style.transform = transformDesde(c, origenInfo(c));
+  c.style.opacity = "0.3";
+  c._fin = setTimeout(() => { if (cartaInfo === c) quitarInfo(); }, 460);
+}
+function abrirInfo(clave, id, fondo, origen, html) {
+  if (cartaInfo) { const misma = cartaInfo.dataset.clave === clave; if (misma) { cerrarInfo(); return; } quitarInfo(); }
+  ocultarInfo();
+  const img = IMG["icono_" + id + "-cartel-grande"] || IMG["icono_" + id + "-cartel"];
+  const c = document.createElement("div");
+  c.className = "carta carta-info"; c.id = "carta-info"; c.dataset.clave = clave;
+  c.setAttribute("role", "group");
+  c.innerHTML = `<div class="giro"><div class="cara"><div class="hoja info-hoja">${html}</div></div>` +
+    `<div class="dorso carta-estado"><div class="ilustracion" style="--fondo-escena:${fondo || "#8A7156"}"><div class="icono-grande">` +
+    (img ? `<img class="icono cartel" src="${img.src}" alt="" draggable="false">` : "") + `</div></div></div></div>`;
+  $("carta").parentNode.appendChild(c);
+  cartaInfo = c;
+  ajustarFicha(c);
+  if (animar()) {
+    c.style.transition = "none"; c.style.transform = transformDesde(c, origen); c.style.opacity = "0.3";
+    void c.offsetWidth;
+    c.style.transition = "transform .45s cubic-bezier(.2, .7, .3, 1), opacity .3s ease-out";
+    c.style.transform = ""; c.style.opacity = "";
+    setTimeout(() => { if (cartaInfo === c && !c._cerrando) c.style.transition = ""; }, 480);
+  }
+  let drag = null;
+  const umbral = () => Math.max(30, c.offsetWidth * 0.15);
+  c.addEventListener("pointerdown", e => {
+    if (c._cerrando) return;
+    drag = { x: e.clientX, dx: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    c.setPointerCapture(e.pointerId);
+    c.style.transition = "none";
+  });
+  c.addEventListener("pointermove", e => {
+    if (!drag) return;
+    drag.dx = e.clientX - drag.x;
+    drag.hist.push({ t: e.timeStamp, x: e.clientX }); if (drag.hist.length > 6) drag.hist.shift();
+    c.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
+  });
+  const soltar = e => {
+    if (!drag) return;
+    const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    drag = null;
+    c.style.transition = ""; c.style.transform = "";
+    if (toque) { c.classList.toggle("volteada"); return; }
+    const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);
+    if (Math.abs(dx) > umbral() || (Math.abs(v) > 0.55 && Math.abs(dx) > 36)) cerrarInfo();
+  };
+  c.addEventListener("pointerup", soltar);
+  c.addEventListener("pointercancel", soltar);
 }
 
 /* El mensaje tiene sitio para 4 líneas. Si no cabe, se baja la letra de punto en punto (hasta 15 px);
@@ -606,12 +680,12 @@ function ajustarMensaje() {
 }
 window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
 
-/* Si el informe no cabe en la ficha (pantallas bajas), primero se achica la foto y luego la letra, hasta 12,5 px */
+/* Si el informe no cabe en la ficha (pantallas bajas), se achica la letra, hasta 12,5 px */
 function ajustarFicha(carta = $("carta")) {
-  const h = carta.querySelector(".dorso .hoja");
+  const h = carta.querySelector(".dorso .hoja, .info-hoja");
   if (!h) return;
-  h.style.removeProperty("--foto-w"); h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
-  /* el nombre ocupa todo el sitio junto a la foto: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
+  h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
+  /* el nombre ocupa todo el sitio: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
   const nom = h.querySelector(".ficha-nombre");
   if (nom) {
     let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
@@ -619,53 +693,21 @@ function ajustarFicha(carta = $("carta")) {
     while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
   }
   const sobra = () => h.scrollHeight > h.clientHeight + 1;
-  for (const w of [72, 60, 48]) if (sobra()) h.style.setProperty("--foto-w", w + "px");
   for (let px = 16.5; px >= 12.5 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
 }
 
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
 const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D51A0" };   // 23 oct: tintas de la paleta
 
-/* Foto de la ficha: la cara de la etapa 1 (siempre la misma, para recordar quién es), en blanco y negro.
-   Se encuadra a partir de los ojos: cabeza y hombros, como una foto de carné. */
-function fotoFicha(cargo) { return fotoDe(PERSONAJE_SLUG[cargo]); }
-/* 25 oct: la foto del expediente es 1:1, derecha y encuadrada en la cara. En los carteles, la cara no se encuentra sola: aquí se
-   marca para cada uno el centro (x, y) y el lado de la ventana, como fracciones del cartel. */
-const CARA_FICHA = {
-  vicepresidente: [.50, .44, .60], economia: [.49, .22, .24], comercio: [.62, .14, .30], educacion: [.50, .62, .50],
-  trabajo: [.40, .30, .62], cultura: [.50, .42, .56], "fuerzas-armadas": [.60, .42, .36], interior: [.50, .30, .76],
-  "embajador-oriental": [.36, .56, .30], "embajador-occidental": [.50, .22, .42], "dictador-joven": [.47, .31, .56]
-};
-function fotoDe(slug) {
-  const p = RETRATOS[(RETRATOS[slug] || {}).foto || slug];
-  if (!p) return "";
-  const cara = CARA_FICHA[(RETRATOS[slug] || {}).foto || slug];
-  if (!p.ojos && cara) {
-    const lado = cara[2] * Math.min(p.ancho, p.alto);
-    const x = Math.max(0, Math.min(p.ancho - lado, cara[0] * p.ancho - lado / 2)), y = Math.max(0, Math.min(p.alto - lado, cara[1] * p.alto - lado / 2));
-    return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${x.toFixed(0)} ${y.toFixed(0)} ${lado.toFixed(0)} ${lado.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
-      `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
-  }
-  if (!p.ojos)   // 23 oct: los carteles van enteros, sin encuadrar desde los ojos
-    return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="0 0 ${p.ancho} ${p.alto}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
-      `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/></svg></div>`;
-  const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-  const cx = (xi + xd) / 2, cy = (yi + yd) / 2, w = (xd - xi) * 3.3, h = w;   // 25 oct: foto cuadrada
-  return `<div class="ficha-foto"${fondoDe(slug)}><svg viewBox="${(cx - w / 2).toFixed(0)} ${(cy - h * .42).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` +
-    `<image href="${p.src}" x="0" y="0" width="${p.ancho}" height="${p.alto}"/><g class="ojos-foto"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g></svg></div>`;
-}
-
 function fichaPersonaje(cargo) {
   const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  return dorsoFicha({ foto: fotoFicha(cargo), nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
+  return dorsoFicha({ nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
 }
 function dorsoFicha(f) {
-  // 21 oct: la foto de carné, pegada con un trozo de cinta de carrocero
-  const foto = f.foto ? `<div class="foto-grapada">${f.foto}<i class="cinta-foto" aria-hidden="true"></i></div>` : "";
-  // 24 oct: nombre en dos líneas (nombre y apellido), al lado de la foto
+  // 24 oct: nombre en dos líneas (nombre y apellido)
   const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
   const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
-  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${foto}${nombre}</div>` +
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${nombre}</div>` +
     `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }
@@ -817,7 +859,7 @@ function vigilarReposo() { clearTimeout(reposo); reposo = setTimeout(amagar, REP
 function amagar() {
   const c = $("carta");
   const quieta = animar() && !$("screen-game").classList.contains("hidden") && !ocupado && !modoEstado &&
-    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden") && !archivoAbierto();
+    !arrastrando && !c.classList.contains("volteada") && !c.classList.contains("revelando") && $("popup").classList.contains("hidden") && !archivoAbierto() && !infoAbierta();
   if (quieta) {
     c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago");
     setTimeout(() => c.classList.remove("amago"), 1300);
@@ -1570,7 +1612,7 @@ function decidirNombre(dir) {
 /* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js): el nombre es el que se está escribiendo */
 function fichaComandante() {
   const v = $("input-nombre").value.trim().split(/\s+/)[0];
-  return { ...FICHA_COMANDANTE, foto: fotoDe("dictador-joven"), color: "#1D51A0",
+  return { ...FICHA_COMANDANTE, color: "#1D51A0",
     nombre: v ? `Comandante ${v.charAt(0).toUpperCase()}${v.slice(1)}` : FICHA_COMANDANTE.sinNombre };
 }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre,
@@ -1593,7 +1635,7 @@ function informeEra() {
   const estado = Math.abs(masTensa.v - 50) >= 10 ? LINEAS_BARRA[masTensa.id][masTensa.v > 50 ? "alto" : "bajo"] : "";
   const espera = E.orden.filter(b => FUTURO[b] && (FUTURO_ERA[b] || 2) === E.era + 1).slice(0, 2).map(b => PREVISION[b] || FUTURO[b]);
   return {
-    foto: fotoDe("dictador-joven"), nombre: nombreCompleto(), color: "#1D51A0", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
+    nombre: nombreCompleto(), color: "#1D51A0", cargo: `Informe tras ${anios()} ${anios() === 1 ? "año" : "años"} en el poder`,
     historia: [INFORME_ERA[E.era], estado].filter(Boolean).join(" "),
     nota: espera.join(" ")
   };
@@ -1789,6 +1831,7 @@ document.addEventListener("keydown", e => {
     return;
   }
   if ($("screen-game").classList.contains("hidden")) return;
+  if (infoAbierta()) { if (e.key.startsWith("Arrow") || e.key === "Escape") cerrarInfo(); return; }
   if (e.key === "ArrowLeft") decidir(-1);
   if (e.key === "ArrowRight") decidir(1);
 });

@@ -39,7 +39,7 @@ test("al tocar la carta se voltea y enseña la ficha; al decidir vuelve al anver
   const carta = j.$("carta");
   j.w.eval("voltear()");
   assert.ok(carta.classList.contains("volteada"), "la carta debería estar volteada");
-  assert.ok(j.d.querySelector("#carta .dorso .ficha-foto svg image"), "la ficha lleva la foto del personaje");
+  assert.ok(!j.d.querySelector("#carta .dorso .ficha-foto"), "28 oct: la ficha ya no lleva foto");
   j.w.eval("voltear()");
   assert.ok(!carta.classList.contains("volteada"), "un segundo toque la devuelve al anverso");
 });

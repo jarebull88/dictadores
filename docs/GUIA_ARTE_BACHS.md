@@ -338,6 +338,21 @@ Keep this image exactly the same. Only scale the object up so it matches the vis
 33. `33-los-karatecas.jpg`: *Los karatecas*. Una cabeza de perfil con flechas que le salen del cráneo.
 34. `34-robinson-crusoe.jpg`: *Robinson Crusoe*. Una cabeza barbuda que es una isla, con árboles de colores encima.
 
+Añadidos el 28 oct (Jorge; los repetidos de *Desierto rojo* y *En las tinieblas* se quitaron):
+
+35. `35-sueno-tropical.jpg`: *Sueño tropical*.
+36. `36-bara-la-bruja.jpg`: *Bara la bruja*.
+37. `37-juegos-tramposos-de-amor.jpg`: *Juegos tramposos de amor* (1972).
+38. `38-la-vida-es-silbar.jpg`: *La vida es silbar*.
+39. `39-el-imperio-submarino.jpg`: *El imperio submarino*.
+40. `40-el-padre.jpg`: *El padre*.
+41. `41-mariposas.jpg`: *Mariposas*.
+42. `42-vecinos.jpg`: *Vecinos*.
+43. `43-muestra-cine-animacion.jpg`: *Muestra del cine de animación de los países socialistas*.
+44. `44-la-patagonia-rebelde.jpg`: *La Patagonia rebelde*. Manchas planas descuadradas (rosa, rojo, negro) y encima una línea fina y nerviosa que no cierra las formas.
+45. `45-semana-de-cine-1982.jpg`: *Semana de cine cubano en Venezuela* (1982). Lleva una bandera real: solo de referencia, no se copia.
+46. `46-la-momia.jpg`: *La momia*.
+
 ### La regla de oro de los personajes (23 oct, Jorge)
 **Que el jugador diga «esto me suena».** Cada personaje es un homenaje reconocible a su cartel: la misma composición, el mismo truco y la misma técnica, casi literales, con nuestro personaje y nuestra paleta. Los modelos son el Comandante joven v2 (*Por primera vez*) y Sarria v3 (*Zorro*). **Pero el personaje va primero** (23 oct, Rigoberto v3: copió tanto *El deporte nacional* que salió un pelotero viejo con guante, sin nada de Rigoberto). Del cartel se toman la composición, el truco y la técnica, no sus objetos ni su tema (el uniforme de rayas, el guante); la historia, la edad y los objetos son del personaje. **La fidelidad al cartel manda sobre la regla del busto**: el encuadre y la escala los pone el cartel (los ojos animados se colocan por personaje en `personajes.json`).
 

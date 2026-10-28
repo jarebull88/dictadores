@@ -95,3 +95,19 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 ### Pendientes (elegidos por Jorge, sin redactar)
 4. Postal de la bahía con un misil (inventada) — aceptar los misiles (`base.misiles_instalados`).
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).
+
+## Traspaso a programación (28 oct)
+
+Esta conversación solo escribe documentos; el código lo hace la de programación. Lo que hay que hacer en el juego, con las recompensas y los logros **aunque sus textos digan «Pendiente»** (para poder probarlos ya):
+
+1. **Recompensas de la era 1** (`LOGROS` en `datos.js`, campos `id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio`; ya no existe `objeto`). Cada una con el texto de este documento y, donde pone *pendiente*, «Pendiente»:
+   - Licencia de electricista: carta `fin_pelota`, opción «Se juega por amor» (**no pone bandera**: el motor tiene que reconocer la opción).
+   - Libreta de abastecimiento: `embargo_total`, «Una libreta por familia».
+   - Compota importada: `la_bahia`, «Cámbienlos por compotas».
+   - Botella de Revolukola: `refresco`, «Inventen la Revolukola».
+   - Pelota firmada: `beisbol`, «A mí nadie me batea».
+   - Postal de la bahía con un misil: `nuevos_vecinos`, solo con «Discreto como mi barba» (la otra opción también instala los misiles, pero no da la postal). **Sin texto aún.**
+   - Carné del comité (era 2): `denuncias_falsas`, «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). **Texto a medias** (ver «Carné del comité de barrio»).
+2. **Logros de la era 1** (cuatro; nombres provisionales, por cómo se acaba la era): Las cuatro casillas, Por los pelos, El equilibrista, Revolución con buenos modales. Hay que implementar la comprobación al terminar la era (ver «Logros de la era 1») y dejarlos con «Pendiente» en subtítulo, descripción, beneficio y perjuicio.
+3. **La carta «Pendiente»:** un coleccionable con textos «Pendiente» tiene que verse completo: la carta por delante con un fondo (un color plano de la paleta, sin ilustración) y, al girarla, la parte de atrás con «Pendiente» donde falte un texto.
+4. **Quitar** el logro provisional «la primera decisión de cada partida da el primer logro» cuando estén todos.

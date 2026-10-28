@@ -15,7 +15,9 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Arriba:** el **título** del logro (estilo Titular) y, debajo, el **subtítulo**: una sola frase corta (estilo Cuerpo, en negrita, donde va la pregunta en la partida).
 - **La carta, por delante:** la ilustración del objeto ocupa la carta (mientras no haya ilustración, un hueco con el nombre del objeto).
 - **Debajo de la carta:** «Por «decisión»» (la respuesta que dio el logro).
-- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Beneficio** (una línea, lo positivo) y el **Perjuicio** (una línea, lo negativo, que tiene que ser *real*; 28 oct, Jorge: ya no se llaman «Efecto» y «Efecto secundario». **Pueden recaer sobre el país, no solo sobre el Comandante**, siempre que sean concretos y absurdos: «Todo el país está fit: abdominales de campeonato»). Nada más: sin puntos, valores ni rarezas.
+- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Beneficio** (una línea, lo positivo) y el **Perjuicio** (una línea, lo negativo, que tiene que ser *real*; 28 oct, Jorge: ya no se llaman «Efecto» y «Efecto secundario». **Pueden recaer sobre el país, no solo sobre el Comandante**, siempre que sean concretos y absurdos)
+
+**Regla definitiva (28 oct, Jorge): los objetos son como los items de un juego.** El **Beneficio** responde a «¿qué consigo si *uso* este objeto?» (la paloma: +100 de aura divina). El **Perjuicio** es lo contrario: el efecto negativo de *poseer* el objeto (la paloma: el uniforme nunca estará limpio). Ejemplo: la pelota firmada, beneficio «Lánzala a alguien: preferirá que le dé antes que batearla»; perjuicio «Todos te ponen excusa para no jugar contigo». Los beneficios aprobados de las recompensas 1, 2 y 4 se revisan con este criterio.. Nada más: sin puntos, valores ni rarezas.
 - **Primera vez:** sin sobre (25 oct, Jorge: «eliminamos la animación del sobre»). El jugador toca la estrella, ve la cuadrícula con el logro nuevo («¡Nuevo!») y, al tocarlo, sale directamente la carta por delante, con la pista «Toca la carta para girarla» (solo la primera vez).
 - **Datos de cada logro** (`LOGROS` en `datos.js`): `id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio` (28 oct, Jorge: título y objeto son lo mismo, así que el campo `objeto` desaparece; `efecto` y `secundario` pasan a `beneficio` y `perjuicio`) (`frase` pasa a llamarse `descripcion`).
 - **Límites orientativos:** título ≤24 caracteres, subtítulo ≤60, descripción ≤220, efecto y efecto secundario ≤60 cada uno.
@@ -80,6 +82,15 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Beneficio:** Mezclada con ron, el país entero aguanta tus discursos.
 - **Perjuicio:** *pendiente* (propuestos: Los dentistas del país trabajan el doble.)
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
+
+### Recompensa 5 · Pelota firmada — *en curso* (28 oct)
+- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A mí nadie me batea».
+- **titulo:** Pelota firmada
+- **subtitulo:** Nadie se atrevió a hacer swing.
+- **descripcion:** La pelota del partido lleva tu firma y las marcas de unos bateadores que prefirieron no tocarla. Los archivos recogen veintisiete ponches en un partido de dos entradas.
+- **Beneficio:** Lánzala a alguien: preferirá que le dé antes que batearla. *(propuesto sobre la idea de Jorge)*
+- **Perjuicio:** Todos te ponen excusa para no jugar contigo.
+- **Referencia real (verificada):** el 24 de julio de 1959, en un partido de exhibición, Fidel lanzó con los Barbudos dos entradas; la propaganda dijo que eliminó a todos los bateadores, lo cual las fuentes ponen en duda.
 
 ### Pendientes (elegidos por Jorge, sin redactar)
 4. Postal de la bahía con un misil (inventada) — aceptar los misiles (`base.misiles_instalados`).

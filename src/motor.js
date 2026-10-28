@@ -8,7 +8,7 @@ const limitar = v => Math.max(0, Math.min(100, v));
 /* =====================================================
    SONIDO (28 oct)
    Eventos: repartir · voltear · deslizar (la carta se decide y se va) · volver (se suelta sin decidir).
-   Si existe assets/sonidos/<evento>.mp3|ogg|wav, build.py lo incrusta (SONIDOS) y suena ese; si no, un sonido sintetizado.
+   Si existe assets/sonidos/<evento>.mp3|ogg|wav (o varios, <evento>-1, <evento>-2…, que suenan al azar), build.py lo incrusta (SONIDOS) y suena ese; si no, un sonido sintetizado.
    Arranca con el primer toque (los móviles bloquean el audio antes). «Sonido» del menú lo quita y lo pone; se guarda.
    ===================================================== */
 const CLAVE_SONIDO = "dictadores_sonido_v1";
@@ -28,7 +28,7 @@ function audio() {
 }
 ["pointerdown", "keydown"].forEach(t => document.addEventListener(t, () => { const c = audio(); if (c && c.state === "suspended") c.resume(); }, { passive: true }));
 /* Duración (en ms) del sonido de un evento, si hay archivo: el reparto adapta su animación a ella */
-const duracionSonido = ev => (bufferesAudio[ev] ? bufferesAudio[ev].duration * 1000 : 0);
+const duracionSonido = ev => (bufferesAudio[ev] ? bufferesAudio[ev].duration * 1000 : 0);   // (solo para eventos de un archivo, como repartir)
 /* Un soplo de ruido filtrado que barre de f0 a f1 Hz: el roce de la cartulina */
 function roce(c, t, dur, f0, f1, vol) {
   const n = Math.max(1, Math.floor(c.sampleRate * dur)), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
@@ -56,7 +56,9 @@ function sonar(evento) {
   const c = audio();
   if (!c) return;
   if (c.state === "suspended") c.resume();
-  const buf = bufferesAudio[evento];
+  /* un evento puede tener varias versiones (voltear-1, voltear-2…): suena una al azar */
+  const claves = Object.keys(bufferesAudio).filter(k => k === evento || k.startsWith(evento + "-"));
+  const buf = claves.length ? bufferesAudio[claves[Math.floor(Math.random() * claves.length)]] : null;
   if (buf) { const f = c.createBufferSource(); f.buffer = buf; f.connect(c.destination); f.start(); return; }
   if (SINTETICOS[evento]) SINTETICOS[evento](c);
 }

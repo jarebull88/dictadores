@@ -281,6 +281,11 @@ Keep this image exactly the same. Remove the darker offset edges and paper-white
 Keep this image exactly the same. Redraw every black detail as a solid flat shape of near-black ink with crisp, clean edges, printed as one flat stencil layer. Uniform black inside, no streaks, no scratchy texture, no stroke marks.
 ```
 
+**Crema → blanco** (28 oct: el margen de las cartas es blanco `#FFFFFF`; todo lo que sea crema, o un claro que quiera parecer blanco, pasa a blanco puro, sobre todo si toca el borde, para que se funda con el margen; el grano de la serigrafía se queda, pero gris neutro, sin tinte crema)
+```
+Keep this image exactly the same: same shapes, same composition, same inks, same screen-print texture. Change only the light areas: every cream, beige, off-white or pale yellowish area, and anything that is meant to look white, becomes pure white #FFFFFF. This matters most wherever a light area touches the edges of the image: there it must be exactly #FFFFFF so it blends seamlessly into a white border. Keep the silkscreen feel on the white too: a very faint, fine, directionless mottle, a few paper fibers and slightly fuzzy edges, but in neutral light grey only, never cream, beige or yellow, and never a tinted background. Do not touch the other colors.
+```
+
 **Igualar el tamaño** (adjuntar un icono con el peso correcto, por ejemplo el globo)
 ```
 Keep this image exactly the same. Only scale the object up so it matches the visual weight of the object in the attached reference image, filling about 85% of the square, still centered.

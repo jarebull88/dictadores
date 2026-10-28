@@ -37,3 +37,30 @@ Se escribe a mano (no la genera `npm run docs`). Es la fase 1 de `docs/PLAN_NARR
 **Bien (D o P, sin cambios de fondo):** `casa_vacia`, `casa_tirano`, `arcas_vacias`, `comandante_dimite`, `alfabetizadores_monte`, `avion_diezfuegos`, `embargo`, `depuracion_criticos`, `periodicos`, `fin_pelota`, `la_bahia`, `los_ninos`, `reforma_urbana`, `mil_flores`, `ojos_barrio`, `marchan`, `ultimatum`, `garantias`, `embargo_total` y las 4 de crisis y coalición.
 
 **Faltan, por importancia:** los colegios religiosos y los curas expulsados (1961); el norte deja de comprar el azúcar (1960); la ruptura de relaciones (1961).
+
+## Era 2 · La Purga (1963–70)
+27 cartas: unas 14 D, 8 P, 2 H y 3 X.
+
+**X · Mover, retirar o rehacer**
+- `deuda_llama`: el impago es de 1986; en los 60 no había acreedores que apretaran. A la era 4 o fuera (allí ya está `acreedor_favores`).
+- `universidades` («El puerto lento»): se retira con `puerto`.
+- `aliado_enfadado`: el corte de petróleo (1968) es real, pero hoy depende de rechazar los misiles, que ya no se podrá rechazar. Motivo real: el Comandante va por libre y encarcela a los fieles del aliado.
+
+**Dudosas**
+- `intentos_fuga`: las balsas y las puertas arrancadas son de 1994. En los 60, la apertura de un puerto para que los del norte recojan a quien quiera irse (1965).
+- `club_ajedrez`: depende de `oficiales`, que se rehace en la era 1.
+- `cosecha_record`, `hambre` y la zafra tocan el mismo tema (cifras infladas, almacenes vacíos): sobra una.
+- El embajador del norte no podía estar en el país entre 1961 y 1977 (sin relaciones) y habla en `potencias_enfadan` y `satelites`. Con la cronología flexible puede quedarse; lo real (y con gracia) es que sus mensajes llegaban por la embajada de un país neutral, que podría ser un invitado.
+
+**Grandes hechos que hoy se pueden rechazar (pasar a «cómo»):** `zafra_diez_millones`, `ofensiva_revolucionaria`, `servicio_militar`, `campos_trabajo`, `invasion_aliado`.
+
+**Joyas**
+- La zafra en tres pasos (`zafra_diez_millones` → `cifra_no_llega` → `discurso_derrota`): el mejor miniflujo que hay; en 1970 el Comandante ofreció de verdad su dimisión a la plaza.
+- El arco de Ferro (`companero_incomodo`, `guerrilla_perdida`): el discurso contra el aliado (1965) y la selva (1967). «Ferro será un millón de camisetas».
+- `invasion_aliado` (1968), `ofensiva_revolucionaria`, `servicio_militar`, `campos_trabajo` y `flores_mar` (cada 28 de octubre): documentadas.
+
+**Bien (D o P, sin cambios de fondo):** `aniversario`, `potencias_enfadan`, `voz_exilio`, `hambre`, `periodista_oficial`, `jefe_poder`, `denuncias_falsas`, `faltan_tecnicos`, `cosecha_record`, `el_espia`, `los_chistes`, `satelites`, `zafra_diez_millones`, `companero_incomodo`, `ofensiva_revolucionaria`, `servicio_militar`, `invasion_aliado`, `guerrilla_perdida`, `cifra_no_llega`, `discurso_derrota`, `flores_mar`, `campos_trabajo`.
+
+**Faltan, por importancia:** el juicio a los fieles del aliado (1968; da motivo a `aliado_enfadado`); la carta de despedida de Ferro, leída en público (1965; cierra su arco); el congreso para exportar la revolución (1966).
+
+**En las dos eras:** 11 cartas de la era 2 solo salen por decisiones de la era 1 (bueno para la variedad, pero varias cuelgan de cartas que cambian). Casi todas las preguntas cuentan la situación sin plantear el dilema: se arregla con el criterio nuevo.

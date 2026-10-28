@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.15.
+Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.15.
 
 ### 1. La casa vacía
 
@@ -376,7 +376,17 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
-### 33. La calle y los cuarteles *(borrador)*
+### 33. Las colas
+
+**Personaje:** Ministro de Comercio  
+**Condición:** carta de crisis: la dispara la crisis oculta (repetible).
+
+**Carta:** «Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.»
+
+- **A. Primero los del Partido** Élite +5 · Potencias −5 · Pueblo −3 · Crisis −3
+- **B. Pidan más al aliado** Potencias +5 · Élite −5 · Pueblo +2 · Crisis −3
+
+### 34. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -386,7 +396,17 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 - **A. Un ascenso y se calman** Ejército +8 · Élite −4
 - **B. Arréstenlos a todos** Ejército −6 · Pueblo −3 · Crisis +2
 
-### 34. Los nuevos vecinos
+### 35. La embajada
+
+**Personaje:** Ministro del Interior  
+**Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
+
+**Carta:** «Algunos jefes del Partido van mucho a la embajada de nuestro aliado. Dicen que van a cenar.»
+
+- **A. Lo que pida el aliado** Potencias +8 · Élite −4
+- **B. Casa y coche para todos** Élite +8 · Potencias −4
+
+### 36. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 10 a 14 de su era.
@@ -400,7 +420,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
-### 35. El ultimátum
+### 37. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -412,7 +432,7 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 36. Embargo total
+### 38. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 20; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.

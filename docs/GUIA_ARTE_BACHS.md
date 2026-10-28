@@ -575,6 +575,12 @@ Square 1:1 silkscreen poster, an almost literal homage to the attached poster, k
 ```
 
 
+### Padrino Pupo, babalawo (invitado, 28 oct)
+Una sola imagen. Homenaje a *Vampiros en La Habana* (04): busto de frente, ojos cerrados y puro. Jorge: **vestido de blanco, con su gorrito**, como los babalawos. El chiste: los ojos cerrados de trance, pero uno se entreabre para ver qué le van a dar. Collares de cuentas; nada de símbolos religiosos (regla 1). Piel azul, como la cara del cartel (homenaje); nariz corta y curva como una coma, del color de la piel. Adjuntar el cartel 04 y poner antes el A-P v10.
+```
+Character: Padrino Pupo, a cheeky, greedy Caribbean folk healer and fortune-teller, a smooth operator who lives off his clients. Follow "Vampiros en La Habana" almost literally: a frontal bust on a flat brick-red #B0362A background, the long head with closed eyes drawn as two calm curved lines, a cigar sticking out of the side of the mouth, and a big boxy shirt with two breast pockets filling the bottom of the square. Changes for our character: he is dressed all in white: a loose white #FFFFFF guayabera-style shirt with two pockets and pleats, outlined in thick wobbly black, and a small round white brimless cap sitting on top of his head. His skin is flat cobalt blue #1D51A0, like the face in the poster. The trick: he is in a fake trance with both eyes closed, but one eye is peeking half open, looking sideways at what he is going to get. A sly, satisfied little smile around the fat cigar, with a curl of cream smoke. A short curved nose like a comma, same color as the skin, drawn only with its outline; no red clown nose. Around his neck, several long necklaces of small round beads in mustard, olive green, cream and red, hanging over the white shirt. Generous, well-fed, never sweaty. No crosses, no religious symbols, no stars, no emblems. No text.
+```
+
 ## 8. Reversos de las cartas (24 oct)
 Un reverso por era, en el color de la era (oliva, azul, mostaza, rojo). Solo asoma al deslizar la carta: **un patrón discreto y repetido, de una sola tinta sobre el color de la era, con poco contraste**. Cada era, sacado de un cartel.
 

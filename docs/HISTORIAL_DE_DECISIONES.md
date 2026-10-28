@@ -549,3 +549,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Humor de la era 1:** entran el béisbol de los barbudos, «¿hay algún economista?» (Ferro), las barbas, los casinos y el refresco nacionalizado.
 - `voltear` ya usa los dos sonidos reales de Jorge (`voltear-1.wav`, `voltear-2.wav`: el archivo `card-flip` cortado en dos), al azar. Un evento puede tener varias versiones (`<evento>-N`).
 - `repartir` usa el sonido real de Jorge (`shuffling-cards`): se cortó la parte que suena a reparto y se repitió su «flap» central con fundidos hasta 1,2 s, lo que dura la animación. Decisión de Jorge: la animación NO se adapta al audio (se quitó esa adaptación).
+- `repartir` pasa a ser `repartir.mp3`, cortado del nuevo «card shuffle» limpio de Jorge (arranque + tramo central + golpe final, 1,2 s, mono 96 kbps, 15 KB). Sustituye al wav anterior.

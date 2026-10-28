@@ -582,3 +582,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Recompensa 2 (libreta) a medias:** objeto, subtítulo y descripción aprobados; título y Beneficio/Perjuicio pendientes.
 - **28 oct — Recompensa 3 (compota) a medias:** objeto, subtítulo y descripción aprobados; título y Beneficio/Perjuicio pendientes.
 - **28 oct — Recompensas: título y objeto son el mismo campo** (Jorge): desaparece `objeto`; el título es el nombre de la cosa (Licencia de electricista, Libreta de abastecimiento, Compota importada, Botella de Revolukola). `efecto`/`secundario` pasan a `beneficio`/`perjuicio`.
+- **28 oct — Recompensas 1–4: textos casi cerrados** (beneficios aprobados; perjuicios y beneficio de la compota pendientes). Regla: el beneficio y el perjuicio pueden recaer sobre el país (efecto concreto y absurdo), no solo sobre el Comandante.

@@ -15,7 +15,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Arriba:** el **título** del logro (estilo Titular) y, debajo, el **subtítulo**: una sola frase corta (estilo Cuerpo, en negrita, donde va la pregunta en la partida).
 - **La carta, por delante:** la ilustración del objeto ocupa la carta (mientras no haya ilustración, un hueco con el nombre del objeto).
 - **Debajo de la carta:** «Por «decisión»» (la respuesta que dio el logro).
-- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Beneficio** (una línea, lo positivo) y el **Perjuicio** (una línea, lo negativo, que tiene que ser *real*: algo que le pasa al Comandante, como lo de la paloma y el uniforme; 28 oct, Jorge: ya no se llaman «Efecto» y «Efecto secundario»). Nada más: sin puntos, valores ni rarezas.
+- **La carta, por detrás** (al tocarla se gira, como la ficha de los personajes; otro toque la devuelve): la **descripción** (2 o 3 frases con la voz del «Sistema»), el **Beneficio** (una línea, lo positivo) y el **Perjuicio** (una línea, lo negativo, que tiene que ser *real*; 28 oct, Jorge: ya no se llaman «Efecto» y «Efecto secundario». **Pueden recaer sobre el país, no solo sobre el Comandante**, siempre que sean concretos y absurdos: «Todo el país está fit: abdominales de campeonato»). Nada más: sin puntos, valores ni rarezas.
 - **Primera vez:** sin sobre (25 oct, Jorge: «eliminamos la animación del sobre»). El jugador toca la estrella, ve la cuadrícula con el logro nuevo («¡Nuevo!») y, al tocarlo, sale directamente la carta por delante, con la pista «Toca la carta para girarla» (solo la primera vez).
 - **Datos de cada logro** (`LOGROS` en `datos.js`): `id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio` (28 oct, Jorge: título y objeto son lo mismo, así que el campo `objeto` desaparece; `efecto` y `secundario` pasan a `beneficio` y `perjuicio`) (`frase` pasa a llamarse `descripcion`).
 - **Límites orientativos:** título ≤24 caracteres, subtítulo ≤60, descripción ≤220, efecto y efecto secundario ≤60 cada uno.
@@ -51,7 +51,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **subtitulo:** Tu mejor atleta ya tiene oficio
 - **descripcion:** Felicidades: tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.
 - **Beneficio:** +20 medallas por competir contra universitarios.
-- **Perjuicio:** Tu aire acondicionado lo montó un boxeador y ahora gotea.
+- **Perjuicio:** *pendiente* (el del aire acondicionado se descarta: repite el chiste del trabajo mal hecho).
 - **Referencia real:** la resolución 83-A del INDER (1962) abolió el deporte profesional; los profesionales pasaron a aficionados pagados por el Estado. El «amateurismo de Estado» del bloque (atletas inscritos con un oficio) es real; un caso cubano concreto no está documentado, así que la licencia es invención sobre una práctica real.
 
 ### Recompensa 2 · Libreta de abastecimiento — *en curso* (28 oct)
@@ -59,7 +59,8 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **titulo:** Libreta de abastecimiento
 - **subtitulo:** Todo el país come lo mismo
 - **descripcion:** Tu libreta incluye una casilla por producto y mes. Lo básico: café, cigarros y arroz para todos, y cuarenta casillas más para productos que nunca han llegado ni se esperan.
-- **Beneficio / Perjuicio:** *pendiente* (Jorge no se decide por las propuestas del 28 oct: el beneficio y el perjuicio deben ser algo concreto y real que le pasa al Comandante).
+- **Beneficio:** Todo el país está fit: abdominales de campeonato.
+- **Perjuicio:** *pendiente*
 - **Referencia real:** la libreta de abastecimiento se creó en marzo de 1962 (cuadrícula de productos por persona y mes, sellada por el bodeguero).
 
 ### Recompensa 3 · Compota importada — *en curso* (28 oct)
@@ -67,8 +68,18 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **titulo:** Compota importada
 - **subtitulo:** El postre favorito del Comandante
 - **descripcion:** Mil doscientos presos por un cargamento de compota de calidad, de la de fuera, un producto de primera que no volverás a ver en tu vida. Se recomienda saborearla despacio.
-- **Beneficio / Perjuicio:** *pendiente*
+- **Beneficio:** *pendiente*
+- **Perjuicio:** *pendiente*
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
+
+### Recompensa 4 · Botella de Revolukola — *en curso* (28 oct)
+- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Inventen la Revolukola».
+- **titulo:** Botella de Revolukola
+- **subtitulo:** Dulce, pegajosa y de producción nacional.
+- **descripcion:** Una bebida marrón y dulce que sabe a Revolución. Receta oficial: azúcar, agua y lo que haya en el almacén ese día. Ninguna botella sabe igual que la anterior.
+- **Beneficio:** Mezclada con ron, el país entero aguanta tus discursos.
+- **Perjuicio:** *pendiente* (propuestos: Los dentistas del país trabajan el doble.)
+- **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
 ### Pendientes (elegidos por Jorge, sin redactar)
 4. Postal de la bahía con un misil (inventada) — aceptar los misiles (`base.misiles_instalados`).

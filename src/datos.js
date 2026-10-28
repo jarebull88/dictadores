@@ -1157,16 +1157,59 @@ const TUTORIAL = [   // texto: lo que Domingo dice al Comandante (de usted); cin
    una decisión (la bandera) y se guarda entre partidas. Al conseguirlo solo se ve «¡Nuevo logro!»; en el archivo
    llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
    de redacción en docs/COLECCIONABLES.md. */
+/* 28 oct (traspaso de la conversación de coleccionables, docs/COLECCIONABLES.md): cada coleccionable es una carta completa. Campos:
+   id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio. Se desbloquea
+   · con una bandera que pone la decisión (`bandera`), o
+   · con una carta y la opción elegida (`carta` + `decision`, que es el texto de la opción): para las opciones que no ponen bandera, o
+   · al acabar la era con una condición (`era` + `regla`, ver REGLAS_LOGRO en motor.js).
+   `fondo`: color plano de la paleta de la carta por delante (mientras no haya ilustración). «Pendiente» = texto aún sin escribir. */
 const LOGROS = [
-  { id: "chivaton", bandera: "base.denuncias_todas", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
-    objeto: "Carné del comité de barrio", decision: "Que se investigue hasta la gallina",
-    descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional, lo cierra la conversación de coleccionables
-    efecto: "+1 vecino que te lo cuenta todo.", secundario: "Tú también eres vecino de alguien." },
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
-  { id: "paloma", bandera: "tutorial.paloma", titulo: "Paloma amaestrada", subtitulo: "Tu primer milagro, cortesía de tu hermano.",
-    objeto: "Paloma blanca", decision: "Aceptar la paloma de tu hermano",
+  { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Tu primer milagro, cortesía de tu hermano.",
+    decision: "Aceptar la paloma de tu hermano",
     descripcion: "Tu hermano pequeño la ha entrenado tres meses en el monte con paciencia y maíz. Cada vez que alces el brazo en un discurso, se posará en tu hombro y medio país verá en ti al elegido.",
-    efecto: "+100 de aura divina.", secundario: "Tu uniforme de gala nunca volverá a estar limpio." }
+    beneficio: "+100 de aura divina.", perjuicio: "Tu uniforme de gala nunca volverá a estar limpio." },
+
+  // Recompensas de la era 1 (una decisión concreta)
+  { id: "licencia", carta: "fin_pelota", fondo: "mostaza", titulo: "Licencia de electricista", subtitulo: "Tu mejor atleta ya tiene oficio",
+    decision: "Se juega por amor",
+    descripcion: "Felicidades: tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.",
+    beneficio: "+20 medallas por competir contra universitarios.", perjuicio: "Pendiente" },
+  { id: "libreta", carta: "embargo_total", fondo: "oliva", titulo: "Libreta de abastecimiento", subtitulo: "Todo el país come lo mismo",
+    decision: "Una libreta por familia",
+    descripcion: "Tu libreta incluye una casilla por producto y mes. Lo básico: café, cigarros y arroz para todos, y cuarenta casillas más para productos que nunca han llegado ni se esperan.",
+    beneficio: "Todo el país está fit: abdominales de campeonato.", perjuicio: "Pendiente" },
+  { id: "compota", carta: "la_bahia", fondo: "rojo", titulo: "Compota importada", subtitulo: "El postre favorito del Comandante",
+    decision: "Cámbienlos por compotas",
+    descripcion: "Mil doscientos presos por un cargamento de compota de calidad, de la de fuera, un producto de primera que no volverás a ver en tu vida. Se recomienda saborearla despacio.",
+    beneficio: "Pendiente", perjuicio: "Pendiente" },
+  { id: "revolukola", carta: "refresco", fondo: "azul", titulo: "Botella de Revolukola", subtitulo: "Dulce, pegajosa y de producción nacional.",
+    decision: "Inventen la Revolukola",
+    descripcion: "Una bebida marrón y dulce que sabe a Revolución. Receta oficial: azúcar, agua y lo que haya en el almacén ese día. Ninguna botella sabe igual que la anterior.",
+    beneficio: "Mezclada con ron, el país entero aguanta tus discursos.", perjuicio: "Pendiente" },
+  { id: "pelota", carta: "beisbol", fondo: "mostaza", titulo: "Pelota firmada", subtitulo: "Nadie se atrevió a hacer swing.",
+    decision: "A mí nadie me batea",
+    descripcion: "La pelota del partido lleva tu firma y las marcas de unos bateadores que prefirieron no tocarla. Los archivos recogen veintisiete ponches en un partido de dos entradas.",
+    beneficio: "Lánzala a alguien: preferirá que le dé antes que batearla.", perjuicio: "Todos te ponen excusa para no jugar contigo." },
+  // solo con «Discreto como mi barba»: la otra opción también instala los misiles, pero no da la postal
+  { id: "postal", carta: "nuevos_vecinos", fondo: "rojo", titulo: "Postal de la bahía con un misil", subtitulo: "Pendiente",
+    decision: "Discreto como mi barba", descripcion: "Pendiente", beneficio: "Pendiente", perjuicio: "Pendiente" },
+
+  // Logros de la era 1 (cómo se acaba la era; nombres provisionales)
+  { id: "cuatro_casillas", era: 1, regla: "cuatro_casillas", fondo: "oliva", titulo: "Las cuatro casillas", subtitulo: "Pendiente",
+    decision: "Acabar la era con cuatro secuelas a la vez", descripcion: "Pendiente", beneficio: "Pendiente", perjuicio: "Pendiente" },
+  { id: "por_los_pelos", era: 1, regla: "por_los_pelos", fondo: "rojo", titulo: "Por los pelos", subtitulo: "Pendiente",
+    decision: "Acabar la era con alguna fuerza por debajo de 15 o por encima de 85", descripcion: "Pendiente", beneficio: "Pendiente", perjuicio: "Pendiente" },
+  { id: "equilibrista", era: 1, regla: "equilibrista", fondo: "mostaza", titulo: "El equilibrista", subtitulo: "Pendiente",
+    decision: "Acabar la era con las cuatro fuerzas entre 40 y 60", descripcion: "Pendiente", beneficio: "Pendiente", perjuicio: "Pendiente" },
+  { id: "buenos_modales", era: 1, regla: "buenos_modales", fondo: "azul", titulo: "Revolución con buenos modales", subtitulo: "Pendiente",
+    decision: "Acabar la era sin Censura, Vigilancia ni Jaula", descripcion: "Pendiente", beneficio: "Pendiente", perjuicio: "Pendiente" },
+
+  // Carné del comité (era 2): carta `denuncias_falsas`. Texto a medias.
+  { id: "chivaton", bandera: "base.denuncias_todas", fondo: "oliva", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
+    decision: "Que se investigue hasta la gallina",
+    descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional
+    beneficio: "+1 vecino que te lo cuenta todo.", perjuicio: "Tú también eres vecino de alguien." }
 ];
 /* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
 const HUECOS_ARCHIVO = 6;

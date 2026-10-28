@@ -179,7 +179,7 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));
   j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción y los efectos
   assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
-  assert.match(j.d.querySelector(".logro-dorso").textContent, /Efecto secundario/);
+  assert.match(j.d.querySelector(".logro-dorso").textContent, /Perjuicio/);
   j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");

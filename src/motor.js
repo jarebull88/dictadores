@@ -664,9 +664,17 @@ function origenInfo(c) {
     : $("ranuras").children[E ? E.estados.findIndex(s => s.id === id) : -1];
   return el ? (el.querySelector("img") || el) : null;
 }
+/* Medida de la carta sin el desplazamiento del arrastre (se quita y se pone en el mismo instante, sin que se vea) */
+function rectBase(el) {
+  const t = el.style.transform, tr = el.style.transition;
+  el.style.transition = "none"; el.style.transform = "";
+  const r = el.getBoundingClientRect();
+  el.style.transform = t; void el.offsetWidth; el.style.transition = tr;
+  return r;
+}
 function transformDesde(c, origen) {
   if (!origen) return "translateY(40px) scale(.3)";
-  const a = c.getBoundingClientRect(), b = origen.getBoundingClientRect();
+  const a = rectBase(c), b = origen.getBoundingClientRect();
   const dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
   return `translate(${dx}px, ${dy}px) scale(${a.width ? b.width / a.width : .2})`;
 }
@@ -703,27 +711,34 @@ function abrirInfo(clave, id, fondo, origen, html) {
   }
   let drag = null;
   const umbral = () => Math.max(30, c.offsetWidth * 0.15);
+  /* Además de a los lados, la carta de información se cierra deslizándola hacia su icono: arriba si viene de una fuerza, abajo si viene de una casilla */
+  const sentido = clave.startsWith("fuerza-") ? -1 : 1;
   c.addEventListener("pointerdown", e => {
     if (c._cerrando) return;
-    drag = { x: e.clientX, dx: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    drag = { x: e.clientX, y: e.clientY, dx: 0, dy: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX, y: e.clientY }] };
     c.setPointerCapture(e.pointerId);
     c.style.transition = "none";
   });
   c.addEventListener("pointermove", e => {
     if (!drag) return;
-    drag.dx = e.clientX - drag.x;
-    drag.hist.push({ t: e.timeStamp, x: e.clientX }); if (drag.hist.length > 6) drag.hist.shift();
-    c.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
+    drag.dx = e.clientX - drag.x; drag.dy = e.clientY - drag.y;
+    drag.hist.push({ t: e.timeStamp, x: e.clientX, y: e.clientY }); if (drag.hist.length > 6) drag.hist.shift();
+    if (Math.abs(drag.dy) > Math.abs(drag.dx)) c.style.transform = `translateY(${sentido * drag.dy > 0 ? drag.dy : drag.dy * 0.25}px)`;
+    else c.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
   });
   const soltar = e => {
     if (!drag) return;
-    const dx = drag.dx, h = drag.hist, toque = Math.abs(dx) < 8 && e.timeStamp - drag.t0 < 450;
+    const dx = drag.dx, dy = drag.dy, h = drag.hist, toque = Math.abs(dx) < 8 && Math.abs(dy) < 8 && e.timeStamp - drag.t0 < 450;
     drag = null;
-    c.style.transition = ""; c.style.transform = "";
-    if (toque) { c.classList.toggle("volteada"); sonar("voltear"); return; }
-    const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);
-    if (Math.abs(dx) > umbral() || (Math.abs(v) > 0.55 && Math.abs(dx) > 36)) cerrarInfo();
-    else if (Math.abs(dx) > 8) sonar("volver");
+    c.style.transition = "";
+    if (toque) { c.style.transform = ""; c.classList.toggle("volteada"); sonar("voltear"); return; }
+    const dt = Math.max(1, h[h.length - 1].t - h[0].t), vx = (h[h.length - 1].x - h[0].x) / dt, vy = (h[h.length - 1].y - h[0].y) / dt;
+    const vertical = Math.abs(dy) > Math.abs(dx);
+    const sale = vertical
+      ? sentido * dy > 0 && (Math.abs(dy) > umbral() || (sentido * vy > 0.55 && Math.abs(dy) > 36))
+      : Math.abs(dx) > umbral() || (Math.abs(vx) > 0.55 && Math.abs(dx) > 36);
+    if (sale) cerrarInfo();
+    else { c.style.transform = ""; if (Math.abs(dx) > 8 || Math.abs(dy) > 8) sonar("volver"); }
   };
   c.addEventListener("pointerup", soltar);
   c.addEventListener("pointercancel", soltar);
@@ -1018,7 +1033,7 @@ function resolver(dir) {
   const op = opcionDe(dir);
   const turnoDecidido = E.turno;
   aplicar(c, op);
-  comprobarLogros(op);
+  comprobarLogros(c, op);
   pintarBarras();
   pintarRanuras();
   mostrarDerivas();
@@ -1028,6 +1043,7 @@ function resolver(dir) {
 
   const caida = comprobarCaida();
   const eraCompleta = !caida && eraTerminada();
+  if (eraCompleta) comprobarLogrosEra();
   let despues;
   if (caida) despues = () => terminar(caida);
   else if (eraCompleta) despues = finDeEra;
@@ -1150,7 +1166,7 @@ function recogerEstado() {
   carta.classList.remove("volteada");
   const idx = E.estados.findIndex(s => s.id === id);
   const destino = $("ranuras").children[idx] || $("ranuras");
-  const a = carta.getBoundingClientRect(), b = destino.getBoundingClientRect();
+  const a = rectBase(carta), b = destino.getBoundingClientRect();
   const dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
   const k = a.width ? b.width / a.width : 0.1;
   carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
@@ -1238,6 +1254,7 @@ function continuarEra() {
   E.avisoPendiente = null;
   mostrar("screen-game");
   siguiente();
+  if (anuncioPendiente) { anuncioPendiente = false; setTimeout(anunciarLogro, animar() ? 900 : 0); }   // logros de la era que acaba de terminar
 }
 
 const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["El Partido", "llegó"], potencias: ["Las potencias", "llegaron"] };
@@ -1590,7 +1607,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
     ancho = carta.offsetWidth;
-    drag = { x: e.clientX, dx: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX }] };
+    drag = { x: e.clientX, y: e.clientY, dx: 0, dy: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX, y: e.clientY }] };
     arrastrando = true;
     carta.setPointerCapture(e.pointerId);
     carta.style.transition = "none";
@@ -1618,22 +1635,31 @@ function arrastrable(carta, op) {
   const efectivo = dx => (op.bloqueaDer && op.bloqueaDer() && dx > 0 ? 0 : dx);
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
-    drag.dx = e.clientX - drag.x;
-    if (Math.abs(drag.dx) > 6) coger();
+    drag.dx = e.clientX - drag.x; drag.dy = e.clientY - drag.y;
+    if (Math.abs(drag.dx) > 6 || (op.abajo && op.abajo() && drag.dy > 6)) coger();
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
-    drag.hist.push({ t: e.timeStamp, x: e.clientX });
+    drag.hist.push({ t: e.timeStamp, x: e.clientX, y: e.clientY });
+    if (op.abajo && op.abajo() && drag.dy > Math.abs(drag.dx)) {   // 28 oct: la carta de secuela también se guarda deslizándola hacia abajo, a su casilla
+      carta.style.transform = `translateY(${drag.dy}px)`;
+      return;
+    }
     if (drag.hist.length > 6) drag.hist.shift();
     // un solo repintado por fotograma, aunque el dedo mande más eventos
     if (!drag.cuadro) drag.cuadro = requestAnimationFrame(() => { if (drag) { drag.cuadro = 0; mover(efectivo(drag.dx), drag); } });
   });
   function soltar(e) {
     if (!drag) return;
-    const bruto = drag.dx, dx = efectivo(bruto), h = drag.hist, toque = Math.abs(bruto) < 8 && e.timeStamp - drag.t0 < 450;
+    const bruto = drag.dx, dx = efectivo(bruto), h = drag.hist, toque = Math.abs(bruto) < 8 && Math.abs(drag.dy) < 8 && e.timeStamp - drag.t0 < 450, dy = drag.dy;
     clearTimeout(drag.cogida);
     drag = null;
     arrastrando = false;
     if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(bruto) < 30)) op.toque(); return; }
     if (carta.classList.contains("volteada")) { volver(); return; }
+    if (op.abajo && op.abajo() && dy > Math.abs(bruto)) {                        // hacia abajo: se guarda en su casilla
+      const vy = (h[h.length - 1].y - h[0].y) / Math.max(1, h[h.length - 1].t - h[0].t);
+      if ((dy > umbral() || (vy > 0.55 && dy > 36)) && !(op.bloqueaDer && op.bloqueaDer())) { op.decidir(1); return; }
+      volver(); if (dy > 8) sonar("volver"); return;
+    }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx) && dx === bruto;
     if (Math.abs(dx) > umbral() || lanzada) op.decidir(Math.sign(dx));
@@ -1648,7 +1674,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, bloqueaDer: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
+arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, bloqueaDer: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */
@@ -1775,15 +1801,32 @@ let logrosMem = {};                                   // si el navegador no deja
 function logros() { try { return JSON.parse(localStorage.getItem(CLAVE_LOGROS)) || {}; } catch (e) { return logrosMem; } }
 function guardarLogros(l) { logrosMem = l; try { localStorage.setItem(CLAVE_LOGROS, JSON.stringify(l)); } catch (e) {} }
 const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
-function comprobarLogros(op) {
+/* Una decisión da un logro por una bandera que pone, o por la carta y la opción elegidas (para las opciones que no ponen bandera) */
+function comprobarLogros(c, op) {
   const l = logros();
-  // PROVISIONAL (24 oct, para probarlo rápido): la primera decisión de cada partida da el primer logro si aún no lo tienes
-  const deRegalo = E.turno === E.inicioEra + 1 && E.era === 1 ? LOGROS[0] : null;
-  const nuevos = LOGROS.filter(g => !l[g.id] && ((op.banderas || []).includes(g.bandera) || g === deRegalo));
+  const nuevos = LOGROS.filter(g => !l[g.id] && ((g.bandera && (op.banderas || []).includes(g.bandera)) || (g.carta && c && c.id === g.carta && op.accion === g.decision)));
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
   anunciarLogro();
+}
+/* Logros de fin de era: se miran con las barras y las secuelas con que acaba la era (28 oct, traspaso de coleccionables). Se dan al
+   decidir la última carta; el aviso «¡Nuevo logro!» sale al volver a la partida, porque entre medias está la pantalla de la era. */
+const REGLAS_LOGRO = {
+  cuatro_casillas: () => E.estados.length >= MAX_RANURAS,
+  por_los_pelos: () => BARRAS.some(b => E.barras[b.id] < 15 || E.barras[b.id] > 85),
+  equilibrista: () => BARRAS.every(b => E.barras[b.id] >= 40 && E.barras[b.id] <= 60),
+  buenos_modales: () => !E.estados.some(s => ["censura", "vigilancia", "frontera"].includes(s.id))
+};
+let anuncioPendiente = false;
+function comprobarLogrosEra() {
+  const l = logros();
+  const nuevos = LOGROS.filter(g => g.regla && g.era === E.era && !l[g.id] && REGLAS_LOGRO[g.regla] && REGLAS_LOGRO[g.regla]());
+  if (!nuevos.length) return;
+  nuevos.forEach(g => { l[g.id] = { abierto: false }; });
+  guardarLogros(l);
+  anuncioPendiente = true;
+  avisoMenu();
 }
 /* 25 oct: el logro del tutorial. La decisión del paso «logro» da la paloma (sea cual sea la respuesta); la carta vuelve con otro
    mensaje y la estrella, destacada, hasta que el jugador abre el logro (al cerrarlo, sigue el tutorial). */
@@ -1835,6 +1878,11 @@ function anunciarLogro() {
   z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
 }
 
+/* La cara de un coleccionable: su ilustración si la tiene (la paloma); si no, un fondo plano de la paleta (`fondo` en LOGROS) */
+function ilustracionLogro(g, alt) {
+  if (IMG_LOGROS[g.id]) return `<div class="logro-ilustracion"><img src="${IMG_LOGROS[g.id]}" alt="${esc(alt)}" draggable="false"></div>`;
+  return `<div class="logro-ilustracion" style="background:var(--p-${g.fondo || "mostaza"})" role="img" aria-label="${esc(alt)}"></div>`;
+}
 /* El archivo: una rejilla de huecos (siluetas, logros nuevos y logros descubiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 function abrirArchivo() {
@@ -1851,7 +1899,7 @@ function pintarArchivo() {
     const g = LOGROS[i], estado = g && l[g.id];
     if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
     else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo"><span>¡Nuevo!</span></button>`;
-    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}" aria-label="${esc(g.titulo)}"><div class="logro-ilustracion">${IMG_LOGROS[g.id] ? `<img src="${IMG_LOGROS[g.id]}" alt="" draggable="false">` : `<span class="logro-objeto">${esc(g.objeto)}</span>`}</div></button>`;   // 27 oct: la miniatura de la carta
+    else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}" aria-label="${esc(g.titulo)}">${ilustracionLogro(g, "")}</button>`;   // 27 oct: la miniatura de la carta
   }
   $("archivo-rejilla").innerHTML = html;
   $("archivo-rejilla").querySelectorAll("button[data-id]").forEach(b => b.addEventListener("click", () => verLogro(b.dataset.id)));
@@ -1866,11 +1914,11 @@ function verLogro(id) {
   v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
-        <div class="logro-cara"><div class="logro-ilustracion">${IMG_LOGROS[g.id] ? `<img src="${IMG_LOGROS[g.id]}" alt="${esc(g.objeto)}" draggable="false">` : `<span class="logro-objeto">${esc(g.objeto)}</span>`}</div></div>
-        <div class="logro-dorso"><div class="logro-hoja"><b class="logro-objeto-nombre">${esc(g.objeto)}</b>
+        <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
+        <div class="logro-dorso"><div class="logro-hoja"><b class="logro-objeto-nombre">${esc(g.titulo)}</b>
           <p class="logro-descripcion">${esc(g.descripcion)}</p>
-          <p class="logro-efecto"><b>Efecto:</b> ${esc(g.efecto)}</p>
-          <p class="logro-efecto"><b>Efecto secundario:</b> ${esc(g.secundario)}</p></div></div>
+          <p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
+          <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p></div></div>
       </div></div>
     </div>
     <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;

@@ -76,7 +76,7 @@ out("personajes.md", `# Personajes\n\n${AUTO}Con el dictador solo hablan sus min
   Object.entries(porP).sort((a, b) => b[1].length - a[1].length).map(fila).join("\n") + "\n");
 
 // ---- estados ----
-out("estados.md", `# Estados del régimen\n\n${AUTO}Hay cuatro ranuras. Al entrar un quinto estado, sale el más antiguo. Los valores de \`deriva\` son los del juego (ya multiplicados por ${juego.FACTOR_DERIVA}).\n\n| Estado | Emoji | Qué es | Efecto | Deriva | Cada | Duración |\n| --- | --- | --- | --- | --- | --- | --- |\n` +
+out("estados.md", `# Secuelas del régimen (antes «estados»)\n\n${AUTO}Hay cuatro casillas. Al entrar una quinta secuela, sale la más antigua. Los valores de \`deriva\` son los del juego (ya multiplicados por ${juego.FACTOR_DERIVA}).\n\n| Estado | Emoji | Qué es | Efecto | Deriva | Cada | Duración |\n| --- | --- | --- | --- | --- | --- | --- |\n` +
   Object.entries(juego.ESTADOS).map(([id, e]) => `| ${e.nombre} (\`${id}\`) | ${juego.EMOJI_ESTADO[id]} | ${e.descripcion} | ${juego.RESUMEN[id] || ""} | ${e.deriva ? fx(e.deriva) : "—"} | ${e.cada} | ${e.duracion ? e.duracion + " años" : "hasta que otro lo desplace"} |`).join("\n") + "\n");
 
 // ---- finales ----

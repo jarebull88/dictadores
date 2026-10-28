@@ -119,8 +119,8 @@ const CARTAS = [
     id: "embargo", tipo: "cola", titulo: "El azúcar",
     personaje: "Embajador de la potencia del norte",
     texto: "Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.",
-    izq: { accion: "Ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] },
-    der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 }, banderas: ["base.embargo_en_marcha"] }
+    izq: { accion: "Ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha"] },
+    der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 } }
   },
   {
     id: "depuracion_criticos", tipo: "cola", enlace: true, titulo: "La lista",
@@ -229,7 +229,7 @@ const CARTAS = [
     id: "mil_flores", tipo: "sorteo", peso: 3, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
     texto: "Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.",
-    izq: { accion: "Dentro todo, fuera nada", efectos: { pueblo: -8, elite: 5 } },
+    izq: { accion: "Dentro todo, fuera nada", efectos: { pueblo: -8, elite: 5 }, banderas: ["base.censura_previa"] },
     der: { accion: "El arte es libre", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"], encolar: [{ carta: "depuracion_criticos", min: 1, max: 1 }] }
   },
   {

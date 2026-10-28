@@ -1,8 +1,8 @@
-# Estados del régimen
+# Secuelas del régimen (antes «estados»)
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Hay cuatro ranuras. Al entrar un quinto estado, sale el más antiguo. Los valores de `deriva` son los del juego (ya multiplicados por 2).
+Hay cuatro casillas. Al entrar una quinta secuela, sale la más antigua. Los valores de `deriva` son los del juego (ya multiplicados por 2).
 
 | Estado | Emoji | Qué es | Efecto | Deriva | Cada | Duración |
 | --- | --- | --- | --- | --- | --- | --- |

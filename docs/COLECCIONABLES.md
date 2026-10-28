@@ -32,6 +32,8 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - secundario: «Tu uniforme de gala nunca volverá a estar limpio.»
 
 ## Era 1
+**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A mí nadie me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
+
 
 ### 1. Carné del comité de barrio — *propuesto*
 - **Logro:** «Chivatón de barrio» (elegido por Jorge).

@@ -55,8 +55,16 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Perjuicio:** Tu aire acondicionado lo montó un boxeador y ahora gotea.
 - **Referencia real:** la resolución 83-A del INDER (1962) abolió el deporte profesional; los profesionales pasaron a aficionados pagados por el Estado. El «amateurismo de Estado» del bloque (atletas inscritos con un oficio) es real; un caso cubano concreto no está documentado, así que la licencia es invención sobre una práctica real.
 
+### Recompensa 2 · Libreta de abastecimiento — *en curso* (28 oct)
+- **Se gana con:** carta `embargo_total` (Ministro de Comercio), opción «Una libreta por familia».
+- **titulo:** Cuota cumplida *(propuesto; Jorge no lo ha confirmado)*
+- **subtitulo:** Todo el país come lo mismo
+- **objeto:** Libreta de abastecimiento
+- **descripcion:** Tu libreta incluye una casilla por producto y mes. Lo básico: café, cigarros y arroz para todos, y cuarenta casillas más para productos que nunca han llegado ni se esperan.
+- **Beneficio / Perjuicio:** *pendiente* (Jorge no se decide por las propuestas del 28 oct: el beneficio y el perjuicio deben ser algo concreto y real que le pasa al Comandante).
+- **Referencia real:** la libreta de abastecimiento se creó en marzo de 1962 (cuadrícula de productos por persona y mes, sellada por el bodeguero).
+
 ### Pendientes (elegidos por Jorge, sin redactar)
-2. Libreta de abastecimiento — «Libreta de racionamiento por familia» (`embargo_total`).
 3. Etiqueta de compota (canje de los prisioneros de la bahía, 1962) — «Cámbienlos por compotas».
 4. Postal de la bahía con un misil (inventada) — aceptar los misiles (`base.misiles_instalados`).
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).

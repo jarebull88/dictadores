@@ -176,3 +176,6 @@ El Norte rompió relaciones en 1961 y no volvió a tener embajada hasta 2015. Po
 
 ### Padrino Pupo (babalawo, invitado)
 - **Idea visual (28 oct, Jorge):** una sola imagen. Homenaje a *Vampiros en La Habana*: busto de frente, piel azul como en el cartel, ojos cerrados de trance (uno se entreabre para ver qué le dan), puro, **vestido de babalawo, de blanco con su gorrito**, y collares de cuentas. Prompt en `docs/GUIA_ARTE_BACHS.md`.
+
+### Papá Ernesto (el novelista, invitado de la era 1)
+- **Idea visual (28 oct, Jorge):** una sola imagen. Homenaje a *La historia del fuego*: una masa enorme de barba y pelo blancos en rizos que lo tapa casi entero, gorra de pescador, nariz de patata, piernas flacas en pantalón corto, una aguja azul al hombro, un daiquirí en la mano y gatos que lo siguen; fondo mostaza. Caricatura, no retrato. Prompt en `docs/GUIA_ARTE_BACHS.md`.

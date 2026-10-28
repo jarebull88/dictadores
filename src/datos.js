@@ -1012,8 +1012,8 @@ const FICHAS = {
     historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",
     nota: "Este informe lo ha redactado él mismo." },
   "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Embajador oriental",
-    historia: "Enviado del bloque oriental para una misión de seis meses.",
-    nota: "Ha deshecho la maleta a medias y estudia el diccionario con interés, sobre todo las palabras que oye en las reuniones del Consejo." },
+    historia: "Enviado del bloque oriental para convertir una revolución en cliente. Ofrece petróleo y asesores. Todo se paga en azúcar y favores.",
+    nota: "Este servicio ya ha perdido la cuenta de lo que debemos." },
   "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador occidental",
     historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve.",
     nota: "Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }

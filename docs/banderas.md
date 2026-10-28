@@ -10,7 +10,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `alineado_bloque_oriental` | El visitante del bloque oriental (A) | — | El aliado exige concesiones y armamento. (era 1) |
 | `atentado_investigado` | El atentado (B) | Los cinco | Tus agentes en el exilio corren peligro. (era 4) |
 | `campos_trabajo` | Los campos de trabajo (A) | Una carta con firmas | Intelectuales denuncian los campos de trabajo. (era 3) |
-| `censura_previa` | Los periódicos (A) | El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
+| `censura_previa` | Los periódicos (A); Las mil flores (A) | El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
 | `comites_vigilancia` | Los ojos del barrio (B) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |
 | `compensaciones` | Las refinerías (B) | La deuda llama | Una deuda que alimenta una carta de crisis. (era 2) |
 | `critica_abierta` | Las mil flores (B) | Una carta con firmas | Depuración de críticos. (era 3) |
@@ -22,7 +22,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `deuda_externa` | Embargo total (B) | La deuda llama; El acreedor pide favores | El acreedor empieza a pedir favores. (era 2) |
 | `elecciones_aplazadas` | Las urnas prometidas (A); Las urnas prometidas (B) | — | Protestas estudiantiles. (era 1) |
 | `elecciones_prometidas` | Las urnas prometidas (B) | Elecciones controladas | Elecciones controladas. (era 3) |
-| `embargo_en_marcha` | El azúcar (A); El azúcar (B); El ultimátum (B) | Embargo total | Embargo total. (era 1) |
+| `embargo_en_marcha` | El azúcar (A); El ultimátum (B) | Embargo total | Embargo total. (era 1) |
 | `estado_policial` | El jefe insaciable (A) | El batallón | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
 | `estudiantes_reprimidos` | Las urnas prometidas (A) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
 | `exiliados_vocales` | Los que se marchan (A) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |
@@ -38,7 +38,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `misiles_rechazados` | — | — | El aliado recuerda tu negativa. (era 2) |
 | `modestia_aparente` | El retrato (B) | La modestia sospechosa | El Partido exige otros símbolos de lealtad. (era 3) |
 | `mota_juzgado` | El comandante que dimite (A) | La memoria | Los nietos de Mota piden que los libros hablen de él. (era 4) |
-| `nacionalizo_empresas` | Las refinerías (A); El azúcar (A) | Los que se marchan; Faltan técnicos; Embargo total | Sanciones de la potencia del norte. (era 2) |
+| `nacionalizo_empresas` | Las refinerías (A) | Los que se marchan; Faltan técnicos; Embargo total | Sanciones de la potencia del norte. (era 2) |
 | `negocio_refinerias` | — | — | Las empresas exigen garantías que limitan tus decisiones económicas. (era 1) |
 | `no_alineado` | — | — | La potencia del norte se acerca y el aislamiento económico se agrava. (era 2) |
 | `oposicion_culpada` | Los que celebran (A) | Los inocentes | La oposición recuerda al acusado injusto. (era 4) |

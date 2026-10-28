@@ -105,12 +105,8 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.»
 
-- **A. Ahora me quedo con todo** Élite +6 · Potencias −6 · Crisis +1 · Bandera: `embargo_en_marcha`, `nacionalizo_empresas`
-- **B. Ya tengo otro cliente** Potencias +6 · Élite −6 · Bandera: `embargo_en_marcha`
-
-**Consecuencia futura de `embargo_en_marcha`:** Embargo total.
-
-**Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
+- **A. Ahora me quedo con todo** Élite +6 · Potencias −6 · Crisis +1 · Bandera: `embargo_en_marcha`
+- **B. Ya tengo otro cliente** Potencias +6 · Élite −6
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
@@ -267,8 +263,10 @@ Duración: entre 10 y 12 cartas. 36 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.»
 
-- **A. Dentro todo, fuera nada** Pueblo −8 · Élite +5
+- **A. Dentro todo, fuera nada** Pueblo −8 · Élite +5 · Bandera: `censura_previa`
 - **B. El arte es libre** Pueblo +8 · Élite −5 · Bandera: `critica_abierta` · Encola: `depuracion_criticos` en 1 años
+
+**Consecuencia futura de `censura_previa`:** Aparecen el periodista oficial y los rumores.
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 

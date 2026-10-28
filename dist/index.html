@@ -766,7 +766,7 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
     </div>
     <div class="pie-juego">
       <div class="zona-leyenda"><div class="leyenda" id="leyenda"></div><div class="logro-escribe" id="logro-escribe" aria-live="polite"></div></div>
-      <div class="ranuras" id="ranuras" role="group" aria-label="Estados del régimen"></div>
+      <div class="ranuras" id="ranuras" role="group" aria-label="Secuelas del régimen"></div>
       <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><i></i><i></i><i></i></button>
       <div class="menu-juego hidden" id="menu-juego" role="menu">
         <button class="opcion-menu" id="btn-logros" type="button" role="menuitem">Logros</button>
@@ -1005,8 +1005,8 @@ const CARTAS = [
     id: "embargo", tipo: "cola", titulo: "El azúcar",
     personaje: "Embajador de la potencia del norte",
     texto: "Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.",
-    izq: { accion: "Ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha", "base.nacionalizo_empresas"] },
-    der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 }, banderas: ["base.embargo_en_marcha"] }
+    izq: { accion: "Ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha"] },
+    der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 } }
   },
   {
     id: "depuracion_criticos", tipo: "cola", enlace: true, titulo: "La lista",
@@ -1115,7 +1115,7 @@ const CARTAS = [
     id: "mil_flores", tipo: "sorteo", peso: 3, cond: { sin: ["base.censura_previa"] }, titulo: "Las mil flores",
     personaje: "Ministra de Cultura",
     texto: "Los escritores quieren saber qué pueden publicar. Propongo que usted les marque el límite.",
-    izq: { accion: "Dentro todo, fuera nada", efectos: { pueblo: -8, elite: 5 } },
+    izq: { accion: "Dentro todo, fuera nada", efectos: { pueblo: -8, elite: 5 }, banderas: ["base.censura_previa"] },
     der: { accion: "El arte es libre", efectos: { pueblo: 8, elite: -5 }, banderas: ["base.critica_abierta"], encolar: [{ carta: "depuracion_criticos", min: 1, max: 1 }] }
   },
   {
@@ -3100,7 +3100,7 @@ function prepararAviso() {
   } else {
     const fuerte = fin.length ? `${nom(fin)} termina` : `${nom(sal)} desaparece`;
     const texto = fin.length ? "Su efecto desaparece." : "Se ha desplazado de las ranuras.";
-    E.avisoPendiente = { clave: "fin-" + (fin[0] || sal[0]), html: `<small class="etiqueta-pop">Estado</small><b>${esc(fuerte)}</b><span>${esc(texto)}</span>`, indice: -1 };
+    E.avisoPendiente = { clave: "fin-" + (fin[0] || sal[0]), html: `<small class="etiqueta-pop">Secuela</small><b>${esc(fuerte)}</b><span>${esc(texto)}</span>`, indice: -1 };
   }
 }
 function mostrarAvisoPendiente() {
@@ -3133,7 +3133,7 @@ function mostrarCartaEstado() {
   modoEstado = true; ocupado = false;
   clearTimeout(relojEstado);
   // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
-  ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nuevo estado del régimen.")}</span>`);
+  ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nueva secuela del régimen.")}</span>`);
   ajustarMensaje();
   ponerLeyenda(d.nombre);                              // 27 oct: el nombre del estado, bajo la carta (sin cinta)
   const carta = $("carta");

@@ -1060,7 +1060,7 @@ function prepararAviso() {
   } else {
     const fuerte = fin.length ? `${nom(fin)} termina` : `${nom(sal)} desaparece`;
     const texto = fin.length ? "Su efecto desaparece." : "Se ha desplazado de las ranuras.";
-    E.avisoPendiente = { clave: "fin-" + (fin[0] || sal[0]), html: `<small class="etiqueta-pop">Estado</small><b>${esc(fuerte)}</b><span>${esc(texto)}</span>`, indice: -1 };
+    E.avisoPendiente = { clave: "fin-" + (fin[0] || sal[0]), html: `<small class="etiqueta-pop">Secuela</small><b>${esc(fuerte)}</b><span>${esc(texto)}</span>`, indice: -1 };
   }
 }
 function mostrarAvisoPendiente() {
@@ -1093,7 +1093,7 @@ function mostrarCartaEstado() {
   modoEstado = true; ocupado = false;
   clearTimeout(relojEstado);
   // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
-  ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nuevo estado del régimen.")}</span>`);
+  ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nueva secuela del régimen.")}</span>`);
   ajustarMensaje();
   ponerLeyenda(d.nombre);                              // 27 oct: el nombre del estado, bajo la carta (sin cinta)
   const carta = $("carta");

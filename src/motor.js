@@ -26,7 +26,17 @@ function audio() {
   });
   return ctxAudio;
 }
-["pointerdown", "keydown"].forEach(t => document.addEventListener(t, () => { const c = audio(); if (c && c.state === "suspended") c.resume(); }, { passive: true }));
+/* iOS solo desbloquea el audio con touchend o click (no con pointerdown), y otros navegadores con cualquiera: se prueban todos y se emite un instante de silencio */
+let audioDesbloqueado = false;
+function desbloquearAudio() {
+  const c = audio();
+  if (!c) return;
+  if (c.state !== "running") c.resume().catch(() => {});
+  if (!audioDesbloqueado) {
+    try { const s = c.createBufferSource(); s.buffer = c.createBuffer(1, 1, 22050); s.connect(c.destination); s.start(0); audioDesbloqueado = true; } catch (e) {}
+  }
+}
+["pointerdown", "pointerup", "touchend", "click", "keydown"].forEach(t => document.addEventListener(t, desbloquearAudio, { passive: true }));
 /* Un soplo de ruido filtrado que barre de f0 a f1 Hz: el roce de la cartulina */
 function roce(c, t, dur, f0, f1, vol) {
   const n = Math.max(1, Math.floor(c.sampleRate * dur)), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);

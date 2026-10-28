@@ -530,3 +530,5 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - La cara de información de fuerzas y estados lleva ahora la hoja crema dentro del margen blanco, como la ficha (antes la regla de la hoja no le llegaba).
 - Prueba del espacio entre el borde izquierdo y la primera casilla, con 8 px de aire y Londrina a 21 px: 63 px libres a 360 px de ancho (5 letras), 78 px a 390 (7) y 98 px a 430 (9); media de 9,5 px por letra mayúscula. **El nombre del jugador pasa de 14 a 7 letras como máximo** (`maxlength` del campo), y `ajustarNombrePie()` baja la letra (mín. 12 px) si aun así no llega.
 - Abajo a la izquierda: el nombre (Londrina, como los títulos) y debajo los años («1 AÑO», Londrina Light). En el tutorial solo salen los pasos.
+
+- Nombre y años forman un bloque cuadrado: las dos líneas miden lo mismo de ancho (cada una ajusta su tamaño de letra; `ajustarNombrePie()`), sin pasar de la primera casilla ni de la altura de las casillas.

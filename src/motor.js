@@ -468,21 +468,29 @@ function pintarBarras() {
   });
 }
 
-/* 28 oct: el nombre del jugador (máx. 7 letras, maxlength del campo) va sobre los años, y la letra baja sola (hasta 12 px) si no llega hasta la primera casilla con 8 px de aire */
+/* 28 oct: el nombre del jugador (máx. 7 letras, maxlength del campo) y los años forman un bloque cuadrado: las dos líneas miden lo mismo de ancho
+   (cada una ajusta su tamaño de letra), sin pasar de la primera casilla (8 px de aire) ni de la altura de las casillas. */
 function ajustarNombrePie() {
-  const n = $("nombre-pie"), r0 = $("ranuras").children[0];
-  if (!n || !r0) return;
-  n.style.removeProperty("--nombre-pie-px");
-  const rg = document.createRange(); rg.selectNodeContents(n);
-  const libre = r0.getBoundingClientRect().left - n.parentNode.getBoundingClientRect().left - 8;
-  let px = parseFloat(getComputedStyle(n).fontSize) || 21;
-  while (libre > 0 && rg.getBoundingClientRect().width > libre && px > 12) { px -= 1; n.style.setProperty("--nombre-pie-px", px + "px"); }
+  const n = $("nombre-pie"), y = $("anios-poder"), r0 = $("ranuras").children[0];
+  if (!n || !y || !r0) return;
+  const caja = n.parentNode;
+  n.style.removeProperty("--nombre-pie-px"); caja.style.removeProperty("--anios-px");
+  if (!n.textContent) return;                           // tutorial: solo los pasos
+  const ancho = el => { const rg = document.createRange(); rg.selectNodeContents(el); return rg.getBoundingClientRect().width; };
+  const wn = ancho(n), wy = ancho(y), base = parseFloat(getComputedStyle(n).fontSize) || 21;
+  const libre = r0.getBoundingClientRect().left - caja.getBoundingClientRect().left - 8, alto = caja.getBoundingClientRect().height;
+  if (!(wn > 0 && wy > 0 && libre > 0)) return;
+  let W = Math.min(libre, Math.max(wn, wy));
+  let sn = base * W / wn, sy = base * W / wy;
+  const f = alto / ((sn + sy) * 1.05);                  // las dos líneas, a lo alto de una casilla
+  if (f < 1) { sn *= f; sy *= f; }
+  n.style.setProperty("--nombre-pie-px", sn.toFixed(1) + "px"); caja.style.setProperty("--anios-px", sy.toFixed(1) + "px");
 }
 function pintarCabecera() {
   const n = anios();
   $("nombre-pie").textContent = E && E.tutorial ? "" : nombreDictador;   // 28 oct: el nombre del jugador, sobre los años
-  ajustarNombrePie();
-  $("anios-poder").textContent = `${n} ${n === 1 ? "año" : "años"}`;   // 27 oct: abajo a la izquierda, en Londrina Light; el nombre del Comandante ya no sale
+  $("anios-poder").textContent = `${n} ${n === 1 ? "año" : "años"}`;
+  ajustarNombrePie();   // 27 oct: abajo a la izquierda, en Londrina Light; el nombre del Comandante ya no sale
 }
 
 function moverRanuras(cont, antes) {

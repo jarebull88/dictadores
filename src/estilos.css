@@ -107,7 +107,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 /* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
 .leyenda, .anios { font-weight: var(--peso-ligero); }
 .leyenda { font-size: var(--leyenda-px, var(--t-l)); }
-.anios { font-size: var(--t-s); }
+.anios { font-size: var(--anios-px, var(--t-s)); }
 .nombre-pie { font-size: var(--nombre-pie-px, var(--t-s)); }
 .nombre-pie { font-weight: 400; }   /* 28 oct: el nombre del jugador, en Londrina normal como los demás títulos; los años, en Light */
 .etiqueta-boli.larga b, .popup .efecto, .era-anios, .fin-anios { font-size: var(--t-s); }

@@ -32,7 +32,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Les pagaremos con azúcar → sube Partido +6 · baja Pueblo -6
 
 **El visitante del bloque oriental** (Embajador del bloque oriental)  
-«Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
+«Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.»
 - A. Toda ayuda es poca → sube Potencias +9, Ejército +5 · crisis +2
 - B. Solo petróleo → baja Potencias -9, Ejército -5 · crisis +1
 
@@ -143,7 +143,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El partido** (Ministra de Educación)  
 «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
-- A. A mí nadie me batea → sube Pueblo +4 · baja Ejército -3
+- A. A ver quién me batea → sube Pueblo +4 · baja Ejército -3
 - B. Yo seré el árbitro → sube Ejército +3 · baja Pueblo -4
 
 **El economista** (Ministro de Economía)  
@@ -158,7 +158,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El refresco** (Ministro de Comercio)  
 «Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.»
-- A. Inventen la Revolukola → sube Partido +4 · baja Pueblo -3
+- A. Improvisen una receta → sube Partido +4 · baja Pueblo -3
 - B. Que beban guarapo → sube Pueblo +3 · baja Partido -4
 
 **Las tiendas vacías** (Ministro de Comercio)  

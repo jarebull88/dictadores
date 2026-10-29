@@ -67,7 +67,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 3 a 7 de su era; a partir del año 3 de la era.
 
-**Carta:** «Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
+**Carta:** «Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.»
 
 - **A. Toda ayuda es poca** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
 - **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
@@ -331,7 +331,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
 
-- **A. A mí nadie me batea** Pueblo +4 · Ejército −3
+- **A. A ver quién me batea** Pueblo +4 · Ejército −3
 - **B. Yo seré el árbitro** Ejército +3 · Pueblo −4
 
 ### 29. El economista
@@ -361,7 +361,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.»
 
-- **A. Inventen la Revolukola** Élite +4 · Pueblo −3
+- **A. Improvisen una receta** Élite +4 · Pueblo −3
 - **B. Que beban guarapo** Pueblo +3 · Élite −4
 
 ### 32. Las tiendas vacías *(borrador)*
@@ -473,23 +473,23 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
 
-- **A. Conmigo todos pican** Pueblo +5 · Élite −5
+- **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
 - **B. Yo pesco otra cosa** Pueblo −5 · Élite +5
 
 ### 43. Papá Ernesto (whisky)
 
 **Personaje:** Papá Ernesto  
-**Condición:** ancla de los años 5 a 7 de su era; a partir del año 5 de la era.
+**Condición:** ancla de los años 5 a 7 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
 
 **Carta:** «Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»
 
-- **A. Whisky para el genio** Potencias +5 · Pueblo −5
+- **A. Whisky para el genio** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
 - **B. Beba guarapo** Potencias −5 · Pueblo +5
 
 ### 44. Papá Ernesto (higado)
 
 **Personaje:** Papá Ernesto  
-**Condición:** ancla de los años 8 a 10 de su era; a partir del año 8 de la era.
+**Condición:** ancla de los años 8 a 10 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
 
 **Carta:** «Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.»
 

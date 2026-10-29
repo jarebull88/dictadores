@@ -28,11 +28,14 @@ Para verificar hechos históricos o nombres de ministerios hace falta una conver
 11. Peso del HTML ~7,7 MB (el «4,3 MB» antiguo ya no es cierto); no tocar sin que Jorge lo pida.
 12. Quitar de `CLAUDE.md` lo que se quede obsoleto cuando esto cambie.
 
+- **Logro «la historia de Ernesto»** (29 oct, Jorge): se da al llegar a la tercera carta de Papá Ernesto (`ernesto_higado`), que solo sale si aceptas el torneo y el whisky. Textos: Coleccionables; regla: Programación.
+
 ## Textos (la lleva «Comandante - Textos»)
+**Pruebas (29 oct, Jorge):** si solo cambian textos de cartas (preguntas, respuestas, fichas), `npm run build` y `node --test tests/coherencia.test.js tests/lados.test.js`, y se sube; sin `npm test` completo (manda `CLAUDE.md`, «Cómo pasar las pruebas», punto 3). Si cambia la estructura (banderas, condiciones, colas, pesos), además `npm test` completo una vez antes de subir.
 Ver «Estado a 29 oct» en `PLAN_NARRATIVO.md`. Lo siguiente que pidió Jorge: las muertes de la era 1 (8 caídas con versión por era, atentados como cartas sueltas, muerte de humor); luego expedientes desfasados y la era 2 por el mismo camino que la 1.
 
 ## Arte (la lleva «Comandante - Arte»)
 Ver §11 y §12 de `GUIA_ARTE_BACHS.md`. Pendiente: reverso de la era 1 (probar v10), Pupo, edición de color de Ernesto, reversos de las eras 2–4, carta del logro «Paloma amaestrada», escenas de las caídas, elegir prueba de expedientes (recomendada la A) y tintas por personaje, decidir si el Comandante pasa a una sola imagen.
 
 ## Coleccionables (la lleva «Comandante - Coleccionables»)
-Ver «Traspaso a programación» y las notas finales de `COLECCIONABLES.md`. Faltan los perjuicios de licencia, libreta, compota y botella; el beneficio de la compota; textos de la postal, el carné, los billetes y los cuatro logros de la era; los embajadores occidentales de las eras 2 a 4.
+Ver «Traspaso a programación» y las notas finales de `COLECCIONABLES.md`. **Para programación:** la pelota se titula ahora «Pelota de béisbol»; la `decision` es siempre el texto exacto de la opción. Faltan textos de la postal, el carné, los billetes y los cuatro logros de la era; los embajadores occidentales de las eras 2 a 4.

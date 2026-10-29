@@ -34,7 +34,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - secundario: «Tu uniforme de gala nunca volverá a estar limpio.»
 
 ## Era 1
-**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A mí nadie me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
+**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A ver quién me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
 
 **Logros de la era 1** (28 oct, Jorge; nombres provisionales, los cierra esta conversación; necesitan que el motor los compruebe al acabar la era): **Las cuatro casillas** (acabar la era con cuatro secuelas a la vez) · **Por los pelos** (acabar la era con alguna fuerza por debajo de 15 o por encima de 85) · **El equilibrista** (acabar la era con las cuatro fuerzas entre 40 y 60) · **Revolución con buenos modales** (acabar la era sin Censura, Vigilancia ni Jaula). Cuatro por era.
 
@@ -47,49 +47,54 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Referencia real:** el carné de los Comités de Defensa de la Revolución (CDR), con el ojo, la cinta «con la guardia en alto» y una cita firmada por Fidel. Los CDR se fundaron el 28 sep 1960, en un acto ante el Palacio Presidencial, mientras estallaban petardos; Fidel anunció «un sistema de vigilancia colectiva revolucionaria» (verificado). El texto exacto de la cita del carné sale de la imagen que tiene Jorge; no lo he encontrado transcrito en la red.
 - **Se desbloquea con** (28 oct, Jorge: «por ser literalmente un chivatón»): carta `denuncias_falsas` de la **era 2** (Ministro del Interior), opción «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). Antes, `ojos_barrio`, que ahora crea los comités siempre.
 
-### Recompensa 1 · Licencia de electricista — *aprobada* (28 oct; faltan solo los números que el motor necesite)
+### Recompensa 1 · Licencia de electricista — *aprobada* (29 oct, textos de Jorge)
 - **Se gana con:** carta `fin_pelota` («Se acabó el profesional», Ministra de Educación), opción «Se juega por amor» (no pone bandera: el motor tendrá que reconocer la opción).
-- **titulo:** Licencia de electricista (28 oct: título y objeto son lo mismo; «Amateur de élite» se descarta)
+- **titulo:** Licencia de electricista
 - **subtitulo:** Tu mejor atleta ya tiene oficio
-- **descripcion:** Felicidades: tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.
-- **Beneficio:** +20 medallas por competir contra universitarios.
-- **Perjuicio:** *pendiente* (el del aire acondicionado se descarta: repite el chiste del trabajo mal hecho).
+- **descripcion:** Tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.
+- **Beneficio:** Usa esta licencia para inscribir a tus antiguos deportistas en competiciones universitarias y conseguir +20 medallas.
+- **Perjuicio:** Para competir, cada atleta debe presentar un justificante de ausencia firmado por su encargado.
+- **decision:** «Se juega por amor»
 - **Referencia real:** la resolución 83-A del INDER (1962) abolió el deporte profesional; los profesionales pasaron a aficionados pagados por el Estado. El «amateurismo de Estado» del bloque (atletas inscritos con un oficio) es real; un caso cubano concreto no está documentado, así que la licencia es invención sobre una práctica real.
 
-### Recompensa 2 · Libreta de abastecimiento — *en curso* (28 oct)
+### Recompensa 2 · Libreta de abastecimiento — *aprobada* (29 oct, textos de Jorge)
 - **Se gana con:** carta `embargo_total` (Ministro de Comercio), opción «Una libreta por familia».
 - **titulo:** Libreta de abastecimiento
 - **subtitulo:** Todo el país come lo mismo
-- **descripcion:** Tu libreta incluye una casilla por producto y mes. Lo básico: café, cigarros y arroz para todos, y cuarenta casillas más para productos que nunca han llegado ni se esperan.
-- **Beneficio:** Todo el país está fit: abdominales de campeonato.
-- **Perjuicio:** *pendiente*
+- **descripcion:** Cada familia recibe una libreta con una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. El reparto es rigurosamente igualitario y el resultado, espectacular: todo el país luce abdominales de campeonato.
+- **Beneficio:** Añade a tu abuela fallecida a la libreta y sigue cobrando su libra de arroz.
+- **Perjuicio:** Si pierdes la libreta, tu familia deja de existir a efectos del almacén.
+- **decision:** «Una libreta por familia»
 - **Referencia real:** la libreta de abastecimiento se creó en marzo de 1962 (cuadrícula de productos por persona y mes, sellada por el bodeguero).
 
-### Recompensa 3 · Compota importada — *en curso* (28 oct)
+### Recompensa 3 · Compota importada — *aprobada* (29 oct, textos de Jorge)
 - **Se gana con:** carta `la_bahia` (Ministro de las Fuerzas Armadas), opción «Cámbienlos por compotas».
 - **titulo:** Compota importada
 - **subtitulo:** El postre favorito del Comandante
-- **descripcion:** Mil doscientos presos por un cargamento de compota de calidad, de la de fuera, un producto de primera que no volverás a ver en tu vida. Se recomienda saborearla despacio.
-- **Beneficio:** *pendiente*
-- **Perjuicio:** *pendiente*
+- **descripcion:** Compota extranjera de primera calidad, conseguida mediante una operación diplomática de alto nivel. La fruta es excelente, el envase es precioso y la etiqueta está en otro idioma. Disfrútala despacio: ya no quedan mercenarios para otro intercambio.
+- **Beneficio:** Entrega este tarro a un ministro para ganarte su favor.
+- **Perjuicio:** Quienes se quedan sin tarro recuerdan que todos son iguales ante la Revolución y preguntan dónde está su compota.
+- **decision:** «Cámbienlos por compotas»
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
 
-### Recompensa 4 · Botella de Revolukola — *en curso* (28 oct)
-- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Inventen la Revolukola».
+### Recompensa 4 · Botella de Revolukola — *aprobada* (29 oct, textos de Jorge)
+- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Improvisen una receta» (29 oct, Jorge; antes «Inventen la Revolukola»).
 - **titulo:** Botella de Revolukola
 - **subtitulo:** Dulce, pegajosa y de producción nacional.
-- **descripcion:** Una bebida marrón y dulce que sabe a Revolución. Receta oficial: azúcar, agua y lo que haya en el almacén ese día. Ninguna botella sabe igual que la anterior.
+- **descripcion:** Una bebida marrón que sabe a Revolución. La receta original se perdió durante la nacionalización; la versión oficial lleva azúcar, agua y lo que aparezca en el almacén. Ninguna botella sabe igual que la anterior.
 - **Beneficio:** Mezclada con ron, el país entero aguanta tus discursos.
-- **Perjuicio:** *pendiente* (propuestos: Los dentistas del país trabajan el doble.)
+- **Perjuicio:** Cada vez que se fabrica Revolukola, el país se queda prácticamente sin azúcar.
+- **decision:** «Improvisen una receta»
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
-### Recompensa 5 · Pelota firmada — *en curso* (28 oct)
-- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A mí nadie me batea».
-- **titulo:** Pelota firmada
-- **subtitulo:** Nadie se atrevió a hacer swing.
-- **descripcion:** La pelota del partido lleva tu firma y las marcas de unos bateadores que prefirieron no tocarla. Los archivos recogen veintisiete ponches en un partido de dos entradas.
-- **Beneficio:** Lánzala a alguien: preferirá que le dé antes que batearla. *(propuesto sobre la idea de Jorge)*
-- **Perjuicio:** Todos te ponen excusa para no jugar contigo.
+### Recompensa 5 · Pelota de béisbol — *aprobada* (29 oct, textos de Jorge)
+- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A ver quién me batea» (antes «A mí nadie me batea»).
+- **titulo:** Pelota de béisbol (antes «Pelota firmada»)
+- **subtitulo:** El partido más desigual de la historia.
+- **descripcion:** La pelota que el Comandante firmó antes del partido y con la que estableció el récord de la liga: veintisiete ponches en dos entradas. Pieza de colección. «Batear bajo su responsabilidad».
+- **Beneficio:** Lánzasela a un adversario: preferirá que se le rompan los dientes antes que batearla. También puedes usarla para poner a prueba la lealtad de tus allegados.
+- **Perjuicio:** Ganar siempre por KO técnico acaba aburriendo. Cuando convocas un partido, todos tus ministros descubren que tienen asuntos urgentes que atender.
+- **decision:** «A ver quién me batea»
 - **Referencia real (verificada):** el 24 de julio de 1959, en un partido de exhibición, Fidel lanzó con los Barbudos dos entradas; la propaganda dijo que eliminó a todos los bateadores, lo cual las fuentes ponen en duda.
 
 ### Pendientes (elegidos por Jorge, sin redactar)
@@ -105,7 +110,7 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
    - Libreta de abastecimiento: `embargo_total`, «Una libreta por familia».
    - Compota importada: `la_bahia`, «Cámbienlos por compotas».
    - Botella de Revolukola: `refresco`, «Inventen la Revolukola».
-   - Pelota firmada: `beisbol`, «A mí nadie me batea».
+   - Pelota firmada: `beisbol`, «A ver quién me batea».
    - Postal de la bahía con un misil: `nuevos_vecinos`, solo con «Discreto como mi barba» (la otra opción también instala los misiles, pero no da la postal). **Sin texto aún.**
    - Carné del comité (era 2): `denuncias_falsas`, «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). **Texto a medias** (ver «Carné del comité de barrio»).
 2. **Logros de la era 1** (cuatro; nombres provisionales, por cómo se acaba la era): Las cuatro casillas, Por los pelos, El equilibrista, Revolución con buenos modales. Hay que implementar la comprobación al terminar la era (ver «Logros de la era 1») y dejarlos con «Pendiente» en subtítulo, descripción, beneficio y perjuicio.
@@ -124,13 +129,14 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
 3. **No repetir un chiste entre descripción y perjuicio** (el del trabajo falso mal hecho de la licencia estaba en los dos).
 4. El chiste se saca de lo que dijo Jorge sobre el hecho real, no de datos que no están verificados.
 5. Referencia real siempre anotada y verificada; si no se encuentra un caso concreto (la licencia de electricista), se dice que es invención sobre una práctica real.
-6. Sin países, siglas, banderas ni «camarada» (excepción de Jorge solo en la ficha de Domingo, no en coleccionables).
+6. **La `decision` es, textualmente, la opción que eligió el jugador** (29 oct, Jorge). Si cambia la opción de la carta, cambia la decisión.
+7. Sin países, siglas, banderas ni «camarada» (excepción de Jorge solo en la ficha de Domingo, no en coleccionables).
 
 **Lo que probamos y no funcionó:** objeto y título como dos campos (Jorge los quería iguales); beneficio abstracto; perjuicio «el aire acondicionado lo montó un boxeador» (repetía el chiste del trabajo mal hecho); «Efecto» y «Efecto secundario» como etiquetas (ahora Beneficio y Perjuicio); la licencia limitada al béisbol (vale para todo el deporte).
 
 **Estado al cerrar (29 oct)**
 - Cerrado: la estructura, la regla, los textos de título, subtítulo y descripción de las recompensas 1 a 5.
-- Beneficios aprobados antes de la regla de uso: licencia («+20 medallas por competir contra universitarios»), libreta («Todo el país está fit: abdominales de campeonato»), Revolukola («Mezclada con ron, el país entero aguanta tus discursos»). Hay que revisar los dos primeros con la regla de «uso».
+- 29 oct: licencia, libreta y compota, completas (textos de Jorge). Revolukola y pelota, completas (textos de Jorge).
 - Pelota firmada: beneficio y perjuicio completos (propuestos sobre ideas de Jorge).
-- **Pendiente:** perjuicios de licencia, libreta, compota y Revolukola; beneficio de la compota; postal de la bahía y carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); los cuatro logros de la era (nombres provisionales); coleccionables de las eras 2 a 4.
+- **Pendiente:** postal de la bahía y carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); los cuatro logros de la era (nombres provisionales); coleccionables de las eras 2 a 4.
 - Ideas de perjuicio/beneficio que se propusieron y Jorge no eligió: libreta (mercado de casillas; la cola como club social), compota (celdas vacías como almacén; los niños quieren ser canjeados), licencia (medio país jura ser atleta), Revolukola (los dentistas trabajan el doble; la botella se pega a la mano).

@@ -612,3 +612,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **28 oct — Papá Ernesto:** homenaje a *La historia del fuego*: barba y pelo blancos en rizos, gorra de pescador, aguja al hombro, daiquirí y tres gatos; aprobado salvo el color (crema → blanco, un solo rosa).
 - **28 oct — Expedientes con más diseño:** el reverso de la ficha será un cartel tipográfico hecho con código, con los colores de la carta de delante (no de la fuerza) y Londrina, Londrina Light y Sofia. Tres pruebas (`tools/prueba_fichas.html`); falta que Jorge elija (recomendada la A, «Créditos»).
 
+- **29 oct — Cierre de la conversación de textos del plan narrativo.** Estado, lo que se probó y descartó, las reglas que Jorge fue dictando y lo pendiente (muertes de la era 1, expedientes, era 2…) en `docs/PLAN_NARRATIVO.md`, «Estado a 29 oct». Reparto: esta conversación hace textos, estructura de cartas y pesos; el motor, el arte y los coleccionables van en sus conversaciones.

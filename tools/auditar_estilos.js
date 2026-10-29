@@ -24,7 +24,7 @@ const juego = "file://" + path.join(__dirname, "..", "dist", "index.html") + "?c
   await p.evaluate(()=>{ nombreDictador="Yoyo"; empezar(); E.estados=[{id:"culto",cartas:0}]; pintarRanuras(); }); await p.waitForTimeout(2500); await coger("partida");
   await p.click(".barra"); await p.waitForTimeout(400); await coger("popup-fuerza"); await p.keyboard.press("Escape");
   await p.click("#btn-menu"); await p.waitForTimeout(300); await coger("menu"); await p.evaluate(()=>cerrarMenu());
-  await p.evaluate(()=>{ anunciarLogro(); }); await p.waitForTimeout(800); await coger("logro-texto");
+  await p.evaluate(()=>{ banda("logro", "¡Nuevo logro!"); }); await p.waitForTimeout(800); await coger("logro-texto");
   await p.waitForTimeout(2000); await p.evaluate(()=>{ guardarLogros({chivaton:{abierto:false}}); abrirArchivo(); }); await p.waitForTimeout(300); await coger("archivo");
   await p.click(".nuevo-logro"); await p.waitForTimeout(400); await coger("logro-carta"); await p.click(".logro-carta"); await p.waitForTimeout(800); await coger("logro-carta-girada");
   await p.evaluate(()=>{ cerrarArchivo(); E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra(); }); await p.waitForTimeout(800); await coger("era");

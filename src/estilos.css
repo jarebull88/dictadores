@@ -15,7 +15,7 @@
 
   /* 23 oct: la paleta del cartel (docs/PALETA.md): seis tintas planas */
   --p-rojo: #B0362A; --p-mostaza: #D8A02A; --p-oliva: #86762C; --p-azul: #1D51A0; --p-crema: #F0E9D6; --p-tinta: #201D14;
-  --p-rosa: #DF8178; --p-blanco: #FFFFFF;   /* 27 oct: el blanco, para el borde de las cartas */ --p-granate: #7A2A1D; --p-mostaza-oscura: #9C7A26;
+  --p-rosa: #DF8178; --p-blanco: #FFFFFF; --p-verde: #115C32;   /* 27 oct: el blanco, para el borde de las cartas */ --p-granate: #7A2A1D; --p-mostaza-oscura: #9C7A26;
   --bloque: var(--p-crema);  /* bloques claros (carta, mensaje, botones) */
   --gris: #E2D8C2;           /* gris imprenta: bloques informativos y pistas vacías */
   --carbon: var(--p-tinta);         /* contornos y rellenos */
@@ -38,6 +38,7 @@
    Un cambio aquí llega a cartas, barras, casillas, iconos, mazo, logros y menú. */
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
+  --banda-texto: var(--p-mostaza);                  /* 28 oct (boceto de Jorge): el texto de la banda de aviso, mostaza; fondos: rojo (secuela), azul (recompensa) y verde (logro) */
   --contorno: transparent;                          /* 28 oct, PRUEBA de Jorge: sin contornos negros (para volver a ellos: var(--p-tinta)) */
   --borde: var(--linea) solid var(--contorno);      /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
@@ -94,14 +95,15 @@ button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta es la negrita del cuerpo (800), no la 700 del navegador */   /* los botones y campos no heredan la letra solos */
 
 /* — TITULAR — */
-.titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
+.titulo, .titular, .banda span, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .info-titulo, .etiqueta-boli b, .leyenda, .popup .efecto, .esquela b, .titulo-caida,
 .opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
 .ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
-.titulo, .cabecera-carta h1, .logro-escribe { font-size: var(--t-l); }
+.titulo, .cabecera-carta h1 { font-size: var(--t-l); }
+.banda span { font-size: var(--t-m); }
 #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .hueco-logro { font-size: var(--t-s); }
 .logro-objeto-nombre { font-size: var(--t-m); }
@@ -659,13 +661,26 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 /* =====================================================================================================
    24 oct: LOGROS (prototipo). La estrella, «¡Nuevo logro!» y el archivo (cuadrícula → carta que se gira)
    ===================================================================================================== */
-/* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Aparece disolviéndose con un zoom lento y se disuelve */
-.logro-escribe { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; color: var(--p-rojo); white-space: nowrap; pointer-events: none; }
-.zona-leyenda.con-logro .leyenda { visibility: hidden; }
-.zona-leyenda.con-logro .logro-escribe { display: flex; }
-.logro-escribe.escribiendo { animation: disolver 2.2s ease-in-out both; }
-@keyframes disolver { 0% { opacity: 0; transform: scale(.82); } 25% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; transform: scale(1.14); } }
-@media (prefers-reduced-motion: reduce) { .logro-escribe.escribiendo { animation: none; } }
+/* 28 oct: la banda de aviso («¡Nueva recompensa!», «¡Nuevo logro!» y el nombre de cada secuela nueva): una banda de color a todo el ancho de la
+   pantalla, en el sitio de la leyenda. El texto entra como un sello: llega grande, golpea, rebota, se queda y se disuelve (ritmo del efecto
+   «rubber stamp» de text-effects.colorion.co, sin su estilo). Cada tipo varía el color, de dónde viene la banda, lo grande que llega el texto y lo que dura. */
+.banda { position: absolute; left: 0; right: 0; z-index: 12; display: none; align-items: center; justify-content: center; pointer-events: none; background: var(--banda-fondo); color: var(--banda-texto); white-space: nowrap; }
+.banda.activa { display: flex; animation: var(--banda-entra) var(--d) linear both; }
+.banda.activa span { animation: sello var(--d) cubic-bezier(.22, 1.4, .36, 1) both; }
+.banda.tipo-secuela { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 1.8; }
+.banda.tipo-recompensa { --banda-fondo: var(--p-azul); --banda-entra: banda-der; --s0: 2.4; }
+.banda.tipo-logro { --banda-fondo: var(--p-verde); --banda-entra: banda-centro; --s0: 3; }
+@keyframes sello {
+  0%, 6%    { transform: scale(var(--s0)); opacity: 0; }
+  14%       { transform: scale(.96); opacity: 1; }
+  18%       { transform: scale(1.04); }
+  22%, 86%  { transform: scale(1); opacity: 1; }
+  100%      { transform: scale(1); opacity: 0; }
+}
+@keyframes banda-izq    { 0% { transform: scaleX(0); transform-origin: 0 50%; opacity: 1; } 8%, 86% { transform: scaleX(1); transform-origin: 0 50%; opacity: 1; } 100% { transform: scaleX(1); transform-origin: 0 50%; opacity: 0; } }
+@keyframes banda-der    { 0% { transform: scaleX(0); transform-origin: 100% 50%; opacity: 1; } 8%, 86% { transform: scaleX(1); transform-origin: 100% 50%; opacity: 1; } 100% { transform: scaleX(1); transform-origin: 100% 50%; opacity: 0; } }
+@keyframes banda-centro { 0% { transform: scaleY(0); opacity: 1; } 8%, 86% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .banda.activa, .banda.activa span { animation: none; } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
 .archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }

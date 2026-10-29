@@ -8,7 +8,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La casa vacía** (Ministro de las Fuerzas Armadas)  
 «Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
-- A. Y con narrador deportivo → sube Pueblo +8 · baja Ejército -5
+- A. Pongan un narrador deportivo → sube Pueblo +8 · baja Ejército -5
 - B. Esto no es un circo → sube Ejército +5 · baja Pueblo -8
 
 **La casa del tirano** (Ministra de Cultura)  
@@ -147,9 +147,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Yo seré el árbitro → sube Ejército +3 · baja Pueblo -4
 
 **El economista** (Ministro de Economía)  
-«Pedimos un economista para el Banco Nacional y el comandante Cabaña alzó la mano. Oyó «comunista».»
+«Pedimos un economista para el Banco Nacional y el Comandante Cabaña se ofreció porque oyó «comunista».»
 - A. Me sirve igual → sube Ejército +4 · baja Partido -4
-- B. Uno que sepa sumar → sube Partido +4 · baja Ejército -4
+- B. Mejor uno que sepa sumar → sube Partido +4 · baja Ejército -4
 
 **Las barbas** (Vicepresidente del Consejo de Ministros)  
 «El barbero de palacio quiere saber si los comandantes se afeitarán ahora que gobiernan.»

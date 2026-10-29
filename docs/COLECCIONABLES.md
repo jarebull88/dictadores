@@ -54,7 +54,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **descripcion:** Tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.
 - **Beneficio:** Usa esta licencia para inscribir a tus antiguos deportistas en competiciones universitarias y conseguir +20 medallas.
 - **Perjuicio:** Para competir, cada atleta debe presentar un justificante de ausencia firmado por su encargado.
-- **decision** (lo que se lee bajo la carta, 29 oct, Jorge): Abolir el deporte profesional. *(La opción de la carta en el juego sigue siendo «Se juega por amor».)*
+- **decision:** «Se juega por amor»
 - **Referencia real:** la resolución 83-A del INDER (1962) abolió el deporte profesional; los profesionales pasaron a aficionados pagados por el Estado. El «amateurismo de Estado» del bloque (atletas inscritos con un oficio) es real; un caso cubano concreto no está documentado, así que la licencia es invención sobre una práctica real.
 
 ### Recompensa 2 · Libreta de abastecimiento — *aprobada* (29 oct, textos de Jorge)
@@ -78,23 +78,23 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
 
 ### Recompensa 4 · Botella de Revolukola — *aprobada* (29 oct, textos de Jorge)
-- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Inventen la Revolukola» (29 oct, Jorge: pasa a «Improvisen una receta»; el cambio en la carta lo hace la conversación de textos).
+- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Improvisen una receta» (29 oct, Jorge; antes «Inventen la Revolukola»: el cambio en la carta lo hace la conversación de textos).
 - **titulo:** Botella de Revolukola
 - **subtitulo:** Dulce, pegajosa y de producción nacional.
 - **descripcion:** Una bebida marrón que sabe a Revolución. La receta original se perdió durante la nacionalización; la versión oficial lleva azúcar, agua y lo que aparezca en el almacén. Ninguna botella sabe igual que la anterior.
 - **Beneficio:** Mezclada con ron, el país entero aguanta tus discursos.
 - **Perjuicio:** Cada vez que se fabrica Revolukola, el país se queda prácticamente sin azúcar.
-- **decision** (lo que se lee bajo la carta): «Que los químicos se apañen»
+- **decision:** «Improvisen una receta»
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
 ### Recompensa 5 · Pelota de béisbol — *aprobada* (29 oct, textos de Jorge)
-- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A mí nadie me batea».
+- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A ver quién me batea» (antes «A mí nadie me batea»).
 - **titulo:** Pelota de béisbol (antes «Pelota firmada»)
 - **subtitulo:** El partido más desigual de la historia.
 - **descripcion:** La pelota que el Comandante firmó antes del partido y con la que estableció el récord de la liga: veintisiete ponches en dos entradas. Pieza de colección. «Batear bajo su responsabilidad».
 - **Beneficio:** Lánzasela a un adversario: preferirá que se le rompan los dientes antes que batearla. También puedes usarla para poner a prueba la lealtad de tus allegados.
 - **Perjuicio:** Ganar siempre por KO técnico acaba aburriendo. Cuando convocas un partido, todos tus ministros descubren que tienen asuntos urgentes que atender.
-- **decision** (lo que se lee bajo la carta): «A ver quién me batea»
+- **decision:** «A ver quién me batea»
 - **Referencia real (verificada):** el 24 de julio de 1959, en un partido de exhibición, Fidel lanzó con los Barbudos dos entradas; la propaganda dijo que eliminó a todos los bateadores, lo cual las fuentes ponen en duda.
 
 ### Pendientes (elegidos por Jorge, sin redactar)
@@ -129,7 +129,8 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
 3. **No repetir un chiste entre descripción y perjuicio** (el del trabajo falso mal hecho de la licencia estaba en los dos).
 4. El chiste se saca de lo que dijo Jorge sobre el hecho real, no de datos que no están verificados.
 5. Referencia real siempre anotada y verificada; si no se encuentra un caso concreto (la licencia de electricista), se dice que es invención sobre una práctica real.
-6. Sin países, siglas, banderas ni «camarada» (excepción de Jorge solo en la ficha de Domingo, no en coleccionables).
+6. **La `decision` es, textualmente, la opción que eligió el jugador** (29 oct, Jorge). Si cambia la opción de la carta, cambia la decisión.
+7. Sin países, siglas, banderas ni «camarada» (excepción de Jorge solo en la ficha de Domingo, no en coleccionables).
 
 **Lo que probamos y no funcionó:** objeto y título como dos campos (Jorge los quería iguales); beneficio abstracto; perjuicio «el aire acondicionado lo montó un boxeador» (repetía el chiste del trabajo mal hecho); «Efecto» y «Efecto secundario» como etiquetas (ahora Beneficio y Perjuicio); la licencia limitada al béisbol (vale para todo el deporte).
 

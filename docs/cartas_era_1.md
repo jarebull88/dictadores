@@ -331,7 +331,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
 
-- **A. A mí nadie me batea** Pueblo +4 · Ejército −3
+- **A. A ver quién me batea** Pueblo +4 · Ejército −3
 - **B. Yo seré el árbitro** Ejército +3 · Pueblo −4
 
 ### 29. El economista

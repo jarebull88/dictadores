@@ -143,7 +143,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El partido** (Ministra de Educación)  
 «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
-- A. A mí nadie me batea → sube Pueblo +4 · baja Ejército -3
+- A. A ver quién me batea → sube Pueblo +4 · baja Ejército -3
 - B. Yo seré el árbitro → sube Ejército +3 · baja Pueblo -4
 
 **El economista** (Ministro de Economía)  

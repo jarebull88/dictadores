@@ -34,7 +34,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - secundario: «Tu uniforme de gala nunca volverá a estar limpio.»
 
 ## Era 1
-**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A mí nadie me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
+**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A ver quién me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
 
 **Logros de la era 1** (28 oct, Jorge; nombres provisionales, los cierra esta conversación; necesitan que el motor los compruebe al acabar la era): **Las cuatro casillas** (acabar la era con cuatro secuelas a la vez) · **Por los pelos** (acabar la era con alguna fuerza por debajo de 15 o por encima de 85) · **El equilibrista** (acabar la era con las cuatro fuerzas entre 40 y 60) · **Revolución con buenos modales** (acabar la era sin Censura, Vigilancia ni Jaula). Cuatro por era.
 
@@ -84,7 +84,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
 ### Recompensa 5 · Pelota firmada — *en curso* (28 oct)
-- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A mí nadie me batea».
+- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A ver quién me batea».
 - **titulo:** Pelota firmada
 - **subtitulo:** Nadie se atrevió a hacer swing.
 - **descripcion:** La pelota del partido lleva tu firma y las marcas de unos bateadores que prefirieron no tocarla. Los archivos recogen veintisiete ponches en un partido de dos entradas.
@@ -105,7 +105,7 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
    - Libreta de abastecimiento: `embargo_total`, «Una libreta por familia».
    - Compota importada: `la_bahia`, «Cámbienlos por compotas».
    - Botella de Revolukola: `refresco`, «Inventen la Revolukola».
-   - Pelota firmada: `beisbol`, «A mí nadie me batea».
+   - Pelota firmada: `beisbol`, «A ver quién me batea».
    - Postal de la bahía con un misil: `nuevos_vecinos`, solo con «Discreto como mi barba» (la otra opción también instala los misiles, pero no da la postal). **Sin texto aún.**
    - Carné del comité (era 2): `denuncias_falsas`, «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). **Texto a medias** (ver «Carné del comité de barrio»).
 2. **Logros de la era 1** (cuatro; nombres provisionales, por cómo se acaba la era): Las cuatro casillas, Por los pelos, El equilibrista, Revolución con buenos modales. Hay que implementar la comprobación al terminar la era (ver «Logros de la era 1») y dejarlos con «Pendiente» en subtítulo, descripción, beneficio y perjuicio.

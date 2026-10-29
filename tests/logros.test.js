@@ -20,7 +20,7 @@ test("cada coleccionable tiene todos sus campos (con «Pendiente» donde falte e
 
 test("cada recompensa se desbloquea con su opción (con o sin bandera) y la primera decisión ya no regala nada", () => {
   const casos = [["fin_pelota", "Se juega por amor", "licencia"], ["embargo_total", "Una libreta por familia", "libreta"], ["la_bahia", "Cámbienlos por compotas", "compota"],
-    ["refresco", "Inventen la Revolukola", "revolukola"], ["beisbol", "A mí nadie me batea", "pelota"], ["nuevos_vecinos", "Discreto como mi barba", "postal"]];
+    ["refresco", "Inventen la Revolukola", "revolukola"], ["beisbol", "A ver quién me batea", "pelota"], ["nuevos_vecinos", "Discreto como mi barba", "postal"]];
   for (const [carta, accion, logro] of casos) {
     const j = cargar(); j.empezar();
     // la primera decisión de la partida no da ningún logro

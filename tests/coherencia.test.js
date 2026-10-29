@@ -26,7 +26,7 @@ test("todas las cartas tienen portavoz con grupo e ilustración", () => {
 });
 
 test("al dictador solo le hablan ministros, el mando militar y los embajadores", () => {
-  const permitido = /^(Ministro|Ministra|Vicepresidente|Embajador)/;
+  const permitido = /^(Ministro|Ministra|Vicepresidente|Embajador|Padrino|Papá)/;   // 29 oct: invitados
   for (const p of new Set(cartas.map(c => c.personaje))) assert.match(p, permitido, `«${p}» no debería hablar con el dictador`);
 });
 
@@ -38,8 +38,21 @@ test("las banderas que exigen las cartas las concede alguna carta", () => {
 });
 
 test("las cartas encoladas existen", () => {
-  const ids = ev("CARTAS.flatMap(c=>[c.izq,c.der]).flatMap(o=>(o.encolar||[]).map(q=>q.carta))");
+  const ids = ev("CARTAS.flatMap(c=>[c.izq,c.der]).flatMap(o=>(o.encolar||[]).filter(q=>q.carta).map(q=>q.carta))");
   for (const id of ids) assert.ok(ev(`!!POR_ID["${id}"]`), `la carta encolada «${id}» no existe`);
+});
+
+test("«Yo sé a quién llamar» invoca una amenaza de Pupo, una sola vez por era, y su remedio sale después", () => {
+  j.empezar();
+  const r = JSON.parse(w.eval(`(() => {
+    const op = POR_ID.colas.der, a = [];
+    for (let i = 0; i < 3; i++) { const n = E.cola.length; aplicar(POR_ID.colas, op); a.push(E.cola.length - n); }
+    const id = E.cola[0].carta, amenaza = POR_ID[id]; E.cola.length = 0; aplicar(amenaza, amenaza.izq);
+    return JSON.stringify({ a, amenaza: amenaza.invoca, remedio: E.cola.map(q => q.carta) });
+  })()`));
+  assert.equal(r.amenaza, "pupo");
+  assert.deepEqual(r.a.slice(1), [0, 0], "solo una invocación por era");
+  assert.equal(r.remedio.length, 1);
 });
 
 test("cada carta se pinta con su imagen y su nombre", () => {

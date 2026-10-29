@@ -194,7 +194,8 @@ const PERSONAJE_SLUG = {
   "Ministro de las Fuerzas Armadas": "fuerzas-armadas",
   "Ministro del Interior": "interior",
   "Embajador del bloque oriental": "embajador-oriental",
-  "Embajador de la potencia del norte": "embajador-occidental"
+  "Embajador de la potencia del norte": "embajador-occidental",
+  "Padrino Pupo": "padrino-pupo", "Papá Ernesto": "papa-ernesto"   // 29 oct: invitados (docs/INVITADOS.md)
 };
 /* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Milfuegos solo son mencionados.
    Grupo de cada personaje = fuerza a la que pertenece.
@@ -204,7 +205,8 @@ const GRUPO_DE = {
   "Ministro del Interior": "ejercito", "Ministro de las Fuerzas Armadas": "ejercito",
   "Vicepresidente del Consejo de Ministros": "elite", "Ministro de Economía": "elite", "Ministro de Comercio": "elite",
   "Ministra de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
-  "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias"
+  "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias",
+  "Padrino Pupo": "pueblo", "Papá Ernesto": "potencias"   // invitados: el babalawo, del pueblo; el novelista, extranjero
 };
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
@@ -289,6 +291,7 @@ function nuevaPartida() {
     banderas: new Set(),
     orden: [],
     cola: [],
+    invocado: {},   // invitados ya invocados en cada era («pupo1»…): una vez por era
     vistas: new Set(),
     estados: [],
     eventos: [],
@@ -435,6 +438,12 @@ function aplicar(c, op) {
   (op.banderas || []).forEach(b => { if (!E.banderas.has(b)) { E.banderas.add(b); E.orden.push(b); } });
   activarEstados(op.banderas);
   (op.encolar || []).forEach(q => {
+    if (q.invoca) {   // 29 oct: una carta invita a un personaje: sale una de sus cartas de esta era al azar, una vez por era y sin otro segundo paso esperando
+      const clave = q.invoca + E.era, cand = CARTAS.filter(o => o.invoca === q.invoca && deEra(o));
+      if (E.invocado[clave] || !cand.length || E.cola.some(x => POR_ID[x.carta].enlace)) return;
+      E.invocado[clave] = true;
+      q = { carta: cand[Math.floor(Math.random() * cand.length)].id, min: q.min, max: q.max };
+    }
     const demora = q.min + Math.floor(Math.random() * (q.max - q.min + 1));
     E.cola.push({ carta: q.carta, turno: E.turno + demora });
   });

@@ -309,7 +309,92 @@ const CARTAS = [
     personaje: "Ministro de Comercio",
     texto: "Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.",
     izq: { accion: "Primero los militantes", efectos: { elite: 5, pueblo: -4, crisis: -3 } },
-    der: { accion: "Yo sé a quién llamar", efectos: { pueblo: 4, elite: -5, crisis: -3 } }   // 29 oct: invocará a Padrino Pupo cuando el motor admita invitados (docs/INVITADOS.md)
+    der: { accion: "Yo sé a quién llamar", efectos: { pueblo: 4, elite: -5, crisis: -3 }, encolar: [{ invoca: "pupo", min: 1, max: 1 }] }   // 29 oct: invoca a Padrino Pupo (una amenaza al azar, una vez por era; docs/INVITADOS.md)
+  },
+
+  {
+    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
+    id: "pupo_mal_ojo", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (mal ojo)",
+    personaje: "Padrino Pupo",
+    texto: "Mijo, le han echado algo malo. Eso se le ve en la cara.",
+    izq: { accion: "Límpieme, padrino", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_mal_ojo_remedio", min: 1, max: 1 }] },
+    der: { accion: "Yo no creo en santos", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    id: "pupo_mal_ojo_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    personaje: "Padrino Pupo",
+    texto: "Para limpiarle el camino, el santo pide huevos, siete cocos, un chivo y la nevera de un ministro.",
+    izq: { accion: "Que sean dos neveras", efectos: { pueblo: 3, elite: -3 } },
+    der: { accion: "Rebaje algo, padrino", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
+    id: "pupo_enemigos", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (enemigos)",
+    personaje: "Padrino Pupo",
+    texto: "Mijo, quieren verlo caer, y no son pocos.",
+    izq: { accion: "Ciérreles el paso", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_enemigos_remedio", min: 1, max: 1 }] },
+    der: { accion: "Ya tengo escolta", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    id: "pupo_enemigos_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    personaje: "Padrino Pupo",
+    texto: "Para cerrarles el camino, el santo necesita tabaco, dos gallos y la casa de un burgués exiliado.",
+    izq: { accion: "Casa con piscina", efectos: { pueblo: 3, elite: -3 } },
+    der: { accion: "Con un piso le basta", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
+    id: "pupo_envidia", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (envidia)",
+    personaje: "Padrino Pupo",
+    texto: "Mijo, esa envidia que le tienen viene cargada.",
+    izq: { accion: "Protéjame, padrino", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_envidia_remedio", min: 1, max: 1 }] },
+    der: { accion: "La envidia me alimenta", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    id: "pupo_envidia_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    personaje: "Padrino Pupo",
+    texto: "Para protegerlo, hay que darle al santo langosta, ron, tres palomas y un reloj como el suyo.",
+    izq: { accion: "Le doy el de repuesto", efectos: { pueblo: 3, elite: -3 } },
+    der: { accion: "Que pregunte la hora", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
+    id: "pupo_deseos", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (deseos)",
+    personaje: "Padrino Pupo",
+    texto: "Mijo, hay mucha gente deseándole mal. El santo me lo ha dicho.",
+    izq: { accion: "Contente al santo", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_deseos_remedio", min: 1, max: 1 }] },
+    der: { accion: "Dígale que estoy ocupado", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    id: "pupo_deseos_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    personaje: "Padrino Pupo",
+    texto: "Para tenerlo contento, al santo hay que darle viandas, un puerco, ron y un carro con chófer.",
+    izq: { accion: "Un descapotable", efectos: { pueblo: 3, elite: -3 } },
+    der: { accion: "Que el santo camine", efectos: { pueblo: -3, elite: 3 } }
+  },
+  {
+    // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
+    id: "ernesto_torneo", tipo: "ancla", ventana: [2, 4], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
+    personaje: "Papá Ernesto",
+    texto: "Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.",
+    izq: { accion: "Conmigo todos pican", efectos: { pueblo: 5, elite: -5 } },
+    der: { accion: "Yo pesco otra cosa", efectos: { pueblo: -5, elite: 5 } }
+  },
+  {
+    // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
+    id: "ernesto_whisky", tipo: "ancla", ventana: [5, 7], cond: { turnoMin: 5 }, titulo: "Papá Ernesto (whisky)",
+    personaje: "Papá Ernesto",
+    texto: "Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?",
+    izq: { accion: "Whisky para el genio", efectos: { potencias: 5, pueblo: -5 } },
+    der: { accion: "Beba guarapo", efectos: { potencias: -5, pueblo: 5 } }
+  },
+  {
+    // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
+    id: "ernesto_higado", tipo: "ancla", ventana: [8, 10], cond: { turnoMin: 8 }, titulo: "Papá Ernesto (higado)",
+    personaje: "Papá Ernesto",
+    texto: "Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.",
+    izq: { accion: "Museo con su nombre", efectos: { pueblo: 5, elite: -5 } },
+    der: { accion: "Las botellas, al Partido", efectos: { pueblo: -5, elite: 5 } }
   },
 
   /* ---------- Coalición (borrador) ---------- */
@@ -987,6 +1072,12 @@ const CARTAS = [
    16 oct: personajes por etapas. La clave es el cargo interno (une cada carta con su personaje y no cambia);
    «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
 const FICHAS = {
+  "Padrino Pupo": { nombre: "Padrino Pupo", cargo: "Babalawo oficial",
+    historia: "Babalawo de barrio que lee el futuro en un collar de caracoles. Ve el mal de ojo en cualquier cara, sobre todo en las que pagan.",
+    nota: "Es el único que llama «mijo» al Comandante." },
+  "Papá Ernesto": { nombre: "Papá Ernesto", cargo: "Novelista",
+    historia: "Novelista extranjero de fama mundial que adora las revoluciones, siempre que tengan buenos bares. Pesca agujas, con éxito variable.",
+    nota: "Su hígado no es tan revolucionario." },
   "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
     historia: "Vicepresidente del tirano. Se pasó a la Revolución el último día, con el uniforme recién comprado y la etiqueta colgando.",
     nota: "Sobrevive a todos los gobiernos. Este servicio estudia cómo." },

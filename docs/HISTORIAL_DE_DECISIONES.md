@@ -621,3 +621,7 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 29 oct — Reorganización de conversaciones
 - Se cierran las conversaciones de programación, textos (plan narrativo), arte y coleccionables y se abren «Comandante - Programación», «- Textos», «- Arte» y «- Coleccionables». Nuevo `docs/PENDIENTES.md` (reparto y pendientes por área) y «Reglas de oro para toda conversación» en `CLAUDE.md` (solo lo pedido, gastar lo mínimo, cada una su área, preguntar al empezar, pull antes de push, dejar notas al cerrar).
+
+## 29 oct (programación)
+- Las cartas de secuela salen directas hacia abajo y las de icono de fuerza hacia arriba (sin diagonal ni encogerse). «Has caído»: sin la cinta del nombre de la muerte; bajo la carta, «El X llegó al mínimo/máximo.» y «Gobernaste por N años» (Londrina).
+- Padrino Pupo y Papá Ernesto dados de alta (invitados): `invoca` en `encolar` (motor) para invocar al azar una carta de un invitado, una vez por era.

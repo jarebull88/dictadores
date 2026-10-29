@@ -171,6 +171,61 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Primero los militantes → sube Partido +5 · baja Pueblo -4 · crisis -3
 - B. Yo sé a quién llamar → sube Pueblo +4 · baja Partido -5 · crisis -3
 
+**Padrino Pupo (mal ojo)** (Padrino Pupo; segundo paso)  
+«Mijo, le han echado algo malo. Eso se le ve en la cara.»
+- A. Límpieme, padrino → sube Pueblo +3 · baja Partido -3
+- B. Yo no creo en santos → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
+«Para limpiarle el camino, el santo pide huevos, siete cocos, un chivo y la nevera de un ministro.»
+- A. Que sean dos neveras → sube Pueblo +3 · baja Partido -3
+- B. Rebaje algo, padrino → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (enemigos)** (Padrino Pupo; segundo paso)  
+«Mijo, quieren verlo caer, y no son pocos.»
+- A. Ciérreles el paso → sube Pueblo +3 · baja Partido -3
+- B. Ya tengo escolta → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
+«Para cerrarles el camino, el santo necesita tabaco, dos gallos y la casa de un burgués exiliado.»
+- A. Casa con piscina → sube Pueblo +3 · baja Partido -3
+- B. Con un piso le basta → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (envidia)** (Padrino Pupo; segundo paso)  
+«Mijo, esa envidia que le tienen viene cargada.»
+- A. Protéjame, padrino → sube Pueblo +3 · baja Partido -3
+- B. La envidia me alimenta → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
+«Para protegerlo, hay que darle al santo langosta, ron, tres palomas y un reloj como el suyo.»
+- A. Le doy el de repuesto → sube Pueblo +3 · baja Partido -3
+- B. Que pregunte la hora → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (deseos)** (Padrino Pupo; segundo paso)  
+«Mijo, hay mucha gente deseándole mal. El santo me lo ha dicho.»
+- A. Contente al santo → sube Pueblo +3 · baja Partido -3
+- B. Dígale que estoy ocupado → sube Partido +3 · baja Pueblo -3
+
+**Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
+«Para tenerlo contento, al santo hay que darle viandas, un puerco, ron y un carro con chófer.»
+- A. Un descapotable → sube Pueblo +3 · baja Partido -3
+- B. Que el santo camine → sube Partido +3 · baja Pueblo -3
+
+**Papá Ernesto (torneo)** (Papá Ernesto)  
+«Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
+- A. Conmigo todos pican → sube Pueblo +5 · baja Partido -5
+- B. Yo pesco otra cosa → sube Partido +5 · baja Pueblo -5
+
+**Papá Ernesto (whisky)** (Papá Ernesto)  
+«Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»
+- A. Whisky para el genio → sube Potencias +5 · baja Pueblo -5
+- B. Beba guarapo → sube Pueblo +5 · baja Potencias -5
+
+**Papá Ernesto (higado)** (Papá Ernesto)  
+«Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.»
+- A. Museo con su nombre → sube Pueblo +5 · baja Partido -5
+- B. Las botellas, al Partido → sube Partido +5 · baja Pueblo -5
+
 **La calle y los cuarteles** (Ministro del Interior)  
 «Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.»
 - A. Un ascenso y se calman → sube Ejército +8 · baja Partido -4

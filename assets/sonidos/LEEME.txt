@@ -1,1 +1,1 @@
-Efectos de sonido del juego. Un archivo por evento, con el nombre del evento: repartir, voltear, deslizar, volver (.mp3, .ogg, .wav o .m4a). Si falta, el juego usa uno sintetizado.
+Efectos de sonido del juego. Un archivo por evento, con el nombre del evento: repartir, voltear, deslizar, volver, decidir (suena al soltar la carta y ejecutar la decisión), listo (suena al cruzar el umbral al arrastrar, antes de soltar) (.mp3, .ogg, .wav o .m4a). Si falta, el juego usa uno sintetizado.

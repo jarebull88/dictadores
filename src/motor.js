@@ -994,7 +994,7 @@ function repartir() {
 
 /* La carta sale volando hacia el lado elegido (en todas las pantallas con carta) */
 function lanzarCarta(carta, dir) {
-  sonar("deslizar");
+  sonar("decidir"); sonar("deslizar");   // 29 oct: «decidir» (archivo) suena al soltar la carta; el roce sintetizado, al volar
   carta.style.transition = "";
   carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
@@ -1594,7 +1594,7 @@ function arrastrable(carta, op) {
     if (carta.classList.contains("listo") === listo) return;
     carta.classList.toggle("listo", listo);
     const r = carta.querySelector(".respuesta"); if (r) r.classList.toggle("firme", listo);
-    if (listo) { try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {} }
+    if (listo) { sonar("listo"); try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {} }   // 29 oct: suena al cruzar el umbral, antes de soltar
   }
   function volver() {
     marcarListo(false);

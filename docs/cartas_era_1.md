@@ -201,7 +201,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 20.
 
-**Carta:** «Como nacionalizamos los colegios religiosos, los curas dan misas contra la Revolución.»
+**Carta:** «Los curas no perdonan que les quitáramos los colegios: cada domingo predican contra la Revolución.»
 
 - **A. Que recen en un barco** Élite +6 · Pueblo −6
 - **B. Dios, pero sin tiza** Pueblo +6 · Élite −6

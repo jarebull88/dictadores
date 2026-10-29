@@ -87,7 +87,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que cobren en divisas → sube Potencias +4 · baja Partido -4
 
 **Los colegios de los curas** (Ministra de Educación)  
-«Como nacionalizamos los colegios religiosos, los curas dan misas contra la Revolución.»
+«Los curas no perdonan que les quitáramos los colegios: cada domingo predican contra la Revolución.»
 - A. Que recen en un barco → sube Partido +6 · baja Pueblo -6
 - B. Dios, pero sin tiza → sube Pueblo +6 · baja Partido -6
 

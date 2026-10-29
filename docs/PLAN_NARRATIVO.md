@@ -60,3 +60,34 @@ Jorge tiene razón: con una historia real, convertir al Comandante en otro dicta
 
 ## Modelo
 Fases 0, 1, 3, 4 y 5: **Opus**. Fase 2 y los tests: **Sonnet**.
+
+---
+
+# Estado a 29 oct (cierre de la primera conversación de textos)
+
+## Hecho
+- **Fase 0 cerrada:** decisión 2 (vía B), regla 2 nueva (invitados y objetos), criterio nuevo de preguntas y respuestas, etiqueta D/P/H/X, miniflujos que no cuentan, `CLAUDE.md` y la guía al día.
+- **Fase 1 (auditoría):** `docs/AUDITORIA_HISTORICA.md`, eras 1 y 2. Las eras 3 y 4 **no están auditadas**.
+- **Fase 3 (piloto de la era 1) terminada en textos y estructura:** 38 cartas en el juego (`docs/PILOTO_ERA1.md`, `docs/cartas_era_1.md`), 6 segundos pasos que no cuentan, 10–12 cartas, ×1.3, secuelas con su decisión, huecos cubiertos (colas, La embajada), pesos del sorteo. Todo lo aprobado carta a carta por Jorge. `docs/PESOS_CARTAS.md` (generado) lista lo que sube y baja cada respuesta de todas las eras: se revisa «a conciencia de vez en cuando» y se regenera con `npm run docs`.
+- **Invitados:** `docs/INVITADOS.md` (Padrino Pupo con 4 flujos, Papá Ernesto con 3 cartas, Silverio apuntado para la era 2). **Las cartas de los invitados aún no están en el juego** (las monta la conversación de programación; nota de traspaso al final del documento). Solo está en el juego la carta que invoca a Pupo (`colas`, respuesta B).
+
+## Cómo trabaja Jorge este tema (aprendido en la sesión)
+- **Una carta cada vez, en este orden:** quién habla y qué categoría es → 3 preguntas, 3 respuestas A y 3 B (con el largo entre paréntesis si se pasa) → Jorge elige, corrige y pide más variantes → se guarda **todo junto al final** (no se escribe en el juego mientras tanto; las elegidas se van acumulando en la conversación).
+- **Di siempre si la carta es un gran hecho** (las dos opciones son el *cómo*) **o una carta menor** (una opción puede decir que no) y **qué fuerza gana en cada opción**. Si las dos opciones hacen lo mismo, no se sabe qué se decide: es la queja más repetida de Jorge.
+- **Reglas que Jorge fue dictando:** nada de «el norte» en preguntas; la pregunta da la premisa de lo que responden las respuestas; las referencias reales se disfrazan para que se entiendan dentro del juego («los barbudos» no se entiende); al embajador no se le desobedece a la cara, se le ironiza; las respuestas necesitan chulería e ironía propia («Rebaje algo, padrino»: hacerse el tonto sin serlo); los chistes no se repiten entre cartas (el discurso de cuatro horas y la paloma se guardan); una de cada tres cartas, de humor, con efectos pequeños; un logro no es una decisión ni un fracaso.
+- **Quién hace qué:** esta conversación es de **textos, estructura de cartas y pesos**. El motor, el arte y los coleccionables tienen sus conversaciones (programación, arte, redacción de coleccionables). No toques `motor.js`, pruebas ni imágenes desde aquí: Jorge lo rechazó cuando lo hice.
+
+## Probado y descartado
+- **Hito fijo para los comités de vigilancia:** quitaba un hueco al sorteo; se prefirió peso alto sin condición (sale en ~42 % de las partidas).
+- **Excepción de 150 caracteres para Pupo:** sustituida por el miniflujo de dos pasos (amenaza y remedio, ≤100 cada uno).
+- **Tiendas vacías y colas con el umbral de crisis en 4:** las colas salían en el 89 % de las partidas y se volvían paisaje; el umbral 6 las deja en ~60 %.
+- **Embargo y Alineado dados por las dos respuestas del azúcar:** Jorge no percibía sumisión en «otro cliente»; cada secuela viene ya de una sola decisión.
+- **Comités de vigilancia y logro del chivatón en la misma carta:** el logro pasó a «Denuncias falsas» (era 2).
+
+## Pendiente (por orden)
+1. **Muertes de la era 1** (Jorge dijo que faltan): las 8 caídas con versión por era (ideas dadas: Pueblo 0, los alzados bajan del monte; Ejército 0, la invasión de la bahía sale bien; Partido 100, presidente decorativo; Potencias 0, solo en el mundo…; Jorge no entendió la de Potencias 0 y se le explicó), los atentados como cartas sueltas de aceptar o rechazar (amante y crema, puro) y la muerte de humor (pelotazo). Falta decidir cómo matan (siempre, al azar, según la escolta).
+2. **Expedientes de los personajes:** `FICHAS` está desfasada (Milfuegos, Cabaña, Domingo, invitados). Mensaje preparado para su conversación.
+3. **Era 2**, por el mismo camino que la 1: estructura (quitar `deuda_llama`, rehacer `aliado_enfadado` —apagada con peso 0—, `intentos_fuga` por el puerto abierto de 1965, quitar una de las tres cartas de cosechas, añadir el juicio a los fieles del aliado, la despedida de Cabaña y la trama de Silverio), texto carta a carta, pesos, secuelas, dificultad, recompensas, logros y la lista de Pupo (arroz, frijoles, cigarros).
+4. **Eras 3 y 4:** auditoría y lo mismo. La era 4 sale por encima del 65 % de victorias del «humano» por las cartas comunes nuevas.
+5. **Segundo invitado fijo** (propuesta: el barbero de palacio), trama de invitado de las eras 3 y 4, y que **varias cartas invoquen a Pupo** con respuestas distintas (Jorge: «en el futuro, cuando tengamos más cartas»).
+6. **Pendientes menores:** `satelites` (era 2) sobra con el nuevo ultimátum; «La memoria» (era 4) y `flores_mar` hablan de Mota/Milfuegos; `oposicion_firma` y otras citan `policia_tradicional`, que ya no se da; el tutorial aún habla de Cuesta; `hecho`/`historia` por carta (el motor); respuestas a 24 caracteres (algunas pasan: «Que Milfuegos lo detenga», «Hemos decidido…»).

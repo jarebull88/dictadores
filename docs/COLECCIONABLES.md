@@ -111,3 +111,26 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
 2. **Logros de la era 1** (cuatro; nombres provisionales, por cómo se acaba la era): Las cuatro casillas, Por los pelos, El equilibrista, Revolución con buenos modales. Hay que implementar la comprobación al terminar la era (ver «Logros de la era 1») y dejarlos con «Pendiente» en subtítulo, descripción, beneficio y perjuicio.
 3. **La carta «Pendiente»:** un coleccionable con textos «Pendiente» tiene que verse completo: la carta por delante con un fondo (un color plano de la paleta, sin ilustración) y, al girarla, la parte de atrás con «Pendiente» donde falte un texto.
 4. **Quitar** el logro provisional «la primera decisión de cada partida da el primer logro» cuando estén todos.
+
+## Lo aprendido en la conversación de redacción (24–28 oct)
+
+**Cómo trabaja Jorge aquí:** va de uno en uno, elige y combina. Pide siempre una propuesta clara por campo; las alternativas solo si las pide (28 oct: «no sé de dónde te has sacado los alternativos»). Corrige lo que no le gusta con una frase y espera que se aplique a los siguientes.
+
+**Estructura final de una recompensa** (la que implementa programación): `titulo` (es el nombre del objeto; **título y objeto son lo mismo**, nunca dos campos), `subtitulo`, `descripcion`, `beneficio`, `perjuicio`, más `decision` (la opción que la da). Límites orientativos: título ≤24, subtítulo ≤60, descripción ≤220, beneficio y perjuicio ≤60.
+
+**Reglas que fuimos descubriendo**
+1. **Voz del «Sistema»** (como en *Dungeon Crawler Carl*): burocrática, sarcástica, habla de tú. **No empezar siempre con «Felicidades:»**; variar la entrada.
+2. **Los objetos son items de juego.** **Beneficio** = qué consigues si *usas* el objeto («Lánzala a alguien: preferirá que le dé antes que batearla»). **Perjuicio** = el efecto negativo de *poseerlo* («Todos te ponen excusa para no jugar contigo»). Pueden recaer sobre el país, y deben ser concretos y absurdos; los abstractos («cuarenta casillas de promesas») no funcionan.
+3. **No repetir un chiste entre descripción y perjuicio** (el del trabajo falso mal hecho de la licencia estaba en los dos).
+4. El chiste se saca de lo que dijo Jorge sobre el hecho real, no de datos que no están verificados.
+5. Referencia real siempre anotada y verificada; si no se encuentra un caso concreto (la licencia de electricista), se dice que es invención sobre una práctica real.
+6. Sin países, siglas, banderas ni «camarada» (excepción de Jorge solo en la ficha de Domingo, no en coleccionables).
+
+**Lo que probamos y no funcionó:** objeto y título como dos campos (Jorge los quería iguales); beneficio abstracto; perjuicio «el aire acondicionado lo montó un boxeador» (repetía el chiste del trabajo mal hecho); «Efecto» y «Efecto secundario» como etiquetas (ahora Beneficio y Perjuicio); la licencia limitada al béisbol (vale para todo el deporte).
+
+**Estado al cerrar (29 oct)**
+- Cerrado: la estructura, la regla, los textos de título, subtítulo y descripción de las recompensas 1 a 5.
+- Beneficios aprobados antes de la regla de uso: licencia («+20 medallas por competir contra universitarios»), libreta («Todo el país está fit: abdominales de campeonato»), Revolukola («Mezclada con ron, el país entero aguanta tus discursos»). Hay que revisar los dos primeros con la regla de «uso».
+- Pelota firmada: beneficio y perjuicio completos (propuestos sobre ideas de Jorge).
+- **Pendiente:** perjuicios de licencia, libreta, compota y Revolukola; beneficio de la compota; postal de la bahía y carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); los cuatro logros de la era (nombres provisionales); coleccionables de las eras 2 a 4.
+- Ideas de perjuicio/beneficio que se propusieron y Jorge no eligió: libreta (mercado de casillas; la cola como club social), compota (celdas vacías como almacén; los niños quieren ser canjeados), licencia (medio país jura ser atleta), Revolukola (los dentistas trabajan el doble; la botella se pega a la mano).

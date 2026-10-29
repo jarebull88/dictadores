@@ -15,6 +15,7 @@ Para verificar hechos históricos o nombres de ministerios hace falta una conver
 ## Programación (la lleva «Comandante - Programación»)
 **Hecho el 28–29 oct:** secuelas e iconos salen en vertical (secuelas abajo, iconos arriba); «Has caído» sin cinta y con la causa y los años bajo la carta; **Pupo y Ernesto en el juego** (`personajes.json`, `GRUPO_DE`, `FICHAS`, 8 cartas de Pupo y 3 anclas de Ernesto en `datos.js`; `encolar: [{ invoca: "pupo" }]` elige una amenaza al azar, una vez por era); sonido (reparto, giro, deslizar, volver; menú «Sonido: sí/no»), carta de información de fuerzas y casillas, secuelas que se giran y bajan a su casilla, banda de aviso, 12 coleccionables con desbloqueo real, `test:rapido`.
 **Por hacer, por orden de importancia:**
+0. **Arte: los cuatro iconos del menú a pantalla completa** (Recompensas, Logros, Ajustes, Salir): hoy son dibujos SVG provisionales, de color plano de la paleta (`#btn-recompensas`… en `cuerpo.html`).
 1. ~~Alta de Padrino Pupo y Papá Ernesto~~ **hecho el 29 oct** (ver abajo). Falta que Arte repase el color de Ernesto y la imagen definitiva de Pupo (el fondo está tomado del cartel actual).
 2. **Etiqueta histórica de las cartas** (`historia` y `hecho` en cada carta + prueba que impida cartas sin etiqueta; ver `PLAN_NARRATIVO.md`, fase del motor).
 3. **Caídas con versión por era, atentados como cartas sueltas, muerte de humor** (cuando Textos las entregue).

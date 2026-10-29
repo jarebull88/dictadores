@@ -164,7 +164,7 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   j.w.eval(`resolver(${dir})`);
   assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú lleva la bolita amarilla");
   assert.match(j.$("btn-menu").getAttribute("aria-label"), /1 logro sin abrir/);
-  assert.ok(j.$("menu-juego").contains(j.$("btn-recompensas")) && j.$("menu-juego").contains(j.$("btn-logros")), "recompensas y logros vuelven a estar dentro del menú");
+  assert.ok(j.$("archivo-iconos").contains(j.$("btn-recompensas")) && j.$("archivo-iconos").contains(j.$("btn-logros")) && j.$("archivo-iconos").contains(j.$("btn-config")) && j.$("archivo-iconos").contains(j.$("btn-abandonar")), "29 oct: el menú a pantalla completa lleva cuatro iconos arriba");
   j.$("btn-recompensas").click();
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");

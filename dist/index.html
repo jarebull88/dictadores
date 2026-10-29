@@ -96,6 +96,7 @@ body {
   --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
   --t-l: min(calc(var(--carta-w, 360px) * .10), 44px);    /* el título de la era y el de la pantalla del nombre */
   --t-m: 26px;                                              /* títulos de ventanas, de estados, de la portada, de la esquela */
+  --t-xs: 15px;                                             /* 29 oct: el nombre bajo los iconos del menú */
   --t-s: 21px;                                              /* cintas del tutorial y de efectos, «Has gobernado N años» */
   /* tamaños del CUERPO */
   --c-pregunta: 22px;   /* la pregunta y todo texto que hable al jugador sobre una carta (20 px en pantallas bajas) */
@@ -110,7 +111,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 /* — TITULAR — */
 .titulo, .titular, .banda span, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .info-titulo, .etiqueta-boli b, .leyenda, .popup .efecto, .esquela b, .titulo-caida,
-.opcion-portada, .era-anios, .fin-anios, .fin-pie, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
+.opcion-portada, .era-anios, .fin-anios, .fin-pie, .ic-nombre, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
@@ -119,6 +120,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .banda span { font-size: var(--t-m); }
 #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .hueco-logro { font-size: var(--t-s); }
+.ic-nombre { font-size: var(--t-xs); }
 .logro-objeto-nombre { font-size: var(--t-m); }
 /* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
 .leyenda, .fin-anios { font-weight: var(--peso-ligero); }
@@ -583,8 +585,6 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 @keyframes zoom-logro { 0%, 100% { --zoom-ahora: 1; } 25%, 60% { --zoom-ahora: var(--zoom); } }
 @media (prefers-reduced-motion: reduce) { .boton-menu.salto, .boton-menu.recuerda { animation: none; } }
 .pie-juego { position: relative; }
-.menu-juego { position: absolute; right: 0; bottom: calc(var(--cuadro) + var(--separacion)); z-index: 30; display: grid; min-width: 190px; background: var(--p-crema); border: var(--borde); }
-.menu-juego.hidden { display: none; }
 .opcion-menu { display: block; margin: 0; padding: 12px 16px; border: none; border-bottom: var(--borde); background: none; color: var(--p-tinta); text-align: left; cursor: pointer; }
 .opcion-menu:last-child { border-bottom: none; }
 .opcion-menu.hidden { display: none; }
@@ -705,6 +705,21 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo-titulo { margin: 0; color: var(--p-tinta); }
 .archivo-cerrar { border: none; background: none; padding: 6px 0; color: var(--p-tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .archivo.viendo .archivo-titulo { visibility: hidden; }
+/* 29 oct: menú a pantalla completa. Arriba, cuatro iconos del tamaño exacto de los de las fuerzas (misma rejilla de 4 columnas y el mismo hueco);
+   abajo, en el espacio libre, la galería, los ajustes o abandonar. */
+.archivo-iconos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
+.ic-menu { display: flex; flex-direction: column; align-items: center; gap: 5px; width: 100%; margin: 0; padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.ic-menu.hidden { display: none; }
+.ic-cuadro { display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 1; box-sizing: border-box; border: var(--borde); background: var(--ic-color, var(--p-mostaza)); }
+.ic-cuadro svg { width: 58%; height: 58%; fill: var(--p-blanco); }
+.ic-nombre { border-bottom: 3px solid transparent; }
+.archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .45; }
+.ic-menu.activo .ic-nombre { border-bottom-color: var(--p-rojo); }
+.ic-menu.destacar .ic-cuadro { position: relative; }
+.ic-menu.destacar .ic-cuadro::after { content: ""; position: absolute; inset: 0; background: rgba(176, 54, 42, .5); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+.archivo-panel { width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.archivo-panel.hidden { display: none; }
+.archivo.viendo .archivo-panel, .archivo.viendo .archivo-iconos { display: none; }
 /* La cuadrícula: casillas 1:1 de línea negra, como las de los estados pero más grandes, de tres en tres */
 .archivo-rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
 .archivo.viendo .archivo-rejilla { display: none; }
@@ -801,20 +816,22 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
     <div class="pie-juego">
       <div class="zona-leyenda"><div class="leyenda" id="leyenda"></div></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Secuelas del régimen"></div>
-      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><i></i><i></i><i></i></button>
-      <div class="menu-juego hidden" id="menu-juego" role="menu">
-        <button class="opcion-menu" id="btn-recompensas" type="button" role="menuitem">Recompensas</button>
-        <button class="opcion-menu" id="btn-logros" type="button" role="menuitem">Logros</button>
-        <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
-        <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
-      </div>
+      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="dialog" aria-expanded="false" aria-controls="archivo"><i></i><i></i><i></i></button>
     </div>
     <div class="banda" id="banda" role="status" aria-live="polite"><span id="banda-texto"></span></div>
     <div class="popup hidden" id="popup" role="dialog"></div>
-    <!-- 24 oct: el archivo de logros, por encima de la partida (que espera debajo) -->
-    <div class="archivo hidden" id="archivo" role="dialog" aria-label="Logros">
-      <div class="archivo-cab"><h2 class="titulo archivo-titulo" id="archivo-titulo">Logros</h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
+    <!-- 29 oct: menú a pantalla completa. Arriba, cuatro iconos del tamaño de los de las fuerzas; abajo, el espacio libre para la galería, los ajustes o abandonar -->
+    <div class="archivo hidden" id="archivo" role="dialog" aria-label="Menú">
+      <div class="archivo-iconos" id="archivo-iconos">
+        <button class="ic-menu" id="btn-recompensas" type="button" style="--ic-color: var(--p-mostaza)" aria-label="Recompensas"><span class="ic-cuadro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9C11 4 6 4 7 7c.5 2 5 2 5 2zm0 0c1-5 6-5 5-2-.5 2-5 2-5 2z"/><rect x="3" y="9" width="18" height="4"/><rect x="5" y="14" width="14" height="7"/></svg></span><span class="ic-nombre">Recompensas</span></button>
+        <button class="ic-menu" id="btn-logros" type="button" style="--ic-color: var(--p-azul)" aria-label="Logros"><span class="ic-cuadro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="M8 13.5 6 21l6-3 6 3-2-7.5z"/></svg></span><span class="ic-nombre">Logros</span></button>
+        <button class="ic-menu" id="btn-config" type="button" style="--ic-color: var(--p-oliva)" aria-label="Configuración"><span class="ic-cuadro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a8 8 0 0 1 0 11" fill="none" stroke="#fff" stroke-width="2"/></svg></span><span class="ic-nombre">Ajustes</span></button>
+        <button class="ic-menu" id="btn-abandonar" type="button" style="--ic-color: var(--p-rojo)" aria-label="Abandonar partida"><span class="ic-cuadro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h9v4h-2V5H6v14h5v-2h2v4H4z"/><path d="M14 8l5 4-5 4v-3H9v-2h5z"/></svg></span><span class="ic-nombre">Salir</span></button>
+      </div>
+      <div class="archivo-cab"><h2 class="titulo archivo-titulo" id="archivo-titulo"></h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
       <div class="archivo-rejilla" id="archivo-rejilla"></div>
+      <div class="archivo-panel hidden" id="panel-config"><button class="modo principal" id="btn-sonido" type="button"><b>Sonido</b></button></div>
+      <div class="archivo-panel hidden" id="panel-abandono"><button class="modo principal" id="btn-salir" type="button"><b>Abandonar partida</b></button></div>
       <div class="logro-vista hidden" id="archivo-abrir"></div>
     </div>
   </section>
@@ -2850,11 +2867,11 @@ function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-recompensas").classList.toggle("hidden", tutorial);   // en el tutorial, «Recompensas» solo sale en el paso de la paloma (pasoTutorial)
-  $("btn-sonido").classList.toggle("hidden", tutorial);
+  $("btn-config").classList.toggle("hidden", tutorial);
   cerrarMenu(); avisoMenu(); quitarInfo(); limpiarBanda();
 }
-function cerrarMenu() {
-  $("menu-juego").classList.add("hidden");
+function cerrarMenu() {   // 29 oct: el menú es ahora la pantalla completa (#archivo); esto solo cierra esa pantalla
+  if (!$("archivo").classList.contains("hidden")) cerrarArchivo();
   $("btn-menu").setAttribute("aria-expanded", "false");
 }
 const COLOR_POPUP = { pueblo: "#F1D3CB", ejercito: "#F5E3B8", elite: "#E3E0C3", potencias: "#CFDCEF" };   // 23 oct: tintes claros de la paleta   // muy claros: se lee mejor
@@ -4095,7 +4112,7 @@ function zoomAviso(clase) {
 function vigilarAviso() {
   clearTimeout(recuerdoAviso);
   if (sinAbrir() > 0) recuerdoAviso = setTimeout(() => {
-    const quieta = animar() && !$("screen-game").classList.contains("hidden") && !archivoAbierto() && !E.tutorial && $("menu-juego").classList.contains("hidden");
+    const quieta = animar() && !$("screen-game").classList.contains("hidden") && !archivoAbierto() && !E.tutorial;
     if (quieta) zoomAviso("recuerda");
     vigilarAviso();
   }, RECUERDO_MS);
@@ -4148,15 +4165,33 @@ const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 let archivoTipo = "recompensas";
 const delArchivo = () => LOGROS.filter(g => (archivoTipo === "logros") === !!g.regla);
 function abrirArchivo(tipo = "recompensas") {
-  archivoTipo = tipo;
-  $("archivo-titulo").textContent = tipo === "logros" ? "Logros" : "Recompensas";
-  $("archivo").setAttribute("aria-label", $("archivo-titulo").textContent);
-  cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoAviso);
-  pintarArchivo();
-  $("archivo").classList.remove("hidden");
-  if (E && E.tutorial) verLogro("paloma");                  // en el tutorial, la estrella lleva directa al logro
+  ocultarInfo(); clearTimeout(recuerdoAviso);
+  const a = $("archivo");
+  a.style.paddingTop = "";
+  a.classList.remove("hidden");
+  $("btn-menu").setAttribute("aria-expanded", "true");
+  const dy = $("barras").getBoundingClientRect().top - a.getBoundingClientRect().top;   // los iconos, justo donde están los de las fuerzas
+  if (dy > 0) a.style.paddingTop = dy + "px";
+  seleccionarMenu(tipo);
+  if (tipo && E && E.tutorial) verLogro("paloma");             // en el tutorial, la estrella lleva directa al logro
 }
-function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); avisoMenu(); }
+/* Qué sale en el espacio libre: la galería (recompensas o logros), los ajustes (sonido) o abandonar. Sin elegir, solo los iconos. */
+const TITULO_MENU = { recompensas: "Recompensas", logros: "Logros", config: "Configuración", abandono: "Abandonar partida" };
+function seleccionarMenu(tab) {
+  if (tab === "recompensas" || tab === "logros") archivoTipo = tab;
+  const t = tab && E && E.tutorial && tab === "abandono" ? "Saltar tutorial" : TITULO_MENU[tab] || "";
+  $("archivo-titulo").textContent = t;
+  $("archivo").setAttribute("aria-label", t || "Menú");
+  $("archivo").dataset.tab = tab || "";
+  $("archivo-iconos").classList.toggle("con-seleccion", !!tab);
+  [["btn-recompensas", "recompensas"], ["btn-logros", "logros"], ["btn-config", "config"], ["btn-abandonar", "abandono"]].forEach(([id, k]) => $(id).classList.toggle("activo", k === tab));
+  const galeria = tab === "recompensas" || tab === "logros";
+  $("archivo-rejilla").classList.toggle("hidden", !galeria);
+  $("panel-config").classList.toggle("hidden", tab !== "config");
+  $("panel-abandono").classList.toggle("hidden", tab !== "abandono");
+  if (galeria) pintarArchivo();
+}
+function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); $("btn-menu").setAttribute("aria-expanded", "false"); avisoMenu(); }
 function pintarArchivo() {
   const l = logros();
   let html = "";
@@ -4198,11 +4233,39 @@ function verLogro(id) {
   if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
   const carta = v.querySelector(".logro-carta");
   const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
-  carta.addEventListener("click", girar);
+  carta.addEventListener("click", () => { if (carta._arrastrada) { carta._arrastrada = false; return; } girar(); });
+  gestoLogro(carta);
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
   if (nuevo) sonar("descubrir");                        // 29 oct: suena al descubrir una recompensa o logro por primera vez
   if (nuevo && animar()) efectoDescubrir(v, escena, celda);
+}
+/* 29 oct (Jorge): la carta se desliza a un lado o a otro: derecha, vuelves al juego; izquierda, a la galería. Un toque sigue girándola. */
+function gestoLogro(carta) {
+  let d = null, movido = false;
+  carta.addEventListener("pointerdown", e => { d = { x: e.clientX, t: e.timeStamp, dx: 0 }; movido = false; carta._arrastrada = false; try { carta.setPointerCapture(e.pointerId); } catch (x) {} carta.style.transition = "none"; });
+  carta.addEventListener("pointermove", e => {
+    if (!d) return;
+    d.dx = e.clientX - d.x;
+    if (Math.abs(d.dx) > 8) movido = true;
+    if (movido) carta.style.transform = `translateX(${d.dx}px) rotate(${d.dx / 18}deg)`;
+  });
+  const fin = e => {
+    if (!d) return;
+    const dx = d.dx, v = Math.abs(dx) / Math.max(1, e.timeStamp - d.t);
+    d = null; carta.style.transition = "";
+    if (!movido) return;
+    carta._arrastrada = true;
+    if (Math.abs(dx) > Math.max(30, carta.offsetWidth * 0.15) || (v > 0.55 && Math.abs(dx) > 36)) {
+      const dir = dx > 0 ? 1 : -1;
+      sonar("decidir"); sonar("deslizar");
+      carta.style.transition = animar() ? "transform .3s ease-in, opacity .3s ease-in" : "none";
+      carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.opacity = "0";
+      setTimeout(() => { if (dir > 0) volverAlJuego(); else volverAlDirectorio(); }, animar() ? 280 : 0);
+    } else { carta.style.transform = ""; sonar("volver"); }
+  };
+  carta.addEventListener("pointerup", fin);
+  carta.addEventListener("pointercancel", fin);
 }
 /* 29 oct, prueba: la descripción, arriba, baja su letra hasta que quepa en la cabecera (con el título) */
 function ajustarDescripcionCab(cab) {
@@ -4226,8 +4289,9 @@ function efectoDescubrir(vista, escena, celda) {
   const carta = vista.querySelector(".logro-carta");
   if (celda && celda.width) {
     const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
-    carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
+    const entra = carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
       { duration: 800, delay: 150, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
+    entra.onfinish = () => entra.cancel();                 // que no pise el desplazamiento del gesto
   }
   r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: 1, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
     { duration: 2800, delay: 350, easing: "ease-out", fill: "both" });
@@ -4242,11 +4306,17 @@ function efectoDescubrir(vista, escena, celda) {
   vista.querySelectorAll(".archivo-pista").forEach(p => p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 1300, fill: "both" }));
   setTimeout(() => fx.forEach(e => e.remove()), 3300);
 }
-$("archivo-cerrar").addEventListener("click", () => {
+/* 29 oct: de la carta de una recompensa o logro se sale deslizándola: a la derecha, al juego; a la izquierda, a la galería (o, en el tutorial, sigue la lección) */
+function volverAlDirectorio() { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); }
+function volverAlJuego() {
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) {   // 25 oct: al cerrar el logro, sigue el tutorial
     const t = E.tutorial; cerrarArchivo(); pasoTutorial(t.i + 1); return;
   }
-  if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
+  cerrarArchivo();
+}
+$("archivo-cerrar").addEventListener("click", () => {
+  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) { volverAlJuego(); return; }
+  if (!$("archivo-abrir").classList.contains("hidden")) { volverAlDirectorio(); return; }
   cerrarArchivo();
 });
 
@@ -4272,16 +4342,16 @@ document.addEventListener("keydown", e => {
 });
 document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
-  if (!e.target.closest("#menu-juego, #btn-menu")) cerrarMenu();
 });
 
-$("btn-menu").addEventListener("click", () => {
-  const abierto = $("menu-juego").classList.toggle("hidden") === false;
-  $("btn-menu").setAttribute("aria-expanded", String(abierto));
+$("btn-menu").addEventListener("click", () => {   // 29 oct: abre el menú a pantalla completa (en el tutorial, directo a las recompensas cuando ya hay una)
+  if (archivoAbierto()) { cerrarArchivo(); return; }
+  abrirArchivo(null);
+  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) seleccionarMenu("recompensas");
 });
-$("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
-$("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo("logros"); });
-$("btn-recompensas").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo("recompensas"); });
+const iconoMenu = (id, tab) => $(id).addEventListener("click", ev => { ev.stopPropagation(); archivoAbierto() ? seleccionarMenu(tab) : abrirArchivo(tab); });
+iconoMenu("btn-recompensas", "recompensas"); iconoMenu("btn-logros", "logros"); iconoMenu("btn-config", "config"); iconoMenu("btn-abandonar", "abandono");
+$("btn-salir").addEventListener("click", () => { cerrarArchivo(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
 ponerTextoSonido();
 $("btn-sonido").addEventListener("click", ev => {   // 28 oct: quita y pone el sonido (se guarda)
   ev.stopPropagation();

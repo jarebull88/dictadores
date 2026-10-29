@@ -80,3 +80,25 @@ test("un coleccionable sin ilustración se ve como carta completa: fondo plano p
   j.w.eval(`verLogro("equilibrista")`);
   assert.doesNotMatch(j.d.querySelector(".logro-dorso").textContent, /Beneficio|Perjuicio/);
 });
+
+test("menú a pantalla completa (29 oct): cuatro iconos arriba; el espacio libre enseña la galería, los ajustes o abandonar; la carta de un logro se sale a la galería o al juego", () => {
+  const j = cargar(); j.empezar();
+  j.w.eval(`guardarLogros({ paloma: { abierto: true }, pelota: { abierto: false } })`);
+  j.$("btn-menu").click();
+  assert.ok(!j.$("archivo").classList.contains("hidden"), "el menú se abre a pantalla completa");
+  assert.equal(j.d.querySelectorAll("#archivo-iconos .ic-menu").length, 4);
+  assert.ok(j.$("archivo-rejilla").classList.contains("hidden"), "sin elegir nada, solo los iconos");
+  j.$("btn-config").click();
+  assert.ok(!j.$("panel-config").classList.contains("hidden") && j.$("panel-abandono").classList.contains("hidden"), "ajustes: el sonido");
+  j.$("btn-abandonar").click();
+  assert.ok(!j.$("panel-abandono").classList.contains("hidden") && j.$("btn-abandonar").classList.contains("activo"), "abandonar: el botón de confirmar");
+  j.$("btn-recompensas").click();
+  assert.ok(!j.$("archivo-rejilla").classList.contains("hidden") && j.d.querySelectorAll("#archivo-rejilla .hueco-logro.abierto, #archivo-rejilla .nuevo-logro").length >= 1, "recompensas: la galería");
+  j.d.querySelector(".nuevo-logro").click();
+  assert.ok(j.$("archivo").classList.contains("viendo"));
+  j.w.eval("volverAlDirectorio()");
+  assert.ok(!j.$("archivo").classList.contains("viendo") && !j.$("archivo").classList.contains("hidden"), "izquierda: de vuelta a la galería");
+  j.w.eval(`verLogro("pelota"); volverAlJuego()`);
+  assert.ok(j.$("archivo").classList.contains("hidden"), "derecha: de vuelta al juego");
+  assert.deepEqual(j.errores, []);
+});

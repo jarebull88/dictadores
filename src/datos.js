@@ -1230,20 +1230,20 @@ const PREVISION = {
    - arriba habla Domingo (29 oct: tutea al Comandante); la instrucción al jugador va en la cinta (de tú)
    ===================================================== */
 const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano pequeño, coqueto); cinta: la instrucción al jugador (de tú); *así* = negrita
-  { paso: "deslizar", texto: "¡Ganamos, hermanito! Me he planchado el uniforme para la entrada triunfal. ¿Vamos ya?", cinta: "Arrastra la carta a un lado o al otro para decidir.", izq: "Entra detrás de mí", der: "Quítate esa colonia" },
-  { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta para leer su expediente y vuelve a tocarla.", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
-  { paso: "fuerzas", texto: "Arriba tienes las cuatro fuerzas. Si alguna se te queda corta o se te crece demasiado, te tumban.", cinta: "Toca los iconos de arriba para saber más.", izq: "A las cuatro, a dieta", der: "A mí solo me crece una" },
+  { paso: "deslizar", texto: "¡Ganamos, hermanito! Me he planchado el uniforme para la entrada triunfal. ¿Vamos ya?", cinta: "Desliza la carta", izq: "Entra detrás de mí", der: "Quítate esa colonia" },
+  { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
+  { paso: "fuerzas", texto: "Arriba tienes las cuatro fuerzas. Si alguna se te queda corta o se te crece demasiado, te tumban.", cinta: "Toca los iconos", izq: "A las cuatro, a dieta", der: "A mí solo me crece una" },
   // 29 oct: las dos respuestas suben al Pueblo, y por eso llega «Luna de miel» (la A más que la B)
   { paso: "pistas", texto: "Mira, el Ejército está en rojo, y el rojo no favorece a nadie. ¿Le das algo a mi tropa?", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "El Pueblo va primero", der: "Tu tropa puede esperar", efectos: { izq: { pueblo: 36, ejercito: -4 }, der: { pueblo: 20, ejercito: -2 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador.
   { paso: "estado", texto: "Algunas decisiones traen secuelas. Ahora el Pueblo te adora, y ya sabes: tanto cariño mató al niño." },
   // 29 oct: Jorge quita este paso (la secuela se gira en el anterior); se queda hasta que Programación lo retire (docs/PENDIENTES.md)
-  { paso: "guardar", texto: "Tu luna de miel ya está en su casilla.", cinta: "Toca la casilla de abajo para saber más.", izq: "Racionaré el amor", der: "Mamá no gobernaba" },
+  { paso: "guardar", texto: "Tu luna de miel ya está en su casilla.", cinta: "Toca la casilla", izq: "Racionaré el amor", der: "Mamá no gobernaba" },
   // 25 oct: la primera recompensa. La decisión la da (sea cual sea la respuesta); luego hay que abrirla en el menú (`despues`)
-  { paso: "logro", texto: "Ah, y en agradecimiento por darme un ministerio, te tengo un regalo. Cierra los ojos.", cinta: "Algunas decisiones te dan una recompensa. Esta, seguro.",
-    despues: { texto: "¡Sorpresa! Es tu primera recompensa. Las demás tendrás que ganártelas con tus decisiones.", cinta: "Abre el menú de abajo y toca «Recompensas» para verla." },
+  { paso: "logro", texto: "Ah, y en agradecimiento por darme un ministerio, te tengo un regalo. Cierra los ojos.", cinta: "Abre el regalo",
+    despues: { texto: "¡Sorpresa! Es tu primera recompensa. Las demás tendrás que ganártelas con tus decisiones.", cinta: "Toca el menú" },
     izq: "Miedo me das", der: "Ábrelo tú, por si acaso" },
-  { paso: "fin", texto: "La plaza está llena y espera tu discurso. Llévate la paloma y no te enrolles, que hace calor.", cinta: "A partir de aquí, gobiernas tú.", izq: "A ver qué se me ocurre", der: "Hablaré lo justo" }
+  { paso: "fin", texto: "La plaza está llena y espera tu discurso. Llévate la paloma y no te enrolles, que hace calor.", cinta: "Ahora gobiernas tú", izq: "A ver qué se me ocurre", der: "Hablaré lo justo" }
 ];
 
 /* 24 oct: COLECCIONABLES (prototipo). Cada uno es un objeto real de la Revolución, reimaginado, que se desbloquea con

@@ -131,6 +131,14 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 
 ---
 
+- **Abstracto no es vacío** (28 oct, reverso v5): Jorge quiere un dibujo reconocible pero suelto o a medias, nunca una textura sin nada ni un logo centrado.
+- **Nada que retrate a una persona real** (28 oct, reverso v6-B): barba + kepi + ojos = Fidel. Si hay barba, sin ojos ni gorra.
+- **Los «dos negros» del rayado son ópticos** (28 oct): un rayado de tinta sobre color se lee más claro que una mancha plana de la misma tinta; pedir «la misma tinta» no lo arregla, hay que usar la misma técnica con más densidad.
+- **El generador arrastra el estilo de la conversación** (28 oct, reverso v9): pidió *Petulia* y salió rayado como las imágenes anteriores. Para cambiar de estilo, conversación nueva y solo el cartel adjunto; la técnica, lo primero del prompt.
+- **Si Jorge cita un cartel, quiere su estilo y su truco** (28 oct): no reinterpretar en otra técnica.
+- **El marco vuelve en cada edición**: si sale, que lo quite Jorge al final en Photoshop. Sospecha (sin comprobar): las palabras «card» y «poster» lo provocan.
+- **Primero la idea, luego el prompt** (Jorge, varias veces): no escribir prompts ni apuntar nada en los documentos antes de que Jorge confirme la idea.
+
 ## 4. Prompt A · Estilo de icono (v9)
 
 **v9 (23 oct):** sin imagen de referencia. Jorge genera sin adjuntar nada y los resultados salen bien, así que se quita la frase «Match the style, print texture and visual weight of the attached reference image, but not its subject or colors». Si algún día se adjunta referencia, se vuelve a añadir tras la primera frase.
@@ -717,3 +725,16 @@ Ilustración 1:1, sin texto (el título y la frase los pone el juego).
 ```
 Square 1:1 illustration, an almost literal homage to the attached Eduardo Muñoz Bachs poster, keeping its exact devices but in negative: one huge, flat silhouette that dominates the image, one single bright accent of color and a few small details on top. Solid flat near-black #201D14 background, edge to edge. Filling most of the square, the head and plump body of a dove, seen in profile like the crow in the poster, as one solid flat cream #F0E9D6 silhouette, soft and round, unmistakably a dove. Its eye is exactly like the crow's eye in the poster: a bright target of concentric rings in brick red #B0362A, soft pink #DF8178 and cream. In its small beak, where the poster has the striped candy, it holds a single fat kernel of corn in mustard #D8A02A. Above its head, where the poster has the little crosses, a small holy halo of short, straight, separate mustard rays, like the dove of the Holy Spirit in old religious prints. Hand-cut edges, solid uniform flat inks, never sketchy or dry-brush, real screen-print texture and paper grain. Full-bleed: no frame, no border and no margin of any kind. No text, no letters, no people, no flags, no emblems.
 ```
+
+## 11. Expedientes: el reverso de la ficha del personaje (28 oct, en prueba)
+Jorge quiere que el reverso de cada personaje tenga más diseño: **un cartel tipográfico hecho con código** (no con el generador), con pautas comunes a todos.
+- **El color lo da su carta de delante** (Jorge: los personajes no pertenecen a una fuerza a efectos de diseño). Cada uno, tres tintas de la paleta: fondo, letra y acento. Ejemplos de la prueba: Octavio Sarria negro, blanco y azul; Mirta Albear rojo, blanco y mostaza.
+- **Letras: Londrina, Londrina Light y Sofia Sans** (las del bloque TIPOGRAFIA). Nombre de pila en Londrina Light, apellido en Londrina, cada uno a todo el ancho si cabe; texto en Sofia; «Nota:» en Sofia 800.
+- **Tres diseños probados** (`tools/prueba_fichas.html`, se abre en el navegador; captura enviada a Jorge el 28 oct): **A · Créditos** (nombre grande, banda de color con el cargo, texto, raya y Nota; recomendado: el más ordenado y el que mejor aguanta textos largos), **B · Sello** (texto arriba, cargo como sello torcido, nombre enorme abajo; encoge mucho con textos largos), **C · Bloques** (bloque del nombre arriba, bloque de color con el texto abajo, cargo en vertical en una franja lateral; deja aire vacío con textos cortos).
+- **Pendiente:** que Jorge elija; después, proponer las tres tintas de cada personaje mirando su carta, una a una, y llevarlo al juego (`dorsoFicha()` en `motor.js`, estilos dentro de los bloques TIPOGRAFIA y DISENO, prueba `personajes`).
+
+## 12. Estado y pendientes (29 oct)
+- **Hecho e integrado:** los 11 personajes de la era 1, los 13 iconos, el reverso de la era 1 (la melena, v3), la portada (sillón vacío) y las referencias 01–46.
+- **Reverso de la era 1, nuevo (en curso):** la barba rayada con la boca y un puro mostaza con la punta roja (v7) era lo más cercano; Jorge pasó a *Petulia* al revés (v10: la barba, una silueta negra plana; el trozo de cara, oliva). Falta ver el resultado del v10 en una conversación nueva del generador.
+- **Invitados:** Padrino Pupo (prompt dado, sin imagen) y Papá Ernesto (imagen aprobada; falta la edición de color: crema → blanco y un solo rosa). Cuando lleguen, se integran como los personajes (`originales/<slug>.jpg` → `recortar.py carteles`, entrada en `personajes.json`).
+- **Por hacer:** reversos de las eras 2–4 (prompts v4); la carta del logro «Paloma amaestrada»; las escenas de las caídas; si el Comandante sigue con cuatro etapas o pasa a una sola imagen (Jorge no lo ha dicho); el diseño de los expedientes (sección 11).

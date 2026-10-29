@@ -606,3 +606,9 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 29 oct — Swap de secuelas e iconos
 - Al deslizar a un lado la carta de secuela o la de información, la carta ya no se va de lado y luego se desvía: baja (secuela y casilla) o sube (fuerza) en línea recta hacia su sitio, con el desplazamiento medido por lo que se arrastra en cualquier dirección. En el tutorial, la izquierda sigue volviendo a la lección anterior.
+- **28 oct — Reverso de la era 1, otra vez:** la melena se queda en el juego mientras tanto. Jorge descarta la textura abstracta (v5: «abstracto no es vacío») y la barba con kepi y ojos (se parecía a Fidel); sigue con una barba sin cara (*Petulia* al revés, v10). Detalle en `docs/GUIA_ARTE_BACHS.md` §8.
+- **28 oct — Referencias Bachs 35–46** añadidas; quitados los repetidos de *Desierto rojo* y *En las tinieblas*.
+- **28 oct — Padrino Pupo:** homenaje a *Vampiros en La Habana*, de blanco con su gorrito de babalawo, piel azul y un ojo que se entreabre en el trance.
+- **28 oct — Papá Ernesto:** homenaje a *La historia del fuego*: barba y pelo blancos en rizos, gorra de pescador, aguja al hombro, daiquirí y tres gatos; aprobado salvo el color (crema → blanco, un solo rosa).
+- **28 oct — Expedientes con más diseño:** el reverso de la ficha será un cartel tipográfico hecho con código, con los colores de la carta de delante (no de la fuerza) y Londrina, Londrina Light y Sofia. Tres pruebas (`tools/prueba_fichas.html`); falta que Jorge elija (recomendada la A, «Créditos»).
+

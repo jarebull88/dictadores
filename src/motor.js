@@ -1962,6 +1962,16 @@ function verLogro(id) {
   carta.addEventListener("click", girar);
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
+  if (nuevo && animar()) lineasZoom(v, escena);
+}
+/* 29 oct: al descubrir una carta por primera vez, líneas de velocidad blancas (zoom de anime) que salen de detrás de la carta */
+function lineasZoom(vista, escena) {
+  const a = escena.getBoundingClientRect(), b = vista.getBoundingClientRect();
+  const z = document.createElement("div");
+  z.className = "lineas-zoom"; z.setAttribute("aria-hidden", "true");
+  z.style.left = (a.left - b.left + a.width / 2) + "px"; z.style.top = (a.top - b.top + a.height / 2) + "px";
+  z.addEventListener("animationend", () => z.remove());
+  vista.prepend(z);
 }
 $("archivo-cerrar").addEventListener("click", () => {
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) {   // 25 oct: al cerrar el logro, sigue el tutorial

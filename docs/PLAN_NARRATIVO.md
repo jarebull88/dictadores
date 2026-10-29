@@ -77,6 +77,8 @@ Fases 0, 1, 3, 4 y 5: **Opus**. Fase 2 y los tests: **Sonnet**.
 - **Reglas que Jorge fue dictando:** nada de «el norte» en preguntas; la pregunta da la premisa de lo que responden las respuestas; las referencias reales se disfrazan para que se entiendan dentro del juego («los barbudos» no se entiende); al embajador no se le desobedece a la cara, se le ironiza; las respuestas necesitan chulería e ironía propia («Rebaje algo, padrino»: hacerse el tonto sin serlo); los chistes no se repiten entre cartas (el discurso de cuatro horas y la paloma se guardan); una de cada tres cartas, de humor, con efectos pequeños; un logro no es una decisión ni un fracaso.
 - **Quién hace qué:** esta conversación es de **textos, estructura de cartas y pesos**. El motor, el arte y los coleccionables tienen sus conversaciones (programación, arte, redacción de coleccionables). No toques `motor.js`, pruebas ni imágenes desde aquí: Jorge lo rechazó cuando lo hice.
 
+- **Los textos de Jorge se copian tal cual** (29 oct): letra a letra, aunque parezca una errata. Si crees que se equivocó, pregúntale antes de guardar; nunca lo corrijas por tu cuenta.
+
 ## Probado y descartado
 - **Hito fijo para los comités de vigilancia:** quitaba un hueco al sorteo; se prefirió peso alto sin condición (sale en ~42 % de las partidas).
 - **Excepción de 150 caracteres para Pupo:** sustituida por el miniflujo de dos pasos (amenaza y remedio, ≤100 cada uno).

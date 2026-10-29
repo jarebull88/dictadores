@@ -8,7 +8,9 @@ test("cada coleccionable tiene todos sus campos (con «Pendiente» donde falte e
   const j = cargar();
   const LOGROS = JSON.parse(j.w.eval("JSON.stringify(LOGROS)"));
   for (const g of LOGROS) {
-    for (const c of CAMPOS) assert.ok(typeof g[c] === "string" && g[c].length > 0, `${g.id}: falta ${c}`);
+    // 29 oct, Jorge: los logros (regla) no llevan beneficio ni perjuicio
+    for (const c of CAMPOS) if (!(g.regla && (c === "beneficio" || c === "perjuicio"))) assert.ok(typeof g[c] === "string" && g[c].length > 0, `${g.id}: falta ${c}`);
+    if (g.regla) assert.ok(!("beneficio" in g) && !("perjuicio" in g), `${g.id}: un logro no lleva beneficio ni perjuicio`);
     assert.ok(!("objeto" in g) && !("efecto" in g) && !("secundario" in g), `${g.id}: campos antiguos`);
     assert.ok(g.bandera || g.carta || g.regla, `${g.id}: no dice cómo se desbloquea`);
   }
@@ -50,8 +52,8 @@ test("los logros de fin de era se dan al acabar la era con sus condiciones", () 
     return j;
   };
   prueba(`E.estados = ["censura","vigilancia","frontera","culto"].map(id => ({ id, edad: 0 }))`, ["cuatro_casillas"], ["buenos_modales"]);
-  prueba(`E.barras = { pueblo: 50, ejercito: 14, elite: 50, potencias: 50 }`, ["por_los_pelos"], ["equilibrista"]);
-  prueba(`E.barras = { pueblo: 50, ejercito: 86, elite: 50, potencias: 50 }`, ["por_los_pelos"]);
+  prueba(`E.barras = { pueblo: 50, ejercito: 14, elite: 50, potencias: 50 }`, [], ["por_los_pelos", "equilibrista"]);   // una sola fuerza crítica no basta
+  prueba(`E.barras = { pueblo: 50, ejercito: 14, elite: 86, potencias: 50 }`, ["por_los_pelos"], ["equilibrista"]);
   prueba(`E.barras = { pueblo: 40, ejercito: 60, elite: 45, potencias: 55 }`, ["equilibrista"], ["por_los_pelos"]);
   prueba(`E.estados = [{ id: "luna", edad: 0 }]; E.barras = { pueblo: 30, ejercito: 50, elite: 50, potencias: 50 }`, ["buenos_modales"], ["cuatro_casillas", "equilibrista"]);
   prueba(`E.estados = [{ id: "censura", edad: 0 }]`, [], ["buenos_modales"]);
@@ -62,10 +64,13 @@ test("un coleccionable sin ilustración se ve como carta completa: fondo plano p
   j.w.eval(`const l = {}; LOGROS.forEach(g => { l[g.id] = { abierto: true }; }); guardarLogros(l); abrirArchivo();`);
   assert.equal(j.d.querySelectorAll("#archivo-rejilla .hueco-logro.abierto").length, j.w.eval("LOGROS.length"));
   j.w.eval(`verLogro("postal")`);
-  assert.equal(j.d.querySelector(".logro-titulo").textContent, "Postal de la bahía con un misil");
+  assert.equal(j.d.querySelector(".logro-titulo").textContent, "Postal con misil");
   assert.match(j.d.querySelector(".logro-cara .logro-ilustracion").getAttribute("style"), /var\(--p-/, "fondo plano de la paleta");
   assert.ok(!j.d.querySelector(".logro-cara img"), "sin ilustración");
   const dorso = j.d.querySelector(".logro-dorso").textContent;
-  assert.match(dorso, /Beneficio:\s*Pendiente/);
-  assert.match(dorso, /Perjuicio:\s*Pendiente/);
+  assert.match(dorso, /Beneficio:\s*Mándasela/);
+  assert.match(dorso, /Perjuicio:\s*A veces/);
+  // 29 oct, Jorge: los logros (de fin de era) no llevan beneficio ni perjuicio
+  j.w.eval(`verLogro("equilibrista")`);
+  assert.doesNotMatch(j.d.querySelector(".logro-dorso").textContent, /Beneficio|Perjuicio/);
 });

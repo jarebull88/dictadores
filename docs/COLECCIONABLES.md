@@ -36,8 +36,21 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 ## Era 1
 **28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A ver quién me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
 
-**Logros de la era 1** (28 oct, Jorge; nombres provisionales, los cierra esta conversación; necesitan que el motor los compruebe al acabar la era): **Las cuatro casillas** (acabar la era con cuatro secuelas a la vez) · **Por los pelos** (acabar la era con alguna fuerza por debajo de 15 o por encima de 85) · **El equilibrista** (acabar la era con las cuatro fuerzas entre 40 y 60) · **Revolución con buenos modales** (acabar la era sin Censura, Vigilancia ni Jaula). Cuatro por era.
+**Logros de la era 1** (29 oct, textos de Jorge; se comprueban al acabar la era). **Los logros no llevan beneficio ni perjuicio** (29 oct, Jorge): solo título, subtítulo y descripción.
 
+- **El pack completo** (antes «Las cuatro casillas»; acabar la era con cuatro secuelas a la vez) — *La autocrítica puede esperar.* — No todo el mundo consigue meter a un país en tantos problemas. Hace falta constancia, dedicación y una gran capacidad para no aprender de los errores.
+- **Por los pelos** (29 oct: acabar la era con **dos o más** fuerzas por debajo de 15 o por encima de 85; antes, una) — *La estabilidad está sobrevalorada.* — Terminaste una era con varios indicadores en zona crítica, pero seguiste al mando. El informe oficial certifica un sobrecumplimiento histórico de los objetivos previstos.
+- **Tu mejor versión** (antes «El equilibrista»; las cuatro fuerzas entre 40 y 60) — *A la gente no le va tan mal.* — Terminaste una era con las cuatro fuerzas equilibradas. El pueblo no pasa hambre, los militares conservan sus privilegios y el Partido sigue colocando a los suyos. Hasta tus críticos admiten que, comparado con las alternativas, tampoco se vive tan mal. Por ahora, todos te aguantan.
+- **Dictablanda** (antes «Revolución con buenos modales»; sin Censura, Vigilancia ni Jaula) — *El poder de ser amable.* — La gente sabe cómo te pones y prefiere no tentar a la suerte. Gobernaste toda una era sin recurrir a las medidas más duras. Pueden hablar, viajar y hasta quejarse de vez en cuando. Es que no te merecen.
+
+### Recompensa 6 · Postal con misil — *aprobada* (29 oct, textos de Jorge)
+- **Se gana con:** carta `nuevos_vecinos`, solo con «Discreto como mi barba».
+- **titulo:** Postal con misil
+- **subtitulo:** Sol, arena y armamento nuclear.
+- **descripcion:** Una estampa de la bahía con aguas cristalinas, sombrillas de colores y un misil nuclear que luce espléndido junto a la orilla. En el reverso, un espacio para escribir a la familia y otro para indicar las coordenadas.
+- **Beneficio:** Mándasela a una potencia extranjera para que se piense su próximo ultimátum. Que paguen ellos el envío.
+- **Perjuicio:** A veces la postal no causa efecto. Las potencias negocian a puerta cerrada y nadie se molesta en avisarte.
+- **decision:** «Discreto como mi barba»
 
 ### 1. Carné del comité de barrio — *propuesto*
 - **Logro:** «Chivatón de barrio» (elegido por Jorge).
@@ -98,7 +111,6 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Referencia real (verificada):** el 24 de julio de 1959, en un partido de exhibición, Fidel lanzó con los Barbudos dos entradas; la propaganda dijo que eliminó a todos los bateadores, lo cual las fuentes ponen en duda.
 
 ### Pendientes (elegidos por Jorge, sin redactar)
-4. Postal de la bahía con un misil (inventada) — aceptar los misiles (`base.misiles_instalados`).
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).
 
 ## Traspaso a programación (28 oct)
@@ -138,5 +150,6 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
 - Cerrado: la estructura, la regla, los textos de título, subtítulo y descripción de las recompensas 1 a 5.
 - 29 oct: licencia, libreta y compota, completas (textos de Jorge). Revolukola y pelota, completas (textos de Jorge).
 - Pelota firmada: beneficio y perjuicio completos (propuestos sobre ideas de Jorge).
-- **Pendiente:** postal de la bahía y carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); los cuatro logros de la era (nombres provisionales); coleccionables de las eras 2 a 4.
+- 29 oct: postal y los cuatro logros de la era 1, completos (textos de Jorge), e integrados en el juego.
+- **Pendiente:** carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); coleccionables de las eras 2 a 4.
 - Ideas de perjuicio/beneficio que se propusieron y Jorge no eligió: libreta (mercado de casillas; la cola como club social), compota (celdas vacías como almacén; los niños quieren ser canjeados), licencia (medio país jura ser atleta), Revolukola (los dentistas trabajan el doble; la botella se pega a la mano).

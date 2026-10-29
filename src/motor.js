@@ -1821,7 +1821,7 @@ function comprobarLogros(c, op) {
    decidir la última carta; el aviso «¡Nuevo logro!» sale al volver a la partida, porque entre medias está la pantalla de la era. */
 const REGLAS_LOGRO = {
   cuatro_casillas: () => E.estados.length >= MAX_RANURAS,
-  por_los_pelos: () => BARRAS.some(b => E.barras[b.id] < 15 || E.barras[b.id] > 85),
+  por_los_pelos: () => BARRAS.filter(b => E.barras[b.id] < 15 || E.barras[b.id] > 85).length >= 2,   // 29 oct, Jorge: dos o más fuerzas en zona crítica
   equilibrista: () => BARRAS.every(b => E.barras[b.id] >= 40 && E.barras[b.id] <= 60),
   buenos_modales: () => !E.estados.some(s => ["censura", "vigilancia", "frontera"].includes(s.id))
 };
@@ -1939,8 +1939,8 @@ function verLogro(id) {
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
         <div class="logro-dorso"><div class="logro-hoja"><b class="logro-objeto-nombre">${esc(g.titulo)}</b>
           <p class="logro-descripcion">${esc(g.descripcion)}</p>
-          <p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
-          <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p></div></div>
+          ${g.regla ? "" : `<p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
+          <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
     <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;

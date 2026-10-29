@@ -158,7 +158,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El refresco** (Ministro de Comercio)  
 «Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.»
-- A. Inventen la Revolukola → sube Partido +4 · baja Pueblo -3
+- A. Improvisen una receta → sube Partido +4 · baja Pueblo -3
 - B. Que beban guarapo → sube Pueblo +3 · baja Partido -4
 
 **Las tiendas vacías** (Ministro de Comercio)  

@@ -78,7 +78,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
 
 ### Recompensa 4 · Botella de Revolukola — *aprobada* (29 oct, textos de Jorge)
-- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Improvisen una receta» (29 oct, Jorge; antes «Inventen la Revolukola»: el cambio en la carta lo hace la conversación de textos).
+- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Improvisen una receta» (29 oct, Jorge; antes «Inventen la Revolukola»).
 - **titulo:** Botella de Revolukola
 - **subtitulo:** Dulce, pegajosa y de producción nacional.
 - **descripcion:** Una bebida marrón que sabe a Revolución. La receta original se perdió durante la nacionalización; la versión oficial lleva azúcar, agua y lo que aparezca en el almacén. Ninguna botella sabe igual que la anterior.

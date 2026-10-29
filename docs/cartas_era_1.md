@@ -361,7 +361,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Nacionalizamos la fábrica del famoso refresco de cola, pero se llevaron la receta secreta.»
 
-- **A. Inventen la Revolukola** Élite +4 · Pueblo −3
+- **A. Improvisen una receta** Élite +4 · Pueblo −3
 - **B. Que beban guarapo** Pueblo +3 · Élite −4
 
 ### 32. Las tiendas vacías *(borrador)*

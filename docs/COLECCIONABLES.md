@@ -100,9 +100,9 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **decision:** «Improvisen una receta»
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
-### Recompensa 5 · Pelota de béisbol — *aprobada* (29 oct, textos de Jorge)
+### Recompensa 5 · Pelota con autógrafo — *aprobada* (29 oct, textos de Jorge)
 - **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A ver quién me batea» (antes «A mí nadie me batea»).
-- **titulo:** Pelota de béisbol (antes «Pelota firmada»)
+- **titulo:** Pelota con autógrafo (antes «Pelota firmada» y «Pelota de béisbol»)
 - **subtitulo:** El partido más desigual de la historia.
 - **descripcion:** La pelota que el Comandante firmó antes del partido y con la que estableció el récord de la liga: veintisiete ponches en dos entradas. Pieza de colección. «Batear bajo su responsabilidad».
 - **Beneficio:** Lánzasela a un adversario: preferirá que se le rompan los dientes antes que batearla. También puedes usarla para poner a prueba la lealtad de tus allegados.

@@ -469,7 +469,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 ### 42. Papá Ernesto (torneo)
 
 **Personaje:** Papá Ernesto  
-**Condición:** ancla de los años 2 a 4 de su era; a partir del año 2 de la era.
+**Condición:** ancla de los años 2 a 3 de su era; a partir del año 2 de la era.
 
 **Carta:** «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
 
@@ -479,7 +479,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 ### 43. Papá Ernesto (whisky)
 
 **Personaje:** Papá Ernesto  
-**Condición:** ancla de los años 5 a 7 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
+**Condición:** ancla de los años 5 a 6 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
 
 **Carta:** «Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»
 
@@ -489,7 +489,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 ### 44. Papá Ernesto (higado)
 
 **Personaje:** Papá Ernesto  
-**Condición:** ancla de los años 8 a 10 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
+**Condición:** ancla de los años 8 a 9 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
 
 **Carta:** «Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.»
 

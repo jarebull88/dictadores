@@ -55,6 +55,29 @@ test("«Yo sé a quién llamar» invoca una amenaza de Pupo, una sola vez por er
   assert.equal(r.remedio.length, 1);
 });
 
+test("las tres cartas de Papá Ernesto salen repartidas por la era 1: siempre en orden y con al menos dos cartas de por medio", () => {
+  const r = JSON.parse(w.eval(`(() => {
+    const salidas = [];
+    for (let g = 0; g < 40; g++) {
+      nuevaPartida(); E.actual = siguienteCarta(); const t = {};
+      while (E.actual && E.era === 1) {
+        if (E.actual.id.startsWith("ernesto_")) t[E.actual.id] = E.turno;
+        aplicar(E.actual, Math.random() < .5 ? E.actual.izq : E.actual.der);
+        if (eraTerminada()) break;
+        E.actual = siguienteCarta();
+      }
+      salidas.push(t);
+    }
+    return JSON.stringify(salidas);
+  })()`));
+  for (const t of r) {
+    const a = t.ernesto_torneo, b = t.ernesto_whisky, c = t.ernesto_higado;
+    if (b !== undefined) assert.ok(a !== undefined && b - a >= 3, "el whisky va tras el torneo, con hueco");
+    if (c !== undefined) assert.ok(b !== undefined && c - b >= 3, "el hígado va tras el whisky, con hueco");
+  }
+  assert.ok(r.some(t => t.ernesto_higado !== undefined), "alguna vez salen las tres");
+});
+
 test("cada carta se pinta con su imagen y su nombre", () => {
   j.empezar();
   for (const c of cartas) {

@@ -342,6 +342,7 @@ function cumple(c) {
   if (k.sin && k.sin.some(f => E.banderas.has(f))) return false;
   if (k.alguna && !k.alguna.some(f => E.banderas.has(f))) return false;
   if (k.requiere && !k.requiere.every(f => E.banderas.has(f))) return false;
+  if (k.tras && !(E.vistas.has(k.tras.carta) && E.turno - E.ultima[k.tras.carta] >= k.tras.turnos)) return false;   // 29 oct: solo después de otra carta y con al menos N turnos de por medio
   return true;
 }
 

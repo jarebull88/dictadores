@@ -1291,7 +1291,7 @@ const CARTAS = [
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
-    id: "ernesto_torneo", tipo: "ancla", ventana: [2, 4], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
+    id: "ernesto_torneo", tipo: "ancla", ventana: [2, 3], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
     personaje: "Papá Ernesto",
     texto: "Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.",
     izq: { accion: "Conmigo todos pican", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
@@ -1299,7 +1299,7 @@ const CARTAS = [
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
-    id: "ernesto_whisky", tipo: "ancla", ventana: [5, 7], cond: { turnoMin: 5, requiere: ["base.ernesto_amigo"] }, titulo: "Papá Ernesto (whisky)",
+    id: "ernesto_whisky", tipo: "ancla", ventana: [5, 6], cond: { turnoMin: 5, requiere: ["base.ernesto_amigo"], tras: { carta: "ernesto_torneo", turnos: 3 } }, titulo: "Papá Ernesto (whisky)",
     personaje: "Papá Ernesto",
     texto: "Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?",
     izq: { accion: "Whisky para el genio", efectos: { potencias: 5, pueblo: -5 }, banderas: ["base.ernesto_whisky"] },
@@ -1307,7 +1307,7 @@ const CARTAS = [
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
-    id: "ernesto_higado", tipo: "ancla", ventana: [8, 10], cond: { turnoMin: 8, requiere: ["base.ernesto_amigo", "base.ernesto_whisky"] }, titulo: "Papá Ernesto (higado)",
+    id: "ernesto_higado", tipo: "ancla", ventana: [8, 9], cond: { turnoMin: 8, requiere: ["base.ernesto_amigo", "base.ernesto_whisky"], tras: { carta: "ernesto_whisky", turnos: 3 } }, titulo: "Papá Ernesto (higado)",
     personaje: "Papá Ernesto",
     texto: "Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.",
     izq: { accion: "Museo con su nombre", efectos: { pueblo: 5, elite: -5 } },
@@ -2577,6 +2577,7 @@ function cumple(c) {
   if (k.sin && k.sin.some(f => E.banderas.has(f))) return false;
   if (k.alguna && !k.alguna.some(f => E.banderas.has(f))) return false;
   if (k.requiere && !k.requiere.every(f => E.banderas.has(f))) return false;
+  if (k.tras && !(E.vistas.has(k.tras.carta) && E.turno - E.ultima[k.tras.carta] >= k.tras.turnos)) return false;   // 29 oct: solo después de otra carta y con al menos N turnos de por medio
   return true;
 }
 

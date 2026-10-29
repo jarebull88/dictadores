@@ -1894,6 +1894,11 @@ function anunciarLogro(nuevos) {
   if (navigator.vibrate) navigator.vibrate(25);
 }
 
+/* La cara de un coleccionable: su ilustración si la tiene (la paloma); si no, un fondo plano de la paleta (`fondo` en LOGROS) */
+function ilustracionLogro(g, alt) {
+  if (IMG_LOGROS[g.id]) return `<div class="logro-ilustracion"><img src="${IMG_LOGROS[g.id]}" alt="${esc(alt)}" draggable="false"></div>`;
+  return `<div class="logro-ilustracion" style="background:var(--p-${g.fondo || "mostaza"})" role="img" aria-label="${esc(alt)}"></div>`;
+}
 /* El archivo: una rejilla de huecos (siluetas, logros nuevos y logros descubiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 function abrirArchivo() {

@@ -23,6 +23,8 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `elecciones_aplazadas` | Las urnas prometidas (A); Las urnas prometidas (B) | — | Protestas estudiantiles. (era 1) |
 | `elecciones_prometidas` | Las urnas prometidas (B) | Elecciones controladas | Elecciones controladas. (era 3) |
 | `embargo_en_marcha` | El azúcar (A); El ultimátum (B) | Embargo total | Embargo total. (era 1) |
+| `ernesto_amigo` | Papá Ernesto (torneo) (A) | Papá Ernesto (whisky); Papá Ernesto (higado) | — |
+| `ernesto_whisky` | Papá Ernesto (whisky) (A) | Papá Ernesto (higado) | — |
 | `estado_policial` | El jefe insaciable (A) | El batallón | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
 | `estudiantes_reprimidos` | Las urnas prometidas (A) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
 | `exiliados_vocales` | Los que se marchan (A) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |

@@ -27,7 +27,7 @@ Por decidir (propuesta: el barbero de palacio).
 - **Era 1 · Papá Ernesto** (el novelista extranjero, 1960): el artista sibarita que alaba la Revolución desde su bar y al final se va al «terrible capitalismo». Leyenda bajo la carta: **NOVELISTA**. **Expediente (28 oct, aprobado por Jorge):** nombre «Papá Ernesto», cargo «Novelista». Historia: «Novelista extranjero de fama mundial que adora las revoluciones, siempre que tengan buenos bares. Pesca agujas, con éxito variable.» Nota: «Su hígado no es tan revolucionario.» (Pasa a `FICHAS` cuando el motor admita invitados.) Tres cartas repartidas por la era (no es un miniflujo):
   1. «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.» — A. Conmigo todos pican (Pueblo) · B. Yo pesco otra cosa (Partido)
   2. «Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?» — A. Whisky para el genio (Potencias) · B. Beba guarapo (Pueblo)
-  3. «Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.» — A. Museo con su nombre (Pueblo) · B. Las botellas, al Partido (Partido)
+  3. «Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.» — A. Tu casa será un museo (Pueblo) · B. El Partido cuidará tu bar (Partido) (29 oct: despedida)
 - **Era 2 · Silverio** (el trovador incómodo de finales de los 60: de cantar en contra a atado en corto; el barco pesquero; en la era 3, cantor oficial o exiliado). Por escribir.
 - **Eras 3 y 4:** por decidir (el poeta encarcelado; el niño del naufragio, la visita del Papa…).
 

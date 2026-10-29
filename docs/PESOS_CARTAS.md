@@ -222,9 +222,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Beba guarapo → sube Pueblo +5 · baja Potencias -5
 
 **Papá Ernesto (higado)** (Papá Ernesto)  
-«Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.»
-- A. Museo con su nombre → sube Pueblo +5 · baja Partido -5
-- B. Las botellas, al Partido → sube Partido +5 · baja Pueblo -5
+«Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.»
+- A. Tu casa será un museo → sube Pueblo +5 · baja Partido -5
+- B. El Partido cuidará tu bar → sube Partido +5 · baja Pueblo -5
 
 **La calle y los cuarteles** (Ministro del Interior)  
 «Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.»

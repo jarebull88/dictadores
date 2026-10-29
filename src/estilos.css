@@ -121,14 +121,16 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .logro-subtitulo { font-size: var(--c-pregunta); line-height: 1.28; font-weight: var(--peso-negrita); }
 /* la respuesta al arrastrar: negrita, grande */
 .texto-respuesta strong { font-size: var(--c-respuesta); line-height: 1.08; font-weight: var(--peso-negrita); }
+/* 29 oct, Jorge: las respuestas, en Londrina Light y mayúsculas (lo demás del cuerpo sigue en Sofia Sans) */
+.texto-respuesta strong, .texto-respuesta span { font-family: var(--f-titular); text-transform: uppercase; font-weight: var(--peso-ligero); }
 /* texto corrido: 16 px */
 .popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .texto-respuesta span { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
 .modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: var(--peso-negrita); }
 .archivo-pista, .logro-descripcion, .logro-efecto { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
 .logro-descripcion-cab { font-size: var(--c-texto); line-height: 1.3; font-weight: 400; }   /* 29 oct, prueba: la descripción de la recompensa, arriba; ajustarDescripcionCab() la achica si no cabe */
 .logro-efecto b { font-weight: var(--peso-negrita); }
-.ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
-.ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: var(--peso-negrita); }
+.ficha-historia { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
+.popup .sube-baja em, .ficha-nota b { font-weight: var(--peso-negrita); }
 /* texto pequeño: 14 px */
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: 400; }
@@ -137,10 +139,6 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: var(--peso-negrita); line-height: 1.4; }
 .alerta { line-height: 1; }
 @media (max-height: 760px) { :root { --c-pregunta: 20px; } }
-/* 29 oct, PRUEBA de Jorge (PRUEBAS.cuerpoLondrina en datos.js; para volver, ponerla en false): todo el cuerpo en Londrina Light y en mayúsculas */
-body.cuerpo-londrina { --f-cuerpo: var(--f-titular); --peso-negrita: var(--peso-ligero); text-transform: uppercase; font-weight: var(--peso-ligero); }
-body.cuerpo-londrina :is(.popup span, .relato, .ficha-historia, .esquela ul, .error, .texto-respuesta span, .archivo-pista, .logro-descripcion, .logro-descripcion-cab, .logro-efecto,
-  .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre, .campo label) { font-weight: var(--peso-ligero); text-transform: uppercase; }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -511,7 +509,6 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 
 }
 .ficha-nombre { }
-.ficha-cargo { margin-bottom: 4px; }
 .ficha-nota b { }
 .ficha-historia { margin: 0; max-width: 32ch; }
 
@@ -522,7 +519,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .respuesta {
   --alto-panel: 108px;   /* 23 oct: sitio para 3 líneas (antes 96 px) */
   position: absolute; left: -50%; width: 200%; height: 400%; bottom: calc(100% - var(--alto-panel)); z-index: 3;
-  background: rgba(0, 0, 0, .25); color: var(--bloque);   /* 21 oct: más transparente (antes, al 50 %) */
+  background: rgba(0, 0, 0, .35); color: var(--bloque);   /* 29 oct: un 10 % menos transparente (antes al 25 %; el 21 oct bajó del 50 %) */
   transform-origin: 50% 100%; transform: rotate(calc(-1 * var(--giro, 0deg)));
   /* Baja al ritmo del arrastre (--bajada de 0 a 1, ver arrastrable): empieza en cuanto la carta se mueve */
   translate: 0 calc((var(--bajada, 0) - 1) * (var(--alto-panel) + 24px)); transition: translate .32s cubic-bezier(.25, .8, .3, 1); pointer-events: none;   /* 15 oct: más suave, que se vea deslizar */

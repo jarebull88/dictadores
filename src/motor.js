@@ -805,7 +805,7 @@ function dorsoFicha(f) {
   const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
   const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
   return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${nombre}</div>` +
-    `<span class="ficha-cargo">${esc(f.cargo)}</span><p class="ficha-historia">${esc(f.historia)}</p>` +
+    `<p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
 }
 /* Icono «360» (Material, de Google), semitransparente en la esquina de la cartulina: avisa de que la carta se gira */
@@ -940,6 +940,7 @@ function entrarCarta(carta) {
   if (document.querySelector("#screen-game .escenario.repartiendo")) return;    // el reparto le da la vuelta al terminar
   carta.style.transition = "";
   carta.classList.remove("boca-abajo");
+  sonar("voltear");                                    // 29 oct: la vuelta automática de cada carta nueva también suena
   clearTimeout(carta._revela); clearTimeout(msg._revela);
   msg._revela = setTimeout(() => {
     msg.classList.remove("oculto");
@@ -1514,6 +1515,7 @@ function entrarNombre() {
   clearTimeout(carta._revela); clearTimeout(pant._entra);
   carta._revela = setTimeout(() => {
     carta.classList.remove("boca-abajo");
+    sonar("voltear");                                  // 29 oct: la vuelta automática de la carta del nombre
     carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
   }, 450);
   pant._entra = setTimeout(() => pant.classList.remove("entrando"), 1800);
@@ -1938,15 +1940,15 @@ function verLogro(id) {
           <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
-    <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;
+    <p class="archivo-pista">Por «${esc(g.decision)}»</p>`;
   $("archivo").classList.add("viendo");
   if (arriba) ajustarDescripcionCab(v.querySelector(".logro-cab"));
   v.style.paddingTop = "";
   const escena = v.querySelector(".logro-escena");
   const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
   if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
-  const carta = v.querySelector(".logro-carta"), pista = v.querySelector(".pista-girar");
-  const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); if (pista) pista.remove(); };
+  const carta = v.querySelector(".logro-carta");
+  const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
   carta.addEventListener("click", girar);
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
@@ -1996,9 +1998,6 @@ $("archivo-cerrar").addEventListener("click", () => {
   if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
   cerrarArchivo();
 });
-
-/* 29 oct, prueba de Jorge: cuerpo de texto en Londrina Light, mayúsculas (PRUEBAS.cuerpoLondrina en datos.js; el CSS está en el bloque TIPOGRAFIA) */
-document.body.classList.toggle("cuerpo-londrina", !!PRUEBAS.cuerpoLondrina);
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {

@@ -1256,8 +1256,8 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
    `fondo`: color plano de la paleta de la carta por delante (mientras no haya ilustración). «Pendiente» = texto aún sin escribir. */
 /* PRUEBAS (29 oct, Jorge): cambios en prueba. Ponlos en false para volver a lo anterior (el código viejo sigue ahí).
    · descripcionArriba: en las recompensas, la descripción va arriba, donde iba el subtítulo, y detrás solo quedan Beneficio y Perjuicio.
-   · cuerpoLondrina: todos los textos de cuerpo en Londrina Light, en mayúsculas. */
-const PRUEBAS = { descripcionArriba: true, cuerpoLondrina: true };
+   (29 oct: la prueba «cuerpoLondrina» acabó: Londrina Light en mayúsculas se queda solo en las respuestas, ya sin interruptor.) */
+const PRUEBAS = { descripcionArriba: true };
 const LOGROS = [
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
   { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Tu primer milagro, cortesía de tu hermano.",

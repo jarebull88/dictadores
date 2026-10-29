@@ -639,3 +639,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **29 oct — Textos:** «La casa vacía» (juicios), la A pasa a «Pongan un narrador deportivo».
 - **29 oct — Textos:** «El economista»: «Pedimos un economista para el Banco Nacional y el Comandante Cabaña se ofreció porque oyó «comunista».» — A. Me sirve igual · B. Mejor uno que sepa sumar.
 - **29 oct — Textos:** «Los colegios de los curas»: «Los curas no perdonan que les quitáramos los colegios: cada domingo predican contra la Revolución.»
+- **29 oct — Programación (Jorge):** la prueba de Londrina Light en mayúsculas se queda **solo en las respuestas** (la del resto del cuerpo se quita); el panel de la respuesta, al 35 % de negro (antes 25 %); fuera «Toca la carta para girarla» de recompensas y logros; fuera el cargo del expediente (ya sale bajo la carta); suenan también las vueltas automáticas (carta nueva y carta del nombre). Nueva imagen de la postal.

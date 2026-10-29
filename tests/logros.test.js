@@ -62,7 +62,12 @@ test("los logros de fin de era se dan al acabar la era con sus condiciones", () 
 test("un coleccionable sin ilustración se ve como carta completa: fondo plano por delante y, por detrás, su texto o «Pendiente»", () => {
   const j = cargar(); j.empezar();
   j.w.eval(`const l = {}; LOGROS.forEach(g => { l[g.id] = { abierto: true }; }); guardarLogros(l); abrirArchivo();`);
-  assert.equal(j.d.querySelectorAll("#archivo-rejilla .hueco-logro.abierto").length, j.w.eval("LOGROS.length"));
+  assert.equal(j.d.querySelectorAll("#archivo-rejilla .hueco-logro.abierto").length, j.w.eval("LOGROS.filter(g => !g.regla).length"), "«Recompensas» enseña las de decisión");
+  assert.equal(j.$("archivo-titulo").textContent, "Recompensas");
+  j.w.eval(`abrirArchivo("logros")`);
+  assert.equal(j.d.querySelectorAll("#archivo-rejilla .hueco-logro.abierto").length, j.w.eval("LOGROS.filter(g => g.regla).length"), "«Logros» enseña los de fin de era");
+  assert.equal(j.$("archivo-titulo").textContent, "Logros");
+  j.w.eval(`abrirArchivo()`);
   // 29 oct: el primero que aún no tiene ilustración y sí texto de beneficio (postal ya tiene la suya)
   const g = JSON.parse(j.w.eval(`JSON.stringify(LOGROS.find(g => !IMG_LOGROS[g.id] && g.beneficio))`));
   j.w.eval(`verLogro("${g.id}")`);

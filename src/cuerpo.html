@@ -41,6 +41,7 @@
       <div class="ranuras" id="ranuras" role="group" aria-label="Secuelas del régimen"></div>
       <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><i></i><i></i><i></i></button>
       <div class="menu-juego hidden" id="menu-juego" role="menu">
+        <button class="opcion-menu" id="btn-recompensas" type="button" role="menuitem">Recompensas</button>
         <button class="opcion-menu" id="btn-logros" type="button" role="menuitem">Logros</button>
         <button class="opcion-menu" id="btn-sonido" type="button" role="menuitem">Sonido</button>
         <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
@@ -50,7 +51,7 @@
     <div class="popup hidden" id="popup" role="dialog"></div>
     <!-- 24 oct: el archivo de logros, por encima de la partida (que espera debajo) -->
     <div class="archivo hidden" id="archivo" role="dialog" aria-label="Logros">
-      <div class="archivo-cab"><h2 class="titulo archivo-titulo">Logros</h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
+      <div class="archivo-cab"><h2 class="titulo archivo-titulo" id="archivo-titulo">Logros</h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
       <div class="archivo-rejilla" id="archivo-rejilla"></div>
       <div class="logro-vista hidden" id="archivo-abrir"></div>
     </div>

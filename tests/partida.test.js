@@ -131,11 +131,11 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   j.w.eval("cerrarInfo()");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6);                         // 7: logro
-  assert.ok(j.$("btn-logros").classList.contains("hidden"), "«Logros» no sale en el menú hasta ganar el logro");
+  assert.ok(j.$("btn-recompensas").classList.contains("hidden"), "«Recompensas» no sale en el menú hasta ganar el logro");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6);
   assert.ok(j.w.eval("E.tutorial.logroGanado"), "la decisión da el primer logro");
-  assert.ok(!j.$("btn-logros").classList.contains("hidden") && j.$("btn-logros").classList.contains("destacar"), "sale «Logros» en el menú, destacado");
+  assert.ok(!j.$("btn-recompensas").classList.contains("hidden") && j.$("btn-recompensas").classList.contains("destacar"), "sale «Recompensas» en el menú, destacado");
   j.tecla(1);
   assert.equal(j.w.eval("E.tutorial.i"), 6, "hay que abrir el logro antes de seguir");
   j.w.eval("abrirArchivo()");
@@ -168,8 +168,8 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   j.w.eval(`resolver(${dir})`);
   assert.ok(j.$("btn-menu").classList.contains("con-aviso"), "el menú lleva la bolita amarilla");
   assert.match(j.$("btn-menu").getAttribute("aria-label"), /1 logro sin abrir/);
-  assert.ok(j.$("menu-juego").contains(j.$("btn-logros")), "los logros vuelven a estar dentro del menú");
-  j.$("btn-logros").click();
+  assert.ok(j.$("menu-juego").contains(j.$("btn-recompensas")) && j.$("menu-juego").contains(j.$("btn-logros")), "recompensas y logros vuelven a estar dentro del menú");
+  j.$("btn-recompensas").click();
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
   j.d.querySelector(".nuevo-logro").click();       // un solo toque en la cuadrícula: la carta ya está descubierta

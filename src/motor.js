@@ -599,6 +599,7 @@ let temporizadorPopup = null;
 function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
+  $("btn-recompensas").classList.toggle("hidden", tutorial);   // en el tutorial, «Recompensas» solo sale en el paso de la paloma (pasoTutorial)
   $("btn-sonido").classList.toggle("hidden", tutorial);
   cerrarMenu(); avisoMenu(); quitarInfo(); limpiarBanda();
 }
@@ -1416,8 +1417,8 @@ function pasoTutorial(i, sinEntrada) {
   else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
   if (p.paso === "deslizar") demostrarArrastre();
-  $("btn-logros").classList.toggle("hidden", p.paso !== "logro" || !t.logroGanado);   // «Logros» solo sale en el menú cuando hay algo que abrir
-  $("btn-menu").classList.toggle("destacar", fase2); $("btn-logros").classList.toggle("destacar", fase2);
+  $("btn-recompensas").classList.toggle("hidden", p.paso !== "logro" || !t.logroGanado);   // «Recompensas» (la paloma es una) solo sale en el menú cuando hay algo que abrir
+  $("btn-menu").classList.toggle("destacar", fase2); $("btn-recompensas").classList.toggle("destacar", fase2);
   if (p.paso === "fin") { E.barras.ejercito = 50; pintarBarras(); }   // (antes de presentarse, el Ejército vuelve a su sitio)
   ocupado = false;
   pintarEleccion(0);
@@ -1907,7 +1908,13 @@ function ilustracionLogro(g, alt) {
 }
 /* El archivo: una rejilla de huecos (siluetas, logros nuevos y logros descubiertos) */
 const archivoAbierto = () => !$("archivo").classList.contains("hidden");
-function abrirArchivo() {
+/* 29 oct: el menú tiene dos entradas: «Recompensas» (los coleccionables que da una decisión) y «Logros» (los de fin de era, con `regla`) */
+let archivoTipo = "recompensas";
+const delArchivo = () => LOGROS.filter(g => (archivoTipo === "logros") === !!g.regla);
+function abrirArchivo(tipo = "recompensas") {
+  archivoTipo = tipo;
+  $("archivo-titulo").textContent = tipo === "logros" ? "Logros" : "Recompensas";
+  $("archivo").setAttribute("aria-label", $("archivo-titulo").textContent);
   cerrarMenu(); ocultarInfo(); clearTimeout(recuerdoAviso);
   pintarArchivo();
   $("archivo").classList.remove("hidden");
@@ -1917,8 +1924,9 @@ function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").cl
 function pintarArchivo() {
   const l = logros();
   let html = "";
-  for (let i = 0; i < Math.max(HUECOS_ARCHIVO, LOGROS.length); i++) {
-    const g = LOGROS[i], estado = g && l[g.id];
+  const lista = delArchivo();
+  for (let i = 0; i < Math.max(HUECOS_ARCHIVO, lista.length); i++) {
+    const g = lista[i], estado = g && l[g.id];
     if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
     else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo"><span>¡Nuevo!</span></button>`;
     else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}" aria-label="${esc(g.titulo)}">${ilustracionLogro(g, "")}</button>`;   // 27 oct: la miniatura de la carta
@@ -1993,7 +2001,8 @@ $("btn-menu").addEventListener("click", () => {
   $("btn-menu").setAttribute("aria-expanded", String(abierto));
 });
 $("btn-salir").addEventListener("click", () => { cerrarMenu(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });
-$("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo(); });
+$("btn-logros").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo("logros"); });
+$("btn-recompensas").addEventListener("click", ev => { ev.stopPropagation(); abrirArchivo("recompensas"); });
 ponerTextoSonido();
 $("btn-sonido").addEventListener("click", ev => {   // 28 oct: quita y pone el sonido (se guarda)
   ev.stopPropagation();

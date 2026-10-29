@@ -918,7 +918,7 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.",
-    izq: { accion: "Con narrador de béisbol", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
+    izq: { accion: "Y con narrador deportivo", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Esto no es un circo", efectos: { pueblo: -8, ejercito: 5 } }
   },
   {
@@ -942,7 +942,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.",
     izq: { accion: "Que Milfuegos lo detenga", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 1, max: 1 }] },
-    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, encolar: [{ carta: "avion_diezfuegos", min: 1, max: 1 }] }
+    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 } }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): segundo paso del aliado (1960): las refinerías se niegan a refinar el crudo del aliado y se intervienen
@@ -1000,14 +1000,14 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?",
     izq: { accion: "Quiero toda la verdad", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
-    der: { accion: "Accidente y punto", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
+    der: { accion: "Sí, un accidente", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): el norte deja de comprar el azúcar (1960)
     id: "embargo", tipo: "cola", titulo: "El azúcar",
     personaje: "Embajador de la potencia del norte",
-    texto: "Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.",
-    izq: { accion: "Ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha"] },
+    texto: "Hemos decidido no comprarle más azúcar hasta que devuelvan lo expropiado.",
+    izq: { accion: "Pues ahora me quedo con todo", efectos: { elite: 6, potencias: -6, crisis: 1 }, banderas: ["base.embargo_en_marcha"] },
     der: { accion: "Ya tengo otro cliente", efectos: { potencias: 6, elite: -6 } }
   },
   {
@@ -1023,9 +1023,9 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): la reforma agraria (1959); se elige cómo
     id: "tierra", tipo: "sorteo", peso: 20, titulo: "La tierra",
     personaje: "Ministro de Trabajo",
-    texto: "Las fincas de los ricos ya son de la Revolución. ¿Para los campesinos o para el Estado?",
+    texto: "Las fincas de los ricos ya son de la Revolución. ¿Las repartimos entre los campesinos o las gestionará el Estado?",
     izq: { accion: "A los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
-    der: { accion: "El Estado ara mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
+    der: { accion: "El Estado cultiva mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): las «coletillas» (1960)
@@ -1196,8 +1196,8 @@ const CARTAS = [
     id: "colas", tipo: "crisis", repetible: true, disparo: e => e.crisis >= 6, titulo: "Las colas",
     personaje: "Ministro de Comercio",
     texto: "Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.",
-    izq: { accion: "Primero los del Partido", efectos: { elite: 5, potencias: -5, pueblo: -3, crisis: -3 } },
-    der: { accion: "Pidan más al aliado", efectos: { potencias: 5, elite: -5, pueblo: 2, crisis: -3 } }
+    izq: { accion: "Los primeros para el Partido", efectos: { elite: 5, potencias: -5, pueblo: -3, crisis: -3 } },
+    der: { accion: "Pídanle más al aliado", efectos: { potencias: 5, elite: -5, pueblo: 2, crisis: -3 } }
   },
 
   /* ---------- Coalición (borrador) ---------- */
@@ -1234,8 +1234,8 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): los misiles (1962) llegan siempre; el aliado pidió secreto y el Comandante quería anunciarlo
     id: "nuevos_vecinos", tipo: "ancla", ventana: [10, 14], titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
-    texto: "Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo hasta que estén apuntando.",
-    izq: { accion: "Ni a mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
+    texto: "Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo.",
+    izq: { accion: "Ni mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
     der: { accion: "Discreto como mi barba", efectos: { potencias: -6, ejercito: 5, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] }
   },
 
@@ -1243,7 +1243,7 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): el aliado retiró los misiles sin consultar al Comandante, que se negó a la inspección
     id: "ultimatum", tipo: "cola", enlace: true, titulo: "El ultimátum",
     personaje: "Embajador de la potencia del norte",
-    texto: "Pactamos con su aliado que se lleva los misiles e iremos a comprobarlo. Creíamos que lo sabía.",
+    texto: "Hemos pactado con su aliado la retirada de los misiles. Enviaremos inspectores para comprobarlo. Creíamos que ya lo sabía.",
     izq: { accion: "Fue idea mía", efectos: { potencias: 6, ejercito: -6, crisis: -1 } },
     der: { accion: "Compruébeme esta", efectos: { potencias: -6, ejercito: 6, crisis: 2 }, banderas: ["base.embargo_en_marcha"] }
   },

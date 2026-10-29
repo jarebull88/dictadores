@@ -11,7 +11,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
 
-- **A. Con narrador de béisbol** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
+- **A. Y con narrador deportivo** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
 - **B. Esto no es un circo** Pueblo −8 · Ejército +5
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
@@ -44,7 +44,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Carta:** «Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.»
 
 - **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 1 años
-- **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Encola: `avion_diezfuegos` en 1 años
+- **B. Que dimita tranquilo** Ejército +4 · Élite −5
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
 
@@ -92,7 +92,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Carta:** «El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?»
 
 - **A. Quiero toda la verdad** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`
-- **B. Accidente y punto** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
+- **B. Sí, un accidente** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
 
 **Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Milfuegos.
 
@@ -103,9 +103,9 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Hemos decidido no comprarle más azúcar. Ni un terrón, hasta que devuelvan lo expropiado.»
+**Carta:** «Hemos decidido no comprarle más azúcar hasta que devuelvan lo expropiado.»
 
-- **A. Ahora me quedo con todo** Élite +6 · Potencias −6 · Crisis +1 · Bandera: `embargo_en_marcha`
+- **A. Pues ahora me quedo con todo** Élite +6 · Potencias −6 · Crisis +1 · Bandera: `embargo_en_marcha`
 - **B. Ya tengo otro cliente** Potencias +6 · Élite −6
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
@@ -127,10 +127,10 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 20.
 
-**Carta:** «Las fincas de los ricos ya son de la Revolución. ¿Para los campesinos o para el Estado?»
+**Carta:** «Las fincas de los ricos ya son de la Revolución. ¿Las repartimos entre los campesinos o las gestionará el Estado?»
 
 - **A. A los campesinos** Pueblo +8 · Élite −6 · Crisis +1 · Bandera: `reforma_agraria`
-- **B. El Estado ara mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
+- **B. El Estado cultiva mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
@@ -383,8 +383,8 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.»
 
-- **A. Primero los del Partido** Élite +5 · Potencias −5 · Pueblo −3 · Crisis −3
-- **B. Pidan más al aliado** Potencias +5 · Élite −5 · Pueblo +2 · Crisis −3
+- **A. Los primeros para el Partido** Élite +5 · Potencias −5 · Pueblo −3 · Crisis −3
+- **B. Pídanle más al aliado** Potencias +5 · Élite −5 · Pueblo +2 · Crisis −3
 
 ### 34. La calle y los cuarteles *(borrador)*
 
@@ -411,9 +411,9 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 10 a 14 de su era.
 
-**Carta:** «Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo hasta que estén apuntando.»
+**Carta:** «Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo.»
 
-- **A. Ni a mi hermano** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
+- **A. Ni mi hermano** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
 - **B. Discreto como mi barba** Potencias −6 · Ejército +5 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
@@ -425,7 +425,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Pactamos con su aliado que se lleva los misiles e iremos a comprobarlo. Creíamos que lo sabía.»
+**Carta:** «Hemos pactado con su aliado la retirada de los misiles. Enviaremos inspectores para comprobarlo. Creíamos que ya lo sabía.»
 
 - **A. Fue idea mía** Potencias +6 · Ejército −6 · Crisis −1
 - **B. Compruébeme esta** Potencias −6 · Ejército +6 · Crisis +2 · Bandera: `embargo_en_marcha`

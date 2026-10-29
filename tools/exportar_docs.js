@@ -82,3 +82,21 @@ out("estados.md", `# Secuelas del régimen (antes «estados»)\n\n${AUTO}Hay cua
 // ---- finales ----
 out("finales.md", `# Finales\n\n${AUTO}Si una fuerza llega a 0 o a 100, la partida termina.\n\n| Causa | Título | Texto |\n| --- | --- | --- |\n` +
   Object.entries(D.FINALES).map(([k, f]) => `| \`${k}\` | ${f.titulo} | ${f.texto} |`).join("\n") + "\n");
+
+// ---- pesos: qué sube y baja cada respuesta (29 oct, Jorge: para revisarlo a conciencia de vez en cuando) ----
+{
+  const NOMBRE = { pueblo: "Pueblo", ejercito: "Ejército", elite: "Partido", potencias: "Potencias" };
+  const efecto = o => {
+    const e = o.efectos || {}, k = Object.keys(e).filter(x => NOMBRE[x]);
+    const sube = k.filter(x => e[x] > 0).map(x => `${NOMBRE[x]} +${e[x]}`), baja = k.filter(x => e[x] < 0).map(x => `${NOMBRE[x]} ${e[x]}`);
+    return [sube.length ? "sube " + sube.join(", ") : "", baja.length ? "baja " + baja.join(", ") : "", e.crisis ? `crisis ${e.crisis > 0 ? "+" : ""}${e.crisis}` : ""].filter(Boolean).join(" · ") || "nada";
+  };
+  let t = `# Pesos de las cartas\n\n${AUTO}Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (antes de multiplicar). Sirve para revisar de vez en cuando que cada respuesta mueva lo que su texto deja deducir (ver «Qué mide cada barra» en \`docs/GUIA_DE_REDACCION.md\`). Las cartas sin era (crisis y coaliciones) van con la era 1.\n`;
+  D.ERAS.forEach((era, i) => {
+    t += `\n## Era ${i + 1} · ${era.nombre}\n`;
+    D.CARTAS.filter(c => (c.era || 1) === i + 1).forEach(c => {
+      t += `\n**${c.titulo}** (${c.personaje}${c.enlace ? "; segundo paso" : ""})  \n«${c.texto}»\n- A. ${c.izq.accion} → ${efecto(c.izq)}\n- B. ${c.der.accion} → ${efecto(c.der)}\n`;
+    });
+  });
+  out("PESOS_CARTAS.md", t);
+}

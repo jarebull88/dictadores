@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.15.
+Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
 
 ### 1. La casa vacía
 
@@ -55,8 +55,8 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 
-- **A. ¡Exprópiese!** Pueblo +8 · Élite +5 · Potencias −10 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 2 a 4 años
-- **B. Les pagaremos con azúcar** Pueblo −8 · Élite −5 · Potencias +10 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
+- **A. ¡Exprópiese!** Pueblo +8 · Élite −5 · Potencias −6 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 2 a 4 años
+- **B. Les pagaremos con azúcar** Pueblo −6 · Élite +6 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 
@@ -69,7 +69,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
 
-- **A. Me cuadra** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
+- **A. Toda ayuda es poca** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
 - **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
@@ -79,7 +79,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministra de Educación  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Un maestro de 18 años no volverá del monte: los alzados lo encontraron. ¿Paramos la campaña?»
+**Carta:** «Un maestro de 18 años ha caído en la sierra. ¿Ponemos a salvo a los demás o lo hacemos mártir?»
 
 - **A. Será nuestro mártir** Élite +5 · Pueblo −5
 - **B. Primero sus vidas** Pueblo +5 · Élite −5
@@ -224,7 +224,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Carta:** «Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?»
 
 - **A. Cámbienlos por compotas** Pueblo +5 · Potencias +4 · Ejército −6
-- **B. Un último cigarro** Pueblo −5 · Potencias −4 · Ejército +6 · Crisis +2
+- **B. Un último cigarro** Potencias −4 · Ejército +6 · Crisis +2
 
 ### 20. Los niños que se van
 
@@ -243,7 +243,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.»
 
-- **A. La casa al que la habita** Pueblo +8 · Élite −5
+- **A. Que cada inquilino sea dueño** Pueblo +8 · Élite −5
 - **B. Ahora el casero soy yo** Pueblo −8 · Élite +5
 
 ### 22. Las milicias
@@ -277,8 +277,8 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los oficiales del tirano que se rindieron piden un puesto en el nuevo Ejército.»
 
-- **A. Uniforme nuevo y listo** Ejército +5 · Pueblo −5
-- **B. Todos a la calle** Pueblo +5 · Ejército −5 · Crisis +1 · Bandera: `viejos_oficiales`, `purga_inicial`
+- **A. Uniforme nuevo y listo** Ejército −5 · Potencias +4
+- **B. Todos a la calle** Ejército +5 · Potencias −4 · Crisis +1 · Bandera: `viejos_oficiales`, `purga_inicial`
 
 **Consecuencia futura de `viejos_oficiales`:** Conspiración de oficiales retirados.
 
@@ -315,8 +315,8 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los ricos se marchan con las joyas cosidas al forro. Propongo registrarlos en el aeropuerto.»
 
-- **A. Que viajen ligeros** Pueblo +7 · Potencias +4 · Crisis −1 · Bandera: `exodo_elite`, `exiliados_vocales`
-- **B. Nadie sale sin permiso** Ejército +6 · Pueblo −7 · Potencias −4 · Bandera: `frontera_cerrada`
+- **A. Que viajen ligeros** Élite +6 · Ejército −4 · Crisis −1 · Bandera: `exodo_elite`, `exiliados_vocales`
+- **B. Nadie sale sin permiso** Ejército +6 · Élite −4 · Pueblo −5 · Bandera: `frontera_cerrada`
 
 **Consecuencia futura de `exodo_elite`:** Faltan técnicos y gestores.
 

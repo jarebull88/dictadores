@@ -15,7 +15,7 @@ const BARRAS = [
   { id: "potencias", nombre: "Potencias" }
 ];
 const ERAS = [   // 16 oct: las cuatro eras siguen la Revolución (1959–62, 1963–70, 1971–85, 1986–2006)
-  { nombre: "La Revolución", min: 10, max: 12, factor: 1.15 },   // 28 oct: 10–12 cartas (antes 8–10) y ×1.15 (antes ×1.35): los segundos pasos ya no cuentan y caben ~4 de sorteo; «humano» ~63 %
+  { nombre: "La Revolución", min: 10, max: 12, factor: 1.3 },   // 29 oct: ×1.3 (28 oct ×1.15): con los pesos revisados la era se hizo más fácil (77 %); ahora «humano» ~62 %, azar ~3 %
   { nombre: "La Purga", min: 8, max: 10, factor: 1.35 },   // 23 oct: ×1.35 (antes 1.1): con las cartas cubanas nuevas el «humano» la superaba el 68 %; ahora ~59 %
   { nombre: "El Culto", min: 8, max: 10, factor: 1.7 },   // 23 oct: ×1.7 (antes 1.2): con las cartas cubanas nuevas el «humano» la superaba el 75 % y el azar el 37 %; ahora ~58 % y ~9 %
   { nombre: "La Supervivencia", min: 8, max: 10, factor: 1.4 }   // 23 oct: con las cartas nuevas, ×1.0 dejaba al «humano» en 68 %; con ×1.4, ~57 %
@@ -61,15 +61,15 @@ const CARTAS = [
     id: "refinerias", tipo: "cola", enlace: true, titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
     texto: "Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.",
-    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: 5, potencias: -10, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
-    der: { accion: "Les pagaremos con azúcar", efectos: { pueblo: -8, elite: -5, potencias: 10 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
+    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -5, potencias: -6, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
+    der: { accion: "Les pagaremos con azúcar", efectos: { pueblo: -6, elite: 6 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
     id: "visitante_oriental", tipo: "ancla", ventana: [3, 7], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
     texto: "Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.",
-    izq: { accion: "Me cuadra", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 1 }] },
+    izq: { accion: "Toda ayuda es poca", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 1 }] },
     der: { accion: "Solo petróleo", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
   },
 
@@ -102,7 +102,7 @@ const CARTAS = [
     // 23 oct, Jorge: Conrado Benítez (1961); 28 oct: seguir o parar la campaña
     id: "alfabetizadores_monte", tipo: "cola", enlace: true, titulo: "Los alfabetizadores en el monte",
     personaje: "Ministra de Educación",
-    texto: "Un maestro de 18 años no volverá del monte: los alzados lo encontraron. ¿Paramos la campaña?",
+    texto: "Un maestro de 18 años ha caído en la sierra. ¿Ponemos a salvo a los demás o lo hacemos mártir?",
     izq: { accion: "Será nuestro mártir", efectos: { elite: 5, pueblo: -5 } },
     der: { accion: "Primero sus vidas", efectos: { pueblo: 5, elite: -5 } }
   },
@@ -201,7 +201,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?",
     izq: { accion: "Cámbienlos por compotas", efectos: { pueblo: 5, potencias: 4, ejercito: -6 } },
-    der: { accion: "Un último cigarro", efectos: { pueblo: -5, potencias: -4, ejercito: 6, crisis: 2 } }
+    der: { accion: "Un último cigarro", efectos: { potencias: -4, ejercito: 6, crisis: 2 } }
   },
   {
     id: "los_ninos", tipo: "sorteo", peso: 3, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
@@ -214,7 +214,7 @@ const CARTAS = [
     id: "reforma_urbana", tipo: "sorteo", peso: 20, titulo: "La reforma urbana",
     personaje: "Ministro de Economía",
     texto: "Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.",
-    izq: { accion: "La casa al que la habita", efectos: { pueblo: 8, elite: -5 } },
+    izq: { accion: "Que cada inquilino sea dueño", efectos: { pueblo: 8, elite: -5 } },
     der: { accion: "Ahora el casero soy yo", efectos: { pueblo: -8, elite: 5 } }
   },
   {
@@ -236,8 +236,8 @@ const CARTAS = [
     id: "oficiales", tipo: "sorteo", peso: 5, titulo: "Los oficiales de antes",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales del tirano que se rindieron piden un puesto en el nuevo Ejército.",
-    izq: { accion: "Uniforme nuevo y listo", efectos: { ejercito: 5, pueblo: -5 } },
-    der: { accion: "Todos a la calle", efectos: { pueblo: 5, ejercito: -5, crisis: 1 }, banderas: ["base.viejos_oficiales", "base.purga_inicial"] }
+    izq: { accion: "Uniforme nuevo y listo", efectos: { ejercito: -5, potencias: 4 } },
+    der: { accion: "Todos a la calle", efectos: { ejercito: 5, potencias: -4, crisis: 1 }, banderas: ["base.viejos_oficiales", "base.purga_inicial"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): los comités de vigilancia (1960) se crean siempre; se elige a quién informan
@@ -259,8 +259,8 @@ const CARTAS = [
     id: "marchan", tipo: "sorteo", peso: 7, cond: { alguna: ["base.reforma_agraria", "base.nacionalizo_empresas"] }, titulo: "Los que se marchan",
     personaje: "Ministro del Interior",
     texto: "Los ricos se marchan con las joyas cosidas al forro. Propongo registrarlos en el aeropuerto.",
-    izq: { accion: "Que viajen ligeros", efectos: { pueblo: 7, potencias: 4, crisis: -1 }, banderas: ["base.exodo_elite", "base.exiliados_vocales"] },
-    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, pueblo: -7, potencias: -4 }, banderas: ["base.frontera_cerrada"] }
+    izq: { accion: "Que viajen ligeros", efectos: { elite: 6, ejercito: -4, crisis: -1 }, banderas: ["base.exodo_elite", "base.exiliados_vocales"] },
+    der: { accion: "Nadie sale sin permiso", efectos: { ejercito: 6, elite: -4, pueblo: -5 }, banderas: ["base.frontera_cerrada"] }
   },
 
   /* ---------- Crisis (borrador) ---------- */

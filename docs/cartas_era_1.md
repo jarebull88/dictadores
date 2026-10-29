@@ -381,10 +381,10 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
 
-**Carta:** «Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.»
+**Carta:** «Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.»
 
-- **A. Los primeros para el Partido** Élite +5 · Potencias −5 · Pueblo −3 · Crisis −3
-- **B. Pídanle más al aliado** Potencias +5 · Élite −5 · Pueblo +2 · Crisis −3
+- **A. Primero los militantes** Élite +5 · Pueblo −4 · Crisis −3
+- **B. Yo sé a quién llamar** Pueblo +4 · Élite −5 · Crisis −3
 
 ### 34. La calle y los cuarteles *(borrador)*
 

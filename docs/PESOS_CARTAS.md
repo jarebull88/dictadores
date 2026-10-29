@@ -167,9 +167,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Yo también compro ahí → sube Pueblo +3, Partido +5 · crisis -3
 
 **Las colas** (Ministro de Comercio)  
-«Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.»
-- A. Los primeros para el Partido → sube Partido +5 · baja Potencias -5, Pueblo -3 · crisis -3
-- B. Pídanle más al aliado → sube Potencias +5, Pueblo +2 · baja Partido -5 · crisis -3
+«Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.»
+- A. Primero los militantes → sube Partido +5 · baja Pueblo -4 · crisis -3
+- B. Yo sé a quién llamar → sube Pueblo +4 · baja Partido -5 · crisis -3
 
 **La calle y los cuarteles** (Ministro del Interior)  
 «Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.»

@@ -1211,9 +1211,9 @@ const CARTAS = [
     // 28 oct, plan narrativo: la crisis leve (antes «La factura»), en cualquier era; umbral 6 (con 4 salía en el 89 % de las partidas)
     id: "colas", tipo: "crisis", repetible: true, disparo: e => e.crisis >= 6, titulo: "Las colas",
     personaje: "Ministro de Comercio",
-    texto: "Hay colas para el pan, para el jabón y para apuntarse en la cola. Propongo repartir números.",
-    izq: { accion: "Los primeros para el Partido", efectos: { elite: 5, potencias: -5, pueblo: -3, crisis: -3 } },
-    der: { accion: "Pídanle más al aliado", efectos: { potencias: 5, elite: -5, pueblo: 2, crisis: -3 } }
+    texto: "Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.",
+    izq: { accion: "Primero los militantes", efectos: { elite: 5, pueblo: -4, crisis: -3 } },
+    der: { accion: "Yo sé a quién llamar", efectos: { pueblo: 4, elite: -5, crisis: -3 } }   // 29 oct: invocará a Padrino Pupo cuando el motor admita invitados (docs/INVITADOS.md)
   },
 
   /* ---------- Coalición (borrador) ---------- */

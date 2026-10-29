@@ -602,3 +602,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 29 oct — Cómo pasar las pruebas
 - Decisión de Jorge: no hay conversación aparte para pruebas; cada conversación hace las suyas, pero pocas. Medido: la batería completa tarda ~235 s (`partida.test.js` 197 s por sus 500 partidas al azar; `logros` 27 s, `barras` 18 s, `personajes` 14 s, `lados` 12 s). Nuevo `npm run test:rapido` (40 partidas, ~45 s). Regla en `CLAUDE.md`: archivo del área mientras se trabaja, completa una vez antes de subir y sin subir si falla.
+- **29 oct — Las colas invocan a Padrino Pupo.** Texto definitivo: «Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.» — A. «Primero los militantes» · B. «Yo sé a quién llamar» (la que lo invoca). El montaje de los invitados en el motor (Pupo, sus ocho cartas, el arte) lo lleva la conversación de programación; la nota de traspaso está al final de `docs/INVITADOS.md`.

@@ -34,3 +34,10 @@ Por decidir (propuesta: el barbero de palacio).
 ## Decisiones
 - Los atentados no son tramas: son cartas sueltas de aceptar o rechazar (se diseñan con las muertes).
 - El hermano (Domingo) no es invitado: es el Ministro de las Fuerzas Armadas.
+
+## Para programación (29 oct) — cómo conecta Pupo con el juego
+- **La carta que lo invoca ya está en el juego** (`colas`, crisis leve): «Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.» — A. Primero los militantes · B. **Yo sé a quién llamar**. La B hoy solo mueve fuerzas; **falta que encole una de las cuatro amenazas** de Pupo.
+- **Reglas de la invocación:** sale **una amenaza al azar** de las cuatro; **una vez por era como máximo** (si ya salió o está esperando otra, no se encola nada); en la era 1 solo las de la era 1. Más adelante lo invocarán otras cartas, con otras respuestas.
+- **Las amenazas y los remedios son segundos pasos** (`enlace: true`, no cuentan): la A de cada amenaza encola su remedio al turno siguiente; la B acaba la trama. Efectos pequeños: la A sube un poco el Pueblo y baja un poco el Partido; la B, al revés (±3).
+- Los textos de las ocho cartas están arriba, en «Era 1, los cuatro flujos». Cargo para la leyenda: **Babalawo**. Ficha provisional: «Babalawo de barrio que cobra en especie y en divisas. Anunció la caída del tirano cuando el tirano ya estaba cayendo.» · Nota: «Lo visita medio gabinete de día; el otro medio, de noche.» (la revisarán los expedientes).
+- **Arte:** `assets/personajes/originales/padrino-pupo.jpg` (y `papa-ernesto.jpg`) ya existen; falta recortarlos y registrarlos en `personajes.json`.

@@ -51,6 +51,7 @@
    Un cambio aquí llega a cartas, barras, casillas, iconos, mazo, logros y menú. */
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
+  --banda-texto: var(--p-crema);                    /* 29 oct: el texto de la banda de aviso, crema (provisional: Jorge dará el estilo); fondos: rojo (secuela), azul (recompensa) y oliva (logro), todos de la paleta */
   --contorno: transparent;                          /* 28 oct, PRUEBA de Jorge: sin contornos negros (para volver a ellos: var(--p-tinta)) */
   --borde: var(--linea) solid var(--contorno);      /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
@@ -107,14 +108,15 @@ button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta es la negrita del cuerpo (800), no la 700 del navegador */   /* los botones y campos no heredan la letra solos */
 
 /* — TITULAR — */
-.titulo, .titular, .logro-escribe, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
+.titulo, .titular, .banda span, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .info-titulo, .etiqueta-boli b, .leyenda, .popup .efecto, .esquela b, .titulo-caida,
 .opcion-portada, .era-anios, .fin-anios, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
 .ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
-.titulo, .cabecera-carta h1, .logro-escribe { font-size: var(--t-l); }
+.titulo, .cabecera-carta h1 { font-size: var(--t-l); }
+.banda span { font-size: var(--t-m); }
 #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .hueco-logro { font-size: var(--t-s); }
 .logro-objeto-nombre { font-size: var(--t-m); }
@@ -672,13 +674,26 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 /* =====================================================================================================
    24 oct: LOGROS (prototipo). La estrella, «¡Nuevo logro!» y el archivo (cuadrícula → carta que se gira)
    ===================================================================================================== */
-/* «¡Nuevo logro!»: en el sitio del nombre y los años, que se esconden un momento. Aparece disolviéndose con un zoom lento y se disuelve */
-.logro-escribe { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; color: var(--p-rojo); white-space: nowrap; pointer-events: none; }
-.zona-leyenda.con-logro .leyenda { visibility: hidden; }
-.zona-leyenda.con-logro .logro-escribe { display: flex; }
-.logro-escribe.escribiendo { animation: disolver 2.2s ease-in-out both; }
-@keyframes disolver { 0% { opacity: 0; transform: scale(.82); } 25% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; transform: scale(1.14); } }
-@media (prefers-reduced-motion: reduce) { .logro-escribe.escribiendo { animation: none; } }
+/* 28 oct: la banda de aviso («¡Nueva recompensa!», «¡Nuevo logro!» y el nombre de cada secuela nueva): una banda de color a todo el ancho de la
+   pantalla, en el sitio de la leyenda. El texto entra como un sello: llega grande, golpea, rebota, se queda y se disuelve (ritmo del efecto
+   «rubber stamp» de text-effects.colorion.co, sin su estilo). Cada tipo varía el color, de dónde viene la banda, lo grande que llega el texto y lo que dura. */
+.banda { position: absolute; left: 0; right: 0; z-index: 12; display: none; align-items: center; justify-content: center; pointer-events: none; background: var(--banda-fondo); color: var(--banda-texto); white-space: nowrap; }
+.banda.activa { display: flex; animation: var(--banda-entra) var(--d) linear both; }
+.banda.activa span { animation: sello var(--d) cubic-bezier(.22, 1.4, .36, 1) both; }
+.banda.tipo-secuela { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 1.8; }
+.banda.tipo-recompensa { --banda-fondo: var(--p-azul); --banda-entra: banda-der; --s0: 2.4; }
+.banda.tipo-logro { --banda-fondo: var(--p-oliva); --banda-entra: banda-centro; --s0: 3; }
+@keyframes sello {
+  0%, 6%    { transform: scale(var(--s0)); opacity: 0; }
+  14%       { transform: scale(.96); opacity: 1; }
+  18%       { transform: scale(1.04); }
+  22%, 86%  { transform: scale(1); opacity: 1; }
+  100%      { transform: scale(1); opacity: 0; }
+}
+@keyframes banda-izq    { 0% { transform: scaleX(0); transform-origin: 0 50%; opacity: 1; } 8%, 86% { transform: scaleX(1); transform-origin: 0 50%; opacity: 1; } 100% { transform: scaleX(1); transform-origin: 0 50%; opacity: 0; } }
+@keyframes banda-der    { 0% { transform: scaleX(0); transform-origin: 100% 50%; opacity: 1; } 8%, 86% { transform: scaleX(1); transform-origin: 100% 50%; opacity: 1; } 100% { transform: scaleX(1); transform-origin: 100% 50%; opacity: 0; } }
+@keyframes banda-centro { 0% { transform: scaleY(0); opacity: 1; } 8%, 86% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .banda.activa, .banda.activa span { animation: none; } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
 .archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
@@ -767,7 +782,7 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
       <div class="carta" id="carta" role="group" aria-label="Carta de decisión"></div>
     </div>
     <div class="pie-juego">
-      <div class="zona-leyenda"><div class="leyenda" id="leyenda"></div><div class="logro-escribe" id="logro-escribe" aria-live="polite"></div></div>
+      <div class="zona-leyenda"><div class="leyenda" id="leyenda"></div></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Secuelas del régimen"></div>
       <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="true" aria-expanded="false" aria-controls="menu-juego"><i></i><i></i><i></i></button>
       <div class="menu-juego hidden" id="menu-juego" role="menu">
@@ -776,6 +791,7 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
         <button class="opcion-menu" id="btn-salir" type="button" role="menuitem">Abandonar partida</button>
       </div>
     </div>
+    <div class="banda" id="banda" role="status" aria-live="polite"><span id="banda-texto"></span></div>
     <div class="popup hidden" id="popup" role="dialog"></div>
     <!-- 24 oct: el archivo de logros, por encima de la partida (que espera debajo) -->
     <div class="archivo hidden" id="archivo" role="dialog" aria-label="Logros">
@@ -2595,7 +2611,7 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo(); quitarInfo();
+  ocultarInfo(); quitarInfo(); if (id !== "screen-game") limpiarBanda();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
   if (id === "screen-game") { ajustarLeyenda(); }
@@ -2694,7 +2710,7 @@ function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-sonido").classList.toggle("hidden", tutorial);
-  cerrarMenu(); avisoMenu(); quitarInfo();
+  cerrarMenu(); avisoMenu(); quitarInfo(); limpiarBanda();
 }
 function cerrarMenu() {
   $("menu-juego").classList.add("hidden");
@@ -3217,6 +3233,7 @@ function mostrarCartaEstado() {
   ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nueva secuela del régimen.")}</span>`);
   ajustarMensaje();
   ponerLeyenda(d.nombre);                              // 27 oct: el nombre del estado, bajo la carta (sin cinta)
+  banda("secuela", d.nombre);                          // 28 oct: y su nombre sale en la banda roja
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
   cartonDe(carta, "");
@@ -3357,7 +3374,7 @@ function continuarEra() {
   E.avisoPendiente = null;
   mostrar("screen-game");
   siguiente();
-  if (anuncioPendiente) { anuncioPendiente = false; setTimeout(anunciarLogro, animar() ? 900 : 0); }   // logros de la era que acaba de terminar
+  if (anuncioPendiente) { const n = anuncioPendiente; anuncioPendiente = null; setTimeout(() => anunciarLogro(n), animar() ? 900 : 0); }   // logros de la era que acaba de terminar
 }
 
 const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["El Partido", "llegó"], potencias: ["Las potencias", "llegaron"] };
@@ -3911,7 +3928,7 @@ function comprobarLogros(c, op) {
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
-  anunciarLogro();
+  anunciarLogro(nuevos);
 }
 /* Logros de fin de era: se miran con las barras y las secuelas con que acaba la era (28 oct, traspaso de coleccionables). Se dan al
    decidir la última carta; el aviso «¡Nuevo logro!» sale al volver a la partida, porque entre medias está la pantalla de la era. */
@@ -3921,14 +3938,14 @@ const REGLAS_LOGRO = {
   equilibrista: () => BARRAS.every(b => E.barras[b.id] >= 40 && E.barras[b.id] <= 60),
   buenos_modales: () => !E.estados.some(s => ["censura", "vigilancia", "frontera"].includes(s.id))
 };
-let anuncioPendiente = false;
+let anuncioPendiente = null;
 function comprobarLogrosEra() {
   const l = logros();
   const nuevos = LOGROS.filter(g => g.regla && g.era === E.era && !l[g.id] && REGLAS_LOGRO[g.regla] && REGLAS_LOGRO[g.regla]());
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
-  anuncioPendiente = true;
+  anuncioPendiente = nuevos;
   avisoMenu();
 }
 /* 25 oct: el logro del tutorial. La decisión del paso «logro» da la paloma (sea cual sea la respuesta); la carta vuelve con otro
@@ -3940,7 +3957,7 @@ function ganarLogroTutorial(t) {
     if (!E || E.tutorial !== t) return;
     t.logroGanado = true;
     pasoTutorial(t.i);
-    anunciarLogro();
+    anunciarLogro([LOGROS.find(g => g.id === "paloma")]);
   }, animar() ? 450 : 0);
 }
 /* Con logros sin abrir, el menú (☰) lleva encima una bolita amarilla. Si el jugador no lo toca, la bolita hace un zoom sutil cada cierto
@@ -3966,19 +3983,34 @@ function avisoMenu() {
   $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} ${n === 1 ? "logro sin abrir" : "logros sin abrir"})` : "Menú");
   vigilarAviso();
 }
-/* «¡Nuevo logro!» aparece disolviéndose con un zoom lento, en el sitio de la leyenda (que se esconde un momento), y se disuelve.
-   La bolita del menú hace su zoom grande. */
-const LOGRO_MS = 2200;
-function anunciarLogro() {
-  const z = document.querySelector("#screen-game .zona-leyenda"), t = $("logro-escribe");
+/* La banda de aviso (docs: ver .banda en estilos.css). Los avisos hacen cola: si llegan dos juntos (una recompensa y un logro), salen uno tras otro. */
+const BANDA_MS = { secuela: 2400, recompensa: 3000, logro: 3400 };
+const colaBanda = [];
+let bandaActiva = false, relojBanda = null;
+function limpiarBanda() { clearTimeout(relojBanda); colaBanda.length = 0; bandaActiva = false; const b = $("banda"); if (b) b.className = "banda"; }
+function banda(tipo, texto) { colaBanda.push({ tipo, texto }); if (!bandaActiva) siguienteBanda(); }
+function siguienteBanda() {
+  const n = colaBanda.shift(), b = $("banda"), z = document.querySelector("#screen-game .zona-leyenda");
+  if (!n || $("screen-game").classList.contains("hidden")) { limpiarBanda(); return; }
+  bandaActiva = true;
+  const pantalla = $("screen-game").getBoundingClientRect(), r = z.getBoundingClientRect();
+  b.style.top = (r.top - pantalla.top) + "px"; b.style.height = r.height + "px";
+  const ms = animar() ? BANDA_MS[n.tipo] : 2000;
+  b.style.setProperty("--d", ms + "ms");
+  $("banda-texto").textContent = n.texto;
+  b.className = "banda";
+  void b.offsetWidth;                                  // reinicia la animación
+  b.className = "banda activa tipo-" + n.tipo;
+  relojBanda = setTimeout(() => { b.className = "banda"; siguienteBanda(); }, ms);
+}
+/* Un coleccionable nuevo: la bolita del menú hace su zoom y sale la banda («¡Nueva recompensa!» o «¡Nuevo logro!»; los de fin de era son logros) */
+function anunciarLogro(nuevos) {
   avisoMenu();
   zoomAviso("salto");
-  t.textContent = "¡Nuevo logro!";
-  t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
-  z.classList.add("con-logro");
+  const lista = nuevos && nuevos.length ? nuevos : [{}];
+  if (lista.some(g => !g.regla)) banda("recompensa", "¡Nueva recompensa!");
+  if (lista.some(g => g.regla)) banda("logro", "¡Nuevo logro!");
   if (navigator.vibrate) navigator.vibrate(25);
-  clearTimeout(z._t);
-  z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
 }
 
 /* La cara de un coleccionable: su ilustración si la tiene (la paloma); si no, un fondo plano de la paleta (`fondo` en LOGROS) */

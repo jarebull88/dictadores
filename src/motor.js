@@ -492,7 +492,7 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo(); quitarInfo();
+  ocultarInfo(); quitarInfo(); if (id !== "screen-game") limpiarBanda();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
   if (id === "screen-game") { ajustarLeyenda(); }
@@ -591,7 +591,7 @@ function ponerSalir(tutorial) {
   $("btn-salir").textContent = tutorial ? "Saltar tutorial" : "Abandonar partida";
   $("btn-logros").classList.toggle("hidden", tutorial);
   $("btn-sonido").classList.toggle("hidden", tutorial);
-  cerrarMenu(); avisoMenu(); quitarInfo();
+  cerrarMenu(); avisoMenu(); quitarInfo(); limpiarBanda();
 }
 function cerrarMenu() {
   $("menu-juego").classList.add("hidden");
@@ -1114,6 +1114,7 @@ function mostrarCartaEstado() {
   ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nueva secuela del régimen.")}</span>`);
   ajustarMensaje();
   ponerLeyenda(d.nombre);                              // 27 oct: el nombre del estado, bajo la carta (sin cinta)
+  banda("secuela", d.nombre);                          // 28 oct: y su nombre sale en la banda roja
   const carta = $("carta");
   carta.classList.remove("hidden", "listo", "volteada");
   cartonDe(carta, "");
@@ -1254,7 +1255,7 @@ function continuarEra() {
   E.avisoPendiente = null;
   mostrar("screen-game");
   siguiente();
-  if (anuncioPendiente) { anuncioPendiente = false; setTimeout(anunciarLogro, animar() ? 900 : 0); }   // logros de la era que acaba de terminar
+  if (anuncioPendiente) { const n = anuncioPendiente; anuncioPendiente = null; setTimeout(() => anunciarLogro(n), animar() ? 900 : 0); }   // logros de la era que acaba de terminar
 }
 
 const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["El Partido", "llegó"], potencias: ["Las potencias", "llegaron"] };
@@ -1808,7 +1809,7 @@ function comprobarLogros(c, op) {
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
-  anunciarLogro();
+  anunciarLogro(nuevos);
 }
 /* Logros de fin de era: se miran con las barras y las secuelas con que acaba la era (28 oct, traspaso de coleccionables). Se dan al
    decidir la última carta; el aviso «¡Nuevo logro!» sale al volver a la partida, porque entre medias está la pantalla de la era. */
@@ -1818,14 +1819,14 @@ const REGLAS_LOGRO = {
   equilibrista: () => BARRAS.every(b => E.barras[b.id] >= 40 && E.barras[b.id] <= 60),
   buenos_modales: () => !E.estados.some(s => ["censura", "vigilancia", "frontera"].includes(s.id))
 };
-let anuncioPendiente = false;
+let anuncioPendiente = null;
 function comprobarLogrosEra() {
   const l = logros();
   const nuevos = LOGROS.filter(g => g.regla && g.era === E.era && !l[g.id] && REGLAS_LOGRO[g.regla] && REGLAS_LOGRO[g.regla]());
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
-  anuncioPendiente = true;
+  anuncioPendiente = nuevos;
   avisoMenu();
 }
 /* 25 oct: el logro del tutorial. La decisión del paso «logro» da la paloma (sea cual sea la respuesta); la carta vuelve con otro
@@ -1837,7 +1838,7 @@ function ganarLogroTutorial(t) {
     if (!E || E.tutorial !== t) return;
     t.logroGanado = true;
     pasoTutorial(t.i);
-    anunciarLogro();
+    anunciarLogro([LOGROS.find(g => g.id === "paloma")]);
   }, animar() ? 450 : 0);
 }
 /* Con logros sin abrir, el menú (☰) lleva encima una bolita amarilla. Si el jugador no lo toca, la bolita hace un zoom sutil cada cierto
@@ -1863,19 +1864,34 @@ function avisoMenu() {
   $("btn-menu").setAttribute("aria-label", n ? `Menú (${n} ${n === 1 ? "logro sin abrir" : "logros sin abrir"})` : "Menú");
   vigilarAviso();
 }
-/* «¡Nuevo logro!» aparece disolviéndose con un zoom lento, en el sitio de la leyenda (que se esconde un momento), y se disuelve.
-   La bolita del menú hace su zoom grande. */
-const LOGRO_MS = 2200;
-function anunciarLogro() {
-  const z = document.querySelector("#screen-game .zona-leyenda"), t = $("logro-escribe");
+/* La banda de aviso (docs: ver .banda en estilos.css). Los avisos hacen cola: si llegan dos juntos (una recompensa y un logro), salen uno tras otro. */
+const BANDA_MS = { secuela: 2400, recompensa: 3000, logro: 3400 };
+const colaBanda = [];
+let bandaActiva = false, relojBanda = null;
+function limpiarBanda() { clearTimeout(relojBanda); colaBanda.length = 0; bandaActiva = false; const b = $("banda"); if (b) b.className = "banda"; }
+function banda(tipo, texto) { colaBanda.push({ tipo, texto }); if (!bandaActiva) siguienteBanda(); }
+function siguienteBanda() {
+  const n = colaBanda.shift(), b = $("banda"), z = document.querySelector("#screen-game .zona-leyenda");
+  if (!n || $("screen-game").classList.contains("hidden")) { limpiarBanda(); return; }
+  bandaActiva = true;
+  const pantalla = $("screen-game").getBoundingClientRect(), r = z.getBoundingClientRect();
+  b.style.top = (r.top - pantalla.top) + "px"; b.style.height = r.height + "px";
+  const ms = animar() ? BANDA_MS[n.tipo] : 2000;
+  b.style.setProperty("--d", ms + "ms");
+  $("banda-texto").textContent = n.texto;
+  b.className = "banda";
+  void b.offsetWidth;                                  // reinicia la animación
+  b.className = "banda activa tipo-" + n.tipo;
+  relojBanda = setTimeout(() => { b.className = "banda"; siguienteBanda(); }, ms);
+}
+/* Un coleccionable nuevo: la bolita del menú hace su zoom y sale la banda («¡Nueva recompensa!» o «¡Nuevo logro!»; los de fin de era son logros) */
+function anunciarLogro(nuevos) {
   avisoMenu();
   zoomAviso("salto");
-  t.textContent = "¡Nuevo logro!";
-  t.classList.remove("escribiendo"); void t.offsetWidth; t.classList.add("escribiendo");
-  z.classList.add("con-logro");
+  const lista = nuevos && nuevos.length ? nuevos : [{}];
+  if (lista.some(g => !g.regla)) banda("recompensa", "¡Nueva recompensa!");
+  if (lista.some(g => g.regla)) banda("logro", "¡Nuevo logro!");
   if (navigator.vibrate) navigator.vibrate(25);
-  clearTimeout(z._t);
-  z._t = setTimeout(() => { z.classList.remove("con-logro"); t.classList.remove("escribiendo"); t.textContent = ""; }, animar() ? LOGRO_MS : 2000);
 }
 
 /* La cara de un coleccionable: su ilustración si la tiene (la paloma); si no, un fondo plano de la paleta (`fondo` en LOGROS) */

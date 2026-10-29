@@ -15,7 +15,7 @@
 
   /* 23 oct: la paleta del cartel (docs/PALETA.md): seis tintas planas */
   --p-rojo: #B0362A; --p-mostaza: #D8A02A; --p-oliva: #86762C; --p-azul: #1D51A0; --p-crema: #F0E9D6; --p-tinta: #201D14;
-  --p-rosa: #DF8178; --p-blanco: #FFFFFF; --p-verde: #115C32;   /* 27 oct: el blanco, para el borde de las cartas */ --p-granate: #7A2A1D; --p-mostaza-oscura: #9C7A26;
+  --p-rosa: #DF8178; --p-blanco: #FFFFFF;   /* 27 oct: el blanco, para el borde de las cartas */ --p-granate: #7A2A1D; --p-mostaza-oscura: #9C7A26;
   --bloque: var(--p-crema);  /* bloques claros (carta, mensaje, botones) */
   --gris: #E2D8C2;           /* gris imprenta: bloques informativos y pistas vacías */
   --carbon: var(--p-tinta);         /* contornos y rellenos */
@@ -38,7 +38,7 @@
    Un cambio aquí llega a cartas, barras, casillas, iconos, mazo, logros y menú. */
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
-  --banda-texto: var(--p-mostaza);                  /* 28 oct (boceto de Jorge): el texto de la banda de aviso, mostaza; fondos: rojo (secuela), azul (recompensa) y verde (logro) */
+  --banda-texto: var(--p-crema);                    /* 29 oct: el texto de la banda de aviso, crema (provisional: Jorge dará el estilo); fondos: rojo (secuela), azul (recompensa) y oliva (logro), todos de la paleta */
   --contorno: transparent;                          /* 28 oct, PRUEBA de Jorge: sin contornos negros (para volver a ellos: var(--p-tinta)) */
   --borde: var(--linea) solid var(--contorno);      /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
@@ -669,7 +669,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .banda.activa span { animation: sello var(--d) cubic-bezier(.22, 1.4, .36, 1) both; }
 .banda.tipo-secuela { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 1.8; }
 .banda.tipo-recompensa { --banda-fondo: var(--p-azul); --banda-entra: banda-der; --s0: 2.4; }
-.banda.tipo-logro { --banda-fondo: var(--p-verde); --banda-entra: banda-centro; --s0: 3; }
+.banda.tipo-logro { --banda-fondo: var(--p-oliva); --banda-entra: banda-centro; --s0: 3; }
 @keyframes sello {
   0%, 6%    { transform: scale(var(--s0)); opacity: 0; }
   14%       { transform: scale(.96); opacity: 1; }

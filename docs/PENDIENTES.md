@@ -35,4 +35,4 @@ Ver «Estado a 29 oct» en `PLAN_NARRATIVO.md`. Lo siguiente que pidió Jorge: l
 Ver §11 y §12 de `GUIA_ARTE_BACHS.md`. Pendiente: reverso de la era 1 (probar v10), Pupo, edición de color de Ernesto, reversos de las eras 2–4, carta del logro «Paloma amaestrada», escenas de las caídas, elegir prueba de expedientes (recomendada la A) y tintas por personaje, decidir si el Comandante pasa a una sola imagen.
 
 ## Coleccionables (la lleva «Comandante - Coleccionables»)
-Ver «Traspaso a programación» y las notas finales de `COLECCIONABLES.md`. Faltan los perjuicios de licencia, libreta, compota y botella; el beneficio de la compota; textos de la postal, el carné, los billetes y los cuatro logros de la era; los embajadores occidentales de las eras 2 a 4.
+Ver «Traspaso a programación» y las notas finales de `COLECCIONABLES.md`. Faltan el perjuicio de la botella; textos de la postal, el carné, los billetes y los cuatro logros de la era; los embajadores occidentales de las eras 2 a 4.

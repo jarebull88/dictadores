@@ -2,18 +2,19 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar, jugarPartida } = require("./_juego");
 
+const PARTIDAS = +process.env.PARTIDAS || 500;   // `npm run test:rapido` usa menos
 test("500 partidas al azar terminan bien y alguna llega a la era 2", () => {
   const j = cargar();
   j.empezar();
   let transiciones = 0, caidas = 0, finales = 0;
-  for (let g = 0; g < 500; g++) {
+  for (let g = 0; g < PARTIDAS; g++) {
     const r = jugarPartida(j);
     transiciones += r.transiciones;
     assert.ok(["¡Has caído!", "¡Has ganado!"].includes(r.principal), "final inesperado: " + r.principal);
     r.cae ? caidas++ : finales++;
   }
   assert.deepEqual(j.errores, []);
-  assert.ok(transiciones > 0, "ninguna partida llegó a la era 2");
+  if (PARTIDAS >= 500) assert.ok(transiciones > 0, "ninguna partida llegó a la era 2");   // estadística: solo con las 500 partidas completas
   assert.ok(caidas > 0, "nunca se pierde");
 });
 

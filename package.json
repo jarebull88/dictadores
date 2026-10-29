@@ -6,6 +6,7 @@
   "scripts": {
     "build": "python3 tools/build.py",
     "test": "python3 tools/build.py && node --test tests/*.test.js",
+    "test:rapido": "python3 tools/build.py && PARTIDAS=40 node --test tests/*.test.js",
     "docs": "node tools/exportar_docs.js",
     "simular": "node tools/simular.js"
   },

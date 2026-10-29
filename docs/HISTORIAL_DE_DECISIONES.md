@@ -599,3 +599,6 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 29 oct — La banda de aviso
 - «¡Nueva recompensa!», «¡Nuevo logro!» y el nombre de cada secuela nueva salen en una banda de color a todo el ancho de la pantalla, en el sitio de la leyenda; el texto entra como un sello (animación tomada del efecto «rubber stamp», solo el movimiento: escala 2,4→0,96→1,04→1, opacidad, y se disuelve). Variaciones por tipo: color (rojo, azul, oliva `--p-oliva` #86762C —el boceto era solo una idea, los colores son los de la paleta—), de dónde entra la banda, tamaño inicial del texto y duración. Sustituye al «¡NUEVO LOGRO!» rojo que se disolvía. El texto de la banda es crema provisional (`--banda-texto`; mostaza no se leía sobre el oliva).
+
+## 29 oct — Cómo pasar las pruebas
+- Decisión de Jorge: no hay conversación aparte para pruebas; cada conversación hace las suyas, pero pocas. Medido: la batería completa tarda ~235 s (`partida.test.js` 197 s por sus 500 partidas al azar; `logros` 27 s, `barras` 18 s, `personajes` 14 s, `lados` 12 s). Nuevo `npm run test:rapido` (40 partidas, ~45 s). Regla en `CLAUDE.md`: archivo del área mientras se trabaja, completa una vez antes de subir y sin subir si falla.

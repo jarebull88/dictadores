@@ -8,12 +8,23 @@ Es **un único HTML autocontenido** (`dist/index.html`, sin red). **Juego comple
 ```
 npm install            # una vez (jsdom, para las pruebas)
 pip install pillow numpy scipy   # solo para recortar personajes e iconos (tools/recortar.py)
-npm test               # monta el juego y pasa 42 pruebas
+npm test               # monta el juego y pasa TODAS las pruebas (~4 min): una sola vez, antes de subir
+npm run test:rapido    # lo mismo con 40 partidas al azar en vez de 500 (~45 s): para ir comprobando
+node --test tests/<archivo>.test.js   # solo un archivo (necesita dist/index.html montado: `npm run build`)
 npm run build          # solo montar → dist/index.html
 npm run docs           # regenera docs/ desde los datos
 npm run simular        # supervivencia y cobertura de cartas con miles de partidas
 ```
-Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. **Antes de dar algo por hecho: `npm test`.**
+Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. **Antes de dar algo por hecho, pasa las pruebas (reglas abajo, «Cómo pasar las pruebas»).**
+
+## Cómo pasar las pruebas (29 oct, Jorge: se pasaban demasiadas veces y tardan)
+**Cada conversación hace sus pruebas, pero pocas y baratas.** No hay una conversación aparte para probar: las pruebas miran el código tal como está, y cada conversación lo cambia.
+1. **Mientras trabajas:** no pases el conjunto completo tras cada ajuste. Monta (`npm run build`) y pasa **solo el archivo de pruebas del área que tocas**, o `npm run test:rapido` (~45 s) si el cambio cruza varias áreas.
+2. **Una sola vez antes de subir:** `npm test` completo (~4 min; casi todo es la prueba de 500 partidas de `partida.test.js`). **Mira el resultado antes de hacer commit y push**; si falla, arréglalo y no subas (no encadenes `npm test; git commit; git push`). GitHub vuelve a pasar la batería completa en cada subida y no publica si falla: es la red de seguridad, no un motivo para saltarse la tuya.
+3. **Cambios solo de documentos** (`docs/`, `CLAUDE.md`, comentarios): sin pruebas. **Cambios solo de textos de cartas:** `coherencia` y `lados`.
+4. **Si añades una prueba nueva, que sea barata:** cada `cargar()` monta el HTML de ~7 MB en jsdom (2–4 s); reutiliza una sola carga por prueba y no hagas bucles de cientos de partidas fuera de `partida.test.js` (que usa `PARTIDAS`, 500 por defecto; `test:rapido` la baja a 40 y se salta la comprobación estadística de «llega a la era 2»).
+5. **Qué archivo cubre qué:** `barras` (cabecera, barras, puntos de pista, caída y fin de era) · `coherencia` (datos: cartas, banderas, límites de texto, etiquetas) · `dificultad` (balance de las eras) · `diseno` y `tipografia` (reglas de CSS; 0,1 s) · `lados` (mezcla de lados) · `logros` (coleccionables) · `partida` (flujo completo, eras, tutorial, portada, leyenda, secuelas, ficha) · `personajes` (retratos, fichas y ojos).
+6. **Cuenta qué probaste y qué no** (y si fue la rápida o la completa) al terminar.
 
 ## Mapa de la carpeta
 - `src/datos.js` — **fuente única** de cartas, eras, finales y consecuencias futuras. Aquí se editan textos y efectos.
@@ -90,7 +101,7 @@ Abre `dist/index.html` en el navegador (en formato móvil vertical) para jugar. 
 - **Antes de grabar un vídeo, pregúntale** (15 oct): no siempre lo quiere, y así se ahorran tokens. Las capturas sí se pueden mandar.
 - Le gusta ir **personaje por personaje** y carta por carta, revisando cada uno. Ofrece alternativas con una recomendación.
 - Mantén `docs/` al día con `npm run docs` y apunta cada decisión nueva en `docs/HISTORIAL_DE_DECISIONES.md`.
-- **Ahorra tokens (24 oct):** `npm test` una sola vez al final de cada tanda (tarda ~2 min); varias peticiones en un mismo mensaje; capturas solo las necesarias; no releas archivos grandes enteros. Los temas largos (textos, arte, coleccionables) van en conversaciones propias.
+- **Ahorra tokens (24 oct; ver «Cómo pasar las pruebas»):** `npm test` una sola vez al final de cada tanda, antes de subir (tarda ~4 min); varias peticiones en un mismo mensaje; capturas solo las necesarias; no releas archivos grandes enteros. Los temas largos (textos, arte, coleccionables) van en conversaciones propias.
 - **Recomienda el modelo (24 oct, Jorge lo pidió):** al empezar una tarea y cuando cambie su naturaleza, di en una línea si conviene **Sonnet** (ajustes de interfaz, CSS, pruebas, documentos, cambios mecánicos) u **Opus** (revisiones profundas de cartas y diseño, análisis de coherencia, decisiones de arquitectura o de juego, depurar algo enrevesado). Si el modelo actual sobra o se queda corto, díselo antes de empezar, no después.
 
 ## Pendiente (ver también el final del historial)

@@ -132,7 +132,6 @@ Cada icono usa su color de fondo y 2 o 3 tintas más.
 ---
 
 - **Abstracto no es vacío** (28 oct, reverso v5): Jorge quiere un dibujo reconocible pero suelto o a medias, nunca una textura sin nada ni un logo centrado.
-- **Nada que retrate a una persona real** (28 oct, reverso v6-B): barba + kepi + ojos = Fidel. Si hay barba, sin ojos ni gorra.
 - **Los «dos negros» del rayado son ópticos** (28 oct): un rayado de tinta sobre color se lee más claro que una mancha plana de la misma tinta; pedir «la misma tinta» no lo arregla, hay que usar la misma técnica con más densidad.
 - **El generador arrastra el estilo de la conversación** (28 oct, reverso v9): pidió *Petulia* y salió rayado como las imágenes anteriores. Para cambiar de estilo, conversación nueva y solo el cartel adjunto; la técnica, lo primero del prompt.
 - **Si Jorge cita un cartel, quiere su estilo y su truco** (28 oct): no reinterpretar en otra técnica.

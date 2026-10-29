@@ -723,8 +723,8 @@ function abrirInfo(clave, id, fondo, origen, html) {
     if (!drag) return;
     drag.dx = e.clientX - drag.x; drag.dy = e.clientY - drag.y;
     drag.hist.push({ t: e.timeStamp, x: e.clientX, y: e.clientY }); if (drag.hist.length > 6) drag.hist.shift();
-    if (Math.abs(drag.dy) > Math.abs(drag.dx)) c.style.transform = `translateY(${sentido * drag.dy > 0 ? drag.dy : drag.dy * 0.25}px)`;
-    else c.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)`;
+    const d = Math.max(sentido * drag.dy, Math.abs(drag.dx));   // de lado o en vertical, la carta va siempre hacia su icono (arriba o abajo), sin desviarse
+    c.style.transform = `translateY(${sentido * Math.max(0, d)}px)`;
   });
   const soltar = e => {
     if (!drag) return;
@@ -733,10 +733,8 @@ function abrirInfo(clave, id, fondo, origen, html) {
     c.style.transition = "";
     if (toque) { c.style.transform = ""; c.classList.toggle("volteada"); sonar("voltear"); return; }
     const dt = Math.max(1, h[h.length - 1].t - h[0].t), vx = (h[h.length - 1].x - h[0].x) / dt, vy = (h[h.length - 1].y - h[0].y) / dt;
-    const vertical = Math.abs(dy) > Math.abs(dx);
-    const sale = vertical
-      ? sentido * dy > 0 && (Math.abs(dy) > umbral() || (sentido * vy > 0.55 && Math.abs(dy) > 36))
-      : Math.abs(dx) > umbral() || (Math.abs(vx) > 0.55 && Math.abs(dx) > 36);
+    const d = Math.max(sentido * dy, Math.abs(dx)), vd = Math.max(sentido * vy, Math.abs(vx));
+    const sale = d > umbral() || (vd > 0.55 && d > 36);
     if (sale) cerrarInfo();
     else { c.style.transform = ""; if (Math.abs(dx) > 8 || Math.abs(dy) > 8) sonar("volver"); }
   };
@@ -1640,8 +1638,8 @@ function arrastrable(carta, op) {
     if (Math.abs(drag.dx) > 6 || (op.abajo && op.abajo() && drag.dy > 6)) coger();
     if (carta.classList.contains("volteada") || (op.fija && op.fija())) return;   // por detrás (o si es fija) no se arrastra: solo se toca
     drag.hist.push({ t: e.timeStamp, x: e.clientX, y: e.clientY });
-    if (op.abajo && op.abajo() && drag.dy > Math.abs(drag.dx)) {   // 28 oct: la carta de secuela también se guarda deslizándola hacia abajo, a su casilla
-      carta.style.transform = `translateY(${drag.dy}px)`;
+    if (op.abajo && op.abajo() && (op.lateralAbajo && op.lateralAbajo() ? true : drag.dy > Math.abs(drag.dx))) {   // 28–29 oct: la carta de secuela se guarda hacia abajo, a su casilla; si se desliza a un lado, baja igual (sin desviarse)
+      carta.style.transform = `translateY(${op.lateralAbajo && op.lateralAbajo() ? Math.max(drag.dy, Math.abs(drag.dx)) : drag.dy}px)`;
       return;
     }
     if (drag.hist.length > 6) drag.hist.shift();
@@ -1656,10 +1654,12 @@ function arrastrable(carta, op) {
     arrastrando = false;
     if (toque || (op.fija && op.fija())) { volver(); if (op.toque && (toque || Math.abs(bruto) < 30)) op.toque(); return; }
     if (carta.classList.contains("volteada")) { volver(); return; }
-    if (op.abajo && op.abajo() && dy > Math.abs(bruto)) {                        // hacia abajo: se guarda en su casilla
-      const vy = (h[h.length - 1].y - h[0].y) / Math.max(1, h[h.length - 1].t - h[0].t);
-      if ((dy > umbral() || (vy > 0.55 && dy > 36)) && !(op.bloqueaDer && op.bloqueaDer())) { op.decidir(1); return; }
-      volver(); if (dy > 8) sonar("volver"); return;
+    const lateral = !!(op.lateralAbajo && op.lateralAbajo());
+    if (op.abajo && op.abajo() && (lateral || dy > Math.abs(bruto))) {          // hacia abajo (o de lado, que baja igual): se guarda en su casilla
+      const d = lateral ? Math.max(dy, Math.abs(bruto)) : dy, dt = Math.max(1, h[h.length - 1].t - h[0].t);
+      const vd = lateral ? Math.max((h[h.length - 1].y - h[0].y) / dt, Math.abs(h[h.length - 1].x - h[0].x) / dt) : (h[h.length - 1].y - h[0].y) / dt;
+      if ((d > umbral() || (vd > 0.55 && d > 36)) && !(op.bloqueaDer && op.bloqueaDer())) { op.decidir(1); return; }
+      volver(); if (d > 8) sonar("volver"); return;
     }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
     const lanzada = Math.abs(v) > 0.55 && Math.abs(dx) > 36 && Math.sign(v) === Math.sign(dx) && dx === bruto;
@@ -1675,7 +1675,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, bloqueaDer: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
+arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, lateralAbajo: () => modoEstado && !(E && E.tutorial), bloqueaDer: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Primero, elecciones») ---------- */

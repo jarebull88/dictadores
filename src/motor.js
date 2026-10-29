@@ -1941,6 +1941,7 @@ function pintarArchivo() {
 function verLogro(id) {
   const g = LOGROS.find(x => x.id === id), nuevo = !logros()[id].abierto;
   const v = $("archivo-abrir");
+  const celda = nuevo ? (() => { const c = $("archivo-rejilla").querySelector(`[data-id="${id}"]`); return c ? c.getBoundingClientRect() : null; })() : null;   // la casilla de la que salta la carta (antes de esconder la rejilla)
   v.className = "logro-vista";
   v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
     <div class="logro-escena">
@@ -1963,16 +1964,34 @@ function verLogro(id) {
   carta.addEventListener("click", girar);
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
-  if (nuevo && animar()) lineasZoom(v, escena);
+  if (nuevo && animar()) efectoDescubrir(v, escena, celda);
 }
-/* 29 oct: al descubrir una carta por primera vez, líneas de velocidad blancas (zoom de anime) que salen de detrás de la carta */
-function lineasZoom(vista, escena) {
+/* 29 oct (versión «Explosión», elegida por Jorge): la carta salta de su casilla a su sitio con un pequeño rebote; por detrás, rayos blancos de anime que
+   estallan y se apagan, un flash y dos ondas. Se hace con la API de animaciones y se limpia solo. */
+function efectoDescubrir(vista, escena, celda) {
   const a = escena.getBoundingClientRect(), b = vista.getBoundingClientRect();
-  const z = document.createElement("div");
-  z.className = "lineas-zoom"; z.setAttribute("aria-hidden", "true");
-  z.style.left = (a.left - b.left + a.width / 2) + "px"; z.style.top = (a.top - b.top + a.height / 2) + "px";
-  z.addEventListener("animationend", () => z.remove());
-  vista.prepend(z);
+  const T = (s, r) => `translate(-50%, -50%) scale(${s}) rotate(${r}deg)`;
+  const cx = (a.left - b.left + a.width / 2) + "px", cy = (a.top - b.top + a.height / 2) + "px";
+  const fx = [];
+  const poner = (clase, tipo) => { const e = document.createElement("div"); e.className = "zoom-fx " + clase; e.setAttribute("aria-hidden", "true"); if (tipo !== "flash") { e.style.left = cx; e.style.top = cy; } vista.prepend(e); fx.push(e); return e; };
+  const r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
+  const carta = vista.querySelector(".logro-carta");
+  if (celda && celda.width) {
+    const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
+    carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
+      { duration: 800, delay: 150, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
+  }
+  r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: .9, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
+    { duration: 2800, delay: 350, easing: "ease-out", fill: "both" });
+  r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
+    { duration: 2200, delay: 500, easing: "ease-out", fill: "both" });
+  fl.animate([{ opacity: 0 }, { opacity: .9, offset: .18 }, { opacity: 0 }], { duration: 450, delay: 520, fill: "both" });
+  [[o1, 600, 4], [o2, 780, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
+    { duration: 1000, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
+  // el título y la decisión aparecen con la carta ya en su sitio
+  vista.querySelector(".logro-cab").animate([{ opacity: 0, transform: "translateY(18px) scale(.85)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: 800, easing: "cubic-bezier(.2, 1.4, .4, 1)", fill: "both" });
+  vista.querySelectorAll(".archivo-pista").forEach(p => p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 1100, fill: "both" }));
+  setTimeout(() => fx.forEach(e => e.remove()), 3300);
 }
 $("archivo-cerrar").addEventListener("click", () => {
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) {   // 25 oct: al cerrar el logro, sigue el tutorial

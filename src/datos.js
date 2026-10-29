@@ -1298,7 +1298,7 @@ const LOGROS = [
   { id: "cuatro_casillas", era: 1, regla: "cuatro_casillas", fondo: "oliva", titulo: "El pack completo", subtitulo: "La autocrítica puede esperar.",
     decision: "Acabar la era con cuatro secuelas a la vez",
     descripcion: "No todo el mundo consigue meter a un país en tantos problemas. Hace falta constancia, dedicación y una gran capacidad para no aprender de los errores." },
-  { id: "por_los_pelos", era: 1, regla: "por_los_pelos", fondo: "rojo", titulo: "Por los pelos", subtitulo: "La estabilidad está sobrevalorada.",
+  { id: "por_los_pelos", era: 1, regla: "por_los_pelos", fondo: "mostaza", titulo: "Por los pelos", subtitulo: "La estabilidad está sobrevalorada.",
     decision: "Acabar la era con dos o más fuerzas por debajo de 15 o por encima de 85",
     descripcion: "Terminaste una era con varios indicadores en zona crítica, pero seguiste al mando. El informe oficial certifica un sobrecumplimiento histórico de los objetivos previstos." },
   { id: "equilibrista", era: 1, regla: "equilibrista", fondo: "mostaza", titulo: "Tu mejor versión", subtitulo: "A la gente no le va tan mal.",

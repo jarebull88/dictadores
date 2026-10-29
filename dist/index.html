@@ -1211,8 +1211,8 @@ const CARTAS = [
     der: { accion: "Yo también compro ahí", efectos: { pueblo: 3, elite: 5, crisis: -3 }, banderas: ["base.mercado_paralelo"] }
   },
   {
-    // 28 oct, plan narrativo: la crisis leve (antes «La factura»), en cualquier era; umbral 6 (con 4 salía en el 89 % de las partidas)
-    id: "colas", tipo: "crisis", repetible: true, disparo: e => e.crisis >= 6, titulo: "Las colas",
+    // 28 oct, plan narrativo: la crisis leve (antes «La factura»), en cualquier era; umbral 5 desde el 29 oct (antes 6: en la era 1 salía en ~15 % de las partidas; con 5, ~30 %; con 4 salía en el 89 % en todas las eras)
+    id: "colas", tipo: "crisis", repetible: true, disparo: e => e.crisis >= 5, titulo: "Las colas",
     personaje: "Ministro de Comercio",
     texto: "Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.",
     izq: { accion: "Primero los militantes", efectos: { elite: 5, pueblo: -4, crisis: -3 } },

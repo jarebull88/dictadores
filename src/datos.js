@@ -68,7 +68,7 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
     id: "visitante_oriental", tipo: "ancla", ventana: [3, 7], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
-    texto: "Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.",
+    texto: "Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.",
     izq: { accion: "Toda ayuda es poca", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 1 }] },
     der: { accion: "Solo petróleo", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
   },

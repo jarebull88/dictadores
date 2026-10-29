@@ -32,7 +32,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Les pagaremos con azúcar → sube Partido +6 · baja Pueblo -6
 
 **El visitante del bloque oriental** (Embajador del bloque oriental)  
-«Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
+«Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.»
 - A. Toda ayuda es poca → sube Potencias +9, Ejército +5 · crisis +2
 - B. Solo petróleo → baja Potencias -9, Ejército -5 · crisis +1
 

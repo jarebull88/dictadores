@@ -67,7 +67,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 3 a 7 de su era; a partir del año 3 de la era.
 
-**Carta:** «Le ofrecemos petróleo a cambio de azúcar. Y asesores, para que su Revolución no cometa errores.»
+**Carta:** «Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.»
 
 - **A. Toda ayuda es poca** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
 - **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años

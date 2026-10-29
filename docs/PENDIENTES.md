@@ -27,7 +27,8 @@ Para verificar hechos históricos o nombres de ministerios hace falta una conver
 10. «Revolución con buenos modales» se cumple si al acabar la era no hay Censura, Vigilancia ni Jaula (lectura literal); si Jorge la quiere «en toda la era», registrar las secuelas que pasan.
 11. Peso del HTML ~7,7 MB (el «4,3 MB» antiguo ya no es cierto); no tocar sin que Jorge lo pida.
 12. **Logros de era (29 oct, Jorge):** las cartas de logro no tienen Beneficio ni Perjuicio (quitarlo de la carta girada; solo los coleccionables los llevan). «Por los pelos» se consigue con **2 o más fuerzas en zona crítica** al terminar la era.
-13. Quitar de `CLAUDE.md` lo que se quede obsoleto cuando esto cambie.
+13. **Tutorial nuevo (29 oct, Textos; los textos ya están en `TUTORIAL`):** (a) las dos respuestas siguen adelante: la izquierda ya no vuelve atrás; (b) la carta de la secuela «Luna de miel» se puede girar en su paso, y se quita el paso «guardar» (su entrada en `TUTORIAL` es provisional: bórrala y ajusta la prueba de los ocho pasos de `partida.test.js`); (c) el título de la pantalla del nombre pasa a «Era 1: La Revolución», y el del paso de era, a «Era 2: La Purga», etc.; (d) las respuestas de la pantalla del nombre («¡La Revolución empieza hoy!» / «Primero, elecciones», en `motor.js`) siguen por decidir con Jorge.
+14. Quitar de `CLAUDE.md` lo que se quede obsoleto cuando esto cambie.
 
 - **Logro «la historia de Ernesto»** (29 oct, Jorge): se da al llegar a la tercera carta de Papá Ernesto (`ernesto_higado`), que solo sale si aceptas el torneo y el whisky. Textos: Coleccionables; regla: Programación.
 

@@ -1970,6 +1970,8 @@ function efectoDescubrir(vista, escena, celda) {
   const T = (s, r) => `translate(-50%, -50%) scale(${s}) rotate(${r}deg)`;
   const cx = (a.left - b.left + a.width / 2) + "px", cy = (a.top - b.top + a.height / 2) + "px";
   const fx = [];
+  const color = ["rosa", "rojo", "oliva", "mostaza", "azul"][Math.floor(Math.random() * 5)];   // 29 oct, Jorge: cada vez, un color de la paleta con el blanco
+  vista.style.setProperty("--zoom-color", `var(--p-${color})`);
   const poner = (clase, tipo) => { const e = document.createElement("div"); e.className = "zoom-fx " + clase; e.setAttribute("aria-hidden", "true"); if (tipo !== "flash") { e.style.left = cx; e.style.top = cy; } vista.prepend(e); fx.push(e); return e; };
   const sombra = poner("sombra-zoom", "flash"), r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
   const carta = vista.querySelector(".logro-carta");
@@ -1983,12 +1985,12 @@ function efectoDescubrir(vista, escena, celda) {
   r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
     { duration: 2200, delay: 500, easing: "ease-out", fill: "both" });
   fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 550, delay: 520, fill: "both" });
-  sombra.animate([{ opacity: 0 }, { opacity: 1, offset: .12 }, { opacity: 1, offset: .6 }, { opacity: 0 }], { duration: 2800, delay: 250, fill: "both" });   // 29 oct: el fondo se oscurece un poco para que el blanco resalte
+  sombra.animate([{ opacity: 0 }, { opacity: 1, offset: .15 }, { opacity: .55, offset: .5 }, { opacity: 0 }], { duration: 2000, delay: 250, easing: "ease-out", fill: "both" });   // 29 oct: el fondo se tiñe del color y se difumina hasta el beige
   [[o1, 600, 4], [o2, 780, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
     { duration: 1000, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
   // el título y la decisión aparecen con la carta ya en su sitio
-  vista.querySelector(".logro-cab").animate([{ opacity: 0, transform: "translateY(18px) scale(.85)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: 800, easing: "cubic-bezier(.2, 1.4, .4, 1)", fill: "both" });
-  vista.querySelectorAll(".archivo-pista").forEach(p => p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 1100, fill: "both" }));
+  vista.querySelector(".logro-cab").animate([{ opacity: 0, transform: "translateY(18px) scale(.85)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: 1100, easing: "cubic-bezier(.2, 1.4, .4, 1)", fill: "both" });
+  vista.querySelectorAll(".archivo-pista").forEach(p => p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 1300, fill: "both" }));
   setTimeout(() => fx.forEach(e => e.remove()), 3300);
 }
 $("archivo-cerrar").addEventListener("click", () => {

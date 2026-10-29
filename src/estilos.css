@@ -731,8 +731,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
   -webkit-mask-image: radial-gradient(circle closest-side, transparent 14%, #000 30%); mask-image: radial-gradient(circle closest-side, transparent 14%, #000 30%); }
 /* 29 oct, Jorge: el blanco, mucho más blanco: rayos más gruesos, opacos hasta el borde, sobre un fondo algo oscurecido */
 .rayos-zoom.r1 { background: repeating-conic-gradient(from 3deg, var(--p-blanco) 0 1.6deg, transparent 1.6deg 4.2deg), repeating-conic-gradient(from 0deg, var(--p-blanco) 0 0.9deg, transparent 0.9deg 6.1deg); }
-.rayos-zoom.r2 { background: repeating-conic-gradient(from 8deg, var(--p-blanco) 0 0.9deg, transparent 0.9deg 3deg), repeating-conic-gradient(from 1deg, var(--p-blanco) 0 2.2deg, transparent 2.2deg 11deg); }
-.sombra-zoom { z-index: 0; inset: 0; background: color-mix(in srgb, var(--p-tinta) 24%, transparent); }
+.rayos-zoom.r2 { background: repeating-conic-gradient(from 8deg, var(--zoom-color, var(--p-blanco)) 0 0.9deg, transparent 0.9deg 3deg), repeating-conic-gradient(from 1deg, var(--p-blanco) 0 2.2deg, transparent 2.2deg 11deg); }
+.sombra-zoom { z-index: 0; inset: 0; background: color-mix(in srgb, var(--zoom-color, var(--p-mostaza)) 70%, transparent); }   /* 29 oct: un color de la paleta (al azar), no el gris */
 .onda-zoom { z-index: 0; width: 40vmin; height: 40vmin; margin: -20vmin 0 0 -20vmin; border: 8px solid var(--p-blanco); border-radius: 50%; }
 .flash-zoom { z-index: 3; inset: 0; background: var(--p-blanco); }
 .archivo-pista { margin: 14px 0 0; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }

@@ -339,10 +339,10 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 12.
 
-**Carta:** «Pedimos un economista para el Banco Nacional y el comandante Cabaña alzó la mano. Oyó «comunista».»
+**Carta:** «Pedimos un economista para el Banco Nacional y el Comandante Cabaña se ofreció porque oyó «comunista».»
 
 - **A. Me sirve igual** Ejército +4 · Élite −4
-- **B. Uno que sepa sumar** Élite +4 · Ejército −4
+- **B. Mejor uno que sepa sumar** Élite +4 · Ejército −4
 
 ### 30. Las barbas
 

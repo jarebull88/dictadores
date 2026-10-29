@@ -606,3 +606,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 
 ## 29 oct — Swap de secuelas e iconos
 - Al deslizar a un lado la carta de secuela o la de información, la carta ya no se va de lado y luego se desvía: baja (secuela y casilla) o sube (fuerza) en línea recta hacia su sitio, con el desplazamiento medido por lo que se arrastra en cualquier dirección. En el tutorial, la izquierda sigue volviendo a la lección anterior.
+- **29 oct — Cierre de la conversación de textos del plan narrativo.** Estado, lo que se probó y descartó, las reglas que Jorge fue dictando y lo pendiente (muertes de la era 1, expedientes, era 2…) en `docs/PLAN_NARRATIVO.md`, «Estado a 29 oct». Reparto: esta conversación hace textos, estructura de cartas y pesos; el motor, el arte y los coleccionables van en sus conversaciones.

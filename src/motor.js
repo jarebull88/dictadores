@@ -654,7 +654,6 @@ function mostrarInfo(i) {
   const el = $("ranuras").children[i];
   if (!s || !el) { quitarInfo(); return; }
   abrirInfo("estado-" + s.id, s.id, FONDO_ESTADO[s.id], el, htmlEstado(s.id));
-  if (E.tutorial && TUTORIAL[E.tutorial.i].paso === "guardar") { E.tutorial.casilla = true; $("ranuras").classList.remove("destacar"); }
 }
 const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
 function mostrarFuerza(id, el) {
@@ -713,6 +712,7 @@ function abrirInfo(clave, id, fondo, origen, html) {
   $("carta").parentNode.appendChild(c);
   cartaInfo = c;
   ajustarFicha(c);
+  sonar("deslizar");                                   // 29 oct: sale con sonido, como al cerrarse
   if (animar()) {
     c.style.transition = "none"; c.style.transform = transformDesde(c, origen); c.style.opacity = "0.3";
     void c.offsetWidth;
@@ -833,7 +833,7 @@ function pintarCarta(c) {
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
   if (ocupado) return;
-  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso !== "girar") return;   // 17 oct: en el tutorial solo se gira en su paso
+  if (E && E.tutorial && !["girar", "estado"].includes(TUTORIAL[E.tutorial.i].paso)) return;   // 17 oct: en el tutorial solo se gira en su paso (29 oct: y la secuela «Luna de miel», en el suyo)
   pintarEleccion(0);
   const volteada = $("carta").classList.toggle("volteada");
   sonar("voltear");
@@ -864,8 +864,7 @@ function pintarEleccion(dir) {
   if (modoEstado && !(E && E.tutorial)) return;       // la carta de estado no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
   let op = c && dir !== 0 && !modoEstado ? opcionDe(dir) : null;
-  if (E && E.tutorial && dir < 0) op = { accion: E.tutorial.i === 0 ? "Volver al inicio" : "Lección anterior", efectos: {} };   // 25 oct: la izquierda vuelve atrás
-  else if (modoEstado) op = null;
+  if (modoEstado) op = null;
   const r = $("respuesta");
   if (r) {
     if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
@@ -1002,14 +1001,6 @@ function lanzarCarta(carta, dir) {
   carta.style.opacity = "0";
 }
 function decidir(dir) {
-  if (E && E.tutorial && dir < 0 && !ocupado) {        // 25 oct: en el tutorial, la izquierda vuelve a la lección anterior (o a la portada, en la primera)
-    ocupado = true; ocultarInfo(); hundirMensaje();
-    const carta = $("carta"); carta.classList.remove("volteada");
-    pintarEleccion(dir); carta.classList.add("listo");
-    lanzarCarta(carta, dir);
-    setTimeout(() => volverTutorial(), 240);
-    return;
-  }
   if (modoEstado) { recogerEstado(); return; }   // 27 oct: la carta de estado se guarda al deslizarla a un lado u otro
   if (ocupado || tutorialBloquea()) return;
   ocupado = true;
@@ -1188,7 +1179,7 @@ function recogerEstado() {
 }
 
 function siguiente() {
-  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras guardar «Luna de miel» en su casilla
+  if (E.tutorial) { pasoTutorial(E.tutorial.i + 1); return; }   // tras deslizar «Luna de miel» hacia su casilla
   pintarCabecera();
   if (E.estadoNuevo) { mostrarCartaEstado(); return; }
   const nueva = siguienteCarta();
@@ -1362,8 +1353,8 @@ function actualizarVistaNombre() {
 const tutorialBloquea = () => {
   const t = E && E.tutorial; if (!t) return false;
   const paso = TUTORIAL[t.i].paso;
-  return (paso === "girar" && !t.girada) || (paso === "guardar" && !t.casilla) ||
-    (paso === "fuerzas" && !t.fuerzaVista) || (paso === "logro" && t.logroGanado);   // hay que girar la carta / tocar la casilla / tocar un icono (17 oct)
+  return (paso === "girar" && !t.girada) ||
+    (paso === "fuerzas" && !t.fuerzaVista) || (paso === "logro" && t.logroGanado);   // hay que girar la carta / tocar un icono (17 oct) / abrir el logro
 };
 
 function empezarTutorial() {
@@ -1413,7 +1404,6 @@ function pasoTutorial(i, sinEntrada) {
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
   carta.classList.toggle("giro-destacado", p.paso === "girar");
-  $("ranuras").classList.toggle("destacar", p.paso === "guardar");     // la casilla de «Luna de miel» parpadea hasta tocarla
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira
@@ -1480,13 +1470,6 @@ function encenderFuerzas() {
   setTimeout(() => { if (E && E.tutorial && E.tutorial.i === i && !E.tutorial.fuerzaVista) $("barras").classList.add("destacar"); },
     350 + barras.length * 450);
 }
-/* 25 oct: la izquierda en el tutorial vuelve a la lección anterior; en la primera, a la portada */
-function volverTutorial() {
-  const t = E.tutorial;
-  if (t.i === 0) { terminarTutorial("portada"); return; }
-  E.barras = { pueblo: 50, ejercito: 50, elite: 50, potencias: 50 }; pintarBarras();
-  pasoTutorial(t.i - 1);
-}
 function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
@@ -1498,7 +1481,7 @@ function terminarTutorial(destino) {
 }
 /* 17 oct: el nombre de la era que empieza, arriba, a rotulador rojo, en la pantalla del nombre y al pasar de era
    (17 oct: sustituye a «Sigues en el poder»; debajo de la carta ya dice cuántos años llevas) */
-const nombreEra = n => ERAS[n - 1].nombre;   // 17 oct, Jorge: solo el nombre («La Purga»)
+const nombreEra = n => `Era ${n}: ${ERAS[n - 1].nombre}`;   // 29 oct, Jorge: «Era 2: La Purga» (17 oct: solo el nombre)
 /* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
 function ajustarTituloEra(h) {
   h.style.fontSize = "";
@@ -1638,8 +1621,8 @@ function arrastrable(carta, op) {
     marcarListo(dir !== 0);
   }
   carta._mover = mover; carta._volver = volver; carta._umbral = umbral;
-  // 25 oct: en el tutorial, mientras falta una acción (girar, tocar un icono…), solo se puede arrastrar a la izquierda (volver)
-  const efectivo = dx => (op.bloqueaDer && op.bloqueaDer() && dx > 0 ? 0 : dx);
+  // 25 oct: en el tutorial, mientras falta una acción (girar, tocar un icono…), la carta no se puede deslizar (29 oct: ni a la izquierda: ya no hay «volver»)
+  const efectivo = dx => (op.bloquea && op.bloquea() ? 0 : dx);
   carta.addEventListener("pointermove", e => {
     if (!drag) return;
     drag.dx = e.clientX - drag.x; drag.dy = e.clientY - drag.y;
@@ -1666,7 +1649,7 @@ function arrastrable(carta, op) {
     if (op.abajo && op.abajo() && (lateral || dy > Math.abs(bruto))) {          // hacia abajo (o de lado, que baja igual): se guarda en su casilla
       const d = lateral ? Math.max(dy, Math.abs(bruto)) : dy, dt = Math.max(1, h[h.length - 1].t - h[0].t);
       const vd = lateral ? Math.max((h[h.length - 1].y - h[0].y) / dt, Math.abs(h[h.length - 1].x - h[0].x) / dt) : (h[h.length - 1].y - h[0].y) / dt;
-      if ((d > umbral() || (vd > 0.55 && d > 36)) && !(op.bloqueaDer && op.bloqueaDer())) { op.decidir(1); return; }
+      if ((d > umbral() || (vd > 0.55 && d > 36)) && !(op.bloquea && op.bloquea())) { op.decidir(1); return; }
       volver(); if (d > 8) sonar("volver"); return;
     }
     const v = (h[h.length - 1].x - h[0].x) / Math.max(1, h[h.length - 1].t - h[0].t);   // px por ms
@@ -1683,7 +1666,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, lateralAbajo: () => modoEstado && !(E && E.tutorial), bloqueaDer: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
+arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, lateralAbajo: () => modoEstado, bloquea: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Me da miedo el micrófono») ---------- */
@@ -1732,7 +1715,7 @@ arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccion
   toque: () => {                                       // al tocarla se gira y enseña su expediente
     const c = $("carta-nombre"), n = c.querySelector(".dorso .ficha-nombre");
     if (n) n.textContent = fichaComandante().nombre;
-    c.classList.toggle("volteada"); eleccionNombre(0); ajustarFicha(c);
+    c.classList.toggle("volteada"); sonar("voltear"); eleccionNombre(0); ajustarFicha(c);
   } });
 /* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
 if (window.ResizeObserver) new ResizeObserver(() => {
@@ -1798,7 +1781,7 @@ function decidirEra(dir) {
   setTimeout(() => { if (dir > 0) continuarEra(); else mostrar("screen-start"); }, 240);
 }
 arrastrable($("carta-era"), { activa: () => !eraOcupada, mostrar: eleccionEra, decidir: decidirEra,
-  toque: () => { $("carta-era").classList.toggle("volteada"); eleccionEra(0); } });   // al tocarla se gira: detrás, el informe
+  toque: () => { $("carta-era").classList.toggle("volteada"); sonar("voltear"); eleccionEra(0); } });   // al tocarla se gira: detrás, el informe
 
 /* =====================================================
    LOGROS (24 oct, prototipo). Al decidir algo que da un coleccionable cae el sello «¡Nuevo logro!» bajo la carta y
@@ -1813,7 +1796,7 @@ const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
 /* Una decisión da un logro por una bandera que pone, o por la carta y la opción elegidas (para las opciones que no ponen bandera) */
 function comprobarLogros(c, op) {
   const l = logros();
-  const nuevos = LOGROS.filter(g => !l[g.id] && ((g.bandera && (op.banderas || []).includes(g.bandera)) || (g.carta && c && c.id === g.carta && op.accion === g.decision)));
+  const nuevos = LOGROS.filter(g => !l[g.id] && ((g.bandera && (op.banderas || []).includes(g.bandera)) || (g.carta && c && c.id === g.carta && op.accion === g.decision) || (g.llegar && c && c.id === g.llegar)));
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);
@@ -1890,6 +1873,7 @@ function siguienteBanda() {
   b.className = "banda";
   void b.offsetWidth;                                  // reinicia la animación
   b.className = "banda activa tipo-" + n.tipo;
+  sonar("aviso");                                      // 29 oct: suena con cada cartel (recompensa, logro o secuela)
   relojBanda = setTimeout(() => { b.className = "banda"; siguienteBanda(); }, ms);
 }
 /* Un coleccionable nuevo: la bolita del menú hace su zoom y sale la banda («¡Nueva recompensa!» o «¡Nuevo logro!»; los de fin de era son logros) */
@@ -1960,7 +1944,7 @@ function verLogro(id) {
   const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
   if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
   const carta = v.querySelector(".logro-carta"), pista = v.querySelector(".pista-girar");
-  const girar = () => { carta.classList.toggle("volteada"); if (pista) pista.remove(); };
+  const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); if (pista) pista.remove(); };
   carta.addEventListener("click", girar);
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía

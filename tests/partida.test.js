@@ -93,7 +93,7 @@ test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (
   assert.ok(j.visible("screen-game"), "con nombre, a la derecha empieza");
 });
 
-test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, entra «Luna de miel» y acaba en el nombre", () => {
+test("tutorial «La víspera»: siete pasos, las dos respuestas siguen adelante, solo se gira la carta cuando toca (y «Luna de miel» en el suyo), entra «Luna de miel» y acaba en el nombre", () => {
   const j = cargar();
   j.w.eval("empezarTutorial()");
   assert.ok(j.visible("screen-game"));
@@ -102,7 +102,7 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   j.w.eval("voltear()");
   assert.ok(!j.d.querySelector("#carta").classList.contains("volteada"), "antes de su paso no se gira");
   assert.ok(!j.d.querySelector("#carta").classList.contains("con-giro"), "ni se ve el icono de girar");
-  j.tecla(1);                                                        // 1: deslizar
+  j.tecla(-1);                                                       // 1: deslizar (29 oct: la izquierda también sigue adelante)
   assert.equal(j.w.eval("E.tutorial.i"), 1);
   assert.ok(j.d.querySelector("#carta").classList.contains("giro-destacado"), "en su paso, el icono parpadea");
   j.tecla(1);                                                        // 2: sin girar la carta, no avanza
@@ -122,27 +122,22 @@ test("tutorial «La víspera»: ocho pasos, solo se gira la carta cuando toca, e
   j.tecla(1); j.tecla(1);                                            // 3: fuerzas · 4: pistas
   assert.equal(j.w.eval("E.tutorial.i"), 4);
   assert.ok(j.w.eval("modoEstado"), "entra la carta de «Luna de miel»");
-  j.w.eval("recogerEstado()");
-  assert.equal(j.w.eval("E.tutorial.i"), 5);                         // 6: guardar
-  j.tecla(1);
-  assert.equal(j.w.eval("E.tutorial.i"), 5, "hay que tocar la casilla antes de seguir");
-  j.w.eval("mostrarInfo(0)");
-  assert.ok(j.d.querySelector("#carta-info"), "tocar una casilla saca la carta del estado");
-  j.w.eval("cerrarInfo()");
-  j.tecla(1);
-  assert.equal(j.w.eval("E.tutorial.i"), 6);                         // 7: logro
+  j.w.eval("voltear()");
+  assert.ok(j.d.querySelector("#carta").classList.contains("volteada"), "29 oct: la secuela se puede girar en su paso");
+  j.w.eval("voltear(); recogerEstado()");
+  assert.equal(j.w.eval("E.tutorial.i"), 5);                         // 6: logro (el paso «guardar» ya no existe)
   assert.ok(j.$("btn-recompensas").classList.contains("hidden"), "«Recompensas» no sale en el menú hasta ganar el logro");
   j.tecla(1);
-  assert.equal(j.w.eval("E.tutorial.i"), 6);
+  assert.equal(j.w.eval("E.tutorial.i"), 5);
   assert.ok(j.w.eval("E.tutorial.logroGanado"), "la decisión da el primer logro");
   assert.ok(!j.$("btn-recompensas").classList.contains("hidden") && j.$("btn-recompensas").classList.contains("destacar"), "sale «Recompensas» en el menú, destacado");
   j.tecla(1);
-  assert.equal(j.w.eval("E.tutorial.i"), 6, "hay que abrir el logro antes de seguir");
+  assert.equal(j.w.eval("E.tutorial.i"), 5, "hay que abrir el logro antes de seguir");
   j.w.eval("abrirArchivo()");
   assert.ok(j.d.querySelector("#archivo-abrir .logro-carta img"), "el logro enseña su ilustración");
   j.$("archivo-cerrar").click();
-  assert.equal(j.w.eval("E.tutorial.i"), 7);
-  j.tecla(1);                                                        // 8: fin → nombre
+  assert.equal(j.w.eval("E.tutorial.i"), 6);
+  j.tecla(-1);                                                       // 7: fin → nombre (también con la izquierda)
   assert.ok(j.visible("screen-name"));
   j.$("input-nombre").value = "aureliano"; j.w.eval("decidirNombre(1)");
   assert.ok(j.visible("screen-game"));

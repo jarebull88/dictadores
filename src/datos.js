@@ -1237,8 +1237,6 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
   { paso: "pistas", texto: "Mira, el Ejército está en rojo, y el rojo no favorece a nadie. ¿Le das algo a mi tropa?", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "El Pueblo va primero", der: "Tu tropa puede esperar", efectos: { izq: { pueblo: 36, ejercito: -4 }, der: { pueblo: 20, ejercito: -2 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador.
   { paso: "estado", texto: "Algunas decisiones traen secuelas. Ahora el Pueblo te adora, y ya sabes: tanto cariño mató al niño." },
-  // 29 oct: Jorge quita este paso (la secuela se gira en el anterior); se queda hasta que Programación lo retire (docs/PENDIENTES.md)
-  { paso: "guardar", texto: "Tu luna de miel ya está en su casilla.", cinta: "Toca la casilla", izq: "Racionaré el amor", der: "Mamá no gobernaba" },
   // 25 oct: la primera recompensa. La decisión la da (sea cual sea la respuesta); luego hay que abrirla en el menú (`despues`)
   { paso: "logro", texto: "Ah, y en agradecimiento por darme un ministerio, te tengo un regalo. Cierra los ojos.", cinta: "Abre el regalo",
     despues: { texto: "¡Sorpresa! Es tu primera recompensa. Las demás tendrás que ganártelas con tus decisiones.", cinta: "Toca el menú" },
@@ -1306,6 +1304,10 @@ const LOGROS = [
   { id: "equilibrista", era: 1, regla: "equilibrista", fondo: "mostaza", titulo: "Tu mejor versión", subtitulo: "A la gente no le va tan mal.",
     decision: "Acabar la era con las cuatro fuerzas entre 40 y 60",
     descripcion: "Terminaste una era con las cuatro fuerzas equilibradas. El pueblo no pasa hambre, los militares conservan sus privilegios y el Partido sigue colocando a los suyos. Hasta tus críticos admiten que, comparado con las alternativas, tampoco se vive tan mal. Por ahora, todos te aguantan." },
+  // 29 oct, Jorge: se da al llegar a la tercera carta de Papá Ernesto (`llegar`), que solo sale si aceptaste el torneo y el whisky. Textos provisionales: los redacta Coleccionables.
+  { id: "ernesto", regla: "trama", llegar: "ernesto_higado", fondo: "mostaza", titulo: "La historia de Ernesto", subtitulo: "Pendiente",
+    decision: "Completar la trama de Papá Ernesto",
+    descripcion: "Pendiente: texto de Coleccionables." },
   { id: "buenos_modales", era: 1, regla: "buenos_modales", fondo: "azul", titulo: "Dictablanda", subtitulo: "El poder de ser amable.",
     decision: "Acabar la era sin Censura, Vigilancia ni Jaula",
     descripcion: "La gente sabe cómo te pones y prefiere no tentar a la suerte. Gobernaste toda una era sin recurrir a las medidas más duras. Pueden hablar, viajar y hasta quejarse de vez en cuando. Es que no te merecen." },

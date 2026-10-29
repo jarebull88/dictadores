@@ -374,15 +374,15 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 #ranuras.destacar button.ranura { animation: none; }   /* 25 oct: sin zoom: solo se alumbra en rojo (la capa de abajo) */
 /* 17 oct: y encima, una capa roja translúcida que destella, para que se vea que hay que tocarla */
 #ranuras.destacar button.ranura.llena { position: relative; }   /* la casilla no se mueve: solo destella el rojo */
-#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
-  box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: 0; border-radius: 0; background: rgba(176, 54, 42, .5);
+  pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
 /* 27 oct: en el paso del logro del tutorial, el menú destella en rojo hasta que se abre */
 #btn-menu.destacar::after { background: rgba(176, 54, 42, .5); animation: destello-rojo 1.2s ease-in-out infinite; }
 .opcion-menu.destacar { background: rgba(176, 54, 42, .35); }
 #barras.destacar .icono-fuerza { position: relative; }
-#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
-  box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: 0; border-radius: 0; background: rgba(176, 54, 42, .5);
+  pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 @keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces

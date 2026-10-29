@@ -850,6 +850,7 @@ function voltear() {
       ponerMensaje(conNegritas(volteada ? paso.girada : paso.texto)); ajustarMensaje();
       msg._revela = setTimeout(() => msg.classList.remove("oculto"), animar() ? 300 : 0);
     }
+    if (paso.cintaGirada) ponerLeyenda(volteada ? paso.cintaGirada : paso.cinta);   // 29 oct: primero «Toca la carta»; con la carta girada, la segunda instrucción
   }
 }
 
@@ -1402,8 +1403,7 @@ function pasoTutorial(i, sinEntrada) {
   pintarCarta(c);
   if (!sinEntrada) entrarCarta(carta);
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
-  carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
-  carta.classList.toggle("giro-destacado", p.paso === "girar");
+  carta.classList.remove("con-giro", "giro-destacado");            // 29 oct, Jorge: ya no sale el icono «360» en el paso de girar
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira

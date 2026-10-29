@@ -104,7 +104,8 @@ test("tutorial «La víspera»: siete pasos, las dos respuestas siguen adelante,
   assert.ok(!j.d.querySelector("#carta").classList.contains("con-giro"), "ni se ve el icono de girar");
   j.tecla(-1);                                                       // 1: deslizar (29 oct: la izquierda también sigue adelante)
   assert.equal(j.w.eval("E.tutorial.i"), 1);
-  assert.ok(j.d.querySelector("#carta").classList.contains("giro-destacado"), "en su paso, el icono parpadea");
+  assert.ok(!j.d.querySelector("#carta").classList.contains("giro-destacado"), "29 oct: ya no sale el icono «360»");
+  assert.equal(j.$("leyenda").textContent, "Toca la carta");
   j.tecla(1);                                                        // 2: sin girar la carta, no avanza
   assert.equal(j.w.eval("E.tutorial.i"), 1, "hay que girar la carta antes de seguir");
   j.w.eval("voltear(); voltear();");

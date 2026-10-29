@@ -1231,7 +1231,7 @@ const PREVISION = {
    ===================================================== */
 const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano pequeño, coqueto); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "¡Ganamos, hermanito! Me he planchado el uniforme para la entrada triunfal. ¿Vamos ya?", cinta: "Desliza la carta", izq: "Entra detrás de mí", der: "Quítate esa colonia" },
-  { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
+  { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta", cintaGirada: "Tócala otra vez", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
   { paso: "fuerzas", texto: "Arriba tienes las cuatro fuerzas. Si alguna se te queda corta o se te crece demasiado, te tumban.", cinta: "Toca los iconos", izq: "A las cuatro, a dieta", der: "A mí solo me crece una" },
   // 29 oct: las dos respuestas suben al Pueblo, y por eso llega «Luna de miel» (la A más que la B)
   { paso: "pistas", texto: "Mira, el Ejército está en rojo, y el rojo no favorece a nadie. ¿Le das algo a mi tropa?", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "El Pueblo va primero", der: "Tu tropa puede esperar", efectos: { izq: { pueblo: 36, ejercito: -4 }, der: { pueblo: 20, ejercito: -2 } } },

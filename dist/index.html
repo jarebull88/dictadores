@@ -387,15 +387,15 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 #ranuras.destacar button.ranura { animation: none; }   /* 25 oct: sin zoom: solo se alumbra en rojo (la capa de abajo) */
 /* 17 oct: y encima, una capa roja translúcida que destella, para que se vea que hay que tocarla */
 #ranuras.destacar button.ranura.llena { position: relative; }   /* la casilla no se mueve: solo destella el rojo */
-#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: -5px; border-radius: 0; background: rgba(176, 54, 42, .5);
-  box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+#ranuras.destacar button.ranura.llena::after { content: ""; position: absolute; inset: 0; border-radius: 0; background: rgba(176, 54, 42, .5);
+  pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 /* 17 oct: en el paso «fuerzas» del tutorial, los iconos palpitan y destellan igual hasta que se toca uno */
 /* 27 oct: en el paso del logro del tutorial, el menú destella en rojo hasta que se abre */
 #btn-menu.destacar::after { background: rgba(176, 54, 42, .5); animation: destello-rojo 1.2s ease-in-out infinite; }
 .opcion-menu.destacar { background: rgba(176, 54, 42, .35); }
 #barras.destacar .icono-fuerza { position: relative; }
-#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: -4px; border-radius: 0; background: rgba(176, 54, 42, .5);
-  box-shadow: 0 0 0 3px rgba(176, 54, 42, .35); pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
+#barras.destacar .icono-fuerza::after { content: ""; position: absolute; inset: 0; border-radius: 0; background: rgba(176, 54, 42, .5);
+  pointer-events: none; animation: destello-rojo 1.1s ease-in-out infinite; }
 @keyframes destello-rojo { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
 @keyframes parpadeo-giro { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(1.15); } }
 /* Un solo 360 a la vista: el de la cara se esconde a mitad de la vuelta y el de la ficha aparece (Safari a veces
@@ -2150,7 +2150,7 @@ const PREVISION = {
    ===================================================== */
 const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano pequeño, coqueto); cinta: la instrucción al jugador (de tú); *así* = negrita
   { paso: "deslizar", texto: "¡Ganamos, hermanito! Me he planchado el uniforme para la entrada triunfal. ¿Vamos ya?", cinta: "Desliza la carta", izq: "Entra detrás de mí", der: "Quítate esa colonia" },
-  { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
+  { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta", cintaGirada: "Tócala otra vez", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
   { paso: "fuerzas", texto: "Arriba tienes las cuatro fuerzas. Si alguna se te queda corta o se te crece demasiado, te tumban.", cinta: "Toca los iconos", izq: "A las cuatro, a dieta", der: "A mí solo me crece una" },
   // 29 oct: las dos respuestas suben al Pueblo, y por eso llega «Luna de miel» (la A más que la B)
   { paso: "pistas", texto: "Mira, el Ejército está en rojo, y el rojo no favorece a nadie. ¿Le das algo a mi tropa?", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "El Pueblo va primero", der: "Tu tropa puede esperar", efectos: { izq: { pueblo: 36, ejercito: -4 }, der: { pueblo: 20, ejercito: -2 } } },
@@ -3091,6 +3091,7 @@ function voltear() {
       ponerMensaje(conNegritas(volteada ? paso.girada : paso.texto)); ajustarMensaje();
       msg._revela = setTimeout(() => msg.classList.remove("oculto"), animar() ? 300 : 0);
     }
+    if (paso.cintaGirada) ponerLeyenda(volteada ? paso.cintaGirada : paso.cinta);   // 29 oct: primero «Toca la carta»; con la carta girada, la segunda instrucción
   }
 }
 
@@ -3643,8 +3644,7 @@ function pasoTutorial(i, sinEntrada) {
   pintarCarta(c);
   if (!sinEntrada) entrarCarta(carta);
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
-  carta.classList.toggle("con-giro", p.paso === "girar");          // el 360 solo sale (parpadeando) cuando toca girar
-  carta.classList.toggle("giro-destacado", p.paso === "girar");
+  carta.classList.remove("con-giro", "giro-destacado");            // 29 oct, Jorge: ya no sale el icono «360» en el paso de girar
   if (p.paso === "fuerzas") encenderFuerzas();
   else if (i > iFuerzas) $("barras").classList.remove("apagadas");   // presentadas: ya encendidas
   if (p.paso === "pistas") { E.barras.ejercito = 12; pintarBarras(); ensenarPistas(); }   // el Ejército en peligro, de mentira

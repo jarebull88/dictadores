@@ -77,22 +77,24 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **decision:** «Cámbienlos por compotas»
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
 
-### Recompensa 4 · Botella de Revolukola — *en curso* (28 oct)
-- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Inventen la Revolukola».
+### Recompensa 4 · Botella de Revolukola — *aprobada* (29 oct, textos de Jorge)
+- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Inventen la Revolukola» (29 oct, Jorge: pasa a «Improvisen una receta»; el cambio en la carta lo hace la conversación de textos).
 - **titulo:** Botella de Revolukola
 - **subtitulo:** Dulce, pegajosa y de producción nacional.
-- **descripcion:** Una bebida marrón y dulce que sabe a Revolución. Receta oficial: azúcar, agua y lo que haya en el almacén ese día. Ninguna botella sabe igual que la anterior.
+- **descripcion:** Una bebida marrón que sabe a Revolución. La receta original se perdió durante la nacionalización; la versión oficial lleva azúcar, agua y lo que aparezca en el almacén. Ninguna botella sabe igual que la anterior.
 - **Beneficio:** Mezclada con ron, el país entero aguanta tus discursos.
-- **Perjuicio:** *pendiente* (propuestos: Los dentistas del país trabajan el doble.)
+- **Perjuicio:** Cada vez que se fabrica Revolukola, el país se queda prácticamente sin azúcar.
+- **decision** (lo que se lee bajo la carta): «Que los químicos se apañen»
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
-### Recompensa 5 · Pelota firmada — *en curso* (28 oct)
-- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A ver quién me batea».
-- **titulo:** Pelota firmada
-- **subtitulo:** Nadie se atrevió a hacer swing.
-- **descripcion:** La pelota del partido lleva tu firma y las marcas de unos bateadores que prefirieron no tocarla. Los archivos recogen veintisiete ponches en un partido de dos entradas.
-- **Beneficio:** Lánzala a alguien: preferirá que le dé antes que batearla. *(propuesto sobre la idea de Jorge)*
-- **Perjuicio:** Todos te ponen excusa para no jugar contigo.
+### Recompensa 5 · Pelota de béisbol — *aprobada* (29 oct, textos de Jorge)
+- **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A mí nadie me batea».
+- **titulo:** Pelota de béisbol (antes «Pelota firmada»)
+- **subtitulo:** El partido más desigual de la historia.
+- **descripcion:** La pelota que el Comandante firmó antes del partido y con la que estableció el récord de la liga: veintisiete ponches en dos entradas. Pieza de colección. «Batear bajo su responsabilidad».
+- **Beneficio:** Lánzasela a un adversario: preferirá que se le rompan los dientes antes que batearla. También puedes usarla para poner a prueba la lealtad de tus allegados.
+- **Perjuicio:** Ganar siempre por KO técnico acaba aburriendo. Cuando convocas un partido, todos tus ministros descubren que tienen asuntos urgentes que atender.
+- **decision** (lo que se lee bajo la carta): «A ver quién me batea»
 - **Referencia real (verificada):** el 24 de julio de 1959, en un partido de exhibición, Fidel lanzó con los Barbudos dos entradas; la propaganda dijo que eliminó a todos los bateadores, lo cual las fuentes ponen en duda.
 
 ### Pendientes (elegidos por Jorge, sin redactar)
@@ -133,7 +135,7 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
 
 **Estado al cerrar (29 oct)**
 - Cerrado: la estructura, la regla, los textos de título, subtítulo y descripción de las recompensas 1 a 5.
-- 29 oct: licencia, libreta y compota, completas (textos de Jorge). Revolukola: beneficio aprobado («Mezclada con ron, el país entero aguanta tus discursos»).
+- 29 oct: licencia, libreta y compota, completas (textos de Jorge). Revolukola y pelota, completas (textos de Jorge).
 - Pelota firmada: beneficio y perjuicio completos (propuestos sobre ideas de Jorge).
-- **Pendiente:** perjuicio de la Revolukola; postal de la bahía y carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); los cuatro logros de la era (nombres provisionales); coleccionables de las eras 2 a 4.
+- **Pendiente:** postal de la bahía y carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); los cuatro logros de la era (nombres provisionales); coleccionables de las eras 2 a 4.
 - Ideas de perjuicio/beneficio que se propusieron y Jorge no eligió: libreta (mercado de casillas; la cola como club social), compota (celdas vacías como almacén; los niños quieren ser canjeados), licencia (medio país jura ser atleta), Revolukola (los dentistas trabajan el doble; la botella se pega a la mano).

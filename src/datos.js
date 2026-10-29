@@ -30,7 +30,7 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.",
-    izq: { accion: "Y con narrador deportivo", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
+    izq: { accion: "Pongan un narrador deportivo", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Esto no es un circo", efectos: { pueblo: -8, ejercito: 5 } }
   },
   {

@@ -635,3 +635,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **29 oct — Textos:** instrucciones del tutorial (la leyenda), cortas: «Desliza la carta», «Toca la carta», «Toca los iconos», la de los puntos igual, «Abre el regalo», «Toca el menú», «Ahora gobiernas tú» (y «Toca la casilla» en el paso provisional).
 - **29 oct — Textos:** tutorial: «Las cuatro a dieta» y «no te enroles», tal como los escribió Jorge. Regla: los textos de Jorge se copian tal cual; si parece una errata, se le pregunta antes.
 - **29 oct — Textos:** Papá Ernesto, la tercera carta es una despedida: «Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.» — A. Tu casa será un museo (Pueblo) · B. El Partido cuidará tu bar (Partido).
+- **29 oct — Textos:** «La casa vacía» (juicios), la A pasa a «Pongan un narrador deportivo».

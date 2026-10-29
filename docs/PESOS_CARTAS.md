@@ -8,7 +8,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La casa vacía** (Ministro de las Fuerzas Armadas)  
 «Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
-- A. Y con narrador deportivo → sube Pueblo +8 · baja Ejército -5
+- A. Pongan un narrador deportivo → sube Pueblo +8 · baja Ejército -5
 - B. Esto no es un circo → sube Ejército +5 · baja Pueblo -8
 
 **La casa del tirano** (Ministra de Cultura)  

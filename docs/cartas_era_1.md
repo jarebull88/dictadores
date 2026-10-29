@@ -11,7 +11,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
 
-- **A. Y con narrador deportivo** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
+- **A. Pongan un narrador deportivo** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
 - **B. Esto no es un circo** Pueblo −8 · Ejército +5
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.

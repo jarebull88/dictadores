@@ -625,3 +625,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 ## 29 oct (programación)
 - Las cartas de secuela salen directas hacia abajo y las de icono de fuerza hacia arriba (sin diagonal ni encogerse). «Has caído»: sin la cinta del nombre de la muerte; bajo la carta, «El X llegó al mínimo/máximo.» y «Gobernaste por N años» (Londrina).
 - Padrino Pupo y Papá Ernesto dados de alta (invitados): `invoca` en `encolar` (motor) para invocar al azar una carta de un invitado, una vez por era.
+- **29 oct — Textos:** béisbol, «A mí nadie me batea» pasa a «A ver quién me batea» (también en la pelota firmada y su prueba). Papá Ernesto: si rechazas el torneo («Yo pesco otra cosa») no vuelve; whisky e hígado piden `base.ernesto_amigo`, que da «Conmigo todos pican». Pupo ya estaba bien: el remedio solo sale si aceptas la amenaza.

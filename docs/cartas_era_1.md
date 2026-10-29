@@ -491,10 +491,10 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 8 a 9 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
 
-**Carta:** «Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.»
+**Carta:** «Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.»
 
-- **A. Museo con su nombre** Pueblo +5 · Élite −5
-- **B. Las botellas, al Partido** Pueblo −5 · Élite +5
+- **A. Tu casa será un museo** Pueblo +5 · Élite −5
+- **B. El Partido cuidará tu bar** Pueblo −5 · Élite +5
 
 ### 45. La calle y los cuarteles *(borrador)*
 

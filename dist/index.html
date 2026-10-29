@@ -138,6 +138,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .texto-respuesta span { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
 .modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: var(--peso-negrita); }
 .archivo-pista, .logro-descripcion, .logro-efecto { font-size: var(--c-texto); line-height: 1.4; font-weight: 400; }
+.logro-descripcion-cab { font-size: var(--c-texto); line-height: 1.3; font-weight: 400; }   /* 29 oct, prueba: la descripción de la recompensa, arriba; ajustarDescripcionCab() la achica si no cabe */
 .logro-efecto b { font-weight: var(--peso-negrita); }
 .ficha-historia, .ficha-cargo { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
 .ficha-cargo, .popup .sube-baja em, .ficha-nota b { font-weight: var(--peso-negrita); }
@@ -149,6 +150,10 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .opcion-portada.secundaria { font-family: var(--f-cuerpo); text-transform: none; font-size: var(--c-texto); font-weight: var(--peso-negrita); line-height: 1.4; }
 .alerta { line-height: 1; }
 @media (max-height: 760px) { :root { --c-pregunta: 20px; } }
+/* 29 oct, PRUEBA de Jorge (PRUEBAS.cuerpoLondrina en datos.js; para volver, ponerla en false): todo el cuerpo en Londrina Light y en mayúsculas */
+body.cuerpo-londrina { --f-cuerpo: var(--f-titular); --peso-negrita: var(--peso-ligero); text-transform: uppercase; font-weight: var(--peso-ligero); }
+body.cuerpo-londrina :is(.popup span, .relato, .ficha-historia, .esquela ul, .error, .texto-respuesta span, .archivo-pista, .logro-descripcion, .logro-descripcion-cab, .logro-efecto,
+  .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre, .campo label) { font-weight: var(--peso-ligero); text-transform: uppercase; }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -720,7 +725,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .logro-vista { position: absolute; inset: 0; padding: 8px 12px 6px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; background: var(--p-crema); }
 .logro-cab { flex: none; width: var(--carta-w, 100%); max-width: 100%; height: var(--cabecera-h, 150px); display: flex; flex-direction: column; gap: 6px; align-items: center; justify-content: center; text-align: center; }
 .logro-titulo { margin: 0; color: var(--p-rojo); }
-.logro-subtitulo { margin: 0; padding: 0 5%; }
+.logro-subtitulo, .logro-descripcion-cab { margin: 0; padding: 0 5%; }
 .logro-escena { position: relative; flex: none; width: var(--carta-w, 100%); max-width: 100%; aspect-ratio: 1; }
 .logro-carta { position: absolute; inset: 0; perspective: 2200px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .logro-carta .giro { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3, .1, .2, 1); }
@@ -739,9 +744,11 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .logro-vista > :not(.zoom-fx) { position: relative; z-index: 1; }
 .zoom-fx { position: absolute; pointer-events: none; opacity: 0; }
 .rayos-zoom { z-index: 0; width: 260vmax; height: 260vmax; transform: translate(-50%, -50%);
-  -webkit-mask-image: radial-gradient(circle closest-side, transparent 14%, #000 52%); mask-image: radial-gradient(circle closest-side, transparent 14%, #000 52%); }
-.rayos-zoom.r1 { background: repeating-conic-gradient(from 3deg, var(--p-blanco) 0 0.9deg, transparent 0.9deg 3.3deg), repeating-conic-gradient(from 0deg, var(--p-blanco) 0 0.4deg, transparent 0.4deg 5.3deg); }
-.rayos-zoom.r2 { background: repeating-conic-gradient(from 8deg, var(--p-blanco) 0 0.5deg, transparent 0.5deg 2.4deg), repeating-conic-gradient(from 1deg, var(--p-blanco) 0 1.4deg, transparent 1.4deg 9deg); }
+  -webkit-mask-image: radial-gradient(circle closest-side, transparent 14%, #000 30%); mask-image: radial-gradient(circle closest-side, transparent 14%, #000 30%); }
+/* 29 oct, Jorge: el blanco, mucho más blanco: rayos más gruesos, opacos hasta el borde, sobre un fondo algo oscurecido */
+.rayos-zoom.r1 { background: repeating-conic-gradient(from 3deg, var(--p-blanco) 0 1.6deg, transparent 1.6deg 4.2deg), repeating-conic-gradient(from 0deg, var(--p-blanco) 0 0.9deg, transparent 0.9deg 6.1deg); }
+.rayos-zoom.r2 { background: repeating-conic-gradient(from 8deg, var(--p-blanco) 0 0.9deg, transparent 0.9deg 3deg), repeating-conic-gradient(from 1deg, var(--p-blanco) 0 2.2deg, transparent 2.2deg 11deg); }
+.sombra-zoom { z-index: 0; inset: 0; background: color-mix(in srgb, var(--p-tinta) 24%, transparent); }
 .onda-zoom { z-index: 0; width: 40vmin; height: 40vmin; margin: -20vmin 0 0 -20vmin; border: 8px solid var(--p-blanco); border-radius: 50%; }
 .flash-zoom { z-index: 3; inset: 0; background: var(--p-blanco); }
 .archivo-pista { margin: 14px 0 0; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }
@@ -2173,6 +2180,10 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
    · con una carta y la opción elegida (`carta` + `decision`, que es el texto de la opción): para las opciones que no ponen bandera, o
    · al acabar la era con una condición (`era` + `regla`, ver REGLAS_LOGRO en motor.js).
    `fondo`: color plano de la paleta de la carta por delante (mientras no haya ilustración). «Pendiente» = texto aún sin escribir. */
+/* PRUEBAS (29 oct, Jorge): cambios en prueba. Ponlos en false para volver a lo anterior (el código viejo sigue ahí).
+   · descripcionArriba: en las recompensas, la descripción va arriba, donde iba el subtítulo, y detrás solo quedan Beneficio y Perjuicio.
+   · cuerpoLondrina: todos los textos de cuerpo en Londrina Light, en mayúsculas. */
+const PRUEBAS = { descripcionArriba: true, cuerpoLondrina: true };
 const LOGROS = [
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
   { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Tu primer milagro, cortesía de tu hermano.",
@@ -4168,18 +4179,20 @@ function verLogro(id) {
   const v = $("archivo-abrir");
   const celda = nuevo ? (() => { const c = $("archivo-rejilla").querySelector(`[data-id="${id}"]`); return c ? c.getBoundingClientRect() : null; })() : null;   // la casilla de la que salta la carta (antes de esconder la rejilla)
   v.className = "logro-vista";
-  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
+  const arriba = PRUEBAS.descripcionArriba && !g.regla;   // 29 oct, prueba: en las recompensas, la descripción sustituye al subtítulo y detrás solo van Beneficio y Perjuicio
+  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2>${arriba ? `<p class="logro-descripcion-cab">${esc(g.descripcion)}</p>` : `<p class="logro-subtitulo">${esc(g.subtitulo)}</p>`}</div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
         <div class="logro-dorso"><div class="logro-hoja">
-          <p class="logro-descripcion">${esc(g.descripcion)}</p>
+          ${arriba ? "" : `<p class="logro-descripcion">${esc(g.descripcion)}</p>`}
           ${g.regla ? "" : `<p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
           <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
     <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;
   $("archivo").classList.add("viendo");
+  if (arriba) ajustarDescripcionCab(v.querySelector(".logro-cab"));
   v.style.paddingTop = "";
   const escena = v.querySelector(".logro-escena");
   const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
@@ -4192,6 +4205,14 @@ function verLogro(id) {
   if (nuevo) sonar("descubrir");                        // 29 oct: suena al descubrir una recompensa o logro por primera vez
   if (nuevo && animar()) efectoDescubrir(v, escena, celda);
 }
+/* 29 oct, prueba: la descripción, arriba, baja su letra hasta que quepa en la cabecera (con el título) */
+function ajustarDescripcionCab(cab) {
+  const d = cab.querySelector(".logro-descripcion-cab");
+  if (!d) return;
+  d.style.fontSize = "";
+  let px = parseFloat(getComputedStyle(d).fontSize) || 18;
+  while (cab.scrollHeight > cab.clientHeight + 1 && px > 11) { px -= 0.5; d.style.fontSize = px + "px"; }
+}
 /* 29 oct (versión «Explosión», elegida por Jorge): la carta salta de su casilla a su sitio con un pequeño rebote; por detrás, rayos blancos de anime que
    estallan y se apagan, un flash y dos ondas. Se hace con la API de animaciones y se limpia solo. */
 function efectoDescubrir(vista, escena, celda) {
@@ -4200,18 +4221,19 @@ function efectoDescubrir(vista, escena, celda) {
   const cx = (a.left - b.left + a.width / 2) + "px", cy = (a.top - b.top + a.height / 2) + "px";
   const fx = [];
   const poner = (clase, tipo) => { const e = document.createElement("div"); e.className = "zoom-fx " + clase; e.setAttribute("aria-hidden", "true"); if (tipo !== "flash") { e.style.left = cx; e.style.top = cy; } vista.prepend(e); fx.push(e); return e; };
-  const r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
+  const sombra = poner("sombra-zoom", "flash"), r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
   const carta = vista.querySelector(".logro-carta");
   if (celda && celda.width) {
     const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
     carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
       { duration: 800, delay: 150, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
   }
-  r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: .9, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
+  r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: 1, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
     { duration: 2800, delay: 350, easing: "ease-out", fill: "both" });
   r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
     { duration: 2200, delay: 500, easing: "ease-out", fill: "both" });
-  fl.animate([{ opacity: 0 }, { opacity: .9, offset: .18 }, { opacity: 0 }], { duration: 450, delay: 520, fill: "both" });
+  fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 550, delay: 520, fill: "both" });
+  sombra.animate([{ opacity: 0 }, { opacity: 1, offset: .12 }, { opacity: 1, offset: .6 }, { opacity: 0 }], { duration: 2800, delay: 250, fill: "both" });   // 29 oct: el fondo se oscurece un poco para que el blanco resalte
   [[o1, 600, 4], [o2, 780, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
     { duration: 1000, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
   // el título y la decisión aparecen con la carta ya en su sitio
@@ -4226,6 +4248,9 @@ $("archivo-cerrar").addEventListener("click", () => {
   if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
   cerrarArchivo();
 });
+
+/* 29 oct, prueba de Jorge: cuerpo de texto en Londrina Light, mayúsculas (PRUEBAS.cuerpoLondrina en datos.js; el CSS está en el bloque TIPOGRAFIA) */
+document.body.classList.toggle("cuerpo-londrina", !!PRUEBAS.cuerpoLondrina);
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {

@@ -1927,18 +1927,20 @@ function verLogro(id) {
   const v = $("archivo-abrir");
   const celda = nuevo ? (() => { const c = $("archivo-rejilla").querySelector(`[data-id="${id}"]`); return c ? c.getBoundingClientRect() : null; })() : null;   // la casilla de la que salta la carta (antes de esconder la rejilla)
   v.className = "logro-vista";
-  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2><p class="logro-subtitulo">${esc(g.subtitulo)}</p></div>
+  const arriba = PRUEBAS.descripcionArriba && !g.regla;   // 29 oct, prueba: en las recompensas, la descripción sustituye al subtítulo y detrás solo van Beneficio y Perjuicio
+  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2>${arriba ? `<p class="logro-descripcion-cab">${esc(g.descripcion)}</p>` : `<p class="logro-subtitulo">${esc(g.subtitulo)}</p>`}</div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
         <div class="logro-dorso"><div class="logro-hoja">
-          <p class="logro-descripcion">${esc(g.descripcion)}</p>
+          ${arriba ? "" : `<p class="logro-descripcion">${esc(g.descripcion)}</p>`}
           ${g.regla ? "" : `<p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
           <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
     <p class="archivo-pista">Por «${esc(g.decision)}»</p>${nuevo ? '<p class="archivo-pista pista-girar">Toca la carta para girarla</p>' : ""}`;
   $("archivo").classList.add("viendo");
+  if (arriba) ajustarDescripcionCab(v.querySelector(".logro-cab"));
   v.style.paddingTop = "";
   const escena = v.querySelector(".logro-escena");
   const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
@@ -1951,6 +1953,14 @@ function verLogro(id) {
   if (nuevo) sonar("descubrir");                        // 29 oct: suena al descubrir una recompensa o logro por primera vez
   if (nuevo && animar()) efectoDescubrir(v, escena, celda);
 }
+/* 29 oct, prueba: la descripción, arriba, baja su letra hasta que quepa en la cabecera (con el título) */
+function ajustarDescripcionCab(cab) {
+  const d = cab.querySelector(".logro-descripcion-cab");
+  if (!d) return;
+  d.style.fontSize = "";
+  let px = parseFloat(getComputedStyle(d).fontSize) || 18;
+  while (cab.scrollHeight > cab.clientHeight + 1 && px > 11) { px -= 0.5; d.style.fontSize = px + "px"; }
+}
 /* 29 oct (versión «Explosión», elegida por Jorge): la carta salta de su casilla a su sitio con un pequeño rebote; por detrás, rayos blancos de anime que
    estallan y se apagan, un flash y dos ondas. Se hace con la API de animaciones y se limpia solo. */
 function efectoDescubrir(vista, escena, celda) {
@@ -1959,18 +1969,19 @@ function efectoDescubrir(vista, escena, celda) {
   const cx = (a.left - b.left + a.width / 2) + "px", cy = (a.top - b.top + a.height / 2) + "px";
   const fx = [];
   const poner = (clase, tipo) => { const e = document.createElement("div"); e.className = "zoom-fx " + clase; e.setAttribute("aria-hidden", "true"); if (tipo !== "flash") { e.style.left = cx; e.style.top = cy; } vista.prepend(e); fx.push(e); return e; };
-  const r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
+  const sombra = poner("sombra-zoom", "flash"), r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
   const carta = vista.querySelector(".logro-carta");
   if (celda && celda.width) {
     const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
     carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
       { duration: 800, delay: 150, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
   }
-  r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: .9, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
+  r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: 1, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
     { duration: 2800, delay: 350, easing: "ease-out", fill: "both" });
   r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
     { duration: 2200, delay: 500, easing: "ease-out", fill: "both" });
-  fl.animate([{ opacity: 0 }, { opacity: .9, offset: .18 }, { opacity: 0 }], { duration: 450, delay: 520, fill: "both" });
+  fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 550, delay: 520, fill: "both" });
+  sombra.animate([{ opacity: 0 }, { opacity: 1, offset: .12 }, { opacity: 1, offset: .6 }, { opacity: 0 }], { duration: 2800, delay: 250, fill: "both" });   // 29 oct: el fondo se oscurece un poco para que el blanco resalte
   [[o1, 600, 4], [o2, 780, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
     { duration: 1000, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
   // el título y la decisión aparecen con la carta ya en su sitio
@@ -1985,6 +1996,9 @@ $("archivo-cerrar").addEventListener("click", () => {
   if (!$("archivo-abrir").classList.contains("hidden")) { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); return; }
   cerrarArchivo();
 });
+
+/* 29 oct, prueba de Jorge: cuerpo de texto en Londrina Light, mayúsculas (PRUEBAS.cuerpoLondrina en datos.js; el CSS está en el bloque TIPOGRAFIA) */
+document.body.classList.toggle("cuerpo-londrina", !!PRUEBAS.cuerpoLondrina);
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {

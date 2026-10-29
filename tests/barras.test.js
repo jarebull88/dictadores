@@ -33,10 +33,10 @@ test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa",
   j.w.eval("terminar('ejercito_0')");
   assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
   assert.equal(j.$("fin-titulo").textContent, "Abducción");
-  assert.match(j.$("fin-texto").textContent, /^El ejército llegó al mínimo\. /);
-  // 16 oct: con escena, la causa va en la cinta de carrocero de la carta; sin escena, como título sobre el cartón
-  const enCarta = j.d.querySelector("#carta-fin .titulo-caida, #carta-fin .etiqueta-boli");
-  assert.ok(enCarta && enCarta.textContent === "Abducción", "la causa va en una carta");
+  assert.match(j.$("fin-pie").textContent, /^El ejército llegó al mínimo\.$/);
+  // 29 oct: sin cinta con el nombre de la muerte: la causa va bajo la carta, y después los años
+  assert.ok(j.d.querySelector("#carta-fin .ilustracion") && !j.d.querySelector("#carta-fin .titulo-caida, #carta-fin .etiqueta-boli"), "la carta no lleva el nombre");
+  assert.equal(j.$("fin-pie").nextElementSibling, j.$("fin-anios"));
 });
 
 test("al pasar de era sale el nombre de la era que empieza y al sobrevivir a la última, «¡Has ganado!»", () => {

@@ -13,9 +13,9 @@ Se escribe a mano. Cada conversación actualiza **su** sección al terminar (y a
 Para verificar hechos históricos o nombres de ministerios hace falta una conversación con búsqueda web (la de programación no tiene internet).
 
 ## Programación (la lleva «Comandante - Programación»)
-**Hecho el 28–29 oct:** sonido (reparto, giro, deslizar, volver; menú «Sonido: sí/no»), carta de información de fuerzas y casillas, secuelas que se giran y bajan a su casilla, banda de aviso, 12 coleccionables con desbloqueo real, `test:rapido`.
+**Hecho el 28–29 oct:** secuelas e iconos salen en vertical (secuelas abajo, iconos arriba); «Has caído» sin cinta y con la causa y los años bajo la carta; **Pupo y Ernesto en el juego** (`personajes.json`, `GRUPO_DE`, `FICHAS`, 8 cartas de Pupo y 3 anclas de Ernesto en `datos.js`; `encolar: [{ invoca: "pupo" }]` elige una amenaza al azar, una vez por era); sonido (reparto, giro, deslizar, volver; menú «Sonido: sí/no»), carta de información de fuerzas y casillas, secuelas que se giran y bajan a su casilla, banda de aviso, 12 coleccionables con desbloqueo real, `test:rapido`.
 **Por hacer, por orden de importancia:**
-1. **Dar de alta a Padrino Pupo y Papá Ernesto** como personajes (`personajes.json`, `PERSONAJE_SLUG`, `FICHAS`, cartas): los textos están en `INVITADOS.md` y las imágenes en `assets/personajes/originales/` (Ernesto falta de editar el color, Pupo sin imagen definitiva).
+1. ~~Alta de Padrino Pupo y Papá Ernesto~~ **hecho el 29 oct** (ver abajo). Falta que Arte repase el color de Ernesto y la imagen definitiva de Pupo (el fondo está tomado del cartel actual).
 2. **Etiqueta histórica de las cartas** (`historia` y `hecho` en cada carta + prueba que impida cartas sin etiqueta; ver `PLAN_NARRATIVO.md`, fase del motor).
 3. **Caídas con versión por era, atentados como cartas sueltas, muerte de humor** (cuando Textos las entregue).
 4. **Expedientes como cartel tipográfico hecho con código** (cuando Jorge elija la prueba de `tools/prueba_fichas.html` y Arte dé las tintas por personaje).
@@ -27,6 +27,8 @@ Para verificar hechos históricos o nombres de ministerios hace falta una conver
 10. «Revolución con buenos modales» se cumple si al acabar la era no hay Censura, Vigilancia ni Jaula (lectura literal); si Jorge la quiere «en toda la era», registrar las secuelas que pasan.
 11. Peso del HTML ~7,7 MB (el «4,3 MB» antiguo ya no es cierto); no tocar sin que Jorge lo pida.
 12. Quitar de `CLAUDE.md` lo que se quede obsoleto cuando esto cambie.
+
+- **Logro «la historia de Ernesto»** (29 oct, Jorge): se da al llegar a la tercera carta de Papá Ernesto (`ernesto_higado`), que solo sale si aceptas el torneo y el whisky. Textos: Coleccionables; regla: Programación.
 
 ## Textos (la lleva «Comandante - Textos»)
 Ver «Estado a 29 oct» en `PLAN_NARRATIVO.md`. Lo siguiente que pidió Jorge: las muertes de la era 1 (8 caídas con versión por era, atentados como cartas sueltas, muerte de humor); luego expedientes desfasados y la era 2 por el mismo camino que la 1.

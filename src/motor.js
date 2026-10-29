@@ -194,7 +194,8 @@ const PERSONAJE_SLUG = {
   "Ministro de las Fuerzas Armadas": "fuerzas-armadas",
   "Ministro del Interior": "interior",
   "Embajador del bloque oriental": "embajador-oriental",
-  "Embajador de la potencia del norte": "embajador-occidental"
+  "Embajador de la potencia del norte": "embajador-occidental",
+  "Padrino Pupo": "padrino-pupo", "Papá Ernesto": "papa-ernesto"   // 29 oct: invitados (docs/INVITADOS.md)
 };
 /* Con el dictador solo hablan sus ministros y los embajadores extranjeros; la gente corriente y Milfuegos solo son mencionados.
    Grupo de cada personaje = fuerza a la que pertenece.
@@ -204,7 +205,8 @@ const GRUPO_DE = {
   "Ministro del Interior": "ejercito", "Ministro de las Fuerzas Armadas": "ejercito",
   "Vicepresidente del Consejo de Ministros": "elite", "Ministro de Economía": "elite", "Ministro de Comercio": "elite",
   "Ministra de Educación": "elite", "Ministra de Cultura": "elite", "Ministro de Trabajo": "elite",
-  "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias"
+  "Embajador del bloque oriental": "potencias", "Embajador de la potencia del norte": "potencias",
+  "Padrino Pupo": "pueblo", "Papá Ernesto": "potencias"   // invitados: el babalawo, del pueblo; el novelista, extranjero
 };
 [...Object.values(IMG), ...Object.values(RETRATOS)].forEach(p => { const i = new Image(); i.src = p.src; });
 
@@ -289,6 +291,7 @@ function nuevaPartida() {
     banderas: new Set(),
     orden: [],
     cola: [],
+    invocado: {},   // invitados ya invocados en cada era («pupo1»…): una vez por era
     vistas: new Set(),
     estados: [],
     eventos: [],
@@ -435,6 +438,12 @@ function aplicar(c, op) {
   (op.banderas || []).forEach(b => { if (!E.banderas.has(b)) { E.banderas.add(b); E.orden.push(b); } });
   activarEstados(op.banderas);
   (op.encolar || []).forEach(q => {
+    if (q.invoca) {   // 29 oct: una carta invita a un personaje: sale una de sus cartas de esta era al azar, una vez por era y sin otro segundo paso esperando
+      const clave = q.invoca + E.era, cand = CARTAS.filter(o => o.invoca === q.invoca && deEra(o));
+      if (E.invocado[clave] || !cand.length || E.cola.some(x => POR_ID[x.carta].enlace)) return;
+      E.invocado[clave] = true;
+      q = { carta: cand[Math.floor(Math.random() * cand.length)].id, min: q.min, max: q.max };
+    }
     const demora = q.min + Math.floor(Math.random() * (q.max - q.min + 1));
     E.cola.push({ carta: q.carta, turno: E.turno + demora });
   });
@@ -685,8 +694,8 @@ function cerrarInfo() {
   c._cerrando = true; sonar("deslizar");
   if (!animar()) { quitarInfo(); return; }
   c.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
-  c.style.transform = transformDesde(c, origenInfo(c));
-  c.style.opacity = "0.3";
+  const a = rectBase(c), sentido = c.dataset.clave.startsWith("fuerza-") ? -1 : 1;   // 29 oct: directa fuera de la pantalla, sin desviarse: arriba si viene de una fuerza, abajo si viene de una casilla
+  c.style.transform = `translateY(${sentido > 0 ? innerHeight - a.top : -(a.bottom)}px)`;
   c._fin = setTimeout(() => { if (cartaInfo === c) quitarInfo(); }, 460);
 }
 function abrirInfo(clave, id, fondo, origen, html) {
@@ -1164,13 +1173,9 @@ function recogerEstado() {
   const carta = $("carta"), id = E.estadoNuevo.id;
   carta.classList.remove("volteada");
   const idx = E.estados.findIndex(s => s.id === id);
-  const destino = $("ranuras").children[idx] || $("ranuras");
-  const a = rectBase(carta), b = destino.getBoundingClientRect();
-  const dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
-  const k = a.width ? b.width / a.width : 0.1;
-  carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
-  carta.style.transform = `translate(${dx}px, ${dy}px) scale(${k})`;
-  carta.style.opacity = "0.3";
+  const a = rectBase(carta);
+  carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1)";
+  carta.style.transform = `translateY(${innerHeight - a.top}px)`;   // 29 oct: sale hacia abajo, directa fuera de la pantalla
   setTimeout(() => {
     modoEstado = false;
     E.estadoNuevo = null;
@@ -1276,7 +1281,8 @@ function terminar(clave, transicion) {
     $("fin-titulo").textContent = f.titulo;
     // Un solo párrafo para ahorrar sitio: «Las potencias llegaron al máximo.» en negrita y, seguido, el relato
     const [sujeto, verbo] = SUJETO_FUERZA[idF];
-    $("fin-texto").innerHTML = `<b>${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.</b> ${esc(f.texto)}`;
+    $("fin-pie").textContent = `${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.`;   // 29 oct: la frase corta, bajo la carta; el relato se queda arriba, sin el nombre de la muerte
+    $("fin-texto").textContent = f.texto;
     pintarCartaFin(f.titulo, clave);
     $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta
   } else {
@@ -1321,9 +1327,9 @@ function pintarCartaFin(titulo, clave = claveFin) {
   const escena = clave && svgEscena(idEscena, titulo);
   carta.innerHTML = escena
     ? `<div class="giro"><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
-      `${escena}<div class="etiqueta-boli${titulo.split(" ").some(w => w.length > 12) ? " larga" : ""}"><b>${esc(titulo)}</b></div><div class="respuesta"></div></div></div></div>`
+      `${escena}<div class="respuesta"></div></div></div></div>`
     : `<div class="giro"><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
-      `<div class="titulo-caida">${esc(titulo)}</div><div class="respuesta"></div></div></div></div>`;
+      `<div class="respuesta"></div></div></div></div>`;
   void carta.offsetWidth; carta.style.transition = "";
 }
 function eleccionFin(dir) {

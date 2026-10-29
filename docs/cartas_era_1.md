@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
+Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
 
 ### 1. La casa vacía
 
@@ -331,7 +331,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.»
 
-- **A. A mí nadie me batea** Pueblo +4 · Ejército −3
+- **A. A ver quién me batea** Pueblo +4 · Ejército −3
 - **B. Yo seré el árbitro** Ejército +3 · Pueblo −4
 
 ### 29. El economista
@@ -384,9 +384,119 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 **Carta:** «Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.»
 
 - **A. Primero los militantes** Élite +5 · Pueblo −4 · Crisis −3
-- **B. Yo sé a quién llamar** Pueblo +4 · Élite −5 · Crisis −3
+- **B. Yo sé a quién llamar** Pueblo +4 · Élite −5 · Crisis −3 · Encola: `undefined` en 1 años
 
-### 34. La calle y los cuarteles *(borrador)*
+### 34. Padrino Pupo (mal ojo)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Mijo, le han echado algo malo. Eso se le ve en la cara.»
+
+- **A. Límpieme, padrino** Pueblo +3 · Élite −3 · Encola: `pupo_mal_ojo_remedio` en 1 años
+- **B. Yo no creo en santos** Pueblo −3 · Élite +3
+
+### 35. Padrino Pupo (el remedio)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Para limpiarle el camino, el santo pide huevos, siete cocos, un chivo y la nevera de un ministro.»
+
+- **A. Que sean dos neveras** Pueblo +3 · Élite −3
+- **B. Rebaje algo, padrino** Pueblo −3 · Élite +3
+
+### 36. Padrino Pupo (enemigos)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Mijo, quieren verlo caer, y no son pocos.»
+
+- **A. Ciérreles el paso** Pueblo +3 · Élite −3 · Encola: `pupo_enemigos_remedio` en 1 años
+- **B. Ya tengo escolta** Pueblo −3 · Élite +3
+
+### 37. Padrino Pupo (el remedio)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Para cerrarles el camino, el santo necesita tabaco, dos gallos y la casa de un burgués exiliado.»
+
+- **A. Casa con piscina** Pueblo +3 · Élite −3
+- **B. Con un piso le basta** Pueblo −3 · Élite +3
+
+### 38. Padrino Pupo (envidia)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Mijo, esa envidia que le tienen viene cargada.»
+
+- **A. Protéjame, padrino** Pueblo +3 · Élite −3 · Encola: `pupo_envidia_remedio` en 1 años
+- **B. La envidia me alimenta** Pueblo −3 · Élite +3
+
+### 39. Padrino Pupo (el remedio)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Para protegerlo, hay que darle al santo langosta, ron, tres palomas y un reloj como el suyo.»
+
+- **A. Le doy el de repuesto** Pueblo +3 · Élite −3
+- **B. Que pregunte la hora** Pueblo −3 · Élite +3
+
+### 40. Padrino Pupo (deseos)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Mijo, hay mucha gente deseándole mal. El santo me lo ha dicho.»
+
+- **A. Contente al santo** Pueblo +3 · Élite −3 · Encola: `pupo_deseos_remedio` en 1 años
+- **B. Dígale que estoy ocupado** Pueblo −3 · Élite +3
+
+### 41. Padrino Pupo (el remedio)
+
+**Personaje:** Padrino Pupo  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Para tenerlo contento, al santo hay que darle viandas, un puerco, ron y un carro con chófer.»
+
+- **A. Un descapotable** Pueblo +3 · Élite −3
+- **B. Que el santo camine** Pueblo −3 · Élite +3
+
+### 42. Papá Ernesto (torneo)
+
+**Personaje:** Papá Ernesto  
+**Condición:** ancla de los años 2 a 4 de su era; a partir del año 2 de la era.
+
+**Carta:** «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
+
+- **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
+- **B. Yo pesco otra cosa** Pueblo −5 · Élite +5
+
+### 43. Papá Ernesto (whisky)
+
+**Personaje:** Papá Ernesto  
+**Condición:** ancla de los años 5 a 7 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
+
+**Carta:** «Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»
+
+- **A. Whisky para el genio** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
+- **B. Beba guarapo** Potencias −5 · Pueblo +5
+
+### 44. Papá Ernesto (higado)
+
+**Personaje:** Papá Ernesto  
+**Condición:** ancla de los años 8 a 10 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
+
+**Carta:** «Me voy unos días fuera, a curarme el hígado. Le dejo mi casa, mis gatos y mis botellas.»
+
+- **A. Museo con su nombre** Pueblo +5 · Élite −5
+- **B. Las botellas, al Partido** Pueblo −5 · Élite +5
+
+### 45. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -396,7 +506,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 - **A. Un ascenso y se calman** Ejército +8 · Élite −4
 - **B. Arréstenlos a todos** Ejército −6 · Pueblo −3 · Crisis +2
 
-### 35. La embajada
+### 46. La embajada
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -406,7 +516,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 - **A. Lo que pida el aliado** Potencias +8 · Élite −4
 - **B. Casa y coche para todos** Élite +8 · Potencias −4
 
-### 36. Los nuevos vecinos
+### 47. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 10 a 14 de su era.
@@ -420,7 +530,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
-### 37. El ultimátum
+### 48. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -432,7 +542,7 @@ Duración: entre 10 y 12 cartas. 38 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 38. Embargo total
+### 49. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 20; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.

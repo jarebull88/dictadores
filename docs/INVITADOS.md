@@ -41,3 +41,6 @@ Por decidir (propuesta: el barbero de palacio).
 - **Las amenazas y los remedios son segundos pasos** (`enlace: true`, no cuentan): la A de cada amenaza encola su remedio al turno siguiente; la B acaba la trama. Efectos pequeños: la A sube un poco el Pueblo y baja un poco el Partido; la B, al revés (±3).
 - Los textos de las ocho cartas están arriba, en «Era 1, los cuatro flujos». Cargo para la leyenda: **Babalawo**. Ficha provisional: «Babalawo de barrio que cobra en especie y en divisas. Anunció la caída del tirano cuando el tirano ya estaba cayendo.» · Nota: «Lo visita medio gabinete de día; el otro medio, de noche.» (la revisarán los expedientes).
 - **Arte:** `assets/personajes/originales/padrino-pupo.jpg` (y `papa-ernesto.jpg`) ya existen; falta recortarlos y registrarlos en `personajes.json`.
+
+## Hecho (29 oct, programación)
+- Pupo y Ernesto ya están en el juego. Pupo: `colas`, respuesta B, encola con `invoca: "pupo"` una de las cuatro amenazas (`pupo_*`, `enlace`) de la era actual, una vez por era; la A de cada amenaza encola su remedio (`pupo_*_remedio`). Efectos ±3 provisionales. Ernesto: tres anclas (`ernesto_*`, ventanas 2–4, 5–7, 8–10 de la era 1), efectos ±5 provisionales. Leyendas: «BABALAWO OFICIAL» y «NOVELISTA». Pupo no tiene aún cartas en las eras 2–4 (si lo invocan allí no sale nada). Textos y pesos los revisa Textos.

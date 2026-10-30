@@ -15,7 +15,7 @@ Se escribe a mano (lo lleva Textos). Esquema (30 oct, Jorge): **8 caídas por fu
 - **Cómo salen:** tras una decisión, por sorpresa, una carta de objeto o de visita («Te han hecho un regalo», «Has recibido una visita inesperada»). Por detrás, una descripción **ambigua** («Este puro tiene un aroma exótico»): puede ser lujo o veneno, nunca informa. **Uno por era** (30 oct, Jorge), sacado de un **banco de atentados** que vale para cualquier era (sin repetir en la misma partida), nunca en las tres primeras cartas de la era. **No cuenta** para el largo de la era.
 - **Protección (oculta al jugador; 30 oct, Jorge: solo el Ejército, para no depender de cartas que pueden no salir):** **riesgo de morir al aceptar = 75 % con el Ejército en 20 o menos, y baja en línea recta hasta el 5 % con el Ejército en 80 o más** (Ejército 50: 40 %; 65: 22,5 %). Nunca 0 ni 100. El Ejército alto protege, pero a 100 es la Junta militar: no se puede subir sin más.
 - **Si aceptas y sale bien:** la parte buena del regalo (el puro te da la idea de tu propia marca; la visita fue una buena noche) y **la fuerza ligada al concepto de la carta vuelve hacia el centro** (recorre la mitad de la distancia que le falta hasta 50).
-- **Si aceptas y sale mal:** la muerte propia de ese objeto; en la pantalla de caída, **todas las barras caen** y la frase en negrita es la del atentado («Un regalo envenenado»).
+- **Si aceptas y sale mal:** la muerte propia de ese objeto; en la pantalla de caída, **todas las barras caen**; como todas las muertes, es un título, un texto y una imagen (sin frase en negrita).
 - **Rechazar** castiga las fuerzas que tengan que ver con el regalo (lo decide cada atentado). **Si sale bien**, además puede dar un coleccionable (opcional; Coleccionables).
 - **Si rechazas:** una carta de secuela **de un solo golpe** (no ocupa casilla ni se queda): una penalización única con su frase («El Pueblo veía en ti un semental y lo has defraudado»).
 
@@ -25,5 +25,5 @@ Se escribe a mano (lo lleva Textos). Esquema (30 oct, Jorge): **8 caídas por fu
   - B (rechaza). Aquí nadie regala nada
 - **Detrás:** Una selección de tabacos exclusivos. En nariz despliegan notas dulzonas de intensidad poco habitual. La capa presenta un brillo singular, casi impropio, posiblemente atribuible a una elaboración de excepcional calidad.
 - **Sale bien** (Potencias vuelve hacia el centro): Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.
-- **Sale mal · Regalo envenenado:** Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta. *(Frase en negrita de la caída: por decidir.)*
+- **Sale mal · Regalo envenenado:** Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta.
 - **Rechazo · Desaire** (baja el Pueblo): Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio.

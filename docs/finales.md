@@ -6,11 +6,11 @@ Si una fuerza llega a 0 o a 100, la partida termina.
 
 | Causa | Título | Texto |
 | --- | --- | --- |
-| `pueblo_0` | Re-Revolución | Las protestas se extienden por todo el país y ya no quedan fuerzas que las contengan. Tu gobierno cae. |
-| `pueblo_100` | Populismo | Regalaste tanto para ganarte al Pueblo que vaciaste las arcas. Cuando dejaste de dar, salieron a reclamar sus «derechos» y tu cabeza. |
-| `ejercito_0` | Abducción | Tus generales se lavaron las manos mientras un comando extranjero te sacaba del país. |
-| `ejercito_100` | Junta militar | Los militares controlan todo. Sigues en el palacio, pero ya no decides nada. |
-| `elite_0` | Liquidación | El Partido se reunió sin ti y votó por unanimidad que eras prescindible. |
-| `elite_100` | Florero | Fuiste cediendo poder al Partido hasta acabar convertido en su presidente títere. |
-| `potencias_0` | Invasión | Sin aliados ni comercio, el país queda solo frente a sus adversarios. |
-| `potencias_100` | Recambio | Le entregaste las llaves del país a tu protector y ahora buscan alguien que obedezca mejor. |
+| `pueblo_0` | Re-Revolución | El Pueblo hizo lo que le enseñaste: subió al monte, esperó y bajó a por el tirano. El tirano eras tú. |
+| `pueblo_100` | Ingratitud | Con tierras, fusiles y casa a mitad de precio, el Pueblo decidió que la Revolución podía seguir sin su Comandante. |
+| `ejercito_0` | Abducción | El presupuesto militar no daba ni para vigilar tu dormitorio. Un comando extranjero te sacó de la cama, te afeitó y te llevó fuera del país. |
+| `ejercito_100` | Junta militar | El Ejército ha tomado las riendas del país. A ti te dejaron la agradable tarea de recibir a las delegaciones de grupos folclóricos. |
+| `elite_0` | Unanimidad | El Partido ha decidido que tu etapa al frente de la Revolución ha terminado. Todos han votado a favor, incluido tú. |
+| `elite_100` | Embajador | El Partido te ha nombrado embajador en una remota república del bloque oriental. Allí el invierno dura once meses y hay más renos que habitantes. |
+| `potencias_0` | Invasión | Te negaste a firmar alianzas con ninguna potencia. Cuando te invadieron, nadie se sintió obligado a ayudarte. |
+| `potencias_100` | Anexión | Dependías tanto de tu aliado extranjero que acabó incorporando el país a su territorio. A ti te nombraron alcalde de un pueblo de 300 habitantes. |

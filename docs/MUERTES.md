@@ -18,3 +18,12 @@ Se escribe a mano (lo lleva Textos). Esquema (30 oct, Jorge): **8 caídas por fu
 - **Si aceptas y sale mal:** la muerte propia de ese objeto; en la pantalla de caída, **todas las barras caen** y la frase en negrita es la del atentado («Un regalo envenenado»).
 - **Rechazar** castiga las fuerzas que tengan que ver con el regalo (lo decide cada atentado). **Si sale bien**, además puede dar un coleccionable (opcional; Coleccionables).
 - **Si rechazas:** una carta de secuela **de un solo golpe** (no ocupa casilla ni se queda): una penalización única con su frase («El Pueblo veía en ti un semental y lo has defraudado»).
+
+### Atentado 1 · Los tabacos (aprobado por Jorge, 30 oct; real: la caja de puros envenenados de 1960 y la marca exclusiva del Comandante de 1966)
+- **Delante:** Un admirador anónimo te ha enviado una caja de tabacos. Dicen que son los mejores del país.
+  - A (acepta). A ver si son tan buenos
+  - B (rechaza). Aquí nadie regala nada
+- **Detrás:** Una selección de tabacos exclusivos. En nariz despliegan notas dulzonas de intensidad poco habitual. La capa presenta un brillo singular, casi impropio, posiblemente atribuible a una elaboración de excepcional calidad.
+- **Sale bien** (Potencias vuelve hacia el centro): Aquellos tabacos de lujo te sirvieron de inspiración para crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.
+- **Sale mal · Regalo envenenado:** Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta. *(Frase en negrita de la caída: por decidir.)*
+- **Rechazo · Desaire** (baja el Pueblo): Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio.

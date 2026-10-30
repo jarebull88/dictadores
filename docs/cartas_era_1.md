@@ -33,7 +33,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Los crupieres protestan por el cierre de los casinos. Propongo reabrirlos con moral revolucionaria.»
 
-- **A. Ruleta revolucionaria** Pueblo +5 · Potencias +4 · Élite −4
+- **A. Que gire la ruleta** Pueblo +5 · Potencias +4 · Élite −4
 - **B. Ni un vicio capitalista** Pueblo −5 · Potencias −4 · Élite +4
 
 ### 4. El comandante que dimite

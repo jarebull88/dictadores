@@ -18,7 +18,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Los casinos** (Ministro de Trabajo)  
 «Los crupieres protestan por el cierre de los casinos. Propongo reabrirlos con moral revolucionaria.»
-- A. Ruleta revolucionaria → sube Pueblo +5, Potencias +4 · baja Partido -4
+- A. Que gire la ruleta → sube Pueblo +5, Potencias +4 · baja Partido -4
 - B. Ni un vicio capitalista → sube Partido +4 · baja Pueblo -5, Potencias -4
 
 **El comandante que dimite** (Ministro de las Fuerzas Armadas)  

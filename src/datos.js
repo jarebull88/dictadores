@@ -45,7 +45,7 @@ const CARTAS = [
     id: "casinos", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "Los casinos",
     personaje: "Ministro de Trabajo",
     texto: "Los crupieres protestan por el cierre de los casinos. Propongo reabrirlos con moral revolucionaria.",
-    izq: { accion: "Ruleta revolucionaria", efectos: { pueblo: 5, potencias: 4, elite: -4 } },
+    izq: { accion: "Que gire la ruleta", efectos: { pueblo: 5, potencias: 4, elite: -4 } },
     der: { accion: "Ni un vicio capitalista", efectos: { pueblo: -5, potencias: -4, elite: 4 } }
   },
   {

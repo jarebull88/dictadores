@@ -104,9 +104,9 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **Se gana con:** carta `beisbol` (Ministra de Educación), opción «A ver quién me batea» (antes «A mí nadie me batea»).
 - **titulo:** Pelota con autógrafo (antes «Pelota firmada» y «Pelota de béisbol»)
 - **subtitulo:** El partido más desigual de la historia.
-- **descripcion:** La pelota que el Comandante firmó antes del partido y con la que estableció el récord de la liga: veintisiete ponches en dos entradas. Pieza de colección. «Batear bajo su responsabilidad».
-- **Beneficio:** Lánzasela a un adversario: preferirá que se le rompan los dientes antes que batearla. También puedes usarla para poner a prueba la lealtad de tus allegados.
-- **Perjuicio:** Ganar siempre por KO técnico acaba aburriendo. Cuando convocas un partido, todos tus ministros descubren que tienen asuntos urgentes que atender.
+- **descripcion:** Pieza de colección. Firmada por el Comandante minutos antes de establecer el récord nacional: veintisiete ponches en dos entradas. «Batear bajo su responsabilidad». *(30 oct, Jorge)*
+- **Beneficio:** Úsala contra tus enemigos o para poner a prueba a tus amigos. Si la batean, no eran tan amigos. *(30 oct, Jorge)*
+- **Perjuicio:** No hay rival que te haga sudar la camiseta. Empiezas a preguntarte si no habrías sido una estrella del béisbol. *(30 oct, Jorge)*
 - **decision:** «A ver quién me batea»
 - **Referencia real (verificada):** el 24 de julio de 1959, en un partido de exhibición, Fidel lanzó con los Barbudos dos entradas; la propaganda dijo que eliminó a todos los bateadores, lo cual las fuentes ponen en duda.
 

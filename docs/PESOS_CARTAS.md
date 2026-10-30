@@ -99,7 +99,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **La bahía** (Ministro de las Fuerzas Armadas; segundo paso)  
 «Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?»
 - A. Cámbienlos por compotas → sube Pueblo +5, Potencias +4 · baja Ejército -6
-- B. Un último cigarro → sube Ejército +6 · baja Potencias -4 · crisis +2
+- B. Un último cigarro y chao → sube Ejército +6 · baja Potencias -4 · crisis +2
 
 **Los niños que se van** (Ministra de Educación)  
 «Corre el rumor de que el Estado se quedará con los niños. Los padres los suben solos a los aviones.»

@@ -224,7 +224,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Carta:** «Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?»
 
 - **A. Cámbienlos por compotas** Pueblo +5 · Potencias +4 · Ejército −6
-- **B. Un último cigarro** Potencias −4 · Ejército +6 · Crisis +2
+- **B. Un último cigarro y chao** Potencias −4 · Ejército +6 · Crisis +2
 
 ### 20. Los niños que se van
 

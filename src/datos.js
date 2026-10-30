@@ -201,7 +201,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Derrotamos a los invasores de la bahía en tres días. ¿Qué hacemos con los mil doscientos presos?",
     izq: { accion: "Cámbienlos por compotas", efectos: { pueblo: 5, potencias: 4, ejercito: -6 } },
-    der: { accion: "Un último cigarro", efectos: { potencias: -4, ejercito: 6, crisis: 2 } }
+    der: { accion: "Un último cigarro y chao", efectos: { potencias: -4, ejercito: 6, crisis: 2 } }
   },
   {
     id: "los_ninos", tipo: "sorteo", peso: 3, cond: { turnoMin: 3 }, titulo: "Los niños que se van",
@@ -1288,9 +1288,9 @@ const LOGROS = [
     perjuicio: "Cada vez que se fabrica Revolukola, el país se queda prácticamente sin azúcar." },
   { id: "pelota", carta: "beisbol", fondo: "oliva", titulo: "Pelota con autógrafo", subtitulo: "El partido más desigual de la historia.",
     decision: "A ver quién me batea",
-    descripcion: "La pelota que el Comandante firmó antes del partido y con la que estableció el récord de la liga: veintisiete ponches en dos entradas. Pieza de colección. «Batear bajo su responsabilidad».",
-    beneficio: "Lánzasela a un adversario: preferirá que se le rompan los dientes antes que batearla. También puedes usarla para poner a prueba la lealtad de tus allegados.",
-    perjuicio: "Ganar siempre por KO técnico acaba aburriendo. Cuando convocas un partido, todos tus ministros descubren que tienen asuntos urgentes que atender." },
+    descripcion: "Pieza de colección. Firmada por el Comandante minutos antes de establecer el récord nacional: veintisiete ponches en dos entradas. «Batear bajo su responsabilidad».",
+    beneficio: "Úsala contra tus enemigos o para poner a prueba a tus amigos. Si la batean, no eran tan amigos.",
+    perjuicio: "No hay rival que te haga sudar la camiseta. Empiezas a preguntarte si no habrías sido una estrella del béisbol." },
   // solo con «Discreto como mi barba»: la otra opción también instala los misiles, pero no da la postal
   { id: "postal", carta: "nuevos_vecinos", fondo: "rojo", titulo: "Postal con misil", subtitulo: "Sol, arena y armamento nuclear.",
     decision: "Discreto como mi barba",

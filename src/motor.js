@@ -440,7 +440,9 @@ function aplicar(c, op) {
   activarEstados(op.banderas);
   (op.encolar || []).forEach(q => {
     if (q.invoca) {   // 29 oct: una carta invita a un personaje: sale una de sus cartas de esta era al azar, una vez por era y sin otro segundo paso esperando
-      const clave = q.invoca + E.era, cand = CARTAS.filter(o => o.invoca === q.invoca && deEra(o));
+      const clave = q.invoca + E.era;
+      let cand = CARTAS.filter(o => o.invoca === q.invoca && deEra(o));
+      if (!cand.length) cand = CARTAS.filter(o => o.invoca === q.invoca && (o.era || 1) === 1);   // 29 oct: aún no hay versiones de las eras 2–4: sale la de la era 1
       if (E.invocado[clave] || !cand.length || E.cola.some(x => POR_ID[x.carta].enlace)) return;
       E.invocado[clave] = true;
       q = { carta: cand[Math.floor(Math.random() * cand.length)].id, min: q.min, max: q.max };
@@ -644,9 +646,9 @@ function ocultarInfo() {
   delete pop.dataset.clave;
 }
 /* La información de un estado (la cara de la carta de información y el reverso de la carta de estado nuevo) */
-function htmlEstado(id) {
+function htmlEstado(id, conTitulo = true) {   // 29 oct: en la carta de una secuela nueva el reverso no lleva título (su nombre ya sale bajo la carta)
   const d = ESTADOS[id];
-  return `<b class="info-titulo">${esc(d.nombre)}</b><p class="ficha-historia">${esc(d.descripcion)}</p>` +
+  return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p>` +
     `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[id] || "")}</p>`;
 }
 function mostrarInfo(i) {
@@ -1126,7 +1128,7 @@ function mostrarCartaEstado() {
   const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
-    `<div class="dorso"><div class="hoja info-hoja">${htmlEstado(n.id)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
+    `<div class="dorso"><div class="hoja info-hoja">${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
   ajustarFicha(carta);
   entrarCarta(carta);
   pintarRanuras();
@@ -2019,7 +2021,7 @@ function efectoDescubrir(vista, escena, celda) {
   const color = ["rosa", "rojo", "oliva", "mostaza", "azul"][Math.floor(Math.random() * 5)];   // 29 oct, Jorge: cada vez, un color de la paleta con el blanco
   vista.style.setProperty("--zoom-color", `var(--p-${color})`);
   const poner = (clase, tipo) => { const e = document.createElement("div"); e.className = "zoom-fx " + clase; e.setAttribute("aria-hidden", "true"); if (tipo !== "flash") { e.style.left = cx; e.style.top = cy; } vista.prepend(e); fx.push(e); return e; };
-  const sombra = poner("sombra-zoom", "flash"), r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
+  const r1 = poner("rayos-zoom r1"), r2 = poner("rayos-zoom r2"), o1 = poner("onda-zoom"), o2 = poner("onda-zoom"), fl = poner("flash-zoom", "flash");
   const carta = vista.querySelector(".logro-carta");
   if (celda && celda.width) {
     const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
@@ -2032,7 +2034,6 @@ function efectoDescubrir(vista, escena, celda) {
   r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
     { duration: 2200, delay: 500, easing: "ease-out", fill: "both" });
   fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 550, delay: 520, fill: "both" });
-  sombra.animate([{ opacity: 0 }, { opacity: 1, offset: .15 }, { opacity: .55, offset: .5 }, { opacity: 0 }], { duration: 2000, delay: 250, easing: "ease-out", fill: "both" });   // 29 oct: el fondo se tiñe del color y se difumina hasta el beige
   [[o1, 600, 4], [o2, 780, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
     { duration: 1000, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
   // el título y la decisión aparecen con la carta ya en su sitio

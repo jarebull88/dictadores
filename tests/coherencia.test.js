@@ -55,6 +55,25 @@ test("«Yo sé a quién llamar» invoca una amenaza de Pupo, una sola vez por er
   assert.equal(r.remedio.length, 1);
 });
 
+test("Pupo: la amenaza sale al azar entre las cuatro, enseguida (la carta siguiente), y su remedio justo después; también si «Las colas» sale en otra era", () => {
+  j.empezar();
+  const r = JSON.parse(w.eval(`(() => {
+    const vistas = {}, c = POR_ID.colas; let enseguida = true, remedio = true, otraEra = true;
+    for (let i = 0; i < 80; i++) {
+      nuevaPartida(); E.actual = siguienteCarta(); aplicar(c, c.der);
+      const a = siguienteCarta(); vistas[a.id] = 1;
+      if (!a.invoca) enseguida = false;
+      aplicar(a, a.izq);
+      const rem = siguienteCarta(); if (!rem || rem.id !== a.id + "_remedio") remedio = false;
+    }
+    for (const era of [2, 3, 4]) { nuevaPartida(); E.era = era; aplicar(c, c.der); const a = siguienteCarta(); if (!a || !a.invoca) otraEra = false; }
+    return JSON.stringify({ n: Object.keys(vistas).length, enseguida, remedio, otraEra });
+  })()`));
+  assert.equal(r.n, 4, "salen las cuatro amenazas al azar");
+  assert.ok(r.enseguida && r.remedio, "amenaza y remedio, seguidos");
+  assert.ok(r.otraEra, "también en las eras 2–4");
+});
+
 test("las tres cartas de Papá Ernesto salen repartidas por la era 1: siempre en orden y con al menos dos cartas de por medio", () => {
   const r = JSON.parse(w.eval(`(() => {
     const salidas = [];

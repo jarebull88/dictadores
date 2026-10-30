@@ -56,7 +56,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Carta:** «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 
 - **A. ¡Exprópiese!** Pueblo +8 · Élite −5 · Potencias −6 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 2 a 4 años
-- **B. Les pagaremos con azúcar** Pueblo −6 · Élite +6 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
+- **B. Les pagaremos con bonos de azúcar** Pueblo −6 · Élite +6 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 
@@ -67,10 +67,10 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 3 a 7 de su era; a partir del año 3 de la era.
 
-**Carta:** «Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.»
+**Carta:** «Le cambiaremos petróleo por azúcar y le mandaremos asesores militares. Así su Revolución no cometerá errores.»
 
 - **A. Toda ayuda es poca** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
-- **B. Solo petróleo** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
+- **B. Con el petróleo basta** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 
@@ -474,7 +474,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 **Carta:** «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
 
 - **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
-- **B. Yo pesco otra cosa** Pueblo −5 · Élite +5
+- **B. No me gusta pescar** Pueblo −5 · Élite +5
 
 ### 43. Papá Ernesto (whisky)
 

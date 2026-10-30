@@ -1003,15 +1003,15 @@ const CARTAS = [
     personaje: "Ministro de Comercio",
     texto: "Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.",
     izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -5, potencias: -6, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
-    der: { accion: "Les pagaremos con azúcar", efectos: { pueblo: -6, elite: 6 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
+    der: { accion: "Les pagaremos con bonos de azúcar", efectos: { pueblo: -6, elite: 6 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
     id: "visitante_oriental", tipo: "ancla", ventana: [3, 7], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
-    texto: "Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.",
+    texto: "Le cambiaremos petróleo por azúcar y le mandaremos asesores militares. Así su Revolución no cometerá errores.",
     izq: { accion: "Toda ayuda es poca", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 1 }] },
-    der: { accion: "Solo petróleo", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
+    der: { accion: "Con el petróleo basta", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
   },
 
   /* ---------- Cola ---------- */
@@ -1319,7 +1319,7 @@ const CARTAS = [
     personaje: "Papá Ernesto",
     texto: "Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.",
     izq: { accion: "Conmigo todos pican", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
-    der: { accion: "Yo pesco otra cosa", efectos: { pueblo: -5, elite: 5 } }
+    der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 } }
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo

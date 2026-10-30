@@ -29,12 +29,12 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **Las refinerías** (Ministro de Comercio; segundo paso)  
 «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 - A. ¡Exprópiese! → sube Pueblo +8 · baja Partido -5, Potencias -6 · crisis +1
-- B. Les pagaremos con azúcar → sube Partido +6 · baja Pueblo -6
+- B. Les pagaremos con bonos de azúcar → sube Partido +6 · baja Pueblo -6
 
 **El visitante del bloque oriental** (Embajador del bloque oriental)  
-«Le cambiamos petróleo por azúcar y le prestamos asesores militares. Así su Revolución no cometerá errores.»
+«Le cambiaremos petróleo por azúcar y le mandaremos asesores militares. Así su Revolución no cometerá errores.»
 - A. Toda ayuda es poca → sube Potencias +9, Ejército +5 · crisis +2
-- B. Solo petróleo → baja Potencias -9, Ejército -5 · crisis +1
+- B. Con el petróleo basta → baja Potencias -9, Ejército -5 · crisis +1
 
 **Los alfabetizadores en el monte** (Ministra de Educación; segundo paso)  
 «Un maestro de 18 años ha caído en la sierra. ¿Ponemos a salvo a los demás o lo hacemos mártir?»
@@ -214,7 +214,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **Papá Ernesto (torneo)** (Papá Ernesto)  
 «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
 - A. Conmigo todos pican → sube Pueblo +5 · baja Partido -5
-- B. Yo pesco otra cosa → sube Partido +5 · baja Pueblo -5
+- B. No me gusta pescar → sube Partido +5 · baja Pueblo -5
 
 **Papá Ernesto (whisky)** (Papá Ernesto)  
 «Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»

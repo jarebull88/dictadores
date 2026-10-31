@@ -79,6 +79,10 @@ Fases 0, 1, 3, 4 y 5: **Opus**. Fase 2 y los tests: **Sonnet**.
 
 - **Los textos de Jorge se copian tal cual** (29 oct): letra a letra, aunque parezca una errata. Si crees que se equivocó, pregúntale antes de guardar; nunca lo corrijas por tu cuenta.
 
+## Ritmo de las tramas (31 oct, Jorge)
+Cada trama apunta qué cartas salen **seguidas** (segundos pasos, `enlace`) y cuáles necesitan **espacio** (cola con `min` de 3 o más), para que no haya cortes bruscos ni cosas que se apagan sin cierre. Toda rama tiene que terminar en algo que el jugador vea.
+- **Milfuegos:** «El comandante que dimite» → (si lo mandas detener) «El viaje de Milfuegos», seguida → en avión, «El avión de Milfuegos» 3–4 cartas después; por carretera, «La fuga del comandante» 1–2 cartas después (el dimitido se va al exilio).
+
 ## Probado y descartado
 - **Hito fijo para los comités de vigilancia:** quitaba un hueco al sorteo; se prefirió peso alto sin condición (sale en ~42 % de las partidas).
 - **Excepción de 150 caracteres para Pupo:** sustituida por el miniflujo de dos pasos (amenaza y remedio, ≤100 cada uno).

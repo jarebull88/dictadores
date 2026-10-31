@@ -222,19 +222,19 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que el santo camine → sube Partido +3 · baja Pueblo -3
 
 **Papá Ernesto (torneo)** (Papá Ernesto)  
-«Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
+«Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.»
 - A. Conmigo todos pican → sube Pueblo +5 · baja Partido -5
 - B. No me gusta pescar → sube Partido +5 · baja Pueblo -5
 
 **Papá Ernesto (whisky)** (Papá Ernesto)  
-«Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»
-- A. Whisky para el genio → sube Potencias +5 · baja Pueblo -5
-- B. Beba guarapo → sube Pueblo +5 · baja Potencias -5
+«Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.»
+- A. Usted se merece ese whisky → sube Potencias +5 · baja Pueblo -5
+- B. Beba lo que bebe el Pueblo → sube Pueblo +5 · baja Potencias -5
 
 **Papá Ernesto (higado)** (Papá Ernesto)  
-«Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.»
-- A. Tu casa será un museo → sube Pueblo +5 · baja Partido -5
-- B. El Partido cuidará tu bar → sube Partido +5 · baja Pueblo -5
+«Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante.»
+- A. Su casa será un museo → sube Pueblo +5 · baja Partido -5
+- B. El Partido cuidará de sus botellas → sube Partido +5 · baja Pueblo -5
 
 **La calle y los cuarteles** (Ministro del Interior)  
 «Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.»

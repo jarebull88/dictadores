@@ -659,3 +659,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **31 oct — Textos:** cartas de aviso: cuentan una consecuencia tras una decisión, sin respuestas ni efectos; leyenda «TRAMA PERDIDA» cuando cortan una trama.
 - **31 oct — Textos:** las cartas de aviso salen en los cortes de trama y también de relleno (por definir), para que no sean una pista; sin leyenda «TRAMA PERDIDA»; las de relleno nunca coinciden con una carta de secuela.
 - **31 oct — Textos:** las cartas de aviso son «Nota de inteligencia» (leyenda): avisos que te llegan, en tercera persona.
+- **31 oct — Textos, Papá Ernesto:** guion definitivo de Jorge (`INVITADOS.md`); el logro solo con «Su casa será un museo»; los cortes del torneo y del whisky llevan nota de inteligencia.

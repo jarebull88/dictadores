@@ -495,7 +495,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 2 a 3 de su era; a partir del año 2 de la era.
 
-**Carta:** «Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.»
+**Carta:** «Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.»
 
 - **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
 - **B. No me gusta pescar** Pueblo −5 · Élite +5
@@ -505,20 +505,20 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 5 a 6 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
 
-**Carta:** «Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?»
+**Carta:** «Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.»
 
-- **A. Whisky para el genio** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
-- **B. Beba guarapo** Potencias −5 · Pueblo +5
+- **A. Usted se merece ese whisky** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
+- **B. Beba lo que bebe el Pueblo** Potencias −5 · Pueblo +5
 
 ### 46. Papá Ernesto (higado)
 
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 8 a 9 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
 
-**Carta:** «Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.»
+**Carta:** «Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante.»
 
-- **A. Tu casa será un museo** Pueblo +5 · Élite −5
-- **B. El Partido cuidará tu bar** Pueblo −5 · Élite +5
+- **A. Su casa será un museo** Pueblo +5 · Élite −5
+- **B. El Partido cuidará de sus botellas** Pueblo −5 · Élite +5
 
 ### 47. La calle y los cuarteles *(borrador)*
 

@@ -56,3 +56,11 @@ Misma estructura que los atentados (`docs/MUERTES.md`), con protección o maldic
    - **Rechazar:** coste fijo con su carta (Pupo se va ofendido; el Pueblo baja un poco).
    - Las dos secuelas se comportan como las demás: si las casillas están llenas, desplazan a la más antigua. **Sin coleccionable.**
    - Números del collar y la maldición (fuerza y duración): por calcular.
+
+## Papá Ernesto: guion definitivo (31 oct, Jorge)
+Trama de era. **Logro** si llegas a la despedida y eliges «Su casa será un museo» (respetar el legado de tu amigo); «El Partido cuidará de sus botellas» la corta (sin aviso: Ernesto se va igualmente).
+1. **Torneo:** Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre. — Conmigo todos pican (sigue) · No me gusta pescar (corte 1)
+   - **Corte 1 (nota de inteligencia):** Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones.
+2. **Whisky:** Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir. — Usted se merece ese whisky (sigue) · Beba lo que bebe el Pueblo (corte 2)
+   - **Corte 2 (nota de inteligencia):** Papá Ernesto abandonó el país a las 6:40. En el registro de su casa solo se encontraron botellas vacías.
+3. **Despedida:** Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante. — Su casa será un museo (logro) · El Partido cuidará de sus botellas

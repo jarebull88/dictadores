@@ -1333,7 +1333,7 @@ const CARTAS = [
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
     id: "ernesto_torneo", tipo: "ancla", ventana: [2, 3], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
     personaje: "Papá Ernesto",
-    texto: "Escribo novelas y pesco agujas. Le invito a mi torneo: daiquirí ilimitado y un trofeo con mi nombre.",
+    texto: "Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.",
     izq: { accion: "Conmigo todos pican", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
     der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 } }
   },
@@ -1341,17 +1341,17 @@ const CARTAS = [
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
     id: "ernesto_whisky", tipo: "ancla", ventana: [5, 6], cond: { turnoMin: 5, requiere: ["base.ernesto_amigo"], tras: { carta: "ernesto_torneo", turnos: 3 } }, titulo: "Papá Ernesto (whisky)",
     personaje: "Papá Ernesto",
-    texto: "Adoro su Revolución, pero sin whisky importado no escribo ni una línea. ¿Hacemos una excepción?",
-    izq: { accion: "Whisky para el genio", efectos: { potencias: 5, pueblo: -5 }, banderas: ["base.ernesto_whisky"] },
-    der: { accion: "Beba guarapo", efectos: { potencias: -5, pueblo: 5 } }
+    texto: "Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.",
+    izq: { accion: "Usted se merece ese whisky", efectos: { potencias: 5, pueblo: -5 }, banderas: ["base.ernesto_whisky"] },
+    der: { accion: "Beba lo que bebe el Pueblo", efectos: { potencias: -5, pueblo: 5 } }
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
     id: "ernesto_higado", tipo: "ancla", ventana: [8, 9], cond: { turnoMin: 8, requiere: ["base.ernesto_amigo", "base.ernesto_whisky"], tras: { carta: "ernesto_whisky", turnos: 3 } }, titulo: "Papá Ernesto (higado)",
     personaje: "Papá Ernesto",
-    texto: "Me voy a curarme el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Adiós.",
-    izq: { accion: "Tu casa será un museo", efectos: { pueblo: 5, elite: -5 } },
-    der: { accion: "El Partido cuidará tu bar", efectos: { pueblo: -5, elite: 5 } }
+    texto: "Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante.",
+    izq: { accion: "Su casa será un museo", efectos: { pueblo: 5, elite: -5 } },
+    der: { accion: "El Partido cuidará de sus botellas", efectos: { pueblo: -5, elite: 5 } }
   },
 
   /* ---------- Coalición (borrador) ---------- */

@@ -658,3 +658,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **31 oct — Textos, tramas:** tres tipos (minitramas, de era, entre eras); completar una trama de era o entre eras es un logro, y las decisiones que la cortan lo pierden (a veces para no caer). Mota y Milfuegos, dos tramas paralelas que nacen de «El comandante que dimite».
 - **31 oct — Textos:** cartas de aviso: cuentan una consecuencia tras una decisión, sin respuestas ni efectos; leyenda «TRAMA PERDIDA» cuando cortan una trama.
 - **31 oct — Textos:** las cartas de aviso salen en los cortes de trama y también de relleno (por definir), para que no sean una pista; sin leyenda «TRAMA PERDIDA»; las de relleno nunca coinciden con una carta de secuela.
+- **31 oct — Textos:** las cartas de aviso son «Nota de inteligencia» (leyenda): avisos que te llegan, en tercera persona.

@@ -22,18 +22,18 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Ni un vicio capitalista → sube Partido +4 · baja Pueblo -5, Potencias -4
 
 **El comandante que dimite** (Ministro de las Fuerzas Armadas)  
-«Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.»
-- A. Que Milfuegos lo detenga → sube Partido +5 · baja Ejército -4
+«Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
+- A. Que Milfuegos me lo traiga → sube Partido +5 · baja Ejército -4
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
 **El viaje de Milfuegos** (Ministro del Interior; segundo paso)  
-«Milfuegos quiere salir hoy mismo. Tengo un avión listo, revisado por mis hombres esta mañana.»
-- A. Que vaya volando → sube Ejército +3 · baja Pueblo -3
-- B. Por tierra, sin prisa → sube Pueblo +3 · baja Ejército -3
+«Por carretera Milfuegos tardaría dos días. Le tengo un avión preparado por mis hombres.»
+- A. Sí, que vaya volando → sube Ejército +3 · baja Pueblo -3
+- B. Mejor en jeep, no hay prisa → sube Pueblo +3 · baja Ejército -3
 
 **La fuga del comandante** (Ministro del Interior)  
-«Milfuegos llegó dos días tarde. El comandante dimitido se fue en una lancha y ya habla por la radio del exilio.»
-- A. Que hable, nadie le oye → sube Pueblo +3 · baja Ejército -3
+«Milfuegos llegó demasiado tarde. El comandante se fue en una lancha y ya habla por la radio del exilio.»
+- A. Que grite, el mar es ancho → sube Pueblo +3 · baja Ejército -3
 - B. Interfieran su emisora → sube Ejército +3 · baja Pueblo -3
 
 **Las refinerías** (Ministro de Comercio; segundo paso)  
@@ -52,9 +52,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Primero sus vidas → sube Pueblo +5 · baja Partido -5
 
 **El avión de Milfuegos** (Ministro de las Fuerzas Armadas)  
-«El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?»
-- A. Quiero toda la verdad → sube Ejército +5 · baja Partido -3
-- B. Sí, un accidente → sube Partido +3 · baja Ejército -5
+«Nuestro querido Comandante Milfuegos no ha vuelto. Su avión desapareció sobre el mar. ¿Fue un accidente?»
+- A. Investíguenlo todo → sube Ejército +5 · baja Partido -3
+- B. Un triste accidente → sube Partido +3 · baja Ejército -5
 
 **El azúcar** (Embajador de la potencia del norte)  
 «Hemos decidido no comprarle más azúcar hasta que devuelvan lo expropiado.»

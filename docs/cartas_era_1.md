@@ -41,9 +41,9 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.»
+**Carta:** «Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
 
-- **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
+- **A. Que Milfuegos me lo traiga** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
 - **B. Que dimita tranquilo** Ejército +4 · Élite −5
 
 ### 5. El viaje de Milfuegos
@@ -51,10 +51,10 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Milfuegos quiere salir hoy mismo. Tengo un avión listo, revisado por mis hombres esta mañana.»
+**Carta:** «Por carretera Milfuegos tardaría dos días. Le tengo un avión preparado por mis hombres.»
 
-- **A. Que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
-- **B. Por tierra, sin prisa** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
+- **A. Sí, que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
+- **B. Mejor en jeep, no hay prisa** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
 
@@ -63,9 +63,9 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Milfuegos llegó dos días tarde. El comandante dimitido se fue en una lancha y ya habla por la radio del exilio.»
+**Carta:** «Milfuegos llegó demasiado tarde. El comandante se fue en una lancha y ya habla por la radio del exilio.»
 
-- **A. Que hable, nadie le oye** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
+- **A. Que grite, el mar es ancho** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
 - **B. Interfieran su emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
@@ -113,10 +113,10 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?»
+**Carta:** «Nuestro querido Comandante Milfuegos no ha vuelto. Su avión desapareció sobre el mar. ¿Fue un accidente?»
 
-- **A. Quiero toda la verdad** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`
-- **B. Sí, un accidente** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
+- **A. Investíguenlo todo** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`
+- **B. Un triste accidente** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
 
 **Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Milfuegos.
 

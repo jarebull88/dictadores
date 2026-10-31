@@ -44,3 +44,15 @@ Por decidir (propuesta: el barbero de palacio).
 
 ## Hecho (29 oct, programación)
 - Pupo y Ernesto ya están en el juego. Pupo: `colas`, respuesta B, encola con `invoca: "pupo"` una de las cuatro amenazas (`pupo_*`, `enlace`) de la era actual, una vez por era; la A de cada amenaza encola su remedio (`pupo_*_remedio`). Efectos ±3 provisionales. Ernesto: tres anclas (`ernesto_*`, ventanas 2–4, 5–7, 8–10 de la era 1), efectos ±5 provisionales. Leyendas: «BABALAWO OFICIAL» y «NOVELISTA». Pupo no tiene aún cartas en las eras 2–4 (si lo invocan allí no sale nada). Textos y pesos los revisa Textos.
+
+## Pupo: mecánica nueva (31 oct, Jorge; sustituye a los efectos ±3)
+Misma estructura que los atentados (`docs/MUERTES.md`), con protección o maldición en vez de recompensa o muerte:
+1. **Invocación** (carta de las colas, «Yo sé a quién llamar»): nada más.
+2. **Amenaza:** solo la plantea; **las dos respuestas siguen adelante** y no mueven nada (graciosas: «Protéjame, padrino», «¿Qué puedo hacer?»).
+3. **Hechizo (el remedio):** aceptar o rechazar. El texto avisa del riesgo con una frase de santería («si el santo no queda conforme, se vira») y por detrás lleva una descripción ambigua.
+   - **Aceptar:** se tira la suerte según el **Pueblo** (cuanto más cree en ti, mejor; nunca seguro). Carta de resultado:
+     - **Bien → secuela «Collar» de protección:** acerca las fuerzas al centro durante unos turnos.
+     - **Mal → secuela de maldición** (algo de santeros en negativo): las aleja del centro durante unos turnos. No mata de golpe.
+   - **Rechazar:** coste fijo con su carta (Pupo se va ofendido; el Pueblo baja un poco).
+   - Las dos secuelas se comportan como las demás: si las casillas están llenas, desplazan a la más antigua. **Sin coleccionable.**
+   - Números del collar y la maldición (fuerza y duración): por calcular.

@@ -27,7 +27,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `ernesto_whisky` | Papá Ernesto (whisky) (A) | Papá Ernesto (higado) | — |
 | `estado_policial` | El jefe insaciable (A) | El batallón | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
 | `estudiantes_reprimidos` | Las urnas prometidas (A) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
-| `exiliados_vocales` | Los que se marchan (A) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |
+| `exiliados_vocales` | La fuga del comandante (A); La fuga del comandante (B); Los que se marchan (A) | La voz del exilio; Una carta con firmas; Intentos de fuga | Una oposición habla desde el extranjero. (era 2) |
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
 | `ferro_martir` | La guerrilla perdida (B) | — | — |
 | `frontera_cerrada` | Los que se marchan (B) | Intentos de fuga | Intentos de fuga. (era 2) |
@@ -39,7 +39,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `misiles_instalados` | Los nuevos vecinos (A); Los nuevos vecinos (B) | Los satélites | Una potencia vecina vigila tus misiles. (era 2) |
 | `misiles_rechazados` | — | — | El aliado recuerda tu negativa. (era 2) |
 | `modestia_aparente` | El retrato (B) | La modestia sospechosa | El Partido exige otros símbolos de lealtad. (era 3) |
-| `mota_juzgado` | El comandante que dimite (A) | La memoria | Los nietos de Mota piden que los libros hablen de él. (era 4) |
+| `mota_juzgado` | El viaje de Milfuegos (A) | La memoria | Los nietos de Mota piden que los libros hablen de él. (era 4) |
 | `nacionalizo_empresas` | Las refinerías (A) | Los que se marchan; Faltan técnicos; Embargo total | Sanciones de la potencia del norte. (era 2) |
 | `negocio_refinerias` | — | — | Las empresas exigen garantías que limitan tus decisiones económicas. (era 1) |
 | `no_alineado` | — | — | La potencia del norte se acerca y el aislamiento económico se agrava. (era 2) |

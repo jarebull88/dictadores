@@ -53,8 +53,24 @@ const CARTAS = [
     id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.",
-    izq: { accion: "Que Milfuegos lo detenga", efectos: { elite: 5, ejercito: -4 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 1, max: 1 }] },
+    izq: { accion: "Que Milfuegos lo detenga", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
     der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 } }
+  },
+  {
+    // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
+    id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
+    personaje: "Ministro del Interior",
+    texto: "Milfuegos quiere salir hoy mismo. Tengo un avión listo, revisado por mis hombres esta mañana.",
+    izq: { accion: "Que vaya volando", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
+    der: { accion: "Por tierra, sin prisa", efectos: { pueblo: 3, ejercito: -3 }, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
+  },
+  {
+    // 31 oct, Jorge: cierre de la trama si Milfuegos va por carretera: el dimitido se escapa
+    id: "fuga_comandante", tipo: "cola", titulo: "La fuga del comandante",
+    personaje: "Ministro del Interior",
+    texto: "Milfuegos llegó dos días tarde. El comandante dimitido se fue en una lancha y ya habla por la radio del exilio.",
+    izq: { accion: "Que hable, nadie le oye", efectos: { pueblo: 3, ejercito: -3 }, banderas: ["base.exiliados_vocales"] },
+    der: { accion: "Interfieran su emisora", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): segundo paso del aliado (1960): las refinerías se niegan a refinar el crudo del aliado y se intervienen
@@ -108,7 +124,7 @@ const CARTAS = [
   },
   {
     // 22 oct: Camilo Cienfuegos (oct. 1959); 28 oct: pasa a llamarse Milfuegos y es Comandante
-    id: "avion_diezfuegos", tipo: "cola", enlace: true, titulo: "El avión de Milfuegos",
+    id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?",
     izq: { accion: "Quiero toda la verdad", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },

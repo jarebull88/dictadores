@@ -26,6 +26,16 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Que Milfuegos lo detenga → sube Partido +5 · baja Ejército -4
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
+**El viaje de Milfuegos** (Ministro del Interior; segundo paso)  
+«Milfuegos quiere salir hoy mismo. Tengo un avión listo, revisado por mis hombres esta mañana.»
+- A. Que vaya volando → sube Ejército +3 · baja Pueblo -3
+- B. Por tierra, sin prisa → sube Pueblo +3 · baja Ejército -3
+
+**La fuga del comandante** (Ministro del Interior)  
+«Milfuegos llegó dos días tarde. El comandante dimitido se fue en una lancha y ya habla por la radio del exilio.»
+- A. Que hable, nadie le oye → sube Pueblo +3 · baja Ejército -3
+- B. Interfieran su emisora → sube Ejército +3 · baja Pueblo -3
+
 **Las refinerías** (Ministro de Comercio; segundo paso)  
 «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 - A. ¡Exprópiese! → sube Pueblo +8 · baja Partido -5, Potencias -6 · crisis +1
@@ -41,7 +51,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Será nuestro mártir → sube Partido +5 · baja Pueblo -5
 - B. Primero sus vidas → sube Pueblo +5 · baja Partido -5
 
-**El avión de Milfuegos** (Ministro de las Fuerzas Armadas; segundo paso)  
+**El avión de Milfuegos** (Ministro de las Fuerzas Armadas)  
 «El querido Comandante Milfuegos no ha vuelto. Su avión se esfumó sobre el mar. ¿Fue un accidente?»
 - A. Quiero toda la verdad → sube Ejército +5 · baja Partido -3
 - B. Sí, un accidente → sube Partido +3 · baja Ejército -5

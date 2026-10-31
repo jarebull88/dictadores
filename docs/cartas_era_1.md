@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
+Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
 
 ### 1. La casa vacía
 
@@ -43,12 +43,36 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Un comandante de provincias ha dimitido: dice que la Revolución se está volviendo comunista.»
 
-- **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 1 años
+- **A. Que Milfuegos lo detenga** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
 - **B. Que dimita tranquilo** Ejército +4 · Élite −5
+
+### 5. El viaje de Milfuegos
+
+**Personaje:** Ministro del Interior  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Milfuegos quiere salir hoy mismo. Tengo un avión listo, revisado por mis hombres esta mañana.»
+
+- **A. Que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
+- **B. Por tierra, sin prisa** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
 
-### 5. Las refinerías
+### 6. La fuga del comandante
+
+**Personaje:** Ministro del Interior  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Milfuegos llegó dos días tarde. El comandante dimitido se fue en una lancha y ya habla por la radio del exilio.»
+
+- **A. Que hable, nadie le oye** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
+- **B. Interfieran su emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
+
+**Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
+
+**Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
+
+### 7. Las refinerías
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -62,7 +86,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `compensaciones`:** Una deuda que alimenta una carta de crisis.
 
-### 6. El visitante del bloque oriental
+### 8. El visitante del bloque oriental
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 3 a 7 de su era; a partir del año 3 de la era.
@@ -74,7 +98,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 
-### 7. Los alfabetizadores en el monte
+### 9. Los alfabetizadores en el monte
 
 **Personaje:** Ministra de Educación  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -84,7 +108,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Será nuestro mártir** Élite +5 · Pueblo −5
 - **B. Primero sus vidas** Pueblo +5 · Élite −5
 
-### 8. El avión de Milfuegos
+### 10. El avión de Milfuegos
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -98,7 +122,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Milfuegos.
 
-### 9. El azúcar
+### 11. El azúcar
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -110,7 +134,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 10. La lista
+### 12. La lista
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -122,7 +146,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `criticos_detenidos`:** Presos políticos que pesan en tus relaciones exteriores.
 
-### 11. La tierra
+### 13. La tierra
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 20.
@@ -136,7 +160,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
-### 12. Los periódicos
+### 14. Los periódicos
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 5.
@@ -148,7 +172,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `censura_previa`:** Aparecen el periodista oficial y los rumores.
 
-### 13. Las urnas prometidas
+### 15. Las urnas prometidas
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 20; a partir del año 2 de la era.
@@ -166,7 +190,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `elecciones_prometidas`:** Elecciones controladas.
 
-### 14. La campaña de alfabetización
+### 16. La campaña de alfabetización
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 20.
@@ -176,7 +200,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. La R de Revolución** Élite +6 · Pueblo −6 · Encola: `alfabetizadores_monte` en 1 años
 - **B. El abecedario** Pueblo +6 · Élite −6 · Encola: `alfabetizadores_monte` en 1 años
 
-### 15. La declaración socialista
+### 17. La declaración socialista
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** ancla de los años 6 a 10 de su era.
@@ -186,7 +210,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Para los humildes** Pueblo +6 · Potencias −5 · Élite −3 · Encola: `la_bahia` en 1 años
 - **B. Socialista importada** Pueblo −6 · Potencias +5 · Élite +3 · Encola: `la_bahia` en 1 años
 
-### 16. Se acabó el profesional
+### 18. Se acabó el profesional
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 5.
@@ -196,7 +220,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Se juega por amor** Élite +4 · Potencias −4
 - **B. Que cobren en divisas** Potencias +4 · Élite −4
 
-### 17. Los colegios de los curas
+### 19. Los colegios de los curas
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 20.
@@ -206,7 +230,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Que recen en un barco** Élite +6 · Pueblo −6
 - **B. Dios, pero sin tiza** Pueblo +6 · Élite −6
 
-### 18. El club de golf
+### 20. El club de golf
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** sorteo con peso 3.
@@ -216,7 +240,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Su «hoyo» ahora es mío** Potencias −9 · Pueblo +8 · Élite +4
 - **B. No tocaremos nada más** Potencias +9 · Pueblo −8 · Élite −4
 
-### 19. La bahía
+### 21. La bahía
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -226,7 +250,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Cámbienlos por compotas** Pueblo +5 · Potencias +4 · Ejército −6
 - **B. Un último cigarro y chao** Potencias −4 · Ejército +6 · Crisis +2
 
-### 20. Los niños que se van
+### 22. Los niños que se van
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 3; a partir del año 3 de la era.
@@ -236,7 +260,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Sus padres sabrán** Pueblo +5 · Ejército −4 · Potencias +3
 - **B. Los niños son del Estado** Pueblo −5 · Ejército +4 · Potencias −3
 
-### 21. La reforma urbana
+### 23. La reforma urbana
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 20.
@@ -246,7 +270,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Que cada inquilino sea dueño** Pueblo +8 · Élite −5
 - **B. Ahora el casero soy yo** Pueblo −8 · Élite +5
 
-### 22. Las milicias
+### 24. Las milicias
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 3.
@@ -256,7 +280,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Que cada barrio mande** Pueblo +6 · Ejército −6
 - **B. Bajo mando militar** Pueblo −6 · Ejército +6
 
-### 23. Las mil flores
+### 25. Las mil flores
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 3.
@@ -270,7 +294,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `critica_abierta`:** Depuración de críticos.
 
-### 24. Los oficiales de antes
+### 26. Los oficiales de antes
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 5.
@@ -284,7 +308,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `purga_inicial`:** El Ministro del Interior pide más poder.
 
-### 25. Los ojos del barrio
+### 27. Los ojos del barrio
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 30; a partir del año 3 de la era.
@@ -296,7 +320,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `comites_vigilancia`:** Denuncias falsas entre vecinos.
 
-### 26. El retrato
+### 28. El retrato
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 3; a partir del año 4 de la era.
@@ -308,7 +332,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `modestia_aparente`:** El Partido exige otros símbolos de lealtad.
 
-### 27. Los que se marchan
+### 29. Los que se marchan
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 7; exige alguna de `reforma_agraria`, `nacionalizo_empresas`.
@@ -324,7 +348,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
 
-### 28. El partido
+### 30. El partido
 
 **Personaje:** Ministra de Educación  
 **Condición:** sorteo con peso 12.
@@ -334,7 +358,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. A ver quién me batea** Pueblo +4 · Ejército −3
 - **B. Yo seré el árbitro** Ejército +3 · Pueblo −4
 
-### 29. El economista
+### 31. El economista
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 12.
@@ -344,7 +368,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Me sirve igual** Ejército +4 · Élite −4
 - **B. Mejor uno que sepa sumar** Élite +4 · Ejército −4
 
-### 30. Las barbas
+### 32. Las barbas
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 12.
@@ -354,7 +378,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Las barbas no se tocan** Ejército +4 · Élite −3
 - **B. Que se afeiten los demás** Élite +3 · Ejército −4
 
-### 31. El refresco
+### 33. El refresco
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 12.
@@ -364,7 +388,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Improvisen una receta** Élite +4 · Pueblo −3
 - **B. Que beban guarapo** Pueblo +3 · Élite −4
 
-### 32. Las tiendas vacías *(borrador)*
+### 34. Las tiendas vacías *(borrador)*
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -376,7 +400,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `mercado_paralelo`:** Una economía que escapa a tu control.
 
-### 33. Las colas
+### 35. Las colas
 
 **Personaje:** Ministro de Comercio  
 **Condición:** carta de crisis: la dispara la crisis oculta (repetible).
@@ -386,7 +410,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Primero los militantes** Élite +5 · Pueblo −4 · Crisis −3
 - **B. Yo sé a quién llamar** Pueblo +4 · Élite −5 · Crisis −3 · Encola: `undefined` en 1 años
 
-### 34. Padrino Pupo (mal ojo)
+### 36. Padrino Pupo (mal ojo)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -396,7 +420,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Límpieme, padrino** Pueblo +3 · Élite −3 · Encola: `pupo_mal_ojo_remedio` en 1 años
 - **B. Yo no creo en santos** Pueblo −3 · Élite +3
 
-### 35. Padrino Pupo (el remedio)
+### 37. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -406,7 +430,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Que sean dos neveras** Pueblo +3 · Élite −3
 - **B. Rebaje algo, padrino** Pueblo −3 · Élite +3
 
-### 36. Padrino Pupo (enemigos)
+### 38. Padrino Pupo (enemigos)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -416,7 +440,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Ciérreles el paso** Pueblo +3 · Élite −3 · Encola: `pupo_enemigos_remedio` en 1 años
 - **B. Ya tengo escolta** Pueblo −3 · Élite +3
 
-### 37. Padrino Pupo (el remedio)
+### 39. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -426,7 +450,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Casa con piscina** Pueblo +3 · Élite −3
 - **B. Con un piso le basta** Pueblo −3 · Élite +3
 
-### 38. Padrino Pupo (envidia)
+### 40. Padrino Pupo (envidia)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -436,7 +460,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Protéjame, padrino** Pueblo +3 · Élite −3 · Encola: `pupo_envidia_remedio` en 1 años
 - **B. La envidia me alimenta** Pueblo −3 · Élite +3
 
-### 39. Padrino Pupo (el remedio)
+### 41. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -446,7 +470,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Le doy el de repuesto** Pueblo +3 · Élite −3
 - **B. Que pregunte la hora** Pueblo −3 · Élite +3
 
-### 40. Padrino Pupo (deseos)
+### 42. Padrino Pupo (deseos)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -456,7 +480,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Contente al santo** Pueblo +3 · Élite −3 · Encola: `pupo_deseos_remedio` en 1 años
 - **B. Dígale que estoy ocupado** Pueblo −3 · Élite +3
 
-### 41. Padrino Pupo (el remedio)
+### 43. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -466,7 +490,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Un descapotable** Pueblo +3 · Élite −3
 - **B. Que el santo camine** Pueblo −3 · Élite +3
 
-### 42. Papá Ernesto (torneo)
+### 44. Papá Ernesto (torneo)
 
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 2 a 3 de su era; a partir del año 2 de la era.
@@ -476,7 +500,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
 - **B. No me gusta pescar** Pueblo −5 · Élite +5
 
-### 43. Papá Ernesto (whisky)
+### 45. Papá Ernesto (whisky)
 
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 5 a 6 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
@@ -486,7 +510,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Whisky para el genio** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
 - **B. Beba guarapo** Potencias −5 · Pueblo +5
 
-### 44. Papá Ernesto (higado)
+### 46. Papá Ernesto (higado)
 
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 8 a 9 de su era; exige `ernesto_amigo` y `ernesto_whisky`; a partir del año 8 de la era.
@@ -496,7 +520,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Tu casa será un museo** Pueblo +5 · Élite −5
 - **B. El Partido cuidará tu bar** Pueblo −5 · Élite +5
 
-### 45. La calle y los cuarteles *(borrador)*
+### 47. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -506,7 +530,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Un ascenso y se calman** Ejército +8 · Élite −4
 - **B. Arréstenlos a todos** Ejército −6 · Pueblo −3 · Crisis +2
 
-### 46. La embajada
+### 48. La embajada
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -516,7 +540,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 - **A. Lo que pida el aliado** Potencias +8 · Élite −4
 - **B. Casa y coche para todos** Élite +8 · Potencias −4
 
-### 47. Los nuevos vecinos
+### 49. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 10 a 14 de su era.
@@ -530,7 +554,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
-### 48. El ultimátum
+### 50. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -542,7 +566,7 @@ Duración: entre 10 y 12 cartas. 49 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 49. Embargo total
+### 51. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 20; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.

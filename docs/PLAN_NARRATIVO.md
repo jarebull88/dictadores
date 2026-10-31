@@ -79,6 +79,16 @@ Fases 0, 1, 3, 4 y 5: **Opus**. Fase 2 y los tests: **Sonnet**.
 
 - **Los textos de Jorge se copian tal cual** (29 oct): letra a letra, aunque parezca una errata. Si crees que se equivocó, pregúntale antes de guardar; nunca lo corrijas por tu cuenta.
 
+## Tipos de trama (31 oct, Jorge)
+- **Minitramas:** dos o tres cartas seguidas (Pupo, los atentados).
+- **Tramas de era:** empiezan y acaban en una era (Papá Ernesto).
+- **Tramas entre eras:** de 2, 3 o 4 eras; hay que sobrevivir para seguirlas.
+- **Completar una trama (de era o entre eras) es un logro.** Algunas decisiones la **cortan** (siempre con una carta que lo cuente) y entonces ya no se completa. La gracia: a veces cortarla es lo que te salva de caer, y la pierdes por sobrevivir.
+- **Varias tramas van en paralelo:** la era 1 no elige qué trama vives, sino en qué versión vive cada una.
+
+### Mota y Milfuegos (31 oct, en diseño)
+Nacen de «El comandante que dimite». **Mota** (el dimitido): crítico desde dentro («Que dimita tranquilo»), detenido (Milfuegos en avión) o exiliado (en jeep). **Milfuegos:** muerto, un misterio de 4 eras (avión → «Las flores en el mar», era 2 → su culto te hace sombra, era 3 → la verdad, era 4); o vivo, un rival popular (más corta). Piezas que ya existen: «Las flores en el mar» (era 2), «La voz del exilio» (2), «Una carta con firmas» (3), «La memoria» (4). Falta: escribir las ramas, sus cortes y que investigar o cerrar el caso pongan banderas distintas.
+
 ## Ritmo de las tramas (31 oct, Jorge)
 Cada trama apunta qué cartas salen **seguidas** (segundos pasos, `enlace`) y cuáles necesitan **espacio** (cola con `min` de 3 o más), para que no haya cortes bruscos ni cosas que se apagan sin cierre. Toda rama tiene que terminar en algo que el jugador vea.
 - **Milfuegos:** «El comandante que dimite» → (si lo mandas detener) «El viaje de Milfuegos», seguida → en avión, «El avión de Milfuegos» 3–4 cartas después; por carretera, «La fuga del comandante» 1–2 cartas después (el dimitido se va al exilio).

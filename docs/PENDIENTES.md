@@ -32,7 +32,8 @@ Para verificar hechos históricos o nombres de ministerios hace falta una conver
 14. **Caídas por era (30 oct, Textos):** `FINALES` tiene ya la versión de la era 1 (títulos nuevos: Ingratitud, Unanimidad, Embajador, Anexión); hace falta que cada era tenga las suyas (p. ej. `FINALES_ERA[era][clave]`, con la de la era 1 de reserva) y que, si caes en una carta de Domingo, Sarria, Strenko, Pembrook o Anselmo, salga su muerte en lugar de la de la barra (con la frase en negrita de qué barra cayó; textos en `docs/MUERTES.md`).
 15. **Atentados (30 oct, Textos):** mecanismo en `docs/MUERTES.md` («Atentados»): carta sorpresa tras una decisión, protección oculta solo por el Ejército (riesgo del 75 % con el Ejército ≤20 al 5 % con ≥80), uno por era sin contar para el largo de la era, premio que acerca a 50 la fuerza de la carta, muerte propia con todas las barras cayendo, y rechazo con una secuela de un solo golpe. Los números, a ajustar con `npm run simular`. Textos de cada atentado: los entrega Textos.
 16. **Pupo, mecánica nueva (31 oct, Textos):** ver «Pupo: mecánica nueva» en `docs/INVITADOS.md` (amenaza sin efectos, hechizo con suerte según el Pueblo, secuelas Collar y maldición, carta de resultado). Números por calcular con Textos.
-17. Quitar de `CLAUDE.md` lo que se quede obsoleto cuando esto cambie.
+17. **Logros de trama (31 oct, Jorge):** completar una trama (de era o entre eras) da un logro; si una decisión la corta, ya no. Ver «Tipos de trama» en `PLAN_NARRATIVO.md`. El primero será Papá Ernesto (punto ya apuntado arriba); los textos, Coleccionables.
+18. Quitar de `CLAUDE.md` lo que se quede obsoleto cuando esto cambie.
 
 - **Logro «la historia de Ernesto»** (29 oct, Jorge): se da al decidir la tercera carta de Papá Ernesto (`ernesto_higado`), que solo sale si aceptas el torneo y el whisky. **Regla hecha (29 oct, `llegar` en `LOGROS`)**; faltan sus textos (hoy «Pendiente»): los redacta Coleccionables. Sin imagen.
 

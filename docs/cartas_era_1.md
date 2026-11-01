@@ -153,7 +153,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?»
 
-- **A. A los campesinos** Pueblo +8 · Élite −6 · Crisis +1 · Bandera: `reforma_agraria`
+- **A. Para los campesinos** Pueblo +8 · Élite −6 · Crisis +1 · Bandera: `reforma_agraria`
 - **B. Al Estado, que cultiva mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.

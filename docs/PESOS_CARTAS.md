@@ -68,7 +68,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La tierra** (Ministro de Trabajo)  
 «Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?»
-- A. A los campesinos → sube Pueblo +8 · baja Partido -6 · crisis +1
+- A. Para los campesinos → sube Pueblo +8 · baja Partido -6 · crisis +1
 - B. Al Estado, que cultiva mejor → sube Partido +6 · baja Pueblo -8
 
 **Los periódicos** (Ministra de Cultura)  

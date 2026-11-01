@@ -152,7 +152,7 @@ const CARTAS = [
     id: "tierra", tipo: "sorteo", peso: 20, titulo: "La tierra",
     personaje: "Ministro de Trabajo",
     texto: "Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?",
-    izq: { accion: "A los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
+    izq: { accion: "Para los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
     der: { accion: "Al Estado, que cultiva mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
   },
   {

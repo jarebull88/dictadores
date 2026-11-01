@@ -225,8 +225,8 @@ const GRUPO_DE = {
 
 /* Iconos de fuerzas y estados (23 oct): carteles serigrafiados cuadrados, con su fondo de color
    (assets/iconos/originales/cartel-*.jpg → «<id>-cartel»). */
-const icono = (id, clase = "") => {
-  const img = IMG["icono_" + id + "-cartel"];
+const icono = (id, clase = "", version = "-cartel") => {   // `version` «-caida»: el icono con la paleta de la pantalla de la caída (negro, crema, blanco y rojo)
+  const img = IMG["icono_" + id + version];
   return img ? `<img class="${["icono", "cartel", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
@@ -560,7 +560,7 @@ function mostrar(id) {
 
 function parBarra(id) {
   return `<div class="par">
-      <div class="icono-fuerza" aria-hidden="true">${icono(id)}</div>
+      <div class="icono-fuerza" aria-hidden="true">${icono(id)}${icono(id, "negro", "-caida")}</div>
       <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true"><i class="relleno"></i></div>
     </div>`;
@@ -694,8 +694,7 @@ function ocultarInfo() {
   delete pop.dataset.clave;
 }
 /* La información de un estado (la cara de la carta de información y el reverso de la carta de estado nuevo) */
-/* 2 nov, Jorge: el reverso de una secuela, fuerza, recompensa o logro es del color de fondo de su imagen (`COLOR_IMG`, que calcula build.py), con su
-   miniatura centrada arriba y el texto centrado: en blanco, salvo sobre fondos claros (el amarillo), que va en negro. */
+/* 2 nov, Jorge: el reverso de una secuela, fuerza, recompensa o logro es del color de fondo de su imagen (`COLOR_IMG`), con el texto centrado: en blanco, salvo sobre fondos claros (el amarillo), que va en negro. */
 const colorDe = (clave, respaldo) => {
   const c = (typeof COLOR_IMG !== "undefined" && COLOR_IMG[clave]) || respaldo || "#8A7156";
   const n = c.startsWith("#") ? parseInt(c.slice(1), 16) : -1;
@@ -706,7 +705,6 @@ function textoSobre(hex) {
   return (.2126 * c[0] + .7152 * c[1] + .0722 * c[2]) > .3 ? "#201D14" : "#FFFFFF";
 }
 const estiloHoja = hex => `--hoja-fondo:${hex};--hoja-texto:${textoSobre(hex)}`;
-const miniDe = src => src ? `<img class="mini-cartel" src="${src}" alt="" draggable="false">` : "";
 function htmlEstado(id, conTitulo = false) {   // 2 nov: el reverso de una secuela nunca lleva título (su nombre ya sale bajo la carta, también al tocar su casilla)
   const d = ESTADOS[id];
   return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p><hr class="divisor">` +
@@ -789,8 +787,8 @@ function abrirInfo(clave, id, fondo, origen, html, textos) {
   const c = document.createElement("div");
   c.className = "carta carta-info"; c.id = "carta-info"; c.dataset.clave = clave;
   c.setAttribute("role", "group");
-  const col = colorDe("icono_" + id + "-cartel-grande", fondo), peq = IMG["icono_" + id + "-cartel"] || img;
-  c.innerHTML = `<div class="giro"><div class="cara"><div class="hoja info-hoja" style="${estiloHoja(col)}">${miniDe(peq && peq.src)}${html}</div></div>` +
+  const col = colorDe("icono_" + id + "-cartel-grande", fondo);
+  c.innerHTML = `<div class="giro"><div class="cara"><div class="hoja info-hoja" style="${estiloHoja(col)}">${html}</div></div>` +
     `<div class="dorso carta-estado"><div class="ilustracion" style="--fondo-escena:${col}"><div class="icono-grande">` +
     (img ? `<img class="icono cartel" src="${img.src}" alt="" draggable="false">` : "") + `</div></div></div></div>`;
   $("carta").parentNode.appendChild(c);
@@ -1235,7 +1233,7 @@ function mostrarCartaEstado() {
   const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id])}">` +
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
-    `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id]))}">${miniDe((pequeno || grande) && (pequeno || grande).src)}${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
+    `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id]))}">${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
 
   entrarCarta(carta);
   pintarRanuras();
@@ -2050,7 +2048,7 @@ function verLogro(id) {
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
         <div class="logro-dorso"><div class="logro-hoja" style="${colL.startsWith("#") ? estiloHoja(colL) : "--hoja-fondo:" + colL + ";--hoja-texto:" + (g.fondo === "mostaza" || g.fondo === "crema" ? "#201D14" : "#FFFFFF")}">
-          ${miniDe(IMG_LOGROS[id])}<p class="logro-descripcion">${esc(g.descripcion)}</p></div></div>
+          <p class="logro-descripcion">${esc(g.descripcion)}</p></div></div>
       </div></div>
     </div>
     <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>`;

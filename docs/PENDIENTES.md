@@ -52,3 +52,6 @@ Ver §11 y §12 de `GUIA_ARTE_BACHS.md`. Pendiente: reverso de la era 1 (probar 
 
 ## Coleccionables (la lleva «Comandante - Coleccionables»)
 Ver «Traspaso a programación» y las notas finales de `COLECCIONABLES.md`. La era 1 está completa en el juego (29 oct). Faltan textos del carné y los billetes; los embajadores occidentales de las eras 2 a 4.
+
+## Retícula fija (2 nov, Programación → Textos)
+Todas las pantallas con carta usan la misma caja de texto de **4 líneas** (≈140 caracteres a 360 px) y el mismo pie. Hoy no caben: la **intro de la pantalla del nombre** (6 líneas; se corta por abajo). Revisar también la lista de preguntas largas de arriba.

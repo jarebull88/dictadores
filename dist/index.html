@@ -182,7 +182,14 @@ body.carta-medida :is(.pantalla-carta, #screen-end.caida) .escenario { flex: non
 body.carta-medida :is(.pantalla-carta, #screen-end.caida) .carta, body.carta-medida :is(.pantalla-carta, #screen-end.caida) .pila { width: var(--carta-w); height: var(--carta-h); }
 body.carta-medida :is(.pantalla-carta, #screen-end.caida) .pila { top: 0; }
 body.carta-medida :is(.pantalla-carta, #screen-end.caida) .carta { margin-bottom: 0; }
-body.carta-medida #screen-era .cabecera-carta { align-content: start; }   /* por ahora el texto largo se corta por abajo */
+/* RETÍCULA (2 nov, Jorge): todas las pantallas con carta comparten las mismas zonas que la partida.
+   Arriba: la zona del título (donde van las barras, `--ret-titulo`) y la caja de texto (donde va la pregunta: `--alto-mensaje`, 4 líneas).
+   Abajo: la carta con su mazo y la zona de pie (donde va la leyenda, `--alto-leyenda`, a `--ret-pie` de la carta). Se redacta para estas cajas. */
+body.carta-medida :is(.pantalla-carta, #screen-end.caida) { --alto-mensaje: calc(4 * var(--c-cuerpo) * var(--lh-cuerpo) + 2px); }
+body.carta-medida :is(.pantalla-carta .cabecera-carta, #screen-end.caida .fin-cab) { display: block; padding: 0; }
+body.carta-medida :is(.pantalla-carta .cabecera-carta, #screen-end.caida .fin-cab) :is(h1) { height: var(--ret-titulo); display: flex; align-items: center; justify-content: center; margin: 0; }
+body.carta-medida :is(.era-texto, .pantalla-nombre .intro, #screen-end.caida .relato) { height: var(--alto-mensaje); overflow: visible; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2px 5% 0; margin: 0; width: 100%; box-sizing: border-box; }
+body.carta-medida :is(.era-anios, .fin-pie, .pantalla-nombre .campo) { margin-top: calc(var(--ret-pie) - var(--carta-h) - var(--mazo-alto)); height: var(--alto-leyenda); display: flex; align-items: center; justify-content: center; padding: 0; box-sizing: border-box; }
 
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
 .cabecera-carta h1 { margin: 0; color: var(--rojo); }
@@ -2852,10 +2859,15 @@ function medirCartaJuego() {
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0) + (pila ? pila.offsetTop : 0);
+  const gTop = g.getBoundingClientRect().top + (parseFloat(getComputedStyle(g).paddingTop) || 0);
+  const mensajeTop = $("mensaje").getBoundingClientRect().top - gTop;   // retícula (2 nov): dónde empieza el texto (bajo las barras)
+  const leyendaTop = g.querySelector(".zona-leyenda").getBoundingClientRect().top - gTop;   // y dónde la leyenda (bajo la carta y su mazo)
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
+  r.setProperty("--ret-titulo", Math.max(0, mensajeTop) + "px");
+  r.setProperty("--ret-pie", Math.max(0, leyendaTop - arriba) + "px");   // de la parte de arriba de la carta a la leyenda
   document.body.classList.add("carta-medida");
 }
 window.addEventListener("resize", medirCartaJuego);

@@ -539,10 +539,15 @@ function medirCartaJuego() {
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0) + (pila ? pila.offsetTop : 0);
+  const gTop = g.getBoundingClientRect().top + (parseFloat(getComputedStyle(g).paddingTop) || 0);
+  const mensajeTop = $("mensaje").getBoundingClientRect().top - gTop;   // retícula (2 nov): dónde empieza el texto (bajo las barras)
+  const leyendaTop = g.querySelector(".zona-leyenda").getBoundingClientRect().top - gTop;   // y dónde la leyenda (bajo la carta y su mazo)
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
+  r.setProperty("--ret-titulo", Math.max(0, mensajeTop) + "px");
+  r.setProperty("--ret-pie", Math.max(0, leyendaTop - arriba) + "px");   // de la parte de arriba de la carta a la leyenda
   document.body.classList.add("carta-medida");
 }
 window.addEventListener("resize", medirCartaJuego);

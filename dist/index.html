@@ -57,7 +57,7 @@
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
   --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
-  --alto-leyenda: calc(var(--t-l) * 1.15);          /* la franja bajo la carta: nombre del estado, cargo del personaje o instrucción del tutorial */
+  --alto-leyenda: calc(var(--t-titulo) * 1.15);          /* la franja bajo la carta: nombre del estado, cargo del personaje o instrucción del tutorial */
   --aviso: calc((var(--cuadro) - var(--menu)) / 2); /* la bolita amarilla del menú: justo el hueco hasta el borde de las casillas */
   --mazo-cartas: 4;                                 /* cartas que se ven debajo de la de arriba */
   --mazo-paso: 3.5px;                               /* lo que asoma cada una */
@@ -78,77 +78,60 @@ body {
 #app { height: 100%; position: relative; }
 .titulo { }
 /* TIPOGRAFIA:INICIO ==========================================================================================
-   TIPOGRAFÍA: LA ÚNICA FUENTE DE VERDAD (24 oct; 2 nov: tres estilos, por Jorge)
-   Solo hay TRES estilos de letra:
-     · ESTILO 1 · TÍTULOS: Londrina Solid, en MAYÚSCULAS («Era 1: La Revolución», «¡Has caído!», el nombre en la ficha).
-     · ESTILO 2 · SUBTÍTULOS: Londrina en MAYÚSCULAS, al tamaño de «Comercio» (la leyenda bajo la carta): en ligero (la leyenda, las
-       respuestas, «Gobernaste por N años», «Has gobernado N años», el título de una recompensa bajo su carta y su «Por …») y en normal
-       (la frase de qué fuerza cayó y los carteles de «¡Nueva recompensa!»).
-     · ESTILO 3 · CUERPO: Roboto Condensed en MAYÚSCULAS, un solo peso (`--peso-cuerpo`): las preguntas, el texto de la era, el reverso de
-       todas las tarjetas, el relato de la caída, los informes, los avisos, los botones…
-   Cada texto del juego elige un papel de esta lista. Para cambiar la fuente, el tamaño o el peso de un papel se cambia AQUÍ y solo aquí.
-   Fuera de este bloque no debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height (lo vigila
-   tests/tipografia.test.js). Para un texto nuevo: añade su selector a un papel; no le des estilo propio. Tabla: docs/TIPOGRAFIA.md. */
+   TIPOGRAFÍA: LA ÚNICA FUENTE DE VERDAD (24 oct; 2 nov: tres estilos y UN tamaño por estilo, por Jorge)
+   Hay TRES estilos, cada uno con su letra, su peso, su tamaño y su interlineado. Un texto del juego es de uno de los tres: para
+   cambiar CUALQUIER texto de un estilo (en las preguntas, en la caída, en las tarjetas…) se cambia aquí, en una sola regla.
+     1 · TÍTULO     Londrina Solid, mayúsculas, `--t-titulo`     «Era 1: La Revolución», «¡Has caído!», el nombre de la ficha…
+     2 · SUBTÍTULO  Londrina, mayúsculas, `--t-sub`; ligero o normal   la leyenda («Comercio»), las respuestas, «Gobernaste por 2 años»,
+                    la frase de qué fuerza cayó, los botones, el título de una recompensa…
+     3 · CUERPO     Roboto Condensed, mayúsculas, `--c-cuerpo`   preguntas, texto de la era, reverso de las tarjetas, relato de la caída…
+   Fuera de este bloque no debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height
+   (lo vigila tests/tipografia.test.js). Para un texto nuevo: añade su selector a UNO de los tres estilos; no le des estilo propio.
+   Las únicas excepciones son tamaños que se calculan solos para que algo quepa (`--leyenda-px`, `--ficha-px`, `--nombre-px`) y el logo
+   de la portada. Tabla: docs/TIPOGRAFIA.md. */
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
-  --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;   /* 2 nov, Jorge: antes Sofia Sans Semi Condensed */
-  --peso-cuerpo: 400;
+  --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;
   --peso-ligero: 300;   /* Londrina Light */
-  /* tamaños del TITULAR */
-  --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
-  --t-l: min(calc(var(--carta-w, 360px) * .10), 44px);    /* el título de la era y el de la pantalla del nombre */
-  --t-m: 26px;                                              /* títulos de ventanas, de estados, de la portada, de la esquela */
-  --t-s: 21px;                                              /* «NUEVO» de la galería */
-  /* tamaños del CUERPO */
-  --c-pregunta: 22px;   /* la pregunta y todo texto que hable al jugador sobre una carta (20 px en pantallas bajas) */
-  --c-respuesta: min(27px, calc(var(--carta-w, 360px) / 14));   /* el tamaño de los SUBTÍTULOS: «Comercio», las respuestas… */
-  --c-texto: 18px;      /* párrafos: fichas, informes, relato, esquela, reverso */
-  --c-pequeno: 16px;    /* pie, avisos, etiquetas, «abandonar» */
+  --peso-normal: 400;
+  --t-titulo: min(calc(var(--carta-w, 360px) * .12), 48px);
+  --t-sub: min(27px, calc(var(--carta-w, 360px) / 14));
+  --c-cuerpo: 20px;     /* 18 px en pantallas bajas */
+  --lh-cuerpo: 1.3;
 }
-body { font-family: var(--f-cuerpo); font-size: var(--c-texto); line-height: 1.4; font-weight: var(--peso-cuerpo); text-transform: uppercase; }
+@media (max-height: 760px) { :root { --c-cuerpo: 18px; } }
+body { font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); line-height: var(--lh-cuerpo); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; }
 button, input, textarea { font-family: inherit; }
-b, strong { font-weight: var(--peso-cuerpo); }   /* los botones y campos no heredan la letra solos */
+b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no heredan la letra solos */
 
-/* — ESTILO 1 · TÍTULOS — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
-.popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .titulo-caida,
-.opcion-portada, .objeto-cara b, .archivo-titulo, .logro-objeto-nombre, .hueco-logro {
-  font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
+/* — 1 · TÍTULO — */
+.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .ficha-nombre, .archivo-titulo, .objeto-cara b, .titulo-caida {
+  font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
-#screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
-.ficha-nombre { font-size: var(--nombre-px, var(--t-xl)); }
-.titulo, .cabecera-carta h1 { font-size: var(--t-l); }
-#screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
-.hueco-logro { font-size: var(--t-s); }
-.objeto-cara b { font-size: var(--t-l); }
-.logro-objeto-nombre { font-size: var(--t-m); }
-.etiqueta-boli.larga b, .popup .efecto { font-size: var(--t-s); }
-.logo-texto > span { font-size: min(46px, 10vw); }                 /* el logo, a su tamaño propio */
-.logo-texto > span + span { font-size: min(92px, 20vw); }         /* la orden manda: «¡ORDENE!» va más grande */
-.logo-texto > span { line-height: .86; }                            /* 24 oct: las dos líneas del título, pegadas */
-.lema { line-height: 1.1; }
+.ficha-nombre { font-size: var(--nombre-px, var(--t-titulo)); }   /* el nombre baja solo si no cabe (ajustarFicha) */
+/* el logo de la portada, a su tamaño propio */
+.logo-texto { font-family: var(--f-titular); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; line-height: .86; }
+.logo-texto > span { font-size: min(46px, 10vw); }
+.logo-texto > span + span { font-size: min(92px, 20vw); }
 
-/* — ESTILO 2 · SUBTÍTULOS (Londrina; ligero o normal) — */
+/* — 2 · SUBTÍTULO — */
 .leyenda, .fin-anios, .era-anios, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span,
-.fin-pie, .banda span { font-family: var(--f-titular); text-transform: uppercase; letter-spacing: 0; line-height: 1.05; font-size: var(--c-respuesta); }
+.fin-pie, .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
+.logro-objeto-nombre, .hueco-logro {
+  font-family: var(--f-titular); font-size: var(--t-sub); font-weight: var(--peso-normal); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
+}
 .leyenda, .fin-anios, .era-anios, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span { font-weight: var(--peso-ligero); }
-.fin-pie, .banda span { font-weight: 400; }
-.leyenda { font-size: var(--leyenda-px, var(--c-respuesta)); }   /* baja sola hasta que quepa en dos líneas (ajustarLeyenda) */
-.texto-respuesta strong { line-height: 1.08; }
+.leyenda { font-size: var(--leyenda-px, var(--t-sub)); }   /* baja sola si no cabe en dos líneas (ajustarLeyenda) */
 
-/* — ESTILO 3 · CUERPO (Roboto Condensed, mayúsculas, un solo peso) — */
-/* la pregunta y los textos que la acompañan */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .aviso-texto { font-size: var(--c-pregunta); line-height: 1.28; font-weight: var(--peso-cuerpo); }
-/* texto corrido: reverso de las tarjetas, informes, relato, esquela */
-.popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato,
-.logro-descripcion, .logro-efecto { font-size: var(--c-texto); line-height: 1.4; font-weight: var(--peso-cuerpo); }
-.modo, .modo b, .opcion-menu, .archivo-cerrar { font-size: var(--c-texto); font-weight: var(--peso-cuerpo); }
-.ficha-historia { font-size: var(--ficha-px, var(--c-texto)); }   /* la ficha achica su letra sola si no cabe (ajustarFicha) */
-/* texto pequeño */
-.logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
-.campo label, .barra.sube .par::after, .barra.baja .par::after { font-size: var(--c-pequeno); line-height: 1.3; font-weight: var(--peso-cuerpo); }
-.alerta { line-height: 1; }
-@media (max-height: 760px) { :root { --c-pregunta: 20px; } }
+/* — 3 · CUERPO — */
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .aviso-texto,
+.popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .logro-descripcion, .logro-efecto,
+.modo, .modo b, .opcion-menu, .archivo-cerrar, .opcion-portada.secundaria,
+.logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre, .campo label,
+.barra.sube .par::after, .barra.baja .par::after {
+  font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
+}
+.ficha-historia { font-size: var(--ficha-px, var(--c-cuerpo)); }   /* la ficha achica su letra sola si el texto no cabe (ajustarFicha) */
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -316,7 +299,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
   flex: none; height: var(--alto-mensaje); margin-top: 8px; overflow: hidden;   /* 23 oct: aire bajo las barras (antes 0) */
   display: flex; align-items: center; justify-content: center; text-align: center;   /* centrada en vertical (2 o 4 líneas, mismo aire) y en horizontal */
   padding: 2px 5% 0;   /* 24 oct: la pregunta ocupa el 90 % del ancho de la carta, no hasta el borde */
-  --alto-mensaje: calc(var(--lineas-mensaje, 4) * var(--c-pregunta) * 1.28 + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
+  --alto-mensaje: calc(var(--lineas-mensaje, 4) * var(--c-cuerpo) * var(--lh-cuerpo) + 2px);   /* 4 líneas a 19 px (5 o 6 si la carta tiene alto de sobra: medirCartaJuego); si no cabe, ajustarMensaje() baja la letra */
 }
 
 /* Escenario: la carta, cuadrada, ocupa el lado más corto del hueco libre (el que dejan el mensaje y la barra inferior), con el mazo detrás.
@@ -2869,10 +2852,6 @@ function medirCartaJuego() {
      crece a 5 o 6 líneas para que los textos largos no encojan la letra. Igual en todas las cartas, para que no salten. */
   const raiz = document.documentElement.style;
   raiz.setProperty("--lineas-mensaje", "4");
-  const linea = parseFloat(getComputedStyle($("mensaje")).fontSize) * 1.28 || 24;
-  /* 23 oct: con la carta cuadrada sobra alto debajo; se dan hasta 2 líneas más a la pregunta, dejando siempre
-     unos 90 px libres bajo la carta para los avisos de logros. */
-  const sobra = esc.clientHeight - c.offsetHeight - 90;
   // 2 nov, Jorge: la pregunta mide siempre lo mismo y aguanta 4 líneas como máximo (si no cabe, se acorta el texto): ya no crece a 5 o 6 líneas
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)

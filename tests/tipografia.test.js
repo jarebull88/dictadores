@@ -27,8 +27,8 @@ test("el código no pone letra ni tamaño en línea (solo los ajustes de «caber
   assert.deepEqual(enLinea, [], "estilos tipográficos en línea: " + enLinea.join(" | "));
 });
 
-test("ninguna negrita suelta es de peso 700: todo el cuerpo es un solo peso (--peso-cuerpo)", () => {
+test("ninguna negrita suelta es de peso 700: todo el juego usa el peso normal o el ligero (--peso-normal, --peso-ligero)", () => {
   const bloque = css.slice(css.indexOf("TIPOGRAFIA:INICIO"), css.indexOf("TIPOGRAFIA:FIN"));
   assert.ok(!/font-weight:\s*(700|bold)/.test(bloque), "peso 700 o bold suelto en el bloque TIPOGRAFIA");
-  assert.ok(/b, strong \{ font-weight: var\(--peso-cuerpo\)/.test(css), "falta la regla de b, strong");
+  assert.ok(/b, strong \{ font-weight: var\(--peso-normal\)/.test(css), "falta la regla de b, strong");
 });

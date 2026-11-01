@@ -535,10 +535,6 @@ function medirCartaJuego() {
      crece a 5 o 6 líneas para que los textos largos no encojan la letra. Igual en todas las cartas, para que no salten. */
   const raiz = document.documentElement.style;
   raiz.setProperty("--lineas-mensaje", "4");
-  const linea = parseFloat(getComputedStyle($("mensaje")).fontSize) * 1.28 || 24;
-  /* 23 oct: con la carta cuadrada sobra alto debajo; se dan hasta 2 líneas más a la pregunta, dejando siempre
-     unos 90 px libres bajo la carta para los avisos de logros. */
-  const sobra = esc.clientHeight - c.offsetHeight - 90;
   // 2 nov, Jorge: la pregunta mide siempre lo mismo y aguanta 4 líneas como máximo (si no cabe, se acorta el texto): ya no crece a 5 o 6 líneas
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)

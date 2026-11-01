@@ -347,6 +347,10 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 #screen-name.entrando .titulo { animation-delay: .05s; }
 #screen-name.entrando .intro { animation-delay: .3s; }
 #screen-name.entrando .campo { animation-delay: 1.15s; }
+#screen-end.caida.entrando .fin-principal, #screen-end.caida.entrando .relato, #screen-end.caida.entrando .fin-pie-zona { opacity: 0; animation: fundido .35s ease forwards; }
+#screen-end.caida.entrando .fin-principal { animation-delay: .5s; }
+#screen-end.caida.entrando .relato { animation-delay: .7s; }
+#screen-end.caida.entrando .fin-pie-zona { animation-delay: .9s; }
 @keyframes fundido { to { opacity: 1; } }
 /* Icono «360» en la esquina de arriba a la derecha de la cartulina: la carta se puede girar */
 .icono-giro { position: absolute; top: 12px; right: 12px; z-index: 2; width: 13%; max-width: 40px; height: auto; pointer-events: none;

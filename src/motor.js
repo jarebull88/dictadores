@@ -1392,6 +1392,26 @@ function terminar(clave, transicion, personaje) {
     ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
   mostrar("screen-end");
+  if (clave) entrarFin();
+}
+/* 2 nov, Jorge: la caída sale del mazo como una carta más: llega boca abajo sobre el mazo del color de la era, da la vuelta y,
+   al descubrirse, aparecen con fundido el título, el relato y el pie (misma cadencia que la carta del nombre) */
+function entrarFin() {
+  const pant = $("screen-end"), carta = $("carta-fin");
+  if (!animar()) return;
+  colorReverso(E ? E.era : 1);
+  pant.classList.remove("entrando"); void pant.offsetWidth; pant.classList.add("entrando");
+  const giro = carta.querySelector(".giro");
+  if (giro) giro.style.transition = "none";
+  carta.classList.add("revelando", "boca-abajo");
+  void carta.offsetWidth; if (giro) giro.style.transition = "";
+  clearTimeout(carta._revela); clearTimeout(pant._entra);
+  carta._revela = setTimeout(() => {
+    carta.classList.remove("boca-abajo");
+    sonar("voltear");
+    carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
+  }, 450);
+  pant._entra = setTimeout(() => pant.classList.remove("entrando"), 1800);
 }
 /* Al caer, todo lo de arriba debe caber en el hueco de las barras y la pregunta: si no cabe, baja la letra
    del relato (hasta 13 px) y después la del título (hasta 36 px) */

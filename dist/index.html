@@ -512,10 +512,11 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* 2 nov: reversos de secuelas, fuerzas, recompensas y logros: del color de su imagen, con la miniatura arriba y el texto centrado */
 .info-hoja, .logro-hoja { background: var(--hoja-fondo, var(--p-crema)); color: var(--hoja-texto, var(--p-tinta)); align-items: center; text-align: center; }
 .info-hoja .ficha-historia, .logro-hoja p { text-align: center; }
-.info-hoja, .logro-hoja { justify-content: flex-start; padding-top: 8px; gap: 6px; }
-.mini-cartel { display: block; flex: none; width: 20%; max-width: 72px; aspect-ratio: 1; object-fit: cover; margin: 0 auto 2px; border: 0; box-shadow: none; }
-.mini-cartel + * { margin-top: auto !important; }
-.info-hoja > :last-child, .logro-hoja > :last-child { margin-bottom: auto !important; }
+/* 2 nov, Jorge: el texto se centra en vertical respecto a TODA la tarjeta (no respecto al hueco bajo la miniatura): la miniatura va en el borde de arriba, fuera del flujo,
+   y el aire de arriba y de abajo es el mismo para que no choquen. */
+.info-hoja, .logro-hoja { position: relative; justify-content: center; padding: 46px 14px; gap: 6px; }
+.mini-cartel { position: absolute; top: 5px; left: 50%; translate: -50% 0; width: 12%; max-width: 44px; aspect-ratio: 1; object-fit: cover; border: 0; box-shadow: none; }
+.divisor { flex: none; align-self: stretch; margin: 2px 12%; border: 0; border-top: 2px solid currentColor; opacity: .6; }
 .ficha-historia { margin: 0; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
@@ -3040,7 +3041,7 @@ function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
   const f = FUERZAS[id];
   abrirInfo("fuerza-" + id, id, FONDO_FUERZA[id], el,
-    `<b class="info-titulo">${esc(f.nombre)}</b><p class="ficha-historia">${esc(f.quien)}</p>` +
+    `<p class="ficha-historia ficha-nota"><b>${esc(f.nombre)}:</b> ${esc(f.quien)}</p><hr class="divisor">` +   // 2 nov, Jorge: el nombre abre la descripción; una línea la separa de lo que sube y baja
     `<p class="ficha-historia ficha-nota"><b>Lo sube:</b> ${esc(f.sube)}</p><p class="ficha-historia ficha-nota"><b>Lo baja:</b> ${esc(f.baja)}</p>`);
 }
 

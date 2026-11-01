@@ -723,7 +723,7 @@ function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
   const f = FUERZAS[id];
   abrirInfo("fuerza-" + id, id, FONDO_FUERZA[id], el,
-    `<b class="info-titulo">${esc(f.nombre)}</b><p class="ficha-historia">${esc(f.quien)}</p>` +
+    `<p class="ficha-historia ficha-nota"><b>${esc(f.nombre)}:</b> ${esc(f.quien)}</p><hr class="divisor">` +   // 2 nov, Jorge: el nombre abre la descripción; una línea la separa de lo que sube y baja
     `<p class="ficha-historia ficha-nota"><b>Lo sube:</b> ${esc(f.sube)}</p><p class="ficha-historia ficha-nota"><b>Lo baja:</b> ${esc(f.baja)}</p>`);
 }
 

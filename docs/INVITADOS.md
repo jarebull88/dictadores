@@ -64,3 +64,13 @@ Trama de era. **Logro** si llegas a la despedida y eliges «Su casa será un mus
 2. **Whisky:** Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir. — Usted se merece ese whisky (sigue) · Beba lo que bebe el Pueblo (corte 2)
    - **Corte 2 (nota de inteligencia):** Papá Ernesto abandonó el país a las 6:40. En el registro de su casa solo se encontraron botellas vacías.
 3. **Despedida:** Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante. — Su casa será un museo (logro) · El Partido cuidará de sus botellas
+
+## Padrino Pupo: guion definitivo (1 nov, Jorge; ya en `src/datos.js`)
+Sustituye a la mecánica del 31 oct: **en el hechizo no se rechaza** (si has llegado hasta aquí no te rajas): **pagar entero o regatear**. Pagar cuesta más a la fuerza de lo que pide y da mejor suerte; regatear cuesta menos y la empeora. La suerte la decide el **Pueblo**; el resultado, una secuela **Collar** (bien) o **Salación** (mal). **Enemigos se quitó**: quedan tres amenazas, una por fuerza.
+0. **Las colas:** Que el Partido reparta los turnos · **Hay otras formas de resolver esto** (invoca a Pupo).
+1. **Mal de ojo** (cuesta Partido): «Mijo, esto salió en osogbo. Hay una mirada muy mala puesta sobre usted. Y lleva tiempo ahí.» — ¡Hágame el ebbó, padrino! · ¡Dígame qué necesita! → «Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.» — Que sean dos neveras · ¿No le sirve la del viceministro?
+2. **Envidia** (cuesta Potencias): «Mijo, usted despierta mucha envidia. Y esa envidia, cuando se acumula, hace mucho daño.» — Protéjame, padrino · ¿Qué pide la letra? → «Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.» — Elija uno de mi colección · Le consigo uno más modesto
+3. **Malos deseos** (cuesta Ejército): «Mijo, el santo me lo ha marcado. Hay gente pidiendo su caída con una insistencia que no es normal.» — ¡Póngame en iré, padrino! · ¿Qué hay que ofrecer? → «Para malos deseos, el santo pide calabaza, 2 gallinas negras, arroz y un carro con chófer. Pero no le aseguro nada.» — Un descapotable, padrino · Una moto y va que chuta
+- **Detrás del hechizo** (propuesta): Padrino Pupo acierta casi siempre. Lo de «casi» no lo explica nunca.
+- **Resultado** (propuesta): Collar — «El santo te cubre las espaldas. De momento.» · Salación — «Todo lo que tocas se tuerce. Hasta el café.»
+- Ejemplo de suerte (a ajustar): Pueblo 60 → 60 % pagando, 40 % regateando; nunca segura.

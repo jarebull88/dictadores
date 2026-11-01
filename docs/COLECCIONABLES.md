@@ -113,6 +113,37 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 ### Pendientes (elegidos por Jorge, sin redactar)
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).
 
+## Recompensas rehechas (1 nov, Jorge: sin beneficio ni perjuicio)
+Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el título: qué es y de dónde sale) y **descripción de la tarjeta** (`descripcion`, por detrás: la ironía). Se integran en el juego al cerrar la tanda.
+
+- **Paloma amaestrada** — *aprobada*
+  - Externa: Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.
+  - Tarjeta: Alza el brazo en un discurso y se posará en tu hombro: la mitad del país verá en ti al elegido. La otra mitad verá la mancha del uniforme.
+- **Licencia de electricista** — *aprobada*
+  - Externa: El carné de oficio que convierte a tu mejor atleta en aficionado, con sueldo del Estado y horario de taller.
+  - Tarjeta: Ficha en el taller por la mañana y entrena por la tarde. Ya ha ganado tres oros olímpicos. Rezamos para que nadie le encargue una obra.
+- **Libreta de abastecimiento** — *aprobada*
+  - Externa: La cartilla que reparte a cada familia lo mismo cada mes, haya o no haya.
+  - Tarjeta: Una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. Si la pierdes, tu familia deja de existir para el almacén.
+- **Compota importada** — *aprobada* (1 nov, revisada con los antiguos beneficio y perjuicio)
+  - Externa: Compota extranjera de primera calidad, conseguida mediante una operación diplomática de alto nivel.
+  - Tarjeta: Fruta natural, envase precioso y etiqueta en otro idioma. Con un tarro se compra a cualquier ministro.
+- **Botella de Revukola** — *aprobada*
+  - Externa: El refresco de cola nacional, inventado a toda prisa cuando la receta se fue del país con los dueños de la fábrica.
+  - Tarjeta: Lleva azúcar, agua y lo que aparezca en el almacén: ninguna botella sabe igual que la anterior. Cada vez que se fabrica, el país se queda sin azúcar.
+- **Pelota con autógrafo** — *aprobada* (1 nov, Jorge: las reliquias hablan del Comandante en tercera persona)
+  - Externa: Pieza de colección: la pelota del récord de la liga, veintisiete ponches en dos entradas.
+  - Tarjeta: Firmada por el Comandante antes del primer lanzamiento. Acabó el partido tan limpia como salió de la caja.
+- **Postal con misil** — *aprobada*
+  - Externa: Una estampa de la bahía: aguas cristalinas, sombrillas de colores y un misil nuclear que luce espléndido junto a la orilla.
+  - Tarjeta: En el reverso tiene un espacio para escribir a la familia y otro para las coordenadas. El envío lo paga la potencia que la recibe.
+- **Puros Comandantes** — *aprobada* (el atentado no existió si la tienes: los puros le gustaron y creó su marca)
+  - Externa: Caja de veinticinco robustos. Aquellos tabacos regalados le gustaron tanto al Comandante que creó su propia marca.
+  - Tarjeta: Una edición exclusiva, reservada para su disfrute personal y a los jefes de Estado que conviene tener contentos. La diplomacia también se fuma.
+- **Carnet de Chivatón** (antes «Chivatón de barrio»; era 2) — *aprobada*
+  - Externa: El carné del comité de barrio: un ojo abierto, una cinta con un lema y la firma del Comandante.
+  - Tarjeta: Convierte cada cuadra en un puesto de observación y a cada vecino en un informante. Quien lo lleva también es vecino de alguien.
+
 ## Traspaso a programación (28 oct)
 
 Esta conversación solo escribe documentos; el código lo hace la de programación. Lo que hay que hacer en el juego, con las recompensas y los logros **aunque sus textos digan «Pendiente»** (para poder probarlos ya):

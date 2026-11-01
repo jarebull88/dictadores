@@ -728,6 +728,10 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .aviso-texto { margin: 0; text-align: center; color: var(--p-tinta); }
 .objeto-cara { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; text-align: center; padding: 8%; box-sizing: border-box; }
 .objeto-cara b { color: var(--p-blanco); }
+.objeto-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.carta-aviso.con-imagen { flex-direction: column; gap: 4%; padding: 3%; justify-content: flex-start; }
+.carta-aviso.con-imagen .aviso-img { display: block; flex: none; width: 100%; height: 50%; object-fit: cover; }
+.carta-aviso.con-imagen .aviso-texto { padding: 0 3%; }
 /* Un logro: el mismo sitio y la misma medida que las cartas de la partida (título y subtítulo arriba, carta 1:1, decisión debajo).
    La carta se gira al tocarla, como la ficha de los personajes. */
 .logro-vista { position: absolute; inset: 0; padding: 8px 12px 6px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; background: var(--p-crema); }

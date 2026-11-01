@@ -30,6 +30,10 @@ def iconos():
            for f in sorted((RAIZ / "assets/iconos/recortados").glob("*.webp"))}
     return img
 
+def cartas():
+    """Imágenes de cartas de objeto, de aviso y de muerte (assets/cartas/<id>.webp), como {id: data-uri}."""
+    return {f.stem: datos_uri(f.relative_to(RAIZ), "image/webp") for f in sorted((RAIZ / "assets/cartas").glob("*.webp"))}
+
 def logros():
     """Ilustraciones de las cartas de logro (assets/logros/<id>.webp), como {id: data-uri}."""
     return {f.stem: datos_uri(f.relative_to(RAIZ), "image/webp") for f in sorted((RAIZ / "assets/logros").glob("*.webp"))}
@@ -69,7 +73,7 @@ def main():
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
                + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
                + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
-               + json.dumps(reversos()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\n</script>\n')
+               + json.dumps(reversos()) + ';\nconst IMG_CARTAS = ' + json.dumps(cartas()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

@@ -875,7 +875,7 @@ function pintarCarta(c) {
   const objeto = !c.personaje && c.fondo;   // 1 nov: carta de objeto (un regalo): sin personaje; mientras Arte no haga su imagen, un fondo plano con su título
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
-    : objeto ? `<div class="objeto-cara"><b>${esc(c.titulo)}</b></div>` : `<div class="ph"><b>Sin retrato</b></div>`;
+    : objeto ? (IMG_CARTAS[c.id] ? `<img class="objeto-img" src="${IMG_CARTAS[c.id]}" alt="${esc(c.titulo)}" draggable="false">` : `<div class="objeto-cara"><b>${esc(c.titulo)}</b></div>`) : `<div class="ph"><b>Sin retrato</b></div>`;
   ponerMensaje(conNegritas(c.texto));
   ajustarMensaje();
   ponerLeyenda(c.cinta || c.leyenda || (FICHAS[c.personaje] || {}).cargo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
@@ -1172,13 +1172,15 @@ function mostrarCartaAviso(c) {
   carta.classList.remove("hidden", "listo", "volteada");
   cartonDe(carta, "");
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
-  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-aviso"><p class="aviso-texto">${esc(c.texto)}</p></div></div>`;
+  const img = IMG_CARTAS[c.id];   // 1 nov: si el aviso lleva ilustración (los tabacos del Comandante), va arriba y el texto debajo
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-aviso${img ? " con-imagen" : ""}">${img ? `<img class="aviso-img" src="${img}" alt="" draggable="false">` : ""}<p class="aviso-texto">${esc(c.texto)}</p></div></div>`;
   pintarBarras();
   entrarCarta(carta);
   pintarEleccion(0);
   const h = carta.querySelector(".carta-aviso"), t = carta.querySelector(".aviso-texto");   // si el texto no cabe, la letra baja
+  const hueco = () => h.clientHeight * (img ? .42 : .86);
   let px = parseFloat(getComputedStyle(t).fontSize) || 20;
-  while (t.scrollHeight > h.clientHeight * .86 && px > 12) { px -= 0.5; t.style.fontSize = px + "px"; }
+  while (t.scrollHeight > hueco() && px > 11) { px -= 0.5; t.style.fontSize = px + "px"; }
 }
 function recogerAviso() {
   if (!modoAviso || ocupado) return;
@@ -1428,6 +1430,12 @@ function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin) {
   // Una escena por etapa si la hay («Abducción»: el dictador de cada era), si no, la de la caída
   const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
   const slugP = personaje && PERSONAJE_SLUG[personaje];
+  const imgMuerte = clave && !slugP && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
+  if (imgMuerte) {
+    carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"><img class="objeto-img" src="${imgMuerte}" alt="${esc(titulo)}" draggable="false"><div class="respuesta"></div></div></div></div>`;
+    void carta.offsetWidth; carta.style.transition = "";
+    return;
+  }
   const escena = clave && !slugP && svgEscena(idEscena, titulo);
   if (slugP && RETRATOS[slugP]) {   // 1 nov: muerte de un personaje: mientras Arte no haga su imagen, su cartel
     cartonDe(carta, slugP);

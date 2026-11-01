@@ -1412,7 +1412,7 @@ function terminar(clave, transicion, personaje) {
 let finOcupada = false;
 /* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
    sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
-const FONDO_CAIDA = { ejercito_0: "#1D51A0", pueblo_0: "#D8A02A", pueblo_100: "#B0362A", ejercito_100: "#86762C",   // 23 oct: paleta del cartel
+const FONDO_CAIDA = {   // 23 oct: paleta del cartel (2 nov: las cuatro de Pueblo y Ejército ya son carteles propios, `muerte_<clave>`)
   elite_0: "#F0E9D6", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
 let claveFin = "";
 let personajeFin = null;

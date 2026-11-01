@@ -1,29 +1,4 @@
 {
- "caida-ejercito_0-1": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
- "caida-ejercito_0-2": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
- "caida-ejercito_0-3": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
- "caida-ejercito_0-4": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
- "caida-ejercito_100": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
  "caida-elite_0": {
   "ancho": 900,
   "alto": 1205,
@@ -40,16 +15,6 @@
   "marcos": []
  },
  "caida-potencias_100": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
- "caida-pueblo_0": {
-  "ancho": 900,
-  "alto": 1205,
-  "marcos": []
- },
- "caida-pueblo_100": {
   "ancho": 900,
   "alto": 1205,
   "marcos": []

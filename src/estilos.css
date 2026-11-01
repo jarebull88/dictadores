@@ -113,7 +113,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .texto-respuesta strong, .texto-respuesta span,
+.ficha-nota b, .leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
@@ -320,7 +320,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .carta {
   position: relative; color: var(--tinta); perspective: 2200px;
   touch-action: none; user-select: none; -webkit-user-select: none;
-  cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease, scale .2s ease;
+  cursor: grab; will-change: transform; transition: transform .22s ease, opacity .22s ease, scale .2s ease, translate .2s ease;
 }
 .giro {
   position: absolute; inset: 0; transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
@@ -424,7 +424,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* 23 oct: fuera los marcos de purpurina, oro y plata: todas las cartas, con el mismo margen crema */
 .carta:active { cursor: grabbing; }
 /* 24 oct: al poner el dedo, la carta se despega del mazo con un zoom sutil, y crece un poco más según se arrastra */
-.carta.cogida { scale: calc(1.035 + var(--bajada, 0) * .025); }
+.carta.cogida {   /* 2 nov, Jorge: crece hacia abajo (el borde de arriba no se mueve), para no tapar la última línea de la pregunta */
+  --z: calc(1.035 + var(--bajada, 0) * .025); scale: var(--z); translate: 0 calc((var(--z) - 1) * var(--carta-h, var(--lado)) / 2);
+}
 /* 17 oct: vuelve la confirmación. Al pasar el umbral (soltar decide), la carta lleva un contorno de rotulador rojo,
    gastado como las letras (las mismas vetas): un anillo que solo pinta el borde (máscara borde − relleno) */
 .carta::after {
@@ -494,7 +496,13 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 
 }
 .ficha-nombre { }
-.ficha-nota b, .logro-efecto b { color: var(--p-rojo); }   /* 30 oct: sin negrita, la etiqueta («Nota:», «Beneficio:») se distingue en rojo */
+/* 2 nov: reversos de secuelas, fuerzas, recompensas y logros: del color de su imagen, con la miniatura arriba y el texto centrado */
+.info-hoja, .logro-hoja { background: var(--hoja-fondo, var(--p-crema)); color: var(--hoja-texto, var(--p-tinta)); align-items: center; text-align: center; }
+.info-hoja .ficha-historia, .logro-hoja p { text-align: center; }
+.info-hoja, .logro-hoja { justify-content: flex-start; padding-top: 8px; gap: 6px; }
+.mini-cartel { display: block; flex: none; width: 20%; max-width: 72px; aspect-ratio: 1; object-fit: cover; margin: 0 auto 2px; border: 0; box-shadow: none; }
+.mini-cartel + * { margin-top: auto !important; }
+.info-hoja > :last-child, .logro-hoja > :last-child { margin-bottom: auto !important; }
 .ficha-historia { margin: 0; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
@@ -669,6 +677,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
   22%, 86%  { transform: scale(1); opacity: 1; }
   100%      { transform: scale(1); opacity: 0; }
 }
+@keyframes banda-sigue { 0%, 86% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+.banda.seguida.activa { animation-name: banda-sigue; }   /* 2 nov: un cartel que sigue a otro entra ya a todo el ancho */
 @keyframes banda-izq    { 0% { transform: scaleX(0); transform-origin: 0 50%; opacity: 1; } 8%, 86% { transform: scaleX(1); transform-origin: 0 50%; opacity: 1; } 100% { transform: scaleX(1); transform-origin: 0 50%; opacity: 0; } }
 @keyframes banda-der    { 0% { transform: scaleX(0); transform-origin: 100% 50%; opacity: 1; } 8%, 86% { transform: scaleX(1); transform-origin: 100% 50%; opacity: 1; } 100% { transform: scaleX(1); transform-origin: 100% 50%; opacity: 0; } }
 @keyframes banda-centro { 0% { transform: scaleY(0); opacity: 1; } 8%, 86% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
@@ -727,7 +737,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .logro-ilustracion { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--manila); }
 .logro-objeto { color: var(--tinta-suave); }
 .logro-ilustracion img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.logro-hoja { height: 100%; background: var(--p-crema); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 12px 14px; overflow: hidden; text-align: left; }
+.logro-hoja { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; overflow: hidden; text-align: left; }
 .logro-hoja p, .logro-hoja b { margin: 0; }
 .logro-hoja b.logro-objeto-nombre { color: var(--p-rojo); }
 /* 29 oct (versión «Explosión» elegida por Jorge, tools/prueba_descubrir.html): al descubrir una carta por primera vez salta de su casilla a su sitio,

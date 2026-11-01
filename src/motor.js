@@ -694,6 +694,19 @@ function ocultarInfo() {
   delete pop.dataset.clave;
 }
 /* La información de un estado (la cara de la carta de información y el reverso de la carta de estado nuevo) */
+/* 2 nov, Jorge: el reverso de una secuela, fuerza, recompensa o logro es del color de fondo de su imagen (`COLOR_IMG`, que calcula build.py), con su
+   miniatura centrada arriba y el texto centrado: en blanco, salvo sobre fondos claros (el amarillo), que va en negro. */
+const colorDe = (clave, respaldo) => {
+  const c = (typeof COLOR_IMG !== "undefined" && COLOR_IMG[clave]) || respaldo || "#8A7156";
+  const n = c.startsWith("#") ? parseInt(c.slice(1), 16) : -1;
+  return n >= 0 && ((n >> 16) + ((n >> 8) & 255) + (n & 255)) < 150 ? "#201D14" : c;   // los fondos casi negros son el negro de la paleta
+};
+function textoSobre(hex) {
+  const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); });
+  return (.2126 * c[0] + .7152 * c[1] + .0722 * c[2]) > .3 ? "#201D14" : "#FFFFFF";
+}
+const estiloHoja = hex => `--hoja-fondo:${hex};--hoja-texto:${textoSobre(hex)}`;
+const miniDe = src => src ? `<img class="mini-cartel" src="${src}" alt="" draggable="false">` : "";
 function htmlEstado(id, conTitulo = false) {   // 2 nov: el reverso de una secuela nunca lleva título (su nombre ya sale bajo la carta, también al tocar su casilla)
   const d = ESTADOS[id];
   return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p>` +
@@ -776,8 +789,9 @@ function abrirInfo(clave, id, fondo, origen, html, textos) {
   const c = document.createElement("div");
   c.className = "carta carta-info"; c.id = "carta-info"; c.dataset.clave = clave;
   c.setAttribute("role", "group");
-  c.innerHTML = `<div class="giro"><div class="cara"><div class="hoja info-hoja">${html}</div></div>` +
-    `<div class="dorso carta-estado"><div class="ilustracion" style="--fondo-escena:${fondo || "#8A7156"}"><div class="icono-grande">` +
+  const col = colorDe("icono_" + id + "-cartel-grande", fondo), peq = IMG["icono_" + id + "-cartel"] || img;
+  c.innerHTML = `<div class="giro"><div class="cara"><div class="hoja info-hoja" style="${estiloHoja(col)}">${miniDe(peq && peq.src)}${html}</div></div>` +
+    `<div class="dorso carta-estado"><div class="ilustracion" style="--fondo-escena:${col}"><div class="icono-grande">` +
     (img ? `<img class="icono cartel" src="${img.src}" alt="" draggable="false">` : "") + `</div></div></div></div>`;
   $("carta").parentNode.appendChild(c);
   cartaInfo = c;
@@ -1221,7 +1235,7 @@ function mostrarCartaEstado() {
   const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
-    `<div class="dorso"><div class="hoja info-hoja">${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
+    `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id]))}">${miniDe((pequeno || grande) && (pequeno || grande).src)}${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
 
   entrarCarta(carta);
   pintarRanuras();
@@ -1676,7 +1690,7 @@ function arrastrable(carta, op) {
   function coger() {
     if (!drag || carta.classList.contains("cogida") || carta.classList.contains("volteada")) return;   // 25 oct: por detrás (la ficha) no hay zoom: solo se toca para girarla
     clearTimeout(drag.cogida);
-    carta.style.transition = "scale .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
+    carta.style.transition = "scale .18s ease, translate .18s ease";   // solo el zoom se anima; el movimiento sigue al dedo
     carta.classList.add("cogida");                // crece algo más al arrastrar (ver estilos.css)
   }
   carta.addEventListener("pointerdown", e => {
@@ -1939,9 +1953,10 @@ const colaBanda = [];
 let bandaActiva = false, relojBanda = null;
 function limpiarBanda() { clearTimeout(relojBanda); colaBanda.length = 0; bandaActiva = false; const b = $("banda"); if (b) b.className = "banda"; }
 function banda(tipo, texto, fin) { colaBanda.push({ tipo, texto, fin }); if (!bandaActiva) siguienteBanda(); }
-function siguienteBanda() {
+function siguienteBanda(seguida) {
   const n = colaBanda.shift(), b = $("banda"), z = document.querySelector("#screen-game .zona-leyenda");
   if (!n || $("screen-game").classList.contains("hidden")) { limpiarBanda(); return; }
+  if (!seguida) { b.className = "banda"; }
   bandaActiva = true;
   const pantalla = $("screen-game").getBoundingClientRect(), r = z.getBoundingClientRect();
   b.style.top = (r.top - pantalla.top) + "px"; b.style.height = r.height + "px";
@@ -1950,9 +1965,11 @@ function siguienteBanda() {
   $("banda-texto").textContent = n.texto;
   b.className = "banda";
   void b.offsetWidth;                                  // reinicia la animación
-  b.className = "banda activa tipo-" + n.tipo;
+  b.className = "banda activa tipo-" + n.tipo + (seguida ? " seguida" : "");
   sonar("aviso");                                      // 29 oct: suena con cada cartel (recompensa, logro o secuela)
-  relojBanda = setTimeout(() => { b.className = "banda"; if (n.fin) n.fin(); siguienteBanda(); }, ms);
+  // 2 nov, Jorge: si hay otro cartel esperando, sale pegado al anterior: este no se desvanece (corta al acabar de enseñarse) y el siguiente entra ya a todo el ancho
+  const hayOtro = colaBanda.length > 0;
+  relojBanda = setTimeout(() => { if (!hayOtro) b.className = "banda"; if (n.fin) n.fin(); siguienteBanda(hayOtro); }, hayOtro ? ms * 0.86 : ms);
 }
 /* Un coleccionable nuevo: la bolita del menú hace su zoom y sale la banda («¡Nueva recompensa!» o «¡Nuevo logro!»; los de fin de era son logros) */
 function anunciarLogro(nuevos) {
@@ -2026,15 +2043,13 @@ function verLogro(id) {
   v.className = "logro-vista";
   /* 2 nov, Jorge: el reparto es el del juego: arriba, en el sitio de la pregunta, la descripción (en los logros de era, el subtítulo); en medio, la carta;
      debajo, en el sitio de «Comercio», el título, y bajo él «Por …». Todo se coloca sobre lo que hay en la partida. */
-  const arriba = !g.regla;   // en las recompensas, la descripción va arriba y por detrás solo van Beneficio y Perjuicio
-  v.innerHTML = `<div class="mensaje logro-mensaje"><span>${esc(arriba ? g.descripcion : g.subtitulo)}</span></div>
+  const colL = colorDe("logro_" + id, g.fondo ? `var(--p-${g.fondo})` : null);
+  v.innerHTML = `<div class="mensaje logro-mensaje"><span>${esc(g.subtitulo)}</span></div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
-        <div class="logro-dorso"><div class="logro-hoja">
-          ${arriba ? "" : `<p class="logro-descripcion">${esc(g.descripcion)}</p>`}
-          ${g.regla ? "" : `<p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
-          <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
+        <div class="logro-dorso"><div class="logro-hoja" style="${colL.startsWith("#") ? estiloHoja(colL) : "--hoja-fondo:" + colL + ";--hoja-texto:" + (g.fondo === "mostaza" || g.fondo === "crema" ? "#201D14" : "#FFFFFF")}">
+          ${miniDe(IMG_LOGROS[id])}<p class="logro-descripcion">${esc(g.descripcion)}</p></div></div>
       </div></div>
     </div>
     <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>`;
@@ -2085,7 +2100,7 @@ function gestoLogro(carta) {
 /* 29 oct (versión «Explosión», elegida por Jorge): la carta salta de su casilla a su sitio con un pequeño rebote; por detrás, rayos blancos de anime que
    estallan y se apagan, un flash y dos ondas. Se hace con la API de animaciones y se limpia solo. */
 /* Duración total de la animación (rayos incluidos); los textos salen cuando acaba */
-const DESCUBRIR_MS = 1500;   // 2 nov, Jorge: 1,5 s, y los rayos y ondas empiezan a la vez que el zoom de la carta
+const DESCUBRIR_MS = 1000;   // 2 nov, Jorge: 1 s, y los rayos y ondas empiezan a la vez que el zoom de la carta
 function efectoDescubrir(vista, escena, celda, textos = []) {
   const a = escena.getBoundingClientRect(), b = vista.getBoundingClientRect();
   const T = (s, r) => `translate(-50%, -50%) scale(${s}) rotate(${r}deg)`;
@@ -2099,16 +2114,16 @@ function efectoDescubrir(vista, escena, celda, textos = []) {
   if (celda && celda.width) {
     const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
     const entra = carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
-      { duration: 600, delay: 0, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
+      { duration: 400, delay: 0, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
     entra.onfinish = () => entra.cancel();                 // que no pise el desplazamiento del gesto
   }
   r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: 1, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
-    { duration: 1500, delay: 0, easing: "ease-out", fill: "both" });
+    { duration: 1000, delay: 0, easing: "ease-out", fill: "both" });
   r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
-    { duration: 1200, delay: 110, easing: "ease-out", fill: "both" });
-  fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 340, delay: 110, fill: "both" });
-  [[o1, 190, 4], [o2, 340, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
-    { duration: 680, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
+    { duration: 800, delay: 75, easing: "ease-out", fill: "both" });
+  fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 230, delay: 75, fill: "both" });
+  [[o1, 125, 4], [o2, 225, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
+    { duration: 450, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
   // 2 nov: los textos (descripción, título y «Por …») salen cuando acaba la animación, no encima de ella
   textos.forEach(t => t.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 450, delay: DESCUBRIR_MS - 200, easing: "ease-out", fill: "both" }));
   setTimeout(() => fx.forEach(e => e.remove()), DESCUBRIR_MS);

@@ -38,6 +38,21 @@ def logros():
     """Ilustraciones de las cartas de logro (assets/logros/<id>.webp), como {id: data-uri}."""
     return {f.stem: datos_uri(f.relative_to(RAIZ), "image/webp") for f in sorted((RAIZ / "assets/logros").glob("*.webp"))}
 
+def colores():
+    """2 nov: el color de fondo de cada carta grande (mediana de su franja de arriba, en hexadecimal: el color real de la imagen): el reverso de secuelas,
+    fuerzas, recompensas y logros se pinta de ese color. {clave de imagen: #RRGGBB}"""
+    from PIL import Image
+    import statistics
+    out = {}
+    archivos = [(f"icono_{f.stem}", f) for f in sorted((RAIZ / "assets/iconos/recortados").glob("*-cartel-grande.webp"))] + \
+               [(f"logro_{f.stem}", f) for f in sorted((RAIZ / "assets/logros").glob("*.webp"))]
+    for clave, f in archivos:
+        im = Image.open(f).convert("RGB"); w, h = im.size; k = 6
+        px = [im.getpixel((x, y)) for x in range(0, w, 4) for y in range(k)]   # la franja de arriba (los lados pueden cambiar de color: la postal)
+        med = tuple(statistics.median(c[i] for c in px) for i in range(3))
+        out[clave] = "#%02X%02X%02X" % tuple(int(round(c)) for c in med)
+    return out
+
 def reversos():
     """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
     return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
@@ -73,7 +88,7 @@ def main():
                + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
                + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
                + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
-               + json.dumps(reversos()) + ';\nconst IMG_CARTAS = ' + json.dumps(cartas()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\n</script>\n')
+               + json.dumps(reversos()) + ';\nconst IMG_CARTAS = ' + json.dumps(cartas()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst COLOR_IMG = ' + json.dumps(colores()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

@@ -141,7 +141,7 @@ const ESTADOS = {
   // 1 nov, Pupo (docs/INVITADOS.md): las deja el hechizo, no una bandera. Números provisionales (a ajustar con npm run simular):
   // `centra`/`aleja` = puntos que cada fuerza se acerca o se aleja del centro (50) cada `cada` cartas
   collar: {
-    nombre: "Collar", bandera: null, duracion: 5,
+    nombre: "Collar de protección", bandera: null, duracion: 5,
     descripcion: "Un collar de cuentas bendecido por Padrino Pupo. Dicen que protege a quien lo lleva. El santo no ha firmado nada.",
     centra: 3, cada: 1
   },

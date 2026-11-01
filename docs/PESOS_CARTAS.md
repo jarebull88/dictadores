@@ -268,7 +268,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Los nuevos vecinos** (Embajador del bloque oriental)  
 «Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo.»
-- A. Ni mi hermano → sube Potencias +6 · baja Ejército -5
+- A. A mí no se me va la lengua → sube Potencias +6 · baja Ejército -5
 - B. Discreto como mi barba → sube Ejército +5 · baja Potencias -6 · crisis +2
 
 **El ultimátum** (Embajador de la potencia del norte; segundo paso)  

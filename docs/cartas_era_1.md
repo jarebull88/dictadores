@@ -587,7 +587,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo.»
 
-- **A. Ni mi hermano** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
+- **A. A mí no se me va la lengua** Potencias +6 · Ejército −5 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
 - **B. Discreto como mi barba** Potencias −6 · Ejército +5 · Crisis +2 · Bandera: `misiles_instalados` · Encola: `ultimatum` en 1 años
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.

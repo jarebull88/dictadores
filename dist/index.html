@@ -82,7 +82,7 @@ body {
    Hay TRES estilos, cada uno con su letra, su peso, su tamaño y su interlineado. Un texto del juego es de uno de los tres: para
    cambiar CUALQUIER texto de un estilo (en las preguntas, en la caída, en las tarjetas…) se cambia aquí, en una sola regla.
      1 · TÍTULO     Londrina Solid, mayúsculas, `--t-titulo`     «Era 1: La Revolución», «¡Has caído!», el nombre de la ficha…
-     2 · SUBTÍTULO  Londrina, mayúsculas, `--t-sub`; ligero o normal   la leyenda («Comercio»), las respuestas, «Gobernaste por 2 años»,
+     2 · SUBTÍTULO  Roboto Condensed Bold (700), mayúsculas, `--t-sub`   la leyenda («Comercio»), las respuestas, «Gobernaste por 2 años»,
                     la frase de qué fuerza cayó, los botones, el título de una recompensa…
      3 · CUERPO     Roboto Condensed, mayúsculas, `--c-cuerpo`   preguntas, texto de la era, reverso de las tarjetas, relato de la caída…
    Fuera de este bloque no debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height
@@ -92,8 +92,8 @@ body {
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
   --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;
-  --peso-ligero: 300;   /* Londrina Light */
   --peso-normal: 400;
+  --peso-negrita: 700;   /* Roboto Condensed Bold: los subtítulos */
   --t-titulo: min(calc(var(--carta-w, 360px) * .12), 48px);
   --t-sub: min(27px, calc(var(--carta-w, 360px) / 14));
   --c-cuerpo: 20px;     /* 18 px en pantallas bajas */
@@ -117,9 +117,8 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .leyenda, .fin-anios, .era-anios, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span,
 .fin-pie, .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
-  font-family: var(--f-titular); font-size: var(--t-sub); font-weight: var(--peso-normal); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
+  font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
-.leyenda, .fin-anios, .era-anios, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span { font-weight: var(--peso-ligero); }
 
 /* — 3 · CUERPO — */
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .aviso-texto,

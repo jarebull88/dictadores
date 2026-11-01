@@ -120,7 +120,7 @@ button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no heredan la letra solos */
 
 /* — 1 · TÍTULO — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .ficha-nombre, .archivo-titulo, .objeto-cara b, .titulo-caida {
+.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .archivo-titulo, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
 /* el logo de la portada, a su tamaño propio */
@@ -129,18 +129,17 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.ficha-nota b, .leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .texto-respuesta strong, .texto-respuesta span,
+.mensaje, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
 
-.leyenda.regular { font-weight: var(--peso-normal); }   /* «Gobernaste por N años»: en regular */
 
 /* — 3 · CUERPO — */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
+.pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
-.fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
+.leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
@@ -506,8 +505,8 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* Reverso: la ficha del personaje, como un expediente de la inteligencia (16 oct): foto de carné en blanco y negro,
    nombre a rotulador del color de su grupo, cargo e informe. La pulpa del papel, suavizada con un velo para que se lea mejor. */
 .dorso .hoja, .info-hoja {
-  flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px;
-  padding: 12px 14px; overflow: hidden; text-align: left; border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte */
+  flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+  padding: 12px 14px; overflow: hidden; text-align: center; border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte */
   background: var(--p-crema);
 
 }
@@ -669,9 +668,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 /* 23 oct: sin vetas de rotulador; letra de color plano */
 .etiqueta-boli b, .popup b, .popup .efecto .tinta { color: var(--p-tinta); }
 /* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
-.ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
-.ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; min-width: 0; flex: 1; }
-.ficha-nombre span { display: block; white-space: nowrap; }
+.ficha-cab { display: flex; align-items: center; justify-content: center; align-self: stretch; min-width: 0; margin-bottom: 4px; }
+.ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; white-space: nowrap; text-align: center; }   /* 2 nov: el nombre completo, seguido en una línea */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
 
 /* =====================================================================================================
@@ -684,9 +682,9 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .banda.activa { display: flex; animation: var(--banda-entra) var(--d) linear both; }
 .banda.activa span { animation: sello var(--d) cubic-bezier(.22, 1.4, .36, 1) both; }
 .banda.tipo-secuela { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 1.8; }
-.banda.tipo-recompensa { --banda-fondo: var(--p-azul); --banda-entra: banda-der; --s0: 2.4; }
-.banda.tipo-caida { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 2.4; }   /* 2 nov: «¡Has caído!» sale como los avisos, siempre en rojo */
-.banda.tipo-logro { --banda-fondo: var(--p-oliva); --banda-entra: banda-centro; --s0: 3; }
+.banda.tipo-recompensa { --banda-fondo: var(--p-mostaza); --banda-texto: var(--p-tinta); --banda-entra: banda-der; --s0: 2.4; }
+.banda.tipo-caida { --banda-fondo: var(--p-rojo); --banda-texto: var(--p-blanco); --banda-entra: banda-izq; --s0: 2.4; }   /* 2 nov: «¡Has caído!» sale como los avisos, siempre en rojo */
+.banda.tipo-logro { --banda-fondo: var(--p-azul); --banda-texto: var(--p-blanco); --banda-entra: banda-centro; --s0: 3; }
 @keyframes sello {
   0%, 6%    { transform: scale(var(--s0)); opacity: 0; }
   14%       { transform: scale(.96); opacity: 1; }
@@ -2023,35 +2021,36 @@ const CARTAS = [
    y, aparte, la «Nota:» con la observación. Los expedientes irán evolucionando por etapas.
    16 oct: personajes por etapas. La clave es el cargo interno (une cada carta con su personaje y no cambia);
    «cargo» es el que se lee en la ficha. Por ahora, la etapa 1 (los cargos humildes de la sierra) vale para todas las eras. */
+/* 2 nov, Jorge: `nombre` = el nombre completo, que sale por detrás de la carta; `titulo` = lo que sale bajo la carta (si falta, el cargo interno, que es la clave: «Ministra de Cultura»…) */
 const FICHAS = {
-  "Padrino Pupo": { nombre: "Padrino Pupo", cargo: "Babalawo oficial",
+  "Padrino Pupo": { nombre: "Padrino Pupo", cargo: "Babalawo oficial", titulo: "Babalawo oficial",
     historia: "Babalawo de barrio que lee el futuro en un collar de caracoles. Ve el mal de ojo en cualquier cara, sobre todo en las que pagan.",
     nota: "Es el único que llama «mijo» al Comandante." },
-  "Papá Ernesto": { nombre: "Papá Ernesto", cargo: "Novelista",
+  "Papá Ernesto": { nombre: "Papá Ernesto", cargo: "Novelista", titulo: "Novelista",
     historia: "Novelista extranjero de fama mundial que adora las revoluciones, siempre que tengan buenos bares. Pesca agujas, con éxito variable.",
     nota: "Su hígado no es tan revolucionario." },
-  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo", cargo: "Vicepresidente",
+  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
     historia: "Vicepresidente del tirano. Se pasó a la Revolución el último día, con el uniforme recién comprado y la etiqueta colgando.",
     nota: "Sobrevive a todos los gobiernos. Este servicio estudia cómo." },
-  "Ministro de Economía": { nombre: "Ministro Rigoberto", cargo: "Economía",
+  "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Economía",
     historia: "Bodeguero que fió víveres a la columna y la siguió al monte para cobrar una deuda que sigue pendiente.",
     nota: "Sus cuentas no cuadran nunca y este servicio aún no ha averiguado si es por torpeza." },
-  "Ministro de Comercio": { nombre: "Ministro Neto", cargo: "Comercio",
+  "Ministro de Comercio": { nombre: "Ernesto «Neto» Arrieta", cargo: "Comercio",
     historia: "Contrabandista que subía armas a la columna en una lancha prestada y en el mismo viaje vendía ron al cuartel.",
     nota: "Se desconoce a quién pertenece hoy la lancha y a quién pertenece él." },
-  "Ministra de Educación": { nombre: "Ministra Hortensia", cargo: "Educación",
+  "Ministra de Educación": { nombre: "Hortensia Lamadrid", cargo: "Educación",
     historia: "Maestra rural de diecinueve años que enseñó a leer a la tropa y conoce de memoria la letra de cada guerrillero.",
     nota: "Corrige con regla todo lo que pasa por sus manos. Incluidos estos informes." },
-  "Ministro de Trabajo": { nombre: "Ministro Eusebio", cargo: "Trabajo",
+  "Ministro de Trabajo": { nombre: "Eusebio Palmares", cargo: "Trabajo",
     historia: "Cortador de caña y cabecilla de la huelga de la zafra. Arrastra a medio pueblo cada vez que habla.",
     nota: "Se recomienda vigilar su popularidad y anotar el destino de los plátanos que lleva en el morral." },
-  "Ministra de Cultura": { nombre: "Ministra Mirta", cargo: "Cultura",
+  "Ministra de Cultura": { nombre: "Mirta Albear", cargo: "Cultura",
     historia: "Locutora de Radio Machete cuya voz escuchaba el país de noche y a escondidas.",
     nota: "Sostiene en público que la palabra libera, por lo que se aconseja revisar sus poemas antes de cada emisión." },
-  "Ministro de las Fuerzas Armadas": { nombre: "Ministro Domingo", cargo: "Fuerzas Armadas",
+  "Ministro de las Fuerzas Armadas": { nombre: "Domingo", cargo: "Fuerzas Armadas", titulo: "Ministro de Defensa (anterior Fuerzas Armadas)",
     historia: "Hermano pequeño del Comandante. Fue el primero en llamar «camaradas» a la tropa, y el único que lo pronunciaba bien.",
     nota: "Se cuida el bigote con un esmero impropio de la sierra." },
-  "Ministro del Interior": { nombre: "Ministro Octavio", cargo: "Inteligencia",
+  "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Inteligencia",
     historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",
     nota: "Este informe lo ha redactado él mismo." },
   "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Embajador oriental",
@@ -3148,9 +3147,8 @@ function fichaPersonaje(cargo) {
   return dorsoFicha({ nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
 }
 function dorsoFicha(f) {
-  // 24 oct: nombre en dos líneas (nombre y apellido)
-  const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
-  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
+  // 2 nov, Jorge: el nombre completo, seguido en una sola línea, y todo centrado; ya no sale el cargo (bajo la carta va su título)
+  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(String(f.nombre).trim())}</b>`;
   return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${nombre}</div>` +
     `<p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
@@ -3173,7 +3171,7 @@ function pintarCarta(c) {
     : objeto ? (IMG_CARTAS[c.id] ? `<img class="objeto-img" src="${IMG_CARTAS[c.id]}" alt="${esc(c.titulo)}" draggable="false">` : `<div class="objeto-cara"><b>${esc(c.titulo)}</b></div>`) : `<div class="ph"><b>Sin retrato</b></div>`;
   ponerMensaje(conNegritas(c.texto));
   ajustarMensaje();
-  ponerLeyenda(c.cinta || c.leyenda || (FICHAS[c.personaje] || {}).cargo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
+  ponerLeyenda(c.cinta || c.leyenda || (FICHAS[c.personaje] || {}).titulo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");

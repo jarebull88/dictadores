@@ -862,9 +862,8 @@ function fichaPersonaje(cargo) {
   return dorsoFicha({ nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
 }
 function dorsoFicha(f) {
-  // 24 oct: nombre en dos líneas (nombre y apellido)
-  const partes = String(f.nombre).trim().split(/\s+/), ape = partes.length > 1 ? partes.pop() : "";
-  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}"><span>${esc(partes.join(" "))}</span>${ape ? `<span>${esc(ape)}</span>` : ""}</b>`;
+  // 2 nov, Jorge: el nombre completo, seguido en una sola línea, y todo centrado; ya no sale el cargo (bajo la carta va su título)
+  const nombre = `<b class="ficha-nombre" style="--rotulador:${f.color || "#23211E"}">${esc(String(f.nombre).trim())}</b>`;
   return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<div class="ficha-cab">${nombre}</div>` +
     `<p class="ficha-historia">${esc(f.historia)}</p>` +
     (f.nota ? `<p class="ficha-historia ficha-nota"><b>Nota:</b> ${esc(f.nota)}</p>` : "") + `</div></div>`;
@@ -887,7 +886,7 @@ function pintarCarta(c) {
     : objeto ? (IMG_CARTAS[c.id] ? `<img class="objeto-img" src="${IMG_CARTAS[c.id]}" alt="${esc(c.titulo)}" draggable="false">` : `<div class="objeto-cara"><b>${esc(c.titulo)}</b></div>`) : `<div class="ph"><b>Sin retrato</b></div>`;
   ponerMensaje(conNegritas(c.texto));
   ajustarMensaje();
-  ponerLeyenda(c.cinta || c.leyenda || (FICHAS[c.personaje] || {}).cargo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
+  ponerLeyenda(c.cinta || c.leyenda || (FICHAS[c.personaje] || {}).titulo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");

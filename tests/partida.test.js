@@ -182,7 +182,7 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
 test("bajo la carta va el cargo del personaje (o el nombre del estado), y abajo a la izquierda ya no sale nada (28 oct)", () => {
   const j = cargar();
   j.empezar();
-  const cargo = j.w.eval("(FICHAS[E.actual.personaje] || {}).cargo || E.actual.personaje");
+  const cargo = j.w.eval("(FICHAS[E.actual.personaje] || {}).titulo || E.actual.personaje");
   assert.equal(j.$("leyenda").textContent, cargo);
   assert.ok(!j.d.getElementById("anios-poder"), "el nombre y los años ya no salen en el pie");
   j.w.eval(`E.estadoNuevo = { id: "censura", sale: "" }; E.estados = [{ id: "censura", edad: 0 }]; mostrarCartaEstado();`);

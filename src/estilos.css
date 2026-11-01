@@ -107,7 +107,7 @@ button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no heredan la letra solos */
 
 /* — 1 · TÍTULO — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .ficha-nombre, .archivo-titulo, .objeto-cara b, .titulo-caida {
+.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .archivo-titulo, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
 /* el logo de la portada, a su tamaño propio */
@@ -116,18 +116,17 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.ficha-nota b, .leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .texto-respuesta strong, .texto-respuesta span,
+.mensaje, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
 
-.leyenda.regular { font-weight: var(--peso-normal); }   /* «Gobernaste por N años»: en regular */
 
 /* — 3 · CUERPO — */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
+.pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
-.fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
+.leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
@@ -493,8 +492,8 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* Reverso: la ficha del personaje, como un expediente de la inteligencia (16 oct): foto de carné en blanco y negro,
    nombre a rotulador del color de su grupo, cargo e informe. La pulpa del papel, suavizada con un velo para que se lea mejor. */
 .dorso .hoja, .info-hoja {
-  flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px;
-  padding: 12px 14px; overflow: hidden; text-align: left; border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte */
+  flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+  padding: 12px 14px; overflow: hidden; text-align: center; border-radius: 0;   /* 21 oct: esquinas rectas, como un recorte */
   background: var(--p-crema);
 
 }
@@ -656,9 +655,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 /* 23 oct: sin vetas de rotulador; letra de color plano */
 .etiqueta-boli b, .popup b, .popup .efecto .tinta { color: var(--p-tinta); }
 /* 24 oct: la cabecera de la ficha: la foto a la izquierda y, a su lado, el nombre en dos líneas (nombre y apellido), a todo lo que dé el sitio */
-.ficha-cab { display: flex; align-items: center; gap: 14px; align-self: stretch; min-width: 0; margin-bottom: 4px; }
-.ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; min-width: 0; flex: 1; }
-.ficha-nombre span { display: block; white-space: nowrap; }
+.ficha-cab { display: flex; align-items: center; justify-content: center; align-self: stretch; min-width: 0; margin-bottom: 4px; }
+.ficha-nombre { color: var(--rotulador, var(--p-tinta)); display: block; white-space: nowrap; text-align: center; }   /* 2 nov: el nombre completo, seguido en una línea */
 .popup .efecto .tinta { display: inline; font: inherit; }   /* la tinta va en un hijo: si no, el papel de la cinta (::before) la tapa */
 
 /* =====================================================================================================
@@ -671,9 +669,9 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .banda.activa { display: flex; animation: var(--banda-entra) var(--d) linear both; }
 .banda.activa span { animation: sello var(--d) cubic-bezier(.22, 1.4, .36, 1) both; }
 .banda.tipo-secuela { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 1.8; }
-.banda.tipo-recompensa { --banda-fondo: var(--p-azul); --banda-entra: banda-der; --s0: 2.4; }
-.banda.tipo-caida { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 2.4; }   /* 2 nov: «¡Has caído!» sale como los avisos, siempre en rojo */
-.banda.tipo-logro { --banda-fondo: var(--p-oliva); --banda-entra: banda-centro; --s0: 3; }
+.banda.tipo-recompensa { --banda-fondo: var(--p-mostaza); --banda-texto: var(--p-tinta); --banda-entra: banda-der; --s0: 2.4; }
+.banda.tipo-caida { --banda-fondo: var(--p-rojo); --banda-texto: var(--p-blanco); --banda-entra: banda-izq; --s0: 2.4; }   /* 2 nov: «¡Has caído!» sale como los avisos, siempre en rojo */
+.banda.tipo-logro { --banda-fondo: var(--p-azul); --banda-texto: var(--p-blanco); --banda-entra: banda-centro; --s0: 3; }
 @keyframes sello {
   0%, 6%    { transform: scale(var(--s0)); opacity: 0; }
   14%       { transform: scale(.96); opacity: 1; }

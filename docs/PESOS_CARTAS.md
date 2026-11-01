@@ -8,8 +8,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La casa vacía** (Ministro de las Fuerzas Armadas)  
 «El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.»
-- A. Contraten a dos comentaristas → sube Pueblo +8 · baja Ejército -5
-- B. Esto no es un circo → sube Ejército +5 · baja Pueblo -8
+- A. Juicio público con entradas → sube Pueblo +8 · baja Ejército -5
+- B. Juicio militar sin cámaras → sube Ejército +5 · baja Pueblo -8
 
 **La casa del tirano** (Ministra de Cultura)  
 «La mansión del tirano tiene piscina, cine y 20 habitaciones. Habrá que darle algún uso.»
@@ -38,8 +38,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Las refinerías** (Ministro de Comercio; segundo paso)  
 «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
-- A. ¡Exprópiese! → sube Pueblo +8 · baja Partido -5, Potencias -6 · crisis +1
-- B. Les pagaremos con bonos de azúcar → sube Partido +6 · baja Pueblo -6
+- A. ¡Exprópiese! → sube Partido +6, Pueblo +3 · baja Potencias -6 · crisis +1
+- B. Les pagaremos con bonos de azúcar → sube Potencias +6 · baja Partido -6, Pueblo -3
 
 **El visitante del bloque oriental** (Embajador del bloque oriental)  
 «Le cambiaremos petróleo por azúcar y enviaremos asesores militares para que su Revolución vaya por buen camino.»

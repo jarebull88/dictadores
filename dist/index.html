@@ -939,8 +939,8 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.",
-    izq: { accion: "Contraten a dos comentaristas", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Esto no es un circo", efectos: { pueblo: -8, ejercito: 5 } }
+    izq: { accion: "Juicio público con entradas", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
+    der: { accion: "Juicio militar sin cámaras", efectos: { pueblo: -8, ejercito: 5 } }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",
@@ -986,8 +986,8 @@ const CARTAS = [
     id: "refinerias", tipo: "cola", enlace: true, titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
     texto: "Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.",
-    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -5, potencias: -6, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
-    der: { accion: "Les pagaremos con bonos de azúcar", efectos: { pueblo: -6, elite: 6 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
+    izq: { accion: "¡Exprópiese!", efectos: { elite: 6, potencias: -6, pueblo: 3, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
+    der: { accion: "Les pagaremos con bonos de azúcar", efectos: { potencias: 6, elite: -6, pueblo: -3 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo

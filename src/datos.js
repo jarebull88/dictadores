@@ -475,7 +475,7 @@ const CARTAS = [
     id: "nuevos_vecinos", tipo: "ancla", ventana: [10, 14], titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo.",
-    izq: { accion: "Ni mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
+    izq: { accion: "A mí no se me va la lengua", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
     der: { accion: "Discreto como mi barba", efectos: { potencias: -6, ejercito: 5, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] }
   },
 

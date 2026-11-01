@@ -788,7 +788,7 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
   <section id="screen-name" class="screen pantalla-carta pantalla-nombre hidden">
     <div class="cabecera-carta">
       <h1 class="titulo" id="nombre-era-1"></h1>
-      <p class="intro">Derrocaste al tirano y el Pueblo te aclama. Ahora debes consolidar la Revolución y sobrevivir a sus primeros años. Para lograrlo, tendrás que decidir sobre propiedades, prensa, urnas y alianzas.</p>
+      <p class="intro">Derrocaste al tirano y el Pueblo te aclama. Ahora debes consolidar la Revolución y sobrevivir a sus primeros años.</p>
     </div>
     <div class="escenario">
       <div class="pila" aria-hidden="true"><div class="capa"></div></div>
@@ -1415,7 +1415,7 @@ const CARTAS = [
     id: "nuevos_vecinos", tipo: "ancla", ventana: [10, 14], titulo: "Los nuevos vecinos",
     personaje: "Embajador del bloque oriental",
     texto: "Le enviaremos misiles escondidos en barcos de azúcar. Nadie debe saberlo.",
-    izq: { accion: "Ni mi hermano", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
+    izq: { accion: "A mí no se me va la lengua", efectos: { potencias: 6, ejercito: -5 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] },
     der: { accion: "Discreto como mi barba", efectos: { potencias: -6, ejercito: 5, crisis: 2 }, banderas: ["base.misiles_instalados"], encolar: [{ carta: "ultimatum", min: 1, max: 1 }] }
   },
 
@@ -2475,7 +2475,7 @@ const ESTADOS = {
   // 1 nov, Pupo (docs/INVITADOS.md): las deja el hechizo, no una bandera. Números provisionales (a ajustar con npm run simular):
   // `centra`/`aleja` = puntos que cada fuerza se acerca o se aleja del centro (50) cada `cada` cartas
   collar: {
-    nombre: "Collar", bandera: null, duracion: 5,
+    nombre: "Collar de protección", bandera: null, duracion: 5,
     descripcion: "Un collar de cuentas bendecido por Padrino Pupo. Dicen que protege a quien lo lleva. El santo no ha firmado nada.",
     centra: 3, cada: 1
   },

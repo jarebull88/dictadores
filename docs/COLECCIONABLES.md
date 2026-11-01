@@ -119,6 +119,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Paloma amaestrada** — *aprobada*
   - Externa: Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.
   - Tarjeta: Alza el brazo en un discurso y se posará en tu hombro: la mitad del país verá en ti al elegido. La otra mitad verá la mancha del uniforme.
+- **Licencia de electricista** — *aprobada*
+  - Externa: El carné de oficio que convierte a tu mejor atleta en aficionado, con sueldo del Estado y horario de taller.
+  - Tarjeta: Ficha en el taller por la mañana y entrena por la tarde. Ya ha ganado tres oros olímpicos. Rezamos para que nadie le encargue una obra.
 
 ## Traspaso a programación (28 oct)
 

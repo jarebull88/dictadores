@@ -33,7 +33,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La fuga del comandante** (Ministro del Interior)  
 «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
-- A. Bah, da igual → sube Pueblo +3 · baja Ejército -3
+- A. Que lo escuche quien quiera → sube Pueblo +3 · baja Ejército -3
 - B. Interfieran la emisora → sube Ejército +3 · baja Pueblo -3
 
 **Las refinerías** (Ministro de Comercio; segundo paso)  

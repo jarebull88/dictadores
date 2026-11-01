@@ -65,7 +65,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
 
-- **A. Bah, da igual** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
+- **A. Que lo escuche quien quiera** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
 - **B. Interfieran la emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.

@@ -38,9 +38,9 @@ def logros():
     """Ilustraciones de las cartas de logro (assets/logros/<id>.webp), como {id: data-uri}."""
     return {f.stem: datos_uri(f.relative_to(RAIZ), "image/webp") for f in sorted((RAIZ / "assets/logros").glob("*.webp"))}
 
-def colores():
-    """2 nov: el color de fondo de cada carta grande (mediana de su franja de arriba, en hexadecimal: el color real de la imagen): el reverso de secuelas,
-    fuerzas, recompensas y logros se pinta de ese color. {clave de imagen: #RRGGBB}"""
+def calcular_colores():
+    """Necesita Pillow (no está en GitHub Actions): por eso el resultado se guarda en assets/colores.json y el montaje solo lo lee.
+    Se recalcula con `python3 tools/build.py --colores` cuando cambien las imágenes grandes de iconos o logros."""
     from PIL import Image
     import statistics
     out = {}
@@ -52,6 +52,14 @@ def colores():
         med = tuple(statistics.median(c[i] for c in px) for i in range(3))
         out[clave] = "#%02X%02X%02X" % tuple(int(round(c)) for c in med)
     return out
+
+def colores():
+    """2 nov: el color de fondo de cada carta grande (mediana de su franja de arriba, en hexadecimal): el reverso de secuelas,
+    fuerzas, recompensas y logros se pinta de ese color. {clave de imagen: #RRGGBB}, de assets/colores.json."""
+    ruta = RAIZ / "assets/colores.json"
+    if "--colores" in sys.argv:
+        ruta.write_text(json.dumps(calcular_colores(), indent=1, sort_keys=True) + "\n")
+    return json.loads(ruta.read_text())
 
 def reversos():
     """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
@@ -109,7 +117,8 @@ def main():
 </body>
 </html>
 '''
-    salida = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else RAIZ / "dist" / "index.html"
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    salida = pathlib.Path(args[0]) if args else RAIZ / "dist" / "index.html"
     salida.parent.mkdir(parents=True, exist_ok=True)
     salida.write_text(html, encoding="utf-8")
     print(f"{salida.relative_to(RAIZ) if salida.is_relative_to(RAIZ) else salida}: {len(html.encode()) // 1024} KB")

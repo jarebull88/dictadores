@@ -14,3 +14,5 @@ Si una fuerza llega a 0 o a 100, la partida termina.
 | `elite_100` | Embajador | El Partido te ha nombrado embajador en una remota república del bloque oriental. Allí el invierno dura once meses y hay más renos que habitantes. |
 | `potencias_0` | Invasión | Te negaste a firmar alianzas con ninguna potencia. Cuando te invadieron, nadie se sintió obligado a ayudarte. |
 | `potencias_100` | Anexión | Dependías tanto de tu aliado extranjero que acabó incorporando el país a su territorio. A ti te nombraron alcalde de un pueblo de 300 habitantes. |
+| `atentado_tabacos` | Regalo envenenado | Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta. |
+| `pelotazo` | Pelotazo | Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.) |

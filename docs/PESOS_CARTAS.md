@@ -236,6 +236,31 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Su casa será un museo → sube Pueblo +5 · baja Partido -5
 - B. El Partido cuidará de sus botellas → sube Partido +5 · baja Pueblo -5
 
+**Papá Ernesto (corte 1)** (undefined; segundo paso)  
+«Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones.»
+- A. (sin respuestas: se desliza) → nada
+- B. (sin respuestas: se desliza) → nada
+
+**Papá Ernesto (corte 2)** (undefined; segundo paso)  
+«Papá Ernesto abandonó el país a las 6:40. En el registro de su casa solo se encontraron botellas vacías.»
+- A. (sin respuestas: se desliza) → nada
+- B. (sin respuestas: se desliza) → nada
+
+**Los tabacos** (undefined; segundo paso)  
+«Un admirador anónimo te ha enviado una caja de tabacos. Dicen que son los mejores del país.»
+- A. A ver si son tan buenos → nada
+- B. Aquí nadie regala nada → nada
+
+**Los tabacos (bien)** (undefined; segundo paso)  
+«Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.»
+- A. (sin respuestas: se desliza) → nada
+- B. (sin respuestas: se desliza) → nada
+
+**Los tabacos (rechazo)** (undefined; segundo paso)  
+«Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio.»
+- A. (sin respuestas: se desliza) → baja Pueblo -4
+- B. (sin respuestas: se desliza) → baja Pueblo -4
+
 **La calle y los cuarteles** (Ministro del Interior)  
 «Algunos oficiales se reúnen con los que protestan en la calle. Propongo arrestarlos ya.»
 - A. Un ascenso y se calman → sube Ejército +8 · baja Partido -4

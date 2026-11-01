@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
+Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
 
 ### 1. La casa vacía
 
@@ -498,7 +498,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Carta:** «Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.»
 
 - **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
-- **B. No me gusta pescar** Pueblo −5 · Élite +5
+- **B. No me gusta pescar** Pueblo −5 · Élite +5 · Encola: `ernesto_corte1` en 1 años
 
 ### 45. Papá Ernesto (whisky)
 
@@ -508,7 +508,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Carta:** «Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.»
 
 - **A. Usted se merece ese whisky** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
-- **B. Beba lo que bebe el Pueblo** Potencias −5 · Pueblo +5
+- **B. Beba lo que bebe el Pueblo** Potencias −5 · Pueblo +5 · Encola: `ernesto_corte2` en 1 años
 
 ### 46. Papá Ernesto (higado)
 
@@ -520,7 +520,57 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 - **A. Su casa será un museo** Pueblo +5 · Élite −5
 - **B. El Partido cuidará de sus botellas** Pueblo −5 · Élite +5
 
-### 47. La calle y los cuarteles *(borrador)*
+### 47. Papá Ernesto (corte 1)
+
+**Personaje:** undefined  
+**Condición:** sorteo con peso undefined.
+
+**Carta:** «Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones.»
+
+- **A. (sin respuestas: se desliza)** 
+- **B. (sin respuestas: se desliza)** 
+
+### 48. Papá Ernesto (corte 2)
+
+**Personaje:** undefined  
+**Condición:** sorteo con peso undefined.
+
+**Carta:** «Papá Ernesto abandonó el país a las 6:40. En el registro de su casa solo se encontraron botellas vacías.»
+
+- **A. (sin respuestas: se desliza)** 
+- **B. (sin respuestas: se desliza)** 
+
+### 49. Los tabacos
+
+**Personaje:** undefined  
+**Condición:** sorteo con peso undefined.
+
+**Carta:** «Un admirador anónimo te ha enviado una caja de tabacos. Dicen que son los mejores del país.»
+
+- **A. A ver si son tan buenos** 
+- **B. Aquí nadie regala nada**  · Encola: `tabacos_rechazo` en 1 años
+
+### 50. Los tabacos (bien)
+
+**Personaje:** undefined  
+**Condición:** sorteo con peso undefined.
+
+**Carta:** «Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.»
+
+- **A. (sin respuestas: se desliza)** 
+- **B. (sin respuestas: se desliza)** 
+
+### 51. Los tabacos (rechazo)
+
+**Personaje:** undefined  
+**Condición:** sorteo con peso undefined.
+
+**Carta:** «Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio.»
+
+- **A. (sin respuestas: se desliza)** Pueblo −4
+- **B. (sin respuestas: se desliza)** Pueblo −4
+
+### 52. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -530,7 +580,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 - **A. Un ascenso y se calman** Ejército +8 · Élite −4
 - **B. Arréstenlos a todos** Ejército −6 · Pueblo −3 · Crisis +2
 
-### 48. La embajada
+### 53. La embajada
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -540,7 +590,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 - **A. Lo que pida el aliado** Potencias +8 · Élite −4
 - **B. Casa y coche para todos** Élite +8 · Potencias −4
 
-### 49. Los nuevos vecinos
+### 54. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 10 a 14 de su era.
@@ -554,7 +604,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
-### 50. El ultimátum
+### 55. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -566,7 +616,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 51. Embargo total
+### 56. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 20; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.

@@ -285,7 +285,7 @@ const CARTAS = [
     id: "beisbol", tipo: "sorteo", peso: 12, titulo: "El partido",
     personaje: "Ministra de Educación",
     texto: "Estamos organizando un partido de béisbol entre ministros y comandantes. Propongo que lance usted.",
-    izq: { accion: "A ver quién me batea", efectos: { pueblo: 4, ejercito: -3 } },
+    izq: { accion: "A ver quién me batea", efectos: { pueblo: 4, ejercito: -3 }, riesgo: { p: 0.1, muerte: "pelotazo" } },   // 1 nov, Jorge: 1 de cada 10, te batean de línea a la cabeza (MUERTES.md); si no, la recompensa de la pelota
     der: { accion: "Yo seré el árbitro", efectos: { ejercito: 3, pueblo: -4 } }
   },
   {
@@ -340,6 +340,7 @@ const CARTAS = [
   },
   {
     id: "pupo_mal_ojo_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
+    detras: "Padrino Pupo acierta casi siempre. Lo de «casi» no lo explica nunca.",
     personaje: "Padrino Pupo",
     texto: "Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.",
     izq: { accion: "Que sean dos neveras", efectos: { elite: -4 }, pago: "entero" },
@@ -369,6 +370,7 @@ const CARTAS = [
   },
   {
     id: "pupo_envidia_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
+    detras: "Padrino Pupo acierta casi siempre. Lo de «casi» no lo explica nunca.",
     personaje: "Padrino Pupo",
     texto: "Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.",
     izq: { accion: "Elija uno de mi colección", efectos: { potencias: -4 }, pago: "entero" },
@@ -383,6 +385,7 @@ const CARTAS = [
   },
   {
     id: "pupo_deseos_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
+    detras: "Padrino Pupo acierta casi siempre. Lo de «casi» no lo explica nunca.",
     personaje: "Padrino Pupo",
     texto: "Para malos deseos, el santo pide calabaza, 2 gallinas negras, arroz y un carro con chófer. Pero no le aseguro nada.",
     izq: { accion: "Un descapotable, padrino", efectos: { ejercito: -4 }, pago: "entero" },
@@ -394,7 +397,7 @@ const CARTAS = [
     personaje: "Papá Ernesto",
     texto: "Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.",
     izq: { accion: "Conmigo todos pican", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
-    der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 } }
+    der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 }, encolar: [{ carta: "ernesto_corte1", min: 1, max: 1 }] }   // corte 1: Ernesto no vuelve
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
@@ -402,7 +405,7 @@ const CARTAS = [
     personaje: "Papá Ernesto",
     texto: "Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.",
     izq: { accion: "Usted se merece ese whisky", efectos: { potencias: 5, pueblo: -5 }, banderas: ["base.ernesto_whisky"] },
-    der: { accion: "Beba lo que bebe el Pueblo", efectos: { potencias: -5, pueblo: 5 } }
+    der: { accion: "Beba lo que bebe el Pueblo", efectos: { potencias: -5, pueblo: 5 }, encolar: [{ carta: "ernesto_corte2", min: 1, max: 1 }] }   // corte 2: Ernesto se va
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
@@ -411,6 +414,34 @@ const CARTAS = [
     texto: "Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante.",
     izq: { accion: "Su casa será un museo", efectos: { pueblo: 5, elite: -5 } },
     der: { accion: "El Partido cuidará de sus botellas", efectos: { pueblo: -5, elite: 5 } }
+  },
+
+  // 1 nov, Jorge: cartas de aviso (tipo «aviso»): nota de inteligencia que sale justo después de la decisión que la provoca; sin respuestas, no cuenta para el largo de la era
+  {
+    id: "ernesto_corte1", tipo: "aviso", enlace: true, titulo: "Papá Ernesto (corte 1)",
+    texto: "Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones."
+  },
+  {
+    id: "ernesto_corte2", tipo: "aviso", enlace: true, titulo: "Papá Ernesto (corte 2)",
+    texto: "Papá Ernesto abandonó el país a las 6:40. En el registro de su casa solo se encontraron botellas vacías."
+  },
+
+  // 1 nov: atentados (docs/MUERTES.md). Carta sorpresa de objeto, una por era, del banco `ATENTADOS`; no cuenta para el largo de la era. Al aceptar, el riesgo de morir
+  // depende solo del Ejército (75 % con 20 o menos, 5 % con 80 o más; ver `riesgoAtentado()` en motor.js). Por detrás, una descripción ambigua.
+  {
+    id: "atentado_tabacos", tipo: "atentado", enlace: true, titulo: "Los tabacos", leyenda: "Regalo", fondo: "mostaza",
+    texto: "Un admirador anónimo te ha enviado una caja de tabacos. Dicen que son los mejores del país.",
+    detras: "Una selección de tabacos exclusivos. En nariz despliegan notas dulzonas de intensidad poco habitual. La capa presenta un brillo singular, casi impropio, posiblemente atribuible a una elaboración de excepcional calidad.",
+    izq: { accion: "A ver si son tan buenos", efectos: {}, atentado: { muerte: "atentado_tabacos", bien: "tabacos_bien" } },
+    der: { accion: "Aquí nadie regala nada", efectos: {}, encolar: [{ carta: "tabacos_rechazo", min: 1, max: 1 }] }
+  },
+  {
+    id: "tabacos_bien", tipo: "aviso", enlace: true, titulo: "Los tabacos (bien)", centra: "potencias",   // la fuerza del concepto vuelve hacia el centro (la mitad de lo que le falta hasta 50)
+    texto: "Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma."
+  },
+  {
+    id: "tabacos_rechazo", tipo: "aviso", enlace: true, titulo: "Los tabacos (rechazo)", efectos: { pueblo: -4 },   // provisional: «secuela de un solo golpe»
+    texto: "Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio."
   },
 
   /* ---------- Coalición (borrador) ---------- */
@@ -1144,6 +1175,27 @@ const FINALES = {   // 30 oct, Textos: versión de la era 1 (vale para todas has
   potencias_100:{ titulo: "Anexión",       texto: "Dependías tanto de tu aliado extranjero que acabó incorporando el país a su territorio. A ti te nombraron alcalde de un pueblo de 300 habitantes." }
 };
 
+/* 1 nov: muertes especiales (no dependen de una barra): `especial` = sin la frase de qué fuerza cayó; `todas` = en la pantalla de caída caen todas las barras.
+   Imagen: por hacer (Arte); mientras, la carta enseña el título. */
+Object.assign(FINALES, {
+  atentado_tabacos: { titulo: "Regalo envenenado", texto: "Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta.", especial: true, todas: true },
+  pelotazo:         { titulo: "Pelotazo", texto: "Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.)", especial: true }
+});
+/* Una versión de cada caída por era (30 oct, Textos): FINALES_ERA[era][clave]; si falta, vale la de la era 1 (FINALES). Textos las irá entregando. */
+const FINALES_ERA = {};
+/* Quien te tumba desde su carta (30 oct, Jorge: solo estos cinco; clave = cargo interno): su muerte sustituye a la de la barra (arriba sigue la frase de qué barra cayó) */
+const MUERTES_PERSONAJE = {
+  "Ministro de las Fuerzas Armadas": { titulo: "Por fin es Domingo", texto: "Tu hermano pequeño ordenó a las tropas detenerte y se proclamó nuevo Comandante. Después pidió que le ajustaran tu uniforme." },
+  "Ministro del Interior": { titulo: "Confesión", texto: "Octavio reunió pruebas, testigos y documentos para demostrar que conspirabas contra la Revolución. La única pieza que faltaba era tu confesión, pero también la consiguió." },
+  "Embajador del bloque oriental": { titulo: "Asesoría", texto: "Los asesores de Strenko te aconsejaron descansar una temporada. Fuera del país, y con escolta." },
+  "Embajador de la potencia del norte": { titulo: "Intervención", texto: "La potencia occidental intervino para restaurar el orden y puso a Pembrook al frente del gobierno. Tus ministros colaboraron en cuanto supieron sus nuevos salarios." },
+  "Vicepresidente del Consejo de Ministros": { titulo: "Superviviente", texto: "Anselmo te entregó a tus enemigos a cambio de seguir en el cargo y de que le respetaran las vacaciones. Ya va por su tercer gobierno." }
+};
+/* Banco de atentados (cartas de tipo «atentado»): uno por era, sin repetir en la partida, nunca en las tres primeras cartas de la era */
+const ATENTADOS = ["atentado_tabacos"];
+/* Números provisionales de los atentados (a ajustar con npm run simular): probabilidad por carta de que salga el de la era y si, si no ha salido, sale seguro al final de la era */
+const ATENTADO = { p: 0.07, seguroAlFinal: false };   // 1 nov, simular (1200 partidas, «humano»): p 0,22 con seguro al final: era 1 al 50 % (sin atentados, 66 %); p 0,10: 58 %; p 0,06: 61 %
+
 const LINEAS_BARRA = {   // 16 oct: en tercera persona, como el informe de inteligencia donde salen
   pueblo:    { alto: "El Pueblo te aplaude, de momento.",                          bajo: "El Pueblo ha aprendido a no hacer demasiadas preguntas." },
   ejercito:  { alto: "El Ejército no te ha abandonado.",                           bajo: "El Ejército te obedece, pero cuenta los días." },
@@ -1325,8 +1377,8 @@ const LOGROS = [
     decision: "Acabar la era con las cuatro fuerzas entre 40 y 60",
     descripcion: "Terminaste una era con las cuatro fuerzas equilibradas. El pueblo no pasa hambre, los militares conservan sus privilegios y el Partido sigue colocando a los suyos. Hasta tus críticos admiten que, comparado con las alternativas, tampoco se vive tan mal. Por ahora, todos te aguantan." },
   // 29 oct, Jorge: se da al llegar a la tercera carta de Papá Ernesto (`llegar`), que solo sale si aceptaste el torneo y el whisky. Textos provisionales: los redacta Coleccionables.
-  { id: "ernesto", regla: "trama", llegar: "ernesto_higado", fondo: "mostaza", titulo: "La historia de Ernesto", subtitulo: "Pendiente",
-    decision: "Completar la trama de Papá Ernesto",
+  { id: "ernesto", regla: "trama", carta: "ernesto_higado", fondo: "mostaza", titulo: "La historia de Ernesto", subtitulo: "Pendiente",
+    decision: "Su casa será un museo",
     descripcion: "Pendiente: texto de Coleccionables." },
   { id: "buenos_modales", era: 1, regla: "buenos_modales", fondo: "azul", titulo: "Dictablanda", subtitulo: "El poder de ser amable.",
     decision: "Acabar la era sin Censura, Vigilancia ni Jaula",

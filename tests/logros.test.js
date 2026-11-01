@@ -36,7 +36,7 @@ test("cada recompensa se desbloquea con su opción (con o sin bandera) y la prim
     assert.ok(!j.w.eval(`!!logros().${logro}`), `${logro}: la otra opción no debe darlo`);
     j.w.eval(`mezclarLados = false; E.lados = null; E.actual = CARTAS.find(c => c.id === "${carta}");`);
     const dir = j.w.eval(`E.actual.izq.accion === ${JSON.stringify(accion)} ? -1 : 1`);
-    j.w.eval(`ocupado = false; resolver(${dir})`);
+    j.w.eval(`ocupado = false; Math.random = () => 0.99; resolver(${dir})`);   // 1 nov: sin que el pelotazo (1 de cada 10) te mate
     assert.ok(j.w.eval(`!!logros().${logro}`), `${logro}: «${accion}» debería darlo`);
   }
 });

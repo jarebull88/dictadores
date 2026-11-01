@@ -97,7 +97,7 @@ function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch
 
 /* Emojis de los estados: no se ven en el juego (allí van los dibujos a rotulador); solo los usan los documentos generados */
 const EMOJI_ESTADO = {
-  censura: "🤐", vigilancia: "👁️", culto: "🖼️", alineado: "🤝",
+  censura: "🤐", vigilancia: "👁️", culto: "🖼️", alineado: "🤝", collar: "📿", salacion: "🌩️",
   embargo: "🚫", frontera: "🧱", nacionalizado: "🏭", deuda: "💸", luna: "🍯"
 };
 const ESTADOS = {
@@ -141,6 +141,18 @@ const ESTADOS = {
     descripcion: "Para preservar la soberanía económica, se ha solicitado financiación a los mercados internacionales.",
     deriva: { potencias: 1 }, cada: 2, crisis: 1
   },
+  // 1 nov, Pupo (docs/INVITADOS.md): las deja el hechizo, no una bandera. Números provisionales (a ajustar con npm run simular):
+  // `centra`/`aleja` = puntos que cada fuerza se acerca o se aleja del centro (50) cada `cada` cartas
+  collar: {
+    nombre: "Collar", bandera: null, duracion: 5,
+    descripcion: "Un collar de cuentas bendecido por Padrino Pupo. Dicen que protege a quien lo lleva. El santo no ha firmado nada.",
+    centra: 3, cada: 1
+  },
+  salacion: {
+    nombre: "Salación", bandera: null, duracion: 5,
+    descripcion: "El hechizo salió torcido y ahora te acompaña la mala suerte. Padrino Pupo asegura que es temporal. Y que no es culpa suya.",
+    aleja: 2, cada: 1
+  },
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
   luna: {
     nombre: "Luna de miel", bandera: null, duracion: 1,   // solo en el tutorial
@@ -157,7 +169,9 @@ const RESUMEN = {
   embargo: "Las Potencias bajan cada 3 años, durante unos 9.",
   frontera: "El Ejército sube y las Potencias bajan cada 3 años.",
   nacionalizado: "El Partido sube cada 3 años.",
-  deuda: "Las Potencias suben cada 3 años."
+  deuda: "Las Potencias suben cada 3 años.",
+  collar: "Las fuerzas se acercan al centro durante unos años.",
+  salacion: "Las fuerzas se alejan del centro durante unos años."
 };
 /* DIFICULTAD
    Los efectos de las cartas se escriben en una escala pequeña (±4 a ±12) y se multiplican al cargar.
@@ -167,6 +181,8 @@ const RESUMEN = {
    lados se mezclan), y las caídas se reparten entre las cuatro fuerzas, por arriba y por abajo. */
 const FACTOR_EFECTOS = { pueblo: 2.2, ejercito: 3.5, elite: 2.7, potencias: 2.5 };
 const FACTOR_DERIVA = 2;
+/* 1 nov: una carta de aviso no tiene respuestas, pero el motor y las simulaciones la tratan como una carta con dos opciones iguales y sin texto */
+CARTAS.forEach(c => { if (c.tipo === "aviso") ["izq", "der"].forEach(l => { c[l] = { accion: "", efectos: Object.assign({}, c.efectos || {}), centra: c.centra, banderas: c.banderas }; }); });
 CARTAS.forEach(c => ["izq", "der"].forEach(l => {
   const e = c[l].efectos;
   const comun = c.tipo === "crisis" || c.tipo === "coalicion";   // crisis y coaliciones salen en todas las eras: sin factor de era
@@ -291,6 +307,8 @@ function nuevaPartida() {
     banderas: new Set(),
     orden: [],
     cola: [],
+    atentadoEra: {},   // 1 nov: era en la que ya ha salido su atentado
+    muerteEspecial: null,   // clave de una muerte que no depende de las barras (atentado, pelotazo)
     invocado: {},   // invitados ya invocados en cada era («pupo1»…): una vez por era
     vistas: new Set(),
     estados: [],
@@ -372,6 +390,8 @@ function sorteo() {
 function siguienteCarta() {
   const i = E.cola.findIndex(q => q.turno <= E.turno);
   if (i >= 0) return POR_ID[E.cola.splice(i, 1)[0].carta];
+  const atentado = atentadoDebido();
+  if (atentado) return atentado;
 
   const fin = c => Math.min(c.ventana[1], E.N);
   const anclas = CARTAS.filter(c => c.tipo === "ancla" && deEra(c) && libre(c) && cumple(c) && anioEra() >= c.ventana[0]);
@@ -391,18 +411,18 @@ function siguienteCarta() {
   return sorteo();
 }
 
+function entraEstado(id) {
+  if (E.estados.some(s => s.id === id)) return;
+  E.estados.push({ id, edad: 0, nuevo: true });
+  E.eventos.push({ t: "entra", id });
+  if (E.estados.length > MAX_RANURAS) {
+    const fuera = E.estados.shift();
+    E.eventos.push({ t: "sale", id: fuera.id });
+  }
+}
 function activarEstados(banderas) {
   (banderas || []).forEach(b => {
-    for (const id in ESTADOS) {
-      if (ESTADOS[id].bandera === b && !E.estados.some(s => s.id === id)) {
-        E.estados.push({ id, edad: 0, nuevo: true });
-        E.eventos.push({ t: "entra", id });
-        if (E.estados.length > MAX_RANURAS) {
-          const fuera = E.estados.shift();
-          E.eventos.push({ t: "sale", id: fuera.id });
-        }
-      }
-    }
+    for (const id in ESTADOS) if (ESTADOS[id].bandera === b) entraEstado(id);
   });
 }
 
@@ -417,11 +437,33 @@ function avanzarEstados() {
         E.derivaTurno[k] = (E.derivaTurno[k] || 0) + d.deriva[k];
       }
       if (d.crisis) E.crisis = Math.max(0, E.crisis + d.crisis);
+      const mueve = d.centra || d.aleja;   // 1 nov: Collar acerca las fuerzas al centro; Salación las aleja
+      if (mueve) for (const b of BARRAS) {
+        const v = E.barras[b.id], hacia = Math.sign(50 - v) * (d.centra ? 1 : -1) || (d.aleja && Math.random() < .5 ? 1 : -1);
+        const nuevo = d.centra ? (Math.abs(50 - v) <= mueve ? 50 : v + hacia * mueve) : v + hacia * mueve;
+        E.derivaTurno[b.id] = (E.derivaTurno[b.id] || 0) + (limitar(nuevo) - v);
+        E.barras[b.id] = limitar(nuevo);
+      }
     }
     const termina = d.duracion && s.edad >= d.duracion;
     if (termina) E.eventos.push({ t: "fin", id: s.id });
     return !termina;
   });
+}
+
+/* 1 nov: riesgo de morir al aceptar un atentado: 75 % con el Ejército en 20 o menos, en línea recta hasta el 5 % con 80 o más (Ejército 50: 40 %; 65: 22,5 %) */
+const riesgoAtentado = () => Math.min(0.75, Math.max(0.05, 0.75 - (E.barras.ejercito - 20) * (0.70 / 60)));
+/* 1 nov: suerte del hechizo de Pupo según el Pueblo (provisional): pagando entero, tanto % como Pueblo; regateando, 20 puntos menos; nunca segura ni perdida */
+const suertePupo = pago => Math.min(0.95, Math.max(0.05, (E.barras.pueblo - (pago === "regateo" ? 20 : 0)) / 100));
+/* 1 nov: un atentado por era, por sorpresa tras una decisión, nunca en las tres primeras cartas de la era. Los números están en ATENTADO (datos.js) */
+function atentadoDebido() {
+  if (E.atentadoEra[E.era] || anioEra() < 4 || E.cola.length) return null;
+  const libres = ATENTADOS.filter(id => !E.vistas.has(id));
+  if (!libres.length) return null;
+  const alFinal = ATENTADO.seguroAlFinal && anioEra() >= E.N - 1;
+  if (!alFinal && Math.random() >= ATENTADO.p) return null;
+  E.atentadoEra[E.era] = true;
+  return POR_ID[libres[Math.floor(Math.random() * libres.length)]];
 }
 
 function aplicar(c, op) {
@@ -438,6 +480,13 @@ function aplicar(c, op) {
   }
   (op.banderas || []).forEach(b => { if (!E.banderas.has(b)) { E.banderas.add(b); E.orden.push(b); } });
   activarEstados(op.banderas);
+  if (op.centra) E.barras[op.centra] = limitar(Math.round(E.barras[op.centra] + (50 - E.barras[op.centra]) / 2));   // 1 nov: la fuerza de la carta vuelve hacia el centro (la mitad de lo que le falta)
+  if (op.riesgo && Math.random() < op.riesgo.p) E.muerteEspecial = op.riesgo.muerte;                   // 1 nov: el pelotazo (1 de cada 10)
+  if (op.atentado) {                                                                                   // 1 nov: aceptar un atentado: según el Ejército, la muerte o su parte buena
+    if (Math.random() < riesgoAtentado()) E.muerteEspecial = op.atentado.muerte;
+    else E.cola.push({ carta: op.atentado.bien, turno: E.turno + 1 });
+  }
+  if (op.pago) entraEstado(Math.random() < suertePupo(op.pago) ? "collar" : "salacion");              // 1 nov: Pupo: suerte según el Pueblo; secuela Collar (bien) o Salación (mal)
   (op.encolar || []).forEach(q => {
     if (q.invoca) {   // 29 oct: una carta invita a un personaje: sale una de sus cartas de esta era al azar, una vez por era y sin otro segundo paso esperando
       const clave = q.invoca + E.era;
@@ -461,6 +510,7 @@ function aplicar(c, op) {
 }
 
 function comprobarCaida() {
+  if (E.muerteEspecial) return E.muerteEspecial;   // 1 nov: atentado o pelotazo
   for (const b of BARRAS) {
     if (E.barras[b.id] <= 0) return b.id + "_0";
     if (E.barras[b.id] >= 100) return b.id + "_100";
@@ -816,25 +866,30 @@ const ICONO_GIRO = '<svg class="icono-giro" viewBox="0 0 24 24" aria-hidden="tru
 function conNegritas(texto) {
   return `<span>${texto.split("*").map((t, k) => k % 2 ? `<b>${esc(t)}</b>` : esc(t)).join("")}</span>`;   // un solo bloque: el mensaje es flex
 }
+/* 1 nov: reverso con un texto propio (atentados, hechizos de Pupo): en vez del expediente del personaje */
+function dorsoTexto(texto) {
+  return `<div class="dorso"><div class="hoja">${ICONO_GIRO}<p class="ficha-historia">${esc(texto)}</p></div></div>`;
+}
 function pintarCarta(c) {
   const slug = PERSONAJE_SLUG[c.personaje];
+  const objeto = !c.personaje && c.fondo;   // 1 nov: carta de objeto (un regalo): sin personaje; mientras Arte no haga su imagen, un fondo plano con su título
   const ilus = slug && RETRATOS[slug]
     ? svgPersonaje(slug, c.personaje)
-    : `<div class="ph"><b>Sin retrato</b></div>`;
+    : objeto ? `<div class="objeto-cara"><b>${esc(c.titulo)}</b></div>` : `<div class="ph"><b>Sin retrato</b></div>`;
   ponerMensaje(conNegritas(c.texto));
   ajustarMensaje();
-  ponerLeyenda(c.cinta || (FICHAS[c.personaje] || {}).cargo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
+  ponerLeyenda(c.cinta || c.leyenda || (FICHAS[c.personaje] || {}).cargo || c.personaje);   // tutorial: la instrucción; si no, el cargo del personaje
   if (!$("screen-game").classList.contains("hidden")) { medirCartaJuego(); ajustarMensaje(); }   // si la pregunta crece, la carta encoge: se vuelve a alinear
   /* Anverso: el personaje (la respuesta va en la parte alta de la carta). Reverso: su ficha. */
   $("carta").classList.remove("volteada");
   cartonDe($("carta"), slug);
-  $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : " ph"}"${fondoDe(slug)}>${ilus}` +
-    `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${fichaPersonaje(c.personaje)}</div>`;
+  $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : objeto ? "" : " ph"}"${objeto ? ` style="--fondo-escena:var(--p-${c.fondo})"` : fondoDe(slug)}>${ilus}` +
+    `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${c.detras ? dorsoTexto(c.detras) : fichaPersonaje(c.personaje)}</div>`;
   ajustarFicha();
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
-  if (ocupado) return;
+  if (ocupado || modoAviso) return;
   if (E && E.tutorial && !["girar", "estado"].includes(TUTORIAL[E.tutorial.i].paso)) return;   // 17 oct: en el tutorial solo se gira en su paso (29 oct: y la secuela «Luna de miel», en el suyo)
   pintarEleccion(0);
   const volteada = $("carta").classList.toggle("volteada");
@@ -864,10 +919,10 @@ function ajustarRespuesta(r) {
   s.style.fontSize = "";   // 22 oct, Jorge: la letra ya no se achica; el límite de caracteres asegura las 2 líneas
 }
 function pintarEleccion(dir) {
-  if (modoEstado && !(E && E.tutorial)) return;       // la carta de estado no tiene respuestas (ni se arrastra)
+  if ((modoEstado || modoAviso) && !(E && E.tutorial)) return;       // la carta de estado (o de aviso) no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
-  let op = c && dir !== 0 && !modoEstado ? opcionDe(dir) : null;
-  if (modoEstado) op = null;
+  let op = c && dir !== 0 && !modoEstado && !modoAviso ? opcionDe(dir) : null;
+  if (modoEstado || modoAviso) op = null;
   const r = $("respuesta");
   if (r) {
     if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
@@ -893,7 +948,7 @@ function empezar() {
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
   E.avisoPendiente = null;
-  E.estadoNuevo = null; modoEstado = false;
+  E.estadoNuevo = null; modoEstado = false; modoAviso = false;
   $("carta").classList.remove("hidden", "listo");
   E.actual = siguienteCarta();
   barajarLados();
@@ -1005,6 +1060,7 @@ function lanzarCarta(carta, dir) {
   carta.style.opacity = "0";
 }
 function decidir(dir) {
+  if (modoAviso) { recogerAviso(); return; }     // 1 nov: la carta de aviso se desliza a cualquier lado y sigue la partida
   if (modoEstado) { recogerEstado(); return; }   // 27 oct: la carta de estado se guarda al deslizarla a un lado u otro
   if (ocupado || tutorialBloquea()) return;
   ocupado = true;
@@ -1037,7 +1093,7 @@ function resolver(dir) {
   const op = opcionDe(dir);
   const turnoDecidido = E.turno;
   aplicar(c, op);
-  comprobarLogros(c, op);
+  if (!E.muerteEspecial) comprobarLogros(c, op);   // 1 nov: si el pelotazo o el atentado te matan, la recompensa se queda en el aire
   pintarBarras();
   pintarRanuras();
   mostrarDerivas();
@@ -1049,12 +1105,23 @@ function resolver(dir) {
   const eraCompleta = !caida && eraTerminada();
   if (eraCompleta) comprobarLogrosEra();
   let despues;
-  if (caida) despues = () => terminar(caida);
+  if (caida) despues = () => terminarCaida(caida, c.personaje);
   else if (eraCompleta) despues = finDeEra;
   else despues = siguiente;
   despues();
 }
 
+/* 1 nov: la caída; si la muerte es de las que se llevan todo (el atentado), antes caen todas las barras */
+function terminarCaida(clave, personaje) {
+  const f = FINALES[clave];
+  if (f && f.todas) {
+    BARRAS.forEach(b => { E.barras[b.id] = 0; });
+    pintarBarras();
+    setTimeout(() => terminar(clave, false, personaje), animar() ? 1200 : 0);
+    return;
+  }
+  terminar(clave, false, personaje);
+}
 /* Las barras muestran una flecha cuando un estado las mueve solo */
 function mostrarDerivas() {
   BARRAS.forEach(b => {
@@ -1094,6 +1161,34 @@ function mostrarAvisoPendiente() {
   abrirPopup(a.clave, a.html, ancla, 6500);
 }
 
+/* ---------- Carta de aviso (1 nov, Jorge): una nota de inteligencia, blanca y solo con su texto. Sin respuestas: se desliza a cualquier
+   lado, como una secuela, y la partida sigue. No mueve fuerzas salvo que lo diga su carta, y no cuenta para el largo de la era (`enlace`). ---------- */
+let modoAviso = false;
+function mostrarCartaAviso(c) {
+  modoAviso = true; ocupado = false;
+  ponerMensaje("");
+  ponerLeyenda(c.leyenda || "Nota de inteligencia");
+  const carta = $("carta");
+  carta.classList.remove("hidden", "listo", "volteada");
+  cartonDe(carta, "");
+  carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-aviso"><p class="aviso-texto">${esc(c.texto)}</p></div></div>`;
+  pintarBarras();
+  entrarCarta(carta);
+  pintarEleccion(0);
+  const h = carta.querySelector(".carta-aviso"), t = carta.querySelector(".aviso-texto");   // si el texto no cabe, la letra baja
+  let px = parseFloat(getComputedStyle(t).fontSize) || 20;
+  while (t.scrollHeight > h.clientHeight * .86 && px > 12) { px -= 0.5; t.style.fontSize = px + "px"; }
+}
+function recogerAviso() {
+  if (!modoAviso || ocupado) return;
+  ocupado = true; sonar("deslizar");
+  const carta = $("carta"), a = rectBase(carta);
+  carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1)";
+  carta.style.transform = `translateY(${innerHeight - a.top}px)`;   // sale hacia abajo, como las secuelas
+  setTimeout(() => { modoAviso = false; resolver(1); }, animar() ? 460 : 0);
+}
+
 /* ---------- Carta de estado: el estado nuevo aparece como carta; al tocarla o arrastrarla, baja a su casilla ---------- */
 let modoEstado = false;
 /* Frase de cada estado (de Jorge): sale arriba, donde va la pregunta, cuando su carta aparece. */
@@ -1105,10 +1200,12 @@ const FRASE_ESTADO = {
   culto: "El Pueblo te quiere tanto que han tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
   frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
-  alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla."
+  alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla.",
+  collar: "El santo te cubre las espaldas. De momento.",
+  salacion: "Todo lo que tocas se tuerce. Hasta el café."
 };
 const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
-  embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A" };
+  embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A", collar: "#D8A02A", salacion: "#7A2A1D" };
 let relojEstado = null;
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
@@ -1190,6 +1287,7 @@ function siguiente() {
   if (!nueva) return finDeEra();
   E.actual = nueva;
   barajarLados();
+  if (nueva.tipo === "aviso") { mostrarCartaAviso(nueva); return; }   // 1 nov: nota de inteligencia (docs/PLAN_NARRATIVO.md, «Cartas de aviso»)
   const carta = $("carta");
   carta.classList.remove("hidden", "listo");
   pintarCarta(nueva);
@@ -1260,7 +1358,9 @@ function continuarEra() {
 
 const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejército", "llegó"], elite: ["El Partido", "llegó"], potencias: ["Las potencias", "llegaron"] };
 /* Fin de la partida: caída (clave = fuerza y extremo) o victoria (sin clave). Al pasar de era, «Sigues…» va aparte. */
-function terminar(clave, transicion) {
+/* 1 nov: la caída de cada era (FINALES_ERA, con la de la era 1 de reserva) */
+const finalDe = (clave, era) => (FINALES_ERA[era] && FINALES_ERA[era][clave]) || FINALES[clave];
+function terminar(clave, transicion, personaje) {
   if (transicion) { mostrarEra(); return; }
   ocupado = false;
   const n = anios();
@@ -1272,15 +1372,20 @@ function terminar(clave, transicion) {
   pantalla.classList.toggle("pantalla-texto", victoria);
   if (clave) {
     /* Caída: «¡Has caído!», qué fuerza cayó, el relato y la causa en una carta (derecha = jugar de nuevo, izquierda = volver a la portada) */
-    const f = FINALES[clave];
-    const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
+    const f = finalDe(clave, E ? E.era : 1);
+    const muertePers = !f.especial && personaje && MUERTES_PERSONAJE[personaje];   // 1 nov: si caes en la carta de quien puede tumbarte, sale su muerte (arriba sigue la frase de qué barra cayó)
+    const d = muertePers || f;
     $("fin-principal").textContent = "¡Has caído!";
-    $("fin-titulo").textContent = f.titulo;
+    $("fin-titulo").textContent = d.titulo;
     // Un solo párrafo para ahorrar sitio: «Las potencias llegaron al máximo.» en negrita y, seguido, el relato
-    const [sujeto, verbo] = SUJETO_FUERZA[idF];
-    $("fin-pie").textContent = `${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.`;   // 29 oct: la frase corta, bajo la carta; el relato se queda arriba, sin el nombre de la muerte
-    $("fin-texto").textContent = f.texto;
-    pintarCartaFin(f.titulo, clave);
+    if (f.especial) $("fin-pie").textContent = "";   // atentados y pelotazo: sin barra que cayó
+    else {
+      const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
+      const [sujeto, verbo] = SUJETO_FUERZA[idF];
+      $("fin-pie").textContent = `${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.`;   // 29 oct: la frase corta, bajo la carta; el relato se queda arriba, sin el nombre de la muerte
+    }
+    $("fin-texto").textContent = d.texto;
+    pintarCartaFin(d.titulo, clave, muertePers ? personaje : null);
     $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta
   } else {
     $("fin-principal").textContent = "¡Has ganado!";
@@ -1312,21 +1417,29 @@ let finOcupada = false;
 const FONDO_CAIDA = { ejercito_0: "#1D51A0", pueblo_0: "#D8A02A", pueblo_100: "#B0362A", ejercito_100: "#86762C",   // 23 oct: paleta del cartel
   elite_0: "#F0E9D6", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
 let claveFin = "";
-function pintarCartaFin(titulo, clave = claveFin) {
+let personajeFin = null;
+function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin) {
   const carta = $("carta-fin");
-  claveFin = clave;
+  claveFin = clave; personajeFin = personaje;
   finOcupada = false;
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "");
   // Una escena por etapa si la hay («Abducción»: el dictador de cada era), si no, la de la caída
   const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
-  const escena = clave && svgEscena(idEscena, titulo);
+  const slugP = personaje && PERSONAJE_SLUG[personaje];
+  const escena = clave && !slugP && svgEscena(idEscena, titulo);
+  if (slugP && RETRATOS[slugP]) {   // 1 nov: muerte de un personaje: mientras Arte no haga su imagen, su cartel
+    cartonDe(carta, slugP);
+    carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slugP)}>${svgPersonaje(slugP, personaje)}<div class="respuesta"></div></div></div></div>`;
+    void carta.offsetWidth; carta.style.transition = "";
+    return;
+  }
   carta.innerHTML = escena
     ? `<div class="giro"><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
       `${escena}<div class="respuesta"></div></div></div></div>`
     : `<div class="giro"><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
-      `<div class="respuesta"></div></div></div></div>`;
+      `${clave && FINALES[clave] && FINALES[clave].especial ? `<div class="titulo-caida">${esc(titulo)}</div>` : ""}<div class="respuesta"></div></div></div></div>`;   // sin imagen aún (Arte): el título
   void carta.offsetWidth; carta.style.transition = "";
 }
 function eleccionFin(dir) {
@@ -1384,7 +1497,7 @@ function pasoTutorial(i, sinEntrada) {
   const iFuerzas = TUTORIAL.findIndex(x => x.paso === "fuerzas"), iEstado = TUTORIAL.findIndex(x => x.paso === "estado");
   if (i <= iFuerzas) { $("barras").classList.add("apagadas"); $("barras").querySelectorAll(".barra").forEach(b => b.classList.remove("encendida")); }
   if (i <= iEstado && E.estados.length) { E.estados = []; pintarRanuras(); }
-  clearTimeout(relojEstado); modoEstado = false;
+  clearTimeout(relojEstado); modoEstado = false; modoAviso = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
@@ -1477,7 +1590,7 @@ function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
-  E = null; modoEstado = false; ocupado = false;
+  E = null; modoEstado = false; modoAviso = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
   if (destino === "portada") mostrar("screen-start"); else irANombre();
@@ -1670,7 +1783,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, lateralAbajo: () => modoEstado, bloquea: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
+arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado || modoAviso, lateralAbajo: () => modoEstado || modoAviso, bloquea: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Me da miedo el micrófono») ---------- */
@@ -1800,7 +1913,7 @@ const sinAbrir = () => Object.values(logros()).filter(x => !x.abierto).length;
 /* Una decisión da un logro por una bandera que pone, o por la carta y la opción elegidas (para las opciones que no ponen bandera) */
 function comprobarLogros(c, op) {
   const l = logros();
-  const nuevos = LOGROS.filter(g => !l[g.id] && ((g.bandera && (op.banderas || []).includes(g.bandera)) || (g.carta && c && c.id === g.carta && op.accion === g.decision) || (g.llegar && c && c.id === g.llegar)));
+  const nuevos = LOGROS.filter(g => !l[g.id] && ((g.bandera && (op.banderas || []).includes(g.bandera)) || (g.carta && c && c.id === g.carta && op.accion === g.decision)));
   if (!nuevos.length) return;
   nuevos.forEach(g => { l[g.id] = { abierto: false }; });
   guardarLogros(l);

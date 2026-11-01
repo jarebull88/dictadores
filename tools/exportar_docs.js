@@ -7,6 +7,8 @@ const RAIZ = path.join(__dirname, "..");
 // 1) datos con los efectos tal como se escriben (escala pequeña), sin los factores del motor
 const D = new Function(fs.readFileSync(path.join(RAIZ, "src/datos.js"), "utf8") +
   "; return { CARTAS, ERAS, FINALES, FUTURO, FUTURO_ERA, BARRAS };")();
+// 1 nov: las cartas de aviso no tienen respuestas; para los documentos se tratan como una carta con una sola opción sin texto
+D.CARTAS.forEach(c => { if (c.tipo === "aviso") c.izq = c.der = { accion: "(sin respuestas: se desliza)", efectos: c.efectos || {} }; });
 // 2) lo que depende del motor (estados, grupos, ilustraciones, factores) se lee del juego montado
 const w = new JSDOM(fs.readFileSync(path.join(RAIZ, "dist/index.html"), "utf8"), { runScripts: "dangerously" }).window;
 const juego = w.eval("({ ESTADOS, RESUMEN, GRUPO_DE, PERSONAJE_SLUG, FACTOR_EFECTOS, FACTOR_DERIVA, EMOJI_ESTADO, EMOJI_FUERZA, FUERZAS })");

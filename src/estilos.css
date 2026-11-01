@@ -98,7 +98,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 /* — TITULAR — */
 .titulo, .titular, .banda span, #screen-end h1.fin-principal, .cabecera-carta h1, #screen-end h2.fin-causa, .ficha-nombre, .logo-texto,
 .popup b, .info-titulo, .etiqueta-boli b, .leyenda, .popup .efecto, .esquela b, .titulo-caida,
-.opcion-portada, .era-anios, .fin-anios, .fin-pie, .ic-nombre, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
+.opcion-portada, .era-anios, .fin-anios, .fin-pie, .ic-nombre, .objeto-cara b, .archivo-titulo, .logro-titulo, .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-titular); text-transform: uppercase; font-weight: 400; letter-spacing: 0; line-height: 1.05;
 }
 #screen-end h1.fin-principal, .ficha-nombre { font-size: var(--t-xl); }
@@ -108,6 +108,8 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .esquela b, .titulo-caida, .opcion-portada { font-size: var(--t-m); }
 .hueco-logro { font-size: var(--t-s); }
 .ic-nombre { font-size: var(--t-xs); }
+.objeto-cara b { font-size: var(--t-l); }
+.aviso-texto { font-size: var(--c-pregunta); line-height: 1.3; }   /* 1 nov: la nota de inteligencia, al tamaño de la pregunta */
 .logro-objeto-nombre { font-size: var(--t-m); }
 /* 27 oct: Londrina Light, mayúsculas y centrada: la leyenda bajo la carta (empieza al tamaño del título de la era y baja sola hasta que quepa) y los años */
 .leyenda, .fin-anios { font-weight: var(--peso-ligero); }
@@ -142,7 +144,7 @@ b, strong { font-weight: var(--peso-negrita); }   /* 25 oct: toda negrita suelta
 .alerta { line-height: 1; }
 @media (max-height: 760px) { :root { --c-pregunta: 20px; } }
 /* 30 oct, Jorge: el reverso de todas las cartas (fichas, informes, secuelas, fuerzas, recompensas y logros) también en Londrina Light y mayúsculas */
-.ficha-historia, .logro-descripcion, .logro-efecto, .logro-efecto b, .ficha-nota b { font-family: var(--f-titular); text-transform: uppercase; font-weight: var(--peso-ligero); }
+.ficha-historia, .aviso-texto, .logro-descripcion, .logro-efecto, .logro-efecto b, .ficha-nota b { font-family: var(--f-titular); text-transform: uppercase; font-weight: var(--peso-ligero); }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -721,6 +723,11 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .hueco-logro.abierto .logro-ilustracion { width: 100%; height: 100%; }
 .hueco-logro.abierto img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
+/* 1 nov: carta de aviso (nota de inteligencia): blanca y solo con su texto, centrado; carta de objeto: fondo plano con su título (hasta que Arte haga la imagen) */
+.carta-aviso { display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 12%; background: var(--p-blanco); border: var(--borde); }
+.aviso-texto { margin: 0; text-align: center; color: var(--p-tinta); }
+.objeto-cara { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; text-align: center; padding: 8%; box-sizing: border-box; }
+.objeto-cara b { color: var(--p-blanco); }
 /* Un logro: el mismo sitio y la misma medida que las cartas de la partida (título y subtítulo arriba, carta 1:1, decisión debajo).
    La carta se gira al tocarla, como la ficha de los personajes. */
 .logro-vista { position: absolute; inset: 0; padding: 8px 12px 6px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; background: var(--p-crema); }

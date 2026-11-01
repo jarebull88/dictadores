@@ -14,10 +14,10 @@ test("el CSS solo define letra, tamaño, peso, mayúsculas, espaciado e interlin
   assert.deepEqual(sueltas, [], "tipografía suelta fuera del bloque (ponla en un papel del bloque TIPOGRAFIA): " + sueltas.join(", "));
 });
 
-test("solo hay dos familias de letra: Londrina Solid (titular) y Sofia Sans Semi Condensed (cuerpo)", () => {
+test("solo hay dos familias de letra: Londrina Solid (títulos y subtítulos) y Roboto Condensed (cuerpo)", () => {
   const bloque = css.slice(css.indexOf("TIPOGRAFIA:INICIO"), css.indexOf("TIPOGRAFIA:FIN"));
   const familias = [...bloque.matchAll(/--f-(titular|cuerpo):\s*"([^"]+)"/g)].map(m => m[1] + ":" + m[2]);
-  assert.deepEqual(familias.sort(), ["cuerpo:Sofia Sans Semi Condensed", "titular:Londrina Solid"]);
+  assert.deepEqual(familias.sort(), ["cuerpo:Roboto Condensed", "titular:Londrina Solid"]);
 });
 
 test("el código no pone letra ni tamaño en línea (solo los ajustes de «caber» de motor.js)", () => {
@@ -27,8 +27,8 @@ test("el código no pone letra ni tamaño en línea (solo los ajustes de «caber
   assert.deepEqual(enLinea, [], "estilos tipográficos en línea: " + enLinea.join(" | "));
 });
 
-test("ninguna negrita suelta es de peso 700: todo es el peso del cuerpo (--peso-negrita)", () => {
+test("ninguna negrita suelta es de peso 700: todo el cuerpo es un solo peso (--peso-cuerpo)", () => {
   const bloque = css.slice(css.indexOf("TIPOGRAFIA:INICIO"), css.indexOf("TIPOGRAFIA:FIN"));
   assert.ok(!/font-weight:\s*(700|bold)/.test(bloque), "peso 700 o bold suelto en el bloque TIPOGRAFIA");
-  assert.ok(/b, strong \{ font-weight: var\(--peso-negrita\)/.test(css), "falta la regla de b, strong");
+  assert.ok(/b, strong \{ font-weight: var\(--peso-cuerpo\)/.test(css), "falta la regla de b, strong");
 });

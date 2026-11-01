@@ -169,8 +169,8 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
   j.d.querySelector(".nuevo-logro").click();       // un solo toque en la cuadrícula: la carta ya está descubierta
-  assert.equal(j.d.querySelector(".logro-titulo").textContent, "Chivatón de barrio");
-  assert.ok(j.d.querySelector(".logro-subtitulo, .logro-descripcion-cab").textContent.length > 0, "lleva subtítulo (o, en la prueba, la descripción)");
+  assert.equal(j.d.querySelector(".logro-leyenda").textContent, "Chivatón de barrio");
+  assert.ok(j.d.querySelector(".logro-mensaje").textContent.length > 0, "lleva su descripción arriba");
   assert.match(j.d.querySelector(".archivo-pista").textContent, /Que se investigue hasta la gallina/);
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "descubierto, la bolita se va");
   assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));

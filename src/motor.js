@@ -696,7 +696,7 @@ function ocultarInfo() {
   delete pop.dataset.clave;
 }
 /* La información de un estado (la cara de la carta de información y el reverso de la carta de estado nuevo) */
-function htmlEstado(id, conTitulo = true) {   // 29 oct: en la carta de una secuela nueva el reverso no lleva título (su nombre ya sale bajo la carta)
+function htmlEstado(id, conTitulo = false) {   // 2 nov: el reverso de una secuela nunca lleva título (su nombre ya sale bajo la carta, también al tocar su casilla)
   const d = ESTADOS[id];
   return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p>` +
     `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[id] || "")}</p>`;
@@ -705,7 +705,7 @@ function mostrarInfo(i) {
   const s = E.estados[i];
   const el = $("ranuras").children[i];
   if (!s || !el) { quitarInfo(); return; }
-  abrirInfo("estado-" + s.id, s.id, FONDO_ESTADO[s.id], el, htmlEstado(s.id));
+  abrirInfo("estado-" + s.id, s.id, FONDO_ESTADO[s.id], el, htmlEstado(s.id), { msg: `<span>${esc(FRASE_ESTADO[s.id] || "Nueva secuela del régimen.")}</span>`, ley: ESTADOS[s.id].nombre });
 }
 const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
 function mostrarFuerza(id, el) {
@@ -740,18 +740,38 @@ function transformDesde(c, origen) {
   const dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
   return `translate(${dx}px, ${dy}px) scale(${a.width ? b.width / a.width : .2})`;
 }
-function quitarInfo() { if (cartaInfo) { clearTimeout(cartaInfo._fin); cartaInfo.remove(); cartaInfo = null; } }
+/* 2 nov: cambia la pregunta y la leyenda con el mismo efecto que al pasar de tarjeta (la vieja se hunde y se disuelve; la nueva emerge) */
+function disolverTextos(msgHtml, ley) {
+  const m = $("mensaje"), l = $("leyenda");
+  if (!animar()) { ponerMensaje(msgHtml); ajustarMensaje(); ponerLeyenda(ley); return; }
+  m.classList.add("hundiendo"); l.classList.add("oculta");
+  setTimeout(() => {
+    ponerMensaje(msgHtml); ajustarMensaje(); ponerLeyenda(ley);
+    m.classList.remove("emerge"); void m.offsetWidth; m.classList.add("emerge");
+    l.classList.remove("oculta");
+    clearTimeout(m._fin); m._fin = setTimeout(() => m.classList.remove("emerge"), 520);
+  }, 260);
+}
+function quitarInfo() {
+  if (cartaInfo) {
+    clearTimeout(cartaInfo._fin);
+    const p = cartaInfo._previo;
+    if (p && !cartaInfo._restaurado) { cartaInfo._restaurado = true; ponerMensaje(p.msg); ajustarMensaje(); ponerLeyenda(p.ley); }   // si se quita de golpe, los textos de antes vuelven sin efecto
+    cartaInfo.remove(); cartaInfo = null;
+  }
+}
 function cerrarInfo() {
   const c = cartaInfo;
   if (!c || c._cerrando) return;
   c._cerrando = true; sonar("deslizar");
+  if (c._previo && !c._restaurado) { c._restaurado = true; disolverTextos(c._previo.msg, c._previo.ley); }   // 2 nov: vuelven los textos de la tarjeta de antes
   if (!animar()) { quitarInfo(); return; }
   c.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1), opacity .45s ease-in";
   const a = rectBase(c), sentido = c.dataset.clave.startsWith("fuerza-") ? -1 : 1;   // 29 oct: directa fuera de la pantalla, sin desviarse: arriba si viene de una fuerza, abajo si viene de una casilla
   c.style.transform = `translateY(${sentido > 0 ? innerHeight - a.top : -(a.bottom)}px)`;
   c._fin = setTimeout(() => { if (cartaInfo === c) quitarInfo(); }, 460);
 }
-function abrirInfo(clave, id, fondo, origen, html) {
+function abrirInfo(clave, id, fondo, origen, html, textos) {
   if (cartaInfo) { const misma = cartaInfo.dataset.clave === clave; if (misma) { cerrarInfo(); return; } quitarInfo(); }
   ocultarInfo();
   const img = IMG["icono_" + id + "-cartel-grande"] || IMG["icono_" + id + "-cartel"];
@@ -763,6 +783,7 @@ function abrirInfo(clave, id, fondo, origen, html) {
     (img ? `<img class="icono cartel" src="${img.src}" alt="" draggable="false">` : "") + `</div></div></div></div>`;
   $("carta").parentNode.appendChild(c);
   cartaInfo = c;
+  if (textos) { c._previo = { msg: $("mensaje").innerHTML, ley: $("leyenda").textContent }; disolverTextos(textos.msg, textos.ley); }   // 2 nov: una secuela recupera los textos de cuando salió
   ajustarFicha(c);
   sonar("deslizar");                                   // 29 oct: sale con sonido, como al cerrarse
   if (animar()) {
@@ -819,7 +840,7 @@ function ajustarLeyenda() {
 function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; ajustarLeyenda(); }
 /* La pregunta se cambia siempre por aquí: quita el hundimiento de la anterior (ver estilos.css, .hundiendo y .emerge) */
 function ponerMensaje(html) { const m = $("mensaje"); m.classList.remove("hundiendo"); m.innerHTML = html; }
-const hundirMensaje = () => { if (animar()) $("mensaje").classList.add("hundiendo"); };
+const hundirMensaje = () => { if (animar()) { $("mensaje").classList.add("hundiendo"); $("leyenda").classList.add("oculta"); } };   // 2 nov: la leyenda se disuelve a la vez que la pregunta se hunde
 function ajustarMensaje() {
   const m = $("mensaje");
   m.style.fontSize = ""; m.style.height = "";
@@ -977,7 +998,9 @@ const VOLTEO_MS = 560;
 /* La carta aparece boca abajo, justo encima del mazo, y da la vuelta */
 function entrarCarta(carta) {
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
+  const ley = $("leyenda"); ley.style.transition = "none"; ley.classList.add("oculta"); void ley.offsetWidth; ley.style.transition = "";   // 2 nov: la leyenda nueva espera a que se descubra la carta
   if (!animar()) {
+    ley.classList.remove("oculta");
     carta.style.transform = "translateY(10px) scale(.94)"; carta.style.opacity = "0";
     void carta.offsetWidth;
     carta.style.transition = ""; carta.style.transform = ""; carta.style.opacity = "1";
@@ -1001,6 +1024,7 @@ function entrarCarta(carta) {
   clearTimeout(carta._revela); clearTimeout(msg._revela);
   msg._revela = setTimeout(() => {
     msg.classList.remove("oculto");
+    $("leyenda").classList.remove("oculta");            // 2 nov: y la leyenda vuelve a la vez que la pregunta emerge
     clearTimeout(msg._fin);
     msg.classList.remove("emerge"); void msg.offsetWidth; msg.classList.add("emerge");   // 27 oct: emerge desde el techo de su espacio
     msg._fin = setTimeout(() => msg.classList.remove("emerge"), 520);
@@ -2021,7 +2045,7 @@ const archivoAbierto = () => !$("archivo").classList.contains("hidden");
 /* 29 oct: el menú tiene dos entradas: «Recompensas» (los coleccionables que da una decisión) y «Logros» (los de fin de era, con `regla`) */
 let archivoTipo = "recompensas";
 const delArchivo = () => LOGROS.filter(g => (archivoTipo === "logros") === !!g.regla);
-function abrirArchivo(tipo = "recompensas") {
+function abrirArchivo(tipo = "recompensas", { atajo = true } = {}) {
   ocultarInfo(); clearTimeout(recuerdoAviso);
   const a = $("archivo");
   a.style.paddingTop = "";
@@ -2030,11 +2054,12 @@ function abrirArchivo(tipo = "recompensas") {
   const dy = $("barras").getBoundingClientRect().top - a.getBoundingClientRect().top;   // los iconos, justo donde están los de las fuerzas
   if (dy > 0) a.style.paddingTop = dy + "px";
   seleccionarMenu(tipo);
-  if (tipo && E && E.tutorial) verLogro("paloma");             // en el tutorial, la estrella lleva directa al logro
+  if (atajo && tipo && E && E.tutorial) verLogro("paloma");    // en el tutorial, la estrella lleva directa al logro (solo si se llama a mano; desde el menú se elige)
 }
 /* Qué sale en el espacio libre: la galería (recompensas o logros), los ajustes (sonido) o abandonar. Sin elegir, solo los iconos. */
 const TITULO_MENU = { recompensas: "Recompensas", logros: "Logros", config: "Configuración", abandono: "Abandonar partida" };
 function seleccionarMenu(tab) {
+  $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo");   // 2 nov: con los iconos arriba, tocar uno desde una tarjeta lleva a su sección
   if (tab === "recompensas" || tab === "logros") archivoTipo = tab;
   const t = tab && E && E.tutorial && tab === "abandono" ? "Saltar tutorial" : TITULO_MENU[tab] || "";
   $("archivo-titulo").textContent = t;
@@ -2070,8 +2095,10 @@ function verLogro(id) {
   const v = $("archivo-abrir");
   const celda = nuevo ? (() => { const c = $("archivo-rejilla").querySelector(`[data-id="${id}"]`); return c ? c.getBoundingClientRect() : null; })() : null;   // la casilla de la que salta la carta (antes de esconder la rejilla)
   v.className = "logro-vista";
-  const arriba = PRUEBAS.descripcionArriba && !g.regla;   // 29 oct, prueba: en las recompensas, la descripción sustituye al subtítulo y detrás solo van Beneficio y Perjuicio
-  v.innerHTML = `<div class="logro-cab"><h2 class="titulo logro-titulo">${esc(g.titulo)}</h2>${arriba ? `<p class="logro-descripcion-cab">${esc(g.descripcion)}</p>` : `<p class="logro-subtitulo">${esc(g.subtitulo)}</p>`}</div>
+  /* 2 nov, Jorge: el reparto es el del juego: arriba, en el sitio de la pregunta, la descripción (en los logros de era, el subtítulo); en medio, la carta;
+     debajo, en el sitio de «Comercio», el título, y bajo él «Por …». Todo se coloca sobre lo que hay en la partida. */
+  const arriba = !g.regla;   // en las recompensas, la descripción va arriba y por detrás solo van Beneficio y Perjuicio
+  v.innerHTML = `<div class="mensaje logro-mensaje"><span>${esc(arriba ? g.descripcion : g.subtitulo)}</span></div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
@@ -2081,13 +2108,17 @@ function verLogro(id) {
           <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
+    <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>
     <p class="archivo-pista">Por «${esc(g.decision)}»</p>`;
   $("archivo").classList.add("viendo");
-  if (arriba) ajustarDescripcionCab(v.querySelector(".logro-cab"));
-  v.style.paddingTop = "";
-  const escena = v.querySelector(".logro-escena");
-  const dy = $("carta").getBoundingClientRect().top - escena.getBoundingClientRect().top;   // la carta, justo donde está la del juego
-  if (Math.abs(dy) > 0.5) v.style.paddingTop = (8 + dy) + "px";
+  const b = v.getBoundingClientRect(), pon = (el, r, extra = {}) => Object.assign(el.style, { position: "absolute", left: (r.left - b.left) + "px", top: (r.top - b.top) + "px", width: r.width + "px", ...extra });
+  const rm = $("mensaje").getBoundingClientRect(), rc = rectBase($("carta")), rl = document.querySelector("#screen-game .zona-leyenda").getBoundingClientRect();
+  const escena = v.querySelector(".logro-escena"), msg = v.querySelector(".logro-mensaje"), zona = v.querySelector(".logro-zona"), pista = v.querySelector(".archivo-pista");
+  pon(msg, rm, { height: rm.height + "px", margin: "0", overflow: "visible" });        // «aunque choque»: los textos largos no se recortan
+  pon(escena, rc, { height: rc.height + "px" });
+  pon(zona, rl, { height: rl.height + "px" });
+  pon(pista, rl, { top: (rl.bottom - b.top + 4) + "px", margin: "0", textAlign: "center" });
+  ajustarTituloLogro(zona.querySelector(".logro-leyenda"));
   const carta = v.querySelector(".logro-carta");
   const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
   carta.addEventListener("click", () => { if (carta._arrastrada) { carta._arrastrada = false; return; } girar(); });
@@ -2095,7 +2126,13 @@ function verLogro(id) {
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
   if (nuevo) sonar("descubrir");                        // 29 oct: suena al descubrir una recompensa o logro por primera vez
-  if (nuevo && animar()) efectoDescubrir(v, escena, celda);
+  if (nuevo && animar()) efectoDescubrir(v, escena, celda, [msg, zona, pista]);
+}
+/* 2 nov: el título de abajo baja su letra hasta que quepa en el sitio de la leyenda */
+function ajustarTituloLogro(l) {
+  l.style.removeProperty("--leyenda-px");
+  let px = parseFloat(getComputedStyle(l).fontSize) || 27;
+  while ((l.scrollHeight > l.clientHeight + 1 || l.scrollWidth > l.clientWidth + 1) && px > 12) { px -= 1; l.style.setProperty("--leyenda-px", px + "px"); }
 }
 /* 29 oct (Jorge): la carta se desliza a un lado o a otro: derecha, vuelves al juego; izquierda, a la galería. Un toque sigue girándola. */
 function gestoLogro(carta) {
@@ -2124,17 +2161,11 @@ function gestoLogro(carta) {
   carta.addEventListener("pointerup", fin);
   carta.addEventListener("pointercancel", fin);
 }
-/* 29 oct, prueba: la descripción, arriba, baja su letra hasta que quepa en la cabecera (con el título) */
-function ajustarDescripcionCab(cab) {
-  const d = cab.querySelector(".logro-descripcion-cab");
-  if (!d) return;
-  d.style.fontSize = "";
-  let px = parseFloat(getComputedStyle(d).fontSize) || 18;
-  while (cab.scrollHeight > cab.clientHeight + 1 && px > 11) { px -= 0.5; d.style.fontSize = px + "px"; }
-}
 /* 29 oct (versión «Explosión», elegida por Jorge): la carta salta de su casilla a su sitio con un pequeño rebote; por detrás, rayos blancos de anime que
    estallan y se apagan, un flash y dos ondas. Se hace con la API de animaciones y se limpia solo. */
-function efectoDescubrir(vista, escena, celda) {
+/* Duración total de la animación (rayos incluidos); los textos salen cuando acaba */
+const DESCUBRIR_MS = 3300;
+function efectoDescubrir(vista, escena, celda, textos = []) {
   const a = escena.getBoundingClientRect(), b = vista.getBoundingClientRect();
   const T = (s, r) => `translate(-50%, -50%) scale(${s}) rotate(${r}deg)`;
   const cx = (a.left - b.left + a.width / 2) + "px", cy = (a.top - b.top + a.height / 2) + "px";
@@ -2157,10 +2188,9 @@ function efectoDescubrir(vista, escena, celda) {
   fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 550, delay: 520, fill: "both" });
   [[o1, 600, 4], [o2, 780, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
     { duration: 1000, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
-  // el título y la decisión aparecen con la carta ya en su sitio
-  vista.querySelector(".logro-cab").animate([{ opacity: 0, transform: "translateY(18px) scale(.85)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: 1100, easing: "cubic-bezier(.2, 1.4, .4, 1)", fill: "both" });
-  vista.querySelectorAll(".archivo-pista").forEach(p => p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 1300, fill: "both" }));
-  setTimeout(() => fx.forEach(e => e.remove()), 3300);
+  // 2 nov: los textos (descripción, título y «Por …») salen cuando acaba la animación, no encima de ella
+  textos.forEach(t => t.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 450, delay: DESCUBRIR_MS - 200, easing: "ease-out", fill: "both" }));
+  setTimeout(() => fx.forEach(e => e.remove()), DESCUBRIR_MS);
 }
 /* 29 oct: de la carta de una recompensa o logro se sale deslizándola: a la derecha, al juego; a la izquierda, a la galería (o, en el tutorial, sigue la lección) */
 function volverAlDirectorio() { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); }
@@ -2200,10 +2230,9 @@ document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
 });
 
-$("btn-menu").addEventListener("click", () => {   // 29 oct: abre el menú a pantalla completa (en el tutorial, directo a las recompensas cuando ya hay una)
+$("btn-menu").addEventListener("click", () => {   // 29 oct: abre el menú a pantalla completa; 2 nov: ya directo en Recompensas
   if (archivoAbierto()) { cerrarArchivo(); return; }
-  abrirArchivo(null);
-  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) seleccionarMenu("recompensas");
+  abrirArchivo("recompensas", { atajo: false });
 });
 const iconoMenu = (id, tab) => $(id).addEventListener("click", ev => { ev.stopPropagation(); archivoAbierto() ? seleccionarMenu(tab) : abrirArchivo(tab); });
 iconoMenu("btn-recompensas", "recompensas"); iconoMenu("btn-logros", "logros"); iconoMenu("btn-config", "config"); iconoMenu("btn-abandonar", "abandono");

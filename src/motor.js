@@ -1233,7 +1233,7 @@ function mostrarCartaEstado() {
   // 27 oct: sin escena propia: la imagen de la carta es el icono del estado (a tamaño grande); sin cinta ni panel de decisión
   const grande = IMG["icono_" + n.id + "-cartel-grande"], pequeno = IMG["icono_" + n.id + "-cartel"];
   const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
-  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id])}">` +
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
     `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id]))}">${miniDe((pequeno || grande) && (pequeno || grande).src)}${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
 

@@ -510,13 +510,13 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 }
 .ficha-nombre { }
 /* 2 nov: reversos de secuelas, fuerzas, recompensas y logros: del color de su imagen, con la miniatura arriba y el texto centrado */
-.info-hoja, .logro-hoja { background: var(--hoja-fondo, var(--p-crema)); color: var(--hoja-texto, var(--p-tinta)); align-items: center; text-align: center; }
+.hoja.info-hoja, .info-hoja, .logro-hoja { background: var(--hoja-fondo, var(--p-crema)); color: var(--hoja-texto, var(--p-tinta)); align-items: center; text-align: center; }
 .info-hoja .ficha-historia, .logro-hoja p { text-align: center; }
 /* 2 nov, Jorge: el texto se centra en vertical respecto a TODA la tarjeta (no respecto al hueco bajo la miniatura): la miniatura va en el borde de arriba, fuera del flujo,
    y el aire de arriba y de abajo es el mismo para que no choquen. */
-.info-hoja, .logro-hoja { position: relative; justify-content: center; padding: 46px 14px; gap: 6px; }
+.hoja.info-hoja, .info-hoja, .logro-hoja { position: relative; justify-content: center; padding: 46px 14px; gap: 6px; }
 .mini-cartel { position: absolute; top: 5px; left: 50%; translate: -50% 0; width: 12%; max-width: 44px; aspect-ratio: 1; object-fit: cover; border: 0; box-shadow: none; }
-.divisor { flex: none; align-self: stretch; margin: 2px 12%; border: 0; border-top: 2px solid currentColor; opacity: .6; }
+.divisor { flex: none; align-self: stretch; margin: 2px 12%; border: 0; border-top: 2px solid currentColor; }
 .ficha-historia { margin: 0; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
@@ -3551,7 +3551,7 @@ function mostrarCartaEstado() {
   // 27 oct: sin escena propia: la imagen de la carta es el icono del estado (a tamaño grande); sin cinta ni panel de decisión
   const grande = IMG["icono_" + n.id + "-cartel-grande"], pequeno = IMG["icono_" + n.id + "-cartel"];
   const imagen = (grande || pequeno) ? `<img class="icono cartel" src="${(grande || pequeno).src}" alt="${esc(d.nombre)}" draggable="false">` : "";
-  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id])}">` +
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
     `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id]))}">${miniDe((pequeno || grande) && (pequeno || grande).src)}${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
 

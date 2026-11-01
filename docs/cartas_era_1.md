@@ -407,88 +407,88 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.»
 
-- **A. Primero los militantes** Élite +5 · Pueblo −4 · Crisis −3
-- **B. Yo sé a quién llamar** Pueblo +4 · Élite −5 · Crisis −3 · Encola: `undefined` en 1 años
+- **A. Que el Partido reparta los turnos** Élite +5 · Pueblo −4 · Crisis −3
+- **B. Hay otras formas de resolver esto** Pueblo +4 · Élite −5 · Crisis −3 · Encola: `undefined` en 1 años
 
-### 36. Padrino Pupo (mal ojo)
+### 36. Padrino Pupo (mal de ojo)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Mijo, le han echado algo malo. Eso se le ve en la cara.»
+**Carta:** «Mijo, esto salió en osogbo. Hay una mirada muy mala puesta sobre usted. Y lleva tiempo ahí.»
 
-- **A. Límpieme, padrino** Pueblo +3 · Élite −3 · Encola: `pupo_mal_ojo_remedio` en 1 años
-- **B. Yo no creo en santos** Pueblo −3 · Élite +3
+- **A. ¡Hágame el ebbó, padrino!**  · Encola: `pupo_mal_ojo_remedio` en 1 años
+- **B. ¡Dígame qué necesita!**  · Encola: `pupo_mal_ojo_remedio` en 1 años
 
 ### 37. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Para limpiarle el camino, el santo pide huevos, siete cocos, un chivo y la nevera de un ministro.»
+**Carta:** «Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.»
 
-- **A. Que sean dos neveras** Pueblo +3 · Élite −3
-- **B. Rebaje algo, padrino** Pueblo −3 · Élite +3
+- **A. Que sean dos neveras** Élite −4
+- **B. ¿No le sirve la del viceministro?** Élite −1
 
 ### 38. Padrino Pupo (enemigos)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Mijo, quieren verlo caer, y no son pocos.»
+**Carta:** «Mijo, quieren verlo caer. Y créame, no son dos o tres. Hay mucha gente trabajando para eso.»
 
-- **A. Ciérreles el paso** Pueblo +3 · Élite −3 · Encola: `pupo_enemigos_remedio` en 1 años
-- **B. Ya tengo escolta** Pueblo −3 · Élite +3
+- **A. ¡Sáqueme de ese osogbo!**  · Encola: `pupo_enemigos_remedio` en 1 años
+- **B. ¿Qué tengo que traer?**  · Encola: `pupo_enemigos_remedio` en 1 años
 
 ### 39. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Para cerrarles el camino, el santo necesita tabaco, dos gallos y la casa de un burgués exiliado.»
+**Carta:** «Para cerrar el paso, el santo pide miel, 3 palomas, ron y la casa de un rico exiliado. Pero si no lo coge, se vira.»
 
-- **A. Casa con piscina** Pueblo +3 · Élite −3
-- **B. Con un piso le basta** Pueblo −3 · Élite +3
+- **A. Que tenga piscina, padrino** Potencias −4
+- **B. Un piso tendrá que bastar** Potencias −1
 
 ### 40. Padrino Pupo (envidia)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Mijo, esa envidia que le tienen viene cargada.»
+**Carta:** «Mijo, usted despierta mucha envidia. Y esa envidia, cuando se acumula, hace mucho daño.»
 
-- **A. Protéjame, padrino** Pueblo +3 · Élite −3 · Encola: `pupo_envidia_remedio` en 1 años
-- **B. La envidia me alimenta** Pueblo −3 · Élite +3
+- **A. Protéjame, padrino**  · Encola: `pupo_envidia_remedio` en 1 años
+- **B. ¿Qué pide la letra?**  · Encola: `pupo_envidia_remedio` en 1 años
 
 ### 41. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Para protegerlo, hay que darle al santo langosta, ron, tres palomas y un reloj como el suyo.»
+**Carta:** «Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.»
 
-- **A. Le doy el de repuesto** Pueblo +3 · Élite −3
-- **B. Que pregunte la hora** Pueblo −3 · Élite +3
+- **A. Elija uno de mi colección** Potencias −4
+- **B. Le consigo uno más modesto** Potencias −1
 
-### 42. Padrino Pupo (deseos)
+### 42. Padrino Pupo (malos deseos)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Mijo, hay mucha gente deseándole mal. El santo me lo ha dicho.»
+**Carta:** «Mijo, el santo me lo ha marcado. Hay gente pidiendo su caída con una insistencia que no es normal.»
 
-- **A. Contente al santo** Pueblo +3 · Élite −3 · Encola: `pupo_deseos_remedio` en 1 años
-- **B. Dígale que estoy ocupado** Pueblo −3 · Élite +3
+- **A. ¡Póngame en iré, padrino!**  · Encola: `pupo_deseos_remedio` en 1 años
+- **B. ¿Qué hay que ofrecer?**  · Encola: `pupo_deseos_remedio` en 1 años
 
 ### 43. Padrino Pupo (el remedio)
 
 **Personaje:** Padrino Pupo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Para tenerlo contento, al santo hay que darle viandas, un puerco, ron y un carro con chófer.»
+**Carta:** «Para malos deseos, el santo pide calabaza, 2 gallinas negras, arroz y un carro con chófer. Pero no le aseguro nada.»
 
-- **A. Un descapotable** Pueblo +3 · Élite −3
-- **B. Que el santo camine** Pueblo −3 · Élite +3
+- **A. Un descapotable, padrino** Ejército −4
+- **B. Una moto y va que chuta** Ejército −1
 
 ### 44. Papá Ernesto (torneo)
 

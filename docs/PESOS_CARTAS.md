@@ -178,48 +178,48 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Las colas** (Ministro de Comercio)  
 «Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.»
-- A. Primero los militantes → sube Partido +5 · baja Pueblo -4 · crisis -3
-- B. Yo sé a quién llamar → sube Pueblo +4 · baja Partido -5 · crisis -3
+- A. Que el Partido reparta los turnos → sube Partido +5 · baja Pueblo -4 · crisis -3
+- B. Hay otras formas de resolver esto → sube Pueblo +4 · baja Partido -5 · crisis -3
 
-**Padrino Pupo (mal ojo)** (Padrino Pupo; segundo paso)  
-«Mijo, le han echado algo malo. Eso se le ve en la cara.»
-- A. Límpieme, padrino → sube Pueblo +3 · baja Partido -3
-- B. Yo no creo en santos → sube Partido +3 · baja Pueblo -3
+**Padrino Pupo (mal de ojo)** (Padrino Pupo; segundo paso)  
+«Mijo, esto salió en osogbo. Hay una mirada muy mala puesta sobre usted. Y lleva tiempo ahí.»
+- A. ¡Hágame el ebbó, padrino! → nada
+- B. ¡Dígame qué necesita! → nada
 
 **Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
-«Para limpiarle el camino, el santo pide huevos, siete cocos, un chivo y la nevera de un ministro.»
-- A. Que sean dos neveras → sube Pueblo +3 · baja Partido -3
-- B. Rebaje algo, padrino → sube Partido +3 · baja Pueblo -3
+«Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.»
+- A. Que sean dos neveras → baja Partido -4
+- B. ¿No le sirve la del viceministro? → baja Partido -1
 
 **Padrino Pupo (enemigos)** (Padrino Pupo; segundo paso)  
-«Mijo, quieren verlo caer, y no son pocos.»
-- A. Ciérreles el paso → sube Pueblo +3 · baja Partido -3
-- B. Ya tengo escolta → sube Partido +3 · baja Pueblo -3
+«Mijo, quieren verlo caer. Y créame, no son dos o tres. Hay mucha gente trabajando para eso.»
+- A. ¡Sáqueme de ese osogbo! → nada
+- B. ¿Qué tengo que traer? → nada
 
 **Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
-«Para cerrarles el camino, el santo necesita tabaco, dos gallos y la casa de un burgués exiliado.»
-- A. Casa con piscina → sube Pueblo +3 · baja Partido -3
-- B. Con un piso le basta → sube Partido +3 · baja Pueblo -3
+«Para cerrar el paso, el santo pide miel, 3 palomas, ron y la casa de un rico exiliado. Pero si no lo coge, se vira.»
+- A. Que tenga piscina, padrino → baja Potencias -4
+- B. Un piso tendrá que bastar → baja Potencias -1
 
 **Padrino Pupo (envidia)** (Padrino Pupo; segundo paso)  
-«Mijo, esa envidia que le tienen viene cargada.»
-- A. Protéjame, padrino → sube Pueblo +3 · baja Partido -3
-- B. La envidia me alimenta → sube Partido +3 · baja Pueblo -3
+«Mijo, usted despierta mucha envidia. Y esa envidia, cuando se acumula, hace mucho daño.»
+- A. Protéjame, padrino → nada
+- B. ¿Qué pide la letra? → nada
 
 **Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
-«Para protegerlo, hay que darle al santo langosta, ron, tres palomas y un reloj como el suyo.»
-- A. Le doy el de repuesto → sube Pueblo +3 · baja Partido -3
-- B. Que pregunte la hora → sube Partido +3 · baja Pueblo -3
+«Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.»
+- A. Elija uno de mi colección → baja Potencias -4
+- B. Le consigo uno más modesto → baja Potencias -1
 
-**Padrino Pupo (deseos)** (Padrino Pupo; segundo paso)  
-«Mijo, hay mucha gente deseándole mal. El santo me lo ha dicho.»
-- A. Contente al santo → sube Pueblo +3 · baja Partido -3
-- B. Dígale que estoy ocupado → sube Partido +3 · baja Pueblo -3
+**Padrino Pupo (malos deseos)** (Padrino Pupo; segundo paso)  
+«Mijo, el santo me lo ha marcado. Hay gente pidiendo su caída con una insistencia que no es normal.»
+- A. ¡Póngame en iré, padrino! → nada
+- B. ¿Qué hay que ofrecer? → nada
 
 **Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
-«Para tenerlo contento, al santo hay que darle viandas, un puerco, ron y un carro con chófer.»
-- A. Un descapotable → sube Pueblo +3 · baja Partido -3
-- B. Que el santo camine → sube Partido +3 · baja Pueblo -3
+«Para malos deseos, el santo pide calabaza, 2 gallinas negras, arroz y un carro con chófer. Pero no le aseguro nada.»
+- A. Un descapotable, padrino → baja Ejército -4
+- B. Una moto y va que chuta → baja Ejército -1
 
 **Papá Ernesto (torneo)** (Papá Ernesto)  
 «Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.»

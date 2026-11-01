@@ -55,7 +55,7 @@ test("«Yo sé a quién llamar» invoca una amenaza de Pupo, una sola vez por er
   assert.equal(r.remedio.length, 1);
 });
 
-test("Pupo: la amenaza sale al azar entre las cuatro, enseguida (la carta siguiente), y su remedio justo después; también si «Las colas» sale en otra era", () => {
+test("Pupo: la amenaza sale al azar entre las tres, enseguida (la carta siguiente), y su remedio justo después; también si «Las colas» sale en otra era", () => {
   j.empezar();
   const r = JSON.parse(w.eval(`(() => {
     const vistas = {}, c = POR_ID.colas; let enseguida = true, remedio = true, otraEra = true;
@@ -69,7 +69,7 @@ test("Pupo: la amenaza sale al azar entre las cuatro, enseguida (la carta siguie
     for (const era of [2, 3, 4]) { nuevaPartida(); E.era = era; aplicar(c, c.der); const a = siguienteCarta(); if (!a || !a.invoca) otraEra = false; }
     return JSON.stringify({ n: Object.keys(vistas).length, enseguida, remedio, otraEra });
   })()`));
-  assert.equal(r.n, 4, "salen las cuatro amenazas al azar");
+  assert.equal(r.n, 3, "salen las tres amenazas al azar");   // 1 nov: Enemigos se quitó
   assert.ok(r.enseguida && r.remedio, "amenaza y remedio, seguidos");
   assert.ok(r.otraEra, "también en las eras 2–4");
 });

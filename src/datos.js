@@ -324,69 +324,69 @@ const CARTAS = [
     id: "colas", tipo: "crisis", repetible: true, disparo: e => e.crisis >= 5, titulo: "Las colas",
     personaje: "Ministro de Comercio",
     texto: "Hay colas para el pan, el jabón y hasta para hacer cola. Nadie encuentra una explicación.",
-    izq: { accion: "Primero los militantes", efectos: { elite: 5, pueblo: -4, crisis: -3 } },
-    der: { accion: "Yo sé a quién llamar", efectos: { pueblo: 4, elite: -5, crisis: -3 }, encolar: [{ invoca: "pupo", min: 1, max: 1 }] }   // 29 oct: invoca a Padrino Pupo (una amenaza al azar, una vez por era; docs/INVITADOS.md)
+    izq: { accion: "Que el Partido reparta los turnos", efectos: { elite: 5, pueblo: -4, crisis: -3 } },
+    der: { accion: "Hay otras formas de resolver esto", efectos: { pueblo: 4, elite: -5, crisis: -3 }, encolar: [{ invoca: "pupo", min: 1, max: 1 }] }   // 29 oct: invoca a Padrino Pupo (una amenaza al azar, una vez por era; docs/INVITADOS.md)
   },
 
+  // 1 nov, Jorge: Pupo, mecánica nueva (docs/INVITADOS.md). La amenaza solo la plantea (las dos respuestas siguen, sin efectos);
+  // en el hechizo, pagar entero o regatear: pagar cuesta más a la fuerza de lo que pide y da mejor suerte; regatear, al revés.
+  // La suerte depende del Pueblo y el resultado (secuela Collar o Salación) lo monta Programación (PENDIENTES.md). Enemigos se quitó.
   {
-    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
-    id: "pupo_mal_ojo", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (mal ojo)",
+    id: "pupo_mal_ojo", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (mal de ojo)",
     personaje: "Padrino Pupo",
-    texto: "Mijo, le han echado algo malo. Eso se le ve en la cara.",
-    izq: { accion: "Límpieme, padrino", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_mal_ojo_remedio", min: 1, max: 1 }] },
-    der: { accion: "Yo no creo en santos", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Mijo, esto salió en osogbo. Hay una mirada muy mala puesta sobre usted. Y lleva tiempo ahí.",
+    izq: { accion: "¡Hágame el ebbó, padrino!", efectos: {}, encolar: [{ carta: "pupo_mal_ojo_remedio", min: 1, max: 1 }] },
+    der: { accion: "¡Dígame qué necesita!", efectos: {}, encolar: [{ carta: "pupo_mal_ojo_remedio", min: 1, max: 1 }] }
   },
   {
-    id: "pupo_mal_ojo_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    id: "pupo_mal_ojo_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
     personaje: "Padrino Pupo",
-    texto: "Para limpiarle el camino, el santo pide huevos, siete cocos, un chivo y la nevera de un ministro.",
-    izq: { accion: "Que sean dos neveras", efectos: { pueblo: 3, elite: -3 } },
-    der: { accion: "Rebaje algo, padrino", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.",
+    izq: { accion: "Que sean dos neveras", efectos: { elite: -4 }, pago: "entero" },
+    der: { accion: "¿No le sirve la del viceministro?", efectos: { elite: -1 }, pago: "regateo" }
   },
   {
-    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
-    id: "pupo_enemigos", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (enemigos)",
+    // 1 nov, Jorge: Enemigos se quita (obsoleta: ya no se invoca)
+    id: "pupo_enemigos", tipo: "cola", enlace: true, obsoleta: true, titulo: "Padrino Pupo (enemigos)",
     personaje: "Padrino Pupo",
-    texto: "Mijo, quieren verlo caer, y no son pocos.",
-    izq: { accion: "Ciérreles el paso", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_enemigos_remedio", min: 1, max: 1 }] },
-    der: { accion: "Ya tengo escolta", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Mijo, quieren verlo caer. Y créame, no son dos o tres. Hay mucha gente trabajando para eso.",
+    izq: { accion: "¡Sáqueme de ese osogbo!", efectos: {}, encolar: [{ carta: "pupo_enemigos_remedio", min: 1, max: 1 }] },
+    der: { accion: "¿Qué tengo que traer?", efectos: {}, encolar: [{ carta: "pupo_enemigos_remedio", min: 1, max: 1 }] }
   },
   {
-    id: "pupo_enemigos_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    id: "pupo_enemigos_remedio", tipo: "cola", enlace: true, obsoleta: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
     personaje: "Padrino Pupo",
-    texto: "Para cerrarles el camino, el santo necesita tabaco, dos gallos y la casa de un burgués exiliado.",
-    izq: { accion: "Casa con piscina", efectos: { pueblo: 3, elite: -3 } },
-    der: { accion: "Con un piso le basta", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Para cerrar el paso, el santo pide miel, 3 palomas, ron y la casa de un rico exiliado. Pero si no lo coge, se vira.",
+    izq: { accion: "Que tenga piscina, padrino", efectos: { potencias: -4 }, pago: "entero" },
+    der: { accion: "Un piso tendrá que bastar", efectos: { potencias: -1 }, pago: "regateo" }
   },
   {
-    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
     id: "pupo_envidia", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (envidia)",
     personaje: "Padrino Pupo",
-    texto: "Mijo, esa envidia que le tienen viene cargada.",
-    izq: { accion: "Protéjame, padrino", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_envidia_remedio", min: 1, max: 1 }] },
-    der: { accion: "La envidia me alimenta", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Mijo, usted despierta mucha envidia. Y esa envidia, cuando se acumula, hace mucho daño.",
+    izq: { accion: "Protéjame, padrino", efectos: {}, encolar: [{ carta: "pupo_envidia_remedio", min: 1, max: 1 }] },
+    der: { accion: "¿Qué pide la letra?", efectos: {}, encolar: [{ carta: "pupo_envidia_remedio", min: 1, max: 1 }] }
   },
   {
-    id: "pupo_envidia_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    id: "pupo_envidia_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
     personaje: "Padrino Pupo",
-    texto: "Para protegerlo, hay que darle al santo langosta, ron, tres palomas y un reloj como el suyo.",
-    izq: { accion: "Le doy el de repuesto", efectos: { pueblo: 3, elite: -3 } },
-    der: { accion: "Que pregunte la hora", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.",
+    izq: { accion: "Elija uno de mi colección", efectos: { potencias: -4 }, pago: "entero" },
+    der: { accion: "Le consigo uno más modesto", efectos: { potencias: -1 }, pago: "regateo" }
   },
   {
-    // 29 oct: Padrino Pupo (invitado fijo, docs/INVITADOS.md): la amenaza es un segundo paso (`enlace`): no cuenta para el largo de la era
-    id: "pupo_deseos", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (deseos)",
+    id: "pupo_deseos", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (malos deseos)",
     personaje: "Padrino Pupo",
-    texto: "Mijo, hay mucha gente deseándole mal. El santo me lo ha dicho.",
-    izq: { accion: "Contente al santo", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "pupo_deseos_remedio", min: 1, max: 1 }] },
-    der: { accion: "Dígale que estoy ocupado", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Mijo, el santo me lo ha marcado. Hay gente pidiendo su caída con una insistencia que no es normal.",
+    izq: { accion: "¡Póngame en iré, padrino!", efectos: {}, encolar: [{ carta: "pupo_deseos_remedio", min: 1, max: 1 }] },
+    der: { accion: "¿Qué hay que ofrecer?", efectos: {}, encolar: [{ carta: "pupo_deseos_remedio", min: 1, max: 1 }] }
   },
   {
-    id: "pupo_deseos_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)",
+    id: "pupo_deseos_remedio", tipo: "cola", enlace: true, titulo: "Padrino Pupo (el remedio)", hechizo: true,
     personaje: "Padrino Pupo",
-    texto: "Para tenerlo contento, al santo hay que darle viandas, un puerco, ron y un carro con chófer.",
-    izq: { accion: "Un descapotable", efectos: { pueblo: 3, elite: -3 } },
-    der: { accion: "Que el santo camine", efectos: { pueblo: -3, elite: 3 } }
+    texto: "Para malos deseos, el santo pide calabaza, 2 gallinas negras, arroz y un carro con chófer. Pero no le aseguro nada.",
+    izq: { accion: "Un descapotable, padrino", efectos: { ejercito: -4 }, pago: "entero" },
+    der: { accion: "Una moto y va que chuta", efectos: { ejercito: -1 }, pago: "regateo" }
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo

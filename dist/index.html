@@ -4405,7 +4405,7 @@ function gestoLogro(carta) {
 /* 29 oct (versión «Explosión», elegida por Jorge): la carta salta de su casilla a su sitio con un pequeño rebote; por detrás, rayos blancos de anime que
    estallan y se apagan, un flash y dos ondas. Se hace con la API de animaciones y se limpia solo. */
 /* Duración total de la animación (rayos incluidos); los textos salen cuando acaba */
-const DESCUBRIR_MS = 2000;   // 2 nov, Jorge: 2 s, y los rayos y ondas empiezan a la vez que el zoom de la carta
+const DESCUBRIR_MS = 1500;   // 2 nov, Jorge: 1,5 s, y los rayos y ondas empiezan a la vez que el zoom de la carta
 function efectoDescubrir(vista, escena, celda, textos = []) {
   const a = escena.getBoundingClientRect(), b = vista.getBoundingClientRect();
   const T = (s, r) => `translate(-50%, -50%) scale(${s}) rotate(${r}deg)`;
@@ -4419,16 +4419,16 @@ function efectoDescubrir(vista, escena, celda, textos = []) {
   if (celda && celda.width) {
     const k = celda.width / a.width, dx = celda.left + celda.width / 2 - (a.left + a.width / 2), dy = celda.top + celda.height / 2 - (a.top + a.height / 2);
     const entra = carta.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})` }, { transform: "scale(1.12)", offset: .7 }, { transform: "none" }],
-      { duration: 800, delay: 0, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
+      { duration: 600, delay: 0, easing: "cubic-bezier(.2, .8, .25, 1)", fill: "both" });
     entra.onfinish = () => entra.cancel();                 // que no pise el desplazamiento del gesto
   }
   r1.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, 25), offset: .22 }, { opacity: 1, transform: T(1.2, 60), offset: .65 }, { opacity: 0, transform: T(1.5, 95) }],
-    { duration: 2000, delay: 0, easing: "ease-out", fill: "both" });
+    { duration: 1500, delay: 0, easing: "ease-out", fill: "both" });
   r2.animate([{ opacity: 0, transform: T(.3, 0) }, { opacity: 1, transform: T(1, -20), offset: .25 }, { opacity: 0, transform: T(1.6, -70) }],
-    { duration: 1600, delay: 150, easing: "ease-out", fill: "both" });
-  fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 450, delay: 150, fill: "both" });
-  [[o1, 250, 4], [o2, 450, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
-    { duration: 900, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
+    { duration: 1200, delay: 110, easing: "ease-out", fill: "both" });
+  fl.animate([{ opacity: 0 }, { opacity: 1, offset: .18 }, { opacity: 0 }], { duration: 340, delay: 110, fill: "both" });
+  [[o1, 190, 4], [o2, 340, 3]].forEach(([o, delay, esc]) => o.animate([{ opacity: .95, transform: "scale(.2)" }, { opacity: 0, transform: `scale(${esc})` }],
+    { duration: 680, delay, easing: "cubic-bezier(.1, .7, .3, 1)", fill: "both" }));
   // 2 nov: los textos (descripción, título y «Por …») salen cuando acaba la animación, no encima de ella
   textos.forEach(t => t.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 450, delay: DESCUBRIR_MS - 200, easing: "ease-out", fill: "both" }));
   setTimeout(() => fx.forEach(e => e.remove()), DESCUBRIR_MS);

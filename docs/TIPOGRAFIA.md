@@ -5,8 +5,7 @@
 | Estilo | Letra | Variable | Tamaño | Dónde sale |
 |---|---|---|---|---|
 | **1 · Título** | Londrina Solid, mayúsculas | `--t-titulo` | 12 % del ancho de la carta, máx. 48 px | «Era 1: La Revolución», «¡Has caído!», «Recompensas», el nombre en la ficha, el título de las cartas de objeto |
-| **2 · Subtítulo** | Roboto Condensed **Bold** (700), mayúsculas | `--t-sub` | 27 px, menos si la carta es estrecha (2 nov: ya no es Londrina) | La leyenda («Comercio»), las respuestas, «Gobernaste por N años», «Has gobernado N años», el título de una recompensa y su «Por …», «El Pueblo llegó al mínimo.», los carteles «¡Nueva recompensa!», los botones de la portada, el nombre de la esquela |
-| **Pie (2 nov)** | Roboto Condensed **Bold**, mayúsculas | `--c-cuerpo` | 20 px (como el cuerpo) | Lo que va bajo la carta: la leyenda («Comercio», «Trabajo»…), la causa de la caída, el «Por …» de las recompensas. «Has gobernado / Gobernaste por N años» va en Cuerpo regular |
+| **2 · Subtítulo** | Roboto Condensed **Bold** (700), mayúsculas | `--t-sub` = `--c-cuerpo` | 20 px (2 nov: igual que el cuerpo; solo cambia la negrita) | La leyenda bajo la carta («Comercio»), las respuestas, la causa de la caída, los carteles «¡Nueva recompensa!», los botones de la portada, el título de una recompensa y su «Por …», el nombre de la esquela. «Has gobernado / Gobernaste por N años» va en Cuerpo regular |
 | **3 · Cuerpo** | Roboto Condensed regular, mayúsculas | `--c-cuerpo` (interlineado `--lh-cuerpo`) | 20 px (18 en pantallas bajas) | las preguntas, el texto de la era, el reverso de todas las tarjetas, el relato de la caída, los avisos, los botones de partida, el campo del nombre, las etiquetas y textos pequeños |
 
 ## Cómo cambiar un estilo

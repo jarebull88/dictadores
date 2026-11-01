@@ -52,7 +52,7 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): Huber Matos (1959), ya sin nombre: la trama es de Milfuegos
     id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!",
+    texto: "El Comandante Motos ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!",
     izq: { accion: "Que Milfuegos vaya a detenerlo", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
     der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, banderas: ["base.matojos_libre"] }   // 1 nov: rama de Matojos crítico desde dentro (eras 2–4, por escribir)
   },
@@ -1204,7 +1204,7 @@ const FUTURO = {
   "base.juicios_publicos": "Las potencias endurecen su postura ante el régimen.",
   "base.exiliados_vocales": "Una oposición habla desde el extranjero.",
   "base.accidente_cienfuegos": "El Pueblo no olvida el accidente de Milfuegos.",
-  "base.mota_juzgado": "Los nietos de Matojos piden que los libros hablen de él.",
+  "base.mota_juzgado": "Los nietos de Motos piden que los libros hablen de él.",
   "base.reforma_agraria": "Escasez de alimentos dos años después.",
   "base.censura_previa": "Aparecen el periodista oficial y los rumores.",
   "base.negocio_refinerias": "Las empresas exigen garantías que limitan tus decisiones económicas.",
@@ -1247,7 +1247,7 @@ const PREVISION = {
   "base.juicios_publicos": "Las potencias extranjeras toman nota de los juicios públicos.",
   "base.exiliados_vocales": "Los exiliados hablan cada vez más alto desde fuera.",
   "base.accidente_cienfuegos": "El Pueblo no ha olvidado el accidente del Comandante Milfuegos.",
-  "base.mota_juzgado": "La familia de Matojos sigue contando su versión.",
+  "base.mota_juzgado": "La familia de Motos sigue contando su versión.",
   "base.reforma_agraria": "Las cosechas del reparto de tierras no llegarán a tiempo.",
   "base.censura_previa": "Circulan más rumores que periódicos.",
   "base.negocio_refinerias": "Las empresas extranjeras quieren garantías por escrito.",

@@ -1313,55 +1313,42 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
    llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
    de redacción en docs/COLECCIONABLES.md. */
 /* 28 oct (traspaso de la conversación de coleccionables, docs/COLECCIONABLES.md): cada coleccionable es una carta completa. Campos:
-   id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio. Se desbloquea
+   id, bandera, titulo, subtitulo, decision, descripcion (1 nov: sin beneficio ni perjuicio). Se desbloquea
    · con una bandera que pone la decisión (`bandera`), o
    · con una carta y la opción elegida (`carta` + `decision`, que es el texto de la opción): para las opciones que no ponen bandera, o
    · al acabar la era con una condición (`era` + `regla`, ver REGLAS_LOGRO en motor.js).
    `fondo`: color plano de la paleta de la carta por delante (mientras no haya ilustración). «Pendiente» = texto aún sin escribir. */
 const LOGROS = [
+  // 1 nov, Jorge: las recompensas no llevan beneficio ni perjuicio (archivados en docs/ARCHIVO_BENEFICIOS.md)
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
-  { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Tu primer milagro, cortesía de tu hermano.",
+  { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.",
     decision: "Aceptar la paloma de tu hermano",
-    descripcion: "Tu hermano pequeño la ha entrenado tres meses en el monte con paciencia y maíz. Cada vez que alces el brazo en un discurso, se posará en tu hombro y medio país verá en ti al elegido.",
-    beneficio: "+100 de aura divina.", perjuicio: "Tu uniforme de gala nunca volverá a estar limpio." },
+    descripcion: "Alza el brazo en un discurso y se posará en tu hombro: la mitad del país verá en ti al elegido. La otra mitad verá la mancha del uniforme." },
 
   // Recompensas de la era 1 (una decisión concreta)
-  { id: "licencia", carta: "fin_pelota", fondo: "mostaza", titulo: "Licencia de electricista", subtitulo: "Tu mejor atleta ya tiene oficio",
+  { id: "licencia", carta: "fin_pelota", fondo: "mostaza", titulo: "Licencia de electricista", subtitulo: "El carné de oficio que convierte a tu mejor atleta en aficionado, con sueldo del Estado y horario de taller.",
     decision: "Se juega por amor",
-    descripcion: "Tus deportistas de élite son ahora electricistas, carpinteros y fontaneros. Fichan en el taller por la mañana y entrenan por la tarde. Rezamos para que nadie les encargue una obra.",
-    beneficio: "Usa esta licencia para inscribir a tus antiguos deportistas en competiciones universitarias y conseguir +20 medallas.",
-    perjuicio: "Para competir, cada atleta debe presentar un justificante de ausencia firmado por su encargado." },
-  { id: "libreta", carta: "embargo_total", fondo: "oliva", titulo: "Libreta de abastecimiento", subtitulo: "Todo el país come lo mismo",
+    descripcion: "Ficha en el taller por la mañana y entrena por la tarde. Ya ha ganado tres oros olímpicos. Rezamos para que nadie le encargue una obra." },
+  { id: "libreta", carta: "embargo_total", fondo: "oliva", titulo: "Libreta de abastecimiento", subtitulo: "La cartilla que reparte a cada familia lo mismo cada mes, haya o no haya.",
     decision: "Una libreta por familia",
-    descripcion: "Cada familia recibe una libreta con una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. El reparto es rigurosamente igualitario y el resultado, espectacular: todo el país luce abdominales de campeonato.",
-    beneficio: "Añade a tu abuela fallecida a la libreta y sigue cobrando su libra de arroz.",
-    perjuicio: "Si pierdes la libreta, tu familia deja de existir a efectos del almacén." },
+    descripcion: "Una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. Si la pierdes, tu familia deja de existir para el almacén." },
   { id: "compota", carta: "la_bahia", fondo: "oliva", titulo: "Compota importada", subtitulo: "Compota extranjera de primera calidad, conseguida mediante una operación diplomática de alto nivel.",
     decision: "Cámbienlos por compotas",
-    descripcion: "100% fruta natural, el envase es precioso y la etiqueta está en otro idioma. Se recomienda disfrutar despacio: ya no quedan mercenarios para intercambiar.",
-    beneficio: "Entrega este tarro a un ministro para ganarte su favor.",
-    perjuicio: "Quienes se quedan sin tarro recuerdan que todos son iguales ante la Revolución y preguntan dónde está su compota." },
-  { id: "revolukola", carta: "refresco", fondo: "azul", titulo: "Botella de Revukola", subtitulo: "Dulce, pegajosa y de producción nacional.",
+    descripcion: "Fruta natural, envase precioso y etiqueta en otro idioma. Con un tarro se compra a cualquier ministro." },
+  { id: "revolukola", carta: "refresco", fondo: "azul", titulo: "Botella de Revukola", subtitulo: "El refresco de cola nacional, inventado a toda prisa cuando la receta se fue del país con los dueños de la fábrica.",
     decision: "Improvisen una receta",
-    descripcion: "Una bebida marrón que sabe a Revolución. La receta original se perdió durante la nacionalización; la versión oficial lleva azúcar, agua y lo que aparezca en el almacén. Ninguna botella sabe igual que la anterior.",
-    beneficio: "Mezclada con ron, el país entero aguanta tus discursos.",
-    perjuicio: "Cada vez que se fabrica Revukola, el país se queda prácticamente sin azúcar." },
-  { id: "pelota", carta: "beisbol", fondo: "oliva", titulo: "Pelota con autógrafo", subtitulo: "El partido más desigual de la historia.",
+    descripcion: "Lleva azúcar, agua y lo que aparezca en el almacén: ninguna botella sabe igual que la anterior. Cada vez que se fabrica, el país se queda sin azúcar." },
+  { id: "pelota", carta: "beisbol", fondo: "oliva", titulo: "Pelota con autógrafo", subtitulo: "Pieza de colección: la pelota del récord de la liga, veintisiete ponches en dos entradas.",
     decision: "A ver quién me batea",
-    descripcion: "Pieza de colección. Firmada por el Comandante minutos antes de establecer el récord nacional: veintisiete ponches en dos entradas. «Batear bajo su responsabilidad».",
-    beneficio: "Úsala contra tus enemigos o para poner a prueba a tus amigos. Si la batean, no eran tan amigos.",
-    perjuicio: "No hay rival que te haga sudar la camiseta. Empiezas a preguntarte si no habrías sido una estrella del béisbol." },
-  // 1 nov, Jorge: la caja de puros del Comandante es una recompensa: se gana al sobrevivir al atentado de los tabacos (aceptar y que salga bien). Beneficio y perjuicio: por escribir (Coleccionables)
-  { id: "comandantes", carta: "atentado_tabacos", fondo: "mostaza", titulo: "Puros Comandantes", subtitulo: "25 robustos",
+    descripcion: "Firmada por el Comandante antes del primer lanzamiento. Acabó el partido tan limpia como salió de la caja." },
+  // 1 nov, Jorge: la caja de puros del Comandante es una recompensa: se gana al sobrevivir al atentado de los tabacos (aceptar y que salga bien).
+  { id: "comandantes", carta: "atentado_tabacos", fondo: "mostaza", titulo: "Puros Comandantes", subtitulo: "Caja de veinticinco robustos. Aquellos tabacos regalados le gustaron tanto al Comandante que creó su propia marca.",
     decision: "A ver si son tan buenos",
-    descripcion: "Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.",
-    beneficio: "Pendiente.", perjuicio: "Pendiente." },
+    descripcion: "Una edición exclusiva, reservada para su disfrute personal y a los jefes de Estado que conviene tener contentos. La diplomacia también se fuma." },
   // solo con «Discreto como mi barba»: la otra opción también instala los misiles, pero no da la postal
-  { id: "postal", carta: "nuevos_vecinos", fondo: "rojo", titulo: "Postal con misil", subtitulo: "Sol, arena y armamento nuclear.",
+  { id: "postal", carta: "nuevos_vecinos", fondo: "rojo", titulo: "Postal con misil", subtitulo: "Una estampa de la bahía: aguas cristalinas, sombrillas de colores y un misil nuclear que luce espléndido junto a la orilla.",
     decision: "Discreto como mi barba",
-    descripcion: "Una estampa de la bahía con aguas cristalinas, sombrillas de colores y un misil nuclear que luce espléndido junto a la orilla. En el reverso, un espacio para escribir a la familia y otro para indicar las coordenadas.",
-    beneficio: "Mándasela a una potencia extranjera para que se piense su próximo ultimátum. Que paguen ellos el envío.",
-    perjuicio: "A veces la postal no causa efecto. Las potencias negocian a puerta cerrada y nadie se molesta en avisarte." },
+    descripcion: "En el reverso tiene un espacio para escribir a la familia y otro para las coordenadas. El envío lo paga la potencia que la recibe." },
 
   // Logros de la era 1 (cómo se acaba la era). 29 oct, Jorge: los logros no llevan beneficio ni perjuicio
   { id: "cuatro_casillas", era: 1, regla: "cuatro_casillas", fondo: "oliva", titulo: "El pack completo", subtitulo: "La autocrítica puede esperar.",
@@ -1382,10 +1369,9 @@ const LOGROS = [
     descripcion: "La gente sabe cómo te pones y prefiere no tentar a la suerte. Gobernaste toda una era sin recurrir a las medidas más duras. Pueden hablar, viajar y hasta quejarse de vez en cuando. Es que no te merecen." },
 
   // Carné del comité (era 2): carta `denuncias_falsas`. Texto a medias.
-  { id: "chivaton", bandera: "base.denuncias_todas", fondo: "oliva", titulo: "Chivatón de barrio", subtitulo: "Ahora vigilas a tus vecinos. Y ellos, a ti.",
+  { id: "chivaton", bandera: "base.denuncias_todas", fondo: "oliva", titulo: "Carnet de Chivatón", subtitulo: "El carné del comité de barrio: un ojo abierto, una cinta con un lema y la firma del Comandante.",
     decision: "Que se investigue hasta la gallina",
-    descripcion: "El Sistema te felicita: has convertido cada cuadra en un puesto de observación. Tu carné incluye un ojo, una cinta con un lema y la obligación moral de mirar por la ventana.",   // texto provisional
-    beneficio: "+1 vecino que te lo cuenta todo.", perjuicio: "Tú también eres vecino de alguien." }
+    descripcion: "Convierte cada cuadra en un puesto de observación y a cada vecino en un informante. Quien lo lleva también es vecino de alguien." }
 ];
 /* Huecos del archivo: los logros que aún no existen se ven como siluetas, para que se note que es una colección */
 const HUECOS_ARCHIVO = 6;

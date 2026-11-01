@@ -151,7 +151,7 @@ test("«Saltar tutorial» lleva directo al nombre", () => {
 });
 
 
-test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un toque en la cuadrícula se descubre «Chivatón de barrio» y la carta se gira", () => {
+test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un toque en la cuadrícula se descubre «Carnet de Chivatón» y la carta se gira", () => {
   const j = cargar();
   j.empezar();
   const id = j.w.eval(`CARTAS.find(c => [c.izq, c.der].some(o => (o.banderas || []).includes("base.denuncias_todas"))).id`);
@@ -165,14 +165,14 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   assert.ok(!j.$("archivo").classList.contains("hidden"));
   assert.doesNotMatch(j.$("archivo").textContent, /Chivatón/, "no se sabe cuál es hasta abrirlo");
   j.d.querySelector(".nuevo-logro").click();       // un solo toque en la cuadrícula: la carta ya está descubierta
-  assert.equal(j.d.querySelector(".logro-leyenda").textContent, "Chivatón de barrio");
+  assert.equal(j.d.querySelector(".logro-leyenda").textContent, "Carnet de Chivatón");
   assert.ok(j.d.querySelector(".logro-mensaje").textContent.length > 0, "lleva su descripción arriba");
   assert.ok(!j.d.querySelector(".archivo-pista"), "ya no sale «Por …» bajo la carta (2 nov)");
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "descubierto, la bolita se va");
   assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));
-  j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción y los efectos
+  j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción de la tarjeta (1 nov: sin beneficio ni perjuicio)
   assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
-  assert.match(j.d.querySelector(".logro-dorso").textContent, /Perjuicio/);
+  assert.match(j.d.querySelector(".logro-dorso").textContent, /puesto de observación/);
   j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");

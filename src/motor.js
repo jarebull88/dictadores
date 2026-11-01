@@ -2024,17 +2024,15 @@ function verLogro(id) {
   const v = $("archivo-abrir");
   const celda = nuevo ? (() => { const c = $("archivo-rejilla").querySelector(`[data-id="${id}"]`); return c ? c.getBoundingClientRect() : null; })() : null;   // la casilla de la que salta la carta (antes de esconder la rejilla)
   v.className = "logro-vista";
-  /* 2 nov, Jorge: el reparto es el del juego: arriba, en el sitio de la pregunta, la descripción (en los logros de era, el subtítulo); en medio, la carta;
+  /* 2 nov, Jorge: el reparto es el del juego: arriba, en el sitio de la pregunta, el subtítulo (la descripción externa); en medio, la carta
+     (por detrás, la descripción; 1 nov, Jorge: las recompensas ya no llevan beneficio ni perjuicio);
      debajo, en el sitio de «Comercio», el título, y bajo él «Por …». Todo se coloca sobre lo que hay en la partida. */
-  const arriba = !g.regla;   // en las recompensas, la descripción va arriba y por detrás solo van Beneficio y Perjuicio
-  v.innerHTML = `<div class="mensaje logro-mensaje"><span>${esc(arriba ? g.descripcion : g.subtitulo)}</span></div>
+  v.innerHTML = `<div class="mensaje logro-mensaje"><span>${esc(g.subtitulo)}</span></div>
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
         <div class="logro-dorso"><div class="logro-hoja">
-          ${arriba ? "" : `<p class="logro-descripcion">${esc(g.descripcion)}</p>`}
-          ${g.regla ? "" : `<p class="logro-efecto"><b>Beneficio:</b> ${esc(g.beneficio)}</p>
-          <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
+          <p class="logro-descripcion">${esc(g.descripcion)}</p></div></div>
       </div></div>
     </div>
     <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>`;

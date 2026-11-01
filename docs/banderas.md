@@ -39,7 +39,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `misiles_instalados` | Los nuevos vecinos (A); Los nuevos vecinos (B) | Los satélites | Una potencia vecina vigila tus misiles. (era 2) |
 | `misiles_rechazados` | — | — | El aliado recuerda tu negativa. (era 2) |
 | `modestia_aparente` | El retrato (B) | La modestia sospechosa | El Partido exige otros símbolos de lealtad. (era 3) |
-| `mota_juzgado` | El viaje de Milfuegos (A) | La memoria | Los nietos de Mota piden que los libros hablen de él. (era 4) |
+| `mota_juzgado` | El viaje de Milfuegos (A) | La memoria | Los nietos de Matojos piden que los libros hablen de él. (era 4) |
 | `nacionalizo_empresas` | Las refinerías (A) | Los que se marchan; Faltan técnicos; Embargo total | Sanciones de la potencia del norte. (era 2) |
 | `negocio_refinerias` | — | — | Las empresas exigen garantías que limitan tus decisiones económicas. (era 1) |
 | `no_alineado` | — | — | La potencia del norte se acerca y el aislamiento económico se agrava. (era 2) |

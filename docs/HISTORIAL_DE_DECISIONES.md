@@ -661,3 +661,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **31 oct — Textos:** las cartas de aviso son «Nota de inteligencia» (leyenda): avisos que te llegan, en tercera persona.
 - **31 oct — Textos, Papá Ernesto:** guion definitivo de Jorge (`INVITADOS.md`); el logro solo con «Su casa será un museo»; los cortes del torneo y del whisky llevan nota de inteligencia.
 - **1 nov — Textos, Pupo:** guion definitivo de Jorge en el juego: tres amenazas (se quita Enemigos), una por fuerza (Partido, Potencias, Ejército); en el hechizo, pagar entero o regatear; la suerte, según el Pueblo; Collar o Salación como resultado (motor pendiente). La carta de las colas: «Que el Partido reparta los turnos» / «Hay otras formas de resolver esto».
+- **1 nov — Textos:** el dimitido se llama **Matojos** (antes Mota; la bandera `base.mota_juzgado` no cambia de nombre). El pelotazo: 1 de cada 10 si lanzas tú; si no, la pelota con autógrafo.

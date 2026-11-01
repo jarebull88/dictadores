@@ -56,7 +56,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 - **A. Sí, que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
 - **B. Mejor en jeep, no hay prisa** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
 
-**Consecuencia futura de `mota_juzgado`:** Los nietos de Mota piden que los libros hablen de él.
+**Consecuencia futura de `mota_juzgado`:** Los nietos de Matojos piden que los libros hablen de él.
 
 ### 6. La fuga del comandante
 

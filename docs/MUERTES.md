@@ -27,3 +27,8 @@ Se escribe a mano (lo lleva Textos). Esquema (30 oct, Jorge): **8 caídas por fu
 - **Sale bien** (Potencias vuelve hacia el centro): Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.
 - **Sale mal · Regalo envenenado:** Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta.
 - **Rechazo · Desaire** (baja el Pueblo): Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio.
+
+## Muertes absurdas
+- **El pelotazo** (1 nov, Jorge): en «El béisbol», si eliges lanzar tú («A ver quién me batea»): **9 de cada 10**, no pasa nada y te llevas la recompensa de la pelota (como ahora); **1 de cada 10**, te batean de línea a la cabeza y sale su carta de muerte (título, texto e imagen: por escribir). La suerte no depende de ninguna fuerza. «Yo seré el árbitro», sin riesgo.
+- **Patrón que le gusta a Jorge:** si te arriesgas, ganas una recompensa.
+- **Por decidir:** cuántas muertes absurdas puede haber por era.

@@ -126,6 +126,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
   - Externa: La cartilla que reparte a cada familia lo mismo cada mes, haya o no haya.
   - Tarjeta: Una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. Si la pierdes, tu familia deja de existir para el almacén.
 - **Compota importada** — *aprobada* (textos de Jorge, ya en el juego)
+- **Botella de Revukola** — *aprobada*
+  - Externa: El refresco de cola nacional, inventado a toda prisa cuando la receta se fue del país con los dueños de la fábrica.
+  - Tarjeta: Lleva azúcar, agua y lo que aparezca en el almacén: ninguna botella sabe igual que la anterior. Cada vez que se fabrica, el país se queda sin azúcar.
 
 ## Traspaso a programación (28 oct)
 

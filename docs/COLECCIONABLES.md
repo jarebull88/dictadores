@@ -113,6 +113,13 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 ### Pendientes (elegidos por Jorge, sin redactar)
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).
 
+## Recompensas rehechas (1 nov, Jorge: sin beneficio ni perjuicio)
+Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el título: qué es y de dónde sale) y **descripción de la tarjeta** (`descripcion`, por detrás: la ironía). Se integran en el juego al cerrar la tanda.
+
+- **Paloma amaestrada** — *aprobada*
+  - Externa: Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.
+  - Tarjeta: Alza el brazo en un discurso y se posará en tu hombro: la mitad del país verá en ti al elegido. La otra mitad verá la mancha del uniforme.
+
 ## Traspaso a programación (28 oct)
 
 Esta conversación solo escribe documentos; el código lo hace la de programación. Lo que hay que hacer en el juego, con las recompensas y los logros **aunque sus textos digan «Pendiente»** (para poder probarlos ya):

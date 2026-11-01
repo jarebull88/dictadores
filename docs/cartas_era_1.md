@@ -51,10 +51,10 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Por carretera Milfuegos tardaría dos días. Le tengo un avión preparado por mis hombres.»
+**Carta:** «El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.»
 
-- **A. Sí, que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
-- **B. Mejor en jeep, no hay prisa** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
+- **A. Que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
+- **B. Que vaya en jeep** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Motos piden que los libros hablen de él.
 
@@ -63,10 +63,10 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Milfuegos llegó demasiado tarde. El comandante se fue en una lancha y ya habla por la radio del exilio.»
+**Carta:** «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
 
-- **A. Que grite, el mar es ancho** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
-- **B. Interfieran su emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
+- **A. Bah, da igual** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
+- **B. Interfieran la emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
 
@@ -154,7 +154,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Carta:** «Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?»
 
 - **A. Para los campesinos** Pueblo +8 · Élite −6 · Crisis +1 · Bandera: `reforma_agraria`
-- **B. Al Estado, que cultiva mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
+- **B. El Estado cultiva mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 

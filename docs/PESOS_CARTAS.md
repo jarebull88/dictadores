@@ -27,14 +27,14 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
 **El viaje de Milfuegos** (Ministro del Interior; segundo paso)  
-«Por carretera Milfuegos tardaría dos días. Le tengo un avión preparado por mis hombres.»
-- A. Sí, que vaya volando → sube Ejército +3 · baja Pueblo -3
-- B. Mejor en jeep, no hay prisa → sube Pueblo +3 · baja Ejército -3
+«El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.»
+- A. Que vaya volando → sube Ejército +3 · baja Pueblo -3
+- B. Que vaya en jeep → sube Pueblo +3 · baja Ejército -3
 
 **La fuga del comandante** (Ministro del Interior)  
-«Milfuegos llegó demasiado tarde. El comandante se fue en una lancha y ya habla por la radio del exilio.»
-- A. Que grite, el mar es ancho → sube Pueblo +3 · baja Ejército -3
-- B. Interfieran su emisora → sube Ejército +3 · baja Pueblo -3
+«Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
+- A. Bah, da igual → sube Pueblo +3 · baja Ejército -3
+- B. Interfieran la emisora → sube Ejército +3 · baja Pueblo -3
 
 **Las refinerías** (Ministro de Comercio; segundo paso)  
 «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
@@ -69,7 +69,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **La tierra** (Ministro de Trabajo)  
 «Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?»
 - A. Para los campesinos → sube Pueblo +8 · baja Partido -6 · crisis +1
-- B. Al Estado, que cultiva mejor → sube Partido +6 · baja Pueblo -8
+- B. El Estado cultiva mejor → sube Partido +6 · baja Pueblo -8
 
 **Los periódicos** (Ministra de Cultura)  
 «La prensa critica cada decreto. Los tipógrafos quieren aclarar al pie que es propaganda enemiga.»

@@ -3783,8 +3783,7 @@ function mostrarCartaFin(d, clave, personaje, anios) {
   entrarCarta(carta);
   const dilo = () => { if (modoFin) ponerLeyenda(anios, true); };
   if (!animar()) { dilo(); return; }
-  clearTimeout(carta._banda);
-  carta._banda = setTimeout(() => { if (modoFin) banda("caida", "¡Has caído!", dilo); }, VOLTEO_MS + 200);
+  banda("caida", "¡Has caído!", dilo);                 // 2 nov: sale a la vez que la carta gira, como el cartel de las secuelas
 }
 function eleccionFin(dir) {
   const r = $("carta").querySelector(".respuesta");

@@ -129,6 +129,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Botella de Revukola** — *aprobada*
   - Externa: El refresco de cola nacional, inventado a toda prisa cuando la receta se fue del país con los dueños de la fábrica.
   - Tarjeta: Lleva azúcar, agua y lo que aparezca en el almacén: ninguna botella sabe igual que la anterior. Cada vez que se fabrica, el país se queda sin azúcar.
+- **Pelota con autógrafo** — *aprobada* (1 nov, Jorge: las reliquias hablan del Comandante en tercera persona)
+  - Externa: Pieza de colección: la pelota del récord de la liga, veintisiete ponches en dos entradas.
+  - Tarjeta: Firmada por el Comandante antes del primer lanzamiento. Acabó el partido tan limpia como salió de la caja.
 
 ## Traspaso a programación (28 oct)
 

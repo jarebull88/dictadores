@@ -122,6 +122,10 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Licencia de electricista** — *aprobada*
   - Externa: El carné de oficio que convierte a tu mejor atleta en aficionado, con sueldo del Estado y horario de taller.
   - Tarjeta: Ficha en el taller por la mañana y entrena por la tarde. Ya ha ganado tres oros olímpicos. Rezamos para que nadie le encargue una obra.
+- **Libreta de abastecimiento** — *aprobada*
+  - Externa: La cartilla que reparte a cada familia lo mismo cada mes, haya o no haya.
+  - Tarjeta: Una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. Si la pierdes, tu familia deja de existir para el almacén.
+- **Compota importada** — *aprobada* (textos de Jorge, ya en el juego)
 
 ## Traspaso a programación (28 oct)
 

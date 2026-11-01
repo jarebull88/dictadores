@@ -132,6 +132,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Pelota con autógrafo** — *aprobada* (1 nov, Jorge: las reliquias hablan del Comandante en tercera persona)
   - Externa: Pieza de colección: la pelota del récord de la liga, veintisiete ponches en dos entradas.
   - Tarjeta: Firmada por el Comandante antes del primer lanzamiento. Acabó el partido tan limpia como salió de la caja.
+- **Postal con misil** — *aprobada*
+  - Externa: Una estampa de la bahía: aguas cristalinas, sombrillas de colores y un misil nuclear que luce espléndido junto a la orilla.
+  - Tarjeta: En el reverso tiene un espacio para escribir a la familia y otro para las coordenadas. El envío lo paga la potencia que la recibe.
 
 ## Traspaso a programación (28 oct)
 

@@ -34,7 +34,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - secundario: «Tu uniforme de gala nunca volverá a estar limpio.»
 
 ## Era 1
-**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revolukola** («Inventen la Revolukola», `refresco`), **pelota firmada** («A ver quién me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
+**28 oct, Jorge: recompensas y logros se separan.** Una **recompensa** es un objeto que se gana con **una decisión concreta**; un **logro** es una hazaña por **cómo juegas** (nunca una sola decisión, nunca un fracaso), por era o global. Recompensas elegidas para la era 1 (los textos, aquí): **carné de profesor de educación física** («Se juega por amor», `fin_pelota`), **libreta de abastecimiento** («Una libreta por familia», `embargo_total`), **etiqueta de compota** («Cámbienlos por compotas», `la_bahia`), **botella de Revukola** («Inventen la Revukola», `refresco`), **pelota firmada** («A ver quién me batea», `beisbol`) y **postal de la bahía con un misil** («Discreto como mi barba», `nuevos_vecinos`). El carné del comité (chivatón) pasa a la era 2. El billete firmado no entra en la era 1.
 
 **Logros de la era 1** (29 oct, textos de Jorge; se comprueban al acabar la era). **Los logros no llevan beneficio ni perjuicio** (29 oct, Jorge): solo título, subtítulo y descripción.
 
@@ -90,13 +90,13 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 - **decision:** «Cámbienlos por compotas»
 - **Referencia real (verificada):** en diciembre de 1962 se canjearon 1.113 prisioneros de la bahía por unos 53 millones de dólares en medicinas, material médico y comida infantil, donados por empresas privadas y negociados por un abogado de Nueva York. Fidel lo llamó un «regalo de Navidad».
 
-### Recompensa 4 · Botella de Revolukola — *aprobada* (29 oct, textos de Jorge)
-- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Improvisen una receta» (29 oct, Jorge; antes «Inventen la Revolukola»).
-- **titulo:** Botella de Revolukola
+### Recompensa 4 · Botella de Revukola — *aprobada* (29 oct, textos de Jorge)
+- **Se gana con:** carta `refresco` (Ministro de Comercio), opción «Improvisen una receta» (29 oct, Jorge; antes «Inventen la Revukola»).
+- **titulo:** Botella de Revukola
 - **subtitulo:** Dulce, pegajosa y de producción nacional.
 - **descripcion:** Una bebida marrón que sabe a Revolución. La receta original se perdió durante la nacionalización; la versión oficial lleva azúcar, agua y lo que aparezca en el almacén. Ninguna botella sabe igual que la anterior.
 - **Beneficio:** Mezclada con ron, el país entero aguanta tus discursos.
-- **Perjuicio:** Cada vez que se fabrica Revolukola, el país se queda prácticamente sin azúcar.
+- **Perjuicio:** Cada vez que se fabrica Revukola, el país se queda prácticamente sin azúcar.
 - **decision:** «Improvisen una receta»
 - **Referencia real (verificada):** las embotelladoras del refresco de cola más famoso se nacionalizaron en 1960; salió una cola nacional más dulce y menos gaseosa, buena para mezclar con ron (años después, marcas como TropiCola).
 
@@ -121,7 +121,7 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
    - Licencia de electricista: carta `fin_pelota`, opción «Se juega por amor» (**no pone bandera**: el motor tiene que reconocer la opción).
    - Libreta de abastecimiento: `embargo_total`, «Una libreta por familia».
    - Compota importada: `la_bahia`, «Cámbienlos por compotas».
-   - Botella de Revolukola: `refresco`, «Inventen la Revolukola».
+   - Botella de Revukola: `refresco`, «Inventen la Revukola».
    - Pelota firmada: `beisbol`, «A ver quién me batea».
    - Postal de la bahía con un misil: `nuevos_vecinos`, solo con «Discreto como mi barba» (la otra opción también instala los misiles, pero no da la postal). **Sin texto aún.**
    - Carné del comité (era 2): `denuncias_falsas`, «Que se investigue hasta la gallina» (bandera `base.denuncias_todas`). **Texto a medias** (ver «Carné del comité de barrio»).
@@ -148,8 +148,8 @@ Esta conversación solo escribe documentos; el código lo hace la de programaci�
 
 **Estado al cerrar (29 oct)**
 - Cerrado: la estructura, la regla, los textos de título, subtítulo y descripción de las recompensas 1 a 5.
-- 29 oct: licencia, libreta y compota, completas (textos de Jorge). Revolukola y pelota, completas (textos de Jorge).
+- 29 oct: licencia, libreta y compota, completas (textos de Jorge). Revukola y pelota, completas (textos de Jorge).
 - Pelota firmada: beneficio y perjuicio completos (propuestos sobre ideas de Jorge).
 - 29 oct: postal y los cuatro logros de la era 1, completos (textos de Jorge), e integrados en el juego.
 - **Pendiente:** carné del comité (a medias); billete firmado y billete con la cara (sin redactar, el segundo sin decisión que lo dé); coleccionables de las eras 2 a 4.
-- Ideas de perjuicio/beneficio que se propusieron y Jorge no eligió: libreta (mercado de casillas; la cola como club social), compota (celdas vacías como almacén; los niños quieren ser canjeados), licencia (medio país jura ser atleta), Revolukola (los dentistas trabajan el doble; la botella se pega a la mano).
+- Ideas de perjuicio/beneficio que se propusieron y Jorge no eligió: libreta (mercado de casillas; la cola como club social), compota (celdas vacías como almacén; los niños quieren ser canjeados), licencia (medio país jura ser atleta), Revukola (los dentistas trabajan el doble; la botella se pega a la mano).

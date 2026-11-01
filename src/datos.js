@@ -60,17 +60,17 @@ const CARTAS = [
     // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
     id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
     personaje: "Ministro del Interior",
-    texto: "Por carretera Milfuegos tardaría dos días. Le tengo un avión preparado por mis hombres.",
-    izq: { accion: "Sí, que vaya volando", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
-    der: { accion: "Mejor en jeep, no hay prisa", efectos: { pueblo: 3, ejercito: -3 }, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
+    texto: "El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.",
+    izq: { accion: "Que vaya volando", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
+    der: { accion: "Que vaya en jeep", efectos: { pueblo: 3, ejercito: -3 }, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
   },
   {
     // 31 oct, Jorge: cierre de la trama si Milfuegos va por carretera: el dimitido se escapa
     id: "fuga_comandante", tipo: "cola", titulo: "La fuga del comandante",
     personaje: "Ministro del Interior",
-    texto: "Milfuegos llegó demasiado tarde. El comandante se fue en una lancha y ya habla por la radio del exilio.",
-    izq: { accion: "Que grite, el mar es ancho", efectos: { pueblo: 3, ejercito: -3 }, banderas: ["base.exiliados_vocales"] },
-    der: { accion: "Interfieran su emisora", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.exiliados_vocales"] }
+    texto: "Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.",
+    izq: { accion: "Bah, da igual", efectos: { pueblo: 3, ejercito: -3 }, banderas: ["base.exiliados_vocales"] },
+    der: { accion: "Interfieran la emisora", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.exiliados_vocales"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): segundo paso del aliado (1960): las refinerías se niegan a refinar el crudo del aliado y se intervienen
@@ -153,7 +153,7 @@ const CARTAS = [
     personaje: "Ministro de Trabajo",
     texto: "Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?",
     izq: { accion: "Para los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
-    der: { accion: "Al Estado, que cultiva mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
+    der: { accion: "El Estado cultiva mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): las «coletillas» (1960)

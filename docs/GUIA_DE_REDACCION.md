@@ -102,3 +102,6 @@ Para cada carta, antes de proponerla o al revisarla:
 - **Referencias reales disfrazadas para que se entiendan en el juego** («los barbudos» no se entiende: «ministros y comandantes»).
 - **Al embajador no se le desobedece a la cara:** si el Comandante no va a cumplir, lo dice con ironía («Discreto como mi barba»).
 - **Nombres:** Diezfuegos pasa a ser **Milfuegos**, y es Comandante; Ferro pasa a ser **Cabaña**.
+
+## Notas de Jorge (2 nov)
+- **Cartas de trama sin efectos:** una decisión no tiene por qué mover fuerzas. Cuando lo que se decide es el rumbo de una trama (el avión o el jeep de Milfuegos, las amenazas de Pupo), la carta puede ir sin efectos y la consecuencia llega en la carta siguiente. Así no se fuerzan pesos sin lógica y no se delata lo que va a pasar.

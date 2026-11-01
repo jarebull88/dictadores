@@ -30,8 +30,8 @@ const CARTAS = [
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.",
-    izq: { accion: "Contraten a dos comentaristas", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
-    der: { accion: "Esto no es un circo", efectos: { pueblo: -8, ejercito: 5 } }
+    izq: { accion: "Juicio público con entradas", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
+    der: { accion: "Juicio militar sin cámaras", efectos: { pueblo: -8, ejercito: 5 } }
   },
   {
     id: "casa_tirano", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa del tirano",
@@ -61,15 +61,15 @@ const CARTAS = [
     id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
     personaje: "Ministro del Interior",
     texto: "El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.",
-    izq: { accion: "Que vaya volando", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
-    der: { accion: "Que vaya en jeep", efectos: { pueblo: 3, ejercito: -3 }, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
+    izq: { accion: "Que vaya volando", efectos: {}, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
+    der: { accion: "Que vaya en jeep", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
   },
   {
     // 31 oct, Jorge: cierre de la trama si Milfuegos va por carretera: el dimitido se escapa
     id: "fuga_comandante", tipo: "cola", titulo: "La fuga del comandante",
     personaje: "Ministro del Interior",
     texto: "Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.",
-    izq: { accion: "Bah, da igual", efectos: { pueblo: 3, ejercito: -3 }, banderas: ["base.exiliados_vocales"] },
+    izq: { accion: "Que lo escuche quien quiera", efectos: { pueblo: 3, ejercito: -3 }, banderas: ["base.exiliados_vocales"] },
     der: { accion: "Interfieran la emisora", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.exiliados_vocales"] }
   },
   {
@@ -77,8 +77,8 @@ const CARTAS = [
     id: "refinerias", tipo: "cola", enlace: true, titulo: "Las refinerías",
     personaje: "Ministro de Comercio",
     texto: "Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.",
-    izq: { accion: "¡Exprópiese!", efectos: { pueblo: 8, elite: -5, potencias: -6, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
-    der: { accion: "Les pagaremos con bonos de azúcar", efectos: { pueblo: -6, elite: 6 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
+    izq: { accion: "¡Exprópiese!", efectos: { elite: 6, potencias: -6, pueblo: 3, crisis: 1 }, banderas: ["base.nacionalizo_empresas"], encolar: [{ carta: "embargo", min: 2, max: 4 }] },
+    der: { accion: "Les pagaremos con bonos de azúcar", efectos: { potencias: 6, elite: -6, pueblo: -3 }, banderas: ["base.compensaciones"], encolar: [{ carta: "embargo", min: 2, max: 4 }] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
@@ -1175,7 +1175,7 @@ const FINALES = {   // 30 oct, Textos: versión de la era 1 (vale para todas has
 /* 1 nov: muertes especiales (no dependen de una barra): `especial` = sin la frase de qué fuerza cayó; `todas` = en la pantalla de caída caen todas las barras.
    Imagen: por hacer (Arte); mientras, la carta enseña el título. */
 Object.assign(FINALES, {
-  atentado_tabacos: { titulo: "Regalo envenenado", texto: "Encendiste el tabaco y diste dos caladas. La tercera ya no hizo falta.", especial: true, todas: true },
+  atentado_tabacos: { titulo: "Regalo envenenado", texto: "El tabaco estaba envenenado. Apenas te dio tiempo a darle dos caladas.", especial: true, todas: true },
   pelotazo:         { titulo: "Pelotazo", texto: "Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.)", especial: true }
 });
 /* Una versión de cada caída por era (30 oct, Textos): FINALES_ERA[era][clave]; si falta, vale la de la era 1 (FINALES). Textos las irá entregando. */

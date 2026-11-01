@@ -11,8 +11,8 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.»
 
-- **A. Contraten a dos comentaristas** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
-- **B. Esto no es un circo** Pueblo −8 · Ejército +5
+- **A. Juicio público con entradas** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
+- **B. Juicio militar sin cámaras** Pueblo −8 · Ejército +5
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
 
@@ -53,8 +53,8 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.»
 
-- **A. Que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
-- **B. Que vaya en jeep** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
+- **A. Que vaya volando**  · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
+- **B. Que vaya en jeep**  · Encola: `fuga_comandante` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Motos piden que los libros hablen de él.
 
@@ -65,7 +65,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
 
-- **A. Bah, da igual** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
+- **A. Que lo escuche quien quiera** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
 - **B. Interfieran la emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
 
 **Consecuencia futura de `exiliados_vocales`:** Una oposición habla desde el extranjero.
@@ -79,8 +79,8 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Las petroleras extranjeras no quieren refinar el crudo de nuestro aliado. Propongo intervenirlas.»
 
-- **A. ¡Exprópiese!** Pueblo +8 · Élite −5 · Potencias −6 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 2 a 4 años
-- **B. Les pagaremos con bonos de azúcar** Pueblo −6 · Élite +6 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
+- **A. ¡Exprópiese!** Élite +6 · Potencias −6 · Pueblo +3 · Crisis +1 · Bandera: `nacionalizo_empresas` · Encola: `embargo` en 2 a 4 años
+- **B. Les pagaremos con bonos de azúcar** Potencias +6 · Élite −6 · Pueblo −3 · Bandera: `compensaciones` · Encola: `embargo` en 2 a 4 años
 
 **Consecuencia futura de `nacionalizo_empresas`:** Sanciones de la potencia del norte.
 

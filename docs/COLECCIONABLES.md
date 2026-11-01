@@ -125,7 +125,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Libreta de abastecimiento** — *aprobada*
   - Externa: La cartilla que reparte a cada familia lo mismo cada mes, haya o no haya.
   - Tarjeta: Una casilla por producto y mes: arroz, café, cigarros y cuarenta artículos más que solo existen sobre el papel. Si la pierdes, tu familia deja de existir para el almacén.
-- **Compota importada** — *aprobada* (textos de Jorge, ya en el juego)
+- **Compota importada** — *aprobada* (1 nov, revisada con los antiguos beneficio y perjuicio)
+  - Externa: Compota extranjera de primera calidad, conseguida mediante una operación diplomática de alto nivel.
+  - Tarjeta: Fruta natural, envase precioso y etiqueta en otro idioma. Con un tarro se compra a cualquier ministro.
 - **Botella de Revukola** — *aprobada*
   - Externa: El refresco de cola nacional, inventado a toda prisa cuando la receta se fue del país con los dueños de la fábrica.
   - Tarjeta: Lleva azúcar, agua y lo que aparezca en el almacén: ninguna botella sabe igual que la anterior. Cada vez que se fabrica, el país se queda sin azúcar.

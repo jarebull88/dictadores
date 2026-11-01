@@ -682,3 +682,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **2 nov — Arte (pedido a Textos por Jorge):** las muertes llevan paleta limitada (negro, rojo, blanco y beige); prompts en `docs/PROMPTS_MUERTES.md`.
 - **2 nov (Programación, Jorge):** integradas 32 imágenes nuevas del zip (personajes, iconos de fuerzas y estados, logros y cartas), mejor integradas con el fondo; las originales antiguas se sustituyeron en su sitio y se regeneraron los WebP (`python3 tools/recortar.py carteles`; los de logros y cartas, a mano a 540/720 px). El zip sigue en `assets/`.
 - **2 nov — Textos (Jorge):** tutorial, secuela: «…Ahora el Pueblo te adora, pero ya sabes…»; la paloma: «Una paloma blanca que tu hermano entrenó en el monte con mucha paciencia y maíz.»
+- **2 nov — Textos (Jorge):** muerte de los tabacos: «El tabaco estaba envenenado. Apenas te dio tiempo a darle dos caladas.»

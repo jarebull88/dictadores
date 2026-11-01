@@ -114,7 +114,7 @@ Usa la disposición de la partida: textos arriba (en el hueco de las barras y la
 5. Billete firmado con un mote (era 1, `base.mercado_paralelo`) y, en pareja, billete con la cara del firmante (era 3 o 4, decisión por buscar).
 
 ## Recompensas rehechas (1 nov, Jorge: sin beneficio ni perjuicio)
-Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el título: qué es y de dónde sale) y **descripción de la tarjeta** (`descripcion`, por detrás: la ironía). Se integran en el juego al cerrar la tanda.
+Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el título: qué es y de dónde sale) y **descripción de la tarjeta** (`descripcion`, por detrás: la ironía). Integradas en el juego el 1 nov (sin beneficio ni perjuicio; por delante, arriba, la externa; por detrás, la de la tarjeta).
 
 - **Paloma amaestrada** — *aprobada*
   - Externa: Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.

@@ -123,7 +123,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 
 /* — 3 · CUERPO — */
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
-.popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion, .logro-efecto,
+.popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
 .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .archivo-cerrar, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {

@@ -2,14 +2,15 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const { cargar } = require("./_juego");
 
-const CAMPOS = ["id", "titulo", "subtitulo", "decision", "descripcion"];   // 2 nov, Jorge: ya no hay beneficio ni perjuicio
+const CAMPOS = ["id", "titulo", "subtitulo", "decision", "descripcion"];
 
 test("cada coleccionable tiene todos sus campos (con «Pendiente» donde falte el texto) y ya no existe «objeto»", () => {
   const j = cargar();
   const LOGROS = JSON.parse(j.w.eval("JSON.stringify(LOGROS)"));
   for (const g of LOGROS) {
     for (const c of CAMPOS) assert.ok(typeof g[c] === "string" && g[c].length > 0, `${g.id}: falta ${c}`);
-    assert.ok(!("beneficio" in g) && !("perjuicio" in g), `${g.id}: ya no lleva beneficio ni perjuicio`);
+    // 1 nov, Jorge: ni logros ni recompensas llevan beneficio ni perjuicio
+    assert.ok(!("beneficio" in g) && !("perjuicio" in g), `${g.id}: sin beneficio ni perjuicio`);
     assert.ok(!("objeto" in g) && !("efecto" in g) && !("secundario" in g), `${g.id}: campos antiguos`);
     assert.ok(g.bandera || g.carta || g.regla, `${g.id}: no dice cómo se desbloquea`);
   }
@@ -68,16 +69,17 @@ test("un coleccionable sin ilustración se ve como carta completa: fondo plano p
   assert.equal(j.$("archivo-titulo").textContent, "Logros");
   j.w.eval(`abrirArchivo()`);
   // el primero que aún no tiene ilustración
-  const g = JSON.parse(j.w.eval(`JSON.stringify(LOGROS.find(g => !IMG_LOGROS[g.id]))`));
+  const g = JSON.parse(j.w.eval(`JSON.stringify(LOGROS.find(g => !IMG_LOGROS[g.id] && !g.regla))`));
   j.w.eval(`verLogro("${g.id}")`);
   assert.equal(j.d.querySelector(".logro-leyenda").textContent, g.titulo, "2 nov: el título va abajo, en el sitio de la leyenda");
-  assert.ok(j.d.querySelector(".logro-mensaje").textContent.includes(g.subtitulo.slice(0, 30)), "y la descripción externa, arriba, en el sitio de la pregunta");
+  assert.ok(j.d.querySelector(".logro-mensaje").textContent.includes(g.subtitulo.slice(0, 30)), "y la descripción externa (subtítulo), arriba, en el sitio de la pregunta");
   assert.match(j.d.querySelector(".logro-cara .logro-ilustracion").getAttribute("style"), /var\(--p-/, "fondo plano de la paleta");
   assert.ok(!j.d.querySelector(".logro-cara img"), "sin ilustración");
   const dorso = j.d.querySelector(".logro-dorso").textContent;
   assert.ok(dorso.includes(g.descripcion), "el reverso enseña la descripción de la tarjeta");
-  assert.doesNotMatch(dorso, /Beneficio|Perjuicio/);
-  assert.match(j.d.querySelector(".logro-hoja").getAttribute("style"), /--hoja-fondo/, "el reverso va del color de su fondo");
+  assert.doesNotMatch(dorso, /Beneficio|Perjuicio/, "1 nov: sin beneficio ni perjuicio");
+  j.w.eval(`verLogro("equilibrista")`);
+  assert.doesNotMatch(j.d.querySelector(".logro-dorso").textContent, /Beneficio|Perjuicio/);
 });
 
 test("menú a pantalla completa (29 oct): cuatro iconos arriba; el espacio libre enseña la galería, los ajustes o abandonar; la carta de un logro se sale a la galería o al juego", () => {

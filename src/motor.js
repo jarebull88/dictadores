@@ -2041,7 +2041,8 @@ function verLogro(id) {
   const v = $("archivo-abrir");
   const celda = nuevo ? (() => { const c = $("archivo-rejilla").querySelector(`[data-id="${id}"]`); return c ? c.getBoundingClientRect() : null; })() : null;   // la casilla de la que salta la carta (antes de esconder la rejilla)
   v.className = "logro-vista";
-  /* 2 nov, Jorge: el reparto es el del juego: arriba, en el sitio de la pregunta, la descripción (en los logros de era, el subtítulo); en medio, la carta;
+  /* 2 nov, Jorge: el reparto es el del juego: arriba, en el sitio de la pregunta, el subtítulo (la descripción externa); en medio, la carta
+     (por detrás, la descripción; 1 nov, Jorge: las recompensas ya no llevan beneficio ni perjuicio);
      debajo, en el sitio de «Comercio», el título, y bajo él «Por …». Todo se coloca sobre lo que hay en la partida. */
   const colL = colorDe("logro_" + id, g.fondo ? `var(--p-${g.fondo})` : null);
   v.innerHTML = `<div class="mensaje logro-mensaje"><span>${esc(g.subtitulo)}</span></div>

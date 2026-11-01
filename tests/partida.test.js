@@ -170,9 +170,9 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   assert.ok(!j.d.querySelector(".archivo-pista"), "ya no sale «Por …» bajo la carta (2 nov)");
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "descubierto, la bolita se va");
   assert.ok(!j.d.querySelector(".logro-carta").classList.contains("volteada"));
-  j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción y los efectos
+  j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción de la tarjeta (1 nov: sin beneficio ni perjuicio)
   assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
-  assert.ok(j.d.querySelector(".logro-dorso").textContent.length > 20, "el reverso enseña su descripción");
+  assert.match(j.d.querySelector(".logro-dorso").textContent, /puesto de observación/);
   j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");

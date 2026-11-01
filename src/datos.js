@@ -1294,15 +1294,15 @@ const PREVISION = {
    - arriba habla Domingo (29 oct: tutea al Comandante); la instrucción al jugador va en la cinta (de tú)
    ===================================================== */
 const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano pequeño, coqueto); cinta: la instrucción al jugador (de tú); *así* = negrita
-  { paso: "deslizar", texto: "¡Ganamos, hermanito! Me he planchado el uniforme para la entrada triunfal. ¿Vamos ya?", cinta: "Desliza la carta", izq: "Entra detrás de mí", der: "Quítate esa colonia" },
+  { paso: "deslizar", texto: "¡Ganamos, hermanito! Me he planchado el uniforme para la entrada triunfal. ¿Vamos ya?", cinta: "Desliza la carta", izq: "Sí, pero entra detrás de mí", der: "Quítate esa colonia" },
   { paso: "girar", texto: "Inteligencia tiene un expediente de cada uno. Dame la vuelta, a ver qué dicen de mí.", girada: "Todo el mundo tiene el suyo. Si quieres saber de quién fiarte, gira la carta.", cinta: "Toca la carta", cintaGirada: "Tócala otra vez", izq: "Rojo desde la cuna", der: "Nada que ya no sepa" },
-  { paso: "fuerzas", texto: "Arriba tienes las cuatro fuerzas. Si alguna se te queda corta o se te crece demasiado, te tumban.", cinta: "Toca los iconos", izq: "Las cuatro a dieta", der: "A mí solo me crece una" },
+  { paso: "fuerzas", texto: "Arriba tienes las cuatro fuerzas. Si alguna se te queda corta o se te crece demasiado, te tumban.", cinta: "Toca los iconos", izq: "Tendré las cuatro a dieta", der: "A mí solo me crece una" },
   // 29 oct: las dos respuestas suben al Pueblo, y por eso llega «Luna de miel» (la A más que la B)
   { paso: "pistas", texto: "Mira, el Ejército está en rojo, y el rojo no favorece a nadie. ¿Le das algo a mi tropa?", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "El Pueblo va primero", der: "Tu tropa puede esperar", efectos: { izq: { pueblo: 36, ejercito: -4 }, der: { pueblo: 20, ejercito: -2 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador.
   { paso: "estado", texto: "Algunas decisiones traen secuelas. Ahora el Pueblo te adora, y ya sabes: tanto cariño mató al niño." },
   // 25 oct: la primera recompensa. La decisión la da (sea cual sea la respuesta); luego hay que abrirla en el menú (`despues`)
-  { paso: "logro", texto: "Ah, y en agradecimiento por darme un ministerio, te tengo un regalo. Cierra los ojos.", cinta: "Abre el regalo",
+  { paso: "logro", texto: "Ah, y en agradecimiento por darme un ministerio, te tengo un regalo. Cierra los ojos.", cinta: "Acepta el regalo",
     despues: { texto: "¡Sorpresa! Es tu primera recompensa. Las demás tendrás que ganártelas con tus decisiones.", cinta: "Toca el menú" },
     izq: "Miedo me das", der: "Ábrelo tú, por si acaso" },
   { paso: "fin", texto: "La plaza está llena y espera tu discurso. Llévate la paloma y no te enroles, que hace calor.", cinta: "Ahora gobiernas tú", izq: "A ver qué se me ocurre", der: "Hablaré lo justo" }
@@ -1313,12 +1313,13 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
    llega como un sobre cerrado y, al abrirlo, se descubre cuál es. Textos provisionales: los cierra la conversación
    de redacción en docs/COLECCIONABLES.md. */
 /* 28 oct (traspaso de la conversación de coleccionables, docs/COLECCIONABLES.md): cada coleccionable es una carta completa. Campos:
-   id, bandera, titulo, subtitulo, decision, descripcion, beneficio, perjuicio. Se desbloquea
+   id, bandera, titulo, subtitulo, decision, descripcion (1 nov: sin beneficio ni perjuicio). Se desbloquea
    · con una bandera que pone la decisión (`bandera`), o
    · con una carta y la opción elegida (`carta` + `decision`, que es el texto de la opción): para las opciones que no ponen bandera, o
    · al acabar la era con una condición (`era` + `regla`, ver REGLAS_LOGRO en motor.js).
    `fondo`: color plano de la paleta de la carta por delante (mientras no haya ilustración). «Pendiente» = texto aún sin escribir. */
 const LOGROS = [
+  // 1 nov, Jorge: las recompensas no llevan beneficio ni perjuicio (archivados en docs/ARCHIVO_BENEFICIOS.md)
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
   { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.",
     decision: "Aceptar la paloma de tu hermano",
@@ -1340,7 +1341,7 @@ const LOGROS = [
   { id: "pelota", carta: "beisbol", fondo: "oliva", titulo: "Pelota con autógrafo", subtitulo: "Pieza de colección: la pelota del récord de la liga, veintisiete ponches en dos entradas.",
     decision: "A ver quién me batea",
     descripcion: "Firmada por el Comandante antes del primer lanzamiento. Acabó el partido tan limpia como salió de la caja." },
-  // 1 nov, Jorge: la caja de puros del Comandante es una recompensa: se gana al sobrevivir al atentado de los tabacos (aceptar y que salga bien). Beneficio y perjuicio: por escribir (Coleccionables)
+  // 1 nov, Jorge: la caja de puros del Comandante es una recompensa: se gana al sobrevivir al atentado de los tabacos (aceptar y que salga bien).
   { id: "comandantes", carta: "atentado_tabacos", fondo: "mostaza", titulo: "Puros Comandantes", subtitulo: "Caja de veinticinco robustos. Aquellos tabacos regalados le gustaron tanto al Comandante que creó su propia marca.",
     decision: "A ver si son tan buenos",
     descripcion: "Una edición exclusiva, reservada para su disfrute personal y a los jefes de Estado que conviene tener contentos. La diplomacia también se fuma." },

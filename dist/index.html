@@ -140,7 +140,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 /* — 3 · CUERPO — */
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
-.fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .archivo-cerrar, .opcion-portada.secundaria,
+.fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
@@ -566,7 +566,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* 24 oct: el menú (☰), abajo a la derecha: al borde de la carta y centrado en vertical con las casillas, a la mitad de su tamaño.
    Dentro: Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
-.boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
+.boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
+.boton-menu-volver { right: auto; bottom: auto; }
+.boton-menu-volver svg { transform: scaleX(-1); }   /* en el menú, la flecha mira al otro lado */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un
    logro (y de vez en cuando, más sutil, si no se toca) la bolita crece y vuelve. El zoom cambia el TAMAÑO, no un transform: la línea no engorda. */
@@ -703,7 +705,6 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
 .archivo-cab { display: flex; align-items: center; justify-content: space-between; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; padding-top: 8px; position: relative; z-index: 2; }
 .archivo-titulo { margin: 0; color: var(--p-tinta); }
-.archivo-cerrar { border: none; background: none; padding: 6px 0; color: var(--p-tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .archivo.viendo .archivo-titulo { visibility: hidden; }
 /* 29 oct: menú a pantalla completa. Arriba, cuatro iconos del tamaño exacto de los de las fuerzas (misma rejilla de 4 columnas y el mismo hueco);
    abajo, en el espacio libre, la galería, los ajustes o abandonar. */
@@ -719,7 +720,6 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo-panel { width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 .archivo-panel.hidden { display: none; }
 .archivo.viendo .archivo-panel { display: none; }
-.archivo.viendo .archivo-cab { position: absolute; right: 12px; bottom: 10px; width: auto; margin: 0; padding: 0; z-index: 4; }   /* 2 nov: viendo una tarjeta, «Volver» baja a la esquina para no pisar los textos */   /* 2 nov: los iconos se quedan arriba mientras se ve una tarjeta */
 /* La cuadrícula: casillas 1:1 de línea negra, como las de los estados pero más grandes, de tres en tres */
 .archivo-rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
 .archivo.viendo .archivo-rejilla { display: none; }
@@ -814,10 +814,12 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
     <div class="pie-juego">
       <div class="zona-leyenda"><div class="leyenda" id="leyenda"></div></div>
       <div class="ranuras" id="ranuras" role="group" aria-label="Secuelas del régimen"></div>
-      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="dialog" aria-expanded="false" aria-controls="archivo"><i></i><i></i><i></i></button>
+      <button class="boton-menu" id="btn-menu" type="button" aria-label="Menú" aria-haspopup="dialog" aria-expanded="false" aria-controls="archivo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.41 6 5 7.41 9.58 12 5 16.59 6.41 18l6-6zM13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"/></svg></button>
     </div>
     <div class="banda" id="banda" role="status" aria-live="polite"><span id="banda-texto"></span></div>
     <div class="popup hidden" id="popup" role="dialog"></div>
+  </section>
+
     <!-- 29 oct: menú a pantalla completa. Arriba, cuatro iconos del tamaño de los de las fuerzas; abajo, el espacio libre para la galería, los ajustes o abandonar -->
     <div class="archivo hidden" id="archivo" role="dialog" aria-label="Menú">
       <div class="archivo-iconos" id="archivo-iconos">
@@ -826,13 +828,13 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
         <button class="ic-menu" id="btn-config" type="button" style="--ic-color: var(--p-oliva)" aria-label="Configuración"><span class="ic-cuadro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a8 8 0 0 1 0 11" fill="none" stroke="#fff" stroke-width="2"/></svg></span></button>
         <button class="ic-menu" id="btn-abandonar" type="button" style="--ic-color: var(--p-rojo)" aria-label="Abandonar partida"><span class="ic-cuadro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h9v4h-2V5H6v14h5v-2h2v4H4z"/><path d="M14 8l5 4-5 4v-3H9v-2h5z"/></svg></span></button>
       </div>
-      <div class="archivo-cab"><h2 class="titulo archivo-titulo" id="archivo-titulo"></h2><button class="archivo-cerrar" id="archivo-cerrar" type="button">Volver</button></div>
+      <div class="archivo-cab"><h2 class="titulo archivo-titulo" id="archivo-titulo"></h2></div>
       <div class="archivo-rejilla" id="archivo-rejilla"></div>
       <div class="archivo-panel hidden" id="panel-config"><button class="modo principal" id="btn-sonido" type="button"><b>Sonido</b></button></div>
       <div class="archivo-panel hidden" id="panel-abandono"><button class="modo principal" id="btn-salir" type="button"><b>Abandonar partida</b></button></div>
       <div class="logro-vista hidden" id="archivo-abrir"></div>
+      <button class="boton-menu boton-menu-volver" id="btn-menu-cerrar" type="button" aria-label="Volver a la partida"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.41 6 5 7.41 9.58 12 5 16.59 6.41 18l6-6zM13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"/></svg></button>
     </div>
-  </section>
 
   <section id="screen-era" class="screen pantalla-carta hidden">
     <div class="cabecera-carta">
@@ -4277,10 +4279,15 @@ function abrirArchivo(tipo = "recompensas", { atajo = true } = {}) {
   ocultarInfo(); clearTimeout(recuerdoAviso);
   const a = $("archivo");
   a.style.paddingTop = "";
+  const ya = !a.classList.contains("hidden");
   a.classList.remove("hidden");
   $("btn-menu").setAttribute("aria-expanded", "true");
   const dy = $("barras").getBoundingClientRect().top - a.getBoundingClientRect().top;   // los iconos, justo donde están los de las fuerzas
   if (dy > 0) a.style.paddingTop = dy + "px";
+  /* 2 nov, Jorge: el menú entra desde la derecha y empuja a la partida hacia la izquierda; su flecha (hacia el otro lado) está justo donde la del juego */
+  const bj = $("btn-menu").getBoundingClientRect(), ra = a.getBoundingClientRect(), f = $("btn-menu-cerrar");
+  Object.assign(f.style, { left: (bj.left - ra.left) + "px", top: (bj.top - ra.top) + "px", width: bj.width + "px", height: bj.height + "px", right: "auto", bottom: "auto" });
+  if (!ya) deslizarMenu(true);
   seleccionarMenu(tipo);
   if (atajo && tipo && E && E.tutorial) verLogro("paloma");    // en el tutorial, la estrella lleva directa al logro (solo si se llama a mano; desde el menú se elige)
 }
@@ -4301,7 +4308,32 @@ function seleccionarMenu(tab) {
   $("panel-abandono").classList.toggle("hidden", tab !== "abandono");
   if (galeria) pintarArchivo();
 }
-function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); $("btn-menu").setAttribute("aria-expanded", "false"); avisoMenu(); }
+const DESLIZA_MS = 380;
+let deslizando = null;
+/* El menú y la partida se desplazan juntos: al abrir, el menú llega de la derecha y la partida sale por la izquierda; al cerrar, al revés. */
+function deslizarMenu(abre, fin) {
+  const a = $("archivo"), g = $("screen-game");
+  if (deslizando) { deslizando.forEach(x => x.cancel()); deslizando = null; }
+  if (!animar()) { g.style.visibility = abre ? "hidden" : ""; if (fin) fin(); return; }
+  g.style.visibility = "";
+  const op = { duration: DESLIZA_MS, easing: "cubic-bezier(.3, .7, .2, 1)", fill: "both" };
+  const sa = a.animate(abre ? [{ transform: "translateX(100%)" }, { transform: "none" }] : [{ transform: "none" }, { transform: "translateX(100%)" }], op);
+  const sg = g.animate(abre ? [{ transform: "none" }, { transform: "translateX(-100%)" }] : [{ transform: "translateX(-100%)" }, { transform: "none" }], op);
+  deslizando = [sa, sg];
+  sa.onfinish = () => {
+    deslizando = null; sa.cancel(); sg.cancel();
+    g.style.visibility = abre ? "hidden" : "";       // oculta pero con su sitio, para que las medidas de la partida sigan valiendo
+    if (fin) fin();
+  };
+}
+function cerrarArchivo(animado = false) {
+  const a = $("archivo");
+  const terminar = () => { a.classList.add("hidden"); a.classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); };
+  $("btn-menu").setAttribute("aria-expanded", "false");
+  if (animado && animar() && !a.classList.contains("hidden")) deslizarMenu(false, terminar);
+  else { if (deslizando) { deslizando.forEach(x => x.cancel()); deslizando = null; } $("screen-game").style.visibility = ""; terminar(); }
+  avisoMenu();
+}
 function pintarArchivo() {
   const l = logros();
   let html = "";
@@ -4415,20 +4447,16 @@ function efectoDescubrir(vista, escena, celda, textos = []) {
 function volverAlDirectorio() { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); }
 function volverAlJuego() {
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) {   // 25 oct: al cerrar el logro, sigue el tutorial
-    const t = E.tutorial; cerrarArchivo(); pasoTutorial(t.i + 1); return;
+    const t = E.tutorial; cerrarArchivo(true); pasoTutorial(t.i + 1); return;
   }
-  cerrarArchivo();
+  cerrarArchivo(true);
 }
-$("archivo-cerrar").addEventListener("click", () => {
-  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) { volverAlJuego(); return; }
-  if (!$("archivo-abrir").classList.contains("hidden")) { volverAlDirectorio(); return; }
-  cerrarArchivo();
-});
+$("btn-menu-cerrar").addEventListener("click", ev => { ev.stopPropagation(); volverAlJuego(); });   // 2 nov: la flecha del menú vuelve a la partida (el enlace «Volver» ya no existe)
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
   if (e.repeat) return;   // 2 nov: una tecla mantenida no decide cartas seguidas (al caer reiniciaba la partida sola)
-  if (archivoAbierto()) { if (e.key === "Escape") cerrarArchivo(); return; }   // con el archivo abierto, la partida espera
+  if (archivoAbierto()) { if (e.key === "Escape") volverAlJuego(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();
     return;
@@ -4450,7 +4478,7 @@ document.addEventListener("click", e => {
 });
 
 $("btn-menu").addEventListener("click", () => {   // 29 oct: abre el menú a pantalla completa; 2 nov: ya directo en Recompensas
-  if (archivoAbierto()) { cerrarArchivo(); return; }
+  if (archivoAbierto()) { volverAlJuego(); return; }
   abrirArchivo("recompensas", { atajo: false });
 });
 const iconoMenu = (id, tab) => $(id).addEventListener("click", ev => { ev.stopPropagation(); archivoAbierto() ? seleccionarMenu(tab) : abrirArchivo(tab); });

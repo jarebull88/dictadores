@@ -1993,10 +1993,15 @@ function abrirArchivo(tipo = "recompensas", { atajo = true } = {}) {
   ocultarInfo(); clearTimeout(recuerdoAviso);
   const a = $("archivo");
   a.style.paddingTop = "";
+  const ya = !a.classList.contains("hidden");
   a.classList.remove("hidden");
   $("btn-menu").setAttribute("aria-expanded", "true");
   const dy = $("barras").getBoundingClientRect().top - a.getBoundingClientRect().top;   // los iconos, justo donde están los de las fuerzas
   if (dy > 0) a.style.paddingTop = dy + "px";
+  /* 2 nov, Jorge: el menú entra desde la derecha y empuja a la partida hacia la izquierda; su flecha (hacia el otro lado) está justo donde la del juego */
+  const bj = $("btn-menu").getBoundingClientRect(), ra = a.getBoundingClientRect(), f = $("btn-menu-cerrar");
+  Object.assign(f.style, { left: (bj.left - ra.left) + "px", top: (bj.top - ra.top) + "px", width: bj.width + "px", height: bj.height + "px", right: "auto", bottom: "auto" });
+  if (!ya) deslizarMenu(true);
   seleccionarMenu(tipo);
   if (atajo && tipo && E && E.tutorial) verLogro("paloma");    // en el tutorial, la estrella lleva directa al logro (solo si se llama a mano; desde el menú se elige)
 }
@@ -2017,7 +2022,32 @@ function seleccionarMenu(tab) {
   $("panel-abandono").classList.toggle("hidden", tab !== "abandono");
   if (galeria) pintarArchivo();
 }
-function cerrarArchivo() { $("archivo").classList.add("hidden"); $("archivo").classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); $("btn-menu").setAttribute("aria-expanded", "false"); avisoMenu(); }
+const DESLIZA_MS = 380;
+let deslizando = null;
+/* El menú y la partida se desplazan juntos: al abrir, el menú llega de la derecha y la partida sale por la izquierda; al cerrar, al revés. */
+function deslizarMenu(abre, fin) {
+  const a = $("archivo"), g = $("screen-game");
+  if (deslizando) { deslizando.forEach(x => x.cancel()); deslizando = null; }
+  if (!animar()) { g.style.visibility = abre ? "hidden" : ""; if (fin) fin(); return; }
+  g.style.visibility = "";
+  const op = { duration: DESLIZA_MS, easing: "cubic-bezier(.3, .7, .2, 1)", fill: "both" };
+  const sa = a.animate(abre ? [{ transform: "translateX(100%)" }, { transform: "none" }] : [{ transform: "none" }, { transform: "translateX(100%)" }], op);
+  const sg = g.animate(abre ? [{ transform: "none" }, { transform: "translateX(-100%)" }] : [{ transform: "translateX(-100%)" }, { transform: "none" }], op);
+  deslizando = [sa, sg];
+  sa.onfinish = () => {
+    deslizando = null; sa.cancel(); sg.cancel();
+    g.style.visibility = abre ? "hidden" : "";       // oculta pero con su sitio, para que las medidas de la partida sigan valiendo
+    if (fin) fin();
+  };
+}
+function cerrarArchivo(animado = false) {
+  const a = $("archivo");
+  const terminar = () => { a.classList.add("hidden"); a.classList.remove("viendo"); $("archivo-abrir").classList.add("hidden"); };
+  $("btn-menu").setAttribute("aria-expanded", "false");
+  if (animado && animar() && !a.classList.contains("hidden")) deslizarMenu(false, terminar);
+  else { if (deslizando) { deslizando.forEach(x => x.cancel()); deslizando = null; } $("screen-game").style.visibility = ""; terminar(); }
+  avisoMenu();
+}
 function pintarArchivo() {
   const l = logros();
   let html = "";
@@ -2131,20 +2161,16 @@ function efectoDescubrir(vista, escena, celda, textos = []) {
 function volverAlDirectorio() { $("archivo-abrir").classList.add("hidden"); $("archivo").classList.remove("viendo"); pintarArchivo(); avisoMenu(); }
 function volverAlJuego() {
   if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) {   // 25 oct: al cerrar el logro, sigue el tutorial
-    const t = E.tutorial; cerrarArchivo(); pasoTutorial(t.i + 1); return;
+    const t = E.tutorial; cerrarArchivo(true); pasoTutorial(t.i + 1); return;
   }
-  cerrarArchivo();
+  cerrarArchivo(true);
 }
-$("archivo-cerrar").addEventListener("click", () => {
-  if (E && E.tutorial && TUTORIAL[E.tutorial.i].paso === "logro" && E.tutorial.logroGanado) { volverAlJuego(); return; }
-  if (!$("archivo-abrir").classList.contains("hidden")) { volverAlDirectorio(); return; }
-  cerrarArchivo();
-});
+$("btn-menu-cerrar").addEventListener("click", ev => { ev.stopPropagation(); volverAlJuego(); });   // 2 nov: la flecha del menú vuelve a la partida (el enlace «Volver» ya no existe)
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
   if (e.repeat) return;   // 2 nov: una tecla mantenida no decide cartas seguidas (al caer reiniciaba la partida sola)
-  if (archivoAbierto()) { if (e.key === "Escape") cerrarArchivo(); return; }   // con el archivo abierto, la partida espera
+  if (archivoAbierto()) { if (e.key === "Escape") volverAlJuego(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();
     return;
@@ -2166,7 +2192,7 @@ document.addEventListener("click", e => {
 });
 
 $("btn-menu").addEventListener("click", () => {   // 29 oct: abre el menú a pantalla completa; 2 nov: ya directo en Recompensas
-  if (archivoAbierto()) { cerrarArchivo(); return; }
+  if (archivoAbierto()) { volverAlJuego(); return; }
   abrirArchivo("recompensas", { atajo: false });
 });
 const iconoMenu = (id, tab) => $(id).addEventListener("click", ev => { ev.stopPropagation(); archivoAbierto() ? seleccionarMenu(tab) : abrirArchivo(tab); });

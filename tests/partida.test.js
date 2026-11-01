@@ -132,7 +132,7 @@ test("tutorial «La víspera»: siete pasos, las dos respuestas siguen adelante,
   assert.equal(j.w.eval("E.tutorial.i"), 5, "hay que abrir el logro antes de seguir");
   j.w.eval("abrirArchivo()");
   assert.ok(j.d.querySelector("#archivo-abrir .logro-carta img"), "el logro enseña su ilustración");
-  j.$("archivo-cerrar").click();
+  j.$("btn-menu-cerrar").click();   // 2 nov: la flecha del menú vuelve a la partida (y sigue la lección)
   assert.equal(j.w.eval("E.tutorial.i"), 6);
   j.tecla(-1);                                                       // 7: fin → nombre (también con la izquierda)
   assert.ok(j.visible("screen-name"));
@@ -173,7 +173,7 @@ test("logros: «Que se investigue hasta la gallina» da un logro nuevo; con un t
   j.d.querySelector(".logro-carta").click();       // al tocarla se gira y enseña la descripción de la tarjeta (1 nov: sin beneficio ni perjuicio)
   assert.ok(j.d.querySelector(".logro-carta").classList.contains("volteada"));
   assert.match(j.d.querySelector(".logro-dorso").textContent, /puesto de observación/);
-  j.$("archivo-cerrar").click(); j.$("archivo-cerrar").click();
+  j.$("btn-menu-cerrar").click();
   assert.ok(j.$("archivo").classList.contains("hidden"));
   assert.ok(!j.$("btn-menu").classList.contains("con-aviso"), "abierto, la bolita se va");
   assert.deepEqual(j.errores, []);

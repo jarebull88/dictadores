@@ -127,7 +127,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 /* — 3 · CUERPO — */
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
-.fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .archivo-cerrar, .opcion-portada.secundaria,
+.fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
@@ -553,7 +553,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 /* 24 oct: el menú (☰), abajo a la derecha: al borde de la carta y centrado en vertical con las casillas, a la mitad de su tamaño.
    Dentro: Sonido (muy pronto) y abandonar la partida (en el tutorial, «Saltar tutorial»). */
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
-.boton-menu i { display: block; height: var(--linea); background: currentColor; }   /* tres líneas, del grosor de los contornos */
+.boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
+.boton-menu-volver { right: auto; bottom: auto; }
+.boton-menu-volver svg { transform: scaleX(-1); }   /* en el menú, la flecha mira al otro lado */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un
    logro (y de vez en cuando, más sutil, si no se toca) la bolita crece y vuelve. El zoom cambia el TAMAÑO, no un transform: la línea no engorda. */
@@ -690,7 +692,6 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
 .archivo-cab { display: flex; align-items: center; justify-content: space-between; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; padding-top: 8px; position: relative; z-index: 2; }
 .archivo-titulo { margin: 0; color: var(--p-tinta); }
-.archivo-cerrar { border: none; background: none; padding: 6px 0; color: var(--p-tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .archivo.viendo .archivo-titulo { visibility: hidden; }
 /* 29 oct: menú a pantalla completa. Arriba, cuatro iconos del tamaño exacto de los de las fuerzas (misma rejilla de 4 columnas y el mismo hueco);
    abajo, en el espacio libre, la galería, los ajustes o abandonar. */
@@ -706,7 +707,6 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo-panel { width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 .archivo-panel.hidden { display: none; }
 .archivo.viendo .archivo-panel { display: none; }
-.archivo.viendo .archivo-cab { position: absolute; right: 12px; bottom: 10px; width: auto; margin: 0; padding: 0; z-index: 4; }   /* 2 nov: viendo una tarjeta, «Volver» baja a la esquina para no pisar los textos */   /* 2 nov: los iconos se quedan arriba mientras se ve una tarjeta */
 /* La cuadrícula: casillas 1:1 de línea negra, como las de los estados pero más grandes, de tres en tres */
 .archivo-rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
 .archivo.viendo .archivo-rejilla { display: none; }

@@ -29,8 +29,8 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): los juicios de 1959; las dos opciones son cómo se juzga
     id: "casa_vacia", tipo: "ancla", ventana: [1, 1], grupo: "inicio", titulo: "La casa vacía",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.",
-    izq: { accion: "Pongan un narrador deportivo", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
+    texto: "El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.",
+    izq: { accion: "Contraten a dos comentaristas", efectos: { pueblo: 8, ejercito: -5 }, banderas: ["base.juicios_publicos"] },
     der: { accion: "Esto no es un circo", efectos: { pueblo: -8, ejercito: 5 } }
   },
   {
@@ -53,7 +53,7 @@ const CARTAS = [
     id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!",
-    izq: { accion: "Que Milfuegos me lo traiga", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
+    izq: { accion: "Que Milfuegos vaya a detenerlo", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
     der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, banderas: ["base.matojos_libre"] }   // 1 nov: rama de Matojos crítico desde dentro (eras 2–4, por escribir)
   },
   {
@@ -84,9 +84,9 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): la alianza llega siempre (incluye «Los asesores»); se elige cómo
     id: "visitante_oriental", tipo: "ancla", ventana: [3, 7], cond: { turnoMin: 3 }, titulo: "El visitante del bloque oriental",
     personaje: "Embajador del bloque oriental",
-    texto: "Le cambiaremos petróleo por azúcar y le mandaremos asesores militares. Así su Revolución no cometerá errores.",
+    texto: "Le cambiaremos petróleo por azúcar y enviaremos asesores militares para que su Revolución vaya por buen camino.",
     izq: { accion: "Toda ayuda es poca", efectos: { potencias: 9, ejercito: 5, crisis: 2 }, banderas: ["base.alineado_bloque_oriental"], encolar: [{ carta: "refinerias", min: 1, max: 1 }] },
-    der: { accion: "Con el petróleo basta", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
+    der: { accion: "Con petróleo es suficiente", efectos: { potencias: -9, ejercito: -5, crisis: 1 }, encolar: [{ carta: "refinerias", min: 1, max: 1 }] }
   },
 
   /* ---------- Cola ---------- */
@@ -151,9 +151,9 @@ const CARTAS = [
     // 28 oct, plan narrativo (piloto de la era 1): la reforma agraria (1959); se elige cómo
     id: "tierra", tipo: "sorteo", peso: 20, titulo: "La tierra",
     personaje: "Ministro de Trabajo",
-    texto: "Las fincas de los ricos ya son de la Revolución. ¿Las repartimos entre los campesinos o las gestionará el Estado?",
-    izq: { accion: "A los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
-    der: { accion: "El Estado cultiva mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
+    texto: "Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?",
+    izq: { accion: "Para los campesinos", efectos: { pueblo: 8, elite: -6, crisis: 1 }, banderas: ["base.reforma_agraria"] },
+    der: { accion: "Al Estado, que cultiva mejor", efectos: { pueblo: -8, elite: 6 }, banderas: ["base.reforma_agraria"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): las «coletillas» (1960)
@@ -395,15 +395,15 @@ const CARTAS = [
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
     id: "ernesto_torneo", tipo: "ancla", ventana: [2, 3], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
     personaje: "Papá Ernesto",
-    texto: "Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.",
-    izq: { accion: "Conmigo todos pican", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
+    texto: "Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!",
+    izq: { accion: "¡Acepto! Lo mío es hacer picar", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
     der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 }, encolar: [{ carta: "ernesto_corte1", min: 1, max: 1 }] }   // corte 1: Ernesto no vuelve
   },
   {
     // 29 oct: Papá Ernesto (invitado de la era 1, docs/INVITADOS.md): tres cartas repartidas por la era, no un miniflujo
     id: "ernesto_whisky", tipo: "ancla", ventana: [5, 6], cond: { turnoMin: 5, requiere: ["base.ernesto_amigo"], tras: { carta: "ernesto_torneo", turnos: 3 } }, titulo: "Papá Ernesto (whisky)",
     personaje: "Papá Ernesto",
-    texto: "Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.",
+    texto: "Oiga, Comandante, ¿no podría conseguirme unas botellas de whisky importado? Ya sabe cuánto lo necesito para escribir.",
     izq: { accion: "Usted se merece ese whisky", efectos: { potencias: 5, pueblo: -5 }, banderas: ["base.ernesto_whisky"] },
     der: { accion: "Beba lo que bebe el Pueblo", efectos: { potencias: -5, pueblo: 5 }, encolar: [{ carta: "ernesto_corte2", min: 1, max: 1 }] }   // corte 2: Ernesto se va
   },

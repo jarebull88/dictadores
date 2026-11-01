@@ -7,8 +7,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 ## Era 1 · La Revolución
 
 **La casa vacía** (Ministro de las Fuerzas Armadas)  
-«Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
-- A. Pongan un narrador deportivo → sube Pueblo +8 · baja Ejército -5
+«El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.»
+- A. Contraten a dos comentaristas → sube Pueblo +8 · baja Ejército -5
 - B. Esto no es un circo → sube Ejército +5 · baja Pueblo -8
 
 **La casa del tirano** (Ministra de Cultura)  
@@ -23,7 +23,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El comandante que dimite** (Ministro de las Fuerzas Armadas)  
 «Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
-- A. Que Milfuegos me lo traiga → sube Partido +5 · baja Ejército -4
+- A. Que Milfuegos vaya a detenerlo → sube Partido +5 · baja Ejército -4
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
 **El viaje de Milfuegos** (Ministro del Interior; segundo paso)  
@@ -42,9 +42,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Les pagaremos con bonos de azúcar → sube Partido +6 · baja Pueblo -6
 
 **El visitante del bloque oriental** (Embajador del bloque oriental)  
-«Le cambiaremos petróleo por azúcar y le mandaremos asesores militares. Así su Revolución no cometerá errores.»
+«Le cambiaremos petróleo por azúcar y enviaremos asesores militares para que su Revolución vaya por buen camino.»
 - A. Toda ayuda es poca → sube Potencias +9, Ejército +5 · crisis +2
-- B. Con el petróleo basta → baja Potencias -9, Ejército -5 · crisis +1
+- B. Con petróleo es suficiente → baja Potencias -9, Ejército -5 · crisis +1
 
 **Los alfabetizadores en el monte** (Ministra de Educación; segundo paso)  
 «Un maestro de 18 años ha caído en la sierra. ¿Ponemos a salvo a los demás o lo hacemos mártir?»
@@ -67,9 +67,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Memorias desde la celda → sube Ejército +5 · baja Pueblo -8
 
 **La tierra** (Ministro de Trabajo)  
-«Las fincas de los ricos ya son de la Revolución. ¿Las repartimos entre los campesinos o las gestionará el Estado?»
-- A. A los campesinos → sube Pueblo +8 · baja Partido -6 · crisis +1
-- B. El Estado cultiva mejor → sube Partido +6 · baja Pueblo -8
+«Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?»
+- A. Para los campesinos → sube Pueblo +8 · baja Partido -6 · crisis +1
+- B. Al Estado, que cultiva mejor → sube Partido +6 · baja Pueblo -8
 
 **Los periódicos** (Ministra de Cultura)  
 «La prensa critica cada decreto. Los tipógrafos quieren aclarar al pie que es propaganda enemiga.»
@@ -222,12 +222,12 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Una moto y va que chuta → baja Ejército -1
 
 **Papá Ernesto (torneo)** (Papá Ernesto)  
-«Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.»
-- A. Conmigo todos pican → sube Pueblo +5 · baja Partido -5
+«Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!»
+- A. ¡Acepto! Lo mío es hacer picar → sube Pueblo +5 · baja Partido -5
 - B. No me gusta pescar → sube Partido +5 · baja Pueblo -5
 
 **Papá Ernesto (whisky)** (Papá Ernesto)  
-«Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.»
+«Oiga, Comandante, ¿no podría conseguirme unas botellas de whisky importado? Ya sabe cuánto lo necesito para escribir.»
 - A. Usted se merece ese whisky → sube Potencias +5 · baja Pueblo -5
 - B. Beba lo que bebe el Pueblo → sube Pueblo +5 · baja Potencias -5
 

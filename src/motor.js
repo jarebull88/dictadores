@@ -539,7 +539,7 @@ function medirCartaJuego() {
   /* 23 oct: con la carta cuadrada sobra alto debajo; se dan hasta 2 líneas más a la pregunta, dejando siempre
      unos 90 px libres bajo la carta para los avisos de logros. */
   const sobra = esc.clientHeight - c.offsetHeight - 90;
-  if (sobra > linea) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
+  // 2 nov, Jorge: la pregunta mide siempre lo mismo y aguanta 4 líneas como máximo (si no cabe, se acorta el texto): ya no crece a 5 o 6 líneas
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0) + (pila ? pila.offsetTop : 0);
@@ -841,12 +841,11 @@ function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; ajustarLe
 /* La pregunta se cambia siempre por aquí: quita el hundimiento de la anterior (ver estilos.css, .hundiendo y .emerge) */
 function ponerMensaje(html) { const m = $("mensaje"); m.classList.remove("hundiendo"); m.innerHTML = html; }
 const hundirMensaje = () => { if (animar()) { $("mensaje").classList.add("hundiendo"); $("leyenda").classList.add("oculta"); } };   // 2 nov: la leyenda se disuelve a la vez que la pregunta se hunde
-function ajustarMensaje() {
+/* 2 nov, Jorge: el tamaño de la pregunta es fijo y el hueco, de 4 líneas; si un texto no cabe, hay que acortarlo (ya no se achica la letra ni crece el hueco) */
+function ajustarMensaje() {   // lo único que hace: si el texto se pasa de 4 líneas, no se recorta (se ve que choca, y así se nota qué texto hay que acortar)
   const m = $("mensaje");
-  m.style.fontSize = ""; m.style.height = "";
-  let px = parseFloat(getComputedStyle(m).fontSize) || 22;
-  while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
-  if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
+  m.classList.remove("desborda");
+  if (m.scrollHeight > m.clientHeight + 1) m.classList.add("desborda");
 }
 window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
 

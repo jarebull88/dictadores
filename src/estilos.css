@@ -79,7 +79,7 @@ body {
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
   --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;   /* 2 nov, Jorge: antes Sofia Sans Semi Condensed */
-  --peso-cuerpo: 700;
+  --peso-cuerpo: 400;
   --peso-ligero: 300;   /* Londrina Light */
   /* tamaños del TITULAR */
   --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
@@ -409,6 +409,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelando .tapa::after { content: none; }
 .mensaje { transition: opacity .35s ease; }   /* 17 oct: la pregunta aparece con un fundido rápido, no de golpe */
 .mensaje.oculto { opacity: 0; transition: none; }
+.mensaje.desborda { overflow: visible; }   /* 2 nov: un texto de más de 4 líneas no se corta: choca, y hay que acortarlo */
 /* 27 oct: la pregunta que se va se HUNDE por el borde de abajo de su espacio (recortada, sin salirse) y la nueva EMERGE desde el techo */
 .mensaje.hundiendo > * { animation: hundir .24s ease-in forwards; }
 .mensaje.emerge { transition: none; }

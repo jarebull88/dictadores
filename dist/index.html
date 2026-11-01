@@ -92,7 +92,7 @@ body {
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
   --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;   /* 2 nov, Jorge: antes Sofia Sans Semi Condensed */
-  --peso-cuerpo: 700;
+  --peso-cuerpo: 400;
   --peso-ligero: 300;   /* Londrina Light */
   /* tamaños del TITULAR */
   --t-xl: min(calc(var(--carta-w, 360px) * .15), 56px);   /* ¡Has caído!, ¡Has ganado!, el nombre en la ficha */
@@ -422,6 +422,7 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelando .tapa::after { content: none; }
 .mensaje { transition: opacity .35s ease; }   /* 17 oct: la pregunta aparece con un fundido rápido, no de golpe */
 .mensaje.oculto { opacity: 0; transition: none; }
+.mensaje.desborda { overflow: visible; }   /* 2 nov: un texto de más de 4 líneas no se corta: choca, y hay que acortarlo */
 /* 27 oct: la pregunta que se va se HUNDE por el borde de abajo de su espacio (recortada, sin salirse) y la nueva EMERGE desde el techo */
 .mensaje.hundiendo > * { animation: hundir .24s ease-in forwards; }
 .mensaje.emerge { transition: none; }
@@ -2872,7 +2873,7 @@ function medirCartaJuego() {
   /* 23 oct: con la carta cuadrada sobra alto debajo; se dan hasta 2 líneas más a la pregunta, dejando siempre
      unos 90 px libres bajo la carta para los avisos de logros. */
   const sobra = esc.clientHeight - c.offsetHeight - 90;
-  if (sobra > linea) raiz.setProperty("--lineas-mensaje", String(4 + Math.min(2, Math.floor(sobra / linea))));
+  // 2 nov, Jorge: la pregunta mide siempre lo mismo y aguanta 4 líneas como máximo (si no cabe, se acorta el texto): ya no crece a 5 o 6 líneas
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
   const arriba = esc.getBoundingClientRect().top - g.getBoundingClientRect().top - (parseFloat(getComputedStyle(g).paddingTop) || 0) + (pila ? pila.offsetTop : 0);
@@ -3174,12 +3175,11 @@ function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; ajustarLe
 /* La pregunta se cambia siempre por aquí: quita el hundimiento de la anterior (ver estilos.css, .hundiendo y .emerge) */
 function ponerMensaje(html) { const m = $("mensaje"); m.classList.remove("hundiendo"); m.innerHTML = html; }
 const hundirMensaje = () => { if (animar()) { $("mensaje").classList.add("hundiendo"); $("leyenda").classList.add("oculta"); } };   // 2 nov: la leyenda se disuelve a la vez que la pregunta se hunde
-function ajustarMensaje() {
+/* 2 nov, Jorge: el tamaño de la pregunta es fijo y el hueco, de 4 líneas; si un texto no cabe, hay que acortarlo (ya no se achica la letra ni crece el hueco) */
+function ajustarMensaje() {   // lo único que hace: si el texto se pasa de 4 líneas, no se recorta (se ve que choca, y así se nota qué texto hay que acortar)
   const m = $("mensaje");
-  m.style.fontSize = ""; m.style.height = "";
-  let px = parseFloat(getComputedStyle(m).fontSize) || 22;
-  while (m.scrollHeight > m.clientHeight + 1 && px > 17) { px -= 1; m.style.fontSize = px + "px"; }
-  if (m.scrollHeight > m.clientHeight + 1) m.style.height = m.scrollHeight + "px";   // pantalla muy estrecha: una línea más
+  m.classList.remove("desborda");
+  if (m.scrollHeight > m.clientHeight + 1) m.classList.add("desborda");
 }
 window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
 

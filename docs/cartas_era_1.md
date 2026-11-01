@@ -9,9 +9,9 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 1 de su era.
 
-**Carta:** «Los ministros del tirano esperan juicio y el Pueblo quiere verlo en directo, como un partido.»
+**Carta:** «El Pueblo exige juzgar a los ministros del tirano en el estadio y retransmitirlo en directo.»
 
-- **A. Pongan un narrador deportivo** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
+- **A. Contraten a dos comentaristas** Pueblo +8 · Ejército −5 · Bandera: `juicios_publicos`
 - **B. Esto no es un circo** Pueblo −8 · Ejército +5
 
 **Consecuencia futura de `juicios_publicos`:** Las potencias endurecen su postura ante el régimen.
@@ -43,7 +43,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
 
-- **A. Que Milfuegos me lo traiga** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
+- **A. Que Milfuegos vaya a detenerlo** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
 - **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Bandera: `matojos_libre`
 
 ### 5. El viaje de Milfuegos
@@ -91,10 +91,10 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 3 a 7 de su era; a partir del año 3 de la era.
 
-**Carta:** «Le cambiaremos petróleo por azúcar y le mandaremos asesores militares. Así su Revolución no cometerá errores.»
+**Carta:** «Le cambiaremos petróleo por azúcar y enviaremos asesores militares para que su Revolución vaya por buen camino.»
 
 - **A. Toda ayuda es poca** Potencias +9 · Ejército +5 · Crisis +2 · Bandera: `alineado_bloque_oriental` · Encola: `refinerias` en 1 años
-- **B. Con el petróleo basta** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
+- **B. Con petróleo es suficiente** Potencias −9 · Ejército −5 · Crisis +1 · Encola: `refinerias` en 1 años
 
 **Consecuencia futura de `alineado_bloque_oriental`:** El aliado exige concesiones y armamento.
 
@@ -151,10 +151,10 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 20.
 
-**Carta:** «Las fincas de los ricos ya son de la Revolución. ¿Las repartimos entre los campesinos o las gestionará el Estado?»
+**Carta:** «Las tierras de los ricos han sido nacionalizadas. ¿Las repartimos o las gestiona el Estado?»
 
 - **A. A los campesinos** Pueblo +8 · Élite −6 · Crisis +1 · Bandera: `reforma_agraria`
-- **B. El Estado cultiva mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
+- **B. Al Estado, que cultiva mejor** Pueblo −8 · Élite +6 · Bandera: `reforma_agraria`
 
 **Consecuencia futura de `reforma_agraria`:** Escasez de alimentos dos años después.
 
@@ -495,9 +495,9 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 2 a 3 de su era; a partir del año 2 de la era.
 
-**Carta:** «Soy escritor, pescador y anfitrión. Le invito a mi torneo de pesca. Habrá daiquirís para todos y un trofeo que llevará mi nombre.»
+**Carta:** «Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!»
 
-- **A. Conmigo todos pican** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
+- **A. ¡Acepto! Lo mío es hacer picar** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
 - **B. No me gusta pescar** Pueblo −5 · Élite +5 · Encola: `ernesto_corte1` en 1 años
 
 ### 45. Papá Ernesto (whisky)
@@ -505,7 +505,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Papá Ernesto  
 **Condición:** ancla de los años 5 a 6 de su era; exige `ernesto_amigo`; a partir del año 5 de la era.
 
-**Carta:** «Quería pedirle un favor. ¿No podría hacer alguna gestión para que no me falte mi whisky importado? Ya sabe cuánto lo necesito para escribir.»
+**Carta:** «Oiga, Comandante, ¿no podría conseguirme unas botellas de whisky importado? Ya sabe cuánto lo necesito para escribir.»
 
 - **A. Usted se merece ese whisky** Potencias +5 · Pueblo −5 · Bandera: `ernesto_whisky`
 - **B. Beba lo que bebe el Pueblo** Potencias −5 · Pueblo +5 · Encola: `ernesto_corte2` en 1 años

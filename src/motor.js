@@ -709,7 +709,7 @@ const estiloHoja = hex => `--hoja-fondo:${hex};--hoja-texto:${textoSobre(hex)}`;
 const miniDe = src => src ? `<img class="mini-cartel" src="${src}" alt="" draggable="false">` : "";
 function htmlEstado(id, conTitulo = false) {   // 2 nov: el reverso de una secuela nunca lleva título (su nombre ya sale bajo la carta, también al tocar su casilla)
   const d = ESTADOS[id];
-  return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p>` +
+  return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p><hr class="divisor">` +
     `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[id] || "")}</p>`;
 }
 function mostrarInfo(i) {

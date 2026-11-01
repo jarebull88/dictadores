@@ -514,9 +514,9 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .info-hoja .ficha-historia, .logro-hoja p { text-align: center; }
 /* 2 nov, Jorge: el texto se centra en vertical respecto a TODA la tarjeta (no respecto al hueco bajo la miniatura): la miniatura va en el borde de arriba, fuera del flujo,
    y el aire de arriba y de abajo es el mismo para que no choquen. */
-.hoja.info-hoja, .info-hoja, .logro-hoja { position: relative; justify-content: center; padding: 46px 14px; gap: 6px; }
-.mini-cartel { position: absolute; top: 5px; left: 50%; translate: -50% 0; width: 12%; max-width: 44px; aspect-ratio: 1; object-fit: cover; border: 0; box-shadow: none; }
-.divisor { flex: none; align-self: stretch; margin: 2px 12%; border: 0; border-top: 2px solid currentColor; }
+.hoja.info-hoja, .info-hoja, .logro-hoja { position: relative; justify-content: center; padding: 50px 14px; gap: 6px; }
+.mini-cartel { position: absolute; top: calc(var(--carta-w, 360px) * .035); left: 50%; border: var(--linea) solid currentColor !important; translate: -50% 0; width: 10%; max-width: 38px; aspect-ratio: 1; object-fit: cover; box-shadow: none; }
+.divisor { flex: none; align-self: stretch; margin: 2px 12%; color: inherit; border: 0; border-top: 2px solid currentColor; }
 .ficha-historia { margin: 0; max-width: 32ch; }
 
 /* Respuesta según el arrastre (como en Reigns): un panel de tinta translúcido arriba de la carta que baja en
@@ -3027,7 +3027,7 @@ const estiloHoja = hex => `--hoja-fondo:${hex};--hoja-texto:${textoSobre(hex)}`;
 const miniDe = src => src ? `<img class="mini-cartel" src="${src}" alt="" draggable="false">` : "";
 function htmlEstado(id, conTitulo = false) {   // 2 nov: el reverso de una secuela nunca lleva título (su nombre ya sale bajo la carta, también al tocar su casilla)
   const d = ESTADOS[id];
-  return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p>` +
+  return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p><hr class="divisor">` +
     `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[id] || "")}</p>`;
 }
 function mostrarInfo(i) {

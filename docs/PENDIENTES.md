@@ -57,3 +57,5 @@ Ver «Traspaso a programación» y las notas finales de `COLECCIONABLES.md`. La 
 Todas las pantallas con carta usan la misma caja de texto de **4 líneas** (≈140 caracteres a 360 px) y el mismo pie. Hoy no caben: la **intro de la pantalla del nombre** (6 líneas; se corta por abajo). Revisar también la lista de preguntas largas de arriba.
 
 - (Programación, 2 nov) La caída ya no usa `screen-end`; quedan sin usar su HTML/CSS (`carta-fin`, `fin-pie-zona`, reglas `#screen-end.caida`). Borrarlos cuando Jorge lo apruebe.
+
+- **Recordar a Jorge (2 nov):** revisar el **aviso cuando una secuela acaba** (qué se ve y cómo se avisa al jugador).

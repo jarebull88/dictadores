@@ -3767,7 +3767,9 @@ function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin, cart
   void carta.offsetWidth; carta.style.transition = "";
 }
 function mostrarCartaFin(d, clave, personaje, anios) {
-  modoFin = true; ocupado = false; finOcupada = false;
+  modoFin = true; finOcupada = false;
+  ocupado = animar();   // 2 nov: la carta no se puede decidir hasta que haya girado (un gesto o una tecla aún en curso reiniciaba la partida)
+  if (ocupado) setTimeout(() => { if (modoFin) ocupado = false; }, VOLTEO_MS + 500);
   ocultarInfo();
   ponerMensaje(esc(d.texto));
   ponerLeyenda("");
@@ -4495,6 +4497,7 @@ $("archivo-cerrar").addEventListener("click", () => {
 
 /* ---------- Eventos ---------- */
 document.addEventListener("keydown", e => {
+  if (e.repeat) return;   // 2 nov: una tecla mantenida no decide cartas seguidas (al caer reiniciaba la partida sola)
   if (archivoAbierto()) { if (e.key === "Escape") cerrarArchivo(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();

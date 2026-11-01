@@ -126,7 +126,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span,
+.leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
@@ -755,8 +755,6 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .rayos-zoom.r2 { background: repeating-conic-gradient(from 1deg, var(--p-blanco) 0 0.9deg, transparent 0.9deg 3.3deg, var(--zoom-color, var(--p-mostaza)) 3.3deg 4.7deg, transparent 4.7deg 6.6deg); }
 .onda-zoom { z-index: 0; width: 40vmin; height: 40vmin; margin: -20vmin 0 0 -20vmin; border: 8px solid var(--p-blanco); border-radius: 50%; }
 .flash-zoom { z-index: 3; inset: 0; background: var(--p-blanco); }
-.archivo-pista { margin: 14px 0 0; width: var(--carta-w, 100%); max-width: 100%; color: var(--tinta-suave); text-align: center; }
-.archivo-pista + .archivo-pista { margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) { .logro-carta .giro { transition: none; } }
 
 /* 28 oct: la carta de información de una fuerza o un estado: sobre el mazo, misma posición y medida que la carta de la partida */
@@ -4359,16 +4357,14 @@ function verLogro(id) {
           <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
-    <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>
-    <p class="archivo-pista">Por «${esc(g.decision)}»</p>`;
+    <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>`;
   $("archivo").classList.add("viendo");
   const b = v.getBoundingClientRect(), pon = (el, r, extra = {}) => Object.assign(el.style, { position: "absolute", left: (r.left - b.left) + "px", top: (r.top - b.top) + "px", width: r.width + "px", ...extra });
   const rm = $("mensaje").getBoundingClientRect(), rc = rectBase($("carta")), rl = document.querySelector("#screen-game .zona-leyenda").getBoundingClientRect();
-  const escena = v.querySelector(".logro-escena"), msg = v.querySelector(".logro-mensaje"), zona = v.querySelector(".logro-zona"), pista = v.querySelector(".archivo-pista");
+  const escena = v.querySelector(".logro-escena"), msg = v.querySelector(".logro-mensaje"), zona = v.querySelector(".logro-zona");
   pon(msg, rm, { height: rm.height + "px", margin: "0", overflow: "visible" });        // «aunque choque»: los textos largos no se recortan
   pon(escena, rc, { height: rc.height + "px" });
   pon(zona, rl, { height: rl.height + "px" });
-  pon(pista, rl, { top: (rl.bottom - b.top + 4) + "px", margin: "0", textAlign: "center" });
   const carta = v.querySelector(".logro-carta");
   const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
   carta.addEventListener("click", () => { if (carta._arrastrada) { carta._arrastrada = false; return; } girar(); });
@@ -4376,7 +4372,7 @@ function verLogro(id) {
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
   if (nuevo) sonar("descubrir");                        // 29 oct: suena al descubrir una recompensa o logro por primera vez
-  if (nuevo && animar()) efectoDescubrir(v, escena, celda, [msg, zona, pista]);
+  if (nuevo && animar()) efectoDescubrir(v, escena, celda, [msg, zona]);
 }
 /* 2 nov: el título de abajo baja su letra hasta que quepa en el sitio de la leyenda */
 /* 29 oct (Jorge): la carta se desliza a un lado o a otro: derecha, vuelves al juego; izquierda, a la galería. Un toque sigue girándola. */

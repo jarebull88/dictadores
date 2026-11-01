@@ -2037,16 +2037,14 @@ function verLogro(id) {
           <p class="logro-efecto"><b>Perjuicio:</b> ${esc(g.perjuicio)}</p>`}</div></div>
       </div></div>
     </div>
-    <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>
-    <p class="archivo-pista">Por «${esc(g.decision)}»</p>`;
+    <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>`;
   $("archivo").classList.add("viendo");
   const b = v.getBoundingClientRect(), pon = (el, r, extra = {}) => Object.assign(el.style, { position: "absolute", left: (r.left - b.left) + "px", top: (r.top - b.top) + "px", width: r.width + "px", ...extra });
   const rm = $("mensaje").getBoundingClientRect(), rc = rectBase($("carta")), rl = document.querySelector("#screen-game .zona-leyenda").getBoundingClientRect();
-  const escena = v.querySelector(".logro-escena"), msg = v.querySelector(".logro-mensaje"), zona = v.querySelector(".logro-zona"), pista = v.querySelector(".archivo-pista");
+  const escena = v.querySelector(".logro-escena"), msg = v.querySelector(".logro-mensaje"), zona = v.querySelector(".logro-zona");
   pon(msg, rm, { height: rm.height + "px", margin: "0", overflow: "visible" });        // «aunque choque»: los textos largos no se recortan
   pon(escena, rc, { height: rc.height + "px" });
   pon(zona, rl, { height: rl.height + "px" });
-  pon(pista, rl, { top: (rl.bottom - b.top + 4) + "px", margin: "0", textAlign: "center" });
   const carta = v.querySelector(".logro-carta");
   const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
   carta.addEventListener("click", () => { if (carta._arrastrada) { carta._arrastrada = false; return; } girar(); });
@@ -2054,7 +2052,7 @@ function verLogro(id) {
   carta.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); girar(); } });
   if (nuevo) { const l = logros(); l[id].abierto = true; guardarLogros(l); avisoMenu(); }   // descubierto: la estrella se vacía
   if (nuevo) sonar("descubrir");                        // 29 oct: suena al descubrir una recompensa o logro por primera vez
-  if (nuevo && animar()) efectoDescubrir(v, escena, celda, [msg, zona, pista]);
+  if (nuevo && animar()) efectoDescubrir(v, escena, celda, [msg, zona]);
 }
 /* 2 nov: el título de abajo baja su letra hasta que quepa en el sitio de la leyenda */
 /* 29 oct (Jorge): la carta se desliza a un lado o a otro: derecha, vuelves al juego; izquierda, a la galería. Un toque sigue girándola. */

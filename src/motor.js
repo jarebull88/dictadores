@@ -831,7 +831,7 @@ function abrirInfo(clave, id, fondo, origen, html, textos) {
    si aun así no cabe (pantallas muy estrechas), la caja crece lo justo para ese mensaje. */
 /* 27 oct: la franja bajo la carta: el nombre del estado, el cargo del personaje o la instrucción del tutorial. Londrina Light, mayúsculas y
    centrada; empieza al tamaño del título de la era y baja sola hasta que quepa (como mucho, dos líneas). */
-function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; }
+function ponerLeyenda(texto, regular) { $("leyenda").textContent = texto || ""; $("leyenda").classList.toggle("regular", !!regular); }   // regular: «Gobernaste por N años» (2 nov, Jorge)
 /* La pregunta se cambia siempre por aquí: quita el hundimiento de la anterior (ver estilos.css, .hundiendo y .emerge) */
 function ponerMensaje(html) { const m = $("mensaje"); m.classList.remove("hundiendo"); m.innerHTML = html; }
 const hundirMensaje = () => { if (animar()) { $("mensaje").classList.add("hundiendo"); $("leyenda").classList.add("oculta"); } };   // 2 nov: la leyenda se disuelve a la vez que la pregunta se hunde
@@ -889,7 +889,7 @@ function pintarCarta(c) {
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
-  if (ocupado || modoAviso) return;
+  if (ocupado || modoAviso || modoFin) return;
   if (E && E.tutorial && !["girar", "estado"].includes(TUTORIAL[E.tutorial.i].paso)) return;   // 17 oct: en el tutorial solo se gira en su paso (29 oct: y la secuela «Luna de miel», en el suyo)
   pintarEleccion(0);
   const volteada = $("carta").classList.toggle("volteada");
@@ -914,6 +914,7 @@ function voltear() {
 /* La respuesta cabe siempre en 2 líneas: si es larga, la letra baja (de 21 px hasta 14 px).
    Se mide con offsetHeight, que no cuenta el giro del panel. */
 function pintarEleccion(dir) {
+  if (modoFin) { eleccionFin(dir); return; }
   if ((modoEstado || modoAviso) && !(E && E.tutorial)) return;       // la carta de estado (o de aviso) no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
   let op = c && dir !== 0 && !modoEstado && !modoAviso ? opcionDe(dir) : null;
@@ -943,7 +944,7 @@ function empezar() {
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
   E.avisoPendiente = null;
-  E.estadoNuevo = null; modoEstado = false; modoAviso = false;
+  E.estadoNuevo = null; modoEstado = false; modoAviso = false; modoFin = false;
   $("carta").classList.remove("hidden", "listo");
   E.actual = siguienteCarta();
   barajarLados();
@@ -1058,6 +1059,7 @@ function lanzarCarta(carta, dir) {
   carta.style.opacity = "0";
 }
 function decidir(dir) {
+  if (modoFin) { decidirFin(dir); return; }   // 2 nov: la caída es una carta más: derecha, jugar de nuevo; izquierda, volver a la portada
   if (modoAviso) { recogerAviso(); return; }     // 1 nov: la carta de aviso se desliza a cualquier lado y sigue la partida
   if (modoEstado) { recogerEstado(); return; }   // 27 oct: la carta de estado se guarda al deslizarla a un lado u otro
   if (ocupado || tutorialBloquea()) return;
@@ -1161,7 +1163,7 @@ function mostrarAvisoPendiente() {
 
 /* ---------- Carta de aviso (1 nov, Jorge): una nota de inteligencia, blanca y solo con su texto. Sin respuestas: se desliza a cualquier
    lado, como una secuela, y la partida sigue. No mueve fuerzas salvo que lo diga su carta, y no cuenta para el largo de la era (`enlace`). ---------- */
-let modoAviso = false;
+let modoAviso = false, modoFin = false; modoFin = false;
 function mostrarCartaAviso(c) {
   modoAviso = true; ocupado = false;
   ponerMensaje("");
@@ -1367,22 +1369,22 @@ function terminar(clave, transicion, personaje) {
   pantalla.classList.toggle("pantalla-carta", !!clave);
   pantalla.classList.toggle("pantalla-texto", victoria);
   if (clave) {
-    /* Caída: «¡Has caído!», qué fuerza cayó, el relato y la causa en una carta (derecha = jugar de nuevo, izquierda = volver a la portada) */
+    /* Caída (2 nov, Jorge): una carta más sobre el mazo, en la pantalla del juego. Las barras se quedan arriba (la que cayó, en rojo),
+       el relato ocupa el sitio de la pregunta, «¡Has caído!» sale como la banda de las recompensas (siempre roja) y, al irse, la leyenda
+       dice cuánto gobernaste. Derecha, jugar de nuevo; izquierda, volver a la portada. */
     const f = finalDe(clave, E ? E.era : 1);
-    const muertePers = !f.especial && personaje && MUERTES_PERSONAJE[personaje];   // 1 nov: si caes en la carta de quien puede tumbarte, sale su muerte (arriba sigue la frase de qué barra cayó)
+    const muertePers = !f.especial && personaje && MUERTES_PERSONAJE[personaje];   // 1 nov: si caes en la carta de quien puede tumbarte, sale su muerte
     const d = muertePers || f;
-    $("fin-principal").textContent = "¡Has caído!";
-    $("fin-titulo").textContent = d.titulo;
-    // Un solo párrafo para ahorrar sitio: «Las potencias llegaron al máximo.» en negrita y, seguido, el relato
-    if (f.especial) $("fin-pie").textContent = "";   // atentados y pelotazo: sin barra que cayó
-    else {
+    let frase = "";
+    if (!f.especial) {
       const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
       const [sujeto, verbo] = SUJETO_FUERZA[idF];
-      $("fin-pie").textContent = `${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.`;   // 29 oct: la frase corta, bajo la carta; el relato se queda arriba, sin el nombre de la muerte
+      frase = `${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.`;
     }
-    $("fin-texto").textContent = d.texto;
-    pintarCartaFin(d.titulo, clave, muertePers ? personaje : null);
-    $("fin-anios").textContent = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;   // debajo de la carta
+    const anios = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;
+    E.fin = { clave, titulo: d.titulo, texto: d.texto, frase, anios };
+    mostrarCartaFin(d, clave, muertePers ? personaje : null, anios);
+    return;
   } else {
     $("fin-principal").textContent = "¡Has ganado!";
     $("fin-titulo").textContent = "Moriste en tu cama, y en el poder";
@@ -1392,26 +1394,6 @@ function terminar(clave, transicion, personaje) {
     ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
   mostrar("screen-end");
-  if (clave) entrarFin();
-}
-/* 2 nov, Jorge: la caída sale del mazo como una carta más: llega boca abajo sobre el mazo del color de la era, da la vuelta y,
-   al descubrirse, aparecen con fundido el título, el relato y el pie (misma cadencia que la carta del nombre) */
-function entrarFin() {
-  const pant = $("screen-end"), carta = $("carta-fin");
-  if (!animar()) return;
-  colorReverso(E ? E.era : 1);
-  pant.classList.remove("entrando"); void pant.offsetWidth; pant.classList.add("entrando");
-  const giro = carta.querySelector(".giro");
-  if (giro) giro.style.transition = "none";
-  carta.classList.add("revelando", "boca-abajo");
-  void carta.offsetWidth; if (giro) giro.style.transition = "";
-  clearTimeout(carta._revela); clearTimeout(pant._entra);
-  carta._revela = setTimeout(() => {
-    carta.classList.remove("boca-abajo");
-    sonar("voltear");
-    carta._revela = setTimeout(() => carta.classList.remove("revelando"), VOLTEO_MS + 40);
-  }, 450);
-  pant._entra = setTimeout(() => pant.classList.remove("entrando"), 1800);
 }
 /* Al caer, todo lo de arriba debe caber en el hueco de las barras y la pregunta: si no cabe, baja la letra
    del relato (hasta 13 px) y después la del título (hasta 36 px) */
@@ -1424,8 +1406,7 @@ const FONDO_CAIDA = { ejercito_0: "#1D51A0", pueblo_0: "#D8A02A", pueblo_100: "#
   elite_0: "#F0E9D6", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
 let claveFin = "";
 let personajeFin = null;
-function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin) {
-  const carta = $("carta-fin");
+function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin, carta = $("carta-fin")) {
   claveFin = clave; personajeFin = personaje;
   finOcupada = false;
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
@@ -1436,40 +1417,58 @@ function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin) {
   const slugP = personaje && PERSONAJE_SLUG[personaje];
   const imgMuerte = clave && !slugP && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
   if (imgMuerte) {
-    carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"><img class="objeto-img" src="${imgMuerte}" alt="${esc(titulo)}" draggable="false"><div class="respuesta"></div></div></div></div>`;
+    carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"><img class="objeto-img" src="${imgMuerte}" alt="${esc(titulo)}" draggable="false"><div class="respuesta"></div></div></div></div>`;
     void carta.offsetWidth; carta.style.transition = "";
     return;
   }
   const escena = clave && !slugP && svgEscena(idEscena, titulo);
   if (slugP && RETRATOS[slugP]) {   // 1 nov: muerte de un personaje: mientras Arte no haga su imagen, su cartel
     cartonDe(carta, slugP);
-    carta.innerHTML = `<div class="giro"><div class="cara"><div class="ilustracion"${fondoDe(slugP)}>${svgPersonaje(slugP, personaje)}<div class="respuesta"></div></div></div></div>`;
+    carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe(slugP)}>${svgPersonaje(slugP, personaje)}<div class="respuesta"></div></div></div></div>`;
     void carta.offsetWidth; carta.style.transition = "";
     return;
   }
   carta.innerHTML = escena
-    ? `<div class="giro"><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
+    ? `<div class="giro"><div class="tapa"></div><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
       `${escena}<div class="respuesta"></div></div></div></div>`
-    : `<div class="giro"><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
+    : `<div class="giro"><div class="tapa"></div><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
       `${clave && FINALES[clave] && FINALES[clave].especial ? `<div class="titulo-caida">${esc(titulo)}</div>` : ""}<div class="respuesta"></div></div></div></div>`;   // sin imagen aún (Arte): el título
   void carta.offsetWidth; carta.style.transition = "";
 }
+function mostrarCartaFin(d, clave, personaje, anios) {
+  modoFin = true; ocupado = false; finOcupada = false;
+  ocultarInfo();
+  ponerMensaje(esc(d.texto));
+  ponerLeyenda("");
+  const carta = $("carta");
+  carta.classList.remove("hidden", "listo", "volteada");
+  pintarCartaFin(d.titulo, clave, personaje, carta);
+  $("barras").classList.remove("apagadas");
+  pintarBarras();                                      // la fuerza que cayó está en 0 o 100: sale en rojo
+  mostrar("screen-game");
+  medirCartaJuego();
+  entrarCarta(carta);
+  const dilo = () => { if (modoFin) ponerLeyenda(anios, true); };
+  if (!animar()) { dilo(); return; }
+  clearTimeout(carta._banda);
+  carta._banda = setTimeout(() => { if (modoFin) banda("caida", "¡Has caído!", dilo); }, VOLTEO_MS + 200);
+}
 function eleccionFin(dir) {
-  const r = $("carta-fin").querySelector(".respuesta");
+  const r = $("carta").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
   r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Jugar de nuevo" : "Volver a la portada"}</strong></div>`;
   r.dataset.dir = dir; r.classList.add("visible");
 }
 function decidirFin(dir) {
-  if (finOcupada) return;
-  finOcupada = true;
-  const carta = $("carta-fin");
+  if (finOcupada || ocupado) return;
+  finOcupada = ocupado = true;
+  const carta = $("carta");
   eleccionFin(dir);
+  carta.classList.add("listo");
   lanzarCarta(carta, dir);
-  setTimeout(() => { if (dir > 0) empezar(); else { mostrar("screen-start"); pintarCartaFin($("fin-titulo").textContent); } }, 240);
+  setTimeout(() => { modoFin = false; ocupado = false; if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
-arrastrable($("carta-fin"), { activa: () => !finOcupada, mostrar: eleccionFin, decidir: decidirFin });
 
 /* ---------- Nombre del dictador ---------- */
 function actualizarVistaNombre() {
@@ -1509,7 +1508,7 @@ function pasoTutorial(i, sinEntrada) {
   const iFuerzas = TUTORIAL.findIndex(x => x.paso === "fuerzas"), iEstado = TUTORIAL.findIndex(x => x.paso === "estado");
   if (i <= iFuerzas) { $("barras").classList.add("apagadas"); $("barras").querySelectorAll(".barra").forEach(b => b.classList.remove("encendida")); }
   if (i <= iEstado && E.estados.length) { E.estados = []; pintarRanuras(); }
-  clearTimeout(relojEstado); modoEstado = false; modoAviso = false;
+  clearTimeout(relojEstado); modoEstado = false; modoAviso = false; modoFin = false;
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
@@ -1602,7 +1601,7 @@ function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
-  E = null; modoEstado = false; modoAviso = false; ocupado = false;
+  E = null; modoEstado = false; modoAviso = false; modoFin = false; ocupado = false;
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
   if (destino === "portada") mostrar("screen-start"); else irANombre();
@@ -1968,11 +1967,11 @@ function avisoMenu() {
   vigilarAviso();
 }
 /* La banda de aviso (docs: ver .banda en estilos.css). Los avisos hacen cola: si llegan dos juntos (una recompensa y un logro), salen uno tras otro. */
-const BANDA_MS = { secuela: 2400, recompensa: 3000, logro: 3400 };
+const BANDA_MS = { secuela: 2400, recompensa: 3000, logro: 3400, caida: 3000 };
 const colaBanda = [];
 let bandaActiva = false, relojBanda = null;
 function limpiarBanda() { clearTimeout(relojBanda); colaBanda.length = 0; bandaActiva = false; const b = $("banda"); if (b) b.className = "banda"; }
-function banda(tipo, texto) { colaBanda.push({ tipo, texto }); if (!bandaActiva) siguienteBanda(); }
+function banda(tipo, texto, fin) { colaBanda.push({ tipo, texto, fin }); if (!bandaActiva) siguienteBanda(); }
 function siguienteBanda() {
   const n = colaBanda.shift(), b = $("banda"), z = document.querySelector("#screen-game .zona-leyenda");
   if (!n || $("screen-game").classList.contains("hidden")) { limpiarBanda(); return; }
@@ -1986,7 +1985,7 @@ function siguienteBanda() {
   void b.offsetWidth;                                  // reinicia la animación
   b.className = "banda activa tipo-" + n.tipo;
   sonar("aviso");                                      // 29 oct: suena con cada cartel (recompensa, logro o secuela)
-  relojBanda = setTimeout(() => { b.className = "banda"; siguienteBanda(); }, ms);
+  relojBanda = setTimeout(() => { b.className = "banda"; if (n.fin) n.fin(); siguienteBanda(); }, ms);
 }
 /* Un coleccionable nuevo: la bolita del menú hace su zoom y sale la banda («¡Nueva recompensa!» o «¡Nuevo logro!»; los de fin de era son logros) */
 function anunciarLogro(nuevos) {

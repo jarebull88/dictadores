@@ -28,15 +28,19 @@ test("el relleno es horizontal y refleja el valor", () => {
   assert.deepEqual(w, { pueblo: "72%", ejercito: "25%", elite: "50%", potencias: "93%" });
 });
 
-test("al caer, «¡Has caído!» es el mensaje principal y se explica la causa", () => {
+test("al caer, la caída es una carta más en la pantalla del juego: barras arriba (la caída en rojo), relato en la pregunta y, tras el cartel, los años en la leyenda", () => {
   const j = cargar(); j.empezar();
-  j.w.eval("terminar('ejercito_0')");
-  assert.equal(j.$("fin-principal").textContent, "¡Has caído!");
-  assert.equal(j.$("fin-titulo").textContent, "Abducción");
-  assert.match(j.$("fin-pie").textContent, /^El ejército llegó al mínimo\.$/);
-  // 29 oct: sin cinta con el nombre de la muerte: la causa va bajo la carta, y después los años
-  assert.ok(j.d.querySelector("#carta-fin .ilustracion") && !j.d.querySelector("#carta-fin .titulo-caida, #carta-fin .etiqueta-boli"), "la carta no lleva el nombre");
-  assert.equal(j.$("fin-pie").nextElementSibling, j.$("fin-anios"));
+  j.w.eval("E.barras.ejercito = 0; terminar('ejercito_0')");
+  assert.ok(j.visible("screen-game") && !j.visible("screen-end"));
+  assert.ok(j.w.eval("modoFin"));
+  assert.equal(j.w.eval("E.fin.titulo"), "Abducción");
+  assert.equal(j.w.eval("E.fin.frase"), "El ejército llegó al mínimo.");
+  assert.ok(j.d.querySelector('.barra[data-b="ejercito"]').classList.contains("peligro"), "la fuerza que cae sale en rojo");
+  assert.ok(j.d.querySelector("#carta .ilustracion") && !j.d.querySelector("#carta .titulo-caida, #carta .etiqueta-boli"), "la carta no lleva el nombre");
+  assert.match(j.$("mensaje").textContent, /\S/, "el relato va en el sitio de la pregunta");
+  assert.match(j.$("leyenda").textContent, /^Gobernaste /);
+  j.w.eval("decidir(1)");   // derecha: jugar de nuevo
+  return new Promise(r => setTimeout(() => { assert.ok(!j.w.eval("modoFin")); assert.ok(j.visible("screen-game")); r(); }, 400));
 });
 
 test("al pasar de era sale el nombre de la era que empieza y al sobrevivir a la última, «¡Has ganado!»", () => {

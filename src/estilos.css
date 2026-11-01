@@ -107,6 +107,8 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
 
+.leyenda.regular { font-weight: var(--peso-normal); }   /* «Gobernaste por N años»: en regular */
+
 /* — 3 · CUERPO — */
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .logro-descripcion, .logro-efecto,
@@ -663,6 +665,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .banda.activa span { animation: sello var(--d) cubic-bezier(.22, 1.4, .36, 1) both; }
 .banda.tipo-secuela { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 1.8; }
 .banda.tipo-recompensa { --banda-fondo: var(--p-azul); --banda-entra: banda-der; --s0: 2.4; }
+.banda.tipo-caida { --banda-fondo: var(--p-rojo); --banda-entra: banda-izq; --s0: 2.4; }   /* 2 nov: «¡Has caído!» sale como los avisos, siempre en rojo */
 .banda.tipo-logro { --banda-fondo: var(--p-oliva); --banda-entra: banda-centro; --s0: 3; }
 @keyframes sello {
   0%, 6%    { transform: scale(var(--s0)); opacity: 0; }

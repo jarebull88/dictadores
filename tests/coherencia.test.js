@@ -170,15 +170,15 @@ test("avisos: los cortes de Papá Ernesto salen justo después de la decisión q
 test("muertes: si caes en la carta de Domingo, Octavio, Strenko, Pembrook o Anselmo sale su muerte (con la frase de la barra); en otra, la de la barra", () => {
   j.empezar();
   w.eval(`terminar("pueblo_0", false, "Ministro de las Fuerzas Armadas")`);
-  assert.equal(j.$("fin-titulo").textContent, "Por fin es Domingo");
-  assert.equal(j.$("fin-pie").textContent, "El Pueblo llegó al mínimo.");
-  assert.match(j.$("fin-texto").textContent, /^Tu hermano pequeño/);
+  assert.equal(w.eval("E.fin.titulo"), "Por fin es Domingo");
+  assert.equal(w.eval("E.fin.frase"), "El Pueblo llegó al mínimo.");
+  assert.match(w.eval("E.fin.texto"), /^Tu hermano pequeño/);
   w.eval(`terminar("pueblo_0", false, "Ministro de Economía")`);
-  assert.equal(j.$("fin-titulo").textContent, "Re-Revolución");
+  assert.equal(w.eval("E.fin.titulo"), "Re-Revolución");
   w.eval(`FINALES_ERA[2] = { pueblo_0: { titulo: "Prueba era 2", texto: "x" } }; E.era = 2; terminar("pueblo_0")`);
-  assert.equal(j.$("fin-titulo").textContent, "Prueba era 2", "cada era puede tener su caída");
+  assert.equal(w.eval("E.fin.titulo"), "Prueba era 2", "cada era puede tener su caída");
   w.eval(`E.era = 3; terminar("pueblo_0")`);
-  assert.equal(j.$("fin-titulo").textContent, "Re-Revolución", "si falta, vale la de la era 1");
+  assert.equal(w.eval("E.fin.titulo"), "Re-Revolución", "si falta, vale la de la era 1");
   w.eval(`delete FINALES_ERA[2]; E.era = 1`);
 });
 test("atentados: el riesgo depende solo del Ejército; aceptar da la muerte o su parte buena; rechazar, un golpe único", () => {
@@ -199,8 +199,8 @@ test("atentados: el riesgo depende solo del Ejército; aceptar da la muerte o su
   assert.equal(r.potencias, 70, "Potencias vuelve hacia el centro (la mitad de lo que falta)");
   assert.deepEqual(r.rechazo, ["tabacos_rechazo"]);
   w.eval(`terminar("atentado_tabacos")`);
-  assert.equal(j.$("fin-titulo").textContent, "Regalo envenenado");
-  assert.equal(j.$("fin-pie").textContent, "", "sin frase de barra");
+  assert.equal(w.eval("E.fin.titulo"), "Regalo envenenado");
+  assert.equal(w.eval("E.fin.frase"), "", "sin frase de barra");
 });
 test("atentados: uno por era, nunca antes de la cuarta carta de la era", () => {
   j.empezar();
@@ -239,7 +239,7 @@ test("pelotazo: «A ver quién me batea» mata 1 de cada 10 y entonces no hay re
     return JSON.stringify({ muere, vive });`);
   assert.equal(r.muere, "pelotazo"); assert.equal(r.vive, null);
   w.eval(`terminar("pelotazo")`);
-  assert.equal(j.$("fin-titulo").textContent, "Pelotazo");
+  assert.equal(w.eval("E.fin.titulo"), "Pelotazo");
   const e = jugar(`guardarLogros({}); const c = POR_ID.ernesto_higado; const otra = c.der; comprobarLogros(c, otra); const sin = !!logros().ernesto;
     comprobarLogros(c, c.izq); return JSON.stringify({ sin, con: !!logros().ernesto });`);
   assert.deepEqual(e, { sin: false, con: true });

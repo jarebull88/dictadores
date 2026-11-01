@@ -30,6 +30,7 @@ function jugarPartida(j, { maxPasos = 160 } = {}) {
   w.eval("empezar()");
   const resumen = { transiciones: 0, cae: false, principal: "" };
   for (let n = 0; n < maxPasos; n++) {
+    if (visible("screen-game") && w.eval("modoFin")) { resumen.cae = true; resumen.principal = "¡Has caído!"; return resumen; }   // 2 nov: la caída es una carta más, en la pantalla del juego
     if (visible("screen-game")) { tecla(Math.random() < 0.5 ? -1 : 1); continue; }
     if (visible("screen-era")) { resumen.transiciones++; w.eval("decidirEra(1)"); continue; }
     if (visible("screen-end")) {

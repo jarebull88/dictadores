@@ -22,7 +22,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Ni un vicio capitalista → sube Partido +4 · baja Pueblo -5, Potencias -4
 
 **El comandante que dimite** (Ministro de las Fuerzas Armadas)  
-«Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
+«El Comandante Motos ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
 - A. Que Milfuegos vaya a detenerlo → sube Partido +5 · baja Ejército -4
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 

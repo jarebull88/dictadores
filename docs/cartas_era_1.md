@@ -41,7 +41,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 3 de su era.
 
-**Carta:** «Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
+**Carta:** «El Comandante Motos ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
 
 - **A. Que Milfuegos vaya a detenerlo** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
 - **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Bandera: `matojos_libre`
@@ -56,7 +56,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 - **A. Sí, que vaya volando** Ejército +3 · Pueblo −3 · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
 - **B. Mejor en jeep, no hay prisa** Pueblo +3 · Ejército −3 · Encola: `fuga_comandante` en 1 a 2 años
 
-**Consecuencia futura de `mota_juzgado`:** Los nietos de Matojos piden que los libros hablen de él.
+**Consecuencia futura de `mota_juzgado`:** Los nietos de Motos piden que los libros hablen de él.
 
 ### 6. La fuga del comandante
 

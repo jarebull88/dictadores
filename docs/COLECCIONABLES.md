@@ -138,6 +138,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Puros Comandantes** — *aprobada* (el atentado no existió si la tienes: los puros le gustaron y creó su marca)
   - Externa: Caja de veinticinco robustos. Aquellos tabacos regalados le gustaron tanto al Comandante que creó su propia marca.
   - Tarjeta: Una edición exclusiva, reservada para su disfrute personal y a los jefes de Estado que conviene tener contentos. La diplomacia también se fuma.
+- **Carnet de Chivatón** (antes «Chivatón de barrio»; era 2) — *aprobada*
+  - Externa: El carné del comité de barrio: un ojo abierto, una cinta con un lema y la firma del Comandante.
+  - Tarjeta: Convierte cada cuadra en un puesto de observación y a cada vecino en un informante. Quien lo lleva también es vecino de alguien.
 
 ## Traspaso a programación (28 oct)
 

@@ -135,6 +135,9 @@ Cada recompensa: **título**, **descripción externa** (`subtitulo`, bajo el tí
 - **Postal con misil** — *aprobada*
   - Externa: Una estampa de la bahía: aguas cristalinas, sombrillas de colores y un misil nuclear que luce espléndido junto a la orilla.
   - Tarjeta: En el reverso tiene un espacio para escribir a la familia y otro para las coordenadas. El envío lo paga la potencia que la recibe.
+- **Puros Comandantes** — *aprobada* (el atentado no existió si la tienes: los puros le gustaron y creó su marca)
+  - Externa: Caja de veinticinco robustos. Aquellos tabacos regalados le gustaron tanto al Comandante que creó su propia marca.
+  - Tarjeta: Una edición exclusiva, reservada para su disfrute personal y a los jefes de Estado que conviene tener contentos. La diplomacia también se fuma.
 
 ## Traspaso a programación (28 oct)
 

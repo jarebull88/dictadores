@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
+Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.3.
 
 ### 1. La casa vacía
 
@@ -550,17 +550,7 @@ Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequ
 - **A. A ver si son tan buenos** 
 - **B. Aquí nadie regala nada**  · Encola: `tabacos_rechazo` en 1 años
 
-### 50. Los tabacos (bien)
-
-**Personaje:** undefined  
-**Condición:** sorteo con peso undefined.
-
-**Carta:** «Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.»
-
-- **A. (sin respuestas: se desliza)** 
-- **B. (sin respuestas: se desliza)** 
-
-### 51. Los tabacos (rechazo)
+### 50. Los tabacos (rechazo)
 
 **Personaje:** undefined  
 **Condición:** sorteo con peso undefined.
@@ -570,7 +560,7 @@ Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequ
 - **A. (sin respuestas: se desliza)** Pueblo −4
 - **B. (sin respuestas: se desliza)** Pueblo −4
 
-### 52. La calle y los cuarteles *(borrador)*
+### 51. La calle y los cuarteles *(borrador)*
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -580,7 +570,7 @@ Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequ
 - **A. Un ascenso y se calman** Ejército +8 · Élite −4
 - **B. Arréstenlos a todos** Ejército −6 · Pueblo −3 · Crisis +2
 
-### 53. La embajada
+### 52. La embajada
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de coalición: la dispara tener dos barras bajas a la vez (repetible).
@@ -590,7 +580,7 @@ Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequ
 - **A. Lo que pida el aliado** Potencias +8 · Élite −4
 - **B. Casa y coche para todos** Élite +8 · Potencias −4
 
-### 54. Los nuevos vecinos
+### 53. Los nuevos vecinos
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** ancla de los años 10 a 14 de su era.
@@ -604,7 +594,7 @@ Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `misiles_instalados`:** Una potencia vecina vigila tus misiles.
 
-### 55. El ultimátum
+### 54. El ultimátum
 
 **Personaje:** Embajador de la potencia del norte  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -616,7 +606,7 @@ Duración: entre 10 y 12 cartas. 56 cartas. Los efectos están en la escala pequ
 
 **Consecuencia futura de `embargo_en_marcha`:** Embargo total.
 
-### 56. Embargo total
+### 55. Embargo total
 
 **Personaje:** Ministro de Comercio  
 **Condición:** sorteo con peso 20; exige alguna de `embargo_en_marcha`, `nacionalizo_empresas`; a partir del año 6 de la era.

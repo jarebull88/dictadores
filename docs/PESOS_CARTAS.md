@@ -251,11 +251,6 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. A ver si son tan buenos → nada
 - B. Aquí nadie regala nada → nada
 
-**Los tabacos (bien)** (undefined; segundo paso)  
-«Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.»
-- A. (sin respuestas: se desliza) → nada
-- B. (sin respuestas: se desliza) → nada
-
 **Los tabacos (rechazo)** (undefined; segundo paso)  
 «Los productores no entienden cómo el Comandante puede rechazar semejante muestra de orgullo patrio.»
 - A. (sin respuestas: se desliza) → baja Pueblo -4

@@ -190,13 +190,12 @@ test("atentados: el riesgo depende solo del Ejército; aceptar da la muerte o su
     E.barras = { pueblo: 50, ejercito: 50, elite: 50, potencias: 90 };
     Math.random = () => 0.1; aplicar(c, c.izq); const muere = comprobarCaida();         // 0,1 < 0,40: muere
     E.muerteEspecial = null; E.cola.length = 0;
-    Math.random = () => 0.9; aplicar(c, c.izq); const bien = E.cola.map(q => q.carta);   // sobrevive
-    const b = POR_ID.tabacos_bien; aplicar(b, b.izq); const potencias = E.barras.potencias;   // 90 → 70
+    Math.random = () => 0.9; aplicar(c, c.izq); const bien = E.cola.map(q => q.carta); const potencias = E.barras.potencias;   // sobrevive: Potencias 90 → 70, sin carta de aviso
     E.cola.length = 0; aplicar(c, c.der); const rechazo = E.cola.map(q => q.carta);
     return JSON.stringify({ riesgos, muere, bien, potencias, rechazo });`);
   assert.deepEqual(r.riesgos, [0.75, 0.4, 0.225, 0.05, 0.05, 0.75]);
   assert.equal(r.muere, "atentado_tabacos");
-  assert.deepEqual(r.bien, ["tabacos_bien"]);
+  assert.deepEqual(r.bien, [], "sobrevivir no saca ninguna carta: el premio es una recompensa");
   assert.equal(r.potencias, 70, "Potencias vuelve hacia el centro (la mitad de lo que falta)");
   assert.deepEqual(r.rechazo, ["tabacos_rechazo"]);
   w.eval(`terminar("atentado_tabacos")`);

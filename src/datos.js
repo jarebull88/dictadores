@@ -432,12 +432,8 @@ const CARTAS = [
     id: "atentado_tabacos", tipo: "atentado", enlace: true, titulo: "Los tabacos", leyenda: "Regalo", fondo: "mostaza",
     texto: "Un admirador anónimo te ha enviado una caja de tabacos. Dicen que son los mejores del país.",
     detras: "Una selección de tabacos exclusivos. En nariz despliegan notas dulzonas de intensidad poco habitual. La capa presenta un brillo singular, casi impropio, posiblemente atribuible a una elaboración de excepcional calidad.",
-    izq: { accion: "A ver si son tan buenos", efectos: {}, atentado: { muerte: "atentado_tabacos", bien: "tabacos_bien" } },
+    izq: { accion: "A ver si son tan buenos", efectos: {}, atentado: { muerte: "atentado_tabacos", centra: "potencias" } },   // si sobrevives: Potencias vuelve hacia el centro y ganas la recompensa «Comandantes» (LOGROS),
     der: { accion: "Aquí nadie regala nada", efectos: {}, encolar: [{ carta: "tabacos_rechazo", min: 1, max: 1 }] }
-  },
-  {
-    id: "tabacos_bien", tipo: "aviso", enlace: true, titulo: "Los tabacos (bien)", centra: "potencias",   // la fuerza del concepto vuelve hacia el centro (la mitad de lo que le falta hasta 50)
-    texto: "Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma."
   },
   {
     id: "tabacos_rechazo", tipo: "aviso", enlace: true, titulo: "Los tabacos (rechazo)", efectos: { pueblo: -4 },   // provisional: «secuela de un solo golpe»
@@ -1359,6 +1355,11 @@ const LOGROS = [
     descripcion: "Pieza de colección. Firmada por el Comandante minutos antes de establecer el récord nacional: veintisiete ponches en dos entradas. «Batear bajo su responsabilidad».",
     beneficio: "Úsala contra tus enemigos o para poner a prueba a tus amigos. Si la batean, no eran tan amigos.",
     perjuicio: "No hay rival que te haga sudar la camiseta. Empiezas a preguntarte si no habrías sido una estrella del béisbol." },
+  // 1 nov, Jorge: la caja de puros del Comandante es una recompensa: se gana al sobrevivir al atentado de los tabacos (aceptar y que salga bien). Beneficio y perjuicio: por escribir (Coleccionables)
+  { id: "comandantes", carta: "atentado_tabacos", fondo: "mostaza", titulo: "Puros Comandantes", subtitulo: "25 robustos",
+    decision: "A ver si son tan buenos",
+    descripcion: "Aquellos tabacos de lujo te inspiraron a crear tu propia marca. Una edición exclusiva, reservada para tu disfrute personal y para agasajar a esos jefes de Estado que conviene tener contentos. La diplomacia también se fuma.",
+    beneficio: "Pendiente.", perjuicio: "Pendiente." },
   // solo con «Discreto como mi barba»: la otra opción también instala los misiles, pero no da la postal
   { id: "postal", carta: "nuevos_vecinos", fondo: "rojo", titulo: "Postal con misil", subtitulo: "Sol, arena y armamento nuclear.",
     decision: "Discreto como mi barba",

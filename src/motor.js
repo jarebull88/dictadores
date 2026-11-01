@@ -484,7 +484,7 @@ function aplicar(c, op) {
   if (op.riesgo && Math.random() < op.riesgo.p) E.muerteEspecial = op.riesgo.muerte;                   // 1 nov: el pelotazo (1 de cada 10)
   if (op.atentado) {                                                                                   // 1 nov: aceptar un atentado: según el Ejército, la muerte o su parte buena
     if (Math.random() < riesgoAtentado()) E.muerteEspecial = op.atentado.muerte;
-    else E.cola.push({ carta: op.atentado.bien, turno: E.turno + 1 });
+    else if (op.atentado.centra) E.barras[op.atentado.centra] = limitar(Math.round(E.barras[op.atentado.centra] + (50 - E.barras[op.atentado.centra]) / 2));   // sobrevives: la fuerza del regalo vuelve hacia el centro
   }
   if (op.pago) entraEstado(Math.random() < suertePupo(op.pago) ? "collar" : "salacion");              // 1 nov: Pupo: suerte según el Pueblo; secuela Collar (bien) o Salación (mal)
   (op.encolar || []).forEach(q => {

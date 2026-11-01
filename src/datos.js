@@ -1300,7 +1300,7 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
   // 29 oct: las dos respuestas suben al Pueblo, y por eso llega «Luna de miel» (la A más que la B)
   { paso: "pistas", texto: "Mira, el Ejército está en rojo, y el rojo no favorece a nadie. ¿Le das algo a mi tropa?", cinta: "Los puntos rojos indican cuánto afectará tu decisión a cada fuerza.", izq: "El Pueblo va primero", der: "Tu tropa puede esperar", efectos: { izq: { pueblo: 36, ejercito: -4 }, der: { pueblo: 20, ejercito: -2 } } },
   // Carta de estado: no hay personaje, así que arriba se habla al jugador.
-  { paso: "estado", texto: "Algunas decisiones traen secuelas. Ahora el Pueblo te adora, y ya sabes: tanto cariño mató al niño." },
+  { paso: "estado", texto: "Algunas decisiones traen secuelas. Ahora el Pueblo te adora, pero ya sabes: tanto cariño mató al niño." },
   // 25 oct: la primera recompensa. La decisión la da (sea cual sea la respuesta); luego hay que abrirla en el menú (`despues`)
   { paso: "logro", texto: "Ah, y en agradecimiento por darme un ministerio, te tengo un regalo. Cierra los ojos.", cinta: "Acepta el regalo",
     despues: { texto: "¡Sorpresa! Es tu primera recompensa. Las demás tendrás que ganártelas con tus decisiones.", cinta: "Toca el menú" },
@@ -1321,7 +1321,7 @@ const TUTORIAL = [   // 29 oct, Textos: Domingo tutea al Comandante (hermano peq
 const LOGROS = [
   // 1 nov, Jorge: las recompensas no llevan beneficio ni perjuicio (archivados en docs/ARCHIVO_BENEFICIOS.md)
   // 25 oct, Jorge: el logro del tutorial (paso «logro»); lo da la decisión del tutorial, no una bandera
-  { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Una paloma blanca entrenada por tu hermano durante tres meses en el monte, a base de paciencia y maíz.",
+  { id: "paloma", bandera: "tutorial.paloma", fondo: "azul", titulo: "Paloma amaestrada", subtitulo: "Una paloma blanca que tu hermano entrenó en el monte con mucha paciencia y maíz.",
     decision: "Aceptar la paloma de tu hermano",
     descripcion: "Alza el brazo en un discurso y se posará en tu hombro: la mitad del país verá en ti al elegido. La otra mitad verá la mancha del uniforme." },
 

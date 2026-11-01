@@ -553,7 +553,7 @@ function mostrar(id) {
   ocultarInfo(); quitarInfo(); if (id !== "screen-game") limpiarBanda();
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
-  if (id === "screen-game") { ajustarLeyenda(); }
+  if (id === "screen-game") { }
 }
 
 function parBarra(id) {
@@ -780,7 +780,7 @@ function abrirInfo(clave, id, fondo, origen, html, textos) {
   $("carta").parentNode.appendChild(c);
   cartaInfo = c;
   if (textos) { c._previo = { msg: $("mensaje").innerHTML, ley: $("leyenda").textContent }; disolverTextos(textos.msg, textos.ley); }   // 2 nov: una secuela recupera los textos de cuando salió
-  ajustarFicha(c);
+
   sonar("deslizar");                                   // 29 oct: sale con sonido, como al cerrarse
   if (animar()) {
     c.style.transition = "none"; c.style.transform = transformDesde(c, origen); c.style.opacity = "0.3";
@@ -826,14 +826,7 @@ function abrirInfo(clave, id, fondo, origen, html, textos) {
    si aun así no cabe (pantallas muy estrechas), la caja crece lo justo para ese mensaje. */
 /* 27 oct: la franja bajo la carta: el nombre del estado, el cargo del personaje o la instrucción del tutorial. Londrina Light, mayúsculas y
    centrada; empieza al tamaño del título de la era y baja sola hasta que quepa (como mucho, dos líneas). */
-function ajustarLeyenda() {
-  const l = $("leyenda");
-  if (!l || !l.clientHeight) return;
-  l.style.removeProperty("--leyenda-px");
-  let px = parseFloat(getComputedStyle(l).fontSize) || 36;
-  while ((l.scrollHeight > l.clientHeight + 1 || l.scrollWidth > l.clientWidth + 1) && px > 12) { px -= 1; l.style.setProperty("--leyenda-px", px + "px"); }
-}
-function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; ajustarLeyenda(); }
+function ponerLeyenda(texto) { $("leyenda").textContent = texto || ""; }
 /* La pregunta se cambia siempre por aquí: quita el hundimiento de la anterior (ver estilos.css, .hundiendo y .emerge) */
 function ponerMensaje(html) { const m = $("mensaje"); m.classList.remove("hundiendo"); m.innerHTML = html; }
 const hundirMensaje = () => { if (animar()) { $("mensaje").classList.add("hundiendo"); $("leyenda").classList.add("oculta"); } };   // 2 nov: la leyenda se disuelve a la vez que la pregunta se hunde
@@ -843,23 +836,9 @@ function ajustarMensaje() {   // lo único que hace: si el texto se pasa de 4 l�
   m.classList.remove("desborda");
   if (m.scrollHeight > m.clientHeight + 1) m.classList.add("desborda");
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarFicha(); ajustarLeyenda(); } });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); } });
 
 /* Si el informe no cabe en la ficha (pantallas bajas), se achica la letra, hasta 12,5 px */
-function ajustarFicha(carta = $("carta")) {
-  const h = carta.querySelector(".dorso .hoja, .info-hoja");
-  if (!h) return;
-  h.style.removeProperty("--ficha-px"); h.style.removeProperty("--nombre-px");
-  /* el nombre ocupa todo el sitio: si una línea no cabe a lo ancho, baja la letra (hasta 24 px) */
-  const nom = h.querySelector(".ficha-nombre");
-  if (nom) {
-    let px = parseFloat(getComputedStyle(nom).fontSize) || 40;
-    const ancho = () => nom.children.length ? Math.max(...[...nom.children].map(c => c.scrollWidth)) : nom.scrollWidth;   // el expediente del Comandante pone el nombre como texto suelto
-    while (ancho() > nom.clientWidth + 1 && px > 24) { px -= 1; h.style.setProperty("--nombre-px", px + "px"); }
-  }
-  const sobra = () => h.scrollHeight > h.clientHeight + 1;
-  for (let px = 16.5; px >= 12.5 && sobra(); px -= .5) h.style.setProperty("--ficha-px", px + "px");
-}
 
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
 const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D51A0" };   // 23 oct: tintas de la paleta
@@ -901,7 +880,7 @@ function pintarCarta(c) {
   cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : objeto ? "" : " ph"}"${objeto ? ` style="--fondo-escena:var(--p-${c.fondo})"` : fondoDe(slug)}>${ilus}` +
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${c.detras ? dorsoTexto(c.detras) : fichaPersonaje(c.personaje)}</div>`;
-  ajustarFicha();
+
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */
 function voltear() {
@@ -929,11 +908,6 @@ function voltear() {
 
 /* La respuesta cabe siempre en 2 líneas: si es larga, la letra baja (de 21 px hasta 14 px).
    Se mide con offsetHeight, que no cuenta el giro del panel. */
-function ajustarRespuesta(r) {
-  const s = r && r.querySelector(".texto-respuesta strong");
-  if (!s) return;
-  s.style.fontSize = "";   // 22 oct, Jorge: la letra ya no se achica; el límite de caracteres asegura las 2 líneas
-}
 function pintarEleccion(dir) {
   if ((modoEstado || modoAviso) && !(E && E.tutorial)) return;       // la carta de estado (o de aviso) no tiene respuestas (ni se arrastra)
   const c = E && E.actual;
@@ -941,7 +915,7 @@ function pintarEleccion(dir) {
   if (modoEstado || modoAviso) op = null;
   const r = $("respuesta");
   if (r) {
-    if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible"); }
+    if (op) { r.innerHTML = `<div class="texto-respuesta"><strong>${op.accion}</strong>${op.remate ? `<span>${op.remate}</span>` : ""}</div>`; r.dataset.dir = dir; r.classList.add("visible"); }
     // Sin lado (la carta vuelve a su sitio): el texto se queda en el panel y sube con él
   }
   if (op) pintarPuntos(op);                           // sin lado, los puntos no cambian: suben fuera de la pantalla tal cual
@@ -1196,10 +1170,6 @@ function mostrarCartaAviso(c) {
   pintarBarras();
   entrarCarta(carta);
   pintarEleccion(0);
-  const h = carta.querySelector(".carta-aviso"), t = carta.querySelector(".aviso-texto");   // si el texto no cabe, la letra baja
-  const hueco = () => h.clientHeight * (img ? .42 : .86);
-  let px = parseFloat(getComputedStyle(t).fontSize) || 20;
-  while (t.scrollHeight > hueco() && px > 11) { px -= 0.5; t.style.fontSize = px + "px"; }
 }
 function recogerAviso() {
   if (!modoAviso || ocupado) return;
@@ -1247,7 +1217,7 @@ function mostrarCartaEstado() {
   carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-estado"><div class="ilustracion" style="--fondo-escena:${FONDO_ESTADO[n.id] || "#8A7156"}">` +
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
     `<div class="dorso"><div class="hoja info-hoja">${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
-  ajustarFicha(carta);
+
   entrarCarta(carta);
   pintarRanuras();
 }
@@ -1417,19 +1387,9 @@ function terminar(clave, transicion, personaje) {
     ? `<small class="qepd">Q. E. P. D.</small><b>${esc(nombreCompleto())}</b><span class="anos">${n} años en el poder</span>` +
       `<ul>${epitafio().map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
   mostrar("screen-end");
-  if (clave) ajustarCabeceraFin();
 }
 /* Al caer, todo lo de arriba debe caber en el hueco de las barras y la pregunta: si no cabe, baja la letra
    del relato (hasta 13 px) y después la del título (hasta 36 px) */
-function ajustarCabeceraFin() {
-  const cab = document.querySelector("#screen-end .fin-cab"), rel = $("fin-texto"), h1 = $("fin-principal");
-  rel.style.fontSize = ""; h1.style.fontSize = "";
-  if (!cab.clientHeight) return;
-  let px = parseFloat(getComputedStyle(rel).fontSize) || 17;
-  while (cab.scrollHeight > cab.clientHeight + 1 && px > 15) { px -= 0.5; rel.style.fontSize = px + "px"; }
-  let t = parseFloat(getComputedStyle(h1).fontSize) || 56;
-  while (cab.scrollHeight > cab.clientHeight + 1 && t > 36) { t -= 2; h1.style.fontSize = t + "px"; }
-}
 
 /* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = volver a la portada ---------- */
 let finOcupada = false;
@@ -1474,7 +1434,7 @@ function eleccionFin(dir) {
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
   r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Jugar de nuevo" : "Volver a la portada"}</strong></div>`;
-  r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible");
+  r.dataset.dir = dir; r.classList.add("visible");
 }
 function decidirFin(dir) {
   if (finOcupada) return;
@@ -1626,20 +1586,12 @@ function terminarTutorial(destino) {
    (17 oct: sustituye a «Sigues en el poder»; debajo de la carta ya dice cuántos años llevas) */
 const nombreEra = n => `Era ${n}: ${ERAS[n - 1].nombre}`;   // 29 oct, Jorge: «Era 2: La Purga» (17 oct: solo el nombre)
 /* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
-function ajustarTituloEra(h) {
-  h.style.fontSize = "";
-  let px = parseFloat(getComputedStyle(h).fontSize) || 30;
-  if (!h.firstElementChild) h.innerHTML = `<span>${esc(h.textContent)}</span>`;   // el texto, en un span: así se mide su ancho
-  const ancho = () => h.firstElementChild.getBoundingClientRect().width;
-  const caja = h.parentElement.clientWidth;          // el h1 se ajusta a su texto: el límite es la cabecera
-  while (ancho() > caja * .94 && px > 22) { px -= 1; h.style.fontSize = px + "px"; }   // margen: el rotulador sobresale de la letra
-}
 function irANombre() {
-  $("nombre-era-1").textContent = nombreEra(1); requestAnimationFrame(() => ajustarTituloEra($("nombre-era-1")));
+  $("nombre-era-1").textContent = nombreEra(1);
   $("input-nombre").value = nombreDictador;
   actualizarVistaNombre();
   mostrar("screen-name");
-  ajustarIntro();
+
   entrarNombre();
   vigilarNombre(REPOSO_MS);
 }
@@ -1679,14 +1631,6 @@ $("input-nombre").addEventListener("input", () => {
 });
 $("carta-nombre").addEventListener("pointerdown", () => vigilarNombre(REPOSO_MS));
 /* El texto de la pantalla del nombre va a 19 px, como la pregunta; si no cabe en el hueco de arriba (móviles bajos), la letra baja hasta 14 px */
-function ajustarIntro() {
-  const p = document.querySelector("#screen-name .intro"), caja = p && p.parentElement;
-  if (!p || $("screen-name").classList.contains("hidden")) return;
-  p.style.fontSize = "";
-  let px = 19;
-  while ((p.offsetHeight > caja.clientHeight || caja.scrollHeight > caja.clientHeight) && px > 16) { px -= 1; p.style.fontSize = px + "px"; }
-}
-window.addEventListener("resize", ajustarIntro);
 /* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */
 function nombreValido() {
   let v = $("input-nombre").value.trim();
@@ -1832,7 +1776,6 @@ function eleccionNombre(dir) {
   if (!dir) { r.classList.remove("visible"); return; }
   r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "¡La Revolución empieza hoy!" : "Me da miedo el micrófono"}</strong></div>`;
   r.dataset.dir = dir;
-  ajustarRespuesta(r);
   r.classList.add("visible");
 }
 function volverCartaNombre() {
@@ -1859,7 +1802,7 @@ arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccion
   toque: () => {                                       // al tocarla se gira y enseña su expediente
     const c = $("carta-nombre"), n = c.querySelector(".dorso .ficha-nombre");
     if (n) n.textContent = fichaComandante().nombre;
-    c.classList.toggle("volteada"); sonar("voltear"); eleccionNombre(0); ajustarFicha(c);
+    c.classList.toggle("volteada"); sonar("voltear"); eleccionNombre(0);
   } });
 /* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
 if (window.ResizeObserver) new ResizeObserver(() => {
@@ -1885,7 +1828,7 @@ function mostrarEra() {
   const n = anios();
   $("era-anios").textContent = `Has gobernado ${n} ${n === 1 ? "año" : "años"}`;
   $("era-texto").textContent = TEXTO_FIN_ERA[E.era];
-  $("era-titulo").textContent = E.era < ERAS.length ? nombreEra(E.era + 1) : ""; requestAnimationFrame(() => ajustarTituloEra($("era-titulo")));
+  $("era-titulo").textContent = E.era < ERAS.length ? nombreEra(E.era + 1) : "";
   const slug = DICTADOR_ERA[E.era + 1];
   const carta = $("carta-era");
   eraOcupada = false;
@@ -1898,7 +1841,7 @@ function mostrarEra() {
   carta.classList.remove("volteada");
   void carta.offsetWidth; carta.style.transition = "";
   mostrar("screen-era");
-  ajustarFicha(carta);
+
 }
 /* Seguir o retirarse, con frases de cada paso de era (la clave es la era que empieza) */
 const FRASES_ERA = {
@@ -1913,7 +1856,7 @@ function eleccionEra(dir) {
   if (!dir) { r.classList.remove("visible"); return; }
   const f = FRASES_ERA[E.era + 1] || FRASES_ERA[2];
   r.innerHTML = `<div class="texto-respuesta"><strong>${esc(dir > 0 ? f.seguir : f.dejar)}</strong></div>`;
-  r.dataset.dir = dir; ajustarRespuesta(r); r.classList.add("visible");
+  r.dataset.dir = dir; r.classList.add("visible");
 }
 /* Derecha: seguir gobernando. Izquierda: te retiras y vuelves a la portada */
 function decidirEra(dir) {
@@ -2113,7 +2056,6 @@ function verLogro(id) {
   pon(escena, rc, { height: rc.height + "px" });
   pon(zona, rl, { height: rl.height + "px" });
   pon(pista, rl, { top: (rl.bottom - b.top + 4) + "px", margin: "0", textAlign: "center" });
-  ajustarTituloLogro(zona.querySelector(".logro-leyenda"));
   const carta = v.querySelector(".logro-carta");
   const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
   carta.addEventListener("click", () => { if (carta._arrastrada) { carta._arrastrada = false; return; } girar(); });
@@ -2124,11 +2066,6 @@ function verLogro(id) {
   if (nuevo && animar()) efectoDescubrir(v, escena, celda, [msg, zona, pista]);
 }
 /* 2 nov: el título de abajo baja su letra hasta que quepa en el sitio de la leyenda */
-function ajustarTituloLogro(l) {
-  l.style.removeProperty("--leyenda-px");
-  let px = parseFloat(getComputedStyle(l).fontSize) || 27;
-  while ((l.scrollHeight > l.clientHeight + 1 || l.scrollWidth > l.clientWidth + 1) && px > 12) { px -= 1; l.style.setProperty("--leyenda-px", px + "px"); }
-}
 /* 29 oct (Jorge): la carta se desliza a un lado o a otro: derecha, vuelves al juego; izquierda, a la galería. Un toque sigue girándola. */
 function gestoLogro(carta) {
   let d = null, movido = false;

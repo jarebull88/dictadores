@@ -74,7 +74,7 @@ body {
      3 · CUERPO     Roboto Condensed, mayúsculas, `--c-cuerpo`   preguntas, texto de la era, reverso de las tarjetas, relato de la caída…
    Fuera de este bloque no debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height
    (lo vigila tests/tipografia.test.js). Para un texto nuevo: añade su selector a UNO de los tres estilos; no le des estilo propio.
-   Las únicas excepciones son tamaños que se calculan solos para que algo quepa (`--leyenda-px`, `--ficha-px`, `--nombre-px`) y el logo
+   Nada ajusta su tamaño: un estilo, un tamaño; si un texto no cabe, se acorta el texto. Única excepción: el logo
    de la portada. Tabla: docs/TIPOGRAFIA.md. */
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
@@ -95,7 +95,6 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .ficha-nombre, .archivo-titulo, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
-.ficha-nombre { font-size: var(--nombre-px, var(--t-titulo)); }   /* el nombre baja solo si no cabe (ajustarFicha) */
 /* el logo de la portada, a su tamaño propio */
 .logo-texto { font-family: var(--f-titular); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; line-height: .86; }
 .logo-texto > span { font-size: min(46px, 10vw); }
@@ -108,7 +107,6 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
   font-family: var(--f-titular); font-size: var(--t-sub); font-weight: var(--peso-normal); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
 .leyenda, .fin-anios, .era-anios, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span { font-weight: var(--peso-ligero); }
-.leyenda { font-size: var(--leyenda-px, var(--t-sub)); }   /* baja sola si no cabe en dos líneas (ajustarLeyenda) */
 
 /* — 3 · CUERPO — */
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .aviso-texto,
@@ -118,7 +116,6 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
 }
-.ficha-historia { font-size: var(--ficha-px, var(--c-cuerpo)); }   /* la ficha achica su letra sola si el texto no cabe (ajustarFicha) */
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */

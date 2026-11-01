@@ -54,7 +54,7 @@ const CARTAS = [
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!",
     izq: { accion: "Que Milfuegos me lo traiga", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
-    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 } }
+    der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, banderas: ["base.matojos_libre"] }   // 1 nov: rama de Matojos crítico desde dentro (eras 2–4, por escribir)
   },
   {
     // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
@@ -127,8 +127,8 @@ const CARTAS = [
     id: "avion_diezfuegos", tipo: "cola", titulo: "El avión de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Nuestro querido Comandante Milfuegos no ha vuelto. Su avión desapareció sobre el mar. ¿Fue un accidente?",
-    izq: { accion: "Investíguenlo todo", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos"] },
-    der: { accion: "Un triste accidente", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos"] }
+    izq: { accion: "Investíguenlo todo", efectos: { ejercito: 5, elite: -3 }, banderas: ["base.accidente_cienfuegos", "base.milfuegos_investigado"] },
+    der: { accion: "Un triste accidente", efectos: { elite: 3, ejercito: -5 }, banderas: ["base.accidente_cienfuegos", "base.milfuegos_cerrado"] }
   },
   {
     // 28 oct, plan narrativo (piloto de la era 1): el norte deja de comprar el azúcar (1960)

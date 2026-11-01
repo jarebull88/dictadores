@@ -34,8 +34,11 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `huelga_reprimida` | — | — | Malestar en las universidades. (era 2) |
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |
+| `matojos_libre` | El comandante que dimite (B) | — | — |
 | `mausoleo_construido` | El mausoleo (A) | — | La roca eterna espera a su inquilino. (era 2) |
 | `mercado_paralelo` | Las tiendas vacías (B) | El mercado mayor | Una economía que escapa a tu control. (era 3) |
+| `milfuegos_cerrado` | El avión de Milfuegos (B) | — | — |
+| `milfuegos_investigado` | El avión de Milfuegos (A) | — | — |
 | `misiles_instalados` | Los nuevos vecinos (A); Los nuevos vecinos (B) | Los satélites | Una potencia vecina vigila tus misiles. (era 2) |
 | `misiles_rechazados` | — | — | El aliado recuerda tu negativa. (era 2) |
 | `modestia_aparente` | El retrato (B) | La modestia sospechosa | El Partido exige otros símbolos de lealtad. (era 3) |

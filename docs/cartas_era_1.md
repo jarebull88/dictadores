@@ -44,7 +44,7 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 **Carta:** «Un comandante ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
 
 - **A. Que Milfuegos me lo traiga** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
-- **B. Que dimita tranquilo** Ejército +4 · Élite −5
+- **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Bandera: `matojos_libre`
 
 ### 5. El viaje de Milfuegos
 
@@ -115,8 +115,8 @@ Duración: entre 10 y 12 cartas. 51 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Nuestro querido Comandante Milfuegos no ha vuelto. Su avión desapareció sobre el mar. ¿Fue un accidente?»
 
-- **A. Investíguenlo todo** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`
-- **B. Un triste accidente** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`
+- **A. Investíguenlo todo** Ejército +5 · Élite −3 · Bandera: `accidente_cienfuegos`, `milfuegos_investigado`
+- **B. Un triste accidente** Élite +3 · Ejército −5 · Bandera: `accidente_cienfuegos`, `milfuegos_cerrado`
 
 **Consecuencia futura de `accidente_cienfuegos`:** El Pueblo no olvida el accidente de Milfuegos.
 

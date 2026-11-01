@@ -32,14 +32,14 @@ test("el paso de era conserva barras y cambia la numeración de años", () => {
 test("al pasar a la era 3 el tratamiento cambia de «Comandante» a «Excelencia»", () => {
   const j = cargar();
   j.empezar();
-  assert.match(j.w.eval("nombreCompleto()"), /^Comandante /);
+  assert.match(j.w.eval("nombreCompleto()"), /^El Comandante$/);
   j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
   j.w.eval("decidirEra(1)");
   j.w.eval("E.barras={pueblo:50,ejercito:50,elite:50,potencias:50}; E.turno=finEra()+1; finDeEra();");
   assert.ok(j.visible("screen-era"), "debería haber paso a la era 3");
   j.w.eval("decidirEra(1)");
   assert.equal(j.w.eval("E.era"), 3);
-  assert.match(j.w.eval("nombreCompleto()"), /^Excelencia /);
+  assert.match(j.w.eval("nombreCompleto()"), /^Su Excelencia$/);
 });
 
 test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has ganado!» con esquela", () => {
@@ -50,7 +50,7 @@ test("en la era 4 eres «Padre de la Patria» y al sobrevivirla ganas: «¡Has g
     j.w.eval("decidirEra(1)");
   }
   assert.equal(j.w.eval("E.era"), 4);
-  assert.match(j.w.eval("nombreCompleto()"), /, Padre de la Patria$/);
+  assert.match(j.w.eval("nombreCompleto()"), /^El Padre de la Patria$/);
   j.w.eval("E.banderas.add('base.mausoleo_construido'); E.turno=finEra()+1; finDeEra();");
   assert.equal(j.w.eval("E.actual.id"), "ultimas_palabras", "antes de la esquela salen las últimas palabras");
   j.w.eval("resolver(1)");
@@ -75,7 +75,7 @@ test("al pasar de era: pantalla propia con el nombre de la era, con los años, u
   assert.equal(j.w.eval("E.era"), 2);
 });
 
-test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (derecha empieza, izquierda vuelve)", () => {
+test("portada: el logo y «Comenzar partida»; la carta del Comandante (derecha empieza, izquierda vuelve)", () => {
   const j = cargar();
   assert.ok(j.d.querySelector("#logo .logo-texto"), "falta el logo en la portada");
   assert.ok(!j.d.querySelector("#screen-start .carta"), "la portada ya no lleva carta");
@@ -85,12 +85,8 @@ test("portada: el logo y «Comenzar partida»; el nombre se elige en una carta (
   j.w.eval("decidirNombre(-1)");
   assert.ok(j.visible("screen-start"), "a la izquierda vuelve a la portada");
   j.$("btn-comenzar").click();
-  j.$("input-nombre").value = "";
   j.w.eval("decidirNombre(1)");
-  assert.ok(j.visible("screen-name"), "sin nombre no empieza");
-  j.$("input-nombre").value = "aureliano";
-  j.w.eval("decidirNombre(1)");
-  assert.ok(j.visible("screen-game"), "con nombre, a la derecha empieza");
+  assert.ok(j.visible("screen-game"), "a la derecha empieza");
 });
 
 test("tutorial «La víspera»: siete pasos, las dos respuestas siguen adelante, solo se gira la carta cuando toca (y «Luna de miel» en el suyo), entra «Luna de miel» y acaba en el nombre", () => {
@@ -140,7 +136,7 @@ test("tutorial «La víspera»: siete pasos, las dos respuestas siguen adelante,
   assert.equal(j.w.eval("E.tutorial.i"), 6);
   j.tecla(-1);                                                       // 7: fin → nombre (también con la izquierda)
   assert.ok(j.visible("screen-name"));
-  j.$("input-nombre").value = "aureliano"; j.w.eval("decidirNombre(1)");
+  j.w.eval("decidirNombre(1)");
   assert.ok(j.visible("screen-game"));
   assert.equal(j.w.eval("E.estados.length"), 0, "la luna de miel no pasa a la partida");
   assert.equal(j.w.eval("E.barras.ejercito"), 50);

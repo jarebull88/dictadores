@@ -19,7 +19,7 @@ function cargar({ temporizadores = "inmediatos" } = {}) {
   });
   const w = dom.window, d = w.document, $ = id => d.getElementById(id);
   const visible = id => !$(id).classList.contains("hidden");
-  const empezar = (nombre = "aureliano") => { w.eval("irANombre()"); $("input-nombre").value = nombre; w.eval("decidirNombre(1)"); };
+  const empezar = () => { w.eval("irANombre()"); w.eval("decidirNombre(1)"); };
   const tecla = dir => d.dispatchEvent(new w.KeyboardEvent("keydown", { key: dir < 0 ? "ArrowLeft" : "ArrowRight" }));
   return { w, d, $, visible, empezar, tecla, errores };
 }

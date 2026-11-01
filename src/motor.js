@@ -73,15 +73,12 @@ function sonar(evento) {
 }
 function ponerTextoSonido() { const b = $("btn-sonido"); if (b) b.textContent = sonidoActivo ? "Sonido: sí" : "Sonido: no"; }
 
-const CLAVE_NOMBRE = "dictadores_nombre_v2";
-let nombreDictador = "";
-/* ?cero en la dirección: empezar como la primera vez (16 oct): se olvida el nombre guardado */
+/* ?cero en la dirección: empezar como la primera vez (16 oct): se olvidan los logros guardados */
 if (/[?&]cero\b/.test(location.search)) { try { Object.keys(localStorage).filter(k => k.startsWith("dictadores_") || k.startsWith("comandante.")).forEach(k => localStorage.removeItem(k)); } catch (e) {} }
-try { nombreDictador = (localStorage.getItem(CLAVE_NOMBRE) || "").trim().split(/\s+/)[0] || ""; } catch (e) {}
 /* «Comandante» en las eras 1 y 2, «Excelencia» en la 3 y «Padre de la Patria» en la 4 (la última) */
 const tratamiento = () => (E && E.era >= 4 ? "Padre de la Patria" : E && E.era >= 3 ? "Excelencia" : "Comandante");
-const nombreCompleto = () => (E && E.era >= 4 ? `${nombreDictador}, Padre de la Patria` : tratamiento() + " " + nombreDictador);
-function guardarNombre(n) { try { localStorage.setItem(CLAVE_NOMBRE, n); } catch (e) {} }
+/* 2 nov, Jorge: el jugador ya no escribe su nombre; el dictador es «El Comandante» (y luego «Su Excelencia» y «El Padre de la Patria») */
+const nombreCompleto = () => (E && E.era >= 4 ? "El Padre de la Patria" : E && E.era >= 3 ? "Su Excelencia" : "El Comandante");
 
 /* =====================================================
    ESTADOS DEL RÉGIMEN (las cuatro ranuras bajo la carta)
@@ -555,7 +552,7 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo(); quitarInfo(); if (id !== "screen-game") limpiarBanda();
+  ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); }
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
   if (id === "screen-game") { }
@@ -943,6 +940,7 @@ function empezar() {
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
+  document.body.classList.remove("negro");
   E.avisoPendiente = null;
   E.estadoNuevo = null; modoEstado = false; modoAviso = false; modoFin = false;
   $("carta").classList.remove("hidden", "listo");
@@ -1450,6 +1448,7 @@ function mostrarCartaFin(d, clave, personaje, anios) {
   mostrar("screen-game");
   medirCartaJuego();
   entrarCarta(carta);
+  document.body.classList.add("negro");               // 2 nov: a la vez que la carta gira, la pantalla se oscurece con una transición suave
   const dilo = () => { if (modoFin) ponerLeyenda(anios, true); };
   if (!animar()) { dilo(); return; }
   banda("caida", "¡Has caído!", dilo);                 // 2 nov: sale a la vez que la carta gira, como el cartel de las secuelas
@@ -1472,9 +1471,6 @@ function decidirFin(dir) {
 }
 
 /* ---------- Nombre del dictador ---------- */
-function actualizarVistaNombre() {
-  $("nombre-error").textContent = /\s/.test($("input-nombre").value.trim()) ? "Una sola palabra: Aureliano, Anselmo, Esteban…" : "";
-}
 /* =====================================================
    TUTORIAL «La víspera» (15 oct): se abre con «Cómo se juega» (17 oct: ya no es obligatorio). Usa la carta, el arrastre,
    las barras y las casillas de la partida; las decisiones no cuentan. «Saltar tutorial» (abajo) lleva al nombre.
@@ -1613,8 +1609,6 @@ const nombreEra = n => `Era ${n}: ${ERAS[n - 1].nombre}`;   // 29 oct, Jorge: «
 /* Si el nombre de la era no cabe en una línea, la letra baja (hasta 22 px) */
 function irANombre() {
   $("nombre-era-1").textContent = nombreEra(1);
-  $("input-nombre").value = nombreDictador;
-  actualizarVistaNombre();
   mostrar("screen-name");
 
   entrarNombre();
@@ -1649,30 +1643,8 @@ function amagarNombre() {
   if (animar() && !arrastrando) { c.classList.remove("amago"); void c.offsetWidth; c.classList.add("amago"); setTimeout(() => c.classList.remove("amago"), 1300); }
   vigilarNombre(4000);
 }
-$("input-nombre").addEventListener("input", () => {
-  actualizarVistaNombre();
-  vigilarNombre($("input-nombre").value.trim() ? 1500 : REPOSO_MS);
-  const n = $("carta-nombre").querySelector(".dorso .ficha-nombre"); if (n) n.textContent = fichaComandante().nombre;   // el expediente, al día
-});
 $("carta-nombre").addEventListener("pointerdown", () => vigilarNombre(REPOSO_MS));
 /* El texto de la pantalla del nombre va a 19 px, como la pregunta; si no cabe en el hueco de arriba (móviles bajos), la letra baja hasta 14 px */
-/* Comprueba el nombre; si vale, lo guarda y devuelve true. Si no, explica por qué y devuelve false. */
-function nombreValido() {
-  let v = $("input-nombre").value.trim();
-  if (!v) {
-    $("nombre-error").textContent = "Los libros de historia necesitan saber tu nombre.";
-    return false;
-  }
-  if (/\s/.test(v)) {
-    $("nombre-error").textContent = "Una sola palabra: Aureliano, Anselmo, Esteban…";
-    return false;
-  }
-  v = v.charAt(0).toUpperCase() + v.slice(1);
-  nombreDictador = v;
-  guardarNombre(v);
-  return true;
-}
-
 /* ---------- Gestos ---------- */
 /* Arrastrar una carta a izquierda o derecha. Se usa en todas las cartas: partida, nombre, paso de era y caída.
    op.activa(): si se puede tocar ahora · op.mostrar(dir): pinta la respuesta de ese lado (0 = ninguna)
@@ -1810,23 +1782,17 @@ function volverCartaNombre() {
 }
 function decidirNombre(dir) {
   if (nombreOcupada) return;
-  if (dir > 0 && !nombreValido()) { volverCartaNombre(); $("input-nombre").focus(); return; }   // sin nombre no se empieza
   nombreOcupada = true;
   const carta = $("carta-nombre");
   eleccionNombre(dir);
   lanzarCarta(carta, dir);
   setTimeout(() => { if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
 }
-/* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js): el nombre es el que se está escribiendo */
-function fichaComandante() {
-  const v = $("input-nombre").value.trim().split(/\s+/)[0];
-  return { ...FICHA_COMANDANTE, color: "#1D51A0",
-    nombre: v ? `Comandante ${v.charAt(0).toUpperCase()}${v.slice(1)}` : FICHA_COMANDANTE.sinNombre };
-}
+/* El expediente del Comandante joven (FICHA_COMANDANTE en datos.js) */
+function fichaComandante() { return { ...FICHA_COMANDANTE, color: "#1D51A0", nombre: "El Comandante" }; }
 arrastrable($("carta-nombre"), { activa: () => !nombreOcupada, mostrar: eleccionNombre, decidir: decidirNombre,
   toque: () => {                                       // al tocarla se gira y enseña su expediente
-    const c = $("carta-nombre"), n = c.querySelector(".dorso .ficha-nombre");
-    if (n) n.textContent = fichaComandante().nombre;
+    const c = $("carta-nombre");
     c.classList.toggle("volteada"); sonar("voltear"); eleccionNombre(0);
   } });
 /* El texto de arriba y el campo del nombre miden lo mismo que la carta (que cambia con el alto de la pantalla) */
@@ -2174,7 +2140,6 @@ document.addEventListener("keydown", e => {
   if (!$("screen-era").classList.contains("hidden")) { if (e.key === "ArrowLeft") decidirEra(-1); if (e.key === "ArrowRight") decidirEra(1); return; }
   if (!$("screen-end").classList.contains("hidden") && $("screen-end").classList.contains("caida")) { if (e.key === "ArrowLeft") decidirFin(-1); if (e.key === "ArrowRight") decidirFin(1); return; }
   if (!$("screen-name").classList.contains("hidden")) {
-    if (document.activeElement === $("input-nombre")) return;      // escribiendo: las flechas mueven el cursor
     if (e.key === "ArrowLeft") decidirNombre(-1);
     if (e.key === "ArrowRight") decidirNombre(1);
     return;
@@ -2207,7 +2172,6 @@ $("btn-sonido").addEventListener("click", ev => {   // 28 oct: quita y pone el s
 $("btn-comenzar").addEventListener("click", irANombre);
 
 $("btn-repasar").addEventListener("click", empezarTutorial);
-$("input-nombre").addEventListener("keydown", e => { if (e.key === "Enter") { $("input-nombre").blur(); decidirNombre(1); } });
 $("btn-repetir").addEventListener("click", empezar);
 
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */

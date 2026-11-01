@@ -61,6 +61,18 @@ body {
   color: var(--tinta);
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
+/* CAÍDA A NEGRO (2 nov, Jorge): al caer, la pantalla del juego se oscurece con una transición suave: fondo negro de la paleta, textos en crema,
+   iconos en blanco y negro y el de la fuerza que cayó con contorno rojo (y su barra roja). `body.negro` lo pone mostrarCartaFin(). */
+body { transition: background-color 1.2s ease, color 1.2s ease; }
+.leyenda, .boton-menu, .mensaje, .barra .icono-fuerza, .barra .icono-fuerza .icono, .nivel, .ranura { transition: color 1.2s ease, background-color 1.2s ease, filter 1.2s ease, outline-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
+.barra .icono-fuerza { outline: 4px solid transparent; outline-offset: -4px; }
+body.negro { background: var(--p-tinta); color: var(--p-crema); }
+body.negro :is(.leyenda, .boton-menu, .mensaje) { color: var(--p-crema); }
+body.negro .barra .icono-fuerza .icono { filter: grayscale(1) contrast(1.1); }
+body.negro .barra .nivel { filter: grayscale(1); }
+body.negro .barra.peligro .icono-fuerza { outline-color: var(--p-rojo); }
+body.negro .barra.peligro .nivel { filter: none; background: var(--p-rojo); border-color: var(--p-rojo); }
+body.negro .ranura { background: rgba(240, 233, 214, .14); }
 *, *::before, *::after { box-sizing: border-box; }
 #app { height: 100%; position: relative; }
 .titulo { }
@@ -101,7 +113,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.leyenda, .fin-pie, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span,
+.leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .archivo-pista, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
@@ -110,10 +122,10 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .leyenda.regular { font-weight: var(--peso-normal); }   /* «Gobernaste por N años»: en regular */
 
 /* — 3 · CUERPO — */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .campo input, .lema, .aviso-texto,
-.popup span, .relato, .ficha-historia, .esquela ul, .error, .pantalla-nombre .error, #screen-end.caida .relato, .logro-descripcion, .logro-efecto,
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
+.popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion, .logro-efecto,
 .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .archivo-cerrar, .opcion-portada.secundaria,
-.logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre, .campo label,
+.logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
 }
@@ -152,15 +164,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .relato { margin: 0; }
 .acciones { display: grid; gap: 10px; }
 
-.campo { display: grid; gap: 8px; }
-.campo label { color: var(--tinta-suave); }
-.campo input {
-  width: 100%; padding: 14px 16px; border: var(--trazo); border-radius: 0;
-  background: var(--bloque); color: var(--tinta);
-}
-.campo input:focus { outline: 3px solid var(--tinta); outline-offset: 2px; }
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.error { min-height: 20px; margin: 0; color: var(--rojo); }
 
 /* Pantallas con carta (portada y «Sigues en el poder»): la misma interfaz que el juego.
    Arriba, los textos (donde en el juego están las fuerzas y el mensaje); en medio, la carta; abajo, una acción. */
@@ -178,7 +182,7 @@ body.carta-medida :is(.pantalla-carta, #screen-end.caida) { --alto-mensaje: calc
 body.carta-medida :is(.pantalla-carta .cabecera-carta, #screen-end.caida .fin-cab) { display: block; padding: 0; }
 body.carta-medida :is(.pantalla-carta .cabecera-carta, #screen-end.caida .fin-cab) :is(h1) { height: var(--ret-titulo); display: flex; align-items: center; justify-content: center; margin: 0; }
 body.carta-medida :is(.era-texto, .pantalla-nombre .intro, #screen-end.caida .relato) { height: var(--alto-mensaje); overflow: visible; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2px 5% 0; margin: 0; width: 100%; box-sizing: border-box; }
-body.carta-medida :is(.era-anios, .pantalla-nombre .campo) { margin-top: calc(var(--ret-pie) - var(--carta-h) - var(--mazo-alto)); height: var(--alto-leyenda); display: flex; align-items: center; justify-content: center; padding: 0; box-sizing: border-box; }
+body.carta-medida :is(.era-anios, .nombre-leyenda) { margin-top: calc(var(--ret-pie) - var(--carta-h) - var(--mazo-alto)); height: var(--alto-leyenda); display: flex; align-items: center; justify-content: center; padding: 0; box-sizing: border-box; }
 
 .cabecera-carta { flex: none; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 4px 0 6px; }
 .cabecera-carta h1 { margin: 0; color: var(--rojo); }
@@ -219,15 +223,6 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 .opcion-portada:hover, .opcion-portada:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 /* Pantalla del nombre: el texto arriba, la carta del dictador en medio y el nombre abajo, en una perforación del cartón */
 .pantalla-nombre .intro { margin: 0 auto; width: var(--ancho-carta, 100%); padding: 0 5%; text-align: center; }   /* como la pregunta de la partida */
-.pantalla-nombre .campo { flex: none; width: var(--ancho-carta, 100%); margin: 0 auto; padding-top: 10px; gap: 4px; }   /* el texto y el campo, del ancho de la carta */
-.pantalla-nombre .campo input {
-  height: 48px; padding: 0 14px; text-align: center; border: none; border-radius: 0; color: var(--tinta);
-  background: var(--hueco-carton);
-
-}
-.pantalla-nombre .campo input::placeholder { color: rgba(28, 27, 25, .55); }
-.pantalla-nombre .campo input:focus { outline: 2px solid var(--tinta); outline-offset: 2px; }
-.pantalla-nombre .error { margin: 0; min-height: 1.3em; color: var(--rojo); text-align: center; }
 
 /* ---------- Juego ---------- */
 #screen-game { position: relative; overflow: visible; padding: 8px 12px 6px; }
@@ -345,10 +340,10 @@ body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
 }
 .carta.revelando .dorso { visibility: hidden; }
 /* 17 oct: entrada de la pantalla del nombre: el título, el texto y el campo aparecen con fundido, uno tras otro */
-#screen-name.entrando .titulo, #screen-name.entrando .intro, #screen-name.entrando .campo { opacity: 0; animation: fundido .35s ease forwards; }
+#screen-name.entrando .titulo, #screen-name.entrando .intro, #screen-name.entrando .nombre-leyenda { opacity: 0; animation: fundido .35s ease forwards; }
 #screen-name.entrando .titulo { animation-delay: .05s; }
 #screen-name.entrando .intro { animation-delay: .3s; }
-#screen-name.entrando .campo { animation-delay: 1.15s; }
+#screen-name.entrando .nombre-leyenda { animation-delay: 1.15s; }
 #screen-end.caida.entrando .fin-principal, #screen-end.caida.entrando .relato, #screen-end.caida.entrando .fin-pie-zona { opacity: 0; animation: fundido .35s ease forwards; }
 #screen-end.caida.entrando .fin-principal { animation-delay: .5s; }
 #screen-end.caida.entrando .relato { animation-delay: .7s; }

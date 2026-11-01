@@ -1154,7 +1154,7 @@ const FICHAS = {
 };
 /* 17 oct: el expediente del Comandante en la pantalla del nombre (detrás de su carta). Textos de Jorge. */
 const FICHA_COMANDANTE = {
-  sinNombre: "Nombre desconocido", cargo: "Jefe de la columna rebelde",
+  cargo: "Jefe de la columna rebelde",
   historia: "Abogado sin clientes que subió al monte con 12 hombres y hoy baja con un país detrás. El tirano lo dio por muerto 3 veces.",
   nota: "Puede hablar durante horas sin mirar un papel."
 };

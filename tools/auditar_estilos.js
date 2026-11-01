@@ -21,7 +21,7 @@ const juego = "file://" + path.join(__dirname, "..", "dist", "index.html") + "?c
   for (let i of [3,5]) { await p.evaluate(i=>pasoTutorial(i), i); await p.waitForTimeout(800); await coger("tutorial"+i); }
   await p.evaluate(()=>{ irANombre(); }); await p.waitForTimeout(900); await coger("nombre");
   await p.evaluate(()=>{ document.getElementById("carta-nombre").classList.add("volteada"); ajustarFicha(document.getElementById("carta-nombre")); }); await p.waitForTimeout(500); await coger("nombre-ficha");
-  await p.evaluate(()=>{ nombreDictador="Yoyo"; empezar(); E.estados=[{id:"culto",cartas:0}]; pintarRanuras(); }); await p.waitForTimeout(2500); await coger("partida");
+  await p.evaluate(()=>{ empezar(); E.estados=[{id:"culto",cartas:0}]; pintarRanuras(); }); await p.waitForTimeout(2500); await coger("partida");
   await p.click(".barra"); await p.waitForTimeout(400); await coger("popup-fuerza"); await p.keyboard.press("Escape");
   await p.click("#btn-menu"); await p.waitForTimeout(300); await coger("menu"); await p.evaluate(()=>cerrarMenu());
   await p.evaluate(()=>{ banda("logro", "¡Nuevo logro!"); }); await p.waitForTimeout(800); await coger("logro-texto");

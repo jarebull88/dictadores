@@ -53,14 +53,12 @@ test("al pasar de era sale el nombre de la era que empieza y al sobrevivir a la 
   assert.ok(!j.$("screen-end").classList.contains("caida"));
 });
 
-test("el nombre del dictador es una sola palabra y se muestra como «Comandante X»", () => {
+test("el dictador ya no tiene nombre que escribir: la pantalla de inicio enseña «El Comandante» y su ficha, también", () => {
   const j = cargar();
   j.w.eval("irANombre()");
-  j.$("input-nombre").value = "Aureliano Buendía";
-  j.$("input-nombre").dispatchEvent(new j.w.Event("input"));
+  assert.ok(!j.d.getElementById("input-nombre"), "ya no hay campo para escribir el nombre");
+  assert.equal(j.$("nombre-leyenda").textContent, "El Comandante");
+  assert.equal(j.w.eval("fichaComandante().nombre"), "El Comandante");
   j.w.eval("decidirNombre(1)");
-  assert.ok(j.visible("screen-name"), "no debe empezar con dos palabras");
-  j.$("input-nombre").value = "aureliano";
-  j.w.eval("decidirNombre(1)");
-  assert.equal(j.w.eval("nombreCompleto()"), "Comandante Aureliano");
+  assert.equal(j.w.eval("nombreCompleto()"), "El Comandante");
 });

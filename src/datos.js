@@ -1338,7 +1338,7 @@ const LOGROS = [
     perjuicio: "Si pierdes la libreta, tu familia deja de existir a efectos del almacén." },
   { id: "compota", carta: "la_bahia", fondo: "oliva", titulo: "Compota importada", subtitulo: "Compota extranjera de primera calidad, conseguida mediante una operación diplomática de alto nivel.",
     decision: "Cámbienlos por compotas",
-    descripcion: "100% fruta natural, el envase es precioso y la etiqueta está en otro idioma. Se recomienda disfrutar despacio: ya no quedan…",
+    descripcion: "100% fruta natural, el envase es precioso y la etiqueta está en otro idioma. Se recomienda disfrutar despacio: ya no quedan mercenarios para intercambiar.",
     beneficio: "Entrega este tarro a un ministro para ganarte su favor.",
     perjuicio: "Quienes se quedan sin tarro recuerdan que todos son iguales ante la Revolución y preguntan dónde está su compota." },
   { id: "revolukola", carta: "refresco", fondo: "azul", titulo: "Botella de Revukola", subtitulo: "Dulce, pegajosa y de producción nacional.",

@@ -689,3 +689,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **2 nov — Textos, muertes (Jorge):** se descartan las 5 muertes por personaje y se vuelve a las 8 por fuerza; más adelante, varias muertes por fuerza. Los dobles: 3 vidas (el original y 2 dobles); las muertes se adaptan para que quepa un doble.
 - **2 nov — Textos:** los dobles, textos provisionales en `datos.js` (`FINALES_DOBLE`, con Desconocido y Recambio en vez de Invasión y Anexión; `DOBLES`: nota, leyenda y cartas de Domingo); con la última vida, las 8 muertes de siempre.
 - **2 nov — Textos:** la tercera caída: nota «Esta vez no había doble.» y pie «Gobernaste N años con tres caras» (provisional).
+- **2 nov — Textos (Jorge):** bajo la carta, «Vicepresidente» (no «del Consejo de Ministros») y Papá Ernesto «Escritor».

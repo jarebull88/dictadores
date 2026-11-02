@@ -26,13 +26,13 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Que Milfuegos vaya a detenerlo → sube Partido +5 · baja Ejército -4
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
-**El viaje de Milfuegos** (Ministro del Interior; segundo paso)  
-«El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.»
+**El viaje de Milfuegos** (Ministro de las Fuerzas Armadas; segundo paso)  
+«Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.»
 - A. Que vaya volando → nada
 - B. Que vaya en jeep → nada
 
-**La fuga del comandante** (Ministro del Interior)  
-«Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
+**La fuga del comandante** (Ministro de las Fuerzas Armadas)  
+«Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio. ¡Qué descarado!»
 - A. Que lo escuche quien quiera → sube Pueblo +3 · baja Ejército -3
 - B. Interfieran la emisora → sube Ejército +3 · baja Pueblo -3
 
@@ -223,7 +223,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Papá Ernesto (torneo)** (Papá Ernesto)  
 «Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!»
-- A. ¡Acepto! Lo mío es hacer picar → sube Pueblo +5 · baja Partido -5
+- A. Llevo el ron y el anzuelo → sube Pueblo +5 · baja Partido -5
 - B. No me gusta pescar → sube Partido +5 · baja Pueblo -5
 
 **Papá Ernesto (whisky)** (Papá Ernesto)  

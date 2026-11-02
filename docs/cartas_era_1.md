@@ -48,10 +48,10 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 ### 5. El viaje de Milfuegos
 
-**Personaje:** Ministro del Interior  
+**Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.»
+**Carta:** «Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.»
 
 - **A. Que vaya volando**  · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
 - **B. Que vaya en jeep**  · Encola: `fuga_comandante` en 1 a 2 años
@@ -60,10 +60,10 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 ### 6. La fuga del comandante
 
-**Personaje:** Ministro del Interior  
+**Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.»
+**Carta:** «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio. ¡Qué descarado!»
 
 - **A. Que lo escuche quien quiera** Pueblo +3 · Ejército −3 · Bandera: `exiliados_vocales`
 - **B. Interfieran la emisora** Ejército +3 · Pueblo −3 · Bandera: `exiliados_vocales`
@@ -497,7 +497,7 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!»
 
-- **A. ¡Acepto! Lo mío es hacer picar** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
+- **A. Llevo el ron y el anzuelo** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
 - **B. No me gusta pescar** Pueblo −5 · Élite +5 · Encola: `ernesto_corte1` en 1 años
 
 ### 45. Papá Ernesto (whisky)

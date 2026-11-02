@@ -2079,6 +2079,32 @@ const FINALES = {   // 30 oct, Textos: versión de la era 1 (vale para todas has
   potencias_100:{ titulo: "Anexión",       texto: "Dependías tanto de tu aliado extranjero que acabó incorporando el país a su territorio. A ti te nombraron alcalde de un pueblo de 300 habitantes." }
 };
 
+// 2 nov, Jorge: los dobles (3 vidas: el original y 2 dobles). PROVISIONAL (se revisa más adelante).
+// Mientras queden dobles, la caída usa FINALES_DOBLE (la muerte deja hueco a un doble); con el último, FINALES.
+// Flujo (lo monta Programación, docs/PENDIENTES.md): caída → derecha «Que entre el doble» → nota de inteligencia → vuelve al principio de la era → carta de Domingo.
+const FINALES_DOBLE = {
+  pueblo_0:     { titulo: "Re-Revolución", texto: "Los alzados bajaron del monte y se llevaron al hombre del balcón. Era tu doble, el de los discursos de los domingos." },
+  pueblo_100:   { titulo: "Ingratitud",    texto: "La asamblea del barrio votó quién debía mandar. Ganó tu doble: habla más claro y en menos tiempo." },
+  ejercito_0:   { titulo: "Abducción",     texto: "Un comando extranjero entró en palacio, afeitó al primero que encontró y se lo llevó. Se equivocaron de barba." },
+  ejercito_100: { titulo: "Junta militar", texto: "Los generales prefieren a tu doble: saluda mejor y no opina. A ti te toca recibir a los grupos folclóricos." },
+  elite_0:      { titulo: "Unanimidad",    texto: "El Partido votó por unanimidad sustituirte por tu doble, el único que siempre vota a favor." },
+  elite_100:    { titulo: "Embajador",     texto: "El Partido te nombró embajador en una república con más renos que habitantes. Para las fotos se quedan a tu doble." },
+  potencias_0:  { titulo: "Desconocido",   texto: "Ningún país reconoce ya a tu gobierno. Te retiras «por motivos de salud» y en el balcón aparece tu doble, mucho más simpático." },
+  potencias_100:{ titulo: "Recambio",      texto: "Tu aliado te invita a un sanatorio en su país, sin fecha de vuelta, y deja a tu doble firmando lo que le traen." }
+};
+const DOBLES = {
+  salida: "Que entre el doble",   // la derecha de la carta de la caída mientras queden dobles
+  // nota de inteligencia tras la caída, una por doble
+  nota: ["El país sigue teniendo Comandante. Nadie ha notado el cambio. De momento.",
+         "El Comandante ha vuelto a aparecer en el balcón. Algunos juran que esta mañana tenía otra voz."],
+  leyenda: ["Doble 1 de 2", "Doble 2 de 2"],
+  // la primera carta de la era, con Domingo (las dos respuestas siguen, sin efectos)
+  domingo: [
+    { texto: "Hermanito, ¿eres tú? Te veo distinto… ¿más bajito?", izq: "Soy el de siempre", der: "Habrás crecido tú" },
+    { texto: "Esta vez no me lo creo ni yo. ¿Dónde está mi hermano?", izq: "Delante de ti", der: "Calla y saluda" }
+  ]
+};
+
 /* 1 nov: muertes especiales (no dependen de una barra): `especial` = sin la frase de qué fuerza cayó; `todas` = en la pantalla de caída caen todas las barras.
    Imagen: por hacer (Arte); mientras, la carta enseña el título. */
 Object.assign(FINALES, {

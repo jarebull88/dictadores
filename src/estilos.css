@@ -105,7 +105,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.mensaje, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
@@ -113,7 +113,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 
 
 /* — 3 · CUERPO — */
-.pantalla-nombre .intro, .cabecera-carta .era-texto, .lema, .aviso-texto,
+.lema, .aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
 .leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,

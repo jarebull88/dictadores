@@ -53,8 +53,8 @@ Duración: entre 10 y 12 cartas. 55 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.»
 
-- **A. Que vaya volando**  · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
-- **B. Que vaya en jeep**  · Encola: `fuga_comandante` en 1 a 2 años
+- **A. Pues que vaya volando**  · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
+- **B. Que vaya en jeep, no hay prisas**  · Encola: `fuga_comandante` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Motos piden que los libros hablen de él.
 

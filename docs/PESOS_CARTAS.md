@@ -28,8 +28,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El viaje de Milfuegos** (Ministro de las Fuerzas Armadas; segundo paso)  
 «Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.»
-- A. Que vaya volando → nada
-- B. Que vaya en jeep → nada
+- A. Pues que vaya volando → nada
+- B. Que vaya en jeep, no hay prisas → nada
 
 **La fuga del comandante** (Ministro de las Fuerzas Armadas)  
 «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio. ¡Qué descarado!»

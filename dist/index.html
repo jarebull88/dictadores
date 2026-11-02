@@ -955,16 +955,16 @@ const CARTAS = [
   {
     // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
     id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
-    personaje: "Ministro del Interior",
-    texto: "El Comandante Milfuegos tardaría dos días por carretera. Le tengo un avión preparado.",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.",
     izq: { accion: "Que vaya volando", efectos: {}, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
     der: { accion: "Que vaya en jeep", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
   },
   {
     // 31 oct, Jorge: cierre de la trama si Milfuegos va por carretera: el dimitido se escapa
     id: "fuga_comandante", tipo: "cola", titulo: "La fuga del comandante",
-    personaje: "Ministro del Interior",
-    texto: "Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio.",
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio. ¡Qué descarado!",
     izq: { accion: "Que lo escuche quien quiera", efectos: { pueblo: 3, ejercito: -3 }, banderas: ["base.exiliados_vocales"] },
     der: { accion: "Interfieran la emisora", efectos: { ejercito: 3, pueblo: -3 }, banderas: ["base.exiliados_vocales"] }
   },
@@ -1292,7 +1292,7 @@ const CARTAS = [
     id: "ernesto_torneo", tipo: "ancla", ventana: [2, 3], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
     personaje: "Papá Ernesto",
     texto: "Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!",
-    izq: { accion: "¡Acepto! Lo mío es hacer picar", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
+    izq: { accion: "Llevo el ron y el anzuelo", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
     der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 }, encolar: [{ carta: "ernesto_corte1", min: 1, max: 1 }] }   // corte 1: Ernesto no vuelve
   },
   {

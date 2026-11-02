@@ -2017,10 +2017,10 @@ const FICHAS = {
   "Padrino Pupo": { nombre: "Padrino Pupo", cargo: "Babalawo oficial", titulo: "Babalawo oficial",
     historia: "Babalawo de barrio que lee el futuro en un collar de caracoles. Ve el mal de ojo en cualquier cara, sobre todo en las que pagan.",
     nota: "Es el único que llama «mijo» al Comandante." },
-  "Papá Ernesto": { nombre: "Papá Ernesto", cargo: "Novelista", titulo: "Novelista",
+  "Papá Ernesto": { nombre: "Papá Ernesto", cargo: "Escritor", titulo: "Escritor",
     historia: "Novelista extranjero de fama mundial que adora las revoluciones, siempre que tengan buenos bares. Pesca agujas, con éxito variable.",
     nota: "Su hígado no es tan revolucionario." },
-  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente",
+  "Vicepresidente del Consejo de Ministros": { nombre: "Anselmo Quiñones", cargo: "Vicepresidente", titulo: "Vicepresidente",
     historia: "Vicepresidente del tirano. Se pasó a la Revolución el último día, con el uniforme recién comprado y la etiqueta colgando.",
     nota: "Sobrevive a todos los gobiernos. Este servicio estudia cómo." },
   "Ministro de Economía": { nombre: "Rigoberto Peña", cargo: "Economía",
@@ -2068,6 +2068,34 @@ const FINALES = {   // 30 oct, Textos: versión de la era 1 (vale para todas has
   elite_100:    { titulo: "Embajador",     texto: "El Partido te ha nombrado embajador en una remota república del bloque oriental. Allí el invierno dura once meses y hay más renos que habitantes." },
   potencias_0:  { titulo: "Invasión",      texto: "Te negaste a firmar alianzas con ninguna potencia. Cuando te invadieron, nadie se sintió obligado a ayudarte." },
   potencias_100:{ titulo: "Anexión",       texto: "Dependías tanto de tu aliado extranjero que acabó incorporando el país a su territorio. A ti te nombraron alcalde de un pueblo de 300 habitantes." }
+};
+
+// 2 nov, Jorge: los dobles (3 vidas: el original y 2 dobles). PROVISIONAL (se revisa más adelante).
+// Mientras queden dobles, la caída usa FINALES_DOBLE (la muerte deja hueco a un doble); con el último, FINALES.
+// Flujo (lo monta Programación, docs/PENDIENTES.md): caída → derecha «Que entre el doble» → nota de inteligencia → vuelve al principio de la era → carta de Domingo.
+const FINALES_DOBLE = {
+  pueblo_0:     { titulo: "Re-Revolución", texto: "Los alzados bajaron del monte y se llevaron al hombre del balcón. Era tu doble, el de los discursos de los domingos." },
+  pueblo_100:   { titulo: "Ingratitud",    texto: "La asamblea del barrio votó quién debía mandar. Ganó tu doble: habla más claro y en menos tiempo." },
+  ejercito_0:   { titulo: "Abducción",     texto: "Un comando extranjero entró en palacio, afeitó al primero que encontró y se lo llevó. Se equivocaron de barba." },
+  ejercito_100: { titulo: "Junta militar", texto: "Los generales prefieren a tu doble: saluda mejor y no opina. A ti te toca recibir a los grupos folclóricos." },
+  elite_0:      { titulo: "Unanimidad",    texto: "El Partido votó por unanimidad sustituirte por tu doble, el único que siempre vota a favor." },
+  elite_100:    { titulo: "Embajador",     texto: "El Partido te nombró embajador en una república con más renos que habitantes. Para las fotos se quedan a tu doble." },
+  potencias_0:  { titulo: "Desconocido",   texto: "Ningún país reconoce ya a tu gobierno. Te retiras «por motivos de salud» y en el balcón aparece tu doble, mucho más simpático." },
+  potencias_100:{ titulo: "Recambio",      texto: "Tu aliado te invita a un sanatorio en su país, sin fecha de vuelta, y deja a tu doble firmando lo que le traen." }
+};
+const DOBLES = {
+  salida: "Que entre el doble",   // la derecha de la carta de la caída mientras queden dobles
+  // nota de inteligencia tras la caída, una por doble
+  nota: ["El país sigue teniendo Comandante. Nadie ha notado el cambio. De momento.",
+         "El Comandante ha vuelto a aparecer en el balcón. Algunos juran que esta mañana tenía otra voz."],
+  leyenda: ["Doble 1 de 2", "Doble 2 de 2"],
+  final: "Esta vez no había doble.",   // nota de inteligencia antes de la tercera caída (la de verdad)
+  anios: "Gobernaste {n} años con tres caras",   // pie de la tercera caída si usaste los dos dobles
+  // la primera carta de la era, con Domingo (las dos respuestas siguen, sin efectos)
+  domingo: [
+    { texto: "Hermanito, ¿eres tú? Te veo distinto… ¿más bajito?", izq: "Soy el de siempre", der: "Habrás crecido tú" },
+    { texto: "Esta vez no me lo creo ni yo. ¿Dónde está mi hermano?", izq: "Delante de ti", der: "Calla y saluda" }
+  ]
 };
 
 /* 1 nov: muertes especiales (no dependen de una barra): `especial` = sin la frase de qué fuerza cayó; `todas` = en la pantalla de caída caen todas las barras.

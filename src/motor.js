@@ -552,7 +552,7 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo(); quitarInfo(); if (id !== "screen-game") limpiarBanda();
+  ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); }
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
   if (id === "screen-game") { }
@@ -951,6 +951,7 @@ function empezar() {
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
+  document.body.classList.remove("negro");
   E.avisoPendiente = null;
   E.estadoNuevo = null; modoEstado = false; modoAviso = false; modoFin = false;
   $("carta").classList.remove("hidden", "listo");
@@ -1450,7 +1451,8 @@ function mostrarCartaFin(d, clave, personaje, anios) {
   mostrar("screen-game");
   medirCartaJuego();
   entrarCarta(carta);
-  BARRAS.forEach(b => { const v = E.barras[b.id]; document.querySelector(`.barra[data-b="${b.id}"]`).classList.toggle("cayo", v <= 0 || v >= 100); });   // la fuerza que cayó (con su barra) se queda en color
+  BARRAS.forEach(b => { const v = E.barras[b.id]; document.querySelector(`.barra[data-b="${b.id}"]`).classList.toggle("cayo", v <= 0 || v >= 100); });
+  document.body.classList.add("negro");               // 2 nov: a la vez que la carta gira, la interfaz pasa a blanco y negro (salvo las fuerzas que no cayeron)   // la fuerza que cayó (con su barra) se queda en color
   const dilo = () => { if (modoFin) ponerLeyenda(anios, true); };
   if (!animar()) { dilo(); return; }
   banda("caida", "¡Has caído!", dilo);                 // 2 nov: sale a la vez que la carta gira, como el cartel de las secuelas

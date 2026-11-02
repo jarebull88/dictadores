@@ -225,8 +225,8 @@ const GRUPO_DE = {
 
 /* Iconos de fuerzas y estados (23 oct): carteles serigrafiados cuadrados, con su fondo de color
    (assets/iconos/originales/cartel-*.jpg → «<id>-cartel»). */
-const icono = (id, clase = "", version = "-cartel") => {   // `version` «-caida»: el icono con la paleta de la pantalla de la caída (negro, crema, blanco y rojo)
-  const img = IMG["icono_" + id + version];
+const icono = (id, clase = "") => {
+  const img = IMG["icono_" + id + "-cartel"];
   return img ? `<img class="${["icono", "cartel", clase].filter(Boolean).join(" ")}" src="${img.src}" alt="" draggable="false">` : "";
 };
 
@@ -560,7 +560,7 @@ function mostrar(id) {
 
 function parBarra(id) {
   return `<div class="par">
-      <div class="icono-fuerza" aria-hidden="true">${icono(id)}${icono(id, "negro", "-caida")}</div>
+      <div class="icono-fuerza" aria-hidden="true">${icono(id)}</div>
       <span class="alerta" aria-hidden="true">!</span>
       <div class="nivel" aria-hidden="true"><i class="relleno"></i></div>
     </div>`;
@@ -1451,6 +1451,7 @@ function mostrarCartaFin(d, clave, personaje, anios) {
   mostrar("screen-game");
   medirCartaJuego();
   entrarCarta(carta);
+  BARRAS.forEach(b => { const v = E.barras[b.id]; document.querySelector(`.barra[data-b="${b.id}"]`).classList.toggle("cayo", v <= 0 || v >= 100); });   // la fuerza que cayó (con su barra) se queda en color
   document.body.classList.add("negro");               // 2 nov: a la vez que la carta gira, la pantalla se oscurece con una transición suave
   const dilo = () => { if (modoFin) ponerLeyenda(anios, true); };
   if (!animar()) { dilo(); return; }

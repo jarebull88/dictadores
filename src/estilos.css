@@ -61,21 +61,12 @@ body {
   color: var(--tinta);
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
-/* CAÍDA A NEGRO (2 nov, Jorge): al caer, la pantalla del juego se oscurece con una transición suave: fondo negro de la paleta, textos en crema,
-   iconos en blanco y negro y el de la fuerza que cayó con contorno rojo (y su barra roja). `body.negro` lo pone mostrarCartaFin(). */
-body { transition: background-color 1.2s ease, color 1.2s ease; }
-.leyenda, .boton-menu, .mensaje, .barra .icono-fuerza, .barra .icono-fuerza .icono, .nivel, .ranura { transition: color 1.2s ease, background-color 1.2s ease, filter 1.2s ease, outline-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
-.barra .icono-fuerza { outline: 4px solid transparent; outline-offset: -4px; }
-body.negro { background: var(--p-tinta); color: var(--p-crema); }
-body.negro :is(.leyenda, .boton-menu, .mensaje) { color: var(--p-crema); }
-/* 2 nov: en la caída los iconos se cambian por sus versiones de la paleta de la caída (fundido cruzado); el contorno rojo sigue siendo del que cayó */
-.icono-fuerza { position: relative; }
-.icono-fuerza .icono.negro { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; }
-body.negro .icono-fuerza .icono.negro { opacity: 1; }
-body.negro .barra .nivel { filter: grayscale(1); }
-body.negro .barra.peligro .icono-fuerza { outline-color: var(--p-rojo); }
-body.negro .barra.peligro .nivel { filter: none; background: var(--p-rojo); border-color: var(--p-rojo); }
-body.negro .ranura { background: rgba(240, 233, 214, .14); }
+/* LA CAÍDA EN BLANCO Y NEGRO (2 nov, Jorge): al caer, toda la interfaz pasa por un filtro en blanco y negro con una transición suave; solo se quedan
+   en color la carta que gira y la fuerza que cayó con su barra (`.cayo`). `body.negro` lo pone mostrarCartaFin(). El fondo crema pasa a su gris equivalente. */
+body { transition: background-color 1.2s ease; }
+.barra, .ranuras, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, opacity .3s ease; }
+body.negro { background: #E9E9E9; }
+body.negro :is(.barra:not(.cayo), .ranuras, .escenario .pila, .leyenda, .boton-menu, .mensaje) { filter: grayscale(1); }
 *, *::before, *::after { box-sizing: border-box; }
 #app { height: 100%; position: relative; }
 .titulo { }

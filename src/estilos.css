@@ -61,12 +61,10 @@ body {
   color: var(--tinta);
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
-/* LA CAÍDA EN BLANCO Y NEGRO (2 nov, Jorge): al caer, toda la interfaz pasa por un filtro en blanco y negro con una transición suave; solo se quedan
-   en color la carta que gira y la fuerza que cayó con su barra (`.cayo`). `body.negro` lo pone mostrarCartaFin(). El fondo crema pasa a su gris equivalente. */
-body { transition: background-color 1.2s ease; }
-.barra, .ranuras, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, opacity .3s ease; }
-body.negro { background: #E9E9E9; }
-body.negro :is(.barra:not(.cayo), .ranuras, .escenario .pila, .leyenda, .boton-menu, .mensaje) { filter: grayscale(1); }
+/* LA CAÍDA (2 nov, Jorge): al caer, solo la fuerza que cayó (con su barra) pasa a blanco y negro, con una transición suave; el resto se queda en color.
+   La clase `.cayo` la pone mostrarCartaFin(). */
+.barra { transition: filter 1.2s ease; }
+.barra.cayo { filter: grayscale(1); }
 *, *::before, *::after { box-sizing: border-box; }
 #app { height: 100%; position: relative; }
 .titulo { }

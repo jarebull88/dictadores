@@ -1191,6 +1191,8 @@ const DOBLES = {
   nota: ["El país sigue teniendo Comandante. Nadie ha notado el cambio. De momento.",
          "El Comandante ha vuelto a aparecer en el balcón. Algunos juran que esta mañana tenía otra voz."],
   leyenda: ["Doble 1 de 2", "Doble 2 de 2"],
+  final: "Esta vez no había doble.",   // nota de inteligencia antes de la tercera caída (la de verdad)
+  anios: "Gobernaste {n} años con tres caras",   // pie de la tercera caída si usaste los dos dobles
   // la primera carta de la era, con Domingo (las dos respuestas siguen, sin efectos)
   domingo: [
     { texto: "Hermanito, ¿eres tú? Te veo distinto… ¿más bajito?", izq: "Soy el de siempre", der: "Habrás crecido tú" },

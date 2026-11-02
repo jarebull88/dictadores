@@ -62,3 +62,5 @@ Todas las pantallas con carta usan la misma caja de texto de **4 líneas** (≈1
 - **Recordar a Jorge (2 nov):** revisar el **aviso cuando una secuela acaba** (qué se ve y cómo se avisa al jugador).
 
 - **Textos (2 nov, desde Programación):** el jugador ya no escribe su nombre; el dictador es «El Comandante». Revisar textos que digan «tu nombre», «Comandante X» o similar. Además, la intro de la pantalla de inicio (6 líneas) no cabe en la caja de 4.
+
+- **Muertes por personaje retiradas (2 nov, Jorge; aviso a Textos y Arte):** ya no hay muertes por personaje (Por fin es Domingo, Confesión, Asesoría, Intervención, Superviviente): quedan solo las 8 de las fuerzas y las especiales (atentado, pelotazo). Sus textos están en `docs/ARCHIVO_MUERTES_PERSONAJE.md`. **Arte: no hacen falta imágenes de esas cinco muertes.** `docs/MUERTES.md` aún las describe: Textos debe actualizarlo.

@@ -1180,14 +1180,6 @@ Object.assign(FINALES, {
 });
 /* Una versión de cada caída por era (30 oct, Textos): FINALES_ERA[era][clave]; si falta, vale la de la era 1 (FINALES). Textos las irá entregando. */
 const FINALES_ERA = {};
-/* Quien te tumba desde su carta (30 oct, Jorge: solo estos cinco; clave = cargo interno): su muerte sustituye a la de la barra (arriba sigue la frase de qué barra cayó) */
-const MUERTES_PERSONAJE = {
-  "Ministro de las Fuerzas Armadas": { titulo: "Por fin es Domingo", texto: "Tu hermano pequeño ordenó a las tropas detenerte y se proclamó nuevo Comandante. Después pidió que le ajustaran tu uniforme." },
-  "Ministro del Interior": { titulo: "Confesión", texto: "Octavio reunió pruebas, testigos y documentos para demostrar que conspirabas contra la Revolución. La única pieza que faltaba era tu confesión, pero también la consiguió." },
-  "Embajador del bloque oriental": { titulo: "Asesoría", texto: "Los asesores de Strenko te aconsejaron descansar una temporada. Fuera del país, y con escolta." },
-  "Embajador de la potencia del norte": { titulo: "Intervención", texto: "La potencia occidental intervino para restaurar el orden y puso a Pembrook al frente del gobierno. Tus ministros colaboraron en cuanto supieron sus nuevos salarios." },
-  "Vicepresidente del Consejo de Ministros": { titulo: "Superviviente", texto: "Anselmo te entregó a tus enemigos a cambio de seguir en el cargo y de que le respetaran las vacaciones. Ya va por su tercer gobierno." }
-};
 /* Banco de atentados (cartas de tipo «atentado»): uno por era, sin repetir en la partida, nunca en las tres primeras cartas de la era */
 const ATENTADOS = ["atentado_tabacos"];
 /* Números provisionales de los atentados (a ajustar con npm run simular): probabilidad por carta de que salga el de la era y si, si no ha salido, sale seguro al final de la era */

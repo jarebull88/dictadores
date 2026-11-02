@@ -167,14 +167,12 @@ test("avisos: los cortes de Papá Ernesto salen justo después de la decisión q
   assert.equal(j.$("leyenda").textContent, "Nota de inteligencia");
   assert.ok(w.eval("modoAviso"));
 });
-test("muertes: si caes en la carta de Domingo, Octavio, Strenko, Pembrook o Anselmo sale su muerte (con la frase de la barra); en otra, la de la barra", () => {
+test("muertes: caes siempre con la muerte de la fuerza (ya no hay muertes por personaje, 2 nov) y cada era puede tener la suya", () => {
   j.empezar();
   w.eval(`terminar("pueblo_0", false, "Ministro de las Fuerzas Armadas")`);
-  assert.equal(w.eval("E.fin.titulo"), "Por fin es Domingo");
+  assert.equal(w.eval("E.fin.titulo"), "Re-Revolución", "aunque caigas en la carta de un ministro");
   assert.equal(w.eval("E.fin.frase"), "El Pueblo llegó al mínimo.");
-  assert.match(w.eval("E.fin.texto"), /^Tu hermano pequeño/);
-  w.eval(`terminar("pueblo_0", false, "Ministro de Economía")`);
-  assert.equal(w.eval("E.fin.titulo"), "Re-Revolución");
+  assert.equal(w.eval("typeof MUERTES_PERSONAJE"), "undefined");
   w.eval(`FINALES_ERA[2] = { pueblo_0: { titulo: "Prueba era 2", texto: "x" } }; E.era = 2; terminar("pueblo_0")`);
   assert.equal(w.eval("E.fin.titulo"), "Prueba era 2", "cada era puede tener su caída");
   w.eval(`E.era = 3; terminar("pueblo_0")`);

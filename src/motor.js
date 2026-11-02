@@ -1382,8 +1382,7 @@ function terminar(clave, transicion, personaje) {
        el relato ocupa el sitio de la pregunta, «¡Has caído!» sale como la banda de las recompensas (siempre roja) y, al irse, la leyenda
        dice cuánto gobernaste. Derecha, jugar de nuevo; izquierda, volver a la portada. */
     const f = finalDe(clave, E ? E.era : 1);
-    const muertePers = !f.especial && personaje && MUERTES_PERSONAJE[personaje];   // 1 nov: si caes en la carta de quien puede tumbarte, sale su muerte
-    const d = muertePers || f;
+    const d = f;   // 2 nov, Jorge: solo las muertes de las fuerzas (y las especiales); ya no hay muertes por personaje
     let frase = "";
     if (!f.especial) {
       const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
@@ -1392,7 +1391,7 @@ function terminar(clave, transicion, personaje) {
     }
     const anios = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;
     E.fin = { clave, titulo: d.titulo, texto: d.texto, frase, anios };
-    mostrarCartaFin(d, clave, muertePers ? personaje : null, anios);
+    mostrarCartaFin(d, clave, null, anios);
     return;
   } else {
     $("fin-principal").textContent = "¡Has ganado!";
@@ -1423,20 +1422,13 @@ function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin, cart
   cartonDe(carta, "");
   // Una escena por etapa si la hay («Abducción»: el dictador de cada era), si no, la de la caída
   const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
-  const slugP = personaje && PERSONAJE_SLUG[personaje];
-  const imgMuerte = clave && !slugP && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
+    const imgMuerte = clave && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
   if (imgMuerte) {
     carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"><img class="objeto-img" src="${imgMuerte}" alt="${esc(titulo)}" draggable="false"><div class="respuesta"></div></div></div></div>`;
     void carta.offsetWidth; carta.style.transition = "";
     return;
   }
-  const escena = clave && !slugP && svgEscena(idEscena, titulo);
-  if (slugP && RETRATOS[slugP]) {   // 1 nov: muerte de un personaje: mientras Arte no haga su imagen, su cartel
-    cartonDe(carta, slugP);
-    carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe(slugP)}>${svgPersonaje(slugP, personaje)}<div class="respuesta"></div></div></div></div>`;
-    void carta.offsetWidth; carta.style.transition = "";
-    return;
-  }
+  const escena = clave && svgEscena(idEscena, titulo);
   carta.innerHTML = escena
     ? `<div class="giro"><div class="tapa"></div><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
       `${escena}<div class="respuesta"></div></div></div></div>`

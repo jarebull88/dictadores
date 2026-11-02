@@ -2087,14 +2087,6 @@ Object.assign(FINALES, {
 });
 /* Una versión de cada caída por era (30 oct, Textos): FINALES_ERA[era][clave]; si falta, vale la de la era 1 (FINALES). Textos las irá entregando. */
 const FINALES_ERA = {};
-/* Quien te tumba desde su carta (30 oct, Jorge: solo estos cinco; clave = cargo interno): su muerte sustituye a la de la barra (arriba sigue la frase de qué barra cayó) */
-const MUERTES_PERSONAJE = {
-  "Ministro de las Fuerzas Armadas": { titulo: "Por fin es Domingo", texto: "Tu hermano pequeño ordenó a las tropas detenerte y se proclamó nuevo Comandante. Después pidió que le ajustaran tu uniforme." },
-  "Ministro del Interior": { titulo: "Confesión", texto: "Octavio reunió pruebas, testigos y documentos para demostrar que conspirabas contra la Revolución. La única pieza que faltaba era tu confesión, pero también la consiguió." },
-  "Embajador del bloque oriental": { titulo: "Asesoría", texto: "Los asesores de Strenko te aconsejaron descansar una temporada. Fuera del país, y con escolta." },
-  "Embajador de la potencia del norte": { titulo: "Intervención", texto: "La potencia occidental intervino para restaurar el orden y puso a Pembrook al frente del gobierno. Tus ministros colaboraron en cuanto supieron sus nuevos salarios." },
-  "Vicepresidente del Consejo de Ministros": { titulo: "Superviviente", texto: "Anselmo te entregó a tus enemigos a cambio de seguir en el cargo y de que le respetaran las vacaciones. Ya va por su tercer gobierno." }
-};
 /* Banco de atentados (cartas de tipo «atentado»): uno por era, sin repetir en la partida, nunca en las tres primeras cartas de la era */
 const ATENTADOS = ["atentado_tabacos"];
 /* Números provisionales de los atentados (a ajustar con npm run simular): probabilidad por carta de que salga el de la era y si, si no ha salido, sale seguro al final de la era */
@@ -3667,8 +3659,7 @@ function terminar(clave, transicion, personaje) {
        el relato ocupa el sitio de la pregunta, «¡Has caído!» sale como la banda de las recompensas (siempre roja) y, al irse, la leyenda
        dice cuánto gobernaste. Derecha, jugar de nuevo; izquierda, volver a la portada. */
     const f = finalDe(clave, E ? E.era : 1);
-    const muertePers = !f.especial && personaje && MUERTES_PERSONAJE[personaje];   // 1 nov: si caes en la carta de quien puede tumbarte, sale su muerte
-    const d = muertePers || f;
+    const d = f;   // 2 nov, Jorge: solo las muertes de las fuerzas (y las especiales); ya no hay muertes por personaje
     let frase = "";
     if (!f.especial) {
       const [idF, extremo] = [clave.split("_")[0], clave.endsWith("_100") ? 100 : 0];
@@ -3677,7 +3668,7 @@ function terminar(clave, transicion, personaje) {
     }
     const anios = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;
     E.fin = { clave, titulo: d.titulo, texto: d.texto, frase, anios };
-    mostrarCartaFin(d, clave, muertePers ? personaje : null, anios);
+    mostrarCartaFin(d, clave, null, anios);
     return;
   } else {
     $("fin-principal").textContent = "¡Has ganado!";
@@ -3708,20 +3699,13 @@ function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin, cart
   cartonDe(carta, "");
   // Una escena por etapa si la hay («Abducción»: el dictador de cada era), si no, la de la caída
   const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
-  const slugP = personaje && PERSONAJE_SLUG[personaje];
-  const imgMuerte = clave && !slugP && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
+    const imgMuerte = clave && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
   if (imgMuerte) {
     carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"><img class="objeto-img" src="${imgMuerte}" alt="${esc(titulo)}" draggable="false"><div class="respuesta"></div></div></div></div>`;
     void carta.offsetWidth; carta.style.transition = "";
     return;
   }
-  const escena = clave && !slugP && svgEscena(idEscena, titulo);
-  if (slugP && RETRATOS[slugP]) {   // 1 nov: muerte de un personaje: mientras Arte no haga su imagen, su cartel
-    cartonDe(carta, slugP);
-    carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"${fondoDe(slugP)}>${svgPersonaje(slugP, personaje)}<div class="respuesta"></div></div></div></div>`;
-    void carta.offsetWidth; carta.style.transition = "";
-    return;
-  }
+  const escena = clave && svgEscena(idEscena, titulo);
   carta.innerHTML = escena
     ? `<div class="giro"><div class="tapa"></div><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
       `${escena}<div class="respuesta"></div></div></div></div>`

@@ -1164,12 +1164,12 @@ const POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 const FINALES = {   // 30 oct, Textos: versión de la era 1 (vale para todas hasta que haya una por era; docs/PENDIENTES.md)
   pueblo_0:     { titulo: "Re-Revolución", texto: "El Pueblo hizo lo que le enseñaste: subió al monte, esperó y bajó a por el tirano. El tirano eras tú." },
   pueblo_100:   { titulo: "Ingratitud",    texto: "Con tierras, fusiles y casa a mitad de precio, el Pueblo decidió que la Revolución podía seguir sin su Comandante." },
-  ejercito_0:   { titulo: "Abducción",     texto: "El presupuesto militar no daba ni para vigilar tu dormitorio. Un comando extranjero te sacó de la cama, te afeitó y te llevó fuera del país." },
-  ejercito_100: { titulo: "Junta militar", texto: "El Ejército ha tomado las riendas del país. A ti te dejaron la agradable tarea de recibir a las delegaciones de grupos folclóricos." },
+  ejercito_0:   { titulo: "Abducción",     texto: "El presupuesto militar no daba ni para vigilar tu dormitorio. Un comando te sacó de la cama, te afeitó y te llevó lejos." },
+  ejercito_100: { titulo: "Junta militar", texto: "Los militares tomaron las riendas del país. A ti te dejaron la agradable tarea de recibir a las delegaciones folclóricas." },
   elite_0:      { titulo: "Unanimidad",    texto: "El Partido ha decidido que tu etapa al frente de la Revolución ha terminado. Todos han votado a favor, incluido tú." },
-  elite_100:    { titulo: "Embajador",     texto: "El Partido te ha nombrado embajador en una remota república del bloque oriental. Allí el invierno dura once meses y hay más renos que habitantes." },
+  elite_100:    { titulo: "Embajador",     texto: "El Partido te nombró embajador en una república remota, donde el invierno dura once meses y hay más renos que habitantes." },
   potencias_0:  { titulo: "Invasión",      texto: "Te negaste a firmar alianzas con ninguna potencia. Cuando te invadieron, nadie se sintió obligado a ayudarte." },
-  potencias_100:{ titulo: "Anexión",       texto: "Dependías tanto de tu aliado extranjero que acabó incorporando el país a su territorio. A ti te nombraron alcalde de un pueblo de 300 habitantes." }
+  potencias_100:{ titulo: "Anexión",       texto: "Dependías tanto de tu aliado que acabó quedándose con el país. A ti te nombraron alcalde de un pueblo de 300 habitantes." }
 };
 
 // 2 nov, Jorge: los dobles (3 vidas: el original y 2 dobles). PROVISIONAL (se revisa más adelante).
@@ -1182,7 +1182,7 @@ const FINALES_DOBLE = {
   ejercito_100: { titulo: "Junta militar", texto: "Los generales prefieren a tu doble: saluda mejor y no opina. A ti te toca recibir a los grupos folclóricos." },
   elite_0:      { titulo: "Unanimidad",    texto: "El Partido votó por unanimidad sustituirte por tu doble, el único que siempre vota a favor." },
   elite_100:    { titulo: "Embajador",     texto: "El Partido te nombró embajador en una república con más renos que habitantes. Para las fotos se quedan a tu doble." },
-  potencias_0:  { titulo: "Desconocido",   texto: "Ningún país reconoce ya a tu gobierno. Te retiras «por motivos de salud» y en el balcón aparece tu doble, mucho más simpático." },
+  potencias_0:  { titulo: "Desconocido",   texto: "Ningún país quería tratar contigo. Tu doble firmó en una semana las alianzas que tú rechazaste, y ahora lo invitan a cenar." },
   potencias_100:{ titulo: "Recambio",      texto: "Tu aliado te invita a un sanatorio en su país, sin fecha de vuelta, y deja a tu doble firmando lo que le traen." }
 };
 const DOBLES = {

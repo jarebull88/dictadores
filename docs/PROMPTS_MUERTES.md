@@ -11,7 +11,7 @@ Square 1:1 scene in the style of a 1960s–70s Cuban silkscreen film poster by E
 ## Estado (3 nov)
 - **Hechas** (en el juego): Re-Revolución, Ingratitud, Abducción, Junta militar, pelotazo y tabacos.
 - **Faltan:** Unanimidad (`elite_0`), Embajador (`elite_100`), y las dos de Potencias (`potencias_0`, `potencias_100`).
-- **Los dobles (2 nov):** cada muerte tiene dos textos que comparten **una sola imagen**: el de siempre (`FINALES`, la última vida) y otro donde cae o te sustituye un doble (`FINALES_DOBLE`, en `src/datos.js`). La imagen tiene que valer para los dos. En Potencias cambian bastante: **Invasión / Desconocido** (sin aliados, nadie te reconoce) y **Anexión / Recambio** (tu aliado te manda a un sanatorio y deja a tu doble firmando). Las escenas 7 y 8 de abajo ya están pensadas para servir a los dos.
+- **Los dobles (2 nov):** cada muerte tiene dos textos que comparten **una sola imagen**: el de siempre (`FINALES`, la última vida) y otro donde cae o te sustituye un doble (`FINALES_DOBLE`, en `src/datos.js`). La imagen tiene que valer para los dos. En Potencias cambian bastante: **Invasión / Desconocido** (sin aliados; con doble: tu doble firma las alianzas que tú rechazaste) y **Anexión / Recambio** (tu aliado te manda a un sanatorio y deja a tu doble firmando). Las escenas 7 y 8 de abajo ya están pensadas para servir a los dos.
 - **Las 5 muertes por personaje se descartaron** (2 nov, Jorge): no hay que hacerlas.
 
 ## Prompts B · Las 8 caídas (era 1)

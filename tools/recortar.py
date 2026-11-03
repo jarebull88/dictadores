@@ -318,6 +318,9 @@ def main():
             if nombre in ESTADOS_CON_CARTA:     # 27 oct: los estados salen en una carta, con su icono como imagen principal: versión grande
                 reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{nombre}-cartel-grande.webp", LADO_CARTEL_ESTADO, 86)
             print(f"icono {f.stem}")
+        for f in sorted((RAIZ / "assets/iconos/originales").glob("menu-*.jpg")):   # 3 nov: los cuatro iconos del menú (Recompensas, Logros, Ajustes, Salir)
+            reducir_cartel(f, RAIZ / f"assets/iconos/recortados/{f.stem[len('menu-'):]}-menu.webp", LADO_CARTEL_ICONO, 88)
+            print(f"icono {f.stem}")
     if que in ("todo", "personajes"):
         dst = RAIZ / "assets/personajes/recortados"; dst.mkdir(parents=True, exist_ok=True)
         for f in sorted((RAIZ / "assets/personajes/originales").glob("*.jpg")):

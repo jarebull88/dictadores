@@ -2187,6 +2187,11 @@ $("btn-menu").addEventListener("click", () => {   // 29 oct: abre el menú a pan
   if (archivoAbierto()) { volverAlJuego(); return; }
   abrirArchivo("recompensas", { atajo: false });
 });
+/* 3 nov: los cuatro iconos del menú son carteles (assets/iconos/originales/menu-<id>.jpg) */
+[["btn-recompensas", "recompensas"], ["btn-logros", "logros"], ["btn-config", "config"], ["btn-abandonar", "abandonar"]].forEach(([id, k]) => {
+  const im = IMG["icono_" + k + "-menu"], c = $(id).querySelector(".ic-cuadro");
+  if (im && c) c.innerHTML = `<img src="${im.src}" alt="" draggable="false">`;
+});
 const iconoMenu = (id, tab) => $(id).addEventListener("click", ev => { ev.stopPropagation(); archivoAbierto() ? seleccionarMenu(tab) : abrirArchivo(tab); });
 iconoMenu("btn-recompensas", "recompensas"); iconoMenu("btn-logros", "logros"); iconoMenu("btn-config", "config"); iconoMenu("btn-abandonar", "abandono");
 $("btn-salir").addEventListener("click", () => { cerrarArchivo(); if (E && E.tutorial) terminarTutorial(); else mostrar("screen-start"); });

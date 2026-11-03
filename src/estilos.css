@@ -687,8 +687,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo-iconos { position: relative; z-index: 4; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto; }
 .ic-menu { display: block; width: 100%; min-width: 0; margin: 0; padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .ic-menu.hidden { display: none; }
-.ic-cuadro { display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 1; box-sizing: border-box; border: var(--borde); background: var(--ic-color, var(--p-mostaza)); }
-.ic-cuadro svg { width: 58%; height: 58%; fill: var(--p-blanco); }
+.ic-cuadro { display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 1; box-sizing: border-box; border: var(--borde); background: var(--p-crema); }
+.ic-cuadro img { display: block; width: 100%; height: 100%; object-fit: cover; }   /* 3 nov: los iconos del menú son carteles, como los de las fuerzas */
 .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .45; }
 .ic-menu.activo .ic-cuadro { outline: 3px solid var(--p-rojo); outline-offset: -3px; }   /* 2 nov: sin nombre; el activo se marca con el aro rojo por dentro */
 .ic-menu.destacar .ic-cuadro { position: relative; }

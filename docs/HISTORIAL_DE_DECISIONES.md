@@ -692,3 +692,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **2 nov — Textos (Jorge):** bajo la carta, «Vicepresidente» (no «del Consejo de Ministros») y Papá Ernesto «Escritor».
 - **2 nov — Textos (Jorge):** la trama de Motos y Milfuegos la cuenta Domingo de principio a fin (el viaje: «Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito…»; la fuga: «…¡Qué descarado!»). Torneo de Ernesto: «Llevo el ron y el anzuelo».
 - **2 nov — Textos (Jorge):** el viaje: «Pues que vaya volando» / «Que vaya en jeep, no hay prisas».
+- **3 nov — Textos (Jorge):** muertes acortadas a ~120: Abducción, Junta militar, Embajador y Anexión; Desconocido (con doble): «Ningún país quería tratar contigo. Tu doble firmó en una semana las alianzas que tú rechazaste, y ahora lo invitan a cenar.»

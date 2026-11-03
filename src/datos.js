@@ -1165,7 +1165,7 @@ const FINALES = {   // 30 oct, Textos: versión de la era 1 (vale para todas has
   pueblo_0:     { titulo: "Re-Revolución", texto: "El Pueblo hizo lo que le enseñaste: subió al monte, esperó y bajó a por el tirano. El tirano eras tú." },
   pueblo_100:   { titulo: "Ingratitud",    texto: "Con tierras, fusiles y casa a mitad de precio, el Pueblo decidió que la Revolución podía seguir sin su Comandante." },
   ejercito_0:   { titulo: "Abducción",     texto: "El presupuesto militar no daba ni para vigilar tu dormitorio. Un comando te sacó de la cama, te afeitó y te llevó lejos." },
-  ejercito_100: { titulo: "Junta militar", texto: "Los militares tomaron las riendas del país. A ti te dejaron la agradable tarea de recibir a las delegaciones folclóricas." },
+  ejercito_100: { titulo: "Junta militar", texto: "Los militares tomaron las riendas del país. A ti te siguen invitando a las reuniones porque alguien tiene que servir el café." },
   elite_0:      { titulo: "Unanimidad",    texto: "El Partido ha decidido que tu etapa al frente de la Revolución ha terminado. Todos han votado a favor, incluido tú." },
   elite_100:    { titulo: "Embajador",     texto: "El Partido te nombró embajador en una república remota, donde el invierno dura once meses y hay más renos que habitantes." },
   potencias_0:  { titulo: "Invasión",      texto: "Te negaste a firmar alianzas con ninguna potencia. Cuando te invadieron, nadie se sintió obligado a ayudarte." },

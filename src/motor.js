@@ -1988,7 +1988,7 @@ function abrirArchivo(tipo = "recompensas", { atajo = true } = {}) {
   const ya = !a.classList.contains("hidden");
   a.classList.remove("hidden");
   $("btn-menu").setAttribute("aria-expanded", "true");
-  const dy = $("barras").getBoundingClientRect().top - a.getBoundingClientRect().top;   // los iconos, justo donde están los de las fuerzas
+  const dy = document.querySelector(".barra .icono-fuerza").getBoundingClientRect().top - a.getBoundingClientRect().top;   // 3 nov: los iconos, exactamente donde están los de las fuerzas (misma posición y tamaño: así el deslizamiento sigue continuo)
   if (dy > 0) a.style.paddingTop = dy + "px";
   /* 2 nov, Jorge: el menú entra desde la derecha y empuja a la partida hacia la izquierda; su flecha (hacia el otro lado) está justo donde la del juego */
   const bj = $("btn-menu").getBoundingClientRect(), ra = a.getBoundingClientRect(), f = $("btn-menu-cerrar");
@@ -2013,6 +2013,12 @@ function seleccionarMenu(tab) {
   $("panel-config").classList.toggle("hidden", tab !== "config");
   $("panel-abandono").classList.toggle("hidden", tab !== "abandono");
   if (galeria) pintarArchivo();
+  /* 3 nov, Jorge: lo que sale al elegir un icono (los cromos, los ajustes, abandonar) aparece con un fundido rápido, no de golpe */
+  if (animar()) {
+    const el = galeria ? [...$("archivo-rejilla").children] : tab === "config" ? [$("panel-config")] : tab === "abandono" ? [$("panel-abandono")] : [];
+    el.forEach((e, i) => e.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, delay: Math.min(i, 12) * 22, easing: "ease-out", fill: "backwards" }));
+    if (tab) $("archivo-titulo").animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: "ease-out" });
+  }
 }
 const DESLIZA_MS = 380;
 let deslizando = null;

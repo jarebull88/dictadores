@@ -98,7 +98,7 @@ button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no heredan la letra solos */
 
 /* — 1 · TÍTULO — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .archivo-titulo, .objeto-cara b, .titulo-caida {
+.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
 /* el logo de la portada, a su tamaño propio */
@@ -107,7 +107,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
+.mensaje, .archivo-titulo, .pantalla-nombre .intro, .cabecera-carta .era-texto, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
@@ -679,8 +679,8 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
 .archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
-.archivo-cab { display: flex; align-items: center; justify-content: space-between; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; padding-top: 8px; position: relative; z-index: 2; }
-.archivo-titulo { margin: 0; color: var(--p-tinta); }
+.archivo-cab { display: flex; align-items: center; justify-content: center; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; padding-top: 8px; position: relative; z-index: 2; }
+.archivo-titulo { margin: 0; color: var(--p-tinta); text-align: center; width: 100%; }   /* 3 nov: en el estilo del texto, en negrita y centrado */
 .archivo.viendo .archivo-titulo { visibility: hidden; }
 /* 29 oct: menú a pantalla completa. Arriba, cuatro iconos del tamaño exacto de los de las fuerzas (misma rejilla de 4 columnas y el mismo hueco);
    abajo, en el espacio libre, la galería, los ajustes o abandonar. */

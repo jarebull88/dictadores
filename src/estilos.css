@@ -46,7 +46,7 @@
   --menu: calc(var(--cuadro) / 2);                  /* el menú mide la mitad de una casilla */
   --alto-leyenda: calc(var(--t-titulo) * 1.15);          /* la franja bajo la carta: nombre del estado, cargo del personaje o instrucción del tutorial */
   --aviso: calc((var(--cuadro) - var(--menu)) / 2); /* la bolita amarilla del menú: justo el hueco hasta el borde de las casillas */
-  --mazo-cartas: 4;                                 /* cartas que se ven debajo de la de arriba */
+  --mazo-cartas: 0;                                 /* cartas que se ven debajo de la de arriba (3 nov, Jorge: ninguna; la de debajo solo se ve al deslizar; antes 4) */
   --mazo-paso: 3.5px;                               /* lo que asoma cada una */
   --mazo-alto: calc(var(--mazo-cartas) * var(--mazo-paso));
   --separacion: 6px;                                /* hueco entre casillas y entre iconos pequeños */
@@ -66,7 +66,7 @@ body {
 body { transition: background-color 1.2s ease, color 1.2s ease; }
 .barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
 body.negro { background: var(--p-tinta); color: var(--p-crema); }
-body.negro :is(.leyenda, .boton-menu, .mensaje) { color: var(--p-crema); }
+body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
 body.negro .barra.cayo .nivel { background: var(--p-rojo); border-color: var(--p-rojo); }
@@ -84,7 +84,9 @@ body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
      1 · TÍTULO     Londrina Solid, mayúsculas, `--t-titulo`     «Era 1: La Revolución», «¡Has caído!», el nombre de la ficha…
      2 · SUBTÍTULO  Roboto Condensed Bold (700), mayúsculas, `--t-sub` = `--c-cuerpo` (mismo tamaño que el cuerpo, solo cambia la negrita)   la leyenda («Comercio»), las respuestas,
                     la causa de la caída, los botones, el título de una recompensa…  («Gobernaste por N años» va en Cuerpo regular)
-     3 · CUERPO     Roboto Condensed, mayúsculas, `--c-cuerpo`   preguntas, texto de la era, reverso de las tarjetas, relato de la caída…
+     3 · CUERPO     Roboto Condensed, mayúsculas, `--c-cuerpo`   reverso de las tarjetas, leyenda, años…
+     4 · PREGUNTA   Space Grotesk Bold, tipo oración (sin mayúsculas forzadas), `--c-cuerpo`   la caja de 4 líneas de arriba: la pregunta,
+                    el texto de inicio y de era, el relato de la caída (3 nov, Jorge: PRUEBA)
    Fuera de este bloque no debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height
    (lo vigila tests/tipografia.test.js). Para un texto nuevo: añade su selector a UNO de los tres estilos; no le des estilo propio.
    Nada ajusta su tamaño: un estilo, un tamaño; si un texto no cabe, se acorta el texto. Única excepción: el logo
@@ -92,6 +94,7 @@ body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
   --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;
+  --f-pregunta: "Space Grotesk", "Roboto Condensed", system-ui, sans-serif;   /* 3 nov: prueba de Jorge */
   --peso-normal: 400;
   --peso-negrita: 700;   /* Roboto Condensed Bold: los subtítulos */
   --t-titulo: min(calc(var(--carta-w, 360px) * .12), 48px);
@@ -114,8 +117,8 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logo-texto > span + span { font-size: min(92px, 20vw); }
 
 /* — 2 · SUBTÍTULO — */
-.mensaje, .archivo-titulo, .pantalla-nombre .intro, .cabecera-carta .era-texto, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
-.banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
+.archivo-titulo, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
+.banda span, .anio, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
@@ -128,6 +131,11 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
   font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
+}
+
+/* — 4 · PREGUNTA — (3 nov: prueba de Jorge, tipo oración) */
+.mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto {
+  font-family: var(--f-pregunta); font-size: var(--c-cuerpo); font-weight: var(--peso-negrita); line-height: 1.2; text-transform: none; letter-spacing: 0;
 }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
@@ -238,7 +246,7 @@ body.carta-medida :is(.era-anios, .nombre-leyenda) { margin-top: calc(var(--ret-
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
 
 }
-.nivel { width: 100%; height: 11px; overflow: hidden; border-radius: 0; border: var(--borde); }
+.nivel { width: 100%; height: 22px; overflow: hidden; border-radius: 0; border: var(--borde); }
 .nivel .relleno {
   position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--carbon);
   transition: width .6s cubic-bezier(.2, .8, .2, 1), background-color .25s;
@@ -541,6 +549,8 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu { position: absolute; right: 0; bottom: var(--aviso); width: var(--menu); height: var(--menu); padding: 0; border: none; background: none; color: var(--p-tinta); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; -webkit-tap-highlight-color: transparent; }
 .boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
 .boton-menu-volver { right: auto; bottom: auto; }
+/* 3 nov, Jorge: el año en curso, abajo a la izquierda, centrado con las casillas */
+.anio { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: calc((var(--cuadro) - var(--c-cuerpo) * 1.1) / 2); pointer-events: none; }
 .boton-menu-volver svg { transform: scaleX(-1); }   /* en el menú, la flecha mira al otro lado */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un

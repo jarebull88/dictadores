@@ -84,7 +84,8 @@ def fuentes():
                                    # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
                                    ("Londrina Solid", "londrina-solid-latin-300-normal", 300),   # 27 oct: Londrina Light (leyendas bajo la carta y años)
-                                   ("Londrina Solid", "londrina-solid-latin-400-normal", 400)):
+                                   ("Londrina Solid", "londrina-solid-latin-400-normal", 400),
+                                   ("Space Grotesk", "space-grotesk-latin-700-normal", 700)):   # 3 nov: la pregunta, en tipo oración
         datos = base64.b64encode((RAIZ / f"assets/fuentes/{archivo}.woff2").read_bytes()).decode()
         css += ('@font-face { font-family: "%s"; font-style: normal; font-weight: %d; font-display: swap; '
                 'src: url(data:font/woff2;base64,%s) format("woff2"); }\n' % (familia, peso, datos))

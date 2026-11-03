@@ -595,12 +595,22 @@ function pintarBarras() {
     if (previos[b.id] !== undefined && previos[b.id] !== v) {      // se llena o se vacía: destello breve
       el.classList.remove("cambia"); void el.offsetWidth; el.classList.add("cambia");
       setTimeout(() => el.classList.remove("cambia"), 850);
+      respingo(el.querySelector(".icono-fuerza"), v - previos[b.id]);
     }
     previos[b.id] = v;
   });
 }
 
-function pintarCabecera() {}   // 28 oct: el nombre y los años ya no salen en el pie (Jorge los pondrá en otra zona)
+/* 3 nov, Jorge: el año en curso, abajo a la izquierda (la Revolución empieza en 1959; en el tutorial, la víspera, no sale) */
+const ANIO_INICIO = 1959;
+/* 3 nov, Jorge: al cambiar una barra, su icono da un respingo, más fuerte cuanto más cambia (el giro va a un lado al azar: no chiva si sube o baja) */
+function respingo(icono, d) {
+  if (!icono || !animar() || !icono.animate) return;
+  const f = Math.min(Math.abs(d), 25) / 25, giro = (Math.random() < .5 ? -1 : 1) * (2 + 6 * f);
+  icono.animate([{ transform: "none" }, { transform: `translateY(${-(3 + 9 * f)}px) rotate(${giro}deg) scale(${1 + .1 * f})`, offset: .3 }, { transform: "none" }],
+    { duration: 380 + 220 * f, easing: "cubic-bezier(.3, 1.5, .5, 1)" });
+}
+function pintarCabecera() { const a = $("anio"); if (a) a.textContent = E && !E.tutorial ? String(ANIO_INICIO + anios()) : ""; }
 
 function moverRanuras(cont, antes) {
   const base = cont.getBoundingClientRect();

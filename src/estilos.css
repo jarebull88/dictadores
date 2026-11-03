@@ -61,12 +61,14 @@ body {
   color: var(--tinta);
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
-/* LA CAÍDA (2 nov, Jorge): al caer, toda la interfaz pasa a blanco y negro con una transición suave (el fondo crema, a su gris), incluidos TODOS los iconos de
-   las fuerzas; solo se quedan en color la carta que gira y la barra de la fuerza que cayó (`.cayo`), que va en rojo. `body.negro` y `.cayo` los pone mostrarCartaFin(). */
-body { transition: background-color 1.2s ease; }
-.barra .icono-fuerza, .barra .nivel, .ranuras, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
-body.negro { background: #E9E9E9; }
-body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila, .leyenda, .boton-menu, .mensaje) { filter: grayscale(1); }
+/* LA CAÍDA (3 nov, Jorge): al caer, el fondo pasa al negro de la paleta y los textos a crema, con una transición suave; los iconos de las fuerzas, el mazo, las casillas
+   y el menú, en blanco y negro. Solo se quedan en color la carta que gira y la barra de la fuerza que cayó (`.cayo`), que va en rojo. `body.negro` y `.cayo` los pone mostrarCartaFin(). */
+body { transition: background-color 1.2s ease, color 1.2s ease; }
+.barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
+body.negro { background: var(--p-tinta); color: var(--p-crema); }
+body.negro :is(.leyenda, .boton-menu, .mensaje) { color: var(--p-crema); }
+body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
+body.negro .ranura { background: rgba(240, 233, 214, .14); }
 body.negro .barra.cayo .nivel { background: var(--p-rojo); border-color: var(--p-rojo); }
 *, *::before, *::after { box-sizing: border-box; }
 #app { height: 100%; position: relative; }

@@ -335,7 +335,7 @@ const REVERSO_ERA = {
 function colorReverso(era) {
   const c = REVERSO_ERA[era] || REVERSO_ERA[1], r = document.documentElement.style;
   r.setProperty("--rev-base", c.base); r.setProperty("--rev-tinta", c.tinta);
-  const img = typeof REVERSOS !== "undefined" && REVERSOS[era];
+  const img = typeof REVERSOS !== "undefined" && (REVERSOS[era] || REVERSOS.todas);
   r.setProperty("--rev-img", img ? `url(${img})` : "none");
   document.body.classList.toggle("reverso-ilustrado", !!img);
 }
@@ -2052,8 +2052,8 @@ function pintarArchivo() {
   const lista = delArchivo();
   for (let i = 0; i < Math.max(HUECOS_ARCHIVO, lista.length); i++) {
     const g = lista[i], estado = g && l[g.id];
-    if (!estado) html += '<div class="hueco-logro vacio" aria-label="Logro por descubrir">?</div>';
-    else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo"><span>¡Nuevo!</span></button>`;
+    if (!estado) html += `<div class="hueco-logro vacio" aria-label="Casilla vacía">${IMG_LOGROS["_casilla-vacia"] ? `<img src="${IMG_LOGROS["_casilla-vacia"]}" alt="" draggable="false">` : ""}</div>`;   // 3 nov: la página de álbum vacía
+    else if (!estado.abierto) html += `<button class="hueco-logro nuevo-logro" type="button" data-id="${g.id}" aria-label="Logro nuevo">${IMG_LOGROS["_sobre"] ? `<img src="${IMG_LOGROS["_sobre"]}" alt="" draggable="false">` : "<span>¡Nuevo!</span>"}</button>`;   // 3 nov: el sobre de cromos
     else html += `<button class="hueco-logro abierto" type="button" data-id="${g.id}" aria-label="${esc(g.titulo)}">${ilustracionLogro(g, "")}</button>`;   // 27 oct: la miniatura de la carta
   }
   $("archivo-rejilla").innerHTML = html;
@@ -2163,6 +2163,23 @@ function volverAlJuego() {
   }
   cerrarArchivo(true);
 }
+/* 3 nov, Jorge: deslizar con el dedo por la parte vacía de la pantalla lleva al otro lado, como si el menú estuviera pegado a la partida: en la partida,
+   hacia la izquierda abre el menú; en el menú, hacia el lado que sea vuelve a la partida (los botones siguen funcionando). */
+function deslizarVacio(pantalla, cuando, excepto, hecho) {
+  let d = null;
+  pantalla.addEventListener("pointerdown", e => {
+    d = (e.target.closest(excepto) || !cuando()) ? null : { x: e.clientX, y: e.clientY, id: e.pointerId };
+  });
+  const fin = e => {
+    if (!d || e.pointerId !== d.id) return;
+    const dx = e.clientX - d.x, dy = e.clientY - d.y; d = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) hecho(dx);
+  };
+  pantalla.addEventListener("pointerup", fin);
+  pantalla.addEventListener("pointercancel", () => { d = null; });
+}
+deslizarVacio($("screen-game"), () => !archivoAbierto() && !(E && E.tutorial) && !arrastrando, "#carta, .pila, .carta-info, .barra, .ranuras, .boton-menu, button, .popup, .banda", dx => { if (dx < 0) abrirArchivo("recompensas", { atajo: false }); });
+deslizarVacio($("archivo"), () => archivoAbierto(), ".logro-carta, button, .hueco-logro", () => volverAlJuego());
 $("btn-menu-cerrar").addEventListener("click", ev => { ev.stopPropagation(); volverAlJuego(); });   // 2 nov: la flecha del menú vuelve a la partida (el enlace «Volver» ya no existe)
 
 /* ---------- Eventos ---------- */
@@ -2220,6 +2237,4 @@ if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--r
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
 // 24 oct: el título del cartel, recto: «COMANDANTE,» en tinta y «¡ORDENE!» en rojo, como la diana del sillón
 $("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span>¡ordene!</span></span>`);
-/* 24 oct: el cartel del juego (el sillón vacío) en la portada; su crema es el fondo de la portada */
-if (typeof CARTEL_PORTADA !== "undefined") $("cartel-portada").src = CARTEL_PORTADA;
 mostrar("screen-start");

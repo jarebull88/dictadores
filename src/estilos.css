@@ -70,6 +70,10 @@ body.negro :is(.leyenda, .boton-menu, .mensaje) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
 body.negro .barra.cayo .nivel { background: var(--p-rojo); border-color: var(--p-rojo); }
+body.negro .archivo { background: var(--p-tinta); }   /* 3 nov: con la caída, el menú también se oscurece (sus iconos se quedan en color) */
+body.negro .archivo-titulo { color: var(--p-crema); }
+body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
+#screen-game, #archivo { touch-action: pan-y; }   /* deslizar en horizontal por la parte vacía cambia de pantalla */
 *, *::before, *::after { box-sizing: border-box; }
 #app { height: 100%; position: relative; }
 .titulo { }
@@ -118,7 +122,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 
 
 /* — 3 · CUERPO — */
-.lema, .aviso-texto,
+.aviso-texto,
 .popup span, .relato, .ficha-historia, .esquela ul, #screen-end.caida .relato, .logro-descripcion,
 .leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
@@ -189,22 +193,11 @@ body.carta-medida :is(.era-anios, .nombre-leyenda) { margin-top: calc(var(--ret-
 #screen-era .cabecera-carta h1, #screen-name .cabecera-carta h1, #screen-end.caida h1.fin-principal { color: var(--rojo-marcador); }
 
 /* Pantalla del nombre: «Comandante» y el campo centrados, sin contorno, sobre papel beige */
-/* Portada (24 oct): el cartel del juego. Título arriba, el lema, el sillón y las dos opciones; el fondo, del crema
-   exacto del cartel, y sus bordes se funden con él para que no se note dónde acaba la imagen en ninguna pantalla. */
-.portada { justify-content: center; align-items: center; gap: 0; text-align: center; background: #F2E4C2; }
-body:has(#screen-start:not(.hidden)) { background: #F2E4C2; }
+/* Portada (3 nov, Jorge): por ahora, solo el título y los dos botones, centrados en la pantalla, en el crema de siempre. */
+.portada { justify-content: center; align-items: center; gap: 28px; text-align: center; }
 .portada .logo { margin: 0; width: min(100%, 400px); }
 .logo-texto { display: grid; justify-items: center; }
 .logo-texto > span { color: var(--p-rojo); }   /* 24 oct: el título entero en rojo, como la diana */
-.lema { margin: 2px 0 0; color: var(--p-tinta); }
-.cartel-portada {
-  display: block; width: min(96vw, 60vh, 640px); aspect-ratio: 1; margin: 0;
-  /* solo el filo se funde con el fondo (un 3 %), para no tocar las patas del sillón */
-  -webkit-mask: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(transparent, #000 3%, #000 97%, transparent);
-  -webkit-mask-composite: source-in;
-  mask: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(transparent, #000 3%, #000 97%, transparent);
-  mask-composite: intersect;
-}
 .menu-portada { display: grid; justify-items: center; gap: 0; }
 .opcion-portada {
   min-height: 44px; padding: 6px 14px; border: none; background: none; cursor: pointer; color: var(--tinta);
@@ -681,7 +674,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 @media (prefers-reduced-motion: reduce) { .banda.activa, .banda.activa span { animation: none; } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
-.archivo { --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
+.archivo { transition: background-color 1.2s ease; --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
 .archivo-cab { display: flex; align-items: center; justify-content: center; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; padding-top: 8px; position: relative; z-index: 2; }
 .archivo-titulo { margin: 0; color: var(--p-tinta); text-align: center; width: 100%; }   /* 3 nov: en el estilo del texto, en negrita y centrado */
 .archivo.viendo .archivo-titulo { visibility: hidden; }
@@ -704,8 +697,9 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .archivo.viendo .archivo-rejilla { display: none; }
 .hueco-logro { aspect-ratio: 1; min-width: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; box-sizing: border-box;
   border: var(--borde); border-radius: 0; background: var(--hueco-carton); color: var(--p-tinta); }
-.hueco-logro.vacio { color: transparent; }
-.hueco-logro.nuevo-logro { background: var(--manila); cursor: pointer; }
+.hueco-logro.vacio, .hueco-logro.nuevo-logro { padding: 0; background: none; cursor: default; }   /* 3 nov: la página de álbum vacía y el sobre de cromos son imágenes */
+.hueco-logro.nuevo-logro { cursor: pointer; }
+.hueco-logro.vacio img, .hueco-logro.nuevo-logro img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hueco-logro.nuevo-logro span { color: var(--p-rojo); border: 2px solid var(--p-rojo); padding: 2px 4px 0; transform: rotate(-8deg); }
 .hueco-logro.abierto { padding: 0; border: none; background: none; cursor: pointer; }   /* 29 oct, Jorge: las miniaturas del directorio van sin bordes (ni el blanco ni el de tinta) */
 .hueco-logro.abierto .logro-ilustracion { width: 100%; height: 100%; }

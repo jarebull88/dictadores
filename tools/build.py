@@ -62,9 +62,13 @@ def colores():
     return json.loads(ruta.read_text())
 
 def reversos():
-    """Reversos de las cartas, uno por era (assets/reversos/era-N.webp), como {N: data-uri}."""
-    return {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp")
-            for f in sorted((RAIZ / "assets/reversos").glob("era-*.webp"))}
+    """Reverso de las cartas (3 nov, Jorge: uno solo para todas): assets/reversos/reverso.webp → {"todas": data-uri}.
+    Si algún día hay uno por era, assets/reversos/era-N.webp lo sustituye para esa era."""
+    out = {int(f.stem[len("era-"):]): datos_uri(f.relative_to(RAIZ), "image/webp") for f in sorted((RAIZ / "assets/reversos").glob("era-*.webp"))}
+    unico = RAIZ / "assets/reversos/reverso.webp"
+    if unico.exists():
+        out["todas"] = datos_uri(unico.relative_to(RAIZ), "image/webp")
+    return out
 
 def sonidos():
     """Efectos de sonido (assets/sonidos/<evento>.mp3|ogg|wav|m4a), como {evento: data-uri}. Sin archivo, el juego sintetiza el suyo."""

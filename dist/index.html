@@ -1136,7 +1136,7 @@ const CARTAS = [
     personaje: "Ministro de Economía",
     texto: "Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.",
     izq: { accion: "Que cada inquilino sea dueño", efectos: { pueblo: 8, elite: -5 } },
-    der: { accion: "Ahora el casero soy yo", efectos: { pueblo: -8, elite: 5 } }
+    der: { accion: "El casero ahora es el Estado", efectos: { pueblo: -8, elite: 5 }, encolar: [{ carta: "nota_casero", min: 1, max: 1 }] }
   },
   {
     id: "milicias", tipo: "sorteo", peso: 3, titulo: "Las milicias",
@@ -1322,6 +1322,11 @@ const CARTAS = [
   },
 
   // 1 nov, Jorge: cartas de aviso (tipo «aviso»): nota de inteligencia que sale justo después de la decisión que la provoca; sin respuestas, no cuenta para el largo de la era
+  {
+    // 4 nov, Jorge: nota de inteligencia de relleno (tras «El casero ahora es el Estado»)
+    id: "nota_casero", tipo: "aviso", enlace: true, titulo: "El nuevo casero",
+    texto: "Los inquilinos ahora pagan el alquiler al Estado. Han observado que el nuevo casero tampoco arregla las goteras."
+  },
   {
     id: "ernesto_corte1", tipo: "aviso", enlace: true, titulo: "Papá Ernesto (corte 1)",
     texto: "Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones."

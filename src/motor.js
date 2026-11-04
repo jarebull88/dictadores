@@ -64,7 +64,7 @@ function sonar(evento) {
   if (!sonidoActivo) return;
   const c = audio();
   if (!c) return;
-  if (c.state === "suspended") c.resume();
+  if (c.state !== "running") c.resume().catch(() => {});   // 4 nov: también el estado «interrupted» de iOS
   /* un evento puede tener varias versiones (voltear-1, voltear-2…): suena una al azar */
   const claves = Object.keys(bufferesAudio).filter(k => k === evento || k.startsWith(evento + "-"));
   const buf = claves.length ? bufferesAudio[claves[Math.floor(Math.random() * claves.length)]] : null;
@@ -536,6 +536,7 @@ function medirCartaJuego() {
      crece a 5 o 6 líneas para que los textos largos no encojan la letra. Igual en todas las cartas, para que no salten. */
   const raiz = document.documentElement.style;
   raiz.setProperty("--lineas-mensaje", "4");
+  raiz.setProperty("--mensaje-baja", "0px");   // se mide sin el desplazamiento
   // 2 nov, Jorge: la pregunta mide siempre lo mismo y aguanta 4 líneas como máximo (si no cabe, se acorta el texto): ya no crece a 5 o 6 líneas
   const w = c.offsetWidth, h = c.offsetHeight;
   const pila = esc.querySelector(".pila");   // la carta empieza donde la pila (carta y mazo van centrados en el hueco)
@@ -543,13 +544,15 @@ function medirCartaJuego() {
   const gTop = g.getBoundingClientRect().top + (parseFloat(getComputedStyle(g).paddingTop) || 0);
   const mensajeTop = $("mensaje").getBoundingClientRect().top - gTop;   // retícula (2 nov): dónde empieza el texto (bajo las barras)
   const leyendaTop = g.querySelector(".zona-leyenda").getBoundingClientRect().top - gTop;   // y dónde la leyenda (bajo la carta y su mazo)
-  const planoA = $("barras").getBoundingClientRect().bottom + 10, planoB = $("ranuras").getBoundingClientRect().top - 10;   // 4 nov: los tres planos de color de la partida
+  const planoB = $("ranuras").getBoundingClientRect().top - 10;   // 4 nov: arriba empieza el plano de las casillas
+  const barrasB = $("barras").getBoundingClientRect().bottom - gTop;
+  const baja = Math.max(0, Math.round(barrasB + (arriba - barrasB - $("mensaje").offsetHeight) / 2 - mensajeTop));   // 4 nov: la pregunta, centrada entre las barras y la carta
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
-  r.setProperty("--ret-titulo", Math.max(0, mensajeTop) + "px");
-  r.setProperty("--plano-arriba", planoA + "px"); r.setProperty("--plano-abajo", planoB + "px");
+  r.setProperty("--ret-titulo", Math.max(0, mensajeTop + baja) + "px"); r.setProperty("--mensaje-baja", baja + "px");
+  r.setProperty("--plano-abajo", planoB + "px");
   r.setProperty("--ret-pie", Math.max(0, leyendaTop - arriba) + "px");   // de la parte de arriba de la carta a la leyenda
   document.body.classList.add("carta-medida");
 }

@@ -93,6 +93,7 @@ body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); 
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
 body.negro .barra.cayo .nivel { background: var(--p-rojo); border-color: var(--p-rojo); }
+body.negro .barra .nivel, body.negro .barra.cayo .nivel { border-color: var(--p-crema); }   /* 4 nov, Jorge: en la caída, las barras llevan contorno crema (si no, se mezclan con el fondo negro) */
 body.negro .archivo { background: var(--p-tinta); }   /* 3 nov: con la caída, el menú también se oscurece (sus iconos se quedan en color) */
 body.negro .archivo-titulo { color: var(--p-crema); }
 body.negro .archivo .modo { background: var(--p-crema); color: var(--p-tinta); }   /* 4 nov: en el menú oscuro, los botones no se perdían (tinta sobre tinta) */

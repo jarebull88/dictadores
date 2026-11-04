@@ -119,7 +119,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **La reforma urbana** (Ministro de Economía)  
 «Los alquileres se comen medio sueldo. Propongo expropiar las casas y que el Estado las alquile.»
 - A. Que cada inquilino sea dueño → sube Pueblo +8 · baja Partido -5
-- B. Ahora el casero soy yo → sube Partido +5 · baja Pueblo -8
+- B. El casero ahora es el Estado → sube Partido +5 · baja Pueblo -8
 
 **Las milicias** (Ministro de las Fuerzas Armadas)  
 «Crearemos milicias de obreros y estudiantes por si vuelve el tirano. Falta decidir quién las manda.»
@@ -235,6 +235,11 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 «Me voy a cuidar el hígado y no creo que vuelva. Le dejo mi casa, mis gatos y mis botellas. Ha sido un placer, Comandante.»
 - A. Su casa será un museo → sube Pueblo +5 · baja Partido -5
 - B. El Partido cuidará de sus botellas → sube Partido +5 · baja Pueblo -5
+
+**El nuevo casero** (undefined; segundo paso)  
+«Los inquilinos ahora pagan el alquiler al Estado. Han observado que el nuevo casero tampoco arregla las goteras.»
+- A. (sin respuestas: se desliza) → nada
+- B. (sin respuestas: se desliza) → nada
 
 **Papá Ernesto (corte 1)** (undefined; segundo paso)  
 «Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones.»

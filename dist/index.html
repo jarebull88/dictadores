@@ -82,11 +82,13 @@ body.negro { background: var(--p-tinta); color: var(--p-crema); }
 /* 4 nov, Jorge: en la partida, el bloque de abajo (casillas, año y menú) va sobre tinta; lo demás —fuerzas, textos y carta— comparte el fondo crema.
    El bloque de abajo es un plano (body::after, desde --plano-abajo, que mide medirCartaJuego()) POR DELANTE de la carta: las cartas que bajan (avisos, secuelas) pasan por delante
    del cargo y por detrás de ese bloque. En la caída, todo el fondo pasa a negro (body.negro). */
-body.planos::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; top: var(--plano-abajo, 100%); background: var(--p-tinta); z-index: 6; pointer-events: none; }
+.ranuras::before { content: ""; position: absolute; left: -100vw; right: -100vw; top: -10px; bottom: -100vh; background: var(--p-tinta); z-index: -1; pointer-events: none; }   /* el plano de tinta va pegado a las casillas (así no se desencaja si cambia el alto de la ventana) */
 body.planos #screen-game :is(.anio, .boton-menu) { color: var(--p-crema); }
 body.planos .ranura { background: rgba(240, 233, 214, .16); }
-#screen-game :is(.ranuras, .anio, .boton-menu) { z-index: 7; }
-#screen-game .carta { z-index: 5; }   /* al arrastrarla hacia abajo, la carta pasa por delante del cargo */
+#screen-game .ranuras { z-index: 7; }
+#screen-game :is(.anio, .boton-menu) { z-index: 8; }
+body:not(.planos) .ranuras::before { display: none; }
+#screen-game .escenario:not(.repartiendo) { position: relative; z-index: 5; }   /* la carta (con su escenario) pasa por delante del cargo y por detrás del bloque de abajo */
 body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }

@@ -311,7 +311,10 @@ function nuevaPartida() {
     estados: [],
     eventos: [],
     derivaTurno: {},
-    actual: null
+    actual: null,
+    dobles: 0,          // 4 nov: dobles ya usados (3 vidas: el original y 2 dobles; docs/PENDIENTES.md, punto 21)
+    extraMeses: 0,      // meses gobernados en eras repetidas por un doble (cuentan para «Gobernaste N años con tres caras»)
+    snapEra: { barras: { pueblo: 50, ejercito: 50, elite: 50, potencias: 50 }, estados: [], meses: 0, crisis: 0 }   // cómo estaba el régimen al empezar la era: a ello vuelve un doble
   };
 }
 
@@ -345,6 +348,7 @@ function iniciarEra(n) {
   colorReverso(n);
   E.inicioEra = E.turno;
   E.N = def.min + Math.floor(Math.random() * (def.max - def.min + 1));
+  E.snapEra = { barras: { ...E.barras }, estados: E.estados.map(x => ({ ...x, nuevo: false })), meses: E.meses, crisis: E.crisis };   // 4 nov: para los dobles
 }
 
 function cumple(c) {
@@ -539,11 +543,13 @@ function medirCartaJuego() {
   const gTop = g.getBoundingClientRect().top + (parseFloat(getComputedStyle(g).paddingTop) || 0);
   const mensajeTop = $("mensaje").getBoundingClientRect().top - gTop;   // retícula (2 nov): dónde empieza el texto (bajo las barras)
   const leyendaTop = g.querySelector(".zona-leyenda").getBoundingClientRect().top - gTop;   // y dónde la leyenda (bajo la carta y su mazo)
+  const planoA = $("barras").getBoundingClientRect().bottom + 10, planoB = $("ranuras").getBoundingClientRect().top - 10;   // 4 nov: los tres planos de color de la partida
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
   if (!w || !h) return;                                   // sin maquetación (pruebas): se quedan las medidas de CSS
   const r = document.documentElement.style;
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
   r.setProperty("--ret-titulo", Math.max(0, mensajeTop) + "px");
+  r.setProperty("--plano-arriba", planoA + "px"); r.setProperty("--plano-abajo", planoB + "px");
   r.setProperty("--ret-pie", Math.max(0, leyendaTop - arriba) + "px");   // de la parte de arriba de la carta a la leyenda
   document.body.classList.add("carta-medida");
 }
@@ -555,7 +561,7 @@ function mostrar(id) {
   ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); }
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
-  if (id === "screen-game") { }
+  document.body.classList.toggle("planos", id === "screen-game");   // 4 nov: fuerzas y casillas sobre tinta, carta y textos sobre crema
 }
 
 function parBarra(id) {
@@ -1216,7 +1222,11 @@ function recogerAviso() {
   const carta = $("carta"), a = rectBase(carta);
   carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1)";
   carta.style.transform = `translateY(${innerHeight - a.top}px)`;   // sale hacia abajo, como las secuelas
-  setTimeout(() => { modoAviso = false; resolver(1); }, animar() ? 460 : 0);
+  setTimeout(() => {
+    modoAviso = false;
+    if (E.alRecoger) { const f = E.alRecoger; E.alRecoger = null; ocupado = false; f(); }   // 4 nov: las notas de los dobles siguen su propio camino
+    else resolver(1);
+  }, animar() ? 460 : 0);
 }
 
 /* ---------- Carta de estado: el estado nuevo aparece como carta; al tocarla o arrastrarla, baja a su casilla ---------- */
@@ -1392,6 +1402,11 @@ const SUJETO_FUERZA = { pueblo: ["El Pueblo", "llegó"], ejercito: ["El ejércit
 const finalDe = (clave, era) => (FINALES_ERA[era] && FINALES_ERA[era][clave]) || FINALES[clave];
 function terminar(clave, transicion, personaje) {
   if (transicion) { mostrarEra(); return; }
+  if (clave && E.dobles >= 2 && !E.notaFinal) {   // 4 nov: la tercera vida: antes de caer, la nota «Esta vez no había doble.»
+    E.notaFinal = true;
+    notaDoble(DOBLES.final, "", () => terminar(clave, false, personaje));
+    return;
+  }
   ocupado = false;
   const n = anios();
   const pantalla = $("screen-end");
@@ -1404,7 +1419,8 @@ function terminar(clave, transicion, personaje) {
     /* Caída (2 nov, Jorge): una carta más sobre el mazo, en la pantalla del juego. Las barras se quedan arriba (la que cayó, en rojo),
        el relato ocupa el sitio de la pregunta, «¡Has caído!» sale como la banda de las recompensas (siempre roja) y, al irse, la leyenda
        dice cuánto gobernaste. Derecha, jugar de nuevo; izquierda, volver a la portada. */
-    const f = finalDe(clave, E ? E.era : 1);
+    E.dobleDisp = E.dobles < 2;   // 4 nov: mientras queden dobles, la caída deja hueco a uno (FINALES_DOBLE) y su derecha es «Que entre el doble»
+    const f = E.dobleDisp && FINALES_DOBLE[clave] || finalDe(clave, E ? E.era : 1);
     const d = f;   // 2 nov, Jorge: solo las muertes de las fuerzas (y las especiales); ya no hay muertes por personaje
     let frase = "";
     if (!f.especial) {
@@ -1412,7 +1428,9 @@ function terminar(clave, transicion, personaje) {
       const [sujeto, verbo] = SUJETO_FUERZA[idF];
       frase = `${sujeto} ${verbo} al ${extremo === 100 ? "máximo" : "mínimo"}.`;
     }
-    const anios = n === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${n} ${n === 1 ? "año" : "años"}`;
+    const nT = Math.floor(((E.meses || 0) + (E.extraMeses || 0)) / 12);   // con dobles, los años de todas las vidas
+    const anios = E.dobles >= 2 ? DOBLES.anios.replace("{n}", nT)
+      : nT === 0 ? "Gobernaste menos de un año" : `Gobernaste por ${nT} ${nT === 1 ? "año" : "años"}`;
     E.fin = { clave, titulo: d.titulo, texto: d.texto, frase, anios };
     mostrarCartaFin(d, clave, null, anios);
     return;
@@ -1484,7 +1502,7 @@ function eleccionFin(dir) {
   const r = $("carta").querySelector(".respuesta");
   if (!r) return;
   if (!dir) { r.classList.remove("visible"); return; }
-  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? "Jugar de nuevo" : "Volver a la portada"}</strong></div>`;
+  r.innerHTML = `<div class="texto-respuesta"><strong>${dir > 0 ? (E && E.dobleDisp ? DOBLES.salida : "Jugar de nuevo") : "Volver a la portada"}</strong></div>`;
   r.dataset.dir = dir; r.classList.add("visible");
 }
 function decidirFin(dir) {
@@ -1494,7 +1512,34 @@ function decidirFin(dir) {
   eleccionFin(dir);
   carta.classList.add("listo");
   lanzarCarta(carta, dir);
-  setTimeout(() => { modoFin = false; ocupado = false; if (dir > 0) empezar(); else mostrar("screen-start"); }, 240);
+  setTimeout(() => { modoFin = false; ocupado = false; if (dir > 0) { if (E.dobleDisp) entraDoble(); else empezar(); } else mostrar("screen-start"); }, 240);
+}
+
+/* 4 nov: los dobles (docs/PENDIENTES.md, punto 21). Al caer con dobles disponibles, derecha = «Que entre el doble»: nota de inteligencia, el régimen
+   vuelve a como estaba al empezar la era (fuerzas y secuelas; las banderas, lo ya visto y las tramas siguen) y la primera carta es de Domingo. */
+function notaDoble(texto, leyenda, despues) {
+  E.alRecoger = despues;
+  mostrarCartaAviso({ id: "nota_doble", texto, leyenda });
+}
+function entraDoble() {
+  const i = E.dobles, s = E.snapEra;
+  E.dobles++; E.dobleDisp = false;
+  E.extraMeses += Math.max(0, E.meses - s.meses);   // el tiempo de la vida que acaba cuenta en el total, pero el calendario vuelve al inicio de la era
+  E.meses = s.meses;
+  E.barras = { ...s.barras }; E.crisis = s.crisis;
+  E.estados = s.estados.map(x => ({ ...x }));
+  E.cola = []; E.eventos = []; E.derivaTurno = {}; E.estadoNuevo = null; E.muerteEspecial = null; E.avisoPendiente = null;
+  document.body.classList.remove("negro");
+  document.querySelectorAll(".barra.cayo").forEach(b => b.classList.remove("cayo"));
+  iniciarEra(E.era);
+  pintarBarras(); pintarRanuras(); pintarCabecera();
+  notaDoble(DOBLES.nota[i], DOBLES.leyenda[i], () => {
+    const d = DOBLES.domingo[i], id = "doble_domingo_" + i;
+    POR_ID[id] = { id, tipo: "cola", enlace: true, titulo: "Domingo", personaje: "Ministro de las Fuerzas Armadas", texto: d.texto,   // enlace: no cuenta para el largo de la era
+      izq: { accion: d.izq, efectos: {} }, der: { accion: d.der, efectos: {} } };
+    E.cola.unshift({ carta: id, turno: 0 });
+    siguiente();
+  });
 }
 
 /* ---------- Nombre del dictador ---------- */

@@ -39,7 +39,7 @@
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
   --banda-texto: var(--p-crema);                    /* 29 oct: el texto de la banda de aviso, crema (provisional: Jorge dará el estilo); fondos: rojo (secuela), azul (recompensa) y oliva (logro), todos de la paleta */
-  --contorno: transparent;                          /* 28 oct, PRUEBA de Jorge: sin contornos negros (para volver a ellos: var(--p-tinta)) */
+  --contorno: var(--p-tinta);                       /* 4 nov, Jorge: contorno negro otra vez (del 28 oct al 3 nov se probó sin contornos: transparent) */
   --borde: var(--linea) solid var(--contorno);      /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
@@ -66,6 +66,17 @@ body {
 body { transition: background-color 1.2s ease, color 1.2s ease; }
 .barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
 body.negro { background: var(--p-tinta); color: var(--p-crema); }
+/* 4 nov, Jorge (propuesta A, como Reigns): en la partida, tres planos de color: arriba las fuerzas y abajo las casillas sobre tinta; en medio, la carta y sus textos sobre crema
+   (--plano-arriba / --plano-abajo los mide medirCartaJuego()). En la caída, el plano de en medio se funde a negro (body.negro). Los contornos vuelven a ser de tinta. */
+body.planos { background: var(--p-tinta); }
+body.planos::before { content: ""; position: fixed; left: 0; right: 0; top: var(--plano-arriba, 0); height: calc(var(--plano-abajo, 100%) - var(--plano-arriba, 0px)); background: var(--p-crema); z-index: -1; transition: background-color 1.2s ease; }
+body.planos.negro::before { background: var(--p-tinta); }
+body.planos .cabecera .barra .nivel { background: rgba(240, 233, 214, .2); }
+body.planos .cabecera .barra:not(.peligro) .nivel { border-color: var(--p-crema); }
+body.planos .cabecera .barra:not(.peligro) .relleno { background: var(--p-crema); }
+body.planos #screen-game :is(.anio, .boton-menu) { color: var(--p-crema); }
+body.planos .ranura { background: rgba(240, 233, 214, .16); }
+#screen-game .carta { z-index: 5; }   /* 4 nov: al arrastrarla hacia abajo, la carta pasa por delante del cargo */
 body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
@@ -103,7 +114,7 @@ body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
   --lh-cuerpo: 1.3;
 }
 @media (max-height: 760px) { :root { --c-cuerpo: 18px; } }
-body { font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); line-height: var(--lh-cuerpo); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; }
+body { font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); line-height: var(--lh-cuerpo); font-weight: var(--peso-normal); text-transform: none; letter-spacing: 0; }
 button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no heredan la letra solos */
 
@@ -111,7 +122,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .titulo, .titular, .anio, #screen-end h1.fin-principal, .cabecera-carta h1, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
-.anio { font-size: calc(var(--t-titulo) * .85); }   /* 4 nov: el año, algo menor que el título para que quepa junto a las casillas */
+.anio { font-size: calc(var(--t-titulo) * .7); }   /* 4 nov: el año, algo menor que el título para que quepa junto a las casillas */
 /* el logo de la portada, a su tamaño propio */
 .logo-texto { font-family: var(--f-titular); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; line-height: .86; }
 .logo-texto > span { font-size: min(46px, 10vw); }
@@ -121,7 +132,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .archivo-titulo, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
 .banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
-  font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
+  font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: none; letter-spacing: 0;
 }
 
 
@@ -131,7 +142,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .leyenda, .nombre-leyenda, .fin-pie, .logro-leyenda, .fin-anios, .era-anios, .modo, .modo b, .opcion-menu, .opcion-portada.secundaria,
 .logro-objeto, .popup small, .popup .etiqueta-pop, .esquela .anos, .esquela .qepd, .alerta, .carta .nombre,
 .barra.sube .par::after, .barra.baja .par::after {
-  font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: uppercase; letter-spacing: 0;
+  font-family: var(--f-cuerpo); font-size: var(--c-cuerpo); font-weight: var(--peso-normal); line-height: var(--lh-cuerpo); text-transform: none; letter-spacing: 0;
 }
 
 /* — 4 · PREGUNTA — (3 nov: prueba de Jorge, tipo oración) */
@@ -551,7 +562,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
 .boton-menu-volver { right: auto; bottom: auto; }
 /* 3 nov, Jorge: el año en curso, abajo a la izquierda, centrado con las casillas */
-.anio { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: calc((var(--cuadro) - var(--t-titulo)) / 2); pointer-events: none; }
+.anio { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: calc((var(--cuadro) - var(--t-titulo) * .74) / 2); pointer-events: none; }
 .boton-menu-volver svg { transform: scaleX(-1); }   /* en el menú, la flecha mira al otro lado */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un

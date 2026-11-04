@@ -169,6 +169,7 @@ test("avisos: los cortes de Papá Ernesto salen justo después de la decisión q
 });
 test("muertes: caes siempre con la muerte de la fuerza (ya no hay muertes por personaje, 2 nov) y cada era puede tener la suya", () => {
   j.empezar();
+  w.eval("E.dobles = 2; E.notaFinal = true");   // 4 nov: sin dobles disponibles, la caída es la de verdad (FINALES)
   w.eval(`terminar("pueblo_0", false, "Ministro de las Fuerzas Armadas")`);
   assert.equal(w.eval("E.fin.titulo"), "Re-Revolución", "aunque caigas en la carta de un ministro");
   assert.equal(w.eval("E.fin.frase"), "El Pueblo llegó al mínimo.");

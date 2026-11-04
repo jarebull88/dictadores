@@ -197,3 +197,34 @@ test("bajo la carta va el cargo del personaje (o el nombre del estado), y abajo 
   j.tecla(-1);                                                       // a la izquierda o a la derecha, se guarda
   assert.ok(!j.w.eval("modoEstado"));
 });
+
+test("los dobles (4 nov): dos caídas con «Que entre el doble», nota, vuelta al inicio de la era y Domingo; la tercera, con su nota y «tres caras»", () => {
+  const j = cargar(); const { w, tecla } = j;
+  w.eval("empezar()");
+  const ev = c => w.eval(c);
+  for (let i = 0; i < 2; i++) {
+    ev("E.barras.pueblo = 0; E.meses += 18; terminarCaida('pueblo_0', null)");
+    assert.equal(ev("modoFin"), true);
+    assert.equal(ev("E.fin.texto"), ev("FINALES_DOBLE.pueblo_0.texto"), "la caída usa FINALES_DOBLE mientras queden dobles");
+    assert.equal(ev("E.dobleDisp"), true);
+    tecla(1);                                              // «Que entre el doble»
+    assert.equal(ev("modoAviso"), true, "sale la nota de inteligencia");
+    assert.equal(ev("E.dobles"), i + 1);
+    assert.equal(ev("E.barras.pueblo"), 50, "las fuerzas vuelven a como estaban al empezar la era");
+    assert.equal(ev("E.meses"), 0, "el calendario vuelve al inicio de la era");
+    tecla(1);                                              // se desliza la nota
+    assert.equal(ev("E.actual.id"), "doble_domingo_" + i, "la primera carta es de Domingo");
+    const n = ev("E.N"); tecla(1);
+    assert.equal(ev("E.N"), n + 1, "la carta de Domingo no cuenta para el largo de la era");
+    assert.equal(j.errores.length, 0, j.errores.join(" | "));
+  }
+  ev("E.barras.pueblo = 0; terminarCaida('pueblo_0', null)");
+  assert.equal(ev("modoAviso"), true, "antes de la tercera caída sale «Esta vez no había doble.»");
+  assert.match(j.$("carta").textContent, /Esta vez no había doble/);
+  tecla(1);
+  assert.equal(ev("modoFin"), true);
+  assert.equal(ev("E.dobleDisp"), false);
+  assert.equal(ev("E.fin.texto"), ev("FINALES.pueblo_0.texto"), "la tercera caída es la de verdad");
+  assert.match(ev("E.fin.anios"), /tres caras/);
+  assert.equal(j.errores.length, 0, j.errores.join(" | "));
+});

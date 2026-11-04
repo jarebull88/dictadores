@@ -1101,7 +1101,7 @@ function lanzarCarta(carta, dir) {
 }
 function decidir(dir) {
   if (modoFin) { decidirFin(dir); return; }   // 2 nov: la caída es una carta más: derecha, jugar de nuevo; izquierda, volver a la portada
-  if (modoAviso) { recogerAviso(); return; }     // 1 nov: la carta de aviso se desliza a cualquier lado y sigue la partida
+  if (modoAviso) { recogerAviso(dir); return; }     // 1 nov: la carta de aviso se desliza a cualquier lado y sigue la partida
   if (modoEstado) { recogerEstado(); return; }   // 27 oct: la carta de estado se guarda al deslizarla a un lado u otro
   if (ocupado || tutorialBloquea()) return;
   ocupado = true;
@@ -1219,12 +1219,11 @@ function mostrarCartaAviso(c) {
   entrarCarta(carta);
   pintarEleccion(0);
 }
-function recogerAviso() {
+function recogerAviso(dir) {   // 4 nov, Jorge: la nota de inteligencia se desliza a la izquierda o a la derecha, como cualquier carta
   if (!modoAviso || ocupado) return;
-  ocupado = true; sonar("deslizar");
-  const carta = $("carta"), a = rectBase(carta);
-  carta.style.transition = "transform .45s cubic-bezier(.5, 0, .6, 1)";
-  carta.style.transform = `translateY(${innerHeight - a.top}px)`;   // sale hacia abajo, como las secuelas
+  ocupado = true;
+  const carta = $("carta");
+  lanzarCarta(carta, dir || 1);
   setTimeout(() => {
     modoAviso = false;
     if (E.alRecoger) { const f = E.alRecoger; E.alRecoger = null; ocupado = false; f(); }   // 4 nov: las notas de los dobles siguen su propio camino
@@ -1826,7 +1825,7 @@ function arrastrable(carta, op) {
   carta.addEventListener("pointercancel", cancelar);
 }
 // La carta de un estado nuevo no se arrastra: se toca y vuela a su casilla
-arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado || modoAviso, lateralAbajo: () => modoEstado || modoAviso, bloquea: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
+arrastrable($("carta"), { activa: () => !ocupado, abajo: () => modoEstado, lateralAbajo: () => modoEstado, bloquea: () => !!(E && E.tutorial) && tutorialBloquea(), mostrar: pintarEleccion, decidir, toque: voltear });   // en el tutorial, la izquierda siempre vuelve atrás
 
 /* ---------- Pantalla del nombre: el dictador joven en una carta. Derecha = empezar la partida («¡La Revolución empieza hoy!»);
    izquierda = volver a la portada («Me da miedo el micrófono») ---------- */

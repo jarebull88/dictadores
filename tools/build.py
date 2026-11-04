@@ -79,8 +79,7 @@ def sonidos():
 
 def fuentes():
     css = ""
-    for familia, archivo, peso in (("Roboto Condensed", "roboto-condensed-latin-400-normal", 400),   # 2 nov: el cuerpo (antes Sofia Sans Semi Condensed, Baloo 2 y Courier Prime, que siguen en assets/fuentes)
-                                   ("Roboto Condensed", "roboto-condensed-latin-700-normal", 700),
+    for familia, archivo, peso in (("Space Grotesk", "space-grotesk-latin-400-normal", 400),   # 4 nov: todo el texto (antes Roboto Condensed, que sigue en assets/fuentes)
                                    # 23 oct: Special Elite ya no se usa (el archivo sigue en assets/fuentes)
                                    # 15 oct: Permanent Marker (rotulador); 23 oct: sustituida por Londrina Solid (el archivo sigue en assets/fuentes)
                                    ("Londrina Solid", "londrina-solid-latin-300-normal", 300),   # 27 oct: Londrina Light (leyendas bajo la carta y años)

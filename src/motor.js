@@ -610,7 +610,20 @@ function respingo(icono, d) {
   icono.animate([{ transform: "none" }, { transform: `translateY(${-(3 + 9 * f)}px) rotate(${giro}deg) scale(${1 + .1 * f})`, offset: .3 }, { transform: "none" }],
     { duration: 380 + 220 * f, easing: "cubic-bezier(.3, 1.5, .5, 1)" });
 }
-function pintarCabecera() { const a = $("anio"); if (a) a.textContent = E && !E.tutorial ? String(ANIO_INICIO + anios()) : ""; }
+/* 4 nov, Jorge (como Reigns): al arrastrar, la carta se inclina y BAJA (la esquina que sube no se va por encima de su borde de arriba y no tapa la pregunta);
+   al soltarla vuela hacia abajo. `dx` en px (o en vw si `vuela`), `giro` en grados (por defecto dx / 18). */
+function posturaCarta(carta, dx, giro, vuela) {
+  const g = giro === undefined ? dx / 18 : giro, w = carta.offsetWidth || 300;
+  const baja = Math.abs(Math.sin(g * Math.PI / 180)) * w / 2 + (vuela ? 40 : 0);
+  return `translate(${dx}${vuela ? "vw" : "px"}, ${baja.toFixed(1)}px) rotate(${g}deg)`;
+}
+function pintarCabecera() {
+  const a = $("anio"); if (!a) return;
+  const t = E && !E.tutorial ? String(ANIO_INICIO + anios()) : "";
+  const cambia = a.textContent && t && a.textContent !== t;
+  a.textContent = t;
+  if (cambia) respingo(a, 25);   // 4 nov, Jorge: al cambiar de año, el número da un respingo como los iconos
+}
 
 function moverRanuras(cont, antes) {
   const base = cont.getBoundingClientRect();
@@ -1074,7 +1087,7 @@ function repartir() {
 function lanzarCarta(carta, dir) {
   sonar("decidir"); sonar("deslizar");   // 29 oct: «decidir» (archivo) suena al soltar la carta; el roce sintetizado, al volar
   carta.style.transition = "";
-  carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
+  carta.style.transform = posturaCarta(carta, dir * 130, 24 * dir, true); carta.style.setProperty("--giro", `${dir * 24}deg`); carta.style.setProperty("--bajada", "1");
   carta.style.opacity = "0";
 }
 function decidir(dir) {
@@ -1707,7 +1720,7 @@ function arrastrable(carta, op) {
   });
   // Mueve la carta como si el dedo estuviera a dx px (también lo usa la demostración del tutorial)
   function mover(dx, estado) {
-    carta.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+    carta.style.transform = posturaCarta(carta, dx);
     carta.style.setProperty("--giro", `${dx / 18}deg`);
     // El panel baja desde el primer píxel, al ritmo del arrastre; llega abajo justo en el umbral, cuando sale el texto
     const bajada = Math.min(1, Math.abs(dx) / umbral());
@@ -2115,7 +2128,7 @@ function gestoLogro(carta) {
     if (!d) return;
     d.dx = e.clientX - d.x;
     if (Math.abs(d.dx) > 8) movido = true;
-    if (movido) carta.style.transform = `translateX(${d.dx}px) rotate(${d.dx / 18}deg)`;
+    if (movido) carta.style.transform = posturaCarta(carta, d.dx);
   });
   const fin = e => {
     if (!d) return;
@@ -2127,7 +2140,7 @@ function gestoLogro(carta) {
       const dir = dx > 0 ? 1 : -1;
       sonar("decidir"); sonar("deslizar");
       carta.style.transition = animar() ? "transform .3s ease-in, opacity .3s ease-in" : "none";
-      carta.style.transform = `translateX(${dir * 130}vw) rotate(${dir * 24}deg)`; carta.style.opacity = "0";
+      carta.style.transform = posturaCarta(carta, dir * 130, 24 * dir, true); carta.style.opacity = "0";
       setTimeout(() => { if (dir > 0) volverAlJuego(); else volverAlDirectorio(); }, animar() ? 280 : 0);
     } else { carta.style.transform = ""; sonar("volver"); }
   };

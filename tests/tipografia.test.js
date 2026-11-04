@@ -14,10 +14,10 @@ test("el CSS solo define letra, tamaño, peso, mayúsculas, espaciado e interlin
   assert.deepEqual(sueltas, [], "tipografía suelta fuera del bloque (ponla en un papel del bloque TIPOGRAFIA): " + sueltas.join(", "));
 });
 
-test("solo hay tres familias de letra: Londrina Solid (títulos), Roboto Condensed (cuerpo) y Space Grotesk (la pregunta, 3 nov)", () => {
+test("solo hay dos familias de letra: Londrina Solid (títulos) y Space Grotesk (todo lo demás, 4 nov)", () => {
   const bloque = css.slice(css.indexOf("TIPOGRAFIA:INICIO"), css.indexOf("TIPOGRAFIA:FIN"));
   const familias = [...bloque.matchAll(/--f-(titular|cuerpo|pregunta):\s*"([^"]+)"/g)].map(m => m[1] + ":" + m[2]);
-  assert.deepEqual(familias.sort(), ["cuerpo:Roboto Condensed", "pregunta:Space Grotesk", "titular:Londrina Solid"]);
+  assert.deepEqual(familias.sort(), ["cuerpo:Space Grotesk", "titular:Londrina Solid"]);
 });
 
 test("el código no pone letra ni tamaño en línea (solo los ajustes de «caber» de motor.js)", () => {

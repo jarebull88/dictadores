@@ -82,9 +82,9 @@ body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
    Hay TRES estilos, cada uno con su letra, su peso, su tamaño y su interlineado. Un texto del juego es de uno de los tres: para
    cambiar CUALQUIER texto de un estilo (en las preguntas, en la caída, en las tarjetas…) se cambia aquí, en una sola regla.
      1 · TÍTULO     Londrina Solid, mayúsculas, `--t-titulo`     «Era 1: La Revolución», «¡Has caído!», el nombre de la ficha…
-     2 · SUBTÍTULO  Roboto Condensed Bold (700), mayúsculas, `--t-sub` = `--c-cuerpo` (mismo tamaño que el cuerpo, solo cambia la negrita)   la leyenda («Comercio»), las respuestas,
+     2 · SUBTÍTULO  Space Grotesk Bold (700), mayúsculas, `--t-sub` = `--c-cuerpo` (mismo tamaño que el cuerpo, solo cambia la negrita)   la leyenda («Comercio»), las respuestas,
                     la causa de la caída, los botones, el título de una recompensa…  («Gobernaste por N años» va en Cuerpo regular)
-     3 · CUERPO     Roboto Condensed, mayúsculas, `--c-cuerpo`   reverso de las tarjetas, leyenda, años…
+     3 · CUERPO     Space Grotesk, mayúsculas, `--c-cuerpo`   reverso de las tarjetas, leyenda, años…
      4 · PREGUNTA   Space Grotesk Bold, tipo oración (sin mayúsculas forzadas), `--c-cuerpo`   la caja de 4 líneas de arriba: la pregunta,
                     el texto de inicio y de era, el relato de la caída (3 nov, Jorge: PRUEBA)
    Fuera de este bloque no debe aparecer font-family, font-size, font-weight, text-transform, letter-spacing ni line-height
@@ -93,10 +93,10 @@ body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
    de la portada. Tabla: docs/TIPOGRAFIA.md. */
 :root {
   --f-titular: "Londrina Solid", "Roboto Condensed", system-ui, sans-serif;
-  --f-cuerpo: "Roboto Condensed", system-ui, sans-serif;
-  --f-pregunta: "Space Grotesk", "Roboto Condensed", system-ui, sans-serif;   /* 3 nov: prueba de Jorge */
+  --f-cuerpo: "Space Grotesk", system-ui, sans-serif;   /* 4 nov, Jorge: Space Grotesk para todo el texto (antes Roboto Condensed) */
+  --f-pregunta: var(--f-cuerpo);
   --peso-normal: 400;
-  --peso-negrita: 700;   /* Roboto Condensed Bold: los subtítulos */
+  --peso-negrita: 700;   /* Space Grotesk Bold: los subtítulos */
   --t-titulo: min(calc(var(--carta-w, 360px) * .12), 48px);
   --t-sub: var(--c-cuerpo);   /* 2 nov: el subtítulo mide lo mismo que el cuerpo: se distingue solo por la negrita */
   --c-cuerpo: 20px;     /* 18 px en pantallas bajas */
@@ -108,9 +108,10 @@ button, input, textarea { font-family: inherit; }
 b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no heredan la letra solos */
 
 /* — 1 · TÍTULO — */
-.titulo, .titular, #screen-end h1.fin-principal, .cabecera-carta h1, .objeto-cara b, .titulo-caida {
+.titulo, .titular, .anio, #screen-end h1.fin-principal, .cabecera-carta h1, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
+.anio { font-size: calc(var(--t-titulo) * .85); }   /* 4 nov: el año, algo menor que el título para que quepa junto a las casillas */
 /* el logo de la portada, a su tamaño propio */
 .logo-texto { font-family: var(--f-titular); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; line-height: .86; }
 .logo-texto > span { font-size: min(46px, 10vw); }
@@ -118,7 +119,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 
 /* — 2 · SUBTÍTULO — */
 .archivo-titulo, .ficha-nombre, .ficha-nota b, .texto-respuesta strong, .texto-respuesta span,
-.banda span, .anio, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
+.banda span, #screen-end h2.fin-causa, .popup b, .info-titulo, .etiqueta-boli b, .popup .efecto, .esquela b, .opcion-portada,
 .logro-objeto-nombre, .hueco-logro {
   font-family: var(--f-cuerpo); font-size: var(--t-sub); font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: 0;
 }
@@ -550,7 +551,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
 .boton-menu-volver { right: auto; bottom: auto; }
 /* 3 nov, Jorge: el año en curso, abajo a la izquierda, centrado con las casillas */
-.anio { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: calc((var(--cuadro) - var(--c-cuerpo) * 1.1) / 2); pointer-events: none; }
+.anio { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: calc((var(--cuadro) - var(--t-titulo)) / 2); pointer-events: none; }
 .boton-menu-volver svg { transform: scaleX(-1); }   /* en el menú, la flecha mira al otro lado */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un

@@ -309,9 +309,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Al que pillen, al calabozo → sube Ejército +5 · baja Pueblo -5
 
 **El hambre** (Ministro de Trabajo)  
-«Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»
-- A. El Estado siembra mejor que nadie → sube Partido +2 · baja Pueblo -5
-- B. Importen comida a cualquier precio → sube Pueblo +6, Potencias +5
+«La cosecha no da. Proponemos que el Estado se quede también con las fincas medianas.»
+- A. Todo para la Revolución → sube Partido +5 · baja Pueblo -5
+- B. Los medianos no son ricos → sube Pueblo +5 · baja Partido -5
 
 **El periodista oficial** (Ministra de Cultura)  
 «La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.»

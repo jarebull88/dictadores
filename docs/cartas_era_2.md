@@ -41,10 +41,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 14; exige `reforma_agraria`.
 
-**Carta:** «Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»
+**Carta:** «La cosecha no da. Proponemos que el Estado se quede también con las fincas medianas.»
 
-- **A. El Estado siembra mejor que nadie** Pueblo −5 · Élite +2
-- **B. Importen comida a cualquier precio** Pueblo +6 · Potencias +5
+- **A. Todo para la Revolución** Élite +5 · Pueblo −5
+- **B. Los medianos no son ricos** Pueblo +5 · Élite −5
 
 ### 5. El periodista oficial
 

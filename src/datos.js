@@ -801,13 +801,37 @@ const CARTAS = [
     izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
     der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
   },
+  // 5 nov, Jorge: la trama de Cabaña en cuatro pasos: el detonante (molesta dentro de casa) → el compañero incómodo (el aliado exige callarlo)
+  // → la carta de despedida (si lo mandas lejos; 1965) → la guerrilla perdida. Textos y pesos provisionales: se revisan con toda la era.
+  {
+    id: "cabana_domingos", era: 2, tipo: "sorteo", peso: 14, titulo: "Los domingos de Cabaña",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.",
+    izq: { accion: "Yo cortaré a su lado", efectos: { pueblo: 5, elite: -5 }, encolar: [{ carta: "companero_incomodo", min: 2, max: 3 }] },
+    der: { accion: "El domingo es sagrado", efectos: { elite: 5, pueblo: -5 }, encolar: [{ carta: "companero_incomodo", min: 2, max: 3 }] }
+  },
+  {
+    id: "cabana_carta", era: 2, tipo: "cola", enlace: true, titulo: "La carta de Cabaña", leyenda: "Carta", fondo: "mostaza",
+    texto: "Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.",
+    detras: "«Otras tierras del mundo reclaman el concurso de mis modestos esfuerzos.» Firmado a mano, con buena letra y sin fecha.",
+    izq: { accion: "Léanla en la plaza", efectos: { pueblo: 3, elite: -3 } },
+    der: { accion: "Guárdenla en mi cajón", efectos: { elite: 3, pueblo: -3 } }
+  },
+  {
+    // 5 nov, Jorge: el congreso de los tres continentes (1966); provisional
+    id: "congreso", era: 2, tipo: "sorteo", peso: 12, cond: { turnoMin: 3 }, titulo: "El congreso",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.",
+    izq: { accion: "Y que se lleven fusiles", efectos: { ejercito: 5, potencias: -5 } },
+    der: { accion: "Solo discursos, sin fusiles", efectos: { potencias: 5, ejercito: -5 } }
+  },
   {
     // 23 oct, Jorge: trama de traición inspirada en el Che (1965-67): el héroe fanático que critica al bloque y estorba al Comandante
-    id: "companero_incomodo", era: 2, tipo: "sorteo", peso: 10, titulo: "El compañero incómodo",
+    id: "companero_incomodo", era: 2, tipo: "cola", titulo: "El compañero incómodo",   // 5 nov, Jorge: ya no sale al azar: la encola «Los domingos de Cabaña»
     personaje: "Embajador del bloque oriental",
     texto: "Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.",
     izq: { accion: "Lo mandaré a una misión bien lejos", efectos: { potencias: 4, ejercito: -3 },
-           encolar: [{ carta: "guerrilla_perdida", min: 2, max: 3 }] },
+           encolar: [{ carta: "cabana_carta", min: 1, max: 1 }, { carta: "guerrilla_perdida", min: 2, max: 3 }] },
     der: { accion: "Quien calla a Cabaña me calla a mí", efectos: { potencias: -4, ejercito: 3 } }
   },
   {

@@ -383,6 +383,21 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. ¡Todos a la zafra! → sube Partido +4 · baja Pueblo -6
 - B. Qué disparate, el país se pararía → sube Pueblo +5 · baja Partido -4
 
+**Los domingos de Cabaña** (Vicepresidente del Consejo de Ministros)  
+«Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
+- A. Yo cortaré a su lado → sube Pueblo +5 · baja Partido -5
+- B. El domingo es sagrado → sube Partido +5 · baja Pueblo -5
+
+**La carta de Cabaña** (undefined; segundo paso)  
+«Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»
+- A. Léanla en la plaza → sube Pueblo +3 · baja Partido -3
+- B. Guárdenla en mi cajón → sube Partido +3 · baja Pueblo -3
+
+**El congreso** (Vicepresidente del Consejo de Ministros)  
+«Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.»
+- A. Y que se lleven fusiles → sube Ejército +5 · baja Potencias -5
+- B. Solo discursos, sin fusiles → sube Potencias +5 · baja Ejército -5
+
 **El compañero incómodo** (Embajador del bloque oriental)  
 «Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.»
 - A. Lo mandaré a una misión bien lejos → sube Potencias +4 · baja Ejército -3

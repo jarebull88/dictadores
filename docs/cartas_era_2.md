@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. El aniversario
 
@@ -192,17 +192,47 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
 - **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
 
-### 19. El compañero incómodo
+### 19. Los domingos de Cabaña
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 14.
+
+**Carta:** «Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
+
+- **A. Yo cortaré a su lado** Pueblo +5 · Élite −5 · Encola: `companero_incomodo` en 2 a 3 años
+- **B. El domingo es sagrado** Élite +5 · Pueblo −5 · Encola: `companero_incomodo` en 2 a 3 años
+
+### 20. La carta de Cabaña
+
+**Personaje:** undefined  
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
+
+**Carta:** «Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»
+
+- **A. Léanla en la plaza** Pueblo +3 · Élite −3
+- **B. Guárdenla en mi cajón** Élite +3 · Pueblo −3
+
+### 21. El congreso
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 12; a partir del año 3 de la era.
+
+**Carta:** «Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.»
+
+- **A. Y que se lleven fusiles** Ejército +5 · Potencias −5
+- **B. Solo discursos, sin fusiles** Potencias +5 · Ejército −5
+
+### 22. El compañero incómodo
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** sorteo con peso 10.
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
 **Carta:** «Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.»
 
-- **A. Lo mandaré a una misión bien lejos** Potencias +4 · Ejército −3 · Encola: `guerrilla_perdida` en 2 a 3 años
+- **A. Lo mandaré a una misión bien lejos** Potencias +4 · Ejército −3 · Encola: `cabana_carta` en 1 años, `guerrilla_perdida` en 2 a 3 años
 - **B. Quien calla a Cabaña me calla a mí** Potencias −4 · Ejército +3
 
-### 20. La ofensiva revolucionaria
+### 23. La ofensiva revolucionaria
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
@@ -212,7 +242,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. El Estado hará las mejores frituras** Élite +5 · Pueblo −4
 - **B. Dejen vivir al pequeño negocio** Pueblo +4 · Élite −5
 
-### 21. El servicio militar
+### 24. El servicio militar
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -222,7 +252,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Que cada joven sirva a la patria** Ejército +5 · Pueblo −4
 - **B. La patria no se defiende obligado** Pueblo +4 · Ejército −5
 
-### 22. La invasión del aliado
+### 25. La invasión del aliado
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
@@ -232,7 +262,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Tienen todo nuestro apoyo fraterno** Potencias +5
 - **B. Aquí no opinamos de casas ajenas** Potencias −5
 
-### 23. La guerrilla perdida
+### 26. La guerrilla perdida
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -242,7 +272,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Mándenle a nuestros mejores hombres** Ejército +4 · Potencias −4
 - **B. Cabaña será un millón de camisetas** Potencias +3 · Ejército −3 · Bandera: `ferro_martir`
 
-### 24. La cifra que no llega
+### 27. La cifra que no llega
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -252,7 +282,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Manden a todo el país al cañaveral** Élite +4 · Pueblo −5 · Encola: `discurso_derrota` en 1 a 2 años
 - **B. Busquen cómo hacer que la cuenta dé** Pueblo +3 · Élite −3 · Encola: `discurso_derrota` en 1 a 2 años
 
-### 25. El discurso de la derrota
+### 28. El discurso de la derrota
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -262,7 +292,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
 - **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
 
-### 26. Motos en la cárcel
+### 29. Motos en la cárcel
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `mota_juzgado`.
@@ -272,7 +302,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Que pase frío** Pueblo +5 · Ejército −5
 - **B. Que lo vistan entre cuatro** Ejército +5 · Pueblo −5
 
-### 27. Motos en la universidad
+### 30. Motos en la universidad
 
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14; exige `matojos_libre`.
@@ -282,7 +312,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Aplaudir es gratis** Pueblo +5 · Élite −5
 - **B. Fuera de la universidad** Élite +5 · Pueblo −5
 
-### 28. La investigación
+### 31. La investigación
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `milfuegos_investigado`.
@@ -292,7 +322,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Todo lo que necesite** Pueblo +5 · Ejército −5
 - **B. Caso cerrado, gracias** Ejército +5 · Pueblo −5
 
-### 29. La leyenda de Milfuegos
+### 32. La leyenda de Milfuegos
 
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `milfuegos_cerrado`.
@@ -302,7 +332,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Prohíbanla, por respeto** Élite +5 · Pueblo −5
 - **B. Háganle una estatua** Pueblo +5 · Élite −5
 
-### 30. Las flores en el mar
+### 33. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
@@ -312,7 +342,7 @@ Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala peque
 - **A. Que se olvide sin acto oficial** Pueblo +3 · Élite −4
 - **B. Encabezaré yo los homenajes** Élite +4 · Pueblo −3
 
-### 31. Los campos de trabajo
+### 34. Los campos de trabajo
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.

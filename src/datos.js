@@ -53,16 +53,16 @@ const CARTAS = [
     id: "comandante_dimite", tipo: "ancla", ventana: [1, 3], titulo: "El comandante que dimite",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "El Comandante Motos ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!",
-    izq: { accion: "Que Milfuegos vaya a detenerlo", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
+    izq: { accion: "Manden a alguien a capturarlo", efectos: { elite: 5, ejercito: -4 }, encolar: [{ carta: "viaje_milfuegos", min: 1, max: 1 }] },   // 31 oct: antes encolaba el avión enseguida
     der: { accion: "Que dimita tranquilo", efectos: { ejercito: 4, elite: -5 }, banderas: ["base.matojos_libre"] }   // 1 nov: rama de Matojos crítico desde dentro (eras 2–4, por escribir)
   },
   {
     // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
     id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.",
+    texto: "Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti. Le tengo un avión preparado.",
     izq: { accion: "Pues que vaya volando", efectos: {}, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
-    der: { accion: "Que vaya en jeep, no hay prisas", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
+    der: { accion: "Que vaya en jeep, sin prisa", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
   },
   {
     // 31 oct, Jorge: cierre de la trama si Milfuegos va por carretera: el dimitido se escapa
@@ -344,7 +344,7 @@ const CARTAS = [
     personaje: "Padrino Pupo",
     texto: "Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.",
     izq: { accion: "Que sean dos neveras", efectos: { elite: -4 }, pago: "entero" },
-    der: { accion: "¿No le sirve la del viceministro?", efectos: { elite: -1 }, pago: "regateo" }
+    der: { accion: "Mejor la del viceministro", efectos: { elite: -1 }, pago: "regateo" }
   },
   {
     // 1 nov, Jorge: Enemigos se quita (obsoleta: ya no se invoca)
@@ -373,8 +373,8 @@ const CARTAS = [
     detras: "Padrino Pupo acierta casi siempre. Lo de «casi» no lo explica nunca.",
     personaje: "Padrino Pupo",
     texto: "Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.",
-    izq: { accion: "Elija uno de mi colección", efectos: { potencias: -4 }, pago: "entero" },
-    der: { accion: "Le consigo uno más modesto", efectos: { potencias: -1 }, pago: "regateo" }
+    izq: { accion: "Le regalo este", efectos: { potencias: -4 }, pago: "entero" },
+    der: { accion: "Igualito pero de imitación", efectos: { potencias: -1 }, pago: "regateo" }
   },
   {
     id: "pupo_deseos", tipo: "cola", enlace: true, invoca: "pupo", titulo: "Padrino Pupo (malos deseos)",
@@ -1214,7 +1214,7 @@ const DOBLES = {
    Imagen: por hacer (Arte); mientras, la carta enseña el título. */
 Object.assign(FINALES, {
   atentado_tabacos: { titulo: "Regalo envenenado", texto: "El tabaco estaba envenenado. Apenas te dio tiempo a darle dos caladas.", especial: true, todas: true },
-  pelotazo:         { titulo: "¡En toda la cara!", texto: "Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.)", especial: true }
+  pelotazo:         { titulo: "¡En toda la cara!", texto: "Un batazo de línea te dio en la cabeza. El partido continuó sin ti.", especial: true }
 });
 /* Una versión de cada caída por era (30 oct, Textos): FINALES_ERA[era][clave]; si falta, vale la de la era 1 (FINALES). Textos las irá entregando. */
 const FINALES_ERA = {};

@@ -23,13 +23,13 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El comandante que dimite** (Ministro de las Fuerzas Armadas)  
 «El Comandante Motos ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
-- A. Que Milfuegos vaya a detenerlo → sube Partido +5 · baja Ejército -4
+- A. Manden a alguien a capturarlo → sube Partido +5 · baja Ejército -4
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
 **El viaje de Milfuegos** (Ministro de las Fuerzas Armadas; segundo paso)  
-«Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.»
+«Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti. Le tengo un avión preparado.»
 - A. Pues que vaya volando → nada
-- B. Que vaya en jeep, no hay prisas → nada
+- B. Que vaya en jeep, sin prisa → nada
 
 **La fuga del comandante** (Ministro de las Fuerzas Armadas)  
 «Milfuegos llegó demasiado tarde. Motos se fue en una lancha y ya habla por la radio desde el exilio. ¡Qué descarado!»
@@ -189,7 +189,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
 «Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.»
 - A. Que sean dos neveras → baja Partido -4
-- B. ¿No le sirve la del viceministro? → baja Partido -1
+- B. Mejor la del viceministro → baja Partido -1
 
 **Padrino Pupo (enemigos)** (Padrino Pupo; segundo paso)  
 «Mijo, quieren verlo caer. Y créame, no son dos o tres. Hay mucha gente trabajando para eso.»
@@ -208,8 +208,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Padrino Pupo (el remedio)** (Padrino Pupo; segundo paso)  
 «Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.»
-- A. Elija uno de mi colección → baja Potencias -4
-- B. Le consigo uno más modesto → baja Potencias -1
+- A. Le regalo este → baja Potencias -4
+- B. Igualito pero de imitación → baja Potencias -1
 
 **Padrino Pupo (malos deseos)** (Padrino Pupo; segundo paso)  
 «Mijo, el santo me lo ha marcado. Hay gente pidiendo su caída con una insistencia que no es normal.»

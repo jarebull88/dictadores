@@ -43,7 +43,7 @@ Duración: entre 10 y 12 cartas. 57 cartas. Los efectos están en la escala pequ
 
 **Carta:** «El Comandante Motos ha dimitido. Dice que nos estamos volviendo comunistas. ¡Qué grosero!»
 
-- **A. Que Milfuegos vaya a detenerlo** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
+- **A. Manden a alguien a capturarlo** Élite +5 · Ejército −4 · Encola: `viaje_milfuegos` en 1 años
 - **B. Que dimita tranquilo** Ejército +4 · Élite −5 · Bandera: `matojos_libre`
 
 ### 5. El viaje de Milfuegos
@@ -51,10 +51,10 @@ Duración: entre 10 y 12 cartas. 57 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Pero el Comandante Milfuegos tardaría dos días por carretera, hermanito. Le tengo un avión preparado por mis hombres.»
+**Carta:** «Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti. Le tengo un avión preparado.»
 
 - **A. Pues que vaya volando**  · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
-- **B. Que vaya en jeep, no hay prisas**  · Encola: `fuga_comandante` en 1 a 2 años
+- **B. Que vaya en jeep, sin prisa**  · Encola: `fuga_comandante` en 1 a 2 años
 
 **Consecuencia futura de `mota_juzgado`:** Los nietos de Motos piden que los libros hablen de él.
 
@@ -428,7 +428,7 @@ Duración: entre 10 y 12 cartas. 57 cartas. Los efectos están en la escala pequ
 **Carta:** «Para limpiarle el camino, el santo pide 12 huevos, 7 cocos, un chivo y la nevera de un ministro. Pero puede fallar.»
 
 - **A. Que sean dos neveras** Élite −4
-- **B. ¿No le sirve la del viceministro?** Élite −1
+- **B. Mejor la del viceministro** Élite −1
 
 ### 38. Padrino Pupo (enemigos)
 
@@ -467,8 +467,8 @@ Duración: entre 10 y 12 cartas. 57 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Para la envidia, el santo pide 7 mazorcas, 2 racimos de plátanos, ron y un Rolex igual al suyo. Pero puede fallar.»
 
-- **A. Elija uno de mi colección** Potencias −4
-- **B. Le consigo uno más modesto** Potencias −1
+- **A. Le regalo este** Potencias −4
+- **B. Igualito pero de imitación** Potencias −1
 
 ### 42. Padrino Pupo (malos deseos)
 

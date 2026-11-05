@@ -109,6 +109,7 @@ body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
   --peso-negrita: 700;   /* Space Grotesk Bold: los subtítulos */
   --t-titulo: min(calc(var(--carta-w, 360px) * .12), 48px);
   --t-sub: var(--c-cuerpo);   /* 2 nov: el subtítulo mide lo mismo que el cuerpo: se distingue solo por la negrita */
+  --t-nota: 24px;       /* 5 nov, Jorge: las notas de inteligencia (texto dentro de una carta) van más grandes: caben hasta ~130 caracteres a 360 px */
   --c-cuerpo: 20px;     /* 18 px en pantallas bajas */
   --lh-cuerpo: 1.3;
 }
@@ -148,6 +149,8 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto {
   font-family: var(--f-pregunta); font-size: var(--c-cuerpo); font-weight: var(--peso-negrita); line-height: 1.2; text-transform: none; letter-spacing: 0;
 }
+/* las notas de inteligencia: su propio tamaño */
+.aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
 /* TIPOGRAFIA:FIN ============================================================================================== */
 .hidden { display: none !important; }
 /* Iconos de papel recortado */
@@ -732,7 +735,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 .hueco-logro.abierto img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* 1 nov: carta de aviso (nota de inteligencia): blanca y solo con su texto, centrado; carta de objeto: fondo plano con su título (hasta que Arte haga la imagen) */
-.carta-aviso { display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 12%; background: var(--p-blanco); border: var(--borde); }
+.carta-aviso { display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 8%; background: var(--p-blanco); border: var(--borde); }
 .aviso-texto { margin: 0; text-align: center; color: var(--p-tinta); }
 .objeto-cara { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; text-align: center; padding: 8%; box-sizing: border-box; }
 .objeto-cara b { color: var(--p-blanco); }

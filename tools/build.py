@@ -70,6 +70,15 @@ def reversos():
         out["todas"] = datos_uri(unico.relative_to(RAIZ), "image/webp")
     return out
 
+def poof():
+    """5 nov: la animación «poof» (Lottie) de cuando se pierde una vida, en blanco: se pinta con lottie_light (assets/lib), que se carga solo al usarla."""
+    anim = json.loads(leer("assets/animaciones/poof.json"))
+    for capa in anim["layers"]:
+        for f in capa["shapes"]:
+            if f.get("ty") == "fl":
+                f["c"]["k"] = [1, 1, 1, 1]
+    return anim
+
 def sonidos():
     """Efectos de sonido (assets/sonidos/<evento>.mp3|ogg|wav|m4a), como {evento: data-uri}. Sin archivo, el juego sintetiza el suyo."""
     tipos = {".mp3": "audio/mpeg", ".ogg": "audio/ogg", ".wav": "audio/wav", ".m4a": "audio/mp4"}
@@ -97,10 +106,8 @@ def main():
     motor = leer("src/motor.js")
     activos = ('<script>\n/* Personajes e iconos de papel recortado (WebP con transparencia, incrustados) */\nconst RETRATOS = '
                + json.dumps(personajes(), ensure_ascii=False) + ';\nconst IMG = '
-               + json.dumps(iconos(), ensure_ascii=False) + ';\nconst ESCENAS = '
-               + leer("assets/iconos/escenas.json").strip() + ';\nconst CARTEL_PORTADA = "'
-               + datos_uri("assets/portada/cartel.webp", "image/webp") + '";\nconst REVERSOS = '
-               + json.dumps(reversos()) + ';\nconst IMG_CARTAS = ' + json.dumps(cartas()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst COLOR_IMG = ' + json.dumps(colores()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\n</script>\n')
+               + json.dumps(iconos(), ensure_ascii=False) + ';\nconst REVERSOS = '
+               + json.dumps(reversos()) + ';\nconst IMG_CARTAS = ' + json.dumps(cartas()) + ';\nconst IMG_LOGROS = ' + json.dumps(logros()) + ';\nconst COLOR_IMG = ' + json.dumps(colores()) + ';\nconst SONIDOS = ' + json.dumps(sonidos()) + ';\nconst POOF = ' + json.dumps(poof()) + ';\nconst LOTTIE_JS = ' + json.dumps(leer('assets/lib/lottie_light.min.js')).replace('</', '<\\/') + ';\n</script>\n')
     html = f'''<!doctype html>
 <html lang="es">
 <head>

@@ -6,9 +6,7 @@
                                          #   assets/personajes/originales/<slug>.jpg -> recortados/<slug>.webp (720 px)
                                          #   assets/iconos/originales/cartel-<id>.jpg -> recortados/<id>-cartel.webp (144 px; los estados, además -cartel-grande.webp a 540 px)
     python3 tools/recortar.py personajes # papel recortado con croma: solo lo que queda (dictador, etapas 2–4)
-    python3 tools/recortar.py dibujos    # assets/iconos/originales/dibujo-<id>.jpeg -> recortados/<id>-dibujo.webp (ya solo el reverso)
-    python3 tools/recortar.py escenas    # assets/iconos/originales/escena-<id>.jpg -> recortados/<id>-escena.webp (+ escenas.json)
-                                         #   assets/portada/cartel.jpg -> cartel.webp (24 oct: el cartel del juego, el sillón vacío)
+    (5 nov: los comandos «dibujos» y «escenas» y el cartel de la portada se quitaron: ya no se usan; siguen en git)
 
 El recorte sigue docs/PIPELINE_PERSONAJES.md: alfa en rampa (no umbral binario), se descartan islas
 sueltas y se quita el rebote verde del borde. Necesita numpy, scipy y Pillow.
@@ -307,8 +305,6 @@ def main():
             if "ojos" not in p:     # sin ojos por código = cartel
                 reducir_cartel(RAIZ / f"assets/personajes/originales/{slug}.jpg", RAIZ / f"assets/personajes/recortados/{slug}.webp", LADO_CARTEL_PERSONAJE, 86)
                 print(f"cartel {slug}")
-        reducir_cartel(RAIZ / "assets/portada/cartel.jpg", RAIZ / "assets/portada/cartel.webp", 900, 86)   # la portada
-        print("cartel portada")
         for f in sorted((RAIZ / "assets/reversos").glob("era-*.jpg")):     # 24 oct: reversos de las cartas, uno por era
             reducir_cartel(f, f.with_suffix(".webp"), 600, 86)
             print(f"reverso {f.stem}")
@@ -328,21 +324,6 @@ def main():
                 continue            # los carteles no pasan por el croma
             w, h = recortar_personaje(f, dst / f"{f.stem}.webp")
             print(f"personaje {f.stem}: {w}×{h}, {(dst / f'{f.stem}.webp').stat().st_size // 1024} KB")
-    if que in ("todo", "dibujos"):
-        dst = RAIZ / "assets/iconos/recortados"; dst.mkdir(parents=True, exist_ok=True)
-        for f in sorted((RAIZ / "assets/iconos/originales").glob("dibujo-*.jpeg")):
-            nombre = f.stem[len("dibujo-"):] + "-dibujo"
-            w, h = recortar_dibujo(f, dst / f"{nombre}.webp", **DIBUJO_AJUSTES.get(f.stem[len("dibujo-"):], {}))
-            print(f"dibujo {nombre}: {w}×{h}, {(dst / f'{nombre}.webp').stat().st_size // 1024} KB")
-    if que in ("todo", "escenas"):
-        dst = RAIZ / "assets/iconos/recortados"
-        info = {}
-        for f in sorted((RAIZ / "assets/iconos/originales").glob("escena-*.jpg")):
-            id = f.stem[len("escena-"):]
-            (w, h), marcos = recortar_escena(f, dst / f"{id}-escena.webp", MARCOS.get(id))
-            info[id] = {"ancho": w, "alto": h, "marcos": marcos}
-            print(f"escena {id}: {w}×{h}, {len(marcos)} marcos, {(dst / f'{id}-escena.webp').stat().st_size // 1024} KB")
-        (RAIZ / "assets/iconos/escenas.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
 
 
 if __name__ == "__main__":

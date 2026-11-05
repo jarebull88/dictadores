@@ -80,7 +80,7 @@ body { transition: background-color 1.2s ease, color 1.2s ease; }
 .barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
 body.negro { background: var(--p-tinta); color: var(--p-crema); }
 body.sec { background: var(--fondo-sec); }   /* 5 nov: la carta de una secuela tiñe el fondo de su color */
-body.sec :is(.mensaje, .leyenda) { color: var(--p-blanco); }
+body.sec :is(.mensaje, .leyenda, .anio, .boton-menu) { color: var(--p-blanco); }   /* con el fondo de color, también el año y la flecha del menú pasan a blanco */
 #screen-game .ranuras { z-index: 7; }
 #screen-game :is(.anio, .boton-menu) { z-index: 8; }
 #screen-game .escenario:not(.repartiendo) { position: relative; z-index: 5; }   /* la carta (con su escenario) pasa por delante del cargo y por detrás de las casillas */
@@ -572,7 +572,7 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
 .boton-menu-volver { right: auto; bottom: auto; }
 /* 3 nov, Jorge: el año en curso, abajo a la izquierda, centrado con las casillas */
-.anio { position: absolute; left: 0; bottom: 0; height: var(--cuadro); display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; pointer-events: none; }   /* 5 nov: las vidas (tres caras) encima del año; juntos miden lo que una casilla */
+.anio { position: absolute; left: 0; bottom: 0; height: var(--cuadro); display: flex; flex-direction: column; justify-content: space-between; align-items: center; pointer-events: none; }   /* 5 nov: las vidas (tres caras) encima del año; juntos miden lo que una casilla */
 .vidas { display: flex; gap: 3px; height: calc(var(--cuadro) * .4); }
 .vidas img { display: block; height: 100%; width: auto; transition: opacity .12s; }
 .vidas img.se-va { opacity: 0; }

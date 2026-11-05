@@ -163,6 +163,11 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto {
   font-family: var(--f-pregunta); font-size: var(--c-cuerpo); font-weight: var(--peso-negrita); line-height: 1.2; text-transform: none; letter-spacing: 0;
 }
+/* el póster del reverso de las fuerzas (5 nov): cabecera y etiquetas pequeñas en mayúsculas espaciadas, el nombre gigante (su tamaño lo ajusta al ancho `ajustarPoster()`), «quiénes son» en negrita y el resto en regular */
+.poster-cab, .poster-tag { font-family: var(--f-cuerpo); font-size: 10px; font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: .16em; }
+.poster-pal { font-family: var(--f-titular); font-size: 60px; font-weight: var(--peso-normal); line-height: .8; text-transform: uppercase; letter-spacing: .01em; }
+.poster-quien { font-family: var(--f-cuerpo); font-size: 17px; font-weight: var(--peso-negrita); line-height: 1.22; text-transform: none; letter-spacing: 0; }
+.poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
 /* TIPOGRAFIA:FIN ============================================================================================== */
@@ -831,6 +836,16 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .logro-cara::before, .logro-dorso::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radio-carta); background: var(--tex) 0 0 / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
 .logro-ilustracion { position: relative; isolation: isolate; }
 .logro-ilustracion::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--tex) calc(var(--margen-px) * -1) calc(var(--margen-px) * -1) / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+/* el póster del reverso de las fuerzas: maquetación (la tipografía, en su bloque) */
+.poster { display: flex; flex-direction: column; align-self: stretch; width: 100%; height: 100%; text-align: left; color: var(--p-blanco); }
+.poster-cab { display: flex; justify-content: space-between; padding-bottom: 7px; border-bottom: 2px solid currentColor; }
+.poster-pal { margin: 12px 0 8px; white-space: nowrap; }
+.poster-quien { margin: 0 0 auto; max-width: 96%; }
+.poster-par { display: grid; grid-template-columns: 1fr 1fr; margin-top: 10px; padding-top: 9px; border-top: 1px solid currentColor; }
+.poster-par > div { padding: 0 9px 0 0; }
+.poster-par > div + div { padding: 0 0 0 10px; border-left: 1px solid currentColor; }
+.poster-par p { margin: 0; }
+.poster-tag { display: inline-block; margin-bottom: 6px; padding: 3px 6px 2px; background: var(--p-blanco); color: var(--hoja-fondo, var(--p-tinta)); }
 </style>
 </head>
 <body>
@@ -3202,10 +3217,24 @@ function mostrarInfo(i) {
 const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
 function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
-  const f = FUERZAS[id];
+  const f = FUERZAS[id], num = String(Object.keys(FUERZAS).indexOf(id) + 1).padStart(2, "0");
+  /* 5 nov, Jorge: el reverso de las fuerzas es un póster tipográfico (propuesta A): cabecera de informe, el nombre gigante ajustado al ancho,
+     «quiénes son» en negrita y, abajo, lo que la sube y la baja en dos columnas; todo en blanco, sea cual sea el color de la carta */
   abrirInfo("fuerza-" + id, id, FONDO_FUERZA[id], el,
-    `<p class="ficha-historia ficha-nota"><b>${esc(f.nombre)}:</b> ${esc(f.quien)}</p><hr class="divisor">` +   // 2 nov, Jorge: el nombre abre la descripción; una línea la separa de lo que sube y baja
-    `<p class="ficha-historia ficha-nota"><b>Lo sube:</b> ${esc(f.sube)}</p><p class="ficha-historia ficha-nota"><b>Lo baja:</b> ${esc(f.baja)}</p>`);
+    `<div class="poster"><div class="poster-cab"><span>Fuerza ${num}</span><span>Informe de inteligencia</span></div>` +
+    `<div class="poster-pal">${esc(f.nombre)}</div><p class="poster-quien">${esc(f.quien)}</p>` +
+    `<div class="poster-par"><div><span class="poster-tag">▲ Lo sube</span><p>${esc(f.sube)}</p></div>` +
+    `<div><span class="poster-tag">▼ Lo baja</span><p>${esc(f.baja)}</p></div></div></div>`);
+  ajustarPoster();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarPoster);
+}
+/* la palabra del póster ocupa todo el ancho de la hoja (el único texto que se ajusta al hueco: es un cartel) */
+function ajustarPoster() {
+  const e = document.querySelector("#carta-info .poster-pal");
+  if (!e) return;
+  const w = e.parentElement.clientWidth;
+  e.style.fontSize = "100px";
+  if (e.scrollWidth) e.style.fontSize = (100 * w / e.scrollWidth) + "px";
 }
 
 /* 28 oct: tocar el icono de una fuerza o la casilla de un estado saca su carta: vuela desde el icono hasta el mazo (la animación inversa

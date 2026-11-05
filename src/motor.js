@@ -785,10 +785,24 @@ function mostrarInfo(i) {
 const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
 function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
-  const f = FUERZAS[id];
+  const f = FUERZAS[id], num = String(Object.keys(FUERZAS).indexOf(id) + 1).padStart(2, "0");
+  /* 5 nov, Jorge: el reverso de las fuerzas es un póster tipográfico (propuesta A): cabecera de informe, el nombre gigante ajustado al ancho,
+     «quiénes son» en negrita y, abajo, lo que la sube y la baja en dos columnas; todo en blanco, sea cual sea el color de la carta */
   abrirInfo("fuerza-" + id, id, FONDO_FUERZA[id], el,
-    `<p class="ficha-historia ficha-nota"><b>${esc(f.nombre)}:</b> ${esc(f.quien)}</p><hr class="divisor">` +   // 2 nov, Jorge: el nombre abre la descripción; una línea la separa de lo que sube y baja
-    `<p class="ficha-historia ficha-nota"><b>Lo sube:</b> ${esc(f.sube)}</p><p class="ficha-historia ficha-nota"><b>Lo baja:</b> ${esc(f.baja)}</p>`);
+    `<div class="poster"><div class="poster-cab"><span>Fuerza ${num}</span><span>Informe de inteligencia</span></div>` +
+    `<div class="poster-pal">${esc(f.nombre)}</div><p class="poster-quien">${esc(f.quien)}</p>` +
+    `<div class="poster-par"><div><span class="poster-tag">▲ Lo sube</span><p>${esc(f.sube)}</p></div>` +
+    `<div><span class="poster-tag">▼ Lo baja</span><p>${esc(f.baja)}</p></div></div></div>`);
+  ajustarPoster();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarPoster);
+}
+/* la palabra del póster ocupa todo el ancho de la hoja (el único texto que se ajusta al hueco: es un cartel) */
+function ajustarPoster() {
+  const e = document.querySelector("#carta-info .poster-pal");
+  if (!e) return;
+  const w = e.parentElement.clientWidth;
+  e.style.fontSize = "100px";
+  if (e.scrollWidth) e.style.fontSize = (100 * w / e.scrollWidth) + "px";
 }
 
 /* 28 oct: tocar el icono de una fuerza o la casilla de un estado saca su carta: vuela desde el icono hasta el mazo (la animación inversa

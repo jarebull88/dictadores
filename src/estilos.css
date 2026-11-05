@@ -149,6 +149,11 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .mensaje, .pantalla-nombre .intro, .cabecera-carta .era-texto {
   font-family: var(--f-pregunta); font-size: var(--c-cuerpo); font-weight: var(--peso-negrita); line-height: 1.2; text-transform: none; letter-spacing: 0;
 }
+/* el póster del reverso de las fuerzas (5 nov): cabecera y etiquetas pequeñas en mayúsculas espaciadas, el nombre gigante (su tamaño lo ajusta al ancho `ajustarPoster()`), «quiénes son» en negrita y el resto en regular */
+.poster-cab, .poster-tag { font-family: var(--f-cuerpo); font-size: 10px; font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: .16em; }
+.poster-pal { font-family: var(--f-titular); font-size: 60px; font-weight: var(--peso-normal); line-height: .8; text-transform: uppercase; letter-spacing: .01em; }
+.poster-quien { font-family: var(--f-cuerpo); font-size: 17px; font-weight: var(--peso-negrita); line-height: 1.22; text-transform: none; letter-spacing: 0; }
+.poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
 /* TIPOGRAFIA:FIN ============================================================================================== */
@@ -817,3 +822,13 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .logro-cara::before, .logro-dorso::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radio-carta); background: var(--tex) 0 0 / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
 .logro-ilustracion { position: relative; isolation: isolate; }
 .logro-ilustracion::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--tex) calc(var(--margen-px) * -1) calc(var(--margen-px) * -1) / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+/* el póster del reverso de las fuerzas: maquetación (la tipografía, en su bloque) */
+.poster { display: flex; flex-direction: column; align-self: stretch; width: 100%; height: 100%; text-align: left; color: var(--p-blanco); }
+.poster-cab { display: flex; justify-content: space-between; padding-bottom: 7px; border-bottom: 2px solid currentColor; }
+.poster-pal { margin: 12px 0 8px; white-space: nowrap; }
+.poster-quien { margin: 0 0 auto; max-width: 96%; }
+.poster-par { display: grid; grid-template-columns: 1fr 1fr; margin-top: 10px; padding-top: 9px; border-top: 1px solid currentColor; }
+.poster-par > div { padding: 0 9px 0 0; }
+.poster-par > div + div { padding: 0 0 0 10px; border-left: 1px solid currentColor; }
+.poster-par p { margin: 0; }
+.poster-tag { display: inline-block; margin-bottom: 6px; padding: 3px 6px 2px; background: var(--p-blanco); color: var(--hoja-fondo, var(--p-tinta)); }

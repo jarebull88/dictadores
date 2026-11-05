@@ -66,16 +66,11 @@ body {
 body { transition: background-color 1.2s ease, color 1.2s ease; }
 .barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
 body.negro { background: var(--p-tinta); color: var(--p-crema); }
-/* 4 nov, Jorge: en la partida, el bloque de abajo (casillas, año y menú) va sobre tinta; lo demás —fuerzas, textos y carta— comparte el fondo crema.
-   El bloque de abajo es un plano (body::after, desde --plano-abajo, que mide medirCartaJuego()) POR DELANTE de la carta: las cartas que bajan (avisos, secuelas) pasan por delante
-   del cargo y por detrás de ese bloque. En la caída, todo el fondo pasa a negro (body.negro). */
-.ranuras::before { content: ""; position: absolute; left: -100vw; right: -100vw; top: -10px; bottom: -100vh; background: var(--p-tinta); z-index: -1; pointer-events: none; }   /* el plano de tinta va pegado a las casillas (así no se desencaja si cambia el alto de la ventana) */
-body.planos #screen-game :is(.anio, .boton-menu) { color: var(--p-crema); }
-body.planos .ranura { background: rgba(240, 233, 214, .16); }
+body.sec { background: var(--fondo-sec); }   /* 5 nov: la carta de una secuela tiñe el fondo de su color */
+body.sec :is(.mensaje, .leyenda) { color: var(--p-blanco); }
 #screen-game .ranuras { z-index: 7; }
 #screen-game :is(.anio, .boton-menu) { z-index: 8; }
-body:not(.planos) .ranuras::before { display: none; }
-#screen-game .escenario:not(.repartiendo) { position: relative; z-index: 5; }   /* la carta (con su escenario) pasa por delante del cargo y por detrás del bloque de abajo */
+#screen-game .escenario:not(.repartiendo) { position: relative; z-index: 5; }   /* la carta (con su escenario) pasa por delante del cargo y por detrás de las casillas */
 body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
@@ -124,7 +119,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .titulo, .titular, .anio, #screen-end h1.fin-principal, .cabecera-carta h1, .objeto-cara b, .titulo-caida {
   font-family: var(--f-titular); font-size: var(--t-titulo); font-weight: var(--peso-normal); line-height: 1.05; text-transform: uppercase; letter-spacing: 0;
 }
-.anio { font-size: calc(var(--t-titulo) * .7); }   /* 4 nov: el año, algo menor que el título para que quepa junto a las casillas */
+.anio { font-size: calc(var(--cuadro) * .52); line-height: .95; }   /* 4 nov: el año, algo menor que el título para que quepa junto a las casillas */
 /* el logo de la portada, a su tamaño propio */
 .logo-texto { font-family: var(--f-titular); font-weight: var(--peso-normal); text-transform: uppercase; letter-spacing: 0; line-height: .86; }
 .logo-texto > span { font-size: min(46px, 10vw); }
@@ -478,10 +473,6 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .etiqueta-boli b { display: block; color: var(--tinta-marcador); }   /* título a máquina */
 .etiqueta-boli.larga b { }   /* una palabra muy larga («Nacionalizaciones») no cabe al tamaño normal */
 /* Con escena (collage de papel): ocupa toda la cartulina y la etiqueta se pega encima, abajo */
-.carta-estado .ilustracion:has(.escena) { padding: 0; justify-content: flex-start; }
-.carta-estado .escena { display: block; width: 100%; height: 100%; pointer-events: none; }
-.carta-estado .escena .ojos-fijos { fill: #161618; }
-.carta-estado .escena + .etiqueta-boli { position: absolute; left: 8%; bottom: 5%; }
 .carta-estado .icono-grande .icono { width: 100%; height: 100%; border: none; }
 .personaje { display: block; flex: none; width: 100%; height: auto; margin-top: auto; pointer-events: none; user-select: none; }
 /* Ojos: miran a un lado y a otro solos, con pausas (cada carta con su desfase, ver svgPersonaje) */
@@ -564,7 +555,12 @@ body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelan
 .boton-menu svg { display: block; width: 100%; height: 100%; fill: currentColor; }   /* 2 nov: la flecha doble («keyboard_double_arrow_right» de Material Symbols, dibujada en línea: el juego no usa red) */
 .boton-menu-volver { right: auto; bottom: auto; }
 /* 3 nov, Jorge: el año en curso, abajo a la izquierda, centrado con las casillas */
-.anio { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: calc((var(--cuadro) - var(--t-titulo) * .74) / 2); pointer-events: none; }
+.anio { position: absolute; left: 0; bottom: 0; height: var(--cuadro); display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; pointer-events: none; }   /* 5 nov: las vidas (tres caras) encima del año; juntos miden lo que una casilla */
+.vidas { display: flex; gap: 3px; height: calc(var(--cuadro) * .4); }
+.vidas img { display: block; height: 100%; width: auto; transition: opacity .12s; }
+.vidas img.se-va { opacity: 0; }
+.poof { position: fixed; z-index: 30; pointer-events: none; }   /* la nube blanca (Lottie) al perder una vida */
+#anio-n { display: block; }
 .boton-menu-volver svg { transform: scaleX(-1); }   /* en el menú, la flecha mira al otro lado */
 .boton-menu::after { content: ""; position: absolute; inset: -6px; }   /* zona de toque mayor que el dibujo */
 /* 27 oct: con logros sin abrir, el menú lleva encima una bolita amarilla que llena el hueco hasta el borde de arriba de las casillas. Al llegar un

@@ -544,7 +544,6 @@ function medirCartaJuego() {
   const gTop = g.getBoundingClientRect().top + (parseFloat(getComputedStyle(g).paddingTop) || 0);
   const mensajeTop = $("mensaje").getBoundingClientRect().top - gTop;   // retícula (2 nov): dónde empieza el texto (bajo las barras)
   const leyendaTop = g.querySelector(".zona-leyenda").getBoundingClientRect().top - gTop;   // y dónde la leyenda (bajo la carta y su mazo)
-  const planoB = $("ranuras").getBoundingClientRect().top - 10;   // 4 nov: arriba empieza el plano de las casillas
   const barrasB = $("barras").getBoundingClientRect().bottom - gTop;
   const baja = Math.max(0, Math.round(barrasB + (arriba - barrasB - $("mensaje").offsetHeight) / 2 - mensajeTop));   // 4 nov: la pregunta, centrada entre las barras y la carta
   if (oculta) { g.classList.add("hidden"); g.style.position = g.style.inset = g.style.visibility = ""; }
@@ -552,7 +551,6 @@ function medirCartaJuego() {
   const r = document.documentElement.style;
   r.setProperty("--carta-w", w + "px"); r.setProperty("--carta-h", h + "px"); r.setProperty("--cabecera-h", Math.max(0, arriba) + "px");
   r.setProperty("--ret-titulo", Math.max(0, mensajeTop + baja) + "px"); r.setProperty("--mensaje-baja", baja + "px");
-  r.setProperty("--plano-abajo", planoB + "px");
   r.setProperty("--ret-pie", Math.max(0, leyendaTop - arriba) + "px");   // de la parte de arriba de la carta a la leyenda
   document.body.classList.add("carta-medida");
 }
@@ -561,10 +559,9 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); }
+  ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); fondoSecuela(null); }
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
-  document.body.classList.toggle("planos", id === "screen-game");   // 4 nov: fuerzas y casillas sobre tinta, carta y textos sobre crema
 }
 
 function parBarra(id) {
@@ -626,8 +623,43 @@ function posturaCarta(carta, dx, giro, vuela) {
   const baja = Math.abs(Math.sin(g * Math.PI / 180)) * w / 2 + (vuela ? 40 : 0);
   return `translate(${dx}${vuela ? "vw" : "px"}, ${baja.toFixed(1)}px) rotate(${g}deg)`;
 }
+/* 5 nov, Jorge: las tres vidas (el original y dos dobles) son tres caras encima del año; al perder una, su cara se va en una nube blanca (Lottie, `POOF`) con su sonido */
+function pintarVidas() {
+  const v = $("vidas"); if (!v) return;
+  const quedan = E && !E.tutorial ? Math.max(0, 3 - (E.dobles || 0)) : 0;
+  const hay = v.querySelectorAll("img:not(.se-va)").length;
+  if (hay === quedan || hay > quedan && quedan > 0) return;   // si hay de más, lo quita perderVida() con su animación
+  const src = IMG["icono_vida-cara"] && IMG["icono_vida-cara"].src;
+  v.innerHTML = src ? `<img src="${src}" alt="" draggable="false">`.repeat(quedan) : "";
+}
+function cargarLottie() {
+  if (window.lottie) return true;
+  if (typeof LOTTIE_JS === "undefined") return false;
+  try { const s = document.createElement("script"); s.textContent = LOTTIE_JS; document.head.appendChild(s); } catch (e) { return false; }
+  return !!window.lottie;
+}
+function perderVida() {
+  const cara = $("vidas") && $("vidas").querySelector("img:not(.se-va):last-child");
+  if (!cara) return;
+  sonar("poof");
+  let anim = null;
+  if (animar() && cargarLottie()) {
+    const r = cara.getBoundingClientRect(), S = r.width * 5.5, c = document.createElement("div");
+    c.className = "poof";
+    c.style.cssText = `left:${r.left + r.width / 2 - S / 2}px;top:${r.top + r.height / 2 - S / 2}px;width:${S}px;height:${S}px`;
+    document.body.appendChild(c);
+    try {
+      anim = window.lottie.loadAnimation({ container: c, renderer: "svg", loop: false, autoplay: true, animationData: JSON.parse(JSON.stringify(POOF)) });
+      anim.setSpeed(0.6);   // un poco más lenta que la original
+      anim.addEventListener("complete", () => { c.remove(); try { anim.destroy(); } catch (e) {} });
+      setTimeout(() => c.remove(), 2500);
+    } catch (e) { c.remove(); anim = null; }
+  }
+  if (anim) { cara.classList.add("se-va"); setTimeout(() => cara.remove(), 200); } else cara.remove();
+}
 function pintarCabecera() {
-  const a = $("anio"); if (!a) return;
+  pintarVidas();
+  const a = $("anio-n"); if (!a) return;
   const t = E && !E.tutorial ? String(ANIO_INICIO + anios()) : "";
   const cambia = a.textContent && t && a.textContent !== t;
   a.textContent = t;
@@ -983,7 +1015,7 @@ function empezar() {
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
-  document.body.classList.remove("negro");
+  document.body.classList.remove("negro"); fondoSecuela(null);
   E.avisoPendiente = null;
   E.estadoNuevo = null; modoEstado = false; modoAviso = false; modoFin = false;
   $("carta").classList.remove("hidden", "listo");
@@ -1238,7 +1270,7 @@ const FRASE_ESTADO = {
   nacionalizado: "Ahora todo es del Pueblo. Y el Pueblo eres tú.",
   embargo: "La culpa de todo por fin tiene nombre.",
   deuda: "La Revolución se pagará en cómodos plazos.",
-  vigilancia: "🎵 En cada cuadra un comité. En cada barrio, Revolución. 🎵",
+  vigilancia: "♪ En cada cuadra un comité. En cada barrio, Revolución. ♪",
   culto: "El Pueblo te quiere tanto que han tenido que repartir tu retrato por todo el país.",
   censura: "Qué bonito cuando todos piensan igual.",
   frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
@@ -1249,9 +1281,17 @@ const FRASE_ESTADO = {
 const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
   embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A", collar: "#D8A02A", salacion: "#7A2A1D" };
 let relojEstado = null;
+/* 5 nov, Jorge: mientras la carta de una secuela está en el mazo, el fondo se pone del color de su imagen (como en la caída) y los textos pasan a blanco */
+function fondoSecuela(id) {
+  const b = document.body;
+  const color = id && ((typeof COLOR_IMG !== "undefined" && COLOR_IMG[`icono_${id}-cartel-grande`]) || FONDO_ESTADO[id]);   // el color de fondo de la imagen de la carta
+  if (color) { b.style.setProperty("--fondo-sec", color); b.classList.add("sec"); }
+  else b.classList.remove("sec");
+}
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
   modoEstado = true; ocupado = false;
+  fondoSecuela(n.id);
   clearTimeout(relojEstado);
   // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
   ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nueva secuela del régimen.")}</span>`);
@@ -1272,37 +1312,10 @@ function mostrarCartaEstado() {
   entrarCarta(carta);
   pintarRanuras();
 }
-/* Escena de la carta de estado (collage de papel alrededor de su icono). Los marcos vacíos llevan la cara del
-   dictador de la etapa en curso; la máscara de huecos (papel crema visible) la recorta donde algo tapa el marco. */
-const dictadorDeEra = era => DICTADOR_ERA[era] || "dictador-joven";
-function svgEscena(id, etiqueta) {
-  const e = typeof ESCENAS !== "undefined" && ESCENAS[id], img = IMG["icono_" + id + "-escena"];
-  if (!e || !img) return "";
-  const p = RETRATOS[dictadorDeEra(E ? E.era : 1)];
-  let caras = "";
-  const huecos = IMG["icono_" + id + "-huecos"], marcos = e.marcos;
-  if (marcos.length && huecos) {
-    // 23 oct: el cartel del Comandante joven entra entero en el marco; el papel recortado, desde los ojos (cabeza y hombros)
-    let vista = `0 0 ${p.ancho} ${p.alto}`, fondo = "", ojos = "";
-    if (p.ojos) {
-      const [xi, yi] = p.ojos.izq, [xd, yd] = p.ojos.der, r = p.ojos.r;
-      const d = xd - xi, ex = (xi + xd) / 2, ey = (yi + yd) / 2;
-      vista = `${ex - 2.1 * d} ${ey - 2.3 * d} ${4.2 * d} ${5.4 * d}`;
-      fondo = `<rect x="${ex - 4 * d}" y="${ey - 4 * d}" width="${8 * d}" height="${10 * d}" fill="${p.fondo}"/>`;
-      ojos = `<g class="ojos-fijos"><circle cx="${xi}" cy="${yi}" r="${r}"/><circle cx="${xd}" cy="${yd}" r="${r}"/></g>`;
-    }
-    const retrato = m => `<g transform="translate(${m.x} ${m.y}) rotate(${m.giro})">` +
-      `<svg x="${-m.w / 2}" y="${-m.h / 2}" width="${m.w}" height="${m.h}" viewBox="${vista}" preserveAspectRatio="xMidYMid slice">` +
-      `${fondo}<image href="${p.src}" width="${p.ancho}" height="${p.alto}"/>${ojos}</svg></g>`;
-    caras = `<mask id="huecos-${id}"><image href="${huecos.src}" width="${e.ancho}" height="${e.alto}"/></mask>` +
-      `<g mask="url(#huecos-${id})">${marcos.map(retrato).join("")}</g>`;
-  }
-  return `<svg class="escena" viewBox="0 0 ${e.ancho} ${e.alto}"${id.startsWith("caida-") ? ' preserveAspectRatio="xMidYMax meet"' : ""} role="img" aria-label="${esc(etiqueta || (ESTADOS[id] || {}).nombre || "")}">` +
-    `<image href="${img.src}" width="${e.ancho}" height="${e.alto}"/>${caras}</svg>`;
-}
 /* La carta se desliza hasta su casilla de abajo, encogiéndose; después sale la carta siguiente */
 function recogerEstado() {
   if (!modoEstado || ocupado) return;
+  fondoSecuela(null);
   hundirMensaje(); sonar("deslizar");
   clearTimeout(relojEstado);
   ocupado = true;
@@ -1451,10 +1464,7 @@ function terminar(clave, transicion, personaje) {
 
 /* ---------- Carta de la caída: la causa como título. Derecha = jugar de nuevo; izquierda = volver a la portada ---------- */
 let finOcupada = false;
-/* Cartas de caída (16 oct): si la causa tiene escena (`escena-caida-<clave>`), la carta es como las de estado: la escena
-   sobre su cartulina y el título en cinta de carrocero; si no, provisional, el título sobre cartón rojo oscuro. */
-const FONDO_CAIDA = {   // 23 oct: paleta del cartel (2 nov: las cuatro de Pueblo y Ejército ya son carteles propios, `muerte_<clave>`)
-  elite_0: "#F0E9D6", elite_100: "#B0362A", potencias_0: "#1D51A0", potencias_100: "#D8A02A" };
+/* Cartas de caída: la imagen de la muerte (`muerte_<clave>`; 5 nov: las escenas de collage antiguas se borraron); sin imagen, el título sobre cartón rojo oscuro. */
 let claveFin = "";
 let personajeFin = null;
 function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin, carta = $("carta-fin")) {
@@ -1463,20 +1473,14 @@ function pintarCartaFin(titulo, clave = claveFin, personaje = personajeFin, cart
   carta.style.transition = "none"; carta.style.transform = ""; carta.style.opacity = "1";
   carta.style.setProperty("--giro", "0deg"); carta.style.setProperty("--bajada", "0");
   cartonDe(carta, "");
-  // Una escena por etapa si la hay («Abducción»: el dictador de cada era), si no, la de la caída
-  const era = E ? E.era : 1, idEscena = clave && (ESCENAS["caida-" + clave + "-" + era] ? `caida-${clave}-${era}` : "caida-" + clave);
-    const imgMuerte = clave && IMG_CARTAS["muerte_" + clave];   // 1 nov: muerte con imagen propia (pelotazo)
+  const imgMuerte = clave && (IMG_CARTAS["muerte_" + clave] || IMG_CARTAS[clave]);   // muerte con imagen propia (el atentado de los tabacos se llama como su carta)
   if (imgMuerte) {
     carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion"><img class="objeto-img" src="${imgMuerte}" alt="${esc(titulo)}" draggable="false"><div class="respuesta"></div></div></div></div>`;
     void carta.offsetWidth; carta.style.transition = "";
     return;
   }
-  const escena = clave && svgEscena(idEscena, titulo);
-  carta.innerHTML = escena
-    ? `<div class="giro"><div class="tapa"></div><div class="cara carta-estado carta-caida-escena"><div class="ilustracion" style="--fondo-escena:${FONDO_CAIDA[clave] || "#D9D5CB"}">` +
-      `${escena}<div class="respuesta"></div></div></div></div>`
-    : `<div class="giro"><div class="tapa"></div><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
-      `${clave && FINALES[clave] && FINALES[clave].especial ? `<div class="titulo-caida">${esc(titulo)}</div>` : ""}<div class="respuesta"></div></div></div></div>`;   // sin imagen aún (Arte): el título
+  carta.innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara carta-caida"><div class="ilustracion" style="--fondo-escena:#7A2E2A">` +
+    `${clave && FINALES[clave] && FINALES[clave].especial ? `<div class="titulo-caida">${esc(titulo)}</div>` : ""}<div class="respuesta"></div></div></div></div>`;   // sin imagen aún (Arte): el título
   void carta.offsetWidth; carta.style.transition = "";
 }
 function mostrarCartaFin(d, clave, personaje, anios) {
@@ -1531,7 +1535,8 @@ function entraDoble() {
   E.barras = { ...s.barras }; E.crisis = s.crisis;
   E.estados = s.estados.map(x => ({ ...x }));
   E.cola = []; E.eventos = []; E.derivaTurno = {}; E.estadoNuevo = null; E.muerteEspecial = null; E.avisoPendiente = null;
-  document.body.classList.remove("negro");
+  perderVida();   // la nube blanca sale sobre el fondo aún negro
+  document.body.classList.remove("negro"); fondoSecuela(null);
   document.querySelectorAll(".barra.cayo").forEach(b => b.classList.remove("cayo"));
   iniciarEra(E.era);
   pintarBarras(); pintarRanuras(); pintarCabecera();
@@ -1579,7 +1584,7 @@ function pasoTutorial(i, sinEntrada) {
   const iFuerzas = TUTORIAL.findIndex(x => x.paso === "fuerzas"), iEstado = TUTORIAL.findIndex(x => x.paso === "estado");
   if (i <= iFuerzas) { $("barras").classList.add("apagadas"); $("barras").querySelectorAll(".barra").forEach(b => b.classList.remove("encendida")); }
   if (i <= iEstado && E.estados.length) { E.estados = []; pintarRanuras(); }
-  clearTimeout(relojEstado); modoEstado = false; modoAviso = false; modoFin = false;
+  clearTimeout(relojEstado); modoEstado = false; modoAviso = false; modoFin = false; fondoSecuela(null);
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
@@ -1672,7 +1677,7 @@ function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
-  E = null; modoEstado = false; modoAviso = false; modoFin = false; ocupado = false;
+  E = null; modoEstado = false; modoAviso = false; modoFin = false; ocupado = false; fondoSecuela(null);
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
   if (destino === "portada") mostrar("screen-start"); else irANombre();
@@ -2303,7 +2308,6 @@ $("btn-repasar").addEventListener("click", empezarTutorial);
 $("btn-repetir").addEventListener("click", empezar);
 
 /* Reverso de las cartas (mazo y tapa al voltear): el dibujo a bolígrafo, pegado sobre el kraft */
-if (IMG["icono_reverso-dibujo"]) document.documentElement.style.setProperty("--reverso", `url(${IMG["icono_reverso-dibujo"].src})`);
 colorReverso(1);                                      // ya en la pantalla del nombre, el mazo es el de la primera etapa
 // 24 oct: el título del cartel, recto: «COMANDANTE,» en tinta y «¡ORDENE!» en rojo, como la diana del sillón
 $("logo").insertAdjacentHTML("afterbegin", `<span class="logo-texto" aria-hidden="true"><span>Comandante,</span><span>¡ordene!</span></span>`);

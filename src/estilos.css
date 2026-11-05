@@ -803,3 +803,6 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .ic-cuadro { position: relative; border-radius: var(--radio-icono); }
 .ic-cuadro::before, .hueco-logro.vacio::before, .hueco-logro.nuevo-logro::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radio-icono); background: var(--tex) 30% 20% / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
 .hueco-logro.vacio, .hueco-logro.nuevo-logro { position: relative; border-radius: var(--radio-hueco); overflow: hidden; }
+/* el reverso (mazo, cartas del reparto y tapa al girar): la misma cartulina que las demás, con esquinas apenas redondeadas, canto y textura */
+.pila .capa, .carta.revelando .tapa { border-radius: var(--radio-carta); overflow: hidden; box-shadow: 0 1px 0 rgba(0, 0, 0, .22), 0 2px 3px rgba(60, 40, 20, .20); }
+.pila .capa::before, .carta.revelando .tapa::before { content: ""; position: absolute; inset: 0; height: auto; pointer-events: none; background: var(--tex) 0 0 / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }

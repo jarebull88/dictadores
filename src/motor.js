@@ -1801,6 +1801,7 @@ function arrastrable(carta, op) {
   }
   carta.addEventListener("pointerdown", e => {
     if (!op.activa()) return;
+    if (tec) { cancelAnimationFrame(tec.raf); tec = null; }
     ancho = carta.offsetWidth;
     drag = { x: e.clientX, y: e.clientY, dx: 0, dy: 0, dir: 0, lado: 0, t0: e.timeStamp, hist: [{ t: e.timeStamp, x: e.clientX, y: e.clientY }] };
     arrastrando = true;
@@ -1825,28 +1826,35 @@ function arrastrable(carta, op) {
     estado.dir = dir;
     marcarListo(dir !== 0);
   }
-  /* 5 nov, Jorge: teclado en escritorio. Mientras se mantiene apretada una flecha, la carta se inclina sola hasta el umbral (como si la arrastraras)
-     y enseña su respuesta; al SOLTAR la tecla se decide. Un toque rápido decide igual (la carta llega al umbral en ~0,22 s). Con otra flecha
-     apretada, cambia de lado; con Escape o al perder el foco, se deja la carta como estaba. */
-  let tec = null;
-  const DURA_TECLA = 220;
-  function pasoTecla(ahora) {
-    if (!tec) return;
-    const k = Math.min(1, (ahora - tec.t0) / DURA_TECLA), e = 1 - (1 - k) ** 2;
-    mover(tec.dir * umbral() * 1.25 * e, tec.estado);
-    if (k < 1) tec.raf = requestAnimationFrame(pasoTecla);
+  /* 5 nov, Jorge: teclado en escritorio, en dos pulsaciones (ver y confirmar). Una flecha inclina la carta hacia ese lado y SE QUEDA, enseñando su respuesta;
+     la flecha contraria pasa a la otra respuesta; repetir la misma flecha o pulsar Enter/Espacio DECIDE; Escape o la flecha abajo la devuelven al centro sin decidir. */
+  let tec = null;                                        // { lado, dx, raf }
+  function irA(dx1, ms = 190) {
+    cancelAnimationFrame(tec.raf);
+    const dx0 = tec.dx, t0 = performance.now();
+    (function paso(ahora) {
+      if (!tec) return;
+      const k = Math.min(1, (ahora - t0) / ms), e = 1 - (1 - k) ** 3;
+      tec.dx = dx0 + (dx1 - dx0) * e;
+      mover(tec.dx, tec.estado);
+      if (k < 1) tec.raf = requestAnimationFrame(paso);
+    })(t0);
   }
-  function teclaAbajo(dir) {
+  function teclaFlecha(dir) {
     if (drag || !op.activa()) return;
-    if (tec) { if (tec.dir === dir) return; cancelAnimationFrame(tec.raf); tec.dir = dir; tec.t0 = performance.now(); tec.estado.lado = -dir; tec.raf = requestAnimationFrame(pasoTecla); return; }
-    ancho = carta.offsetWidth;
-    tec = { dir, t0: performance.now(), estado: { lado: 0, dir: 0 }, raf: 0 };
-    carta.style.transition = "scale .18s ease, translate .18s ease";
-    if (!carta.classList.contains("volteada")) carta.classList.add("cogida");
-    tec.raf = requestAnimationFrame(pasoTecla);
+    if (tec && tec.lado === dir) { teclaConfirmar(); return; }
+    if (!tec) {
+      ancho = carta.offsetWidth;
+      tec = { lado: 0, dx: 0, raf: 0, estado: { lado: 0, dir: 0 } };
+      carta.style.transition = "scale .18s ease, translate .18s ease";
+      if (!carta.classList.contains("volteada")) carta.classList.add("cogida");
+    }
+    tec.lado = dir;
+    irA(dir * umbral() * 1.25);
   }
-  function teclaArriba(dir) {
-    if (!tec || tec.dir !== dir) return;
+  function teclaConfirmar() {
+    if (!tec || !tec.lado) return;
+    const dir = tec.lado;
     cancelAnimationFrame(tec.raf);
     tec = null;
     if (op.bloquea && op.bloquea()) { volver(); return; }
@@ -1854,8 +1862,9 @@ function arrastrable(carta, op) {
     op.decidir(dir);
   }
   function teclaCancelar() { if (!tec) return; cancelAnimationFrame(tec.raf); tec = null; volver(); }
+  const teclaActiva = () => !!tec;
   carta._mover = mover; carta._volver = volver; carta._umbral = umbral;
-  carta._tecla = { abajo: teclaAbajo, arriba: teclaArriba, cancelar: teclaCancelar };
+  carta._tecla = { flecha: teclaFlecha, confirmar: teclaConfirmar, cancelar: teclaCancelar, activa: teclaActiva };
   // 25 oct: en el tutorial, mientras falta una acción (girar, tocar un icono…), la carta no se puede deslizar (29 oct: ni a la izquierda: ya no hay «volver»)
   const efectivo = dx => (op.bloquea && op.bloquea() ? 0 : dx);
   carta.addEventListener("pointermove", e => {
@@ -2346,15 +2355,12 @@ document.addEventListener("keydown", e => {
   }
   if ($("screen-game").classList.contains("hidden")) return;
   if (infoAbierta()) { if (e.key.startsWith("Arrow") || e.key === "Escape") cerrarInfo(); return; }
-  if (e.key === "ArrowLeft") $("carta")._tecla.abajo(-1);
-  if (e.key === "ArrowRight") $("carta")._tecla.abajo(1);
+  const t = $("carta")._tecla;
+  if (e.key === "ArrowLeft") t.flecha(-1);
+  else if (e.key === "ArrowRight") t.flecha(1);
+  else if ((e.key === "Enter" || e.key === " ") && t.activa()) { e.preventDefault(); t.confirmar(); }   // 5 nov: confirma la respuesta que enseña la carta
+  else if (e.key === "ArrowDown" && t.activa()) { e.preventDefault(); t.cancelar(); }
 });
-document.addEventListener("keyup", e => {   // 5 nov: al soltar la flecha se decide (ver arrastrable)
-  const c = $("carta"); if (!c._tecla) return;
-  if (e.key === "ArrowLeft") c._tecla.arriba(-1);
-  if (e.key === "ArrowRight") c._tecla.arriba(1);
-});
-window.addEventListener("blur", () => { const c = $("carta"); if (c._tecla) c._tecla.cancelar(); });
 document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
 });

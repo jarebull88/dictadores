@@ -854,7 +854,7 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 /* ESCRITORIO (5 nov, Jorge, como Reigns): el juego es una columna central del ancho de un móvil, con el color del tema; a los lados, un beige más oscuro
    (ya se pondrá un fondo). `--tema-fondo` sigue cambiando con la caída y las secuelas, pero solo dentro de la columna. */
 :root { --ancho-movil: 460px; --fondo-lados: #D6CBAE; }
-html { background: var(--fondo-lados); }
+html { background: var(--fondo-lados); overflow: hidden; }   /* html y body recortan: lo que se desliza (el menú, las cartas al salir) no se ve fuera de la columna */
 body { max-width: var(--ancho-movil); margin-left: auto; margin-right: auto; position: relative; }
 /* la ficha del personaje (P-B): nombre apilado a la izquierda, miniatura arriba a la derecha, cargo en etiqueta, biografía y nota abajo */
 .poster-top { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; margin-bottom: 9px; }

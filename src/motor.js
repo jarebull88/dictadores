@@ -771,10 +771,12 @@ function textoSobre(hex) {
   return (.2126 * c[0] + .7152 * c[1] + .0722 * c[2]) > .3 ? "#201D14" : "#FFFFFF";
 }
 const estiloHoja = hex => `--hoja-fondo:${hex};--hoja-texto:${textoSobre(hex)}`;
-function htmlEstado(id, conTitulo = false) {   // 2 nov: el reverso de una secuela nunca lleva título (su nombre ya sale bajo la carta, también al tocar su casilla)
-  const d = ESTADOS[id];
-  return `${conTitulo ? `<b class="info-titulo">${esc(d.nombre)}</b>` : ""}<p class="ficha-historia">${esc(d.descripcion)}</p><hr class="divisor">` +
-    `<p class="ficha-historia ficha-nota"><b>Efecto:</b> ${esc(RESUMEN[id] || "")}</p>`;
+function htmlEstado(id, conTitulo = false) {   // 5 nov, Jorge: el reverso de una secuela es un póster tipográfico, como el de las fuerzas, con su icono (contorno blanco simple) junto al efecto
+  const d = ESTADOS[id], num = String(Object.keys(ESTADOS).indexOf(id) + 1).padStart(2, "0");
+  const img = IMG["icono_" + id + "-cartel-grande"] || IMG["icono_" + id + "-cartel"];
+  return `<div class="poster poster-sec"><div class="poster-cab"><span>Secuela ${num}</span><span>Informe</span></div>` +
+    `<div class="poster-pal">${esc(d.nombre)}</div><p class="poster-quien">${esc(d.descripcion)}</p>` +
+    `<div class="poster-ef">${img ? `<img class="poster-ico" src="${img.src}" alt="" draggable="false">` : ""}<div><span class="poster-tag">Efecto</span><p>${esc(RESUMEN[id] || "")}</p></div></div></div>`;
 }
 function mostrarInfo(i) {
   const s = E.estados[i];
@@ -794,15 +796,16 @@ function mostrarFuerza(id, el) {
     `<div class="poster-par"><div><span class="poster-tag">▲ Lo sube</span><p>${esc(f.sube)}</p></div>` +
     `<div><span class="poster-tag">▼ Lo baja</span><p>${esc(f.baja)}</p></div></div></div>`);
   ajustarPoster();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarPoster);
 }
 /* la palabra del póster ocupa todo el ancho de la hoja (el único texto que se ajusta al hueco: es un cartel) */
 function ajustarPoster() {
-  const e = document.querySelector("#carta-info .poster-pal");
-  if (!e) return;
-  const w = e.parentElement.clientWidth;
-  e.style.fontSize = "100px";
-  if (e.scrollWidth) e.style.fontSize = (100 * w / e.scrollWidth) + "px";
+  const poner = () => document.querySelectorAll(".poster-pal").forEach(e => {
+    const w = e.parentElement.clientWidth;
+    e.style.fontSize = "100px";
+    if (e.scrollWidth && w) e.style.fontSize = (100 * w / e.scrollWidth) + "px";
+  });
+  poner();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(poner);
 }
 
 /* 28 oct: tocar el icono de una fuerza o la casilla de un estado saca su carta: vuela desde el icono hasta el mazo (la animación inversa
@@ -873,6 +876,7 @@ function abrirInfo(clave, id, fondo, origen, html, textos) {
     (img ? `<img class="icono cartel" src="${img.src}" alt="" draggable="false">` : "") + `</div></div></div></div>`;
   $("carta").parentNode.appendChild(c);
   cartaInfo = c;
+  ajustarPoster();
   if (textos) { c._previo = { msg: $("mensaje").innerHTML, ley: $("leyenda").textContent }; disolverTextos(textos.msg, textos.ley); }   // 2 nov: una secuela recupera los textos de cuando salió
 
   sonar("deslizar");                                   // 29 oct: sale con sonido, como al cerrarse
@@ -1329,6 +1333,7 @@ function mostrarCartaEstado() {
     `<div class="icono-grande">${imagen}</div><div class="respuesta" id="respuesta"></div></div></div>` +
     `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(colorDe("icono_" + n.id + "-cartel-grande", FONDO_ESTADO[n.id]))}">${htmlEstado(n.id, false)}</div></div></div>`;   // 28 oct: un toque la gira y enseña qué hace el estado
 
+  ajustarPoster();
   entrarCarta(carta);
   pintarRanuras();
 }

@@ -153,6 +153,8 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .poster-cab, .poster-tag { font-family: var(--f-cuerpo); font-size: 10px; font-weight: var(--peso-negrita); line-height: 1.1; text-transform: uppercase; letter-spacing: .16em; }
 .poster-pal { font-family: var(--f-titular); font-size: 60px; font-weight: var(--peso-normal); line-height: .8; text-transform: uppercase; letter-spacing: .01em; }
 .poster-quien { font-family: var(--f-cuerpo); font-size: 17px; font-weight: var(--peso-negrita); line-height: 1.22; text-transform: none; letter-spacing: 0; }
+.poster-sec .poster-quien { font-size: 14px; font-weight: var(--peso-negrita); line-height: 1.2; }
+.poster-ef p { font-family: var(--f-cuerpo); font-size: 13px; font-weight: var(--peso-normal); line-height: 1.25; text-transform: none; letter-spacing: 0; }
 .poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
@@ -832,3 +834,8 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .poster-par > div + div { padding: 0 0 0 10px; border-left: 1px solid currentColor; }
 .poster-par p { margin: 0; }
 .poster-tag { display: inline-block; margin-bottom: 6px; padding: 3px 6px 2px; background: var(--p-blanco); color: var(--hoja-fondo, var(--p-tinta)); }
+/* el reverso de las secuelas: el icono con un contorno blanco simple (el grosor del filete) junto al efecto */
+.poster-ef { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 8px; border-top: 2px solid currentColor; }
+.poster-ef p { margin: 0; }
+.poster-ico { flex: none; display: block; width: 68px; height: 68px; border: 2px solid var(--p-blanco); border-radius: var(--radio-hueco); box-sizing: border-box; }
+.poster-sec .poster-quien { margin: 0; }

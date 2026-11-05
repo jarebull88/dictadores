@@ -147,7 +147,7 @@ const ESTADOS = {
   },
   salacion: {
     nombre: "Salación", bandera: null, duracion: 5,
-    descripcion: "El hechizo salió torcido y ahora te acompaña la mala suerte. Padrino Pupo asegura que es temporal. Y que no es culpa suya.",
+    descripcion: "El ebbó no cogió y ahora te acompaña la mala suerte. Padrino Pupo asegura que es temporal. Y que no es culpa suya.",
     aleja: 2, cada: 1
   },
   // Solo en el tutorial (15 oct): no la activa ninguna bandera y desaparece al empezar la partida
@@ -1244,7 +1244,7 @@ const FRASE_ESTADO = {
   frontera: "Si todos quisieran viajar, no habría aviones para tanta gente.",
   alineado: "La soberanía cuenta con el respaldo de una potencia que decide cómo debes ejercerla.",
   collar: "El santo te cubre las espaldas. De momento.",
-  salacion: "Todo lo que tocas se tuerce. Hasta el café."
+  salacion: "Estás salao. Todo lo que tocas se tuerce."
 };
 const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
   embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A", collar: "#D8A02A", salacion: "#7A2A1D" };

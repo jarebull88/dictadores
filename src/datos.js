@@ -60,9 +60,9 @@ const CARTAS = [
     // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
     id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti. Le tengo un avión preparado.",
-    izq: { accion: "Pues que vaya volando", efectos: {}, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
-    der: { accion: "Que vaya en jeep, sin prisa", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
+    texto: "Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti.",
+    izq: { accion: "Que vaya en avión", efectos: {}, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
+    der: { accion: "Que vaya en jeep", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
   },
   {
     // 31 oct, Jorge: cierre de la trama si Milfuegos va por carretera: el dimitido se escapa

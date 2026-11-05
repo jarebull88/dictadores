@@ -812,3 +812,8 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 /* los iconos de las fuerzas y del menú: el mismo marco blanco que las cartas, proporcional (3,5 % de su lado), con la textura por encima de todo */
 .icono-fuerza .icono.cartel { background: var(--p-blanco); padding: var(--margen-carta); }
 .ic-cuadro { background: var(--p-blanco); padding: var(--margen-carta); box-shadow: 0 1px 0 rgba(0, 0, 0, .30), 0 2px 3px rgba(60, 40, 20, .20); }
+/* las cartas de recompensa y logro (.logro-cara / .logro-dorso): la misma cartulina que las demás, con su textura continua sobre el marco y la ilustración */
+.logro-cara, .logro-dorso { border-radius: var(--radio-carta); overflow: hidden; box-shadow: 0 1px 0 rgba(0, 0, 0, .22), 0 2px 3px rgba(60, 40, 20, .20); }
+.logro-cara::before, .logro-dorso::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radio-carta); background: var(--tex) 0 0 / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+.logro-ilustracion { position: relative; isolation: isolate; }
+.logro-ilustracion::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--tex) calc(var(--margen-px) * -1) calc(var(--margen-px) * -1) / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }

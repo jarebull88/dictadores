@@ -329,9 +329,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que se vigilen solos → sube Pueblo +3, Partido +3 · baja Ejército -4
 
 **Denuncias falsas** (Ministro del Interior)  
-«Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.»
-- A. Que se investigue hasta la gallina → sube Ejército +6 · baja Pueblo -6
-- B. Solo cuentan las denuncias políticas → sube Pueblo +4 · baja Ejército -4
+«Los comités reciben mil denuncias al día. La mitad son de vecinos que se pelean por una gallina.»
+- A. Investiguen la gallina → sube Ejército +6 · baja Pueblo -6
+- B. Solo las denuncias políticas → sube Pueblo +4 · baja Ejército -4
 
 **Faltan técnicos** (Ministro de Economía)  
 «Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.»

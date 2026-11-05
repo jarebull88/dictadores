@@ -565,9 +565,9 @@ const CARTAS = [
   {
     id: "denuncias_falsas", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.comites_vigilancia", "base.purga_inicial", "base.criticos_detenidos"] }, titulo: "Denuncias falsas",
     personaje: "Ministro del Interior",
-    texto: "Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.",
-    izq: { accion: "Que se investigue hasta la gallina", efectos: { ejercito: 6, pueblo: -6 }, banderas: ["base.denuncias_todas"] },
-    der: { accion: "Solo cuentan las denuncias políticas", efectos: { pueblo: 4, ejercito: -4 } }
+    texto: "Los comités reciben mil denuncias al día. La mitad son de vecinos que se pelean por una gallina.",
+    izq: { accion: "Investiguen la gallina", efectos: { ejercito: 6, pueblo: -6 }, banderas: ["base.denuncias_todas"] },
+    der: { accion: "Solo las denuncias políticas", efectos: { pueblo: 4, ejercito: -4 } }
   },
 
   {

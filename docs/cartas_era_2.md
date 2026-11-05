@@ -85,10 +85,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `comites_vigilancia`, `purga_inicial`, `criticos_detenidos`.
 
-**Carta:** «Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.»
+**Carta:** «Los comités reciben mil denuncias al día. La mitad son de vecinos que se pelean por una gallina.»
 
-- **A. Que se investigue hasta la gallina** Ejército +6 · Pueblo −6 · Bandera: `denuncias_todas`
-- **B. Solo cuentan las denuncias políticas** Pueblo +4 · Ejército −4
+- **A. Investiguen la gallina** Ejército +6 · Pueblo −6 · Bandera: `denuncias_todas`
+- **B. Solo las denuncias políticas** Pueblo +4 · Ejército −4
 
 ### 9. Faltan técnicos
 

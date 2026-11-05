@@ -474,10 +474,10 @@ const CARTAS = [
   /* ---------- Era 2 · La Purga ---------- */
   {
     id: "aniversario", era: 2, tipo: "ancla", ventana: [1, 2], titulo: "El aniversario",
-    personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Llega el aniversario: el Ejército quiere desfile de tanques y el Pueblo, ron. No hay para los dos.",
-    izq: { accion: "Un gran desfile con tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
-    der: { accion: "Ron gratis para todo el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
+    personaje: "Ministro de las Fuerzas Armadas",
+    texto: "¿Y si para el aniversario de la Revolución hacemos un desfile militar con todos los tanques? Los decoro yo.",
+    izq: { accion: "Que desfilen los tanques", efectos: { ejercito: 8, pueblo: -7, crisis: 1 }, banderas: ["base.desfile_militar"] },
+    der: { accion: "La fiesta es para el Pueblo", efectos: { pueblo: 7, ejercito: -8 } }
   },
 
   {

@@ -293,10 +293,10 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 ## Era 2 · La Purga
 
-**El aniversario** (Vicepresidente del Consejo de Ministros)  
-«Llega el aniversario: el Ejército quiere desfile de tanques y el Pueblo, ron. No hay para los dos.»
-- A. Un gran desfile con tanques → sube Ejército +8 · baja Pueblo -7 · crisis +1
-- B. Ron gratis para todo el Pueblo → sube Pueblo +7 · baja Ejército -8
+**El aniversario** (Ministro de las Fuerzas Armadas)  
+«¿Y si para el aniversario de la Revolución hacemos un desfile militar con todos los tanques? Los decoro yo.»
+- A. Que desfilen los tanques → sube Ejército +8 · baja Pueblo -7 · crisis +1
+- B. La fiesta es para el Pueblo → sube Pueblo +7 · baja Ejército -8
 
 **Las potencias se enfadan** (Embajador de la potencia del norte)  
 «Exigimos que los acusados de sus juicios públicos tengan defensa y garantías antes de la sentencia.»

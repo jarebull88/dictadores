@@ -6,13 +6,13 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 ### 1. El aniversario
 
-**Personaje:** Vicepresidente del Consejo de Ministros  
+**Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** ancla de los años 1 a 2 de su era.
 
-**Carta:** «Llega el aniversario: el Ejército quiere desfile de tanques y el Pueblo, ron. No hay para los dos.»
+**Carta:** «¿Y si para el aniversario de la Revolución hacemos un desfile militar con todos los tanques? Los decoro yo.»
 
-- **A. Un gran desfile con tanques** Ejército +8 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
-- **B. Ron gratis para todo el Pueblo** Pueblo +7 · Ejército −8
+- **A. Que desfilen los tanques** Ejército +8 · Pueblo −7 · Crisis +1 · Bandera: `desfile_militar`
+- **B. La fiesta es para el Pueblo** Pueblo +7 · Ejército −8
 
 **Consecuencia futura de `desfile_militar`:** El Ejército espera cada año un desfile mayor.
 

@@ -75,8 +75,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.»
 
-- **A. Autorizo la unidad especial** Ejército +8 · Élite −3 · Pueblo −4 · Bandera: `jefe_poderoso`
-- **B. Que la policía se vigile sola** Ejército −4 · Pueblo +3 · Élite +3
+- **A. Autorizo la unidad** Ejército +8 · Élite −3 · Pueblo −4 · Bandera: `jefe_poderoso`
+- **B. Que se vigilen solos** Ejército −4 · Pueblo +3 · Élite +3
 
 **Consecuencia futura de `jefe_poderoso`:** El Ministro del Interior pide cada vez más poder.
 

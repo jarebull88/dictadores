@@ -732,3 +732,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **5 nov — Textos (Jorge):** «La voz del exilio»: «Los exiliados tienen una emisora de radio y media capital la escucha bajito.» — «Pongan la telenovela a esa hora» (Pueblo) / «Al que pillen, al calabozo» (Ejército). Antes las dos respuestas eran represivas.
 - **5 nov — Textos (Jorge):** «El hambre» pasa a la segunda reforma agraria (1963): «La cosecha no da. Proponemos que el Estado se quede también con las fincas medianas.» — «Todo para la Revolución» (Partido) / «Los medianos no son ricos» (Pueblo).
 - **5 nov — Textos (Jorge):** «El periodista oficial»: «La gente ya cree más en los rumores que en los periódicos.»; las respuestas se quedan («Nombren un Desmentidor Oficial» / «Que la prensa diga la verdad»).
+- **5 nov — Textos (Jorge):** «El jefe pide más»: misma pregunta; «Autorizo la unidad» / «Que se vigilen solos».

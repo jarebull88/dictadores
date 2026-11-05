@@ -325,8 +325,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El jefe pide más** (Ministro del Interior)  
 «Propongo crear una unidad que vigile a la propia policía. La dirigiría yo.»
-- A. Autorizo la unidad especial → sube Ejército +8 · baja Partido -3, Pueblo -4
-- B. Que la policía se vigile sola → sube Pueblo +3, Partido +3 · baja Ejército -4
+- A. Autorizo la unidad → sube Ejército +8 · baja Partido -3, Pueblo -4
+- B. Que se vigilen solos → sube Pueblo +3, Partido +3 · baja Ejército -4
 
 **Denuncias falsas** (Ministro del Interior)  
 «Los comités reciben mil denuncias al día. Muchas son falsas: vecinos que se acusan por una gallina.»

@@ -14,7 +14,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `comites_vigilancia` | Los ojos del barrio (B) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |
 | `compensaciones` | Las refinerías (B) | La deuda llama; El acreedor pide favores | Una deuda que alimenta una carta de crisis. (era 2) |
 | `critica_abierta` | Las mil flores (B) | Una carta con firmas | Depuración de críticos. (era 3) |
-| `criticos_detenidos` | La lista (B) | Denuncias falsas; El puerto abierto; Los presos en la agenda | Presos políticos que pesan en tus relaciones exteriores. (era 3) |
+| `criticos_detenidos` | La lista (B) | Denuncias falsas; Los presos en la agenda | Presos políticos que pesan en tus relaciones exteriores. (era 3) |
 | `culto_iniciado` | El retrato (A) | — | — |
 | `denuncias_todas` | Denuncias falsas (A) | — | — |
 | `derrota_aceptada` | El escrutinio (A) | — | — |
@@ -27,10 +27,10 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `ernesto_whisky` | Papá Ernesto (whisky) (A) | Papá Ernesto (higado) | — |
 | `estado_policial` | El jefe insaciable (A) | El batallón | El batallón del Interior pide más sueldos y más cárceles. (era 4) |
 | `estudiantes_reprimidos` | Las urnas prometidas (A) | Las aulas vacías | La universidad se convierte en foco de oposición. (era 3) |
-| `exiliados_vocales` | La fuga del comandante (A); La fuga del comandante (B); Los que se marchan (A) | La voz del exilio; Una carta con firmas; El puerto abierto | Una oposición habla desde el extranjero. (era 2) |
+| `exiliados_vocales` | La fuga del comandante (A); La fuga del comandante (B); Los que se marchan (A) | La voz del exilio; Una carta con firmas | Una oposición habla desde el extranjero. (era 2) |
 | `exodo_elite` | Los que se marchan (A) | Faltan técnicos | Faltan técnicos y gestores. (era 2) |
 | `ferro_martir` | La guerrilla perdida (B) | — | — |
-| `frontera_cerrada` | Los que se marchan (B); El puerto abierto (A) | El puerto abierto | Intentos de fuga. (era 2) |
+| `frontera_cerrada` | Los que se marchan (B); El puerto abierto (A) | — | Intentos de fuga. (era 2) |
 | `huelga_reprimida` | — | — | Malestar en las universidades. (era 2) |
 | `jefe_poderoso` | El jefe pide más (A) | El jefe insaciable | El Ministro del Interior pide cada vez más poder. (era 3) |
 | `juicios_publicos` | La casa vacía (A) | Las potencias se enfadan; Faltan técnicos | Las potencias endurecen su postura ante el régimen. (era 2) |

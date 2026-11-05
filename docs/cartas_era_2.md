@@ -103,12 +103,12 @@ Duración: entre 8 y 10 cartas. 27 cartas. Los efectos están en la escala peque
 ### 10. El puerto abierto
 
 **Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 14; exige alguna de `frontera_cerrada`, `criticos_detenidos`, `exiliados_vocales`.
+**Condición:** sorteo con peso 14.
 
 **Carta:** «Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?»
 
 - **A. Aquí no se va nadie** Ejército +6 · Pueblo −5 · Bandera: `frontera_cerrada`
-- **B. Que se vayan y dejen las llaves** Pueblo +5 · Ejército −4 · Potencias +3
+- **B. Adiós, y dejen la llave** Pueblo +3 · Élite +3 · Ejército −6
 
 **Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
 

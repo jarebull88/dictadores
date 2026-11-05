@@ -341,7 +341,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 **El puerto abierto** (Ministro del Interior)  
 «Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?»
 - A. Aquí no se va nadie → sube Ejército +6 · baja Pueblo -5
-- B. Que se vayan y dejen las llaves → sube Pueblo +5, Potencias +3 · baja Ejército -4
+- B. Adiós, y dejen la llave → sube Pueblo +3, Partido +3 · baja Ejército -6
 
 **La deuda llama** (Ministro de Economía)  
 «Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.»

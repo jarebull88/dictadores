@@ -586,11 +586,11 @@ const CARTAS = [
   },
 
   {
-    id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "El puerto abierto",
+    id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, titulo: "El puerto abierto",
     personaje: "Ministro del Interior",
     texto: "Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?",   // 5 nov, Jorge: el puerto abierto de 1965 (antes, las balsas de 1994)
     izq: { accion: "Aquí no se va nadie", efectos: { ejercito: 6, pueblo: -5 }, banderas: ["base.frontera_cerrada"] },
-    der: { accion: "Que se vayan y dejen las llaves", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
+    der: { accion: "Adiós, y dejen la llave", efectos: { pueblo: 3, elite: 3, ejercito: -6 } }
   },
 
   {

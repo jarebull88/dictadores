@@ -656,6 +656,8 @@ function perderVida() {
     } catch (e) { c.remove(); anim = null; }
   }
   if (anim) { cara.classList.add("se-va"); setTimeout(() => cara.remove(), 200); } else cara.remove();
+  // 5 nov, Jorge: tras el puff, las demás cabezas dan el saltito de los iconos de las fuerzas
+  setTimeout(() => $("vidas").querySelectorAll("img:not(.se-va)").forEach((c, i) => setTimeout(() => respingo(c, 25), i * 80)), animar() ? 380 : 0);
 }
 function pintarCabecera() {
   pintarVidas();
@@ -1010,6 +1012,10 @@ function pintarPuntos(op) {
 function empezar() {
   nuevaPartida();
   construirBarras();
+  if (animar()) {   // 5 nov, Jorge: las fuerzas aparecen con el fundido del texto de la era, una tras otra, para que no sea tan brusco
+    const b = $("barras"); b.classList.remove("entrando"); void b.offsetWidth; b.classList.add("entrando");
+    setTimeout(() => b.classList.remove("entrando"), 1500);
+  }
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
   mostrar("screen-game");

@@ -511,9 +511,9 @@ const CARTAS = [
   {
     id: "voz_exilio", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.exiliados_vocales"] }, titulo: "La voz del exilio",
     personaje: "Ministra de Cultura",
-    texto: "Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha bajito.",
-    izq: { accion: "Interfieran la emisora con música", efectos: { pueblo: -6, ejercito: 3, elite: 2 } },
-    der: { accion: "Que la radio diga que son espías", efectos: { ejercito: 4, potencias: -4, pueblo: -3 } }
+    texto: "Los exiliados tienen una emisora de radio y media capital la escucha bajito.",
+    izq: { accion: "Pongan la telenovela a esa hora", efectos: { pueblo: 5, ejercito: -5 } },
+    der: { accion: "Al que pillen, al calabozo", efectos: { ejercito: 5, pueblo: -5 } }
   },
 
 

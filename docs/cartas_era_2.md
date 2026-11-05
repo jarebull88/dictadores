@@ -31,10 +31,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `exiliados_vocales`.
 
-**Carta:** «Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha bajito.»
+**Carta:** «Los exiliados tienen una emisora de radio y media capital la escucha bajito.»
 
-- **A. Interfieran la emisora con música** Pueblo −6 · Ejército +3 · Élite +2
-- **B. Que la radio diga que son espías** Ejército +4 · Potencias −4 · Pueblo −3
+- **A. Pongan la telenovela a esa hora** Pueblo +5 · Ejército −5
+- **B. Al que pillen, al calabozo** Ejército +5 · Pueblo −5
 
 ### 4. El hambre
 

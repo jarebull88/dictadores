@@ -304,9 +304,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Los juicios son asunto nuestro → sube Ejército +4, Partido +3 · baja Potencias -7
 
 **La voz del exilio** (Ministra de Cultura)  
-«Los exiliados denuncian por radio la censura y las cárceles, y media capital los escucha bajito.»
-- A. Interfieran la emisora con música → sube Ejército +3, Partido +2 · baja Pueblo -6
-- B. Que la radio diga que son espías → sube Ejército +4 · baja Potencias -4, Pueblo -3
+«Los exiliados tienen una emisora de radio y media capital la escucha bajito.»
+- A. Pongan la telenovela a esa hora → sube Pueblo +5 · baja Ejército -5
+- B. Al que pillen, al calabozo → sube Ejército +5 · baja Pueblo -5
 
 **El hambre** (Ministro de Trabajo)  
 «Repartimos la tierra, pero faltan semillas y tractores. La cosecha se ha reducido a la mitad.»

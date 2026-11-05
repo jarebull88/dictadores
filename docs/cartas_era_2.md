@@ -97,8 +97,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.»
 
-- **A. Prohíban salir a los titulados** Ejército +4 · Pueblo −4
-- **B. Cursos de ingeniería en seis meses** Élite +2 · Pueblo +3
+- **A. Ningún titulado sale del país** Ejército +4 · Pueblo −4
+- **B. Cursos de ingeniería en seis meses** Pueblo +4 · Élite −4
 
 ### 10. El puerto abierto
 

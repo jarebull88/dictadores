@@ -582,8 +582,8 @@ const CARTAS = [
     id: "faltan_tecnicos", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.exodo_elite", "base.juicios_publicos", "base.nacionalizo_empresas"] }, titulo: "Faltan técnicos",
     personaje: "Ministro de Economía",
     texto: "Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.",
-    izq: { accion: "Prohíban salir a los titulados", efectos: { ejercito: 4, pueblo: -4 } },
-    der: { accion: "Cursos de ingeniería en seis meses", efectos: { elite: 2, pueblo: 3 } }
+    izq: { accion: "Ningún titulado sale del país", efectos: { ejercito: 4, pueblo: -4 } },
+    der: { accion: "Cursos de ingeniería en seis meses", efectos: { pueblo: 4, elite: -4 } }
   },
 
   {

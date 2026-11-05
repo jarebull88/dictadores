@@ -335,8 +335,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Faltan técnicos** (Ministro de Economía)  
 «Se han ido ingenieros, médicos y contables. Las fábricas ya solo funcionan con consignas.»
-- A. Prohíban salir a los titulados → sube Ejército +4 · baja Pueblo -4
-- B. Cursos de ingeniería en seis meses → sube Partido +2, Pueblo +3
+- A. Ningún titulado sale del país → sube Ejército +4 · baja Pueblo -4
+- B. Cursos de ingeniería en seis meses → sube Pueblo +4 · baja Partido -4
 
 **El puerto abierto** (Ministro del Interior)  
 «Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?»

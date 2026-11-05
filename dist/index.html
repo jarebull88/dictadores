@@ -169,6 +169,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .poster-quien { font-family: var(--f-cuerpo); font-size: 17px; font-weight: var(--peso-negrita); line-height: 1.22; text-transform: none; letter-spacing: 0; }
 .poster-sec .poster-quien { font-size: 14px; font-weight: var(--peso-negrita); line-height: 1.2; }
 .poster-ef p { font-family: var(--f-cuerpo); font-size: 13px; font-weight: var(--peso-normal); line-height: 1.25; text-transform: none; letter-spacing: 0; }
+.poster-col p { font-family: var(--f-cuerpo); font-size: 12px; font-weight: var(--peso-normal); line-height: 1.24; text-transform: none; letter-spacing: 0; }
 .poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
@@ -853,6 +854,19 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .poster-ef p { margin: 0; }
 .poster-ico { flex: none; display: block; width: 68px; height: 68px; border: 2px solid var(--p-blanco); border-radius: var(--radio-hueco); box-sizing: border-box; }
 .poster-sec .poster-quien { margin: 0; }
+/* sin cabecera (5 nov, Jorge): el nombre arranca arriba; en las fuerzas, el icono grande abajo a la izquierda con lo que sube y baja apilado a su derecha */
+.poster-pal { margin-top: 0; }
+.poster-ico-g { width: 84px; height: 84px; }
+.poster-col { display: flex; flex-direction: column; gap: 7px; flex: 1; min-width: 0; }
+.poster-col p { margin: 0; }
+.poster-col .poster-tag { margin-bottom: 3px; }
+.poster-fuerza .poster-ef { align-items: flex-start; }
+
+/* ESCRITORIO (5 nov, Jorge, como Reigns): el juego es una columna central del ancho de un móvil, con el color del tema; a los lados, un beige más oscuro
+   (ya se pondrá un fondo). `--tema-fondo` sigue cambiando con la caída y las secuelas, pero solo dentro de la columna. */
+:root { --ancho-movil: 460px; --fondo-lados: #D6CBAE; }
+html { background: var(--fondo-lados); }
+body { max-width: var(--ancho-movil); margin-left: auto; margin-right: auto; position: relative; }
 </style>
 </head>
 <body>
@@ -3211,10 +3225,9 @@ function textoSobre(hex) {
 }
 const estiloHoja = hex => `--hoja-fondo:${hex};--hoja-texto:${textoSobre(hex)}`;
 function htmlEstado(id, conTitulo = false) {   // 5 nov, Jorge: el reverso de una secuela es un póster tipográfico, como el de las fuerzas, con su icono (contorno blanco simple) junto al efecto
-  const d = ESTADOS[id], num = String(Object.keys(ESTADOS).indexOf(id) + 1).padStart(2, "0");
+  const d = ESTADOS[id];
   const img = IMG["icono_" + id + "-cartel-grande"] || IMG["icono_" + id + "-cartel"];
-  return `<div class="poster poster-sec"><div class="poster-cab"><span>Secuela ${num}</span><span>Informe</span></div>` +
-    `<div class="poster-pal">${esc(d.nombre)}</div><p class="poster-quien">${esc(d.descripcion)}</p>` +
+  return `<div class="poster poster-sec"><div class="poster-pal">${esc(d.nombre)}</div><p class="poster-quien">${esc(d.descripcion)}</p>` +
     `<div class="poster-ef">${img ? `<img class="poster-ico" src="${img.src}" alt="" draggable="false">` : ""}<div><span class="poster-tag">Efecto</span><p>${esc(RESUMEN[id] || "")}</p></div></div></div>`;
 }
 function mostrarInfo(i) {
@@ -3226,14 +3239,13 @@ function mostrarInfo(i) {
 const FONDO_FUERZA = { pueblo: "#B0362A", ejercito: "#86762C", elite: "#D8A02A", potencias: "#1D51A0" };
 function mostrarFuerza(id, el) {
   if (E && E.tutorial) { E.tutorial.fuerzaVista = true; $("barras").classList.remove("destacar"); }
-  const f = FUERZAS[id], num = String(Object.keys(FUERZAS).indexOf(id) + 1).padStart(2, "0");
+  const f = FUERZAS[id], imgF = IMG["icono_" + id + "-cartel-grande"] || IMG["icono_" + id + "-cartel"];
   /* 5 nov, Jorge: el reverso de las fuerzas es un póster tipográfico (propuesta A): cabecera de informe, el nombre gigante ajustado al ancho,
      «quiénes son» en negrita y, abajo, lo que la sube y la baja en dos columnas; todo en blanco, sea cual sea el color de la carta */
   abrirInfo("fuerza-" + id, id, FONDO_FUERZA[id], el,
-    `<div class="poster"><div class="poster-cab"><span>Fuerza ${num}</span><span>Informe de inteligencia</span></div>` +
-    `<div class="poster-pal">${esc(f.nombre)}</div><p class="poster-quien">${esc(f.quien)}</p>` +
-    `<div class="poster-par"><div><span class="poster-tag">▲ Lo sube</span><p>${esc(f.sube)}</p></div>` +
-    `<div><span class="poster-tag">▼ Lo baja</span><p>${esc(f.baja)}</p></div></div></div>`);
+    `<div class="poster poster-fuerza"><div class="poster-pal">${esc(f.nombre)}</div><p class="poster-quien">${esc(f.quien)}</p>` +
+    `<div class="poster-ef">${imgF ? `<img class="poster-ico poster-ico-g" src="${imgF.src}" alt="" draggable="false">` : ""}<div class="poster-col">` +
+    `<div><span class="poster-tag">▲ Lo sube</span><p>${esc(f.sube)}</p></div><div><span class="poster-tag">▼ Lo baja</span><p>${esc(f.baja)}</p></div></div></div></div>`);
   ajustarPoster();
 }
 /* la palabra del póster ocupa todo el ancho de la hoja (el único texto que se ajusta al hueco: es un cartel) */
@@ -4248,7 +4260,37 @@ function arrastrable(carta, op) {
     estado.dir = dir;
     marcarListo(dir !== 0);
   }
+  /* 5 nov, Jorge: teclado en escritorio. Mientras se mantiene apretada una flecha, la carta se inclina sola hasta el umbral (como si la arrastraras)
+     y enseña su respuesta; al SOLTAR la tecla se decide. Un toque rápido decide igual (la carta llega al umbral en ~0,22 s). Con otra flecha
+     apretada, cambia de lado; con Escape o al perder el foco, se deja la carta como estaba. */
+  let tec = null;
+  const DURA_TECLA = 220;
+  function pasoTecla(ahora) {
+    if (!tec) return;
+    const k = Math.min(1, (ahora - tec.t0) / DURA_TECLA), e = 1 - (1 - k) ** 2;
+    mover(tec.dir * umbral() * 1.25 * e, tec.estado);
+    if (k < 1) tec.raf = requestAnimationFrame(pasoTecla);
+  }
+  function teclaAbajo(dir) {
+    if (drag || !op.activa()) return;
+    if (tec) { if (tec.dir === dir) return; cancelAnimationFrame(tec.raf); tec.dir = dir; tec.t0 = performance.now(); tec.estado.lado = -dir; tec.raf = requestAnimationFrame(pasoTecla); return; }
+    ancho = carta.offsetWidth;
+    tec = { dir, t0: performance.now(), estado: { lado: 0, dir: 0 }, raf: 0 };
+    carta.style.transition = "scale .18s ease, translate .18s ease";
+    if (!carta.classList.contains("volteada")) carta.classList.add("cogida");
+    tec.raf = requestAnimationFrame(pasoTecla);
+  }
+  function teclaArriba(dir) {
+    if (!tec || tec.dir !== dir) return;
+    cancelAnimationFrame(tec.raf);
+    tec = null;
+    if (op.bloquea && op.bloquea()) { volver(); return; }
+    carta.classList.remove("cogida");
+    op.decidir(dir);
+  }
+  function teclaCancelar() { if (!tec) return; cancelAnimationFrame(tec.raf); tec = null; volver(); }
   carta._mover = mover; carta._volver = volver; carta._umbral = umbral;
+  carta._tecla = { abajo: teclaAbajo, arriba: teclaArriba, cancelar: teclaCancelar };
   // 25 oct: en el tutorial, mientras falta una acción (girar, tocar un icono…), la carta no se puede deslizar (29 oct: ni a la izquierda: ya no hay «volver»)
   const efectivo = dx => (op.bloquea && op.bloquea() ? 0 : dx);
   carta.addEventListener("pointermove", e => {
@@ -4727,6 +4769,7 @@ document.addEventListener("keydown", e => {
   if (archivoAbierto()) { if (e.key === "Escape") volverAlJuego(); return; }   // con el archivo abierto, la partida espera
   if (e.key === "Escape") {
     ocultarInfo();
+    if ($("carta")._tecla) $("carta")._tecla.cancelar();
     return;
   }
   if (!$("screen-era").classList.contains("hidden")) { if (e.key === "ArrowLeft") decidirEra(-1); if (e.key === "ArrowRight") decidirEra(1); return; }
@@ -4738,9 +4781,15 @@ document.addEventListener("keydown", e => {
   }
   if ($("screen-game").classList.contains("hidden")) return;
   if (infoAbierta()) { if (e.key.startsWith("Arrow") || e.key === "Escape") cerrarInfo(); return; }
-  if (e.key === "ArrowLeft") decidir(-1);
-  if (e.key === "ArrowRight") decidir(1);
+  if (e.key === "ArrowLeft") $("carta")._tecla.abajo(-1);
+  if (e.key === "ArrowRight") $("carta")._tecla.abajo(1);
 });
+document.addEventListener("keyup", e => {   // 5 nov: al soltar la flecha se decide (ver arrastrable)
+  const c = $("carta"); if (!c._tecla) return;
+  if (e.key === "ArrowLeft") c._tecla.arriba(-1);
+  if (e.key === "ArrowRight") c._tecla.arriba(1);
+});
+window.addEventListener("blur", () => { const c = $("carta"); if (c._tecla) c._tecla.cancelar(); });
 document.addEventListener("click", e => {
   if (!e.target.closest("#popup")) ocultarInfo();
 });

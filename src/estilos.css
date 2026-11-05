@@ -155,6 +155,7 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .poster-quien { font-family: var(--f-cuerpo); font-size: 17px; font-weight: var(--peso-negrita); line-height: 1.22; text-transform: none; letter-spacing: 0; }
 .poster-sec .poster-quien { font-size: 14px; font-weight: var(--peso-negrita); line-height: 1.2; }
 .poster-ef p { font-family: var(--f-cuerpo); font-size: 13px; font-weight: var(--peso-normal); line-height: 1.25; text-transform: none; letter-spacing: 0; }
+.poster-col p { font-family: var(--f-cuerpo); font-size: 12px; font-weight: var(--peso-normal); line-height: 1.24; text-transform: none; letter-spacing: 0; }
 .poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
@@ -839,3 +840,16 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .poster-ef p { margin: 0; }
 .poster-ico { flex: none; display: block; width: 68px; height: 68px; border: 2px solid var(--p-blanco); border-radius: var(--radio-hueco); box-sizing: border-box; }
 .poster-sec .poster-quien { margin: 0; }
+/* sin cabecera (5 nov, Jorge): el nombre arranca arriba; en las fuerzas, el icono grande abajo a la izquierda con lo que sube y baja apilado a su derecha */
+.poster-pal { margin-top: 0; }
+.poster-ico-g { width: 84px; height: 84px; }
+.poster-col { display: flex; flex-direction: column; gap: 7px; flex: 1; min-width: 0; }
+.poster-col p { margin: 0; }
+.poster-col .poster-tag { margin-bottom: 3px; }
+.poster-fuerza .poster-ef { align-items: flex-start; }
+
+/* ESCRITORIO (5 nov, Jorge, como Reigns): el juego es una columna central del ancho de un móvil, con el color del tema; a los lados, un beige más oscuro
+   (ya se pondrá un fondo). `--tema-fondo` sigue cambiando con la caída y las secuelas, pero solo dentro de la columna. */
+:root { --ancho-movil: 460px; --fondo-lados: #D6CBAE; }
+html { background: var(--fondo-lados); }
+body { max-width: var(--ancho-movil); margin-left: auto; margin-right: auto; position: relative; }

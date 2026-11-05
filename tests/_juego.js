@@ -20,7 +20,8 @@ function cargar({ temporizadores = "inmediatos" } = {}) {
   const w = dom.window, d = w.document, $ = id => d.getElementById(id);
   const visible = id => !$(id).classList.contains("hidden");
   const empezar = () => { w.eval("irANombre()"); w.eval("decidirNombre(1)"); };
-  const tecla = dir => d.dispatchEvent(new w.KeyboardEvent("keydown", { key: dir < 0 ? "ArrowLeft" : "ArrowRight" }));
+  // 5 nov: en el juego, la flecha se mantiene (la carta se inclina) y al soltarla se decide: un toque = keydown + keyup
+  const tecla = dir => { const key = dir < 0 ? "ArrowLeft" : "ArrowRight"; d.dispatchEvent(new w.KeyboardEvent("keydown", { key })); d.dispatchEvent(new w.KeyboardEvent("keyup", { key })); };
   return { w, d, $, visible, empezar, tecla, errores };
 }
 

@@ -791,12 +791,11 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 /* =====================================================================================================================
    TEXTURA DE PAPEL (5 nov, Jorge): UNA sola textura (`--tex`, assets/fondos/papel.jpg) extendida —sin repetir— sobre cada pieza, multiplicada.
    La carta es UNA cartulina: la misma textura cubre el marco blanco y la ilustración (alineada con el margen para que sea continua).
-   Opacidad: 40 % en las piezas, 25 % en el fondo. Las fuerzas y la carta son cartulinas apoyadas en la mesa (canto fino y sombra corta);
+   Opacidad: 30 % en las piezas; el fondo, de color plano. Las fuerzas y la carta son cartulinas apoyadas en la mesa (canto fino y sombra corta);
    las barras y las casillas son huecos recortados con cartón oscuro debajo.
    ===================================================================================================================== */
-:root { --margen-px: calc(var(--carta-w, 328px) * .035); --tex-pieza: .4; --tex-fondo: .25; }
-body::before, .archivo::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--tex) center top / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-fondo); }
-.archivo::before { position: absolute; }
+:root { --margen-px: calc(var(--carta-w, 328px) * .035); --tex-pieza: .3; }
+/* el fondo (partida y menú) va de color plano, sin textura (5 nov, Jorge) */
 /* la carta: marco + ilustración, una cartulina */
 .carta .cara, .carta .dorso, .carta-info .cara, .carta-info .dorso, .logro-carta .cara, .logro-carta .dorso { border-radius: var(--radio-carta); box-shadow: 0 1px 0 rgba(0, 0, 0, .22), 0 2px 3px rgba(60, 40, 20, .20); }
 .carta::after { border-radius: var(--radio-carta); }

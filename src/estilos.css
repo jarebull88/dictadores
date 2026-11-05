@@ -355,6 +355,10 @@ body.carta-medida :is(.era-anios, .nombre-leyenda) { margin-top: calc(var(--ret-
 #screen-end.caida.entrando .relato { animation-delay: .7s; }
 #screen-end.caida.entrando .fin-pie-zona { animation-delay: .9s; }
 @keyframes fundido { to { opacity: 1; } }
+.barras.entrando .barra { opacity: 0; animation: fundido .45s ease forwards; }   /* 5 nov: las fuerzas entran con fundido al empezar la partida */
+.barras.entrando .barra:nth-child(2) { animation-delay: .12s; }
+.barras.entrando .barra:nth-child(3) { animation-delay: .24s; }
+.barras.entrando .barra:nth-child(4) { animation-delay: .36s; }
 /* Icono «360» en la esquina de arriba a la derecha de la cartulina: la carta se puede girar */
 .icono-giro { position: absolute; top: 12px; right: 12px; z-index: 2; width: 13%; max-width: 40px; height: auto; pointer-events: none;
   fill: color-mix(in oklab, var(--fondo-escena, #888) 72%, #000); }   /* del color de la cartulina, algo más intenso (como el dibujo del reverso) */

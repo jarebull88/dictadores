@@ -65,20 +65,21 @@ body {
    y el menú, en blanco y negro. Solo se quedan en color la carta que gira y la barra de la fuerza que cayó (`.cayo`), que va en rojo. `body.negro` y `.cayo` los pone mostrarCartaFin(). */
 body { transition: background-color 1.2s ease, color 1.2s ease; }
 .barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
-body.negro { background: var(--p-tinta); color: var(--p-crema); }
-body.sec { background: var(--fondo-sec); }   /* 5 nov: la carta de una secuela tiñe el fondo de su color */
-body.sec :is(.mensaje, .leyenda, .anio, .boton-menu) { color: var(--p-blanco); }   /* con el fondo de color, también el año y la flecha del menú pasan a blanco */
+/* 5 nov, Jorge: TEMA DE COLOR integrado. La caída (`body.negro`) y la carta de una secuela (`body.sec`, con el color de su imagen en `--fondo-sec`) cambian el tema:
+   el fondo de la partida Y de la pantalla del menú, los textos, la flecha, el año y los botones salen de estas variables; un tema nuevo solo cambia aquí. */
+:root { --tema-fondo: var(--p-crema); --tema-texto: var(--p-tinta); --tema-boton: var(--p-tinta); --tema-boton-texto: var(--p-crema); }
+body.negro { --tema-fondo: var(--p-tinta); --tema-texto: var(--p-crema); --tema-boton: var(--p-crema); --tema-boton-texto: var(--p-tinta); }
+body.sec { --tema-fondo: var(--fondo-sec); --tema-texto: var(--p-blanco); --tema-boton: var(--p-blanco); --tema-boton-texto: var(--fondo-sec); }
+body { background: var(--tema-fondo); color: var(--tema-texto); }
+body:is(.negro, .sec) :is(.leyenda, .boton-menu, .mensaje, .anio, .archivo-titulo) { color: var(--tema-texto); }
+body:is(.negro, .sec) .archivo .modo { background: var(--tema-boton); color: var(--tema-boton-texto); }
 #screen-game .ranuras { z-index: 7; }
 #screen-game :is(.anio, .boton-menu) { z-index: 8; }
 #screen-game .escenario:not(.repartiendo) { position: relative; z-index: 5; }   /* la carta (con su escenario) pasa por delante del cargo y por detrás de las casillas */
-body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
 body.negro .barra.cayo .nivel { background: var(--p-rojo); border-color: var(--p-rojo); }
 body.negro .barra .nivel, body.negro .barra.cayo .nivel { border-color: var(--p-crema); }   /* 4 nov, Jorge: en la caída, las barras llevan contorno crema (si no, se mezclan con el fondo negro) */
-body.negro .archivo { background: var(--p-tinta); }   /* 3 nov: con la caída, el menú también se oscurece (sus iconos se quedan en color) */
-body.negro .archivo-titulo { color: var(--p-crema); }
-body.negro .archivo .modo { background: var(--p-crema); color: var(--p-tinta); }   /* 4 nov: en el menú oscuro, los botones no se perdían (tinta sobre tinta) */
 body.negro .archivo .hueco-logro.vacio { outline: var(--linea) solid rgba(240, 233, 214, .45); outline-offset: -1px; }   /* y las casillas vacías (cromo negro) tampoco */
 body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
 #screen-game, #archivo { touch-action: pan-y; }   /* deslizar en horizontal por la parte vacía cambia de pantalla */
@@ -698,7 +699,7 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 @media (prefers-reduced-motion: reduce) { .banda.activa, .banda.activa span { animation: none; } }
 
 /* El archivo cubre la partida, que espera debajo. Mismo margen que la partida para que todo caiga en su sitio */
-.archivo { transition: background-color 1.2s ease; --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--p-crema); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
+.archivo { transition: background-color 1.2s ease; --manila: color-mix(in srgb, var(--p-mostaza) 45%, var(--p-crema)); position: absolute; inset: 0; z-index: 40; background: var(--tema-fondo); display: flex; flex-direction: column; padding: 8px 12px 6px; box-sizing: border-box; }
 .archivo-cab { display: flex; align-items: center; justify-content: center; width: var(--carta-w, 100%); max-width: 100%; margin: 0 auto 16px; padding-top: 8px; position: relative; z-index: 2; }
 .archivo-titulo { margin: 0; color: var(--p-tinta); text-align: center; width: 100%; }   /* 3 nov: en el estilo del texto, en negrita y centrado */
 .archivo.viendo .archivo-titulo { visibility: hidden; }

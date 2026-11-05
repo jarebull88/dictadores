@@ -1109,8 +1109,8 @@ function repartir() {
   esc.classList.add("repartiendo");
   entrarCarta(carta);                                  // boca abajo y sin pregunta hasta que acabe el reparto
   esc.querySelectorAll(".pila.reparto").forEach(n => n.remove());
-  const N = 9, DURA = 420;
-  const PASO = 90;                                     // 28 oct: la animación no depende del sonido (repartir.wav dura lo mismo: (N-1)·PASO + DURA + 60 ms)
+  const N = 9, DURA = 315;                             // 5 nov, Jorge: un 25 % más rápido (antes DURA 420, PASO 90, margen 60: 1,2 s)
+  const PASO = 68;                                     // la animación no depende del sonido (repartir.mp3, también acelerado un 25 %, dura lo mismo: (N-1)·PASO + DURA + 45 ms ≈ 0,9 s)
   sonar("repartir");
   const ancho = window.innerWidth, alto = window.innerHeight;
   for (let i = 0; i < N; i++) {
@@ -1127,7 +1127,7 @@ function repartir() {
     esc.classList.remove("repartiendo");
     entrarCarta(carta);                                // ahora sí, la primera carta da la vuelta
     setTimeout(() => { ocupado = false; }, VOLTEO_MS * 0.7);
-  }, (N - 1) * PASO + DURA + 60);
+  }, (N - 1) * PASO + DURA + 45);
 }
 
 /* La carta sale volando hacia el lado elegido (en todas las pantallas con carta) */

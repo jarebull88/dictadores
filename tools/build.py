@@ -100,7 +100,7 @@ def fuentes():
     return css
 
 def main():
-    css = fuentes() + leer("src/estilos.css")
+    css = fuentes() + f':root {{ --tex: url({datos_uri("assets/fondos/papel.jpg", "image/jpeg")}); }}\n' + leer("src/estilos.css")   # 5 nov: la textura de papel (una sola, extendida sobre cada carta)
     cuerpo = leer("src/cuerpo.html")
     datos = leer("src/datos.js")
     motor = leer("src/motor.js")

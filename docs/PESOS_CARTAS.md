@@ -355,8 +355,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **El diplomático curioso** (Ministro del Interior)  
 «Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.»
-- A. Expúlsenlo del país → baja Potencias -3
-- B. A la cárcel, por espía → sube Ejército +5 · baja Potencias -6
+- A. Expúlsenlo del país → sube Potencias +4 · baja Ejército -4
+- B. A la cárcel por espía → sube Ejército +5 · baja Potencias -5
 
 **Los chistes** (Ministra de Cultura)  
 «Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.»

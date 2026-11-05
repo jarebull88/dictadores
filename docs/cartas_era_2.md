@@ -139,8 +139,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.»
 
-- **A. Expúlsenlo del país** Potencias −3
-- **B. A la cárcel, por espía** Potencias −6 · Ejército +5
+- **A. Expúlsenlo del país** Potencias +4 · Ejército −4
+- **B. A la cárcel por espía** Ejército +5 · Potencias −5
 
 ### 14. Los chistes
 

@@ -735,3 +735,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **5 nov — Textos (Jorge):** «El jefe pide más»: misma pregunta; «Autorizo la unidad» / «Que se vigilen solos».
 - **5 nov — Textos (Jorge):** «Denuncias falsas»: «…La mitad son de vecinos que se pelean por una gallina.» — «Investiguen la gallina» / «Solo las denuncias políticas».
 - **5 nov — Textos (Jorge):** las respuestas pueden ser más largas, para que se entiendan (hasta los 36 caracteres que vigila la prueba; antes el objetivo era 24). «Faltan técnicos»: «Ningún titulado sale del país» / «Cursos de ingeniería en seis meses» (ahora cuesta Partido).
+- **5 nov — Textos (Jorge):** «El diplomático curioso»: mismos textos («Expúlsenlo del país» / «A la cárcel por espía»); pesos compensados: expulsar sube Potencias y baja Ejército, la cárcel al revés (antes las dos bajaban Potencias).

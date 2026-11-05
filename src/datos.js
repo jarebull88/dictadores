@@ -689,8 +689,8 @@ const CARTAS = [
     id: "el_espia", era: 2, tipo: "sorteo", peso: 8, titulo: "El diplomático curioso",
     personaje: "Ministro del Interior",
     texto: "Detuvimos a un diplomático con un mapa de los cuarteles. Dice que es turista.",
-    izq: { accion: "Expúlsenlo del país", efectos: { potencias: -3 } },
-    der: { accion: "A la cárcel, por espía", efectos: { potencias: -6, ejercito: 5 } }
+    izq: { accion: "Expúlsenlo del país", efectos: { potencias: 4, ejercito: -4 } },
+    der: { accion: "A la cárcel por espía", efectos: { ejercito: 5, potencias: -5 } }
   },
 
   {

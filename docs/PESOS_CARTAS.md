@@ -338,10 +338,10 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Prohíban salir a los titulados → sube Ejército +4 · baja Pueblo -4
 - B. Cursos de ingeniería en seis meses → sube Partido +2, Pueblo +3
 
-**Intentos de fuga** (Ministro del Interior)  
-«Cada semana huyen más familias en balsas. Ya no quedan neumáticos ni puertas en los barrios.»
-- A. Refuercen la frontera → sube Ejército +6 · baja Pueblo -5
-- B. Que se vayan y nos dejen sus casas → sube Pueblo +5, Potencias +3 · baja Ejército -4
+**El puerto abierto** (Ministro del Interior)  
+«Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?»
+- A. Aquí no se va nadie → sube Ejército +6 · baja Pueblo -5
+- B. Que se vayan y dejen las llaves → sube Pueblo +5, Potencias +3 · baja Ejército -4
 
 **La deuda llama** (Ministro de Economía)  
 «Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.»
@@ -368,10 +368,15 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Inspeccionen lo que quieran → sube Potencias +8 · baja Ejército -5
 - B. Revisen primero sus propias bases → sube Ejército +5 · baja Potencias -8
 
-**El aliado enfadado** (Embajador del bloque oriental)  
-«Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.»
-- A. Apoyaremos su próxima invasión → sube Potencias +7
-- B. Guarden su petróleo, iremos en bici → baja Potencias -6, Pueblo -4
+**El aliado enfadado** (Embajador del bloque oriental; segundo paso)  
+«Han detenido a nuestro amigo de su Partido. Le enviaremos menos petróleo.»
+- A. Me da igual → sube Ejército +3 · baja Potencias -3
+- B. ¿Y si el amigo soy yo? → sube Potencias +3 · baja Ejército -3
+
+**El amigo del aliado** (Ministro del Interior)  
+«Un miembro del Partido se reúne con el embajador oriental. Dice que tú no eres buen comunista.»
+- A. Mándenlo a sembrar tomates → sube Ejército +5 · baja Partido -5
+- B. Que me lo diga a la cara → sube Partido +5 · baja Ejército -5
 
 **La zafra de los diez millones** (Ministro de Trabajo)  
 «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»

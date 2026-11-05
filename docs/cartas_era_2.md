@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 8 y 10 cartas. 27 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. El aniversario
 
@@ -100,15 +100,17 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Prohíban salir a los titulados** Ejército +4 · Pueblo −4
 - **B. Cursos de ingeniería en seis meses** Élite +2 · Pueblo +3
 
-### 10. Intentos de fuga
+### 10. El puerto abierto
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige alguna de `frontera_cerrada`, `criticos_detenidos`, `exiliados_vocales`.
 
-**Carta:** «Cada semana huyen más familias en balsas. Ya no quedan neumáticos ni puertas en los barrios.»
+**Carta:** «Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?»
 
-- **A. Refuercen la frontera** Ejército +6 · Pueblo −5
-- **B. Que se vayan y nos dejen sus casas** Pueblo +5 · Ejército −4 · Potencias +3
+- **A. Aquí no se va nadie** Ejército +6 · Pueblo −5 · Bandera: `frontera_cerrada`
+- **B. Que se vayan y dejen las llaves** Pueblo +5 · Ejército −4 · Potencias +3
+
+**Consecuencia futura de `frontera_cerrada`:** Intentos de fuga.
 
 ### 11. La deuda llama
 
@@ -160,17 +162,27 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Inspeccionen lo que quieran** Potencias +8 · Ejército −5
 - **B. Revisen primero sus propias bases** Potencias −8 · Ejército +5
 
-### 16. El aliado enfadado *(borrador)*
+### 16. El aliado enfadado
 
 **Personaje:** Embajador del bloque oriental  
-**Condición:** sorteo con peso 0; a partir del año 3 de la era.
+**Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.»
+**Carta:** «Han detenido a nuestro amigo de su Partido. Le enviaremos menos petróleo.»
 
-- **A. Apoyaremos su próxima invasión** Potencias +7
-- **B. Guarden su petróleo, iremos en bici** Potencias −6 · Pueblo −4
+- **A. Me da igual** Ejército +3 · Potencias −3
+- **B. ¿Y si el amigo soy yo?** Potencias +3 · Ejército −3
 
-### 17. La zafra de los diez millones
+### 17. El amigo del aliado
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 14; a partir del año 3 de la era.
+
+**Carta:** «Un miembro del Partido se reúne con el embajador oriental. Dice que tú no eres buen comunista.»
+
+- **A. Mándenlo a sembrar tomates** Ejército +5 · Élite −5 · Encola: `aliado_enfadado` en 1 años
+- **B. Que me lo diga a la cara** Élite +5 · Ejército −5
+
+### 18. La zafra de los diez millones
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
@@ -180,7 +192,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
 - **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
 
-### 18. El compañero incómodo
+### 19. El compañero incómodo
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10.
@@ -190,7 +202,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Lo mandaré a una misión bien lejos** Potencias +4 · Ejército −3 · Encola: `guerrilla_perdida` en 2 a 3 años
 - **B. Quien calla a Cabaña me calla a mí** Potencias −4 · Ejército +3
 
-### 19. La ofensiva revolucionaria
+### 20. La ofensiva revolucionaria
 
 **Personaje:** Ministro de Economía  
 **Condición:** sorteo con peso 10; a partir del año 3 de la era.
@@ -200,7 +212,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. El Estado hará las mejores frituras** Élite +5 · Pueblo −4
 - **B. Dejen vivir al pequeño negocio** Pueblo +4 · Élite −5
 
-### 20. El servicio militar
+### 21. El servicio militar
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
@@ -210,7 +222,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Que cada joven sirva a la patria** Ejército +5 · Pueblo −4
 - **B. La patria no se defiende obligado** Pueblo +4 · Ejército −5
 
-### 21. La invasión del aliado
+### 22. La invasión del aliado
 
 **Personaje:** Embajador del bloque oriental  
 **Condición:** sorteo con peso 10; a partir del año 4 de la era.
@@ -220,7 +232,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Tienen todo nuestro apoyo fraterno** Potencias +5
 - **B. Aquí no opinamos de casas ajenas** Potencias −5
 
-### 22. La guerrilla perdida
+### 23. La guerrilla perdida
 
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -230,7 +242,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Mándenle a nuestros mejores hombres** Ejército +4 · Potencias −4
 - **B. Cabaña será un millón de camisetas** Potencias +3 · Ejército −3 · Bandera: `ferro_martir`
 
-### 23. La cifra que no llega
+### 24. La cifra que no llega
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -240,7 +252,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Manden a todo el país al cañaveral** Élite +4 · Pueblo −5 · Encola: `discurso_derrota` en 1 a 2 años
 - **B. Busquen cómo hacer que la cuenta dé** Pueblo +3 · Élite −3 · Encola: `discurso_derrota` en 1 a 2 años
 
-### 24. El discurso de la derrota
+### 25. El discurso de la derrota
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
@@ -250,7 +262,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
 - **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
 
-### 25. Las flores en el mar
+### 26. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
@@ -260,7 +272,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 - **A. Que se olvide sin acto oficial** Pueblo +3 · Élite −4
 - **B. Encabezaré yo los homenajes** Élite +4 · Pueblo −3
 
-### 26. Los campos de trabajo
+### 27. Los campos de trabajo
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.

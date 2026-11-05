@@ -1483,11 +1483,11 @@ const CARTAS = [
   },
 
   {
-    id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "Intentos de fuga",
+    id: "intentos_fuga", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.frontera_cerrada", "base.criticos_detenidos", "base.exiliados_vocales"] }, titulo: "El puerto abierto",
     personaje: "Ministro del Interior",
-    texto: "Cada semana huyen más familias en balsas. Ya no quedan neumáticos ni puertas en los barrios.",
-    izq: { accion: "Refuercen la frontera", efectos: { ejercito: 6, pueblo: -5 } },
-    der: { accion: "Que se vayan y nos dejen sus casas", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
+    texto: "Hay mucha gente que quiere irse. ¿Abrimos un puerto y que los recojan sus familiares?",   // 5 nov, Jorge: el puerto abierto de 1965 (antes, las balsas de 1994)
+    izq: { accion: "Aquí no se va nadie", efectos: { ejercito: 6, pueblo: -5 }, banderas: ["base.frontera_cerrada"] },
+    der: { accion: "Que se vayan y dejen las llaves", efectos: { pueblo: 5, ejercito: -4, potencias: 3 } }
   },
 
   {
@@ -1619,12 +1619,20 @@ const CARTAS = [
     der: { accion: "Revisen primero sus propias bases", efectos: { potencias: -8, ejercito: 5 } }
   },
   {
-    id: "aliado_enfadado", era: 2, tipo: "sorteo", peso: 0, borrador: true,   // 28 oct: apagada (peso 0) hasta reescribirla: ya no se pueden rechazar los misiles
-    cond: { turnoMin: 3 }, titulo: "El aliado enfadado",
+    // 5 nov, Jorge: paso 2 del juicio al amigo del aliado (1968, la «microfracción»): el aliado corta el petróleo
+    id: "aliado_enfadado", era: 2, tipo: "cola", enlace: true, titulo: "El aliado enfadado",
     personaje: "Embajador del bloque oriental",
-    texto: "Nuestro país recuerda que rechazó los misiles. Reduciremos el petróleo hasta que su amistad sea más clara.",
-    izq: { accion: "Apoyaremos su próxima invasión", efectos: { potencias: 7 } },
-    der: { accion: "Guarden su petróleo, iremos en bici", efectos: { potencias: -6, pueblo: -4 } }
+    texto: "Han detenido a nuestro amigo de su Partido. Le enviaremos menos petróleo.",
+    izq: { accion: "Me da igual", efectos: { ejercito: 3, potencias: -3 } },
+    der: { accion: "¿Y si el amigo soy yo?", efectos: { potencias: 3, ejercito: -3 } }
+  },
+  {
+    // 5 nov, Jorge: el juicio a los fieles del aliado (1968, la «microfracción»: al cabecilla lo mandaron a una granja)
+    id: "amigo_aliado", era: 2, tipo: "sorteo", peso: 14, cond: { turnoMin: 3 }, titulo: "El amigo del aliado",
+    personaje: "Ministro del Interior",
+    texto: "Un miembro del Partido se reúne con el embajador oriental. Dice que tú no eres buen comunista.",
+    izq: { accion: "Mándenlo a sembrar tomates", efectos: { ejercito: 5, elite: -5 }, encolar: [{ carta: "aliado_enfadado", min: 1, max: 1 }] },
+    der: { accion: "Que me lo diga a la cara", efectos: { elite: 5, ejercito: -5 } }
   },
   {
     id: "jefe_insaciable", era: 3, tipo: "sorteo", peso: 14, cond: { requiere: ["base.jefe_poderoso"] }, titulo: "El jefe insaciable",

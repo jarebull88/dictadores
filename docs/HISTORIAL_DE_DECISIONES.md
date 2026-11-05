@@ -723,3 +723,4 @@ Lo que se ha decidido hasta el **10 de octubre de 2026**, agrupado por tema. «V
 - **5 nov — Programación (Jorge):** la textura baja al 30 % en las piezas (`--tex-pieza`) y se quita del fondo, que vuelve a ser de color plano (partida y menú).
 - **5 nov — Programación (Jorge):** nuevo reverso de las cartas (patrón de flores, `assets/reversos/reverso.jpg`); sustituye al de la barba con el puro.
 - **5 nov — Programación (Jorge):** el reverso (mazo, cartas del reparto y tapa al girar) lleva el mismo tratamiento que las demás cartas: esquinas apenas redondeadas, canto fino con sombra corta y textura al 30 %.
+- **5 nov — Programación (Jorge):** el reparto del inicio, un 25 % más rápido: de 1,2 s a 0,9 s (cartas cada 68 ms en vez de 90, 315 ms de vuelo en vez de 420). `repartir.mp3` se acelera igual con ffmpeg (`atempo=1.3333`, sin cambiar el tono) para que siga cuadrando.

@@ -798,7 +798,14 @@ function mostrarFuerza(id, el) {
 /* la palabra del póster ocupa todo el ancho de la hoja (el único texto que se ajusta al hueco: es un cartel) */
 function ajustarPoster() {
   const poner = () => {
-    document.querySelectorAll(".poster-nom").forEach(n => {   // el nombre apilado de las fichas: cada palabra al ancho que deja la miniatura; con tres palabras, más pequeñas
+    document.querySelectorAll(".poster-nom-l").forEach(n => {   // recompensas y logros (T1): el título, a todo el ancho, y lo que sobre tras la descripción
+      const po = n.parentElement, W = po.clientWidth;
+      if (W <= 0) return;
+      n.querySelectorAll(".w").forEach(w => { w.style.fontSize = "100px"; if (w.scrollWidth) w.style.fontSize = Math.min(96, 100 * W / w.scrollWidth) + "px"; });
+      const tag = po.querySelector(".poster-tag"), desc = po.querySelector(".poster-desc"), bud = po.clientHeight - tag.offsetHeight - desc.offsetHeight - 9 - 26;
+      for (let g = 0; n.scrollHeight > bud && g < 60; g++) n.querySelectorAll(".w").forEach(w => { w.style.fontSize = parseFloat(w.style.fontSize) * .96 + "px"; });
+    });
+    document.querySelectorAll(".poster-nom:not(.poster-nom-l)").forEach(n => {   // el nombre apilado de las fichas: cada palabra al ancho que deja la miniatura; con tres palabras, más pequeñas
       const cap = n.children.length > 2 ? 40 : 58, W = n.parentElement.clientWidth - 76 - 12;
       if (W <= 0) return;
       n.querySelectorAll(".w").forEach(w => { w.style.fontSize = "100px"; if (w.scrollWidth) w.style.fontSize = Math.min(cap, 100 * W / w.scrollWidth) + "px"; });
@@ -946,6 +953,13 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 /* Color del rotulador de cada grupo (16 oct): el de la boca y los rasgos del personaje; con él se escribe su nombre en la ficha */
 const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D51A0" };   // 23 oct: tintas de la paleta
 
+/* 5 nov: el color de un reverso de póster: el de la carta; si es casi blanco (o no hay imagen de la que sacarlo), el de la paleta que corresponda, para que el blanco se lea */
+function colorPoster(col, fondo) {
+  let hex = col && col.startsWith("#") ? col : ({ mostaza: "#D8A02A", oliva: "#86762C", azul: "#1D51A0", rojo: "#B0362A", tinta: "#201D14" })[fondo] || "#201D14";
+  hex = hex.replace("#", ""); if (hex.length === 3) hex = hex.replace(/./g, "$&$&");
+  const n = parseInt(hex, 16), claro = ((n >> 16) * .3 + ((n >> 8) & 255) * .59 + (n & 255) * .11) > 170;
+  return claro ? "#201D14" : "#" + hex;
+}
 function fichaPersonaje(cargo) {
   /* 5 nov, Jorge: el reverso del personaje es un póster tipográfico (propuesta P-B): el nombre apilado y gigante con su miniatura arriba a la derecha,
      el cargo en una etiqueta, la biografía en negrita y la nota abajo; todo en blanco sobre el color de su carta (si ese color es casi blanco, tinta) */
@@ -2183,12 +2197,14 @@ function deslizarMenu(abre, fin) {
   if (deslizando) { deslizando.forEach(x => x.cancel()); deslizando = null; }
   if (!animar()) { g.style.visibility = abre ? "hidden" : ""; if (fin) fin(); return; }
   g.style.visibility = "";
+  document.documentElement.style.overflow = "hidden";   // 5 nov: mientras el menú se desliza, se recorta a la columna (las cartas, en cambio, sí pueden salir por delante)
   const op = { duration: DESLIZA_MS, easing: "cubic-bezier(.3, .7, .2, 1)", fill: "both" };
   const sa = a.animate(abre ? [{ transform: "translateX(100%)" }, { transform: "none" }] : [{ transform: "none" }, { transform: "translateX(100%)" }], op);
   const sg = g.animate(abre ? [{ transform: "none" }, { transform: "translateX(-100%)" }] : [{ transform: "translateX(-100%)" }, { transform: "none" }], op);
   deslizando = [sa, sg];
   sa.onfinish = () => {
     deslizando = null; sa.cancel(); sg.cancel();
+    document.documentElement.style.overflow = "";
     g.style.visibility = abre ? "hidden" : "";       // oculta pero con su sitio, para que las medidas de la partida sigan valiendo
     if (fin) fin();
   };
@@ -2230,8 +2246,9 @@ function verLogro(id) {
     <div class="logro-escena">
       <div class="logro-carta" role="button" tabindex="0" aria-label="Girar la carta"><div class="giro">
         <div class="logro-cara">${ilustracionLogro(g, g.titulo)}</div>
-        <div class="logro-dorso"><div class="logro-hoja" style="${colL.startsWith("#") ? estiloHoja(colL) : "--hoja-fondo:" + colL + ";--hoja-texto:" + (g.fondo === "mostaza" || g.fondo === "crema" ? "#201D14" : "#FFFFFF")}">
-          <p class="logro-descripcion">${esc(g.descripcion)}</p></div></div>
+        <div class="logro-dorso"><div class="logro-hoja" style="${estiloHoja(colorPoster(colL, g.fondo))}"><div class="poster poster-logro">
+          <span class="poster-tag">${g.era ? "Logro" : "Recompensa"}</span><div class="poster-nom poster-nom-l">${String(g.titulo).replace(/[«»]/g, "").trim().split(/\s+/).map(w => `<span class="w">${esc(w)}</span>`).join("")}</div>
+          <p class="poster-desc">${esc(g.descripcion)}</p></div></div></div>
       </div></div>
     </div>
     <div class="zona-leyenda logro-zona"><div class="leyenda logro-leyenda">${esc(g.titulo)}</div></div>`;
@@ -2242,6 +2259,7 @@ function verLogro(id) {
   pon(msg, rm, { height: rm.height + "px", margin: "0", overflow: "visible" });        // «aunque choque»: los textos largos no se recortan
   pon(escena, rc, { height: rc.height + "px" });
   pon(zona, rl, { height: rl.height + "px" });
+  ajustarPoster();
   const carta = v.querySelector(".logro-carta");
   const girar = () => { carta.classList.toggle("volteada"); sonar("voltear"); };
   carta.addEventListener("click", () => { if (carta._arrastrada) { carta._arrastrada = false; return; } girar(); });

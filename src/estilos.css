@@ -159,6 +159,8 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .poster-nom .w { font-family: var(--f-titular); font-size: 58px; font-weight: var(--peso-normal); line-height: .82; text-transform: uppercase; letter-spacing: .01em; }
 .poster-bio { font-family: var(--f-cuerpo); font-size: 13px; font-weight: var(--peso-negrita); line-height: 1.2; text-transform: none; letter-spacing: 0; }
 .poster-notaB p { font-family: var(--f-cuerpo); font-size: 12px; font-weight: var(--peso-normal); line-height: 1.22; text-transform: none; letter-spacing: 0; }
+.poster-nom-l .w { font-size: 58px; }
+.poster-desc { font-family: var(--f-cuerpo); font-size: 14px; font-weight: var(--peso-negrita); line-height: 1.22; text-transform: none; letter-spacing: 0; }
 .poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
@@ -854,7 +856,7 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 /* ESCRITORIO (5 nov, Jorge, como Reigns): el juego es una columna central del ancho de un móvil, con el color del tema; a los lados, un beige más oscuro
    (ya se pondrá un fondo). `--tema-fondo` sigue cambiando con la caída y las secuelas, pero solo dentro de la columna. */
 :root { --ancho-movil: 460px; --fondo-lados: #D6CBAE; }
-html { background: var(--fondo-lados); overflow: hidden; }   /* html y body recortan: lo que se desliza (el menú, las cartas al salir) no se ve fuera de la columna */
+html { background: var(--fondo-lados); }
 body { max-width: var(--ancho-movil); margin-left: auto; margin-right: auto; position: relative; }
 /* la ficha del personaje (P-B): nombre apilado a la izquierda, miniatura arriba a la derecha, cargo en etiqueta, biografía y nota abajo */
 .poster-top { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; margin-bottom: 9px; }
@@ -866,3 +868,10 @@ body { max-width: var(--ancho-movil); margin-left: auto; margin-right: auto; pos
 .poster-notaB { margin-top: auto; padding-top: 9px; border-top: 2px solid currentColor; }
 .poster-notaB p { margin: 0; }
 .poster-notaB .poster-tag { margin-bottom: 5px; }
+/* recompensas y logros (T1): etiqueta arriba, el título gigante a todo el ancho y la descripción abajo tras un filete; todo en blanco */
+.logro-hoja { padding: 15px; }
+.poster-logro { text-align: left; }
+.poster-logro .poster-tag { align-self: flex-start; margin-bottom: 9px; }
+.poster-logro .poster-desc { margin: auto 0 0; padding-top: 10px; border-top: 2px solid currentColor; text-align: left; }
+.logro-hoja .poster-nom { margin: 0; }
+.logro-hoja .poster-nom-l .w { white-space: nowrap; }

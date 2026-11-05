@@ -314,7 +314,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Los medianos no son ricos → sube Pueblo +5 · baja Partido -5
 
 **El periodista oficial** (Ministra de Cultura)  
-«La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.»
+«La gente ya cree más en los rumores que en los periódicos.»
 - A. Nombren un Desmentidor Oficial → sube Partido +5 · baja Pueblo -3
 - B. Que la prensa diga la verdad → sube Pueblo +5 · baja Partido -5
 

@@ -51,7 +51,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministra de Cultura  
 **Condición:** sorteo con peso 14; exige `censura_previa`.
 
-**Carta:** «La gente cree más en los rumores que en los periódicos. Propongo un periodista oficial que los desmienta.»
+**Carta:** «La gente ya cree más en los rumores que en los periódicos.»
 
 - **A. Nombren un Desmentidor Oficial** Pueblo −3 · Élite +5 · Bandera: `periodista_oficial`
 - **B. Que la prensa diga la verdad** Pueblo +5 · Élite −5

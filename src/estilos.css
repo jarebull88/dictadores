@@ -70,6 +70,8 @@ body.negro { background: var(--p-tinta); color: var(--p-crema); }
    El bloque de abajo es un plano (body::after, desde --plano-abajo, que mide medirCartaJuego()) POR DELANTE de la carta: las cartas que bajan (avisos, secuelas) pasan por delante
    del cargo y por detrás de ese bloque. En la caída, todo el fondo pasa a negro (body.negro). */
 .ranuras::before { content: ""; position: absolute; left: -100vw; right: -100vw; top: -10px; bottom: -100vh; background: var(--p-tinta); z-index: -1; pointer-events: none; }   /* el plano de tinta va pegado a las casillas (así no se desencaja si cambia el alto de la ventana) */
+body.sec { background: var(--fondo-sec); }   /* 5 nov: la carta de una secuela tiñe el fondo de su color */
+body.sec :is(.mensaje, .leyenda) { color: var(--p-blanco); }
 body.planos #screen-game :is(.anio, .boton-menu) { color: var(--p-crema); }
 body.planos .ranura { background: rgba(240, 233, 214, .16); }
 #screen-game .ranuras { z-index: 7; }

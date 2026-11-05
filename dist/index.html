@@ -83,6 +83,8 @@ body.negro { background: var(--p-tinta); color: var(--p-crema); }
    El bloque de abajo es un plano (body::after, desde --plano-abajo, que mide medirCartaJuego()) POR DELANTE de la carta: las cartas que bajan (avisos, secuelas) pasan por delante
    del cargo y por detrás de ese bloque. En la caída, todo el fondo pasa a negro (body.negro). */
 .ranuras::before { content: ""; position: absolute; left: -100vw; right: -100vw; top: -10px; bottom: -100vh; background: var(--p-tinta); z-index: -1; pointer-events: none; }   /* el plano de tinta va pegado a las casillas (así no se desencaja si cambia el alto de la ventana) */
+body.sec { background: var(--fondo-sec); }   /* 5 nov: la carta de una secuela tiñe el fondo de su color */
+body.sec :is(.mensaje, .leyenda) { color: var(--p-blanco); }
 body.planos #screen-game :is(.anio, .boton-menu) { color: var(--p-crema); }
 body.planos .ranura { background: rgba(240, 233, 214, .16); }
 #screen-game .ranuras { z-index: 7; }
@@ -2887,7 +2889,7 @@ window.addEventListener("resize", medirCartaJuego);
 function mostrar(id) {
   if (id === "screen-name" || id === "screen-era" || id === "screen-end") medirCartaJuego();
   PANTALLAS.forEach(s => $(s).classList.toggle("hidden", s !== id));
-  ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); }
+  ocultarInfo(); quitarInfo(); if (id !== "screen-game") { limpiarBanda(); document.body.classList.remove("negro"); fondoSecuela(null); }
   $("archivo").classList.add("hidden");
   if (id === "screen-name") pintarCartaNombre();
   document.body.classList.toggle("planos", id === "screen-game");   // 4 nov: fuerzas y casillas sobre tinta, carta y textos sobre crema
@@ -3309,7 +3311,7 @@ function empezar() {
   mostrar("screen-game");
   colorReverso(E.era);
   medirCartaJuego();                                   // las barras, la pregunta y el pie se alinean con la carta
-  document.body.classList.remove("negro");
+  document.body.classList.remove("negro"); fondoSecuela(null);
   E.avisoPendiente = null;
   E.estadoNuevo = null; modoEstado = false; modoAviso = false; modoFin = false;
   $("carta").classList.remove("hidden", "listo");
@@ -3575,9 +3577,17 @@ const FRASE_ESTADO = {
 const FONDO_ESTADO = { luna: "#1D51A0", censura: "#F0E9D6", vigilancia: "#1D51A0", culto: "#B0362A", alineado: "#B0362A",   // 23 oct: paleta del cartel
   embargo: "#D8A02A", frontera: "#86762C", nacionalizado: "#86762C", deuda: "#D8A02A", collar: "#D8A02A", salacion: "#7A2A1D" };
 let relojEstado = null;
+/* 5 nov, Jorge: mientras la carta de una secuela está en el mazo, el fondo se pone del color de su imagen (como en la caída) y los textos pasan a blanco */
+function fondoSecuela(id) {
+  const b = document.body;
+  const color = id && ((typeof COLOR_IMG !== "undefined" && COLOR_IMG[`icono_${id}-cartel-grande`]) || FONDO_ESTADO[id]);   // el color de fondo de la imagen de la carta
+  if (color) { b.style.setProperty("--fondo-sec", color); b.classList.add("sec"); }
+  else b.classList.remove("sec");
+}
 function mostrarCartaEstado() {
   const n = E.estadoNuevo, d = ESTADOS[n.id];
   modoEstado = true; ocupado = false;
+  fondoSecuela(n.id);
   clearTimeout(relojEstado);
   // Arriba, donde va la pregunta, la frase del estado; en la carta, su nombre; el detalle, al tocar la casilla de abajo
   ponerMensaje(`<span>${esc(FRASE_ESTADO[n.id] || "Nueva secuela del régimen.")}</span>`);
@@ -3629,6 +3639,7 @@ function svgEscena(id, etiqueta) {
 /* La carta se desliza hasta su casilla de abajo, encogiéndose; después sale la carta siguiente */
 function recogerEstado() {
   if (!modoEstado || ocupado) return;
+  fondoSecuela(null);
   hundirMensaje(); sonar("deslizar");
   clearTimeout(relojEstado);
   ocupado = true;
@@ -3857,7 +3868,7 @@ function entraDoble() {
   E.barras = { ...s.barras }; E.crisis = s.crisis;
   E.estados = s.estados.map(x => ({ ...x }));
   E.cola = []; E.eventos = []; E.derivaTurno = {}; E.estadoNuevo = null; E.muerteEspecial = null; E.avisoPendiente = null;
-  document.body.classList.remove("negro");
+  document.body.classList.remove("negro"); fondoSecuela(null);
   document.querySelectorAll(".barra.cayo").forEach(b => b.classList.remove("cayo"));
   iniciarEra(E.era);
   pintarBarras(); pintarRanuras(); pintarCabecera();
@@ -3905,7 +3916,7 @@ function pasoTutorial(i, sinEntrada) {
   const iFuerzas = TUTORIAL.findIndex(x => x.paso === "fuerzas"), iEstado = TUTORIAL.findIndex(x => x.paso === "estado");
   if (i <= iFuerzas) { $("barras").classList.add("apagadas"); $("barras").querySelectorAll(".barra").forEach(b => b.classList.remove("encendida")); }
   if (i <= iEstado && E.estados.length) { E.estados = []; pintarRanuras(); }
-  clearTimeout(relojEstado); modoEstado = false; modoAviso = false; modoFin = false;
+  clearTimeout(relojEstado); modoEstado = false; modoAviso = false; modoFin = false; fondoSecuela(null);
   const p = TUTORIAL[i];
   bajarPistas(0);                                      // los puntos fijos del paso de los puntos no se quedan en el siguiente
   if (p.paso === "estado") {                           // entra un estado de verdad: «Luna de miel»
@@ -3998,7 +4009,7 @@ function terminarTutorial(destino) {
   $("carta").classList.remove("con-giro", "giro-destacado");
   $("ranuras").classList.remove("destacar"); $("barras").classList.remove("destacar");
   clearTimeout(relojEstado);
-  E = null; modoEstado = false; modoAviso = false; modoFin = false; ocupado = false;
+  E = null; modoEstado = false; modoAviso = false; modoFin = false; ocupado = false; fondoSecuela(null);
   $("barras").classList.remove("apagadas");
   ponerSalir(false);
   if (destino === "portada") mostrar("screen-start"); else irANombre();

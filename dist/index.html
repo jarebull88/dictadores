@@ -823,6 +823,9 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 /* el reverso (mazo, cartas del reparto y tapa al girar): la misma cartulina que las demás, con esquinas apenas redondeadas, canto y textura */
 .pila .capa, .carta.revelando .tapa { border-radius: var(--radio-carta); overflow: hidden; box-shadow: 0 1px 0 rgba(0, 0, 0, .22), 0 2px 3px rgba(60, 40, 20, .20); }
 .pila .capa::before, .carta.revelando .tapa::before { content: ""; position: absolute; inset: 0; height: auto; pointer-events: none; background: var(--tex) 0 0 / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+/* los iconos de las fuerzas y del menú: el mismo marco blanco que las cartas, proporcional (3,5 % de su lado), con la textura por encima de todo */
+.icono-fuerza .icono.cartel { background: var(--p-blanco); padding: var(--margen-carta); }
+.ic-cuadro { background: var(--p-blanco); padding: var(--margen-carta); box-shadow: 0 1px 0 rgba(0, 0, 0, .30), 0 2px 3px rgba(60, 40, 20, .20); }
 </style>
 </head>
 <body>

@@ -1156,7 +1156,7 @@ const FICHAS = {
   "Ministro del Interior": { nombre: "Octavio Sarria", cargo: "Inteligencia",
     historia: "Oficinista de banco que en la sierra interrogaba a los recién llegados y lleva una libreta con el nombre de cada compañero.",
     nota: "Este informe lo ha redactado él mismo." },
-  "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Embajador oriental",
+  "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Embajador oriental", titulo: "Embajador oriental",
     historia: "Enviado del bloque oriental para convertir una revolución en cliente. Ofrece petróleo y asesores. Todo se paga en azúcar y favores.",
     nota: "Este servicio ya ha perdido la cuenta de lo que debemos." },
   "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador occidental", titulo: "Embajador occidental",

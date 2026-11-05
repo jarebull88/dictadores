@@ -27,7 +27,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que dimita tranquilo → sube Ejército +4 · baja Partido -5
 
 **El viaje de Milfuegos** (Ministro de las Fuerzas Armadas; segundo paso)  
-«Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti.»
+«Podría ir el Comandante Milfuegos. ¿Sabías que el Pueblo lo quiere casi tanto como a ti?»
 - A. Que vaya en avión → nada
 - B. Que vaya en jeep → nada
 

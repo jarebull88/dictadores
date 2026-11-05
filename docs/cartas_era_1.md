@@ -51,7 +51,7 @@ Duración: entre 10 y 12 cartas. 57 cartas. Los efectos están en la escala pequ
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti.»
+**Carta:** «Podría ir el Comandante Milfuegos. ¿Sabías que el Pueblo lo quiere casi tanto como a ti?»
 
 - **A. Que vaya en avión**  · Bandera: `mota_juzgado` · Encola: `avion_diezfuegos` en 3 a 4 años
 - **B. Que vaya en jeep**  · Encola: `fuga_comandante` en 1 a 2 años

@@ -978,7 +978,7 @@ const CARTAS = [
     // 31 oct, Jorge: paso intermedio de la trama de Milfuegos (sale enseguida). Avión: el accidente, 3 cartas después o más; carretera: la fuga, 1–2 cartas después
     id: "viaje_milfuegos", tipo: "cola", enlace: true, titulo: "El viaje de Milfuegos",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Mandaría al Comandante Milfuegos, el de la sonrisa. El Pueblo lo quiere casi tanto como a ti.",
+    texto: "Podría ir el Comandante Milfuegos. ¿Sabías que el Pueblo lo quiere casi tanto como a ti?",
     izq: { accion: "Que vaya en avión", efectos: {}, banderas: ["base.mota_juzgado"], encolar: [{ carta: "avion_diezfuegos", min: 3, max: 4 }] },
     der: { accion: "Que vaya en jeep", efectos: {}, encolar: [{ carta: "fuga_comandante", min: 1, max: 2 }] }
   },
@@ -2077,7 +2077,7 @@ const FICHAS = {
   "Embajador del bloque oriental": { nombre: "Pavel Strenko", cargo: "Embajador oriental",
     historia: "Enviado del bloque oriental para convertir una revolución en cliente. Ofrece petróleo y asesores. Todo se paga en azúcar y favores.",
     nota: "Este servicio ya ha perdido la cuenta de lo que debemos." },
-  "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador occidental",
+  "Embajador de la potencia del norte": { nombre: "Harlan Pembrook", cargo: "Embajador occidental", titulo: "Embajador occidental",
     historia: "Compañero de golf del tirano, se enteró de la Revolución en el hoyo nueve.",
     nota: "Sigue reservando el campo los domingos para cuando, según dice, vuelva la normalidad." }
 };

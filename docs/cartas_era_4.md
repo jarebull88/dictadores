@@ -37,7 +37,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 4. El acreedor pide favores
 
 **Personaje:** Ministro de Economía  
-**Condición:** sorteo con peso 14; exige `deuda_externa`.
+**Condición:** sorteo con peso 14; exige alguna de `deuda_externa`, `compensaciones`.
 
 **Carta:** «El acreedor perdonará los intereses si en los foros internacionales votamos siempre con él.»
 

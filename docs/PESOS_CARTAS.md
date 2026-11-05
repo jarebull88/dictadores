@@ -223,7 +223,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **Papá Ernesto (torneo)** (Papá Ernesto)  
 «Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!»
-- A. Llevo el ron y el anzuelo → sube Pueblo +5 · baja Partido -5
+- A. ¡Me encanta pescar! → sube Pueblo +5 · baja Partido -5
 - B. No me gusta pescar → sube Partido +5 · baja Pueblo -5
 
 **Papá Ernesto (whisky)** (Papá Ernesto)  

@@ -12,7 +12,7 @@ Cada decisión puede dejar una bandera; las cartas posteriores se activan al ten
 | `campos_trabajo` | Los campos de trabajo (A) | Una carta con firmas | Intelectuales denuncian los campos de trabajo. (era 3) |
 | `censura_previa` | Los periódicos (A); Las mil flores (A) | El periodista oficial | Aparecen el periodista oficial y los rumores. (era 2) |
 | `comites_vigilancia` | Los ojos del barrio (B) | Denuncias falsas | Denuncias falsas entre vecinos. (era 2) |
-| `compensaciones` | Las refinerías (B) | La deuda llama | Una deuda que alimenta una carta de crisis. (era 2) |
+| `compensaciones` | Las refinerías (B) | La deuda llama; El acreedor pide favores | Una deuda que alimenta una carta de crisis. (era 2) |
 | `critica_abierta` | Las mil flores (B) | Una carta con firmas | Depuración de críticos. (era 3) |
 | `criticos_detenidos` | La lista (B) | Denuncias falsas; Intentos de fuga; Los presos en la agenda | Presos políticos que pesan en tus relaciones exteriores. (era 3) |
 | `culto_iniciado` | El retrato (A) | — | — |

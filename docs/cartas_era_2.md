@@ -61,7 +61,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 ### 6. El club de ajedrez
 
 **Personaje:** Ministro de las Fuerzas Armadas  
-**Condición:** sorteo con peso 14; exige `viejos_oficiales`.
+**Condición:** sorteo con peso 0; exige `viejos_oficiales`.
 
 **Carta:** «Los oficiales que jubilaste se reúnen en un «club de ajedrez». No juegan al ajedrez.»
 
@@ -113,7 +113,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 ### 11. La deuda llama
 
 **Personaje:** Ministro de Economía  
-**Condición:** sorteo con peso 14; exige alguna de `compensaciones`, `deuda_externa`.
+**Condición:** sorteo con peso 0; exige alguna de `compensaciones`, `deuda_externa`.
 
 **Carta:** «Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.»
 
@@ -123,7 +123,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 ### 12. La cosecha récord
 
 **Personaje:** Ministro de Trabajo  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 0.
 
 **Carta:** «La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.»
 

@@ -497,7 +497,7 @@ Duración: entre 10 y 12 cartas. 57 cartas. Los efectos están en la escala pequ
 
 **Carta:** «Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!»
 
-- **A. Llevo el ron y el anzuelo** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
+- **A. ¡Me encanta pescar!** Pueblo +5 · Élite −5 · Bandera: `ernesto_amigo`
 - **B. No me gusta pescar** Pueblo −5 · Élite +5 · Encola: `ernesto_corte1` en 1 años
 
 ### 45. Papá Ernesto (whisky)

@@ -396,7 +396,7 @@ const CARTAS = [
     id: "ernesto_torneo", tipo: "ancla", ventana: [2, 3], cond: { turnoMin: 2 }, titulo: "Papá Ernesto (torneo)",
     personaje: "Papá Ernesto",
     texto: "Soy hombre de letras y de mar. Le invito a mi torneo de pesca y a brindar con daiquirís. ¡Por una nueva amistad!",
-    izq: { accion: "Llevo el ron y el anzuelo", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
+    izq: { accion: "¡Me encanta pescar!", efectos: { pueblo: 5, elite: -5 }, banderas: ["base.ernesto_amigo"] },   // 29 oct: sin aceptar el torneo, Ernesto no vuelve
     der: { accion: "No me gusta pescar", efectos: { pueblo: -5, elite: 5 }, encolar: [{ carta: "ernesto_corte1", min: 1, max: 1 }] }   // corte 1: Ernesto no vuelve
   },
   {
@@ -543,7 +543,8 @@ const CARTAS = [
 
 
   {
-    id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
+    id: "club_ajedrez", era: 2, tipo: "sorteo", obsoleta: true,   // 5 nov, Jorge: fuera, floja
+    peso: 0, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
     texto: "Los oficiales que jubilaste se reúnen en un «club de ajedrez». No juegan al ajedrez.",
     izq: { accion: "Jaque mate: todos detenidos", efectos: { ejercito: 3, potencias: -5 } },
@@ -602,7 +603,8 @@ const CARTAS = [
   },
 
   {
-    id: "deuda_llama", era: 2, tipo: "sorteo", peso: 14, cond: { alguna: ["base.compensaciones", "base.deuda_externa"] }, titulo: "La deuda llama",
+    id: "deuda_llama", era: 2, tipo: "sorteo", obsoleta: true,   // 5 nov, Jorge: fuera (la deuda aprieta en 1986; ya está «El acreedor pide favores», era 4)
+    peso: 0, cond: { alguna: ["base.compensaciones", "base.deuda_externa"] }, titulo: "La deuda llama",
     personaje: "Ministro de Economía",
     texto: "Mañana vence el primer pago de la deuda con el extranjero. En caja hay menos de lo prometido.",
     izq: { accion: "Paguen aunque el Pueblo no coma", efectos: { potencias: 5, pueblo: -5 } },
@@ -674,7 +676,8 @@ const CARTAS = [
   },
 
   {
-    id: "cosecha_record", era: 2, tipo: "sorteo", peso: 8, titulo: "La cosecha récord",
+    id: "cosecha_record", era: 2, tipo: "sorteo", obsoleta: true,   // 5 nov, Jorge: fuera (repite «El hambre» y la zafra)
+    peso: 0, titulo: "La cosecha récord",
     personaje: "Ministro de Trabajo",
     texto: "La cosecha ha roto récord según los informes. Los almacenes curiosamente están vacíos.",
     izq: { accion: "Que la radio anuncie el récord", efectos: { elite: 5 } },
@@ -755,7 +758,7 @@ const CARTAS = [
     der: { accion: "¿Qué presos? Que revisen su lista", efectos: { potencias: -6, ejercito: 5, pueblo: -3 } }
   },
   {
-    id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { requiere: ["base.deuda_externa"] }, titulo: "El acreedor pide favores",
+    id: "acreedor_favores", era: 4, tipo: "sorteo", peso: 14, cond: { alguna: ["base.deuda_externa", "base.compensaciones"] }, titulo: "El acreedor pide favores",
     personaje: "Ministro de Economía",
     texto: "El acreedor perdonará los intereses si en los foros internacionales votamos siempre con él.",
     izq: { accion: "Mi delegado levantará las dos manos", efectos: { potencias: 7, elite: -2, crisis: -2 } },

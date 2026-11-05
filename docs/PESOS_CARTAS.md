@@ -241,6 +241,11 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. (sin respuestas: se desliza) → nada
 - B. (sin respuestas: se desliza) → nada
 
+**Los billetes** (undefined; segundo paso)  
+«El nuevo presidente del Banco Nacional está firmando los billetes con su apodo. La gente no sabe si son de verdad.»
+- A. (sin respuestas: se desliza) → nada
+- B. (sin respuestas: se desliza) → nada
+
 **Papá Ernesto (corte 1)** (undefined; segundo paso)  
 «Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones.»
 - A. (sin respuestas: se desliza) → nada
@@ -314,7 +319,7 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que la prensa diga la verdad → sube Pueblo +5 · baja Partido -5
 
 **El club de ajedrez** (Ministro de las Fuerzas Armadas)  
-«Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.»
+«Los oficiales que jubilaste se reúnen en un «club de ajedrez». No juegan al ajedrez.»
 - A. Jaque mate: todos detenidos → sube Ejército +3 · baja Potencias -5
 - B. Metan un topo en el club → sube Ejército +6
 

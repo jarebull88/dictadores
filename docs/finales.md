@@ -15,4 +15,4 @@ Si una fuerza llega a 0 o a 100, la partida termina.
 | `potencias_0` | Invasión | Te negaste a firmar alianzas con ninguna potencia. Cuando te invadieron, nadie se sintió obligado a ayudarte. |
 | `potencias_100` | Anexión | Dependías tanto de tu aliado que acabó quedándose con el país. A ti te nombraron alcalde de un pueblo de 300 habitantes. |
 | `atentado_tabacos` | Regalo envenenado | El tabaco estaba envenenado. Apenas te dio tiempo a darle dos caladas. |
-| `pelotazo` | Pelotazo | Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.) |
+| `pelotazo` | ¡En toda la cara! | Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.) |

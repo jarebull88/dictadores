@@ -17,5 +17,5 @@ Con el dictador solo hablan sus ministros, los dos ministros del grupo Ejército
 | Embajador del bloque oriental | potencias | 8 (2/3) | papel recortado | `assets/personajes/recortados/embajador-oriental.webp` |
 | Ministra de Educación | elite | 8 (6/0) | papel recortado | `assets/personajes/recortados/educacion.webp` |
 | Padrino Pupo | pueblo | 8 (8/0) | papel recortado | `assets/personajes/recortados/padrino-pupo.webp` |
-| undefined | undefined | 5 (5/0) | sin retrato | `—` |
+| undefined | undefined | 6 (6/0) | sin retrato | `—` |
 | Papá Ernesto | potencias | 3 (3/0) | papel recortado | `assets/personajes/recortados/papa-ernesto.webp` |

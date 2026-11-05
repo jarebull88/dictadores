@@ -238,7 +238,7 @@ test("pelotazo: «A ver quién me batea» mata 1 de cada 10 y entonces no hay re
     return JSON.stringify({ muere, vive });`);
   assert.equal(r.muere, "pelotazo"); assert.equal(r.vive, null);
   w.eval(`terminar("pelotazo")`);
-  assert.equal(w.eval("E.fin.titulo"), "Pelotazo");
+  assert.equal(w.eval("E.fin.titulo"), "¡En toda la cara!");
   const e = jugar(`guardarLogros({}); const c = POR_ID.ernesto_higado; const otra = c.der; comprobarLogros(c, otra); const sin = !!logros().ernesto;
     comprobarLogros(c, c.izq); return JSON.stringify({ sin, con: !!logros().ernesto });`);
   assert.deepEqual(e, { sin: false, con: true });

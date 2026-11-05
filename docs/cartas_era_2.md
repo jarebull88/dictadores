@@ -63,7 +63,7 @@ Duración: entre 8 y 10 cartas. 26 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14; exige `viejos_oficiales`.
 
-**Carta:** «Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.»
+**Carta:** «Los oficiales que jubilaste se reúnen en un «club de ajedrez». No juegan al ajedrez.»
 
 - **A. Jaque mate: todos detenidos** Ejército +3 · Potencias −5
 - **B. Metan un topo en el club** Ejército +6

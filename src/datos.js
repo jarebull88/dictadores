@@ -293,7 +293,7 @@ const CARTAS = [
     id: "economista", tipo: "sorteo", peso: 12, titulo: "El economista",
     personaje: "Ministro de Economía",
     texto: "Pedimos un economista para el Banco Nacional y el Comandante Cabaña se ofreció porque oyó «comunista».",
-    izq: { accion: "Me sirve igual", efectos: { ejercito: 4, elite: -4 } },
+    izq: { accion: "Me sirve igual", efectos: { ejercito: 4, elite: -4 }, encolar: [{ carta: "nota_billetes", min: 1, max: 1 }] },
     der: { accion: "Mejor uno que sepa sumar", efectos: { elite: 4, ejercito: -4 } }
   },
   {
@@ -423,6 +423,11 @@ const CARTAS = [
     texto: "Los inquilinos ahora pagan el alquiler al Estado. Han observado que el nuevo casero tampoco arregla las goteras."
   },
   {
+    // 5 nov, Jorge: nota de inteligencia de relleno (tras «Me sirve igual» en «El economista»)
+    id: "nota_billetes", tipo: "aviso", enlace: true, titulo: "Los billetes",
+    texto: "El nuevo presidente del Banco Nacional está firmando los billetes con su apodo. La gente no sabe si son de verdad."
+  },
+  {
     id: "ernesto_corte1", tipo: "aviso", enlace: true, titulo: "Papá Ernesto (corte 1)",
     texto: "Papá Ernesto y el embajador occidental se han hecho grandes amigos. Parece que ha encontrado a alguien que comparte sus aficiones."
   },
@@ -540,7 +545,7 @@ const CARTAS = [
   {
     id: "club_ajedrez", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.viejos_oficiales"] }, titulo: "El club de ajedrez",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Los oficiales que jubiló se reúnen en un «club de ajedrez». No juegan al ajedrez.",
+    texto: "Los oficiales que jubilaste se reúnen en un «club de ajedrez». No juegan al ajedrez.",
     izq: { accion: "Jaque mate: todos detenidos", efectos: { ejercito: 3, potencias: -5 } },
     der: { accion: "Metan un topo en el club", efectos: { ejercito: 6 } }
   },
@@ -1209,7 +1214,7 @@ const DOBLES = {
    Imagen: por hacer (Arte); mientras, la carta enseña el título. */
 Object.assign(FINALES, {
   atentado_tabacos: { titulo: "Regalo envenenado", texto: "El tabaco estaba envenenado. Apenas te dio tiempo a darle dos caladas.", especial: true, todas: true },
-  pelotazo:         { titulo: "Pelotazo", texto: "Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.)", especial: true }
+  pelotazo:         { titulo: "¡En toda la cara!", texto: "Un batazo de línea te dio en la cabeza. El partido continuó sin ti. (Texto provisional.)", especial: true }
 });
 /* Una versión de cada caída por era (30 oct, Textos): FINALES_ERA[era][clave]; si falta, vale la de la era 1 (FINALES). Textos las irá entregando. */
 const FINALES_ERA = {};

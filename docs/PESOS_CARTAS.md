@@ -418,6 +418,26 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - A. Ofreceré mi dimisión a la plaza → sube Pueblo +4 · baja Partido -3
 - B. Busquen al contrarrevolucionario → sube Ejército +4 · baja Pueblo -4
 
+**Motos en la cárcel** (Ministro del Interior)  
+«El excomandante Motos protesta en la cárcel: se niega a vestir de preso y lleva meses en calzoncillos.»
+- A. Que pase frío → sube Pueblo +5 · baja Ejército -5
+- B. Que lo vistan entre cuatro → sube Ejército +5 · baja Pueblo -5
+
+**Motos en la universidad** (Vicepresidente del Consejo de Ministros)  
+«El excomandante Motos da clases en la universidad. Los alumnos le aplauden más que a tus discursos.»
+- A. Aplaudir es gratis → sube Pueblo +5 · baja Partido -5
+- B. Fuera de la universidad → sube Partido +5 · baja Pueblo -5
+
+**La investigación** (Ministro del Interior)  
+«Parece que el investigador del caso Milfuegos encontró algo. Quiere saber quién ordenó el vuelo.»
+- A. Todo lo que necesite → sube Pueblo +5 · baja Ejército -5
+- B. Caso cerrado, gracias → sube Ejército +5 · baja Pueblo -5
+
+**La leyenda de Milfuegos** (Ministra de Cultura)  
+«En los bares cantan que Milfuegos no murió, que sigue en el mar y que volverá.»
+- A. Prohíbanla, por respeto → sube Partido +5 · baja Pueblo -5
+- B. Háganle una estatua → sube Pueblo +5 · baja Partido -5
+
 **Las flores en el mar** (Ministro del Interior)  
 «El Pueblo sigue tirando flores al mar por Milfuegos. Muchos aún preguntan qué pasó.»
 - A. Que se olvide sin acto oficial → sube Pueblo +3 · baja Partido -4

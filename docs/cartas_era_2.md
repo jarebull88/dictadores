@@ -2,7 +2,7 @@
 
 <!-- Generado por tools/exportar_docs.js a partir de src/datos.js. No lo edites a mano: cambia los datos y ejecuta «npm run docs». -->
 
-Duración: entre 8 y 10 cartas. 27 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
+Duración: entre 8 y 10 cartas. 31 cartas. Los efectos están en la escala pequeña de los datos; el juego los multiplica por Pueblo ×2.2, Ejército ×3.5, Élite ×2.7, Potencias ×2.5 y, en esta era, por 1.35.
 
 ### 1. El aniversario
 
@@ -262,7 +262,47 @@ Duración: entre 8 y 10 cartas. 27 cartas. Los efectos están en la escala peque
 - **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
 - **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
 
-### 26. Las flores en el mar
+### 26. Motos en la cárcel
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 14; exige `mota_juzgado`.
+
+**Carta:** «El excomandante Motos protesta en la cárcel: se niega a vestir de preso y lleva meses en calzoncillos.»
+
+- **A. Que pase frío** Pueblo +5 · Ejército −5
+- **B. Que lo vistan entre cuatro** Ejército +5 · Pueblo −5
+
+### 27. Motos en la universidad
+
+**Personaje:** Vicepresidente del Consejo de Ministros  
+**Condición:** sorteo con peso 14; exige `matojos_libre`.
+
+**Carta:** «El excomandante Motos da clases en la universidad. Los alumnos le aplauden más que a tus discursos.»
+
+- **A. Aplaudir es gratis** Pueblo +5 · Élite −5
+- **B. Fuera de la universidad** Élite +5 · Pueblo −5
+
+### 28. La investigación
+
+**Personaje:** Ministro del Interior  
+**Condición:** sorteo con peso 14; exige `milfuegos_investigado`.
+
+**Carta:** «Parece que el investigador del caso Milfuegos encontró algo. Quiere saber quién ordenó el vuelo.»
+
+- **A. Todo lo que necesite** Pueblo +5 · Ejército −5
+- **B. Caso cerrado, gracias** Ejército +5 · Pueblo −5
+
+### 29. La leyenda de Milfuegos
+
+**Personaje:** Ministra de Cultura  
+**Condición:** sorteo con peso 14; exige `milfuegos_cerrado`.
+
+**Carta:** «En los bares cantan que Milfuegos no murió, que sigue en el mar y que volverá.»
+
+- **A. Prohíbanla, por respeto** Élite +5 · Pueblo −5
+- **B. Háganle una estatua** Pueblo +5 · Élite −5
+
+### 30. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
 **Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
@@ -272,7 +312,7 @@ Duración: entre 8 y 10 cartas. 27 cartas. Los efectos están en la escala peque
 - **A. Que se olvide sin acto oficial** Pueblo +3 · Élite −4
 - **B. Encabezaré yo los homenajes** Élite +4 · Pueblo −3
 
-### 27. Los campos de trabajo
+### 31. Los campos de trabajo
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.

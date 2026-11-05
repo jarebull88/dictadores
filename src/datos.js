@@ -900,6 +900,35 @@ const CARTAS = [
     izq: { accion: "Que confiese también el difunto", efectos: { ejercito: 5, pueblo: -5 } },
     der: { accion: "Suéltenlos sin pedirles perdón", efectos: { ejercito: -5, pueblo: 5 } }
   },
+  // 5 nov, Jorge: ramas de Motos y Milfuegos en la era 2 (según cómo acabó su trama en la era 1)
+  {
+    id: "motos_carcel", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.mota_juzgado"] }, titulo: "Motos en la cárcel",
+    personaje: "Ministro del Interior",
+    texto: "El excomandante Motos protesta en la cárcel: se niega a vestir de preso y lleva meses en calzoncillos.",
+    izq: { accion: "Que pase frío", efectos: { pueblo: 5, ejercito: -5 } },
+    der: { accion: "Que lo vistan entre cuatro", efectos: { ejercito: 5, pueblo: -5 } }
+  },
+  {
+    id: "motos_universidad", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.matojos_libre"] }, titulo: "Motos en la universidad",
+    personaje: "Vicepresidente del Consejo de Ministros",
+    texto: "El excomandante Motos da clases en la universidad. Los alumnos le aplauden más que a tus discursos.",
+    izq: { accion: "Aplaudir es gratis", efectos: { pueblo: 5, elite: -5 } },
+    der: { accion: "Fuera de la universidad", efectos: { elite: 5, pueblo: -5 } }
+  },
+  {
+    id: "milfuegos_investigacion", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.milfuegos_investigado"] }, titulo: "La investigación",
+    personaje: "Ministro del Interior",
+    texto: "Parece que el investigador del caso Milfuegos encontró algo. Quiere saber quién ordenó el vuelo.",
+    izq: { accion: "Todo lo que necesite", efectos: { pueblo: 5, ejercito: -5 } },
+    der: { accion: "Caso cerrado, gracias", efectos: { ejercito: 5, pueblo: -5 } }
+  },
+  {
+    id: "milfuegos_leyenda", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.milfuegos_cerrado"] }, titulo: "La leyenda de Milfuegos",
+    personaje: "Ministra de Cultura",
+    texto: "En los bares cantan que Milfuegos no murió, que sigue en el mar y que volverá.",
+    izq: { accion: "Prohíbanla, por respeto", efectos: { elite: 5, pueblo: -5 } },
+    der: { accion: "Háganle una estatua", efectos: { pueblo: 5, elite: -5 } }
+  },
   {
     id: "flores_mar", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.accidente_cienfuegos"] }, titulo: "Las flores en el mar",
     personaje: "Ministro del Interior",

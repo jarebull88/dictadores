@@ -66,23 +66,25 @@ body {
 body { transition: background-color 1.2s ease, color 1.2s ease; }
 .barra .icono-fuerza, .barra .nivel, .ranuras, .ranura, .escenario .pila, .leyenda, .boton-menu, .mensaje { transition: filter 1.2s ease, color 1.2s ease, background-color 1.2s ease, border-color 1.2s ease, opacity .3s ease; }
 body.negro { background: var(--p-tinta); color: var(--p-crema); }
-/* 4 nov, Jorge (propuesta A, como Reigns): en la partida, tres planos de color: arriba las fuerzas y abajo las casillas sobre tinta; en medio, la carta y sus textos sobre crema
-   (--plano-arriba / --plano-abajo los mide medirCartaJuego()). En la caída, el plano de en medio se funde a negro (body.negro). Los contornos vuelven a ser de tinta. */
-body.planos { background: var(--p-tinta); }
-body.planos::before { content: ""; position: fixed; left: 0; right: 0; top: var(--plano-arriba, 0); height: calc(var(--plano-abajo, 100%) - var(--plano-arriba, 0px)); background: var(--p-crema); z-index: -1; transition: background-color 1.2s ease; }
-body.planos.negro::before { background: var(--p-tinta); }
-body.planos .cabecera .barra .nivel { background: rgba(240, 233, 214, .2); }
-body.planos .cabecera .barra:not(.peligro) .nivel { border-color: var(--p-crema); }
-body.planos .cabecera .barra:not(.peligro) .relleno { background: var(--p-crema); }
+/* 4 nov, Jorge: en la partida, el bloque de abajo (casillas, año y menú) va sobre tinta; lo demás —fuerzas, textos y carta— comparte el fondo crema.
+   El bloque de abajo es un plano (body::after, desde --plano-abajo, que mide medirCartaJuego()) POR DELANTE de la carta: las cartas que bajan (avisos, secuelas) pasan por delante
+   del cargo y por detrás de ese bloque. En la caída, todo el fondo pasa a negro (body.negro). */
+.ranuras::before { content: ""; position: absolute; left: -100vw; right: -100vw; top: -10px; bottom: -100vh; background: var(--p-tinta); z-index: -1; pointer-events: none; }   /* el plano de tinta va pegado a las casillas (así no se desencaja si cambia el alto de la ventana) */
 body.planos #screen-game :is(.anio, .boton-menu) { color: var(--p-crema); }
 body.planos .ranura { background: rgba(240, 233, 214, .16); }
-#screen-game .carta { z-index: 5; }   /* 4 nov: al arrastrarla hacia abajo, la carta pasa por delante del cargo */
+#screen-game .ranuras { z-index: 7; }
+#screen-game :is(.anio, .boton-menu) { z-index: 8; }
+body:not(.planos) .ranuras::before { display: none; }
+#screen-game .escenario:not(.repartiendo) { position: relative; z-index: 5; }   /* la carta (con su escenario) pasa por delante del cargo y por detrás del bloque de abajo */
 body.negro :is(.leyenda, .boton-menu, .mensaje, .anio) { color: var(--p-crema); }
 body.negro :is(.barra .icono-fuerza, .barra:not(.cayo) .nivel, .ranuras, .escenario .pila) { filter: grayscale(1); }
 body.negro .ranura { background: rgba(240, 233, 214, .14); }
 body.negro .barra.cayo .nivel { background: var(--p-rojo); border-color: var(--p-rojo); }
+body.negro .barra .nivel, body.negro .barra.cayo .nivel { border-color: var(--p-crema); }   /* 4 nov, Jorge: en la caída, las barras llevan contorno crema (si no, se mezclan con el fondo negro) */
 body.negro .archivo { background: var(--p-tinta); }   /* 3 nov: con la caída, el menú también se oscurece (sus iconos se quedan en color) */
 body.negro .archivo-titulo { color: var(--p-crema); }
+body.negro .archivo .modo { background: var(--p-crema); color: var(--p-tinta); }   /* 4 nov: en el menú oscuro, los botones no se perdían (tinta sobre tinta) */
+body.negro .archivo .hueco-logro.vacio { outline: var(--linea) solid rgba(240, 233, 214, .45); outline-offset: -1px; }   /* y las casillas vacías (cromo negro) tampoco */
 body.negro .archivo-iconos.con-seleccion .ic-menu:not(.activo) { opacity: .75; }
 #screen-game, #archivo { touch-action: pan-y; }   /* deslizar en horizontal por la parte vacía cambia de pantalla */
 *, *::before, *::after { box-sizing: border-box; }
@@ -403,7 +405,7 @@ body.carta-medida :is(.era-anios, .nombre-leyenda) { margin-top: calc(var(--ret-
 /* 24 oct: reverso ilustrado de la era (sustituye al color plano y al dibujo antiguo) */
 .pila .capa, .carta.revelando .tapa { background-image: var(--rev-img, none); background-size: cover; background-position: center; }
 body.reverso-ilustrado .pila .capa::after, body.reverso-ilustrado .carta.revelando .tapa::after { content: none; }
-.mensaje { transition: opacity .35s ease; }   /* 17 oct: la pregunta aparece con un fundido rápido, no de golpe */
+.mensaje { transition: opacity .35s ease; translate: 0 var(--mensaje-baja, 0px); }   /* 4 nov: la pregunta, centrada entre las barras y la carta (medirCartaJuego) */   /* 17 oct: la pregunta aparece con un fundido rápido, no de golpe */
 .mensaje.oculto { opacity: 0; transition: none; }
 .mensaje.desborda { overflow: visible; }   /* 2 nov: un texto de más de 4 líneas no se corta: choca, y hay que acortarlo */
 /* 27 oct: la pregunta que se va se HUNDE por el borde de abajo de su espacio (recortada, sin salirse) y la nueva EMERGE desde el techo */

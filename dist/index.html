@@ -1436,7 +1436,8 @@ const CARTAS = [
 
 
   {
-    id: "potencias_enfadan", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.juicios_publicos"] }, titulo: "Las potencias se enfadan",
+    id: "potencias_enfadan", era: 2, tipo: "sorteo", obsoleta: true, peso: 0,   // 5 nov, Jorge: fuera (forzada: los juicios del estadio ya estaban sentenciados)
+    cond: { requiere: ["base.juicios_publicos"] }, titulo: "Las potencias se enfadan",
     personaje: "Embajador de la potencia del norte",
     texto: "Exigimos que los acusados de sus juicios públicos tengan defensa y garantías antes de la sentencia.",
     izq: { accion: "Que se les asignen abogados", efectos: { potencias: 7, elite: -3 } },

@@ -19,7 +19,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 2. Las potencias se enfadan
 
 **Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 14; exige `juicios_publicos`.
+**Condición:** sorteo con peso 0; exige `juicios_publicos`.
 
 **Carta:** «Exigimos que los acusados de sus juicios públicos tengan defensa y garantías antes de la sentencia.»
 

@@ -797,11 +797,18 @@ function mostrarFuerza(id, el) {
 }
 /* la palabra del póster ocupa todo el ancho de la hoja (el único texto que se ajusta al hueco: es un cartel) */
 function ajustarPoster() {
-  const poner = () => document.querySelectorAll(".poster-pal").forEach(e => {
+  const poner = () => {
+    document.querySelectorAll(".poster-nom").forEach(n => {   // el nombre apilado de las fichas: cada palabra al ancho que deja la miniatura; con tres palabras, más pequeñas
+      const cap = n.children.length > 2 ? 40 : 58, W = n.parentElement.clientWidth - 76 - 12;
+      if (W <= 0) return;
+      n.querySelectorAll(".w").forEach(w => { w.style.fontSize = "100px"; if (w.scrollWidth) w.style.fontSize = Math.min(cap, 100 * W / w.scrollWidth) + "px"; });
+    });
+    document.querySelectorAll(".poster-pal").forEach(e => {
     const w = e.parentElement.clientWidth;
     e.style.fontSize = "100px";
     if (e.scrollWidth && w) e.style.fontSize = (100 * w / e.scrollWidth) + "px";
-  });
+    });
+  };
   poner();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(poner);
 }
@@ -932,7 +939,7 @@ function ajustarMensaje() {   // lo único que hace: si el texto se pasa de 4 l�
   m.classList.remove("desborda");
   if (m.scrollHeight > m.clientHeight + 1) m.classList.add("desborda");
 }
-window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); } });
+window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game").classList.contains("hidden")) { ajustarMensaje(); ajustarPoster(); } });
 
 /* Si el informe no cabe en la ficha (pantallas bajas), se achica la letra, hasta 12,5 px */
 
@@ -940,8 +947,18 @@ window.addEventListener("resize", () => { if (E && E.actual && !$("screen-game")
 const ROTULADOR_GRUPO = { ejercito: "#5E5824", elite: "#B0362A", potencias: "#1D51A0" };   // 23 oct: tintas de la paleta
 
 function fichaPersonaje(cargo) {
-  const f = FICHAS[cargo] || { nombre: cargo, historia: "" };
-  return dorsoFicha({ nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
+  /* 5 nov, Jorge: el reverso del personaje es un póster tipográfico (propuesta P-B): el nombre apilado y gigante con su miniatura arriba a la derecha,
+     el cargo en una etiqueta, la biografía en negrita y la nota abajo; todo en blanco sobre el color de su carta (si ese color es casi blanco, tinta) */
+  const f = FICHAS[cargo] || { nombre: cargo, historia: "" }, slug = PERSONAJE_SLUG[cargo], r = slug && RETRATOS[slug];
+  if (!r) return dorsoFicha({ nombre: f.nombre, color: ROTULADOR_GRUPO[GRUPO_DE[cargo]], cargo: f.cargo || cargo, historia: f.historia, nota: f.nota });
+  const hex = (r.fondo || "#201D14").replace("#", ""), n = parseInt(hex.length === 3 ? hex.replace(/./g, "$&$&") : hex, 16);
+  const claro = ((n >> 16) * .3 + ((n >> 8) & 255) * .59 + (n & 255) * .11) > 170;
+  const col = claro ? "#201D14" : "#" + hex;
+  const palabras = String(f.nombre).replace(/[«»]/g, "").trim().split(/\s+/).map(w => `<span class="w">${esc(w)}</span>`).join("");
+  return `<div class="dorso"><div class="hoja info-hoja" style="${estiloHoja(col)}">${ICONO_GIRO}<div class="poster poster-ficha">` +
+    `<div class="poster-top"><div class="poster-nom">${palabras}</div><img class="poster-ico poster-ico-p" src="${r.src}" alt="" draggable="false"></div>` +
+    `<span class="poster-tag poster-cargo">${esc(f.cargo || cargo)}</span><p class="poster-bio">${esc(f.historia)}</p>` +
+    (f.nota ? `<div class="poster-notaB"><span class="poster-tag">Nota</span><p>${esc(f.nota)}</p></div>` : "") + `</div></div></div>`;
 }
 function dorsoFicha(f) {
   // 2 nov, Jorge: el nombre completo, seguido en una sola línea, y todo centrado; ya no sale el cargo (bajo la carta va su título)
@@ -975,6 +992,7 @@ function pintarCarta(c) {
   cartonDe($("carta"), slug);
   $("carta").innerHTML = `<div class="giro"><div class="tapa"></div><div class="cara"><div class="ilustracion${slug && RETRATOS[slug] ? "" : objeto ? "" : " ph"}"${objeto ? ` style="--fondo-escena:var(--p-${c.fondo})"` : fondoDe(slug)}>${ilus}` +
     `${ICONO_GIRO}<div class="respuesta" id="respuesta"></div></div></div>${c.detras ? dorsoTexto(c.detras) : fichaPersonaje(c.personaje)}</div>`;
+  ajustarPoster();   // 5 nov: el nombre del póster de la ficha se ajusta al ancho de la carta
 
 }
 /* Al tocar la carta se voltea: media vuelta en 3D (CSS, .giro) y enseña la ficha del personaje */

@@ -156,6 +156,9 @@ b, strong { font-weight: var(--peso-normal); }   /* los botones y campos no here
 .poster-sec .poster-quien { font-size: 14px; font-weight: var(--peso-negrita); line-height: 1.2; }
 .poster-ef p { font-family: var(--f-cuerpo); font-size: 13px; font-weight: var(--peso-normal); line-height: 1.25; text-transform: none; letter-spacing: 0; }
 .poster-col p { font-family: var(--f-cuerpo); font-size: 12px; font-weight: var(--peso-normal); line-height: 1.24; text-transform: none; letter-spacing: 0; }
+.poster-nom .w { font-family: var(--f-titular); font-size: 58px; font-weight: var(--peso-normal); line-height: .82; text-transform: uppercase; letter-spacing: .01em; }
+.poster-bio { font-family: var(--f-cuerpo); font-size: 13px; font-weight: var(--peso-negrita); line-height: 1.2; text-transform: none; letter-spacing: 0; }
+.poster-notaB p { font-family: var(--f-cuerpo); font-size: 12px; font-weight: var(--peso-normal); line-height: 1.22; text-transform: none; letter-spacing: 0; }
 .poster-par p { font-family: var(--f-cuerpo); font-size: 12.5px; font-weight: var(--peso-normal); line-height: 1.28; text-transform: none; letter-spacing: 0; }
 /* las notas de inteligencia: su propio tamaño */
 .aviso-texto { font-size: var(--t-nota); line-height: 1.22; }
@@ -853,3 +856,13 @@ body.carta-medida .pantalla-carta .carta-info { top: 0; }
 :root { --ancho-movil: 460px; --fondo-lados: #D6CBAE; }
 html { background: var(--fondo-lados); }
 body { max-width: var(--ancho-movil); margin-left: auto; margin-right: auto; position: relative; }
+/* la ficha del personaje (P-B): nombre apilado a la izquierda, miniatura arriba a la derecha, cargo en etiqueta, biografía y nota abajo */
+.poster-top { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; margin-bottom: 9px; }
+.poster-nom { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; }
+.poster-nom .w { display: block; white-space: nowrap; }
+.poster-ico-p { width: 76px; height: 76px; object-fit: cover; }
+.poster-cargo { align-self: flex-start; margin-bottom: 0; }
+.poster-bio { margin: 7px 0 0; }
+.poster-notaB { margin-top: auto; padding-top: 9px; border-top: 2px solid currentColor; }
+.poster-notaB p { margin: 0; }
+.poster-notaB .poster-tag { margin-bottom: 5px; }

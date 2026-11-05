@@ -39,7 +39,8 @@
 :root {
   --linea: 1.5px;                                   /* grosor de todo contorno de tinta */
   --banda-texto: var(--p-crema);                    /* 29 oct: el texto de la banda de aviso, crema (provisional: Jorge dará el estilo); fondos: rojo (secuela), azul (recompensa) y oliva (logro), todos de la paleta */
-  --contorno: var(--p-tinta);                       /* 4 nov, Jorge: contorno negro otra vez (del 28 oct al 3 nov se probó sin contornos: transparent) */
+  --contorno: transparent;                          /* 5 nov, Jorge: sin contornos (cartulinas con textura y un canto fino, no líneas de tinta) */
+  --radio-carta: 7px; --radio-icono: 5px; --radio-hueco: 4px;   /* 5 nov: esquinas apenas redondeadas, solo por fuera (nunca la imagen dentro del marco blanco) */
   --borde: var(--linea) solid var(--contorno);      /* el contorno de cartas, iconos, barras, casillas, mazo y logros */
   --margen-carta: 3.5%;                             /* el margen de las cartas (blanco por delante y por detrás) */
   --cuadro: 46px;                                   /* lado de las casillas de estado (40 px en pantallas estrechas) */
@@ -772,3 +773,34 @@ body.carta-medida #screen-end.caida .fin-cab, body.carta-medida .pantalla-carta 
 body.carta-medida .pantalla-carta .carta-info { top: 0; }
 .info-titulo { display: block; margin-bottom: 4px; }
 .info-hoja .ficha-historia { max-width: none; }
+
+/* =====================================================================================================================
+   TEXTURA DE PAPEL (5 nov, Jorge): UNA sola textura (`--tex`, assets/fondos/papel.jpg) extendida —sin repetir— sobre cada pieza, multiplicada.
+   La carta es UNA cartulina: la misma textura cubre el marco blanco y la ilustración (alineada con el margen para que sea continua).
+   Opacidad: 40 % en las piezas, 25 % en el fondo. Las fuerzas y la carta son cartulinas apoyadas en la mesa (canto fino y sombra corta);
+   las barras y las casillas son huecos recortados con cartón oscuro debajo.
+   ===================================================================================================================== */
+:root { --margen-px: calc(var(--carta-w, 328px) * .035); --tex-pieza: .4; --tex-fondo: .25; }
+body::before, .archivo::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--tex) center top / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-fondo); }
+.archivo::before { position: absolute; }
+/* la carta: marco + ilustración, una cartulina */
+.carta .cara, .carta .dorso, .carta-info .cara, .carta-info .dorso, .logro-carta .cara, .logro-carta .dorso { border-radius: var(--radio-carta); box-shadow: 0 1px 0 rgba(0, 0, 0, .22), 0 2px 3px rgba(60, 40, 20, .20); }
+.carta::after { border-radius: var(--radio-carta); }
+.carta .cara::before, .carta .dorso::before, .carta-info .cara::before, .carta-info .dorso::before, .logro-carta .cara::before, .logro-carta .dorso::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radio-carta); background: var(--tex) 0 0 / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+.carta .ilustracion, .carta-info .ilustracion, .dorso .hoja, .info-hoja, .logro-hoja { isolation: isolate; }
+.carta .ilustracion::after, .carta-info .ilustracion::after, .dorso .hoja::after, .info-hoja::after, .logro-hoja::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--tex) calc(var(--margen-px) * -1) calc(var(--margen-px) * -1) / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+/* las fuerzas */
+.icono.cartel { border-radius: var(--radio-icono); box-shadow: 0 1px 0 rgba(0, 0, 0, .30), 0 2px 3px rgba(60, 40, 20, .20); }
+.icono-fuerza { position: relative; }
+.icono-fuerza::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: var(--radio-icono); background: var(--tex) 30% 20% / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+/* barras y casillas: huecos */
+.nivel, .ranura { border-radius: var(--radio-hueco); background: #B9AA8A; box-shadow: inset 0 2px 3px rgba(40, 25, 10, .50), inset 1px 0 2px rgba(40, 25, 10, .25), 0 1px 0 rgba(255, 255, 255, .75); }
+.nivel::before, .ranura::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: var(--tex) 60% 70% / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+.nivel .relleno { box-shadow: 0 1px 1px rgba(0, 0, 0, .35); }
+.ranura .icono { box-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+/* el menú: iconos y cromos */
+.ic-cuadro { position: relative; border-radius: var(--radio-icono); }
+.ic-cuadro::before, .hueco-logro.vacio::before, .hueco-logro.nuevo-logro::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radio-icono); background: var(--tex) 30% 20% / 900px auto no-repeat; mix-blend-mode: multiply; opacity: var(--tex-pieza); }
+.hueco-logro.vacio, .hueco-logro.nuevo-logro { position: relative; border-radius: var(--radio-hueco); overflow: hidden; }

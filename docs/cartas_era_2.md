@@ -347,9 +347,9 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.
 
-**Carta:** «Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.»
+**Carta:** «Hay jóvenes con el pelo largo, curas y «desviados». Unos años cortando caña los reformarían.»
 
-- **A. Que el trabajo los haga hombres** Ejército +6 · Pueblo −7 · Bandera: `campos_trabajo`
-- **B. Que lleven el pelo como quieran** Ejército −6 · Pueblo +7
+- **A. Las Unidades de Mucho Amor Patrio** Ejército +4 · Élite +2 · Pueblo −6 · Bandera: `campos_trabajo`
+- **B. Que lleven el pelo como quieran** Pueblo +4 · Ejército −4
 
 **Consecuencia futura de `campos_trabajo`:** Intelectuales denuncian los campos de trabajo.

@@ -459,9 +459,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Encabezaré yo los homenajes → sube Partido +4 · baja Pueblo -3
 
 **Los campos de trabajo** (Ministro de las Fuerzas Armadas)  
-«Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.»
-- A. Que el trabajo los haga hombres → sube Ejército +6 · baja Pueblo -7
-- B. Que lleven el pelo como quieran → sube Pueblo +7 · baja Ejército -6
+«Hay jóvenes con el pelo largo, curas y «desviados». Unos años cortando caña los reformarían.»
+- A. Las Unidades de Mucho Amor Patrio → sube Ejército +4, Partido +2 · baja Pueblo -6
+- B. Que lleven el pelo como quieran → sube Pueblo +4 · baja Ejército -4
 
 ## Era 3 · El Culto
 

@@ -415,8 +415,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La invasión del aliado** (Embajador del bloque oriental)  
 «Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.»
-- A. Tienen todo nuestro apoyo fraterno → sube Potencias +5
-- B. Aquí no opinamos de casas ajenas → baja Potencias -5
+- A. Los tanques también son diplomacia → sube Potencias +6 · baja Pueblo -2
+- B. Ojalá nunca necesitemos corrección → sube Potencias +3, Pueblo +2
 
 **La guerrilla perdida** (Ministro del Interior)  
 «Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»

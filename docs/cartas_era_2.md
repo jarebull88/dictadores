@@ -259,8 +259,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.»
 
-- **A. Tienen todo nuestro apoyo fraterno** Potencias +5
-- **B. Aquí no opinamos de casas ajenas** Potencias −5
+- **A. Los tanques también son diplomacia** Potencias +6 · Pueblo −2
+- **B. Ojalá nunca necesitemos corrección** Potencias +3 · Pueblo +2
 
 ### 26. La guerrilla perdida
 

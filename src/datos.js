@@ -856,8 +856,8 @@ const CARTAS = [
     id: "invasion_aliado", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La invasión del aliado",
     personaje: "Embajador del bloque oriental",
     texto: "Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.",
-    izq: { accion: "Tienen todo nuestro apoyo fraterno", efectos: { potencias: 5 } },
-    der: { accion: "Aquí no opinamos de casas ajenas", efectos: { potencias: -5 } }
+    izq: { accion: "Los tanques también son diplomacia", efectos: { potencias: 6, pueblo: -2 } },
+    der: { accion: "Ojalá nunca necesitemos corrección", efectos: { potencias: 3, pueblo: 2 } }
   },
   {
     // 23 oct, Jorge: la guerrilla del Che en Bolivia (1967), sin refuerzos

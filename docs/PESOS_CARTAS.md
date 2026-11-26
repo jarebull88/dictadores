@@ -380,8 +380,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La zafra de los diez millones** (Ministro de Trabajo)  
 «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
-- A. ¡Todos a la zafra! → sube Partido +4 · baja Pueblo -6
-- B. Qué disparate, el país se pararía → sube Pueblo +5 · baja Partido -4
+- A. Que no quede nadie sin machete → sube Partido +4 · baja Pueblo -6
+- B. Soldados sí, los demás a trabajar → sube Pueblo +5 · baja Ejército -4
 
 **Los domingos de Cabaña** (Vicepresidente del Consejo de Ministros)  
 «Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
@@ -405,18 +405,18 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La ofensiva revolucionaria** (Ministro de Economía)  
 «Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.»
-- A. El Estado hará las mejores frituras → sube Partido +5 · baja Pueblo -4
-- B. Dejen vivir al pequeño negocio → sube Pueblo +4 · baja Partido -5
+- A. Que la Revolución haga las frituras → sube Partido +5 · baja Pueblo -4 · crisis +1
+- B. Dejen tranquilos a los emprendedores → sube Pueblo +3 · baja Partido -3
 
 **El servicio militar** (Ministro de las Fuerzas Armadas)  
-«Proponemos tres años de servicio militar obligatorio para todos los jóvenes.»
-- A. Que cada joven sirva a la patria → sube Ejército +5 · baja Pueblo -4
-- B. La patria no se defiende obligado → sube Pueblo +4 · baja Ejército -5
+«Hermanito, propongo tres años de servicio militar para todos los jóvenes. Les sentará bien el uniforme.»
+- A. Y cuando se aburran que corten caña → sube Partido +3, Ejército +2 · baja Pueblo -5
+- B. Así tendremos soldados para exportar → sube Ejército +6 · baja Pueblo -3, Potencias -2
 
 **La invasión del aliado** (Embajador del bloque oriental)  
 «Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.»
-- A. Tienen todo nuestro apoyo fraterno → sube Potencias +5
-- B. Aquí no opinamos de casas ajenas → baja Potencias -5
+- A. Los tanques también son diplomacia → sube Potencias +6 · baja Pueblo -2
+- B. Ojalá nunca necesitemos corrección → sube Potencias +3, Pueblo +2
 
 **La guerrilla perdida** (Ministro del Interior)  
 «Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»
@@ -425,13 +425,13 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La cifra que no llega** (Ministro de Trabajo)  
 «Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.»
-- A. Manden a todo el país al cañaveral → sube Partido +4 · baja Pueblo -5
-- B. Busquen cómo hacer que la cuenta dé → sube Pueblo +3 · baja Partido -3
+- A. Sin descanso hasta los diez millones → sube Partido +2 · baja Pueblo -7 · crisis +2
+- B. Busquen cómo hacer que la cuenta dé → sube Partido +5 · baja Pueblo -2
 
 **El discurso de la derrota** (Ministro de Trabajo)  
-«La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.»
-- A. Ofreceré mi dimisión a la plaza → sube Pueblo +4 · baja Partido -3
-- B. Busquen al contrarrevolucionario → sube Ejército +4 · baja Pueblo -4
+«¡Qué sorpresa! La zafra fracasó. Un millón de personas le espera en la plaza para oír qué pasó.»
+- A. Haré la clásica: ofrecer mi dimisión → sube Pueblo +6 · baja Partido -2
+- B. Que se sorteen algunos culpables → sube Pueblo +3 · baja Partido -3
 
 **Motos en la cárcel** (Ministro del Interior)  
 «El excomandante Motos protesta en la cárcel: se niega a vestir de preso y lleva meses en calzoncillos.»
@@ -459,9 +459,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Encabezaré yo los homenajes → sube Partido +4 · baja Pueblo -3
 
 **Los campos de trabajo** (Ministro de las Fuerzas Armadas)  
-«Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.»
-- A. Que el trabajo los haga hombres → sube Ejército +6 · baja Pueblo -7
-- B. Que lleven el pelo como quieran → sube Pueblo +7 · baja Ejército -6
+«Hay jóvenes con el pelo largo, curas y «desviados». Unos años cortando caña los reformarían.»
+- A. Las Unidades de Mucho Amor Patrio → sube Ejército +4, Partido +2 · baja Pueblo -6
+- B. Que lleven el pelo como quieran → sube Pueblo +4 · baja Ejército -4
 
 ## Era 3 · El Culto
 

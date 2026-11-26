@@ -145,7 +145,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 14. Los chistes
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 0.
 
 **Carta:** «Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.»
 
@@ -155,7 +155,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 15. Los satélites
 
 **Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 14; exige `misiles_instalados`.
+**Condición:** sorteo con peso 0; exige `misiles_instalados`.
 
 **Carta:** «Nuestros satélites siguen detectando misiles. Exigimos una inspección.»
 
@@ -189,8 +189,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
 
-- **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
-- **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
+- **A. Que no quede nadie sin machete** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
+- **B. Soldados sí, los demás a trabajar** Pueblo +5 · Ejército −4 · Encola: `cifra_no_llega` en 2 a 3 años
 
 ### 19. Los domingos de Cabaña
 
@@ -239,18 +239,18 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.»
 
-- **A. El Estado hará las mejores frituras** Élite +5 · Pueblo −4
-- **B. Dejen vivir al pequeño negocio** Pueblo +4 · Élite −5
+- **A. Que la Revolución haga las frituras** Élite +5 · Pueblo −4 · Crisis +1
+- **B. Dejen tranquilos a los emprendedores** Pueblo +3 · Élite −3
 
 ### 24. El servicio militar
 
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Proponemos tres años de servicio militar obligatorio para todos los jóvenes.»
+**Carta:** «Hermanito, propongo tres años de servicio militar para todos los jóvenes. Les sentará bien el uniforme.»
 
-- **A. Que cada joven sirva a la patria** Ejército +5 · Pueblo −4
-- **B. La patria no se defiende obligado** Pueblo +4 · Ejército −5
+- **A. Y cuando se aburran que corten caña** Élite +3 · Ejército +2 · Pueblo −5
+- **B. Así tendremos soldados para exportar** Ejército +6 · Pueblo −3 · Potencias −2
 
 ### 25. La invasión del aliado
 
@@ -259,8 +259,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.»
 
-- **A. Tienen todo nuestro apoyo fraterno** Potencias +5
-- **B. Aquí no opinamos de casas ajenas** Potencias −5
+- **A. Los tanques también son diplomacia** Potencias +6 · Pueblo −2
+- **B. Ojalá nunca necesitemos corrección** Potencias +3 · Pueblo +2
 
 ### 26. La guerrilla perdida
 
@@ -279,18 +279,18 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.»
 
-- **A. Manden a todo el país al cañaveral** Élite +4 · Pueblo −5 · Encola: `discurso_derrota` en 1 a 2 años
-- **B. Busquen cómo hacer que la cuenta dé** Pueblo +3 · Élite −3 · Encola: `discurso_derrota` en 1 a 2 años
+- **A. Sin descanso hasta los diez millones** Élite +2 · Pueblo −7 · Crisis +2 · Encola: `discurso_derrota` en 1 a 2 años
+- **B. Busquen cómo hacer que la cuenta dé** Élite +5 · Pueblo −2 · Encola: `discurso_derrota` en 1 a 2 años
 
 ### 28. El discurso de la derrota
 
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.»
+**Carta:** «¡Qué sorpresa! La zafra fracasó. Un millón de personas le espera en la plaza para oír qué pasó.»
 
-- **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
-- **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
+- **A. Haré la clásica: ofrecer mi dimisión** Pueblo +6 · Élite −2
+- **B. Que se sorteen algunos culpables** Pueblo +3 · Élite −3
 
 ### 29. Motos en la cárcel
 
@@ -347,9 +347,9 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 14.
 
-**Carta:** «Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.»
+**Carta:** «Hay jóvenes con el pelo largo, curas y «desviados». Unos años cortando caña los reformarían.»
 
-- **A. Que el trabajo los haga hombres** Ejército +6 · Pueblo −7 · Bandera: `campos_trabajo`
-- **B. Que lleven el pelo como quieran** Ejército −6 · Pueblo +7
+- **A. Las Unidades de Mucho Amor Patrio** Ejército +4 · Élite +2 · Pueblo −6 · Bandera: `campos_trabajo`
+- **B. Que lleven el pelo como quieran** Pueblo +4 · Ejército −4
 
 **Consecuencia futura de `campos_trabajo`:** Intelectuales denuncian los campos de trabajo.

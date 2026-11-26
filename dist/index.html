@@ -1696,7 +1696,7 @@ const CARTAS = [
   },
 
   {
-    id: "los_chistes", era: 2, tipo: "sorteo", peso: 8, titulo: "Los chistes",
+    id: "los_chistes", era: 2, tipo: "sorteo", obsoleta: true, peso: 0, titulo: "Los chistes",
     personaje: "Ministra de Cultura",
     texto: "Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.",
     izq: { accion: "Detengan al que se ría primero", efectos: { pueblo: -5, ejercito: 4 } },
@@ -1718,7 +1718,7 @@ const CARTAS = [
     der: { accion: "Desfile austero, con lo que haya", efectos: { ejercito: -6, pueblo: 4 } }
   },
   {
-    id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
+    id: "satelites", era: 2, tipo: "sorteo", obsoleta: true, peso: 0, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros satélites siguen detectando misiles. Exigimos una inspección.",
     izq: { accion: "Inspeccionen lo que quieran", efectos: { potencias: 8, ejercito: -5 } },
@@ -1801,8 +1801,8 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
-    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
-    der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
+    izq: { accion: "Que no quede nadie sin machete", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
+    der: { accion: "Soldados sí, los demás a trabajar", efectos: { pueblo: 5, ejercito: -4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] }
   },
   // 5 nov, Jorge: la trama de Cabaña en cuatro pasos: el detonante (molesta dentro de casa) → el compañero incómodo (el aliado exige callarlo)
   // → la carta de despedida (si lo mandas lejos; 1965) → la guerrilla perdida. Textos y pesos provisionales: se revisan con toda la era.
@@ -1842,24 +1842,24 @@ const CARTAS = [
     id: "ofensiva_revolucionaria", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 3 }, titulo: "La ofensiva revolucionaria",
     personaje: "Ministro de Economía",
     texto: "Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.",
-    izq: { accion: "El Estado hará las mejores frituras", efectos: { elite: 5, pueblo: -4 } },
-    der: { accion: "Dejen vivir al pequeño negocio", efectos: { pueblo: 4, elite: -5 } }
+    izq: { accion: "Que la Revolución haga las frituras", efectos: { elite: 5, pueblo: -4, crisis: 1 } },
+    der: { accion: "Dejen tranquilos a los emprendedores", efectos: { pueblo: 3, elite: -3 } }
   },
   {
     // 23 oct, Jorge: el servicio militar obligatorio (1963), tres años
     id: "servicio_militar", era: 2, tipo: "sorteo", peso: 10, titulo: "El servicio militar",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Proponemos tres años de servicio militar obligatorio para todos los jóvenes.",
-    izq: { accion: "Que cada joven sirva a la patria", efectos: { ejercito: 5, pueblo: -4 } },
-    der: { accion: "La patria no se defiende obligado", efectos: { pueblo: 4, ejercito: -5 } }
+    texto: "Hermanito, propongo tres años de servicio militar para todos los jóvenes. Les sentará bien el uniforme.",
+    izq: { accion: "Y cuando se aburran que corten caña", efectos: { elite: 3, ejercito: 2, pueblo: -5 } },
+    der: { accion: "Así tendremos soldados para exportar", efectos: { ejercito: 6, pueblo: -3, potencias: -2 } }
   },
   {
     // 23 oct, Jorge: la invasión de la primavera de un país del bloque (1968), que el Comandante aplaudió
     id: "invasion_aliado", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La invasión del aliado",
     personaje: "Embajador del bloque oriental",
     texto: "Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.",
-    izq: { accion: "Tienen todo nuestro apoyo fraterno", efectos: { potencias: 5 } },
-    der: { accion: "Aquí no opinamos de casas ajenas", efectos: { potencias: -5 } }
+    izq: { accion: "Los tanques también son diplomacia", efectos: { potencias: 6, pueblo: -2 } },
+    der: { accion: "Ojalá nunca necesitemos corrección", efectos: { potencias: 3, pueblo: 2 } }
   },
   {
     // 23 oct, Jorge: la guerrilla del Che en Bolivia (1967), sin refuerzos
@@ -1874,16 +1874,16 @@ const CARTAS = [
     id: "cifra_no_llega", era: 2, tipo: "cola", titulo: "La cifra que no llega",
     personaje: "Ministro de Trabajo",
     texto: "Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.",
-    izq: { accion: "Manden a todo el país al cañaveral", efectos: { elite: 4, pueblo: -5 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] },
-    der: { accion: "Busquen cómo hacer que la cuenta dé", efectos: { pueblo: 3, elite: -3 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] }
+    izq: { accion: "Sin descanso hasta los diez millones", efectos: { elite: 2, pueblo: -7, crisis: 2 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] },
+    der: { accion: "Busquen cómo hacer que la cuenta dé", efectos: { elite: 5, pueblo: -2 }, encolar: [{ carta: "discurso_derrota", min: 1, max: 2 }] }
   },
   {
     // 23 oct, Jorge: el discurso de julio de 1970, en el que el Comandante ofrece dimitir y la plaza grita que no
     id: "discurso_derrota", era: 2, tipo: "cola", titulo: "El discurso de la derrota",
     personaje: "Ministro de Trabajo",
-    texto: "La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.",
-    izq: { accion: "Ofreceré mi dimisión a la plaza", efectos: { pueblo: 4, elite: -3 } },
-    der: { accion: "Busquen al contrarrevolucionario", efectos: { ejercito: 4, pueblo: -4 } }
+    texto: "¡Qué sorpresa! La zafra fracasó. Un millón de personas le espera en la plaza para oír qué pasó.",
+    izq: { accion: "Haré la clásica: ofrecer mi dimisión", efectos: { pueblo: 6, elite: -2 } },
+    der: { accion: "Que se sorteen algunos culpables", efectos: { pueblo: 3, elite: -3 } }
   },
   {
     id: "sucesion", era: 3, tipo: "sorteo", peso: 8, titulo: "La sucesión",
@@ -1967,9 +1967,9 @@ const CARTAS = [
     // 21 oct, Jorge: las UMAP (1965-68), campos de trabajo militares para los «desviados»; el chiste va contra el eufemismo del régimen
     id: "campos_trabajo", era: 2, tipo: "sorteo", peso: 14, titulo: "Los campos de trabajo",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Hay jóvenes con el pelo largo, curas y «desviados». Trabajar en el campo y cortar caña los reformaría.",
-    izq: { accion: "Que el trabajo los haga hombres", efectos: { ejercito: 6, pueblo: -7 }, banderas: ["base.campos_trabajo"] },
-    der: { accion: "Que lleven el pelo como quieran", efectos: { ejercito: -6, pueblo: 7 } }
+    texto: "Hay jóvenes con el pelo largo, curas y «desviados». Unos años cortando caña los reformarían.",
+    izq: { accion: "Las Unidades de Mucho Amor Patrio", efectos: { ejercito: 4, elite: 2, pueblo: -6 }, banderas: ["base.campos_trabajo"] },
+    der: { accion: "Que lleven el pelo como quieran", efectos: { pueblo: 4, ejercito: -4 } }
   },
   /* ---------- Era 4 · La Supervivencia ---------- (última era; tratamiento: «Padre de la Patria»; mismos límites de longitud) */
   {

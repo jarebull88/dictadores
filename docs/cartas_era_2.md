@@ -207,10 +207,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** undefined  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»
+**Carta:** «El Comandante Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»
 
-- **A. Léanla en la plaza** Pueblo +3 · Élite −3
-- **B. Guárdenla en mi cajón** Élite +3 · Pueblo −3
+- **A. Léanla en público y así ya no vuelve** Pueblo +3 · Potencias −2
+- **B. Guárdenla y que la gente especule** Ejército +3 · Pueblo −3
 
 ### 21. El congreso
 

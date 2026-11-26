@@ -389,9 +389,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Que corte él solo si tanto le gusta → sube Partido +4 · baja Pueblo -2
 
 **La carta de Cabaña** (undefined; segundo paso)  
-«Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»
-- A. Léanla en la plaza → sube Pueblo +3 · baja Partido -3
-- B. Guárdenla en mi cajón → sube Partido +3 · baja Pueblo -3
+«El Comandante Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»
+- A. Léanla en público y así ya no vuelve → sube Pueblo +3 · baja Potencias -2
+- B. Guárdenla y que la gente especule → sube Ejército +3 · baja Pueblo -3
 
 **El congreso** (Vicepresidente del Consejo de Ministros)  
 «Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.»

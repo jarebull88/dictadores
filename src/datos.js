@@ -813,10 +813,10 @@ const CARTAS = [
   },
   {
     id: "cabana_carta", era: 2, tipo: "cola", enlace: true, titulo: "La carta de Cabaña", leyenda: "Carta", fondo: "mostaza",
-    texto: "Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.",
+    texto: "El Comandante Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.",
     detras: "«Otras tierras del mundo reclaman el concurso de mis modestos esfuerzos.» Firmado a mano, con buena letra y sin fecha.",
-    izq: { accion: "Léanla en la plaza", efectos: { pueblo: 3, elite: -3 } },
-    der: { accion: "Guárdenla en mi cajón", efectos: { elite: 3, pueblo: -3 } }
+    izq: { accion: "Léanla en público y así ya no vuelve", efectos: { pueblo: 3, potencias: -2 } },
+    der: { accion: "Guárdenla y que la gente especule", efectos: { ejercito: 3, pueblo: -3 } }
   },
   {
     // 5 nov, Jorge: el congreso de los tres continentes (1966); provisional

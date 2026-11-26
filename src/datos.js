@@ -694,7 +694,7 @@ const CARTAS = [
   },
 
   {
-    id: "los_chistes", era: 2, tipo: "sorteo", peso: 8, titulo: "Los chistes",
+    id: "los_chistes", era: 2, tipo: "sorteo", obsoleta: true, peso: 0, titulo: "Los chistes",
     personaje: "Ministra de Cultura",
     texto: "Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.",
     izq: { accion: "Detengan al que se ría primero", efectos: { pueblo: -5, ejercito: 4 } },
@@ -716,7 +716,7 @@ const CARTAS = [
     der: { accion: "Desfile austero, con lo que haya", efectos: { ejercito: -6, pueblo: 4 } }
   },
   {
-    id: "satelites", era: 2, tipo: "sorteo", peso: 14, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
+    id: "satelites", era: 2, tipo: "sorteo", obsoleta: true, peso: 0, cond: { requiere: ["base.misiles_instalados"] }, titulo: "Los satélites",
     personaje: "Embajador de la potencia del norte",
     texto: "Nuestros satélites siguen detectando misiles. Exigimos una inspección.",
     izq: { accion: "Inspeccionen lo que quieran", efectos: { potencias: 8, ejercito: -5 } },

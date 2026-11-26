@@ -145,7 +145,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 14. Los chistes
 
 **Personaje:** Ministra de Cultura  
-**Condición:** sorteo con peso 8.
+**Condición:** sorteo con peso 0.
 
 **Carta:** «Circula un chiste sobre usted. Lo cuentan en las colas y en el Consejo se ríen más alto.»
 
@@ -155,7 +155,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 15. Los satélites
 
 **Personaje:** Embajador de la potencia del norte  
-**Condición:** sorteo con peso 14; exige `misiles_instalados`.
+**Condición:** sorteo con peso 0; exige `misiles_instalados`.
 
 **Carta:** «Nuestros satélites siguen detectando misiles. Exigimos una inspección.»
 

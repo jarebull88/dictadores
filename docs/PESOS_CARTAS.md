@@ -399,9 +399,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Solo discursos, sin fusiles → sube Potencias +5 · baja Ejército -5
 
 **El compañero incómodo** (Embajador del bloque oriental)  
-«Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.»
-- A. Lo mandaré a una misión bien lejos → sube Potencias +4 · baja Ejército -3
-- B. Quien calla a Cabaña me calla a mí → sube Ejército +3 · baja Potencias -4
+«El Comandante Cabaña nos ha llamado imperialistas delante de medio mundo. Exigimos que lo calle.»
+- A. Lo mandaré a «liberar» otro país → sube Potencias +4 · baja Pueblo -2
+- B. Quien calla a Cabaña me calla a mí → sube Pueblo +3 · baja Potencias -4
 
 **La ofensiva revolucionaria** (Ministro de Economía)  
 «Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.»

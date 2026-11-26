@@ -830,10 +830,10 @@ const CARTAS = [
     // 23 oct, Jorge: trama de traición inspirada en el Che (1965-67): el héroe fanático que critica al bloque y estorba al Comandante
     id: "companero_incomodo", era: 2, tipo: "cola", titulo: "El compañero incómodo",   // 5 nov, Jorge: ya no sale al azar: la encola «Los domingos de Cabaña»
     personaje: "Embajador del bloque oriental",
-    texto: "Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.",
-    izq: { accion: "Lo mandaré a una misión bien lejos", efectos: { potencias: 4, ejercito: -3 },
+    texto: "El Comandante Cabaña nos ha llamado imperialistas delante de medio mundo. Exigimos que lo calle.",
+    izq: { accion: "Lo mandaré a «liberar» otro país", efectos: { potencias: 4, pueblo: -2 },
            encolar: [{ carta: "cabana_carta", min: 1, max: 1 }, { carta: "guerrilla_perdida", min: 2, max: 3 }] },
-    der: { accion: "Quien calla a Cabaña me calla a mí", efectos: { potencias: -4, ejercito: 3 } }
+    der: { accion: "Quien calla a Cabaña me calla a mí", efectos: { pueblo: 3, potencias: -4 } }
   },
   {
     // 23 oct, Jorge: la ofensiva revolucionaria (1968), que nacionalizó unos 58 000 negocios pequeños; «El mercado mayor» (era 3) los vuelve a permitir

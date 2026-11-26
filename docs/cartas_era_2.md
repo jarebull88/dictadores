@@ -227,10 +227,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Embajador del bloque oriental  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Cabaña, su héroe más famoso, nos llamó imperialistas en un foro internacional. Exigimos que lo calle.»
+**Carta:** «El Comandante Cabaña nos ha llamado imperialistas delante de medio mundo. Exigimos que lo calle.»
 
-- **A. Lo mandaré a una misión bien lejos** Potencias +4 · Ejército −3 · Encola: `cabana_carta` en 1 años, `guerrilla_perdida` en 2 a 3 años
-- **B. Quien calla a Cabaña me calla a mí** Potencias −4 · Ejército +3
+- **A. Lo mandaré a «liberar» otro país** Potencias +4 · Pueblo −2 · Encola: `cabana_carta` en 1 años, `guerrilla_perdida` en 2 a 3 años
+- **B. Quien calla a Cabaña me calla a mí** Pueblo +3 · Potencias −4
 
 ### 23. La ofensiva revolucionaria
 

@@ -247,10 +247,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de las Fuerzas Armadas  
 **Condición:** sorteo con peso 10.
 
-**Carta:** «Proponemos tres años de servicio militar obligatorio para todos los jóvenes.»
+**Carta:** «Hermanito, propongo tres años de servicio militar para todos los jóvenes. Les sentará bien el uniforme.»
 
-- **A. Que cada joven sirva a la patria** Ejército +5 · Pueblo −4
-- **B. La patria no se defiende obligado** Pueblo +4 · Ejército −5
+- **A. Y cuando se aburran que corten caña** Élite +3 · Ejército +2 · Pueblo −5
+- **B. Así tendremos soldados para exportar** Ejército +6 · Pueblo −3 · Potencias −2
 
 ### 25. La invasión del aliado
 

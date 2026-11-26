@@ -847,9 +847,9 @@ const CARTAS = [
     // 23 oct, Jorge: el servicio militar obligatorio (1963), tres años
     id: "servicio_militar", era: 2, tipo: "sorteo", peso: 10, titulo: "El servicio militar",
     personaje: "Ministro de las Fuerzas Armadas",
-    texto: "Proponemos tres años de servicio militar obligatorio para todos los jóvenes.",
-    izq: { accion: "Que cada joven sirva a la patria", efectos: { ejercito: 5, pueblo: -4 } },
-    der: { accion: "La patria no se defiende obligado", efectos: { pueblo: 4, ejercito: -5 } }
+    texto: "Hermanito, propongo tres años de servicio militar para todos los jóvenes. Les sentará bien el uniforme.",
+    izq: { accion: "Y cuando se aburran que corten caña", efectos: { elite: 3, ejercito: 2, pueblo: -5 } },
+    der: { accion: "Así tendremos soldados para exportar", efectos: { ejercito: 6, pueblo: -3, potencias: -2 } }
   },
   {
     // 23 oct, Jorge: la invasión de la primavera de un país del bloque (1968), que el Comandante aplaudió

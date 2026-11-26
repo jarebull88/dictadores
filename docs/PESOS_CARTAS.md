@@ -409,9 +409,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Dejen tranquilos a los emprendedores → sube Pueblo +3 · baja Partido -3
 
 **El servicio militar** (Ministro de las Fuerzas Armadas)  
-«Proponemos tres años de servicio militar obligatorio para todos los jóvenes.»
-- A. Que cada joven sirva a la patria → sube Ejército +5 · baja Pueblo -4
-- B. La patria no se defiende obligado → sube Pueblo +4 · baja Ejército -5
+«Hermanito, propongo tres años de servicio militar para todos los jóvenes. Les sentará bien el uniforme.»
+- A. Y cuando se aburran que corten caña → sube Partido +3, Ejército +2 · baja Pueblo -5
+- B. Así tendremos soldados para exportar → sube Ejército +6 · baja Pueblo -3, Potencias -2
 
 **La invasión del aliado** (Embajador del bloque oriental)  
 «Un país aliado quería reformas y lo hemos corregido con tanques. Esperamos su apoyo público.»

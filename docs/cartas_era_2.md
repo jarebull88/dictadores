@@ -267,10 +267,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro del Interior  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»
+**Carta:** «El Comandante Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»
 
 - **A. Mándenle a nuestros mejores hombres** Ejército +4 · Potencias −4
-- **B. Cabaña será un millón de camisetas** Potencias +3 · Ejército −3 · Bandera: `ferro_martir`
+- **B. Un mártir vende más camisetas** Potencias +3 · Pueblo −1 · Bandera: `ferro_martir`
 
 ### 27. La cifra que no llega
 

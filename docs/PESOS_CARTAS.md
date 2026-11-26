@@ -419,9 +419,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Ojalá nunca necesitemos corrección → sube Potencias +3, Pueblo +2
 
 **La guerrilla perdida** (Ministro del Interior)  
-«Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»
+«El Comandante Cabaña pide refuerzos desde la selva. Si los mandamos, el mundo sabrá que es cosa nuestra.»
 - A. Mándenle a nuestros mejores hombres → sube Ejército +4 · baja Potencias -4
-- B. Cabaña será un millón de camisetas → sube Potencias +3 · baja Ejército -3
+- B. Un mártir vende más camisetas → sube Potencias +3 · baja Pueblo -1
 
 **La cifra que no llega** (Ministro de Trabajo)  
 «Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.»

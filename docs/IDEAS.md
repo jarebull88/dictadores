@@ -129,3 +129,6 @@ Hechos reales que pueden ser cartas. En el juego, sin nombres de países ni pers
 
 ### Otras ideas de la misma lista (no elegidas por ahora)
 Portada del periódico del régimen al acabar cada era («la versión oficial»), álbum de cromos de caídas y esquelas, sucesión (la siguiente partida la juega el hermano), el discurso (mantener pulsado para hablar), lo que dice la calle (pintadas y chistes en el fondo), el sello de goma APROBADO/DENEGADO, la cartilla de racionamiento como recurso, récords, guardar a mitad de partida, logros e idiomas.
+
+### Pregunta abierta: ¿nombres reales? (26 nov, Jorge: verlo al final)
+¿Usar nombres reales (Cienfuegos, Guevara…) en vez de los disfrazados? Legalmente es normal en ficción y sátira (*El gran dictador*, *La fiesta del Chivo*, *Hearts of Iron*); el riesgo está en presentar hechos inventados como reales, en personas vivas o muertas hace poco (herederos), en la imagen comercial (retratos) y en las normas de cada tienda. Es sobre todo una decisión de diseño: el país sin nombre hace de alegoría de cualquier dictadura; con nombres reales sería el juego de Cuba. Opción intermedia: nombres reales solo para fallecidos hace décadas o en notas históricas fuera del juego. Sin decidir.

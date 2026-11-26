@@ -239,8 +239,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.»
 
-- **A. El Estado hará las mejores frituras** Élite +5 · Pueblo −4
-- **B. Dejen vivir al pequeño negocio** Pueblo +4 · Élite −5
+- **A. Que la Revolución haga las frituras** Élite +5 · Pueblo −4 · Crisis +1
+- **B. Dejen tranquilos a los emprendedores** Pueblo +3 · Élite −3
 
 ### 24. El servicio militar
 

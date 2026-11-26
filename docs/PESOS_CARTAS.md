@@ -405,8 +405,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La ofensiva revolucionaria** (Ministro de Economía)  
 «Aún quedan miles de negocios privados: puestos de frituras, barberías, talleres. Son focos de egoísmo.»
-- A. El Estado hará las mejores frituras → sube Partido +5 · baja Pueblo -4
-- B. Dejen vivir al pequeño negocio → sube Pueblo +4 · baja Partido -5
+- A. Que la Revolución haga las frituras → sube Partido +5 · baja Pueblo -4 · crisis +1
+- B. Dejen tranquilos a los emprendedores → sube Pueblo +3 · baja Partido -3
 
 **El servicio militar** (Ministro de las Fuerzas Armadas)  
 «Proponemos tres años de servicio militar obligatorio para todos los jóvenes.»

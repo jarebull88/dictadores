@@ -109,3 +109,4 @@ Para cada carta, antes de proponerla o al revisarla:
 ## Notas de Jorge (26 nov, revisión de la era 2)
 - **Quitar antes que arreglar.** Si una carta se parece demasiado a otra, se quita (para no aburrir). Si no acaba de convencer, también se quita. Se tarda más en arreglar algo que en poner algo nuevo.
 - **Respuestas más largas** (5 nov): hasta los 36 caracteres que vigila la prueba, para que se entiendan; el objetivo de 24 era de cuando el límite era más corto.
+- **Respuestas de corrido** (26 nov): frases seguidas, sin partirlas con comas ni puntos; que no suenen «apretadas» (nada de telegramas como «Mañana, un sello en cada puerta»), y que conserven el humor.

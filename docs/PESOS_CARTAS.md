@@ -429,9 +429,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Busquen cómo hacer que la cuenta dé → sube Partido +5 · baja Pueblo -2
 
 **El discurso de la derrota** (Ministro de Trabajo)  
-«La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.»
-- A. Ofreceré mi dimisión a la plaza → sube Pueblo +4 · baja Partido -3
-- B. Busquen al contrarrevolucionario → sube Ejército +4 · baja Pueblo -4
+«¡Qué sorpresa! La zafra fracasó. Un millón de personas le espera en la plaza para oír qué pasó.»
+- A. Haré la clásica: ofrecer mi dimisión → sube Pueblo +6 · baja Partido -2
+- B. Que se sorteen algunos culpables → sube Pueblo +3 · baja Partido -3
 
 **Motos en la cárcel** (Ministro del Interior)  
 «El excomandante Motos protesta en la cárcel: se niega a vestir de preso y lleva meses en calzoncillos.»

@@ -287,10 +287,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Ministro de Trabajo  
 **Condición:** carta de cola: solo sale si una decisión anterior la encola.
 
-**Carta:** «La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.»
+**Carta:** «¡Qué sorpresa! La zafra fracasó. Un millón de personas le espera en la plaza para oír qué pasó.»
 
-- **A. Ofreceré mi dimisión a la plaza** Pueblo +4 · Élite −3
-- **B. Busquen al contrarrevolucionario** Ejército +4 · Pueblo −4
+- **A. Haré la clásica: ofrecer mi dimisión** Pueblo +6 · Élite −2
+- **B. Que se sorteen algunos culpables** Pueblo +3 · Élite −3
 
 ### 29. Motos en la cárcel
 

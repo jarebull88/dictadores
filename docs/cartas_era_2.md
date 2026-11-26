@@ -189,8 +189,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
 
-- **A. ¡Todos a la zafra!** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
-- **B. Qué disparate, el país se pararía** Pueblo +5 · Élite −4
+- **A. Que no quede nadie sin machete** Pueblo −6 · Élite +4 · Encola: `cifra_no_llega` en 2 a 3 años
+- **B. Soldados sí, los demás a trabajar** Pueblo +5 · Ejército −4 · Encola: `cifra_no_llega` en 2 a 3 años
 
 ### 19. Los domingos de Cabaña
 

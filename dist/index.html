@@ -1801,8 +1801,8 @@ const CARTAS = [
     id: "zafra_diez_millones", era: 2, tipo: "sorteo", peso: 10, cond: { turnoMin: 4 }, titulo: "La zafra de los diez millones",
     personaje: "Ministro de Trabajo",
     texto: "Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.",
-    izq: { accion: "¡Todos a la zafra!", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
-    der: { accion: "Qué disparate, el país se pararía", efectos: { pueblo: 5, elite: -4 } }
+    izq: { accion: "Que no quede nadie sin machete", efectos: { pueblo: -6, elite: 4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] },
+    der: { accion: "Soldados sí, los demás a trabajar", efectos: { pueblo: 5, ejercito: -4 }, encolar: [{ carta: "cifra_no_llega", min: 2, max: 3 }] }
   },
   // 5 nov, Jorge: la trama de Cabaña en cuatro pasos: el detonante (molesta dentro de casa) → el compañero incómodo (el aliado exige callarlo)
   // → la carta de despedida (si lo mandas lejos; 1965) → la guerrilla perdida. Textos y pesos provisionales: se revisan con toda la era.

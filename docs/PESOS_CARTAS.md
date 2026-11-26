@@ -380,8 +380,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La zafra de los diez millones** (Ministro de Trabajo)  
 «Queremos la mayor zafra de la historia. Proponemos mandar a cortar caña a estudiantes, oficinistas y soldados.»
-- A. ¡Todos a la zafra! → sube Partido +4 · baja Pueblo -6
-- B. Qué disparate, el país se pararía → sube Pueblo +5 · baja Partido -4
+- A. Que no quede nadie sin machete → sube Partido +4 · baja Pueblo -6
+- B. Soldados sí, los demás a trabajar → sube Pueblo +5 · baja Ejército -4
 
 **Los domingos de Cabaña** (Vicepresidente del Consejo de Ministros)  
 «Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»

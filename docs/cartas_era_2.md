@@ -197,10 +197,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 14.
 
-**Carta:** «Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
+**Carta:** «El Comandante Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
 
-- **A. Yo cortaré a su lado** Pueblo +5 · Élite −5 · Encola: `companero_incomodo` en 2 a 3 años
-- **B. El domingo es sagrado** Élite +5 · Pueblo −5 · Encola: `companero_incomodo` en 2 a 3 años
+- **A. Que los ministros suden un poco** Pueblo +5 · Élite −4 · Encola: `companero_incomodo` en 2 a 3 años
+- **B. Que corte él solo si tanto le gusta** Élite +4 · Pueblo −2 · Encola: `companero_incomodo` en 2 a 3 años
 
 ### 20. La carta de Cabaña
 

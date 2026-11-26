@@ -807,9 +807,9 @@ const CARTAS = [
   {
     id: "cabana_domingos", era: 2, tipo: "sorteo", peso: 14, titulo: "Los domingos de Cabaña",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.",
-    izq: { accion: "Yo cortaré a su lado", efectos: { pueblo: 5, elite: -5 }, encolar: [{ carta: "companero_incomodo", min: 2, max: 3 }] },
-    der: { accion: "El domingo es sagrado", efectos: { elite: 5, pueblo: -5 }, encolar: [{ carta: "companero_incomodo", min: 2, max: 3 }] }
+    texto: "El Comandante Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.",
+    izq: { accion: "Que los ministros suden un poco", efectos: { pueblo: 5, elite: -4 }, encolar: [{ carta: "companero_incomodo", min: 2, max: 3 }] },
+    der: { accion: "Que corte él solo si tanto le gusta", efectos: { elite: 4, pueblo: -2 }, encolar: [{ carta: "companero_incomodo", min: 2, max: 3 }] }
   },
   {
     id: "cabana_carta", era: 2, tipo: "cola", enlace: true, titulo: "La carta de Cabaña", leyenda: "Carta", fondo: "mostaza",

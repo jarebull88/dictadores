@@ -384,9 +384,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Soldados sí, los demás a trabajar → sube Pueblo +5 · baja Ejército -4
 
 **Los domingos de Cabaña** (Vicepresidente del Consejo de Ministros)  
-«Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
-- A. Yo cortaré a su lado → sube Pueblo +5 · baja Partido -5
-- B. El domingo es sagrado → sube Partido +5 · baja Pueblo -5
+«El Comandante Cabaña manda a los ministros a cortar caña los domingos. Dice que así nace el hombre nuevo.»
+- A. Que los ministros suden un poco → sube Pueblo +5 · baja Partido -4
+- B. Que corte él solo si tanto le gusta → sube Partido +4 · baja Pueblo -2
 
 **La carta de Cabaña** (undefined; segundo paso)  
 «Cabaña te ha dejado una carta de despedida. Renuncia a sus cargos, a su grado y a su nacionalidad.»

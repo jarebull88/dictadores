@@ -279,8 +279,8 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 
 **Carta:** «Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.»
 
-- **A. Manden a todo el país al cañaveral** Élite +4 · Pueblo −5 · Encola: `discurso_derrota` en 1 a 2 años
-- **B. Busquen cómo hacer que la cuenta dé** Pueblo +3 · Élite −3 · Encola: `discurso_derrota` en 1 a 2 años
+- **A. Sin descanso hasta los diez millones** Élite +2 · Pueblo −7 · Crisis +2 · Encola: `discurso_derrota` en 1 a 2 años
+- **B. Busquen cómo hacer que la cuenta dé** Élite +5 · Pueblo −2 · Encola: `discurso_derrota` en 1 a 2 años
 
 ### 28. El discurso de la derrota
 

@@ -425,8 +425,8 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 
 **La cifra que no llega** (Ministro de Trabajo)  
 «Se acaba la zafra y la caña no llega a la cifra que hemos pintado en cada valla del país.»
-- A. Manden a todo el país al cañaveral → sube Partido +4 · baja Pueblo -5
-- B. Busquen cómo hacer que la cuenta dé → sube Pueblo +3 · baja Partido -3
+- A. Sin descanso hasta los diez millones → sube Partido +2 · baja Pueblo -7 · crisis +2
+- B. Busquen cómo hacer que la cuenta dé → sube Partido +5 · baja Pueblo -2
 
 **El discurso de la derrota** (Ministro de Trabajo)  
 «La zafra ha fracasado. Un millón de personas le espera en la plaza para oír qué pasó.»

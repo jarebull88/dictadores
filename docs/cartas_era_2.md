@@ -335,7 +335,7 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 ### 33. Las flores en el mar
 
 **Personaje:** Ministro del Interior  
-**Condición:** sorteo con peso 14; exige `accidente_cienfuegos`.
+**Condición:** sorteo con peso 0; exige `accidente_cienfuegos`.
 
 **Carta:** «El Pueblo sigue tirando flores al mar por Milfuegos. Muchos aún preguntan qué pasó.»
 

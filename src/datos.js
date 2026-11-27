@@ -822,9 +822,9 @@ const CARTAS = [
     // 5 nov, Jorge: el congreso de los tres continentes (1966); provisional
     id: "congreso", era: 2, tipo: "sorteo", peso: 12, cond: { turnoMin: 3 }, titulo: "El congreso",
     personaje: "Vicepresidente del Consejo de Ministros",
-    texto: "Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.",
-    izq: { accion: "Y que se lleven fusiles", efectos: { ejercito: 5, potencias: -5 } },
-    der: { accion: "Solo discursos, sin fusiles", efectos: { potencias: 5, ejercito: -5 } }
+    texto: "Vendrán revolucionarios de tres continentes a nuestro congreso. Quieren volver a casa con algo más que discursos.",
+    izq: { accion: "Un fusil de recuerdo para cada uno", efectos: { ejercito: 5, potencias: -5 } },
+    der: { accion: "Discursito de seis horas y a casa", efectos: { potencias: 3, ejercito: -2 } }
   },
   {
     // 23 oct, Jorge: trama de traición inspirada en el Che (1965-67): el héroe fanático que critica al bloque y estorba al Comandante

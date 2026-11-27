@@ -394,9 +394,9 @@ Qué fuerzas sube y baja cada respuesta, en la escala pequeña de los datos (ant
 - B. Guárdenla y que la gente especule → sube Ejército +3 · baja Pueblo -3
 
 **El congreso** (Vicepresidente del Consejo de Ministros)  
-«Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.»
-- A. Y que se lleven fusiles → sube Ejército +5 · baja Potencias -5
-- B. Solo discursos, sin fusiles → sube Potencias +5 · baja Ejército -5
+«Vendrán revolucionarios de tres continentes a nuestro congreso. Quieren volver a casa con algo más que discursos.»
+- A. Un fusil de recuerdo para cada uno → sube Ejército +5 · baja Potencias -5
+- B. Discursito de seis horas y a casa → sube Potencias +3 · baja Ejército -2
 
 **El compañero incómodo** (Embajador del bloque oriental)  
 «El Comandante Cabaña nos ha llamado imperialistas delante de medio mundo. Exigimos que lo calle.»

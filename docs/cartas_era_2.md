@@ -217,10 +217,10 @@ Duración: entre 8 y 10 cartas. 34 cartas. Los efectos están en la escala peque
 **Personaje:** Vicepresidente del Consejo de Ministros  
 **Condición:** sorteo con peso 12; a partir del año 3 de la era.
 
-**Carta:** «Vendrán guerrilleros de medio mundo a nuestro congreso. Hay que decidir qué se llevan de vuelta.»
+**Carta:** «Vendrán revolucionarios de tres continentes a nuestro congreso. Quieren volver a casa con algo más que discursos.»
 
-- **A. Y que se lleven fusiles** Ejército +5 · Potencias −5
-- **B. Solo discursos, sin fusiles** Potencias +5 · Ejército −5
+- **A. Un fusil de recuerdo para cada uno** Ejército +5 · Potencias −5
+- **B. Discursito de seis horas y a casa** Potencias +3 · Ejército −2
 
 ### 22. El compañero incómodo
 
